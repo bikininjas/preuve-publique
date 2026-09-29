@@ -1,0 +1,18 @@
+{
+  "id": "eli/dl/doc/TA-10-2026-0006",
+  "type": "Work",
+  "adopts": ["eli/dl/doc/A-10-2025-0252"],
+  "parliamentary_term": "org/ep-10",
+  "document_date": "2026-01-20",
+  "identifier": "TA-10-2026-0006",
+  "epNumber": "PE767.970",
+  "label": "T10-0006/2026",
+  "notation_publicRegister": "P10_TA(2026)0006",
+  "identifierYear": "2026",
+  "work_type": "def/ep-document-types/TEXT_ADOPTED",
+  "title_dcterms": {
+    "fr": "Réforme de l'acte électoral européen – obstacles à la ratification et à l'application dans les États membres",
+    "en": "Reform of the European Electoral Act – hurdles to ratification and implementation in Member States"
+  },
+  "inverse_created_a_realization_of": ["eli/dl/event/MTG-PL-2026-01-20-PVCRE-ITM-8-9", "eli/dl/proc/2025-2028"]
+}

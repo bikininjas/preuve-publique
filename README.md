@@ -14,9 +14,26 @@ Les effets observés (statistiques publiques, application d'une loi) demandent l
 
 ## État du dépôt
 
-Le dépôt contient une interface Next.js, un modèle SQL initial (`sources`, `actors`, `evidence`, `evidence_links`) avec politiques RLS, et une chaîne de construction pour Cloud Build et Cloud Run. La page d'accueil affiche jusqu'à 12 éléments **publiés** si la base est configurée. Elle affiche un état vide explicite sinon.
+Le dépôt contient une interface Next.js, un modèle SQL initial (`sources`, `actors`, `evidence`, `evidence_links`) avec politiques RLS et une seconde migration (`detail`, trace de relecture, recherche plein texte, journal `ingestion_runs`), la logique serveur de lecture (`lib/`), les pipelines d'ingestion et l'outil de revue éditoriale (`ingestion/`), et une chaîne de construction pour Cloud Build et Cloud Run. La page d'accueil affiche jusqu'à 12 éléments **publiés** si la base est configurée. Elle affiche un état vide explicite sinon.
 
-**La migration SQL n'a pas encore été appliquée à la base distante.** Les pipelines d'ingestion, l'interface de comparaison et le processus de validation éditoriale restent à construire. Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
+**Aucune migration n'a encore été appliquée à la base distante et aucune donnée n'a été importée en production.** Les importeurs ont été exercés sur les sources réelles (Assemblée nationale, Sénat, Parlement européen) et le chemin d'écriture complet vérifié sur un PostgreSQL local embarqué (PGlite) : insertion, idempotence, protection des pièces relues ou publiées, politiques RLS pour le rôle `anon`, recherche plein texte. L'importeur Légifrance attend un compte PISTE. Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
+
+## Ingestion et revue éditoriale
+
+La logique d'import et de revue vit dans `ingestion/` ; voir `ingestion/README.md` pour le détail et les limites.
+
+```bash
+npm run ingest -- list
+npm run ingest -- fetch an-scrutins --legislatures=15 --limit=300   # staging uniquement
+npm run ingest -- push --staging ingestion/.staging/… --dry-run    # vérifie le SQL sans écrire
+npm run ingest -- push --staging ingestion/.staging/… --yes        # nécessite DB_PG_URL
+npm run ingest -- link                                             # rapprochements documentaires brouillons
+npm run ingest -- review list --table=evidence --status=draft
+npm run ingest -- measure                                          # volumes staging et base
+npm run test:ingestion                                             # tests hors-ligne, PGlite inclus
+```
+
+Toute pièce importée naît au statut `draft` ; la publication exige une transition explicite avec un relecteur identifié. Un nouvel import n'écrase jamais une pièce relue ou publiée : un changement de source est signalé pour revue.
 
 ## Développement local
 
@@ -39,14 +56,16 @@ Variables utilisées par l'application :
 Les variables peuvent rester vides pour travailler sur l'interface : la page présente alors l'état vide. Le fichier `.env.local` est ignoré par Git. Ne placez aucun identifiant réel dans `.env.example`, les fichiers Markdown ou les journaux CI.
 
 ```bash
-npm run build
+npm run build        # build Next.js et vérification TypeScript
+npm run lint         # ESLint (config à la racine)
+npm run test:ingestion
 ```
 
 Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécute sur le port attendu par Cloud Run.
 
 ## Base de données
 
-La migration initiale est dans `supabase/migrations/20260929000000_initial.sql`. Elle crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
+La migration initiale est dans `supabase/migrations/20260929000000_initial.sql` ; la migration `20260930000000_backend_pipeline.sql` ajoute les faits structurés copiés des sources (`detail`), la trace de relecture (`reviewed_by`, `reviewed_at`), la recherche plein texte française et le journal privé `ingestion_runs`. La migration initiale crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
 
 Avant de lancer cette migration sur un projet Supabase existant, inspecter le schéma et l'historique des migrations. Versionner chaque changement SQL, le relire et le tester localement avant `supabase db push`. Ne pas appliquer automatiquement la migration initiale depuis Cloud Build : le déploiement du site et l'évolution de la base sont deux opérations indépendantes.
 

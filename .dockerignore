@@ -9,3 +9,5 @@ out
 *.pem
 *.key
 *.log
+# Fetched raw material stays out of the image build context.
+ingestion/.staging
