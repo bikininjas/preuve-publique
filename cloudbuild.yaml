@@ -1,5 +1,10 @@
-# Set _REGION, _AR_REPOSITORY and _SERVICE in the Cloud Build trigger.
-# PROJECT_ID is provided by Cloud Build. No credential or project-specific value lives here.
+# Defaults for the resources created in Google Cloud. Override _REGION in the
+# trigger if the Artifact Registry repository is in another region.
+# PROJECT_ID and BUILD_ID are supplied by Cloud Build; no credentials live here.
+substitutions:
+  _REGION: europe-west1
+  _AR_REPOSITORY: preuvepublique
+  _SERVICE: preuve-publique
 steps:
   - id: build
     name: gcr.io/cloud-builders/docker
