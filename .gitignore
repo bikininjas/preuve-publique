@@ -80,6 +80,9 @@ web_modules/
 .next
 out
 
+# Ingestion staging: fetched raw material, never committed
+ingestion/.staging/
+
 # Nuxt.js build / generate output
 .nuxt
 dist

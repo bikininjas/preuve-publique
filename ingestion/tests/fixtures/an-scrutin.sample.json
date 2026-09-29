@@ -1,0 +1,52 @@
+{
+  "scrutin": {
+    "uid": "VTANR5L15V2944",
+    "numero": "2944",
+    "organeRef": "PO838901",
+    "legislature": "15",
+    "seanceRef": "SEANCE-2020-10-07-1",
+    "dateScrutin": "2020-10-07",
+    "typeVote": {
+      "codeTypeVote": "SPO",
+      "libelleTypeVote": "scrutin public ordinaire",
+      "typeMajorite": "majorité absolue des suffrages exprimés"
+    },
+    "sort": { "code": "adopté", "libelle": "l'Assemblée nationale a adopté" },
+    "titre": "l'article 24 bis du projet de loi portant diverses dispositions d'adaptation au droit de l'Union européenne en matière économique et financière (première lecture).",
+    "objet": {
+      "libelle": "l'article 24 bis du projet de loi portant diverses dispositions d'adaptation au droit de l'Union européenne en matière économique et financière (première lecture).",
+      "referenceLegislative": null
+    },
+    "syntheseVote": {
+      "nombreVotants": "57",
+      "suffragesExprimes": "56",
+      "nbrSuffragesRequis": "29",
+      "annonce": "l'Assemblée nationale a adopté",
+      "decompte": { "nonVotants": "2", "pour": "56", "contre": "0", "abstentions": "1", "nonVotantsVolontaires": "0" }
+    },
+    "ventilationVotes": {
+      "organe": {
+        "organeRef": "PO838901",
+        "groupes": {
+          "groupe": [
+            {
+              "organeRef": "PO730964",
+              "nombreMembresGroupe": "271",
+              "vote": {
+                "positionMajoritaire": "pour",
+                "decompteVoix": { "nonVotants": "2", "pour": "35", "contre": "0", "abstentions": "0", "nonVotantsVolontaires": "0" },
+                "decompteNominatif": {
+                  "pours": {
+                    "votant": [
+                      { "acteurRef": "PA719952", "mandatRef": "PM722814", "parDelegation": "false" }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
