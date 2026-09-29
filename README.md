@@ -1,29 +1,71 @@
 # Preuve Publique
 
-Application de traçabilité des positions politiques en France et dans l’Union européenne. Programmes, déclarations, textes, amendements, votes et résultats législatifs renvoient aux sources originales, sans verdict politique.
+**Suivre une position politique, de la parole aux actes, à partir des documents originaux.**
 
-## Démarrer
+Preuve Publique est un projet citoyen consacré à la France et à l'Union européenne. Il rapproche les engagements des programmes, les déclarations sourcées, les propositions et amendements, les votes parlementaires et le devenir des textes. Chaque élément renvoie à sa source. Le site présente la chronologie et le contexte pour que le visiteur se fasse sa propre opinion ; il ne donne ni note de « cohérence », ni verdict automatique.
 
-1. `npm ci`
-2. Copier `.env.example` vers `.env.local` et renseigner les variables publiques. `DB_PG_URL` est réservée aux scripts locaux ou CI ; elle n’est jamais utilisée par l’interface.
-3. `npm run dev`
+## Périmètre et méthode
 
-Sans configuration Supabase, l’interface affiche un état vide explicite. Avec Supabase, appliquer la migration `supabase/migrations/20260929000000_initial.sql` après revue du projet existant. Publier des éléments uniquement après vérification humaine.
+La période de travail commence en 2017. La première couverture vise l'Assemblée nationale, le Sénat, le Parlement européen et, pour le droit français adopté, Légifrance. Les programmes originaux et professions de foi complètent ces sources. Les déclarations médiatiques ne sont ajoutées que si l'enregistrement ou la transcription précise est accessible et vérifiable. Les collectivités locales ne font pas partie de la première version.
 
-## Hébergement : Cloud Build et Cloud Run
+Une fiche documentaire doit indiquer la date, l'auteur ou l'institution quand ils sont connus, le document original, son URL et le repère utile (page, article, numéro de scrutin, horodatage). Un rapprochement entre une promesse et un vote est documenté et révisable : un vote contre un texte entier ne prouve pas une opposition à chacune de ses mesures. Un scrutin non nominatif ne révèle pas la position individuelle des élus. Le site distingue pour, contre, abstention, non-participation et position individuelle indisponible.
 
-`Dockerfile` construit une image Next.js `standalone`, exécutée par un utilisateur non privilégié sur le port `8080`. `cloudbuild.yaml` construit l’image, la pousse dans Artifact Registry et déploie Cloud Run. Aucun identifiant ou nom de projet Google Cloud n’est présent dans ces fichiers ; Cloud Build fournit `$PROJECT_ID` et `$BUILD_ID`.
+Les effets observés (statistiques publiques, application d'une loi) demandent leur propre source, leur période et leurs limites. La simple succession d'un vote et d'un indicateur ne démontre pas une causalité. Une comparaison de partis ou de personnalités est envisagée avec les mêmes règles documentaires pour tous.
 
-À configurer une fois dans ton projet Google Cloud : activer Cloud Build, Artifact Registry et Cloud Run ; créer un dépôt Docker Artifact Registry ; connecter GitHub à Cloud Build ; créer un déclencheur sur `master` pointant vers `cloudbuild.yaml`. Les substitutions ont des valeurs par défaut : `_REGION=europe-west1`, `_AR_REPOSITORY=preuvepublique`, `_SERVICE=preuve-publique`. Vérifier que le dépôt Artifact Registry est bien en `europe-west1` ; sinon remplacer `_REGION` dans le déclencheur. Ne pas créer de substitution vide dans le déclencheur, car elle remplace la valeur par défaut par une chaîne vide. Le compte de service du build doit pouvoir écrire dans Artifact Registry, déployer Cloud Run et agir comme le compte de service d’exécution. Ne pas déposer de clé de compte de service dans le dépôt.
+## État du dépôt
 
-Configurer `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` comme variables **d’exécution** du service Cloud Run, pas comme arguments de construction de l’image. La page est rendue sur le serveur à la requête et lit au maximum 12 lignes publiées. `DB_PG_URL` n’est jamais requise par le frontend. Pour rendre le site public, le déploiement utilise `--allow-unauthenticated` ; certaines organisations interdisent cette autorisation par une politique IAM.
+Le dépôt contient une interface Next.js, un modèle SQL initial (`sources`, `actors`, `evidence`, `evidence_links`) avec politiques RLS, et une chaîne de construction pour Cloud Build et Cloud Run. La page d'accueil affiche jusqu'à 12 éléments **publiés** si la base est configurée. Elle affiche un état vide explicite sinon.
 
-Paramètres de coût initiaux : 0 instance minimale, 2 maximales, facturation Cloud Run à la requête (valeur par défaut). Surveiller aussi le stockage des anciennes images dans Artifact Registry, les journaux et le transfert réseau. Un plafond d’instances ne fixe pas un plafond de facturation ; configurer un budget et des alertes Google Cloud avant le premier déploiement.
+**La migration SQL n'a pas encore été appliquée à la base distante.** Les pipelines d'ingestion, l'interface de comparaison et le processus de validation éditoriale restent à construire. Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
 
-Le projet Supabase est sur l’offre gratuite : concevoir les imports pour rester sous 500 Mo de base, 5 Go de transfert sortant et 1 Go de stockage de fichiers. Conserver dans Postgres seulement les métadonnées et de courts extraits vérifiés ; référencer les originaux institutionnels par URL et empreinte plutôt que stocker tous les PDF et débats. Ne pas importer l’ensemble des documents depuis 2017 avant d’avoir mesuré leur taille. Les projets gratuits peuvent être mis en pause après une semaine d’inactivité.
+## Développement local
 
-Les migrations restent versionnées dans `supabase/migrations`. Après revue, les appliquer avec la CLI Supabase ; ne jamais copier le mot de passe ou la connexion PostgreSQL dans Git. Automatiser `supabase db push` depuis GitHub Actions uniquement après avoir vérifié l’état existant de la base et rangé les identifiants dans les secrets du dépôt.
+Prérequis : Node.js 22 et npm.
 
-Le modèle initial contient `sources`, `actors`, `evidence` et `evidence_links`. Le type de lien `related` ne signifie pas « soutient » ou « contredit ». Les imports officiels, la comparaison et la modération sont les prochains lots ; ce schéma seul n’importe aucune donnée.
+```bash
+npm ci
+cp .env.example .env.local
+npm run dev
+```
 
-Le dépôt est public. Ne jamais ajouter la connexion PostgreSQL ni un `.env.local`. Vérifier `git diff --cached` avant chaque commit.
+Variables utilisées par l'application :
+
+| Variable | Usage |
+|---|---|
+| `SUPABASE_URL` | Adresse de l'API Supabase, côté serveur |
+| `SUPABASE_PUBLISHABLE_KEY` | Clé publique Supabase, côté serveur dans cette application |
+| `DB_PG_URL` | Réservée à d'éventuels outils de migration ou d'ingestion ; jamais nécessaire au frontend |
+
+Les variables peuvent rester vides pour travailler sur l'interface : la page présente alors l'état vide. Le fichier `.env.local` est ignoré par Git. Ne placez aucun identifiant réel dans `.env.example`, les fichiers Markdown ou les journaux CI.
+
+```bash
+npm run build
+```
+
+Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécute sur le port attendu par Cloud Run.
+
+## Base de données
+
+La migration initiale est dans `supabase/migrations/20260929000000_initial.sql`. Elle crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
+
+Avant de lancer cette migration sur un projet Supabase existant, inspecter le schéma et l'historique des migrations. Versionner chaque changement SQL, le relire et le tester localement avant `supabase db push`. Ne pas appliquer automatiquement la migration initiale depuis Cloud Build : le déploiement du site et l'évolution de la base sont deux opérations indépendantes.
+
+## Déploiement Cloud Build → Cloud Run
+
+Le fichier `cloudbuild.yaml` construit l'image avec le `Dockerfile`, la pousse dans Artifact Registry, puis déploie le service Cloud Run. Le projet Google Cloud et l'identifiant du build sont fournis par Cloud Build. Les substitutions par défaut sont :
+
+| Substitution | Valeur par défaut | Signification |
+|---|---|---|
+| `_REGION` | `europe-west1` | Région du registre et du service |
+| `_AR_REPOSITORY` | `preuvepublique` | Dépôt Docker Artifact Registry |
+| `_SERVICE` | `preuve-publique` | Service Cloud Run |
+
+Si le registre est dans une autre région, modifier `_REGION` dans le déclencheur. Ne pas définir de substitution vide : elle peut écraser la valeur par défaut et rendre l'adresse de l'image invalide.
+
+Créer un déclencheur Cloud Build relié à `bikininjas/preuve-publique`, sur les push vers `master`, avec `cloudbuild.yaml` et un compte de service autorisé à écrire dans Artifact Registry et à déployer Cloud Run. Le conteneur doit recevoir `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` **dans la configuration d'exécution Cloud Run**. Aucune chaîne PostgreSQL ni clé privilégiée n'est nécessaire au service web. Le service est destiné à être public (`--allow-unauthenticated`).
+
+La configuration initiale utilise zéro instance minimale et deux instances maximales. Cette limite ne garantit pas une facture nulle. Vérifier les quotas gratuits et configurer des alertes de budget ; nettoyer les anciennes images du registre. Supabase Free impose de limiter les données conservées : stocker les métadonnées et de courts extraits, garder les PDF originaux chez leurs éditeurs lorsque possible, mesurer avant tout import historique massif.
+
+## Contribuer
+
+Lire [AGENTS.md](AGENTS.md) avant de modifier les données, la méthode ou le déploiement. Les corrections factuelles doivent conserver un historique de la source et du motif du changement. Aucune accusation, conclusion politique ou correspondance incertaine ne doit être publiée automatiquement.
