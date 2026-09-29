@@ -9,3 +9,4 @@ Documenter les positions politiques en France et dans l’Union européenne depu
 - Aucun secret, mot de passe, URL PostgreSQL avec identifiants, token ou `.env` dans Git, les issues, les PR ou les journaux CI. Les variables `NEXT_PUBLIC_*` sont publiques ; aucune clé privilégiée n’y entre.
 - RLS sur toutes les tables exposées. Lecture publique limitée aux pièces publiées ; aucune écriture depuis le client public.
 - Préférer ingestion incrémentale, cache et IA locale hors requête visiteur. Ne pas fabriquer de données de démonstration attribuées à des personnalités réelles.
+- Budget cible : 0 € mensuel. Supabase Free : stockage Postgres limité ; le frontend est un export statique sur Cloudflare Pages. Ne jamais activer de service payant ou importer massivement sans estimation et mesure de volume. Garder les originaux chez leurs éditeurs lorsque possible et ne stocker que les références et extraits nécessaires.
