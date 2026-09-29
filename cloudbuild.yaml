@@ -1,0 +1,28 @@
+# Set _REGION, _AR_REPOSITORY and _SERVICE in the Cloud Build trigger.
+# PROJECT_ID is provided by Cloud Build. No credential or project-specific value lives here.
+steps:
+  - id: build
+    name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE}:$BUILD_ID', '.']
+  - id: push
+    name: gcr.io/cloud-builders/docker
+    args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE}:$BUILD_ID']
+  - id: deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - '${_SERVICE}'
+      - '--image=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_SERVICE}:$BUILD_ID'
+      - '--region=${_REGION}'
+      - '--platform=managed'
+      - '--min-instances=0'
+      - '--max-instances=2'
+      - '--concurrency=80'
+      - '--memory=512Mi'
+      - '--cpu=1'
+      - '--allow-unauthenticated'
+      - '--quiet'
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,17 @@
+create table public.sources (id uuid primary key default gen_random_uuid(), url text not null unique check (url ~ '^https://'), publisher text not null, document_title text not null, published_at date, retrieved_at timestamptz not null default now(), sha256 text check (sha256 is null or sha256 ~ '^[0-9a-f]{64}$'));
+create table public.actors (id uuid primary key default gen_random_uuid(), name text not null, kind text not null check (kind in ('person','party','group')), external_id text unique);
+create table public.evidence (id uuid primary key default gen_random_uuid(), source_id uuid not null references public.sources(id), actor_id uuid references public.actors(id), title text not null, excerpt text, kind text not null check (kind in ('program','statement','amendment','vote','adopted_text','indicator')), institution text check (institution in ('assemblee','senat','parlement_europeen','legifrance') or institution is null), occurred_at date not null, source_url text not null check (source_url ~ '^https://'), source_locator text, external_id text, status text not null default 'draft' check (status in ('draft','reviewed','published')), unique (institution, kind, external_id));
+create table public.evidence_links (id uuid primary key default gen_random_uuid(), from_id uuid not null references public.evidence(id), to_id uuid not null references public.evidence(id), relation text not null default 'related' check (relation in ('related','same_proposal','legislative_outcome')), confidence numeric(3,2) not null check (confidence between 0 and 1), method text not null check (method in ('deterministic','llm','human')), rationale text not null, status text not null default 'draft' check (status in ('draft','reviewed','published')), check (from_id <> to_id), unique (from_id,to_id,relation));
+create index evidence_date_idx on public.evidence (occurred_at desc);
+create index evidence_actor_idx on public.evidence (actor_id, occurred_at desc);
+create index evidence_status_idx on public.evidence (status, occurred_at desc);
+alter table public.sources enable row level security;
+alter table public.actors enable row level security;
+alter table public.evidence enable row level security;
+alter table public.evidence_links enable row level security;
+revoke all on public.sources, public.actors, public.evidence, public.evidence_links from anon, authenticated;
+grant select on public.sources, public.actors, public.evidence, public.evidence_links to anon, authenticated;
+create policy sources_read on public.sources for select to anon, authenticated using (exists (select 1 from public.evidence e where e.source_id = id and e.status = 'published'));
+create policy actors_read on public.actors for select to anon, authenticated using (exists (select 1 from public.evidence e where e.actor_id = id and e.status = 'published'));
+create policy evidence_read on public.evidence for select to anon, authenticated using (status = 'published');
+create policy links_read on public.evidence_links for select to anon, authenticated using (status = 'published' and exists (select 1 from public.evidence e where e.id = from_id and e.status = 'published') and exists (select 1 from public.evidence e where e.id = to_id and e.status = 'published'));
