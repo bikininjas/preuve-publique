@@ -154,6 +154,9 @@ ul.plain li { margin: 3px 0; }
 .notice p { margin: 0 0 10px; }
 .notice.ok { background: #e8f3ec; border-color: #bcd9c5; color: #1d5c37; }
 .notice.warn { background: #fdf0e9; border-color: #f0cdb8; color: #8a3c1c; }
+/* Connexion technique locale (débogage, hors production) */
+.dev-signin { margin-top: 26px; padding-top: 16px; border-top: 1px dashed #d7d3c6; }
+.dev-signin form { margin: 0 0 8px; }
 .badge {
   display: inline-block;
   border-radius: 999px;

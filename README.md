@@ -37,6 +37,16 @@ L'authentification passe par Google (Supabase Auth), restreinte par la table `ad
 
 Limite assumée : les revendications du jeton ne sont relues qu'à son renouvellement. Désactiver une adresse (`update public.admin_users set active = false ...`) ferme donc l'accès au plus tard à l'expiration du jeton d'accès (1 h par défaut) ; supprimer la ligne n'invalide pas un jeton déjà émis.
 
+### Compte technique de débogage local (30/09/2026)
+
+Pour déboguer l'espace de relecture sans repasser par la connexion Google (clé d'accès), un compte technique existe : `debug-admin@preuve-publique.local`. Il a été créé par insertion SQL directe dans `auth.users` (+ `auth.identities`, e-mail confirmé, mot de passe en bcrypt via `crypt()`/`gen_salt('bf')`), puis inscrit dans `public.admin_users` avec la note « compte technique de débogage local ». Sa connexion mot de passe a été vérifiée contre l'API réelle (`POST /auth/v1/token?grant_type=password` → 200, jeton `authenticated`).
+
+- **Le mot de passe n'existe que dans `.env.local`** (ignoré par Git), sous `DEV_ADMIN_EMAIL` / `DEV_ADMIN_PASSWORD` ; il n'est pas dans ce dépôt, ni dans un journal, ni dans ce README.
+- **Utilisation** : `npm run dev`, ouvrir `/admin/login`, bouton « Connexion locale (débogage) » → `POST /auth/dev` ouvre une session puis renvoie vers `/admin`.
+- **Elle n'existe qu'hors production** : la route répond 404 quand `NODE_ENV=production` et le bouton n'est pas rendu — vérifié en lançant `next start` et en contrôlant les deux (404, bouton absent). Elle n'accepte que `POST`, refuse un envoi venu d'un autre site (`Sec-Fetch-Site`), n'utilise que la clé publishable et suit les mêmes politiques RLS et la même liste `admin_users` que Google.
+- **Fermer l'accès** : `update public.admin_users set active = false where email = 'debug-admin@preuve-publique.local';` (effet au plus tard à l'expiration du jeton) ou supprimer la ligne correspondante dans `auth.users` pour retirer le compte.
+- Limite : le compte vit dans le même projet Supabase que les autres données (il n'y a pas de base locale séparée) ; ce qui le cantonne au poste de travail, c'est le mot de passe resté dans `.env.local` et le garde-fou `NODE_ENV`.
+
 ### Mise en service de la connexion Google (faite en local — servir de référence)
 
 Ces étapes ont été exécutées le 30/09/2026 pour `localhost:3000` ; elles restent la référence pour un nouvel environnement ou pour la production :
