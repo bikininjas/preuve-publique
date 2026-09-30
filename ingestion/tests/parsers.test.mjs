@@ -9,6 +9,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseSessionPage, entryToRecord } from '../importers/senat-scrutins.mjs';
 import { scrutinToRecord } from '../importers/an-scrutins.mjs';
+import { dossierToRecords } from '../importers/an-dossiers.mjs';
 import { decisionToRecord } from '../importers/pe-votes.mjs';
 import { textToRecord } from '../importers/pe-texts.mjs';
 import { rowToRecord } from '../importers/senat-texts.mjs';
@@ -102,6 +103,31 @@ test('PE — adopted text keeps its ELI identity and procedure reference', () =>
   assert.ok(record.detail.refs.some((ref) => ref.type === 'pe:procedure' && ref.value === '2025-2028'));
   assert.ok(record.detail.refs.some((ref) => ref.type === 'pe:doc' && ref.value === 'A-10-2025-0252'));
   assert.ok(record.detail.refs.some((ref) => ref.type === 'pe:doc' && ref.value === 'TA-10-2026-0006'));
+});
+
+test('AN — un dossier promulgué produit la loi, sa référence JO et les rattachements de scrutins', () => {
+  const dossier = JSON.parse(fixture('an-dossier.sample.json')).dossierParlementaire;
+  const { evidence, refs } = dossierToRecords(dossier, {
+    legislature: 15,
+    zipFile: 'Dossiers_Legislatifs_XV.json.zip',
+    zipUrl: 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/dossiers_legislatifs/Dossiers_Legislatifs_XV.json.zip',
+    retrievedAt: RETRIEVED,
+  });
+  assert.equal(evidence.length, 1);
+  const record = evidence[0];
+  assert.equal(record.external_id, 'loi-2020-1238');
+  assert.equal(record.kind, 'adopted_text');
+  assert.equal(record.institution, 'assemblee');
+  assert.equal(record.occurred_at, '2020-10-09');
+  assert.equal(record.source_url, 'https://www.assemblee-nationale.fr/dyn/15/dossiers/DLR5L15N38768');
+  assert.equal(record.detail.nor, 'EAEJ1934332L');
+  assert.equal(record.detail.num_jo, '247');
+  assert.equal(record.detail.url_legifrance, 'https://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=EAEJ1934332L');
+  assert.deepEqual(record.detail.refs, [{ type: 'an:dossier', value: 'DLR5L15N38768' }]);
+  assert.equal(refs.length, 1);
+  assert.equal(refs[0].external_id, 'VTANR5L15V2944');
+  assert.deepEqual(refs[0].add_ref, { type: 'an:dossier', value: 'DLR5L15N38768' });
+  assert.match(refs[0].rationale, /dossier DLR5L15N38768/);
 });
 
 test('Sénat — promulgation rows become laws with an https dossier reference', () => {

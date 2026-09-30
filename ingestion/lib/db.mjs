@@ -107,7 +107,33 @@ async function findEvidence(client, record) {
   return rows[0] ?? null;
 }
 
-function evidenceChanged(existing, record, { sourceId, actorId }) {
+/**
+ * Refs are additive: each importer contributes documentary references, so an
+ * evidence re-push must union them with the references already stored
+ * (including those added by another importer's refs.jsonl), while every other
+ * detail field follows the source record.
+ */
+export function mergeDetailRefs(existingDetail, recordDetail) {
+  const base = recordDetail === null || recordDetail === undefined
+    ? null
+    : JSON.parse(JSON.stringify(recordDetail));
+  const out = [];
+  const seen = new Set();
+  for (const ref of [
+    ...(Array.isArray(existingDetail?.refs) ? existingDetail.refs : []),
+    ...(Array.isArray(recordDetail?.refs) ? recordDetail.refs : []),
+  ]) {
+    if (!ref?.type || !ref?.value) continue;
+    const key = `${ref.type}::${ref.value}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ type: ref.type, value: ref.value });
+  }
+  if (!out.length) return base;
+  return { ...(base ?? {}), refs: out };
+}
+
+function evidenceChanged(existing, record, { sourceId, actorId, detailValue }) {
   return existing.title !== record.title
     || (existing.excerpt ?? null) !== (record.excerpt ?? null)
     || asDateString(existing.occurred_at) !== record.occurred_at
@@ -115,7 +141,7 @@ function evidenceChanged(existing, record, { sourceId, actorId }) {
     || (existing.source_locator ?? null) !== (record.source_locator ?? null)
     || existing.source_id !== sourceId
     || (existing.actor_id ?? null) !== (actorId ?? null)
-    || canonicalJson(existing.detail) !== canonicalJson(record.detail);
+    || canonicalJson(existing.detail) !== canonicalJson(detailValue);
 }
 
 /**
@@ -126,8 +152,9 @@ function evidenceChanged(existing, record, { sourceId, actorId }) {
 export async function upsertEvidence(client, record, { initialStatus = 'draft', sourceId, actorId } = {}) {
   const resolvedSourceId = sourceId ?? await upsertSource(client, record.source);
   const resolvedActorId = actorId ?? (record.actor ? await upsertActor(client, record.actor) : null);
-  const detailJson = record.detail === null ? null : JSON.stringify(record.detail);
   const existing = await findEvidence(client, record);
+  const detailValue = mergeDetailRefs(existing?.detail ?? null, record.detail);
+  const detailJson = detailValue === null ? null : JSON.stringify(detailValue);
 
   if (!existing) {
     const { rows } = await client.query(
@@ -141,7 +168,7 @@ export async function upsertEvidence(client, record, { initialStatus = 'draft', 
     return { action: 'inserted', id: rows[0].id, status: initialStatus };
   }
 
-  const changed = evidenceChanged(existing, record, { sourceId: resolvedSourceId, actorId: resolvedActorId });
+  const changed = evidenceChanged(existing, record, { sourceId: resolvedSourceId, actorId: resolvedActorId, detailValue });
   if (existing.status !== 'draft') {
     return { action: changed ? 'locked_changed' : 'unchanged', id: existing.id, status: existing.status };
   }
@@ -196,6 +223,7 @@ export function emptyPushStats() {
     actors: 0,
     evidence: { total: 0, inserted: 0, updated: 0, unchanged: 0, locked_changed: 0 },
     links: { total: 0, inserted: 0, updated: 0, unchanged: 0, locked_changed: 0 },
+    refs: { total: 0, added: 0, already: 0, missing: 0, locked_changed: 0 },
     locked: [],
     notes: [],
   };
@@ -258,6 +286,8 @@ export async function pushStaging(client, stagingDir, { initialStatus = 'draft',
         stats.locked.push({ id: result.id, title: record.title, external_id: record.external_id });
       }
     }
+    const refPatches = readJsonl(join(stagingDir, 'refs.jsonl'));
+    await applyRefPatches(client, refPatches, stats);
     if (dryRun) await client.query('rollback');
     else await client.query('commit');
   } catch (error) {
@@ -265,6 +295,44 @@ export async function pushStaging(client, stagingDir, { initialStatus = 'draft',
     throw error;
   }
   return { stats, manifest: { importer: manifest.importer, created_at: manifest.created_at } };
+}
+
+/**
+ * Apply reference patches (refs.jsonl) written by importers whose dataset
+ * links existing pieces to a dossier: drafts get the reference added, pieces
+ * already reviewed or published are reported as locked, and missing pieces
+ * are counted so a later push can complete them.
+ */
+export async function applyRefPatches(client, patches, stats) {
+  for (const patch of patches) {
+    stats.refs.total += 1;
+    const { rows } = await client.query(
+      `select id, status, detail from public.evidence
+       where institution is not distinct from $1 and kind = $2 and external_id = $3`,
+      [patch.institution, patch.kind, patch.external_id],
+    );
+    if (!rows.length) { stats.refs.missing += 1; continue; }
+    const row = rows[0];
+    const detail = row.detail && typeof row.detail === 'object' ? row.detail : {};
+    const refs = Array.isArray(detail.refs) ? detail.refs : [];
+    const already = refs.some((ref) => ref.type === patch.add_ref.type && ref.value === patch.add_ref.value);
+    if (already) { stats.refs.already += 1; continue; }
+    if (row.status !== 'draft') {
+      stats.refs.locked_changed += 1;
+      stats.locked.push({
+        id: row.id,
+        title: `${patch.external_id} ← ${patch.add_ref.type} = ${patch.add_ref.value}`,
+        external_id: patch.external_id,
+      });
+      continue;
+    }
+    const nextDetail = { ...detail, refs: [...refs, patch.add_ref] };
+    await client.query(
+      'update public.evidence set detail = $2::jsonb where id = $1 and status = \'draft\'',
+      [row.id, JSON.stringify(nextDetail)],
+    );
+    stats.refs.added += 1;
+  }
 }
 
 export async function generateLinks(client, { dryRun = false } = {}) {

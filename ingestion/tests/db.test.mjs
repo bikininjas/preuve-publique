@@ -20,6 +20,7 @@ const ROOT = resolve(import.meta.dirname, '..', '..');
 const MIGRATIONS = [
   '20260929000000_initial.sql',
   '20260930000000_backend_pipeline.sql',
+  '20261001000000_fix_reference_policies.sql',
 ];
 
 async function freshDb() {
@@ -159,6 +160,11 @@ test('anon sees published rows only and cannot touch ingestion_runs', async () =
   const visible = await client.query('select external_id from public.evidence');
   assert.equal(visible.rows.length, 1);
   assert.equal(visible.rows[0].external_id, 'VTANR5L15V2944');
+  // Régression : la politique `sources_read` de la migration initiale rendait
+  // les sources invisibles (id non qualifié résolu vers evidence.id) ; la
+  // migration de correction doit rendre la source de la pièce publiée lisible.
+  const sources = await client.query('select document_title from public.sources');
+  assert.equal(sources.rows.length, 1, 'la source d’une pièce publiée doit être lisible');
   await assert.rejects(() => client.query('select * from public.ingestion_runs'));
   await assert.rejects(() => client.query(
     `insert into public.evidence (source_id, title, kind, occurred_at, source_url)
@@ -231,6 +237,56 @@ test('review transitions are gated and reviewer identity is recorded', async () 
   assert.equal(after.status, 'reviewed');
   assert.equal(after.reviewed_by, 'x');
   assert.ok(after.reviewed_at);
+  cleanup(dir);
+});
+
+test('les rattachements de référence s’ajoutent aux brouillons et jamais aux pièces publiées', async () => {
+  const client = await freshDb();
+  const dir = writeStaging([
+    draft(),
+    draft({ external_id: 'VTANR5L15V2945', title: 'Scrutin n° 2945 — autre' }),
+  ]);
+  const refsFile = (value) => writeJsonl(join(dir, 'refs.jsonl'), [
+    { institution: 'assemblee', kind: 'vote', external_id: 'VTANR5L15V2944', add_ref: { type: 'an:dossier', value } },
+    { institution: 'assemblee', kind: 'vote', external_id: 'VTANR5L15V2945', add_ref: { type: 'an:dossier', value } },
+    { institution: 'assemblee', kind: 'vote', external_id: 'INEXISTANT', add_ref: { type: 'an:dossier', value } },
+  ]);
+
+  refsFile('DLR5L15N38768');
+  const first = await db.pushStaging(client, dir, {});
+  assert.equal(first.stats.refs.added, 2);
+  assert.equal(first.stats.refs.missing, 1);
+
+  const { rows: [row] } = await client.query(
+    "select detail from public.evidence where external_id = 'VTANR5L15V2944'",
+  );
+  assert.deepEqual(row.detail.refs, [
+    { type: 'an:seance', value: 'SEANCE-1' },
+    { type: 'an:dossier', value: 'DLR5L15N38768' },
+  ]);
+
+  const again = await db.pushStaging(client, dir, {});
+  assert.equal(again.stats.refs.already, 2);
+
+  const { rows: [published] } = await client.query(
+    "select id from public.evidence where external_id = 'VTANR5L15V2945'",
+  );
+  await db.setReviewStatus(client, { table: 'evidence', id: published.id, status: 'reviewed', reviewer: 'test' });
+  await db.setReviewStatus(client, { table: 'evidence', id: published.id, status: 'published', reviewer: 'test' });
+
+  writeJsonl(join(dir, 'refs.jsonl'), [
+    { institution: 'assemblee', kind: 'vote', external_id: 'VTANR5L15V2945', add_ref: { type: 'an:dossier', value: 'DLR5L15N99999' } },
+  ]);
+  const third = await db.pushStaging(client, dir, {});
+  assert.equal(third.stats.refs.locked_changed, 1);
+  const { rows: [after] } = await client.query(
+    "select detail, status from public.evidence where external_id = 'VTANR5L15V2945'",
+  );
+  assert.equal(after.status, 'published');
+  assert.deepEqual(after.detail.refs, [
+    { type: 'an:seance', value: 'SEANCE-1' },
+    { type: 'an:dossier', value: 'DLR5L15N38768' },
+  ]);
   cleanup(dir);
 });
 

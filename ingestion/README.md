@@ -48,24 +48,30 @@ toute écriture réelle, et seul `push`/`link`/`review set` touchent la base.
 | Importeur | Source officielle | Pièces produites | Volume observé |
 |---|---|---|---|
 | `an-scrutins` | data.assemblee-nationale.fr, archives JSON par législature | `vote` (scrutins) | lég. 15 : 9,2 Mo / 4 417 scrutins ; lég. 17 : 26,3 Mo |
+| `an-dossiers` | data.assemblee-nationale.fr, dossiers législatifs par législature | `adopted_text` (lois promulguées) + rattachements de scrutins | lég. 15 : 15,2 Mo, 4 980 dossiers, 319 lois, 262 rattachements |
 | `senat-scrutins` | www.senat.fr/scrutin-public, pages de session | `vote` (scrutins) | ~200 scrutins par session depuis 2017 |
 | `senat-texts` | data.senat.fr, `promulguees.csv` | `adopted_text` (lois promulguées) | 1,3 Mo (toutes années, filtré depuis 2017) |
 | `pe-votes` | data.europarl.europa.eu API v2, décisions par séance | `vote` | 1 requête par séance plénière |
 | `pe-texts` | data.europarl.europa.eu API v2, textes adoptés | `adopted_text` | 1 requête par page d'année |
-| `legifrance` | api.piste.gouv.fr (OAuth PISTE) | `adopted_text` | **jamais exécuté faute d'identifiants** |
 
 Limites assumées, écrites noir sur blanc :
 
-- **`legifrance` n'a pas été exercé** : il faut un compte PISTE
-  (`LEGIFRANCE_CLIENT_ID`, `LEGIFRANCE_CLIENT_SECRET`). Le mapping des champs
-  de la réponse `consult/jorf` est à confirmer au premier passage réel ; la
-  réponse brute est conservée pour permettre cette vérification.
-- Les archives de scrutins de l'Assemblée nationale (législatures 15 et 16
-  vérifiées) ne renseignent **pas** de référence de dossier
-  (`objet.referenceLegislative` vide sur 4 417 + 4 106 scrutins) : relier un
-  vote AN à son texte exigera d'importer aussi le jeu de données des dossiers
-  législatifs de l'AN. Le chemin de référence `an:dossier` existe déjà et
-  s'activerait si la source le renseignait.
+- **L'API Légifrance (PISTE) est écartée** : son compte est réservé en pratique
+  au secteur public. Les références du Journal officiel (NOR, numéro du JO,
+  URL Légifrance) proviennent des dossiers législatifs de l'Assemblée
+  nationale, qui les publient ; le texte du JO lui-même n'est pas téléchargé.
+  Les jeux de données bruts de la DILA (`echanges.dila.gouv.fr`) sont la
+  source officielle correspondante, mais cet hôte refuse les connexions
+  depuis certains réseaux (constaté ici) : la route reste documentée, pas
+  utilisée.
+- Les archives de scrutins de l'Assemblée nationale ne portent **aucune**
+  référence de dossier (champ vide sur 4 417 + 4 106 scrutins vérifiés) :
+  c'est le jeu `an-dossiers` qui apporte ce lien. Il écrit des
+  **rattachements** (`refs.jsonl`) qui ajoutent la référence de dossier aux
+  scrutins déjà importés — uniquement aux brouillons, les pièces relues ou
+  publiées sont signalées. Les références sont **additives** : un nouvel
+  import de la même pièce ne supprime jamais une référence apportée par un
+  autre importeur (les autres champs du détail suivent la source).
 - Les **amendements** (AN et `ameli.zip` du Sénat, 154 Mo) ne sont pas encore
   importés : c'est le prochain palier, avec mesure de volume avant import.
 - Les positions individuelles de vote ne sont **pas** stockées (voir principe 5).
@@ -77,16 +83,18 @@ Limites assumées, écrites noir sur blanc :
   200 pièces produirait sinon 20 000 liens) ; le plafonnement est signalé en
   note du passage `link`.
 
-## Volumes mesurés (29/09/2026)
+## Volumes mesurés (30/09/2026)
 
 | Mesure | Valeur constatée |
 |---|---|
 | Scrutins AN lus (archive lég. 15) | 4 417 fichiers JSON, 9,2 Mo compressés |
+| Dossiers AN lus (archive lég. 15) | 15 486 fichiers dont 4 980 dossiers (10 506 d'une autre nature ignorés), 15,2 Mo ; 319 lois promulguées, 262 rattachements de scrutins |
 | Scrutins Sénat lus (sessions 2024, 2025) | 367 + 340 entrées, 2 pages HTML |
 | Séances plénières PE (2025) | 53 séances, 1 requête `decisions` par séance |
 | Textes adoptés PE (2026) | 319 textes, 7 pages |
-| Base après import de contrôle (494 pièces réelles) | ≈ 9,3 Mo, soit ≈ 19 Ko par pièce (détail jsonb inclus) |
-| Passage répété du même staging | 0 insertion, 494 pièces inchangées (idempotent) |
+| Base après import de contrôle (813 pièces réelles) | ≈ 19 Ko par pièce mesurés précédemment (détail jsonb inclus) |
+| Liens générés (sous-ensemble 300 scrutins + 319 lois) | 164 `same_proposal`, dont 20 vote ↔ loi avec NOR vérifiable |
+| Passage répété du même staging | 0 insertion, pièces inchangées (idempotent) |
 
 Extrapolation prudente : la législature 15 complète (4 417 scrutins) avoisine
 80 Mo de base, à remesurer avec `npm run ingest -- measure` avant tout import
@@ -100,7 +108,6 @@ volontairement courts.
 - `DB_PG_URL` — connexion PostgreSQL directe (dashboard Supabase →
   paramètres de base → chaîne de connexion, en incluant `sslmode=require`).
   Réservée à l'ingestion et à la revue : jamais dans le conteneur web.
-- `LEGIFRANCE_CLIENT_ID` / `LEGIFRANCE_CLIENT_SECRET` — compte PISTE.
 
 Aucune valeur secrète ne doit apparaître dans un staging, un manifeste ou un
 log : les fichiers produits ne contiennent que des métadonnées de provenance.

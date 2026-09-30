@@ -23,7 +23,7 @@ import {
 import { loadProjectEnv, requireDbUrl, redactPgUrl, PROJECT_ROOT } from './lib/env.mjs';
 import * as db from './lib/db.mjs';
 
-const IMPORTERS = ['an-scrutins', 'senat-scrutins', 'senat-texts', 'pe-votes', 'pe-texts', 'legifrance'];
+const IMPORTERS = ['an-scrutins', 'an-dossiers', 'senat-scrutins', 'senat-texts', 'pe-votes', 'pe-texts'];
 
 const rel = (path) => relative(PROJECT_ROOT, path).replaceAll('\\', '/');
 const isTrue = (value) => value === true || value === 'true' || value === 'yes';
@@ -101,7 +101,7 @@ async function cmdFetch(name, options) {
     notes: result.notes ?? [],
   };
   writeManifest(stagingDir, manifest);
-  console.log(`[${name}] ${result.counts.evidence} pièce(s), ${result.counts.sources} source(s), ${(result.rawFiles ?? []).length} fichier(s) brut(s)`);
+  console.log(`[${name}] ${result.counts.evidence} pièce(s), ${result.counts.sources} source(s), ${(result.rawFiles ?? []).length} fichier(s) brut(s)${result.counts.refs ? `, ${result.counts.refs} rattachement(s) de scrutins` : ''}`);
   for (const note of manifest.notes) console.log(`[${name}] note : ${note}`);
   console.log(`[${name}] manifeste : ${rel(join(stagingDir, 'manifest.json'))}`);
   return stagingDir;
@@ -113,6 +113,9 @@ function printPushStats(stats, dryRun) {
   console.log(`  pièces : ${stats.evidence.total} (${stats.evidence.inserted} nouvelles, ${stats.evidence.updated} mises à jour, ${stats.evidence.unchanged} inchangées, ${stats.evidence.locked_changed} verrouillées)`);
   if (stats.links.total) {
     console.log(`  liens : ${stats.links.total} (${stats.links.inserted} nouveaux, ${stats.links.updated} mis à jour, ${stats.links.locked_changed} verrouillés)`);
+  }
+  if (stats.refs?.total) {
+    console.log(`  références de rattachement : ${stats.refs.added} ajoutées (${stats.refs.already} déjà présentes, ${stats.refs.missing} pièces absentes, ${stats.refs.locked_changed} verrouillées)`);
   }
   if (stats.locked.length) {
     console.log('  pièces déjà relues ou publiées dont la source a changé (non écrites) :');
