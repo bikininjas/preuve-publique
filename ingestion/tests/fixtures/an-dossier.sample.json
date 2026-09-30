@@ -1,0 +1,73 @@
+{
+  "dossierParlementaire": {
+    "@xsi:type": "DossierLegislatif_Type",
+    "uid": "DLR5L15N38768",
+    "legislature": "15",
+    "titreDossier": {
+      "titre": "Accords avec le Turkménistan et les Etats-Unis sur l'emploi des personnes handicapées",
+      "titreChemin": "accords-turkmenistan-etats-unis-emploi",
+      "senatChemin": null
+    },
+    "procedureParlementaire": { "code": "PJL", "libelle": "Projet de loi" },
+    "initiateur": { "organes": { "organeRef": "PO717460" }, "acteurs": { "acteurRef": [] } },
+    "actesLegislatifs": {
+      "acteLegislatif": [
+        {
+          "@xsi:type": "Etape_Type",
+          "uid": "L15-AN1-DEBATS-38768",
+          "codeActe": "AN1-DEBATS-SEANCE",
+          "libelleActe": { "nomCanonique": "Discussion en séance publique", "libelleCourt": "Discussion en séance publique" },
+          "organeRef": "PO717460",
+          "dateActe": "2020-10-06T00:00:00.000+02:00",
+          "actesLegislatifs": {
+            "acteLegislatif": {
+              "@xsi:type": "Decision_Type",
+              "uid": "L15-VD206275DEC",
+              "codeActe": "ANNLEC-DEBATS-DEC",
+              "libelleActe": { "nomCanonique": "Décision", "libelleCourt": "Décision" },
+              "organeRef": "PO717460",
+              "dateActe": "2020-10-06T00:00:00.000+02:00",
+              "actesLegislatifs": null,
+              "statutConclusion": { "fam_code": "TSORTF01", "libelle": "adoptée" },
+              "reunionRef": "RUANR5L15S2020IDS23001",
+              "voteRefs": { "voteRef": "VTANR5L15V2944" },
+              "textesAssocies": { "texteAssocie": { "typeTexte": "BTA", "refTexteAssocie": "PRJLANR5L15BTA0480" } }
+            }
+          }
+        },
+        {
+          "@xsi:type": "Etape_Type",
+          "uid": "L15-PROM-38768",
+          "codeActe": "PROM",
+          "libelleActe": { "nomCanonique": "Promulgation de la loi", "libelleCourt": "Promulgation de la loi" },
+          "organeRef": "PO717136",
+          "dateActe": null,
+          "actesLegislatifs": {
+            "acteLegislatif": {
+              "@xsi:type": "Promulgation_Type",
+              "uid": "L15-VD197105PL",
+              "codeActe": "PROM-PUB",
+              "libelleActe": { "nomCanonique": "Promulgation d'une loi", "libelleCourt": "Promulgation d'une loi" },
+              "organeRef": "PO717136",
+              "dateActe": "2020-10-09T00:00:00.000+02:00",
+              "actesLegislatifs": null,
+              "texteLoiRef": "PRJLANR5L15BTA0480",
+              "infoJO": {
+                "typeJO": "JO_LOI_DECRET",
+                "dateJO": "2020-10-10+02:00",
+                "pageJO": null,
+                "numJO": "247",
+                "urlLegifrance": "http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=EAEJ1934332L",
+                "referenceNOR": "EAEJ1934332L"
+              },
+              "urlEcheancierLoi": null,
+              "codeLoi": "2020-1238",
+              "titreLoi": "autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement du Turkménistan"
+            }
+          }
+        }
+      ]
+    },
+    "fusionDossier": null
+  }
+}
