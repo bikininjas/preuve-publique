@@ -147,5 +147,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
-
-client_secret_919818604436-gkpnijhus84aokm7sq6nupgcqs7b6708.apps.googleusercontent.com.json
+# Téléchargements du client OAuth Google (contiennent le secret) : jamais commités
+client_secret_*.json
