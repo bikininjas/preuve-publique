@@ -14,13 +14,41 @@ Les effets observés (statistiques publiques, application d'une loi) demandent l
 
 ## État du dépôt
 
-Le dépôt contient une interface Next.js, un modèle SQL (`sources`, `actors`, `evidence`, `evidence_links`) avec politiques RLS et trois migrations (faits structurés `detail`, trace de relecture, recherche plein texte, journal `ingestion_runs`, correction des politiques de lecture), la logique serveur de lecture (`lib/`), les pipelines d'ingestion et l'outil de revue éditoriale (`ingestion/`), et une chaîne de construction pour Cloud Build et Cloud Run. La page d'accueil affiche jusqu'à 12 éléments **publiés** si la base est configurée. Elle affiche un état vide explicite sinon.
+Le dépôt contient une interface Next.js — site public et espace de relecture —, un modèle SQL (`sources`, `actors`, `evidence`, `evidence_links`, `admin_users`) avec politiques RLS et quatre migrations (faits structurés `detail`, trace de relecture, recherche plein texte, journal `ingestion_runs`, puis listes d'administration et transitions de revue), la logique serveur de lecture (`lib/`), les pipelines d'ingestion et l'outil de revue éditoriale (`ingestion/`), et une chaîne de construction pour Cloud Build et Cloud Run. Le site public affiche les pièces **publiées** : accueil, liste paginée (filtres type/institution, recherche plein texte française), fiche détaillée avec provenance et rapprochements, page de méthode. L'espace `/admin` gère la relecture et la publication. Sans variables Supabase, chaque page affiche un état vide explicite.
 
-**Les trois migrations ont été appliquées au projet Supabase** (`pntkhwdosrvsdybzsicp`) : schéma, colonnes du pipeline et correction des politiques de lecture ; les politiques RLS ont été vérifiées en rôle `anon`. **La base contient désormais les données importées : 20 407 pièces en brouillon** (16 957 scrutins de l'Assemblée nationale, législatures 15 à 17 ; 603 lois promulguées de l'AN ; 2 157 scrutins et 666 lois du Sénat ; 4 votes et 20 textes adoptés du Parlement européen), **3 797 liens documentaires candidats** et 19 sources, pour 52,6 Mo mesurés. **Aucune pièce n'est publiée** : le public ne voit rien tant qu'un relecteur n'a pas validé chaque ligne (`npm run ingest -- review`). Les importeurs ont été exercés sur les sources réelles et le chemin d'écriture vérifié sur un PostgreSQL local embarqué (PGlite) puis contre la base distante : insertion, idempotence, protection des pièces relues ou publiées, rattachements de références, politiques RLS, recherche plein texte. Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
+**Les quatre migrations ont été appliquées au projet Supabase** (`pntkhwdosrvsdybzsicp`) : schéma, colonnes du pipeline, correction des politiques de lecture, puis espace de relecture (liste `admin_users`, lectures d'administration, transitions de statut) ; les politiques RLS ont été vérifiées en rôle `anon`, et les droits de la liste d'administration vérifiés par requêtes ciblées (`has_function_privilege`, `has_column_privilege`) après application. **La base contient désormais les données importées : 20 407 pièces en brouillon** (16 957 scrutins de l'Assemblée nationale, législatures 15 à 17 ; 603 lois promulguées de l'AN ; 2 157 scrutins et 666 lois du Sénat ; 4 votes et 20 textes adoptés du Parlement européen), **3 797 liens documentaires candidats** et 19 sources, pour environ 53 Mo mesurés. **Aucune pièce n'est publiée** : le public ne voit rien tant qu'un relecteur n'a pas validé chaque ligne (espace `/admin` ou `npm run ingest -- review`). Les importeurs ont été exercés sur les sources réelles et le chemin d'écriture vérifié sur un PostgreSQL local embarqué (PGlite) puis contre la base distante : insertion, idempotence, protection des pièces relues ou publiées, rattachements de références, politiques RLS, recherche plein texte, et politiques de revue (adresse autorisée, adresse refusée, adresse désactivée). Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
+
+**La connexion Google n'est pas encore activée sur le projet Supabase** (`"google": false` constaté sur `/auth/v1/settings`) : le code d'authentification et les politiques sont en place, la construction et les tests passent, mais aucune session réelle n'a encore été ouverte. Les étapes de mise en service sont décrites ci-dessous.
+
+## Site public et espace de relecture
+
+| Adresse | Contenu |
+|---|---|
+| `/` | accueil : méthode en trois temps, dernières pièces publiées |
+| `/pieces` | liste paginée des pièces publiées, filtres type/institution, recherche plein texte |
+| `/pieces/<id>` | fiche : extrait cité, provenance complète (source, repère, empreinte, date de récupération), faits structurés, rapprochements documentaires |
+| `/methode` | méthode, sources officielles et limites assumées |
+| `/admin` | espace de relecture : compteurs, fichiers de relecture, journal d'ingestion |
+| `/admin/review` | file des pièces : brouillon → relu → publié, retour d'un cran, relecteur enregistré |
+| `/admin/links` | file des rapprochements, mêmes transitions |
+| `/admin/runs` | passages d'ingestion (options, volumes, résultat) |
+
+L'authentification passe par Google (Supabase Auth), restreinte par la table `admin_users` — aujourd'hui une seule adresse, `sebpicot@gmail.com`. Aucune clé privilégiée n'est utilisée par le site : les écritures de revue passent par la clé publishable, en rôle `authenticated`, et la base refuse tout si l'adresse n'est pas dans la liste (politiques décrites dans `supabase/migrations/20261002000000_admin_review.sql`). La session est rafraîchie par `proxy.ts` (Next.js 16 : l'ancien `middleware.ts`), et seules les colonnes de statut et de trace de relecture sont inscriptibles par l'API : le contenu des pièces reste écrit par les importeurs.
+
+Limite assumée : les revendications du jeton ne sont relues qu'à son renouvellement. Désactiver une adresse (`update public.admin_users set active = false ...`) ferme donc l'accès au plus tard à l'expiration du jeton d'accès (1 h par défaut) ; supprimer la ligne n'invalide pas un jeton déjà émis.
+
+### Mise en service de la connexion Google (une fois)
+
+1. **Console Google Cloud** → *Google Auth Platform* → *Clients* → créer un client OAuth de type **Web application**. Origines JavaScript autorisées : l'adresse publique du site et `http://localhost:3000`. URI de redirection autorisée : `https://<project-ref>.supabase.co/auth/v1/callback` (l'adresse exacte est affichée sur la page du fournisseur Google du tableau de bord Supabase).
+2. **Tableau de bord Supabase** → *Authentication* → *Providers* → **Google** : activer, coller l'identifiant client et le secret.
+3. **Supabase** → *Authentication* → *URL Configuration* : *Site URL* = adresse publique du site ; *Redirect URLs* : `<adresse publique>/auth/callback` et `http://localhost:3000/auth/callback`.
+4. Vérifier : ouvrir `/admin`, se connecter avec Google, valider une pièce, contrôler qu'elle apparaît sur `/pieces`.
+
+Tant que le fournisseur n'est pas activé, `/auth/login` redirige vers Supabase, qui répond « provider is not enabled » : c'est attendu, aucune donnée n'est concernée. Les variables d'exécution restent `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` (aucune clé supplémentaire n'est nécessaire au service web).
 
 ## Ingestion et revue éditoriale
 
-La logique d'import et de revue vit dans `ingestion/` ; voir `ingestion/README.md` pour le détail et les limites.
+La logique d'import et de revue vit dans `ingestion/` ; voir `ingestion/README.md` pour le détail et les limites. Les transitions de statut se font aussi, sans ligne de commande, depuis l'espace `/admin` du site.
 
 ```bash
 npm run ingest -- list
@@ -33,7 +61,7 @@ npm run ingest -- measure                                          # volumes sta
 npm run test:ingestion                                             # tests hors-ligne, PGlite inclus
 ```
 
-Toute pièce importée naît au statut `draft` ; la publication exige une transition explicite avec un relecteur identifié. Un nouvel import n'écrase jamais une pièce relue ou publiée : un changement de source est signalé pour revue.
+Toute pièce importée naît au statut `draft` ; la publication exige une transition explicite avec un relecteur identifié. Un nouvel import n'écrase jamais une pièce relue ou publiée : un changement de source est signalé pour revue. Ces transitions se font depuis l'espace `/admin` (le relecteur enregistré est l'adresse Google connectée) ou depuis la CLI (`npm run ingest -- review set`) ; les deux chemins suivent le même graphe et les mêmes règles, vérifiés par les tests PGlite.
 
 ## Développement local
 
@@ -53,7 +81,7 @@ Variables utilisées par l'application :
 | `SUPABASE_PUBLISHABLE_KEY` | Clé publique Supabase, côté serveur dans cette application |
 | `DB_PG_URL` | Réservée à d'éventuels outils de migration ou d'ingestion ; jamais nécessaire au frontend |
 
-Les variables peuvent rester vides pour travailler sur l'interface : la page présente alors l'état vide. Le fichier `.env.local` est ignoré par Git. Ne placez aucun identifiant réel dans `.env.example`, les fichiers Markdown ou les journaux CI.
+Les variables peuvent rester vides pour travailler sur l'interface : la page présente alors l'état vide. Le fichier `.env.local` est ignoré par Git. Ne placez aucun identifiant réel dans `.env.example`, les fichiers Markdown ou les journaux CI. Avec de vraies valeurs `SUPABASE_URL` / `SUPABASE_PUBLISHABLE_KEY` et le fournisseur Google activé pour `http://localhost:3000/auth/callback`, l'espace de relecture fonctionne aussi en local sur `/admin`.
 
 ```bash
 npm run build        # build Next.js et vérification TypeScript
@@ -65,7 +93,9 @@ Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécu
 
 ## Base de données
 
-La migration initiale est dans `supabase/migrations/20260929000000_initial.sql` ; `20260930000000_backend_pipeline.sql` ajoute les faits structurés copiés des sources (`detail`), la trace de relecture (`reviewed_by`, `reviewed_at`), la recherche plein texte française et le journal privé `ingestion_runs` ; `20261001000000_fix_reference_policies.sql` corrige les politiques de lecture de `sources` et `actors` (un `id` non qualifié y était résolu vers la table interne, ce qui rendait ces tables invisibles au public — le bug a été trouvé par une lecture réelle en rôle `anon` et couvert par un test). La migration initiale crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
+La migration initiale est dans `supabase/migrations/20260929000000_initial.sql` ; `20260930000000_backend_pipeline.sql` ajoute les faits structurés copiés des sources (`detail`), la trace de relecture (`reviewed_by`, `reviewed_at`), la recherche plein texte française et le journal privé `ingestion_runs` ; `20261001000000_fix_reference_policies.sql` corrige les politiques de lecture de `sources` et `actors` (un `id` non qualifié y était résolu vers la table interne, ce qui rendait ces tables invisibles au public — le bug a été trouvé par une lecture réelle en rôle `anon` et couvert par un test) ; `20261002000000_admin_review.sql` ajoute la liste d'administration `admin_users`, les lectures d'administration (tous les statuts, journal d'ingestion) et les transitions de revue, limitées aux colonnes `status`, `reviewed_by` et `reviewed_at`, avec relecteur obligatoire hors brouillon. La migration initiale crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
+
+Note d'historique : la base distante enregistre la troisième migration sous le jeton `20260930063114` alors que le fichier local s'appelle `20261001000000_fix_reference_policies.sql` — divergence antérieure à l'espace de relecture, à garder en tête avant un `supabase db push`. L'état réel de la base a été relu par requêtes directes (`pg_policies`, `has_function_privilege`, `has_column_privilege`) avant et après chaque application, plutôt que de « réparer » l'historique à l'aveugle.
 
 Avant de lancer cette migration sur un projet Supabase existant, inspecter le schéma et l'historique des migrations. Versionner chaque changement SQL, le relire et le tester localement avant `supabase db push`. Ne pas appliquer automatiquement la migration initiale depuis Cloud Build : le déploiement du site et l'évolution de la base sont deux opérations indépendantes.
 

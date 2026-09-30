@@ -13,6 +13,7 @@ export const EVIDENCE_KINDS: readonly EvidenceKind[] = [
 export const INSTITUTIONS: readonly Institution[] = [
   'assemblee', 'senat', 'parlement_europeen', 'legifrance',
 ];
+export const ROW_STATUSES: readonly RowStatus[] = ['draft', 'reviewed', 'published'];
 
 /** A source document (one row per retrieved document or dataset snapshot). */
 export interface Source {
@@ -79,6 +80,18 @@ export interface EvidencePage {
   offset: number;
   limit: number;
   hasMore: boolean;
+}
+
+/** One ingestion pass recorded in `ingestion_runs` (admin-only read). */
+export interface IngestionRun {
+  id: string;
+  importer: string;
+  started_at: string;
+  finished_at: string | null;
+  status: 'running' | 'ok' | 'partial' | 'error';
+  options: Record<string, unknown>;
+  stats: Record<string, unknown>;
+  error: string | null;
 }
 
 export interface EvidenceItem {
