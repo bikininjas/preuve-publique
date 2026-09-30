@@ -18,7 +18,7 @@ Le dépôt contient une interface Next.js — site public et espace de relecture
 
 **Les quatre migrations ont été appliquées au projet Supabase** (`pntkhwdosrvsdybzsicp`) : schéma, colonnes du pipeline, correction des politiques de lecture, puis espace de relecture (liste `admin_users`, lectures d'administration, transitions de statut) ; les politiques RLS ont été vérifiées en rôle `anon`, et les droits de la liste d'administration vérifiés par requêtes ciblées (`has_function_privilege`, `has_column_privilege`) après application. **La base contient désormais les données importées : 20 407 pièces en brouillon** (16 957 scrutins de l'Assemblée nationale, législatures 15 à 17 ; 603 lois promulguées de l'AN ; 2 157 scrutins et 666 lois du Sénat ; 4 votes et 20 textes adoptés du Parlement européen), **3 797 liens documentaires candidats** et 19 sources, pour environ 53 Mo mesurés. **Aucune pièce n'est publiée** : le public ne voit rien tant qu'un relecteur n'a pas validé chaque ligne (espace `/admin` ou `npm run ingest -- review`). Les importeurs ont été exercés sur les sources réelles et le chemin d'écriture vérifié sur un PostgreSQL local embarqué (PGlite) puis contre la base distante : insertion, idempotence, protection des pièces relues ou publiées, rattachements de références, politiques RLS, recherche plein texte, et politiques de revue (adresse autorisée, adresse refusée, adresse désactivée). Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
 
-**La connexion Google n'est pas encore activée sur le projet Supabase** (`"google": false` constaté sur `/auth/v1/settings`) : le code d'authentification et les politiques sont en place, la construction et les tests passent, mais aucune session réelle n'a encore été ouverte. Les étapes de mise en service sont décrites ci-dessous.
+**La connexion Google est configurée et exercée de bout en bout en local** (30/09/2026) : le client OAuth « Preuve Publique (site web) » existe dans le projet Google Cloud `preuve-publique` (origine JavaScript `http://localhost:3000`, redirection autorisée `https://pntkhwdosrvsdybzsicp.supabase.co/auth/v1/callback`), le fournisseur Google est activé dans le projet Supabase (`"google": true` vérifié sur `/auth/v1/settings`), et une connexion réelle a été déroulée : Google → Supabase → `/admin`, session ouverte sur `sebpicot@gmail.com`, compteurs et files de relecture lus à travers RLS, puis une transition `brouillon → relu → brouillon` exécutée et annulée pour vérifier le chemin d'écriture (base revenue à 20 407 brouillons, aucune trace de relecture). Restent à faire : déployer le site, puis ajouter l'adresse publique aux URL de redirection autorisées (Supabase et Google Cloud).
 
 ## Site public et espace de relecture
 
@@ -37,14 +37,16 @@ L'authentification passe par Google (Supabase Auth), restreinte par la table `ad
 
 Limite assumée : les revendications du jeton ne sont relues qu'à son renouvellement. Désactiver une adresse (`update public.admin_users set active = false ...`) ferme donc l'accès au plus tard à l'expiration du jeton d'accès (1 h par défaut) ; supprimer la ligne n'invalide pas un jeton déjà émis.
 
-### Mise en service de la connexion Google (une fois)
+### Mise en service de la connexion Google (faite en local — servir de référence)
+
+Ces étapes ont été exécutées le 30/09/2026 pour `localhost:3000` ; elles restent la référence pour un nouvel environnement ou pour la production :
 
 1. **Console Google Cloud** → *Google Auth Platform* → *Clients* → créer un client OAuth de type **Web application**. Origines JavaScript autorisées : l'adresse publique du site et `http://localhost:3000`. URI de redirection autorisée : `https://<project-ref>.supabase.co/auth/v1/callback` (l'adresse exacte est affichée sur la page du fournisseur Google du tableau de bord Supabase).
 2. **Tableau de bord Supabase** → *Authentication* → *Providers* → **Google** : activer, coller l'identifiant client et le secret.
 3. **Supabase** → *Authentication* → *URL Configuration* : *Site URL* = adresse publique du site ; *Redirect URLs* : `<adresse publique>/auth/callback` et `http://localhost:3000/auth/callback`.
 4. Vérifier : ouvrir `/admin`, se connecter avec Google, valider une pièce, contrôler qu'elle apparaît sur `/pieces`.
 
-Tant que le fournisseur n'est pas activé, `/auth/login` redirige vers Supabase, qui répond « provider is not enabled » : c'est attendu, aucune donnée n'est concernée. Les variables d'exécution restent `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` (aucune clé supplémentaire n'est nécessaire au service web).
+Les variables d'exécution du service web restent `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` (aucune clé supplémentaire n'est nécessaire : l'identifiant et le secret Google vivent dans la configuration du projet Supabase). Les valeurs `GGL_OAUTH_CLIENT_ID` / `GGL_OAUTH_CLIENT_SECRET` d'un `.env.local` ne sont **pas lues par l'application** — ce sont des valeurs de passage vers le tableau de bord ; elles ne doivent jamais être commitées, et peuvent être supprimées une fois le fournisseur activé.
 
 ## Ingestion et revue éditoriale
 
