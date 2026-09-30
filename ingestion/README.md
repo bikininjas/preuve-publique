@@ -112,6 +112,11 @@ volontairement courts.
 Aucune valeur secrète ne doit apparaître dans un staging, un manifeste ou un
 log : les fichiers produits ne contiennent que des métadonnées de provenance.
 
+Le staging lui-même est jetable : il est ignoré par Git, n'est jamais la base,
+et chaque `fetch` est rejouable. Après vérification, supprimer
+`ingestion/.staging/<importeur>/<horodatage>` est sans conséquence (≈ 41 Mo
+après les passages de contrôle de septembre 2026, dont les archives brutes).
+
 ## Vérification
 
 ```bash
