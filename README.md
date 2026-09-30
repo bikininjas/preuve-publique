@@ -81,6 +81,14 @@ Le fichier `cloudbuild.yaml` construit l'image avec le `Dockerfile`, la pousse d
 
 Si le registre est dans une autre région, modifier `_REGION` dans le déclencheur. Ne pas définir de substitution vide : elle peut écraser la valeur par défaut et rendre l'adresse de l'image invalide.
 
+État vérifié du projet Google Cloud `preuve-publique` (30/09/2026) : les API Cloud Run, Cloud Build, Artifact Registry et Container Registry sont activées ; le dépôt Artifact Registry `preuvepublique` existe en `europe-west1` ; un service Cloud Run nommé `preuve-publique-git` existe dans la même région, mais il sert encore le conteneur « placeholder » de Cloud Run — **l'application n'a encore jamais été déployée** ; aucun déclencheur Cloud Build n'existe.
+
+Trois points à trancher avant le premier déploiement :
+
+1. **Nom du service** : `preuve-publique` (valeur par défaut de `_SERVICE`, recommandée) ou le service existant `preuve-publique-git` (adapter alors `_SERVICE` ou déployer explicitement sur ce nom).
+2. **Variables d'exécution** : le service doit recevoir `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` (ligne `--set-env-vars` à ajouter à `cloudbuild.yaml` ou à la commande de déploiement) ; sans elles, le site affiche son état vide explicite.
+3. **Déclencheur Cloud Build** : à créer (voir ci-dessous).
+
 Créer un déclencheur Cloud Build relié à `bikininjas/preuve-publique`, sur les push vers `master`, avec `cloudbuild.yaml` et un compte de service autorisé à écrire dans Artifact Registry et à déployer Cloud Run. Le conteneur doit recevoir `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` **dans la configuration d'exécution Cloud Run**. Aucune chaîne PostgreSQL ni clé privilégiée n'est nécessaire au service web. Le service est destiné à être public (`--allow-unauthenticated`).
 
 La configuration initiale utilise zéro instance minimale et deux instances maximales. Cette limite ne garantit pas une facture nulle. Vérifier les quotas gratuits et configurer des alertes de budget ; nettoyer les anciennes images du registre. Supabase Free impose de limiter les données conservées : stocker les métadonnées et de courts extraits, garder les PDF originaux chez leurs éditeurs lorsque possible, mesurer avant tout import historique massif.
