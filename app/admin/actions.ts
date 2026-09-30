@@ -11,8 +11,13 @@ const REVIEW_TABLES = ['evidence', 'evidence_links'] as const;
 type ReviewTable = (typeof REVIEW_TABLES)[number];
 
 function withParams(path: string, values: Record<string, string>): string {
-  const search = new URLSearchParams(values);
-  return `${path}?${search.toString()}`;
+  // `path` may already carry a query string (the queue filters); merge instead
+  // of appending a second '?' — that bug swallowed the confirmation notice.
+  const [base, query] = path.split('?');
+  const search = new URLSearchParams(query);
+  for (const [key, value] of Object.entries(values)) search.set(key, value);
+  const result = search.toString();
+  return result ? `${base}?${result}` : base;
 }
 
 /**
