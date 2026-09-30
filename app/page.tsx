@@ -1,10 +1,82 @@
-import { getEvidence } from '@/lib/data';
+import Link from 'next/link';
+import { EvidenceCard } from '@/components/evidence-card';
+import { getEvidencePage } from '@/lib/data';
 
-// Render after deployment, when Cloud Run has its runtime environment variables.
+// Rendered on request, with the runtime environment of the host (Cloud Run).
 export const dynamic = 'force-dynamic';
+
 export default async function Home() {
-  let evidence: Awaited<ReturnType<typeof getEvidence>> = [];
+  let items: Awaited<ReturnType<typeof getEvidencePage>>['items'] = [];
+  let total = 0;
   let unavailable = false;
-  try { evidence = await getEvidence(); } catch { unavailable = true; }
-  return <main><div className="eyebrow">La traçabilité politique, source par source</div><h1>Des paroles aux actes, remontez aux preuves.</h1><p className="lead">Programmes, déclarations, amendements, votes et textes adoptés : explorez leur chronologie en France et dans l’Union européenne.</p><section className="panel"><h2>Comment lire une trajectoire ?</h2><div className="steps"><p><b>01 · La proposition</b><br/>Le texte original, son auteur et sa date.</p><p><b>02 · Le travail parlementaire</b><br/>Les amendements et scrutins publics reliés au sujet.</p><p><b>03 · Le résultat</b><br/>Le sort du texte et la source institutionnelle.</p></div></section><section><h2>Éléments publiés</h2>{unavailable ? <p className="empty">Les éléments ne sont pas disponibles pour le moment.</p> : evidence.length ? <div className="cards">{evidence.map(item => <article className="card" key={item.id}><span className="count">{item.kind} · {item.institution ?? 'France / UE'}</span><h3>{item.title}</h3><p>{item.excerpt}</p><p className="source">{new Date(item.occurred_at).toLocaleDateString('fr-FR',{timeZone:'UTC'})} · <a href={item.source_url} target="_blank" rel="noopener noreferrer">Consulter la source ↗</a></p></article>)}</div> : <p className="empty">Aucun élément publié pour l’instant. Les premières sources seront ajoutées après vérification documentaire.</p>}</section></main>;
+  try {
+    const page = await getEvidencePage({ limit: 12 });
+    items = page.items;
+    total = page.total;
+  } catch {
+    unavailable = true;
+  }
+  return (
+    <main>
+      <div className="eyebrow">La traçabilité politique, source par source</div>
+      <h1>Des paroles aux actes, remontez aux preuves.</h1>
+      <p className="lead">
+        Programmes, déclarations, amendements, votes et textes adoptés : parcourez leur chronologie en France et dans
+        l’Union européenne. Chaque pièce renvoie au document original, avec sa date et sa provenance. Pas de note, pas
+        de verdict automatique.
+      </p>
+      <div className="cta">
+        <Link className="button" href="/pieces">
+          Explorer les pièces
+        </Link>
+        <Link className="quiet" href="/methode">
+          Comprendre la méthode
+        </Link>
+      </div>
+      <section className="panel">
+        <h2>Comment lire une trajectoire ?</h2>
+        <div className="steps">
+          <p>
+            <b>01 · La proposition</b>
+            <br />
+            Le texte original, son auteur et sa date.
+          </p>
+          <p>
+            <b>02 · Le travail parlementaire</b>
+            <br />
+            Les amendements et scrutins publics reliés au sujet.
+          </p>
+          <p>
+            <b>03 · Le résultat</b>
+            <br />
+            Le sort du texte et la source institutionnelle.
+          </p>
+        </div>
+      </section>
+      <section>
+        <h2>Dernières pièces publiées</h2>
+        {unavailable ? (
+          <p className="empty">Les éléments ne sont pas disponibles pour le moment.</p>
+        ) : items.length ? (
+          <>
+            <div className="cards">
+              {items.map((item) => (
+                <EvidenceCard item={item} key={item.id} />
+              ))}
+            </div>
+            <p className="more">
+              <Link className="quiet" href="/pieces">
+                Voir les {total} pièces publiées →
+              </Link>
+            </p>
+          </>
+        ) : (
+          <p className="empty">
+            Aucune pièce publiée pour l’instant : rien n’est publié automatiquement, chaque document est relu avant de
+            rejoindre cette page. Les premières pièces vérifiées apparaîtront ici.
+          </p>
+        )}
+      </section>
+    </main>
+  );
 }

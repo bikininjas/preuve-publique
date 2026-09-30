@@ -17,6 +17,15 @@ export class DataUnavailableError extends Error {
   }
 }
 
+/**
+ * PostgREST answers 416 (code PGRST103) when a page starts past the last row.
+ * That is not a failure: the requested page is simply empty, and the caller
+ * recovers the real total with a count-only query.
+ */
+export function isRangeNotSatisfiable(error: unknown): boolean {
+  return typeof error === 'object' && error !== null && (error as { code?: string }).code === 'PGRST103';
+}
+
 const EVIDENCE_COLUMNS =
   'id,source_id,actor_id,title,excerpt,kind,institution,occurred_at,source_url,source_locator,external_id,status,detail,reviewed_by,reviewed_at';
 
@@ -35,6 +44,8 @@ export interface EvidenceQuery {
   kind?: EvidenceKind;
   institution?: Institution;
   actorId?: string;
+  /** French full-text terms, matched against title and excerpt. */
+  terms?: string;
   limit?: number;
   offset?: number;
 }
@@ -77,8 +88,17 @@ export async function getEvidencePage(query: EvidenceQuery = {}): Promise<Eviden
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
+  if (query.terms?.trim()) {
+    request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
+  }
   const { data, error, count } = await request;
-  if (error) throw new DataUnavailableError();
+  if (error) {
+    if (isRangeNotSatisfiable(error)) {
+      const total = await countPublished(query);
+      return { items: [], total, offset, limit, hasMore: false };
+    }
+    throw new DataUnavailableError();
+  }
   const total = count ?? 0;
   return {
     items: (data ?? []) as unknown as Evidence[],
@@ -87,6 +107,22 @@ export async function getEvidencePage(query: EvidenceQuery = {}): Promise<Eviden
     limit,
     hasMore: offset + limit < total,
   };
+}
+
+/** Count-only query with the same filters, used when a page is past the end. */
+async function countPublished(query: EvidenceQuery): Promise<number> {
+  const db = client();
+  if (!db) return 0;
+  let request = db.from('evidence').select('id', { count: 'exact', head: true }).eq('status', 'published');
+  if (query.kind) request = request.eq('kind', query.kind);
+  if (query.institution) request = request.eq('institution', query.institution);
+  if (query.actorId) request = request.eq('actor_id', query.actorId);
+  if (query.terms?.trim()) {
+    request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
+  }
+  const { count, error } = await request;
+  if (error) throw new DataUnavailableError();
+  return count ?? 0;
 }
 
 /** French full-text search over published titles and excerpts. */

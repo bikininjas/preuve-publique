@@ -12,7 +12,11 @@ Principes :
 2. **Tout devient brouillon.** Chaque pièce est insérée au statut `draft`.
    Seule une transition explicite (`review set --status=reviewed|published`)
    avec un relecteur identifié rend une pièce visible du public (RLS : seules
-   les lignes `published` sont lisibles).
+   les lignes `published` sont lisibles). Les mêmes transitions sont
+   disponibles depuis l'espace `/admin` du site (session Google + table
+   `admin_users`) : la base applique les mêmes règles aux deux chemins, et
+   seules les colonnes de statut et de trace de relecture y sont
+   inscriptibles.
 3. **Rien n'est écrasé silencieusement.** Une pièce déjà relue ou publiée n'est
    jamais mise à jour par un nouvel import : si la source a changé, le passage
    le signale (« verrouillée ») et un humain décide.
@@ -138,5 +142,7 @@ npm run ingest -- push --staging <dossier> --dry-run   # nécessite DB_PG_URL
 Les migrations vivent dans `supabase/migrations/` et s'appliquent séparément
 du déploiement web. La seconde (`20260930000000_backend_pipeline.sql`) ajoute
 `detail` (faits structurés copiés de la source), la trace de relecture, la
-recherche plein texte française et le journal `ingestion_runs`. Avant tout
-`supabase db push` : lire le schéma existant et l'historique des migrations.
+recherche plein texte française et le journal `ingestion_runs`. La quatrième
+(`20261002000000_admin_review.sql`) ajoute la liste d'administration et les
+politiques de revue du site. Avant tout `supabase db push` : lire le schéma
+existant et l'historique des migrations.

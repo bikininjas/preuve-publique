@@ -21,12 +21,25 @@ const MIGRATIONS = [
   '20260929000000_initial.sql',
   '20260930000000_backend_pipeline.sql',
   '20261001000000_fix_reference_policies.sql',
+  '20261002000000_admin_review.sql',
 ];
 
 async function freshDb() {
   const pglite = new PGlite();
   // Supabase provides these roles; a bare PostgreSQL does not.
   await pglite.exec('create role anon; create role authenticated;');
+  // Supabase also provides the `auth` schema and `auth.jwt()`; stub them on
+  // the same GUC PostgREST fills, so the admin policies can be exercised.
+  await pglite.exec(`
+    create schema auth;
+    create function auth.jwt() returns jsonb language sql stable
+    as $$ select coalesce(
+      nullif(current_setting('request.jwt.claim', true), ''),
+      nullif(current_setting('request.jwt.claims', true), '')
+    )::jsonb $$;
+    grant usage on schema auth to anon, authenticated;
+    grant execute on function auth.jwt() to anon, authenticated;
+  `);
   for (const file of MIGRATIONS) {
     await pglite.exec(readFileSync(join(ROOT, 'supabase', 'migrations', file), 'utf8'));
   }
