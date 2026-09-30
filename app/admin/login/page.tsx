@@ -14,6 +14,7 @@ const ERRORS: Record<string, string> = {
   echange: 'L’échange de jeton a échoué. Réessayez : l’ouverture de session repart de zéro.',
   non_autorise: 'Cette adresse Google n’est pas autorisée pour l’instant.',
   session: 'Votre session a expiré avant l’action. Reconnectez-vous.',
+  dev: 'La connexion locale de débogage a échoué (compte technique absent, mot de passe désynchronisé, ou adresse hors de la liste d’administration).',
 };
 
 export default async function AdminLoginPage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
@@ -21,6 +22,9 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
   if (session.status === 'admin') redirect('/admin');
   const params = await searchParams;
   const error = first(params.error);
+  // Connexion technique de débogage : jamais montrée en production.
+  const devEmail = process.env.DEV_ADMIN_EMAIL?.trim();
+  const devAvailable = process.env.NODE_ENV !== 'production' && Boolean(devEmail && process.env.DEV_ADMIN_PASSWORD);
 
   return (
     <main className="narrow">
@@ -62,6 +66,19 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
             Les adresses autorisées vivent dans la table <code>admin_users</code> (ajout par SQL pour l’instant). Une
             adresse absente de la liste ne peut rien voir ni rien écrire, même connectée.
           </p>
+          {devAvailable ? (
+            <div className="dev-signin">
+              <form method="post" action="/auth/dev">
+                <button className="button secondary" type="submit">
+                  Connexion locale (débogage)
+                </button>
+              </form>
+              <p className="hint">
+                Compte technique <code>{devEmail}</code> défini dans <code>.env.local</code> ; ce raccourci n’existe
+                qu’en développement et suit les mêmes règles que Google (RLS + liste d’administration).
+              </p>
+            </div>
+          ) : null}
         </>
       )}
 
