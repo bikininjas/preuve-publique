@@ -441,12 +441,39 @@ export async function getActor(id: string): Promise<Actor | null> {
 /** One official AN group identifier behind a shared display name. */
 export interface GroupActorScope {
   group_ref: string;
+  group_name: string;
+  display_name: string;
   first_vote: string;
   last_vote: string;
   scrutins: number;
   pour: number;
   contre: number;
   abstention: number;
+}
+
+/** Navigation families over published AN votes. Official labels stay separate. */
+export interface GroupDirectoryEntry {
+  display_name: string;
+  actor_id: string;
+  official_names: string[];
+  identity_count: number;
+  vote_count: number;
+  pour: number;
+  contre: number;
+  abstention: number;
+  first_vote: string;
+  last_vote: string;
+}
+
+export async function getGroupDirectory(): Promise<GroupDirectoryEntry[]> {
+  const db = client();
+  if (!db) return [];
+  const { data, error } = await db.rpc('an_group_directory');
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as GroupDirectoryEntry[]).map((row) => ({
+    ...row, identity_count: Number(row.identity_count), vote_count: Number(row.vote_count),
+    pour: Number(row.pour), contre: Number(row.contre), abstention: Number(row.abstention),
+  }));
 }
 
 /** One published scrutin; its group reference is preserved when names repeat. */
