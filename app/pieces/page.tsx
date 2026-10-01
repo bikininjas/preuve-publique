@@ -82,7 +82,7 @@ export default async function PiecesPage({ searchParams }: { searchParams: Promi
         <>
           <p className="resultline">
             {result.total} pièce{result.total > 1 ? 's' : ''}
-            {terms ? <> pour « {terms} »</> : null} · page {page} sur {pageCount}
+            {terms ? <> pour « {terms} »</> : null} · page {page} sur {pageCount} · plus récentes d’abord
           </p>
           <div className="cards">
             {result.items.map((item) => (

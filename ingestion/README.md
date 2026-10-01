@@ -46,6 +46,8 @@ npm run ingest -- measure
 npm run ingest -- publish auto --staging ingestion/.staging/an-scrutins/<horodatage> --limit=50 --dry-run
 npm run ingest -- publish auto --staging ingestion/.staging/an-scrutins/<horodatage> --limit=50 --yes
 npm run ingest -- run an-scrutins --auto-publish --publish-limit=50 --yes
+node ingestion/senat-group-votes.mjs --limit=50                    # vérification/cache sans écriture
+node ingestion/senat-group-votes.mjs --write                       # enrichissement des scrutins Sénat publiés
 ```
 
 `--dry-run` exécute tout le chemin d'écriture puis annule la transaction :
@@ -71,6 +73,19 @@ signature de contrôle automatique. Le journal `ingestion_runs` conserve les
 nouveaux passages. Les déclarations, programmes, rapprochements interprétatifs,
 impacts et affaires judiciaires exigent toujours une relecture humaine. Aucune
 inférence de modèle ne pilote la publication.
+
+### Décomptes par groupe du Sénat
+
+`senat-group-votes.mjs` lit les scrutins du Sénat déjà publiés, télécharge leur
+page officielle individuelle dans le staging ignoré par Git, puis vérifie que
+les quatre positions de chaque groupe rejoignent son effectif et que la somme
+des groupes rejoint les quatre totaux du résultat officiel. Sans `--write`, la
+commande n'écrit rien en base et sauvegarde seulement les pages pour permettre
+la reprise. Avec `--write`, chaque scrutin conforme enrichit les tables
+`vote_group_coverage` et `vote_group_tallies` dans sa propre transaction, avec
+l'empreinte SHA-256 de la page. Un scrutin divergent est exclu et consigné dans
+`ingestion/.staging/senat-group-votes/write-errors.json` ; aucune position
+individuelle ni affiliation à un parti n'est inférée. Le passage est idempotent.
 
 ## Importeurs
 
@@ -157,6 +172,7 @@ Limites assumées, écrites noir sur blanc :
 | Publication par contrôle de conformité (30/09/2026) | 3 624 pièces (666 lois et 2 157 scrutins du Sénat, 801 scrutins de l'AN sur l'ensemble d'un texte) : 3 624 conformes, 0 écart ; 16 783 pièces restent en brouillon |
 | Publication automatique pilote (01/10/2026) | 50 scrutins AN supplémentaires, indice documentaire 0,990 ; 3 674 publiées et 16 733 brouillons vérifiés en base |
 | Bulletins nominatifs par parti (01/10/2026) | 847 scrutins AN sur 851 publiés contrôlés contre le décompte officiel ; 9 808 lignes scrutin/parti, 179 000 bulletins enregistrés dont 157 210 rattachés par affiliation unique datée, 21 790 non attribués ; 4 scrutins exclus pour divergence du décompte ; base ≈ 75 Mo |
+| Votes par groupe du Sénat (01/10/2026) | 2 157 scrutins publiés contrôlés sur leurs pages officielles, 18 854 lignes scrutin/groupe, 750 197 positions ; aucune divergence avec les quatre totaux officiels ; base ≈ 80 Mo |
 | Base après import du référentiel | 71 Mo mesurés (53 Mo avant le référentiel) |
 | Passage répété du même staging | 0 insertion, pièces inchangées (idempotent) |
 

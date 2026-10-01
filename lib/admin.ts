@@ -105,7 +105,7 @@ export async function listEvidenceForReview(query: ReviewQuery = {}): Promise<Ev
     .from('evidence')
     .select(ADMIN_EVIDENCE_COLUMNS, { count: 'exact' })
     .order('occurred_at', { ascending: false })
-    .order('id', { ascending: true })
+    .order('id', { ascending: false })
     .range(offset, offset + limit - 1);
   if (query.status && query.status !== 'all') request = request.eq('status', query.status);
   if (query.kind) request = request.eq('kind', query.kind);

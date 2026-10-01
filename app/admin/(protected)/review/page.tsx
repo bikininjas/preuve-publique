@@ -47,7 +47,7 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
 
   return (
     <>
-      <div className="queue-intro"><div className="eyebrow">01 / Documents</div><h2>Pièces à relire</h2><p>Ouvrez chaque fiche pour vérifier l’intitulé, la date, la source et les données structurées avant de changer son statut.</p></div>
+      <div className="queue-intro"><div className="eyebrow">01 / Documents</div><h2>Pièces à relire</h2><p>Les pièces sont classées par date du document, de la plus récente à la plus ancienne. Ouvrez chaque fiche pour vérifier l’intitulé, la date, la source et les données structurées avant de changer son statut.</p></div>
       <FlashNotice params={params} />
       <FilterForm action="/admin/review">
         <StatusSelect value={status} />

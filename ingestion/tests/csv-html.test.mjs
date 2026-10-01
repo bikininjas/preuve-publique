@@ -24,6 +24,7 @@ test('rowsToObjects keys rows by header and trims values', () => {
 
 test('decodeEntities and textOf decode the French entities used by senat.fr', () => {
   assert.equal(decodeEntities('N&deg;347 &eacute;conomie &amp; suite'), 'N°347 économie & suite');
+  assert.equal(decodeEntities('Groupe &Eacute;cologiste'), 'Groupe Écologiste');
   assert.equal(decodeEntities('&#233;t&#xE9;'), 'été');
   assert.equal(textOf('<p>Scrutin N&deg;347&nbsp;: <b>texte</b> </p>'), 'Scrutin N°347 : texte');
 });

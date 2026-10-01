@@ -31,6 +31,7 @@ const MIGRATIONS = [
   '20261004000000_evidence_topics.sql',
   '20261005000000_party_vote_tallies.sql',
   '20261006000000_party_vote_details.sql',
+  '20261007000000_senat_group_votes.sql',
 ];
 
 async function freshDb() {
@@ -573,6 +574,41 @@ test('les votes nominatifs par parti restent invisibles avant publication, et ne
   assert.equal(Number(scope.rows[0].documented_scrutins), 1);
   assert.equal(Number(scope.rows[0].unattributed_individuals), 1);
   const details = await client.query("select * from public.vote_party_details($1,array['logement'],15,0)", [party.id]);
+  assert.equal(details.rows.length, 1);
+  assert.equal(Number(details.rows[0].total_count), 1);
+  await client.query('reset role');
+});
+
+test('les décomptes de groupe du Sénat suivent la publication et refusent les écritures anonymes', async () => {
+  const client = await freshDb();
+  const { rows: [source] } = await client.query(`insert into public.sources
+    (url,publisher,document_title,sha256) values
+    ('https://www.senat.fr/scrutin-public/2024/scr2024-347.html','Sénat','Scrutin officiel',$1)
+    returning id`, ['b'.repeat(64)]);
+  const { rows: [vote] } = await client.query(`insert into public.evidence
+    (source_id,title,kind,institution,occurred_at,source_url,status) values
+    ($1,'Scrutin sur le logement','vote','senat','2024-07-10',
+    'https://www.senat.fr/scrutin-public/2024/scr2024-347.html','draft') returning id`, [source.id]);
+  await client.query(`insert into public.vote_group_coverage
+    (vote_id,official_pour,official_contre,official_abstention,official_non_votant,page_sha256)
+    values ($1,2,1,1,0,$2)`, [vote.id, 'c'.repeat(64)]);
+  await client.query(`insert into public.vote_group_tallies
+    (vote_id,group_ref,group_name,members,pour,contre,abstention,non_votant)
+    values ($1,'TEST','Groupe de test',4,2,1,1,0)`, [vote.id]);
+  await client.query('set role anon');
+  assert.equal((await client.query('select count(*)::int n from public.vote_group_tallies')).rows[0].n, 0);
+  assert.equal((await client.query("select * from public.vote_group_summary(array['logement'])")).rows.length, 0);
+  await assert.rejects(() => client.query('update public.vote_group_tallies set pour=3 where vote_id=$1', [vote.id]));
+  await client.query('reset role');
+  await client.query("update public.evidence set status='published' where id=$1", [vote.id]);
+  await client.query('set role anon');
+  const summary = await client.query("select * from public.vote_group_summary(array['logement'])");
+  assert.equal(summary.rows[0].group_name, 'Groupe de test');
+  assert.equal(Number(summary.rows[0].pour), 2);
+  const scope = await client.query("select * from public.vote_group_scope(array['logement'])");
+  assert.equal(Number(scope.rows[0].documented_scrutins), 1);
+  assert.equal(Number(scope.rows[0].recorded_positions), 4);
+  const details = await client.query("select * from public.vote_group_details('TEST',array['logement'],15,0)");
   assert.equal(details.rows.length, 1);
   assert.equal(Number(details.rows[0].total_count), 1);
   await client.query('reset role');

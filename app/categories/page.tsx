@@ -1,57 +1,73 @@
 import Link from 'next/link';
 import { PartySubjectChart, PartyVoteChart } from '@/components/party-vote-chart';
+import { GroupSubjectChart, GroupVoteChart } from '@/components/group-vote-chart';
 import { Empty } from '@/components/ui';
-import { getPartyVoteDashboard, getTopicCounts } from '@/lib/data';
+import { getGroupVoteDashboard, getPartyVoteDashboard, getTopicCounts } from '@/lib/data';
+import { first, type SearchParamsRecord } from '@/lib/params';
 import { topicSlug } from '@/lib/labels';
 import { categoryKeywords, VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Votes par thème et par parti' };
+export const metadata = { title: 'Votes par thème, parti et groupe' };
 
-export default async function CategoriesPage() {
+export default async function CategoriesPage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
+  const senate = first((await searchParams).institution) === 'senat';
   const allSubjects: Array<{ id: string; keywords: string[] }> = VOTE_SUBJECT_GROUPS.flatMap(
     (category) => category.subjects.map((subject) => ({ id: subject.id, keywords: [...subject.keywords] })),
   );
-  const [topics, dashboards] = await Promise.all([
+  const subjects = [
+    ...VOTE_SUBJECT_GROUPS.map((category) => ({ id: category.id, keywords: categoryKeywords(category) })),
+    ...allSubjects,
+  ];
+  const [topics, partyDashboards, groupDashboards] = await Promise.all([
     getTopicCounts().catch(() => null),
-    Promise.all([
-      ...VOTE_SUBJECT_GROUPS.map((category) => ({ id: category.id, keywords: categoryKeywords(category) })),
-      ...allSubjects,
-    ].map(async ({ id, keywords }) => {
+    senate ? Promise.resolve([] as Array<readonly [string, Awaited<ReturnType<typeof getPartyVoteDashboard>> | null]>) : Promise.all(subjects.map(async ({ id, keywords }) => {
       try { return [id, await getPartyVoteDashboard(keywords)] as const; }
       catch { return [id, null] as const; }
     })),
+    senate ? Promise.all(subjects.map(async ({ id, keywords }) => {
+      try { return [id, await getGroupVoteDashboard(keywords)] as const; }
+      catch { return [id, null] as const; }
+    })) : Promise.resolve([] as Array<readonly [string, Awaited<ReturnType<typeof getGroupVoteDashboard>> | null]>),
   ]);
   const items = topics ?? [];
   const unavailable = topics === null;
-  const dashboardById = new Map(dashboards);
+  const partyById = new Map(partyDashboards);
+  const groupById = new Map(groupDashboards);
   const total = items.reduce((sum, item) => sum + item.pieces, 0);
 
   return (
     <main>
       <div className="page-intro"><div className="eyebrow">Explorer par sujet</div>
-      <h1>Voir les votes.<br /><em>Parti par parti.</em></h1>
-      <p className="lead">
+      <h1>Voir les votes.<br /><em>{senate ? 'Groupe par groupe.' : 'Parti par parti.'}</em></h1>
+      <p className="lead">{senate ?
+        'Au Sénat, les graphiques reprennent les décomptes officiels par groupe parlementaire, scrutin par scrutin. Un groupe n’est pas un parti : aucune affiliation politique individuelle n’est déduite ici. Les sujets sont exploratoires et peuvent se recouper.' :
+        <>
         Trois grandes catégories et un graphique pour chacun des quinze sous-thèmes. Les barres comptent les bulletins individuels de députés
         rattachés à un parti par le référentiel daté de l’Assemblée nationale. Ouvrez un sujet pour retrouver les scrutins
         exacts et leurs sources. Un scrutin peut apparaître dans plusieurs sous-thèmes : n’additionnez pas leurs totaux.
-        Une couleur ne dit pas ce qu’un parti pense de tout un domaine.
+        Une couleur ne dit pas ce qu’un parti pense de tout un domaine.</>}
       </p></div>
+
+      <nav className="pills" aria-label="Choisir une institution pour les graphiques"><Link className={!senate ? 'active' : ''} href="/categories">Assemblée · partis</Link><Link className={senate ? 'active' : ''} href="/categories?institution=senat">Sénat · groupes</Link></nav>
 
       <div className="category-vote-overview">
         {VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}>
-          {dashboardById.get(category.id) ? <PartyVoteChart title={category.label} dashboard={dashboardById.get(category.id)!} href={`/scrutins?category=${category.id}`} partyHref={(partyId) => `/scrutins?category=${category.id}&party=${partyId}#party-details`} previewLimit={8} /> : <Empty>Les votes par parti pour « {category.label} » sont indisponibles.</Empty>}
+          {senate ? groupById.get(category.id) ? <GroupVoteChart title={category.label} dashboard={groupById.get(category.id)!} href={`/scrutins?institution=senat&category=${category.id}`} groupHref={(ref) => `/scrutins?institution=senat&category=${category.id}&group=${ref}#group-details`} previewLimit={8} /> : <Empty>Les votes par groupe pour « {category.label} » sont indisponibles.</Empty>
+            : partyById.get(category.id) ? <PartyVoteChart title={category.label} dashboard={partyById.get(category.id)!} href={`/scrutins?category=${category.id}`} partyHref={(partyId) => `/scrutins?category=${category.id}&party=${partyId}#party-details`} previewLimit={8} /> : <Empty>Les votes par parti pour « {category.label} » sont indisponibles.</Empty>}
           <div className="category-subtheme-heading"><div className="eyebrow">Sous-thèmes de {category.label}</div><h3>Un sujet, des votes précis.</h3></div>
           <div className="party-subject-grid">{category.subjects.map((subject) => {
-            const dashboard = dashboardById.get(subject.id);
-            return dashboard ? <PartySubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={dashboard} />
-              : <div key={subject.id} className="party-subject-chart"><h3><Link href={`/scrutins?subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>;
+            const group = groupById.get(subject.id);
+            const party = partyById.get(subject.id);
+            return senate && group ? <GroupSubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={group} />
+              : !senate && party ? <PartySubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={party} />
+                : <div key={subject.id} className="party-subject-chart"><h3><Link href={`/scrutins?${senate ? 'institution=senat&' : ''}subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>;
           })}</div>
         </div>)}
       </div>
 
       <div className="section-heading category-source-heading"><div><div className="eyebrow">Classement des institutions</div><h2>Rubriques publiées par les sources</h2></div></div>
-      <p className="hint">Ces rubriques proviennent aujourd’hui des dossiers du Sénat. Elles sont distinctes de nos catégories de navigation ; la base ne contient pas encore de votes individuels de sénateurs reliés à leur parti.</p>
+      <p className="hint">Ces rubriques proviennent aujourd’hui des dossiers du Sénat. Elles sont distinctes de nos catégories de navigation. Les décomptes de groupe ne permettent pas d’identifier le parti de chaque sénateur.</p>
 
       {unavailable ? (
         <Empty>La base documentaire n’est pas accessible pour le moment.</Empty>

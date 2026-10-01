@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
 import { PartyVoteBreakdown } from '@/components/party-vote-chart';
+import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
-import { getActorNames, getEvidenceItem, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type PartyVoteCoverage } from '@/lib/data';
+import { getActorNames, getEvidenceItem, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
 import {
   RELATION_NOTES,
   formatDate,
@@ -50,6 +51,9 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   let partyVotes: Awaited<ReturnType<typeof getPartyVotesForScrutin>> = [];
   let partyCoverage: PartyVoteCoverage | null = null;
   let partyVotesUnavailable = false;
+  let senateVotes: Awaited<ReturnType<typeof getGroupVotesForScrutin>> = [];
+  let senateCoverage: GroupVoteCoverage | null = null;
+  let senateVotesUnavailable = false;
   if (evidence.kind === 'vote' && evidence.institution === 'assemblee') {
     try {
       [partyVotes, partyCoverage] = await Promise.all([
@@ -57,6 +61,12 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
         getPartyVoteCoverageForScrutin(evidence.id),
       ]);
     } catch { partyVotesUnavailable = true; }
+  }
+  if (evidence.kind === 'vote' && evidence.institution === 'senat') {
+    try { [senateVotes, senateCoverage] = await Promise.all([
+      getGroupVotesForScrutin(evidence.id), getGroupVoteCoverageForScrutin(evidence.id),
+    ]); }
+    catch { senateVotesUnavailable = true; }
   }
   const topicsSource = detail.topics_source;
   let groupNames = new Map<string, string>();
@@ -168,7 +178,10 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
         </section>
       ) : null}
 
-      {evidence.kind === 'vote' ? partyVotes.length ? (
+      {evidence.kind === 'vote' && evidence.institution === 'senat' ? senateVotes.length ? (
+        <GroupVoteBreakdown rows={senateVotes} coverage={senateCoverage} sourceUrl={evidence.source_url} />
+      ) : <section className="panel party-vote-unavailable" id="votes-par-groupe"><h2>Part des votes par groupe</h2><p>{senateVotesUnavailable ? 'Le décompte par groupe est temporairement indisponible.' : 'Aucun décompte par groupe vérifié n’est disponible pour ce scrutin.'}</p><p className="hint">Le résultat et la page officielle restent consultables ci-dessus.</p></section> : null}
+      {evidence.kind === 'vote' && evidence.institution !== 'senat' ? partyVotes.length ? (
         <PartyVoteBreakdown rows={partyVotes} coverage={partyCoverage} sourceUrl={evidence.source_url} />
       ) : <section className="panel party-vote-unavailable" id="votes-par-parti"><h2>Part des votes par parti</h2><p>{evidence.institution === 'assemblee'
         ? partyVotesUnavailable ? 'Le décompte par parti est temporairement indisponible.'

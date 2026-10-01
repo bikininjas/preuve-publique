@@ -64,7 +64,11 @@ export default function MethodePage() {
           scrutins de l’Assemblée dont la liste nominative rejoint le total officiel. La position d’un élu n’est jamais
           déduite de son groupe. Sur chaque fiche, la part pour, contre, abstention et non-vote d’un parti est calculée
           parmi les positions nominatives rattachées à ce parti dans ce seul scrutin ; les affiliations absentes ou
-          ambiguës restent hors du calcul. Sénat et Parlement européen n’ont pas encore de décompte équivalent ici.
+          ambiguës restent hors du calcul. Pour le Sénat, le décompte par groupe vient de l’analyse officielle
+          propre à chaque scrutin : pour, contre, abstention et non-participation sont recoupés avec le total publié.
+          La part de chaque position est calculée sur l’effectif de ce groupe à cette date. Un groupe parlementaire
+          n’est pas assimilé à un parti, et ces chiffres ne donnent pas le parti de chaque sénateur. Le Parlement
+          européen n’a pas encore de décompte équivalent ici.
         </p>
       </section>
 
