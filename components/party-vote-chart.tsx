@@ -1,9 +1,20 @@
 import Link from 'next/link';
-import type { PartyVoteDashboard, PartyVoteRow } from '@/lib/data';
+import type { PartyVoteCoverage, PartyVoteDashboard, PartyVoteRow } from '@/lib/data';
 import { formatDate } from '@/lib/labels';
 
 const number = (value: number) => value.toLocaleString('fr-FR');
 const ballotCount = (row: PartyVoteRow) => row.pour + row.contre + row.abstention + row.non_votant;
+const share = (value: number, total: number) => `${(total ? value * 100 / total : 0).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %`;
+
+function PartyShareLine({ row }: { row: PartyVoteRow }) {
+  const total = ballotCount(row);
+  return <div className="party-chart-shares" aria-label={`Parts des positions enregistrées pour ${row.party_name}`}>
+    <span className="pour">{share(row.pour, total)} pour</span>
+    <span className="contre">{share(row.contre, total)} contre</span>
+    <span className="abstention">{share(row.abstention, total)} abst.</span>
+    <span className="non-votant">{share(row.non_votant, total)} non-votants</span>
+  </div>;
+}
 
 function PartyBar({ row }: { row: PartyVoteRow }) {
   const total = ballotCount(row);
@@ -13,9 +24,27 @@ function PartyBar({ row }: { row: PartyVoteRow }) {
     { key: 'abstention', count: row.abstention, label: 'abstentions' },
     { key: 'non-votant', count: row.non_votant, label: 'non-votants' },
   ];
-  return <div className="party-bar" role="img" aria-label={`${row.party_name} : ${number(row.pour)} pour, ${number(row.contre)} contre, ${number(row.abstention)} abstentions, ${number(row.non_votant)} non-votants`}>
+  return <div className="party-bar" role="img" aria-label={`${row.party_name} : ${share(row.pour, total)} pour, ${share(row.contre, total)} contre, ${share(row.abstention, total)} abstentions, ${share(row.non_votant, total)} non-votants parmi ${number(total)} positions nominatives enregistrées`}>
     {segments.map((segment) => segment.count ? <span key={segment.key} className={`party-segment ${segment.key}`} style={{ width: `${segment.count / total * 100}%` }} title={`${number(segment.count)} ${segment.label}`} /> : null)}
   </div>;
+}
+
+export function PartySubjectChart({ title, subjectId, dashboard }: { title: string; subjectId: string; dashboard: PartyVoteDashboard }) {
+  const parties = [...dashboard.parties].sort((a, b) => ballotCount(b) - ballotCount(a) || a.party_name.localeCompare(b.party_name, 'fr'));
+  const featured = parties.slice(0, 4);
+  const href = `/scrutins?subject=${subjectId}`;
+  return <article className="party-subject-chart">
+    <div className="party-subject-head"><h3><Link href={href}>{title} ↗</Link></h3><span>{number(dashboard.scope.documented_scrutins)} / {number(dashboard.scope.total_scrutins)} scrutins vérifiés</span></div>
+    {featured.length ? <>
+      <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abst.</span><span className="non-votant">Non-votant</span></div>
+      {featured.map((row) => <div className="party-subject-row" key={row.party_id}>
+        <div><Link href={`${href}&party=${row.party_id}#party-details`}>{row.party_name} ↗</Link><small>{number(ballotCount(row))} positions</small></div>
+        <PartyBar row={row} />
+        <PartyShareLine row={row} />
+      </div>)}
+      <p className="party-subject-foot">Quatre partis affichés par volume de bulletins. <Link href={href}>Voir tous les partis et les scrutins →</Link></p>
+    </> : <p className="party-subject-foot">Aucune position individuelle attribuable à un parti dans les scrutins vérifiés de ce sujet. <Link href={href}>Voir les scrutins →</Link></p>}
+  </article>;
 }
 
 export function PartyVoteChart({ title, dashboard, href, previewLimit, partyHref }: {
@@ -62,15 +91,17 @@ export function PartyVoteChart({ title, dashboard, href, previewLimit, partyHref
   </section>;
 }
 
-export function PartyVoteBreakdown({ rows, sourceUrl }: { rows: PartyVoteRow[]; sourceUrl: string }) {
+export function PartyVoteBreakdown({ rows, coverage, sourceUrl }: { rows: PartyVoteRow[]; coverage: PartyVoteCoverage | null; sourceUrl: string }) {
   const sorted = [...rows].sort((a, b) => ballotCount(b) - ballotCount(a) || a.party_name.localeCompare(b.party_name, 'fr'));
-  return <section className="party-chart party-chart-detail">
-    <div className="party-chart-head"><div><span className="eyebrow">À partir des bulletins individuels</span><h2>Comment les partis sont représentés dans ce scrutin</h2></div></div>
-    <p>Chaque ligne rassemble les bulletins de députés dont une seule affiliation officielle à ce parti était active le jour du scrutin. Le vote d’un groupe ou d’un élu non affilié n’est jamais imputé à un parti.</p>
+  const attributed = sorted.reduce((sum, row) => sum + ballotCount(row), 0);
+  return <section className="party-chart party-chart-detail" id="votes-par-parti">
+    <div className="party-chart-head"><div><span className="eyebrow">À partir des bulletins individuels</span><h2>Part des votes par parti dans ce scrutin</h2></div></div>
+    <p>Chaque pourcentage a pour dénominateur les {coverage ? 'positions' : 'bulletins'} nominatifs <strong>rattachés à ce parti dans ce scrutin</strong>, y compris les non-votants enregistrés. Ce n’est pas la part de ce parti parmi tous les députés. {coverage ? `${number(attributed)} positions rattachées à un parti sur ${number(coverage.recorded_individuals)} nominatives ; ${number(coverage.unattributed_individuals)} sans affiliation unique sont exclues des barres.` : 'Le total nominatif détaillé est indisponible.'}</p>
     <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div>
     <div className="party-chart-rows">{sorted.map((row) => <div className="party-chart-row" key={row.party_id}>
       <div className="party-chart-name"><strong><Link href={`/scrutins?party=${row.party_id}#party-details`}>{row.party_name} ↗</Link></strong></div><PartyBar row={row} />
       <div className="party-chart-total">{number(ballotCount(row))}<span>bulletins</span></div>
+      <PartyShareLine row={row} />
       <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-votants</div>
     </div>)}</div>
     <p className="party-chart-method">Source : <a href={sourceUrl} target="_blank" rel="noopener noreferrer">scrutin officiel de l’Assemblée nationale ↗</a>. Les affiliations viennent du référentiel daté de l’Assemblée. Les élus sans affiliation unique connue ne figurent pas dans ces barres ; le décompte officiel complet reste affiché plus haut.</p>

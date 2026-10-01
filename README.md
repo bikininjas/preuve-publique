@@ -43,8 +43,8 @@ La connexion Google de `/admin` passe par Supabase Auth et la liste `admin_users
 | `/groupes/<id>` | scrutins publiés où un groupe de l'Assemblée figure, avec sa position majoritaire et les voix publiées |
 | `/observatoire` | état des chantiers parole/vote, inégalités, indicateurs et affaires judiciaires, sans données inventées |
 | `/pieces` | liste paginée des pièces publiées, filtres type/institution, recherche plein texte |
-| `/pieces/<id>` | fiche : extrait cité, provenance complète (source, repère, empreinte, date de récupération), faits structurés, rubriques, positions des groupes publiées par l'institution, rapprochements documentaires |
-| `/categories` | graphiques de votes pour trois catégories générales, accès aux sous-thèmes, puis rubriques publiées par les sources |
+| `/pieces/<id>` | fiche : source et faits structurés, résultat officiel, parts pour/contre/abstention/non-vote par parti lorsqu'un décompte nominatif est vérifié, limites explicites sinon |
+| `/categories` | page récapitulative : graphiques par parti pour trois catégories et chacun des quinze sous-thèmes, puis rubriques publiées par les sources |
 | `/categories/<rubrique>` | pièces publiées portant cette rubrique, paginées |
 | `/methode` | méthode, sources officielles et limites assumées |
 | `/admin` | atelier de relecture : compteurs, accès aux files et journal d'ingestion |

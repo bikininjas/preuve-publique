@@ -1,43 +1,52 @@
 import Link from 'next/link';
-import { PartyVoteChart } from '@/components/party-vote-chart';
+import { PartySubjectChart, PartyVoteChart } from '@/components/party-vote-chart';
 import { Empty } from '@/components/ui';
 import { getPartyVoteDashboard, getTopicCounts } from '@/lib/data';
 import { topicSlug } from '@/lib/labels';
 import { categoryKeywords, VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Rubriques' };
+export const metadata = { title: 'Votes par thème et par parti' };
 
 export default async function CategoriesPage() {
-  let items: Awaited<ReturnType<typeof getTopicCounts>> = [];
-  let unavailable = false;
-  try {
-    items = await getTopicCounts();
-  } catch {
-    unavailable = true;
-  }
+  const allSubjects: Array<{ id: string; keywords: string[] }> = VOTE_SUBJECT_GROUPS.flatMap(
+    (category) => category.subjects.map((subject) => ({ id: subject.id, keywords: [...subject.keywords] })),
+  );
+  const [topics, dashboards] = await Promise.all([
+    getTopicCounts().catch(() => null),
+    Promise.all([
+      ...VOTE_SUBJECT_GROUPS.map((category) => ({ id: category.id, keywords: categoryKeywords(category) })),
+      ...allSubjects,
+    ].map(async ({ id, keywords }) => {
+      try { return [id, await getPartyVoteDashboard(keywords)] as const; }
+      catch { return [id, null] as const; }
+    })),
+  ]);
+  const items = topics ?? [];
+  const unavailable = topics === null;
+  const dashboardById = new Map(dashboards);
   const total = items.reduce((sum, item) => sum + item.pieces, 0);
-  const dashboards = await Promise.all(VOTE_SUBJECT_GROUPS.map(async (category) => {
-    try { return await getPartyVoteDashboard(categoryKeywords(category)); }
-    catch { return null; }
-  }));
 
   return (
     <main>
       <div className="page-intro"><div className="eyebrow">Explorer par sujet</div>
       <h1>Voir les votes.<br /><em>Parti par parti.</em></h1>
       <p className="lead">
-        Trois grandes catégories, puis des sujets précis. Les barres comptent les bulletins individuels de députés
+        Trois grandes catégories et un graphique pour chacun des quinze sous-thèmes. Les barres comptent les bulletins individuels de députés
         rattachés à un parti par le référentiel daté de l’Assemblée nationale. Ouvrez un sujet pour retrouver les scrutins
-        exacts et leurs sources ; une couleur ne dit pas ce qu’un parti pense de tout un domaine.
+        exacts et leurs sources. Un scrutin peut apparaître dans plusieurs sous-thèmes : n’additionnez pas leurs totaux.
+        Une couleur ne dit pas ce qu’un parti pense de tout un domaine.
       </p></div>
 
       <div className="category-vote-overview">
-        {VOTE_SUBJECT_GROUPS.map((category, index) => <div key={category.id}>
-          {dashboards[index] ? <PartyVoteChart title={category.label} dashboard={dashboards[index]!} href={`/scrutins?category=${category.id}`} partyHref={(partyId) => `/scrutins?category=${category.id}&party=${partyId}#party-details`} previewLimit={8} /> : <Empty>Les votes par parti pour « {category.label} » sont indisponibles.</Empty>}
-          <nav className="category-subtopics" aria-label={`Sous-thèmes : ${category.label}`}>
-            {category.subjects.map((subject) => <Link href={`/scrutins?subject=${subject.id}`} key={subject.id}>{subject.label} ↗</Link>)}
-          </nav>
+        {VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}>
+          {dashboardById.get(category.id) ? <PartyVoteChart title={category.label} dashboard={dashboardById.get(category.id)!} href={`/scrutins?category=${category.id}`} partyHref={(partyId) => `/scrutins?category=${category.id}&party=${partyId}#party-details`} previewLimit={8} /> : <Empty>Les votes par parti pour « {category.label} » sont indisponibles.</Empty>}
+          <div className="category-subtheme-heading"><div className="eyebrow">Sous-thèmes de {category.label}</div><h3>Un sujet, des votes précis.</h3></div>
+          <div className="party-subject-grid">{category.subjects.map((subject) => {
+            const dashboard = dashboardById.get(subject.id);
+            return dashboard ? <PartySubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={dashboard} />
+              : <div key={subject.id} className="party-subject-chart"><h3><Link href={`/scrutins?subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>;
+          })}</div>
         </div>)}
       </div>
 
