@@ -6,7 +6,7 @@ Preuve Publique est un projet citoyen consacré à la France et à l'Union europ
 
 ## Cap éditorial
 
-- **Scrutins compréhensibles** : supprimer dans l'interface le préfixe technique ajouté par l'importeur, conserver l'intitulé officiel et le numéro sur la fiche, puis regrouper les pièces par rubriques traçables. Une rubrique désigne un sujet, jamais un sens de vote.
+- **Scrutins compréhensibles** : afficher d'abord le sujet du texte et le périmètre précis du vote (texte entier, article, amendement ou motion), puis conserver l'intitulé officiel et le numéro sur la fiche. La page des scrutins propose des sous-thèmes exploratoires fondés sur des mots de l'intitulé officiel ; la page « Thèmes » garde séparément les rubriques publiées par les sources. Ces repères désignent un sujet, jamais un sens de vote.
 - **Partis et groupes** : analyser Assemblée nationale, Sénat et Parlement européen selon les données effectivement disponibles. Les votes de groupe ne sont attribués à un parti que si son lien avec ce groupe est daté et sourcé. Une position de groupe ne vaut pas vote individuel.
 - **Parole et actes** : mettre les citations exactes d'un programme ou d'une déclaration face au scrutin portant sur la même mesure, avec le contexte du texte et les motifs publics du vote. Toute divergence proposée demande une justification et une relecture humaine avant publication.
 - **Effets distributifs et inégalités** : documenter les populations susceptibles de bénéficier ou de pâtir d'une mesure avec des études d'impact ou indicateurs publics, unité, période, territoire, hypothèses et limites. Ne pas déduire un effet causal d'un seul vote.
@@ -37,8 +37,8 @@ Le dépôt contient une interface Next.js — site public et espace de relecture
 
 | Adresse | Contenu |
 |---|---|
-| `/` | accueil : méthode en trois temps, dernières pièces publiées |
-| `/scrutins` | scrutins publiés, recherche et filtre par institution ; intitulé abrégé, numéro et source officielle |
+| `/` | accueil : derniers scrutins publiés et accès direct aux sujets recherchés |
+| `/scrutins` | scrutins publiés, navigation par sous-thèmes lexicaux, institution et recherche ; sujet du texte, périmètre du vote, numéro et source officielle |
 | `/groupes` | groupes parlementaires visibles dans les pièces publiées ; distinction explicite avec les partis |
 | `/groupes/<id>` | scrutins publiés où un groupe de l'Assemblée figure, avec sa position majoritaire et les voix publiées |
 | `/observatoire` | état des chantiers parole/vote, inégalités, indicateurs et affaires judiciaires, sans données inventées |

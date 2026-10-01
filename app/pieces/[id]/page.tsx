@@ -14,7 +14,7 @@ import {
   topicSlug,
 } from '@/lib/labels';
 import { isUuid } from '@/lib/params';
-import { readerTitle, scrutinNumber, voteTally } from '@/lib/reader';
+import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,6 +39,8 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   }
   if (!item) notFound();
   const { evidence, source, actor, links } = item;
+  const displayTitle = readerTitle(evidence);
+  const scope = voteScope(evidence);
   const tally = evidence.kind === 'vote' ? voteTally(evidence) : null;
 
   const refs = Array.isArray(evidence.detail?.refs) ? evidence.detail.refs : [];
@@ -97,7 +99,8 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       <div className="eyebrow">
         {kindLabel(evidence.kind)} · {institutionLabel(evidence.institution)}
       </div>
-      <h1 className="title">{readerTitle(evidence)}</h1>
+      <h1 className="title">{displayTitle}</h1>
+      {evidence.kind === 'vote' ? <p className="hint">Sujet du texte concerné · {scope ? `vote sur : ${scope.toLocaleLowerCase('fr-FR')}` : 'périmètre du vote à vérifier dans l’intitulé officiel'}. Un amendement ou une motion ne vaut pas vote sur l’ensemble du texte.</p> : null}
       <p className="resultline">
         {formatDate(evidence.occurred_at)}
         {actor ? <> · {actor.name}</> : null}
@@ -112,7 +115,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       {evidence.publication_confidence != null ? (
         <p className="hint"><strong>Conformité à la source : {Math.round(Number(evidence.publication_confidence) * 100)} %.</strong> Archive officielle, empreinte SHA-256 et données du scrutin recoupées avant publication. Cet indice ne mesure ni la cohérence d’un parti ni l’effet d’une loi.</p>
       ) : null}
-      {readerTitle(evidence) !== evidence.title ? <p className="official-title"><strong>Intitulé officiel :</strong> {evidence.title}</p> : null}
+      {displayTitle !== evidence.title ? <p className="official-title"><strong>Intitulé officiel :</strong> {evidence.title}</p> : null}
 
       {tally && (tally.pour !== null || tally.contre !== null) ? <div className="vote-metrics" aria-label="Décompte officiel du scrutin"><div><span>Pour</span><strong>{tally.pour?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Contre</span><strong>{tally.contre?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Abstentions</span><strong>{tally.abstentions?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Votants</span><strong>{tally.votants?.toLocaleString('fr-FR') ?? '—'}</strong></div></div> : null}
       {evidence.kind === 'vote' ? <p className="hint">{scrutinNumber(evidence) ? `Scrutin n° ${scrutinNumber(evidence)} · ` : ''}Ces chiffres décrivent ce scrutin, pas la position de chaque élu. <a href={evidence.source_url} target="_blank" rel="noopener noreferrer">Vérifier le vote officiel ↗</a></p> : null}

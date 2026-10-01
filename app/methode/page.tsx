@@ -79,7 +79,7 @@ export default function MethodePage() {
       <section className="panel">
         <h2>Rubriques</h2>
         <p>
-          Les rubriques affichées viennent des sources, jamais d’une classification du site. Le Sénat publie une rubrique
+          Les rubriques de la page « Thèmes » viennent des sources, jamais d’une classification du site. Le Sénat publie une rubrique
           pour chaque loi promulguée de son jeu de données : elle est reprise telle quelle, et un scrutin rattaché au
           dossier de cette loi en hérite. La fiche d’un scrutin indique l’origine de ses rubriques et la référence de
           dossier qui les lui a transmises.
@@ -89,6 +89,14 @@ export default function MethodePage() {
           même rubrique ne sont pas comparables pour autant — un amendement, un article et un texte entier ne sont pas
           interchangeables. L’Assemblée nationale et le Parlement européen ne publient pas de rubrique équivalente dans
           les jeux de données utilisés ici : leurs pièces n’apparaissent donc pas encore dans les rubriques.
+        </p>
+        <p>
+          Sur la page « Scrutins », les repères par sujet sont différents : ils cherchent des mots précis dans les
+          intitulés officiels, y compris ceux de l’Assemblée nationale. Ils facilitent l’exploration sans prétendre
+          classer exhaustivement les votes. Un texte peut apparaître sous plusieurs sujets ; un texte pertinent peut
+          aussi manquer si son intitulé n’emploie aucun des mots recherchés. Le titre court d’une fiche reprend le sujet
+          du texte quand celui-ci est identifiable ; le numéro, le périmètre du vote et l’intitulé officiel restent
+          accessibles sur la fiche. Le sujet d’un texte ne décrit jamais à lui seul le contenu d’un amendement.
         </p>
       </section>
 
@@ -107,22 +115,23 @@ export default function MethodePage() {
       <section className="panel">
         <h2>Publication et relecture</h2>
         <p>
-          Les importeurs versent chaque pièce en <b>brouillon</b>. Une pièce devient <b>relue</b>, puis <b>publiée</b>,
-          uniquement par une transition explicite signée par une personne identifiée — jamais par un import, jamais
-          automatiquement. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le
-          passage le signale et un humain décide. Tant qu’un relecteur n’a pas validé une pièce, elle reste invisible
-          ici.
+          Les importeurs versent chaque pièce en <b>brouillon</b>. Les scrutins officiels de l’Assemblée nationale
+          peuvent être publiés après un contrôle automatique de l’archive, de son empreinte et des données en base.
+          L’indice 0,990 mesure une conformité documentaire déterministe, pas la probabilité qu’une interprétation
+          politique soit vraie. Les autres pièces et tous les rapprochements interprétatifs demandent une validation
+          humaine. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le passage le
+          signale et un humain décide.
         </p>
         <p>
-          <b>État au 30 septembre 2026.</b> Le site publie les <b>lois promulguées du Sénat</b> (666), les <b>scrutins
+          <b>État vérifié au 1er octobre 2026.</b> Le site publie les <b>lois promulguées du Sénat</b> (666), les <b>scrutins
           publics du Sénat</b> (2 157) et les <b>scrutins de l’Assemblée nationale portant sur l’ensemble d’un texte</b>
           (801). Ces 3 624 pièces ont été publiées après un <b>contrôle technique de conformité à la source</b> : le
           fichier officiel conservé (empreinte SHA-256 enregistrée) a été réimporté et comparé pièce par pièce, sans
           écart. Ce n’est <b>pas</b> une relecture humaine pièce par pièce, et la trace enregistrée sur chaque ligne le
-          dit exactement — « contrôle technique de conformité (passage de développement) ». Le reste de la base
-          (amendements, autres scrutins, textes de l’Assemblée et du Parlement européen) demeure en brouillon et
-          invisible ; les acteurs ne sont lisibles que par les pièces publiées qui les portent. Aucun rapprochement
-          interprétatif n’est publié, et aucun score ni verdict n’existe.
+          dit exactement — « contrôle technique de conformité (passage de développement) ». Cinquante autres scrutins
+          de l’Assemblée ont ensuite été publiés par le contrôle automatique (851 scrutins AN et 3 674 pièces publiées
+          au total). Le reste de la base demeure en brouillon et invisible ; les acteurs ne sont lisibles que par les
+          pièces publiées qui les portent. Aucun rapprochement interprétatif n’est publié et aucun verdict n’existe.
         </p>
       </section>
 

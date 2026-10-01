@@ -50,6 +50,8 @@ export interface EvidenceQuery {
   topic?: string;
   /** French full-text terms, matched against title and excerpt. */
   terms?: string;
+  /** Controlled lexical navigation on the institutional title only. */
+  titleFilter?: string;
   limit?: number;
   offset?: number;
 }
@@ -95,6 +97,7 @@ export async function getEvidencePage(query: EvidenceQuery = {}): Promise<Eviden
   if (query.actorId) request = request.eq('actor_id', query.actorId);
   if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
   if (query.topic) request = request.contains('topics', [query.topic]);
+  if (query.titleFilter) request = request.or(query.titleFilter);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }
@@ -126,6 +129,7 @@ async function countPublished(query: EvidenceQuery): Promise<number> {
   if (query.actorId) request = request.eq('actor_id', query.actorId);
   if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
   if (query.topic) request = request.contains('topics', [query.topic]);
+  if (query.titleFilter) request = request.or(query.titleFilter);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }

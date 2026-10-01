@@ -1,21 +1,17 @@
 import Link from 'next/link';
 import { EvidenceCard } from '@/components/evidence-card';
-import { getEvidencePage, getTopicCounts } from '@/lib/data';
-import { topicSlug } from '@/lib/labels';
+import { getEvidencePage } from '@/lib/data';
+import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 
 export const dynamic = 'force-dynamic';
+const featuredSubjects = [...VOTE_SUBJECT_GROUPS[0].subjects, ...VOTE_SUBJECT_GROUPS[1].subjects, ...VOTE_SUBJECT_GROUPS[2].subjects]
+  .filter((subject) => ['sante', 'logement', 'retraites', 'budget', 'environnement', 'immigration'].includes(subject.id));
 
 export default async function Home() {
   let votes: Awaited<ReturnType<typeof getEvidencePage>> | null = null;
-  let topics: Awaited<ReturnType<typeof getTopicCounts>> = [];
   let failed = false;
-  const [voteResult, topicResult] = await Promise.allSettled([
-    getEvidencePage({ kind: 'vote', limit: 6 }),
-    getTopicCounts(),
-  ]);
-  if (voteResult.status === 'fulfilled') votes = voteResult.value;
-  else failed = true;
-  if (topicResult.status === 'fulfilled') topics = topicResult.value;
+  try { votes = await getEvidencePage({ kind: 'vote', limit: 6 }); }
+  catch { failed = true; }
 
   return (
     <main className="home">
@@ -24,7 +20,7 @@ export default async function Home() {
           <div className="eyebrow"><span className="live-dot" /> L’observatoire des décisions publiques</div>
           <h1>Ce qu’ils disent.<br /><em>Ce qu’ils votent.</em></h1>
           <p className="lead">Explorez les scrutins officiels, les positions publiées et les pièces qui les éclairent. Chaque fait mène à sa source. Chaque comparaison doit pouvoir être vérifiée.</p>
-          <div className="cta"><Link className="button" href="/scrutins">Explorer les scrutins <span aria-hidden>↗</span></Link><Link className="button secondary" href="/categories">Choisir un sujet</Link></div>
+          <div className="cta"><Link className="button" href="/scrutins">Explorer les scrutins <span aria-hidden>↗</span></Link><Link className="button secondary" href="/scrutins#subjects-heading">Choisir un sujet</Link></div>
           <p className="hero-note">Assemblée nationale · Sénat · Parlement européen<br />Couverture variable selon les sources effectivement publiées.</p>
         </div>
         <div className="hero-art" aria-hidden="true">
@@ -48,8 +44,9 @@ export default async function Home() {
       </section>
 
       <section className="topic-feature section-pad">
-        <div className="section-heading"><div><div className="eyebrow">Par sujet</div><h2>Partir d’une question concrète.</h2></div><Link className="text-link" href="/categories">Toutes les rubriques →</Link></div>
-        {topics.length ? <div className="topic-grid">{topics.slice(0, 6).map((row, index) => <Link className="topic-tile" href={`/categories/${topicSlug(row.topic)}`} key={row.topic}><span>{String(index + 1).padStart(2, '0')} / RUBRIQUE SOURCE</span><strong>{row.topic}</strong><small>{row.pieces.toLocaleString('fr-FR')} pièces publiées <b>↗</b></small></Link>)}</div> : <p className="empty">Les rubriques s’afficheront quand des pièces publiées seront disponibles.</p>}
+        <div className="section-heading"><div><div className="eyebrow">Par sujet</div><h2>Partir d’une question concrète.</h2></div><Link className="text-link" href="/scrutins">Tous les sujets →</Link></div>
+        <div className="topic-grid">{featuredSubjects.map((subject, index) => <Link className="topic-tile" href={`/scrutins?subject=${subject.id}`} key={subject.id}><span>{String(index + 1).padStart(2, '0')} / REPÈRE DANS LE TITRE</span><strong>{subject.label}</strong><small>Explorer les scrutins portant ces mots dans l’intitulé <b>↗</b></small></Link>)}</div>
+        <p className="section-foot">Ces repères ne couvrent pas tous les votes. <Link href="/categories">Voir les rubriques publiées par les sources →</Link></p>
       </section>
 
       <section className="editorial-feature section-pad">
