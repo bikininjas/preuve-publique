@@ -33,6 +33,7 @@ const MIGRATIONS = [
   '20261006000000_party_vote_details.sql',
   '20261007000000_senat_group_votes.sql',
   '20261008000000_group_name_navigation.sql',
+  '20261009000000_group_directory.sql',
 ];
 
 async function freshDb() {
@@ -644,7 +645,7 @@ test('les organes homonymes sont réunis pour la navigation sans confondre leurs
   }
   await client.query('set role anon');
   const scope = await client.query('select * from public.an_group_vote_scope($1)', [actors[0].id]);
-  assert.deepEqual(scope.rows.map((row) => row.group_ref), ['PO1', 'PO2']);
+  assert.deepEqual(scope.rows.map((row) => row.group_ref), ['PO2', 'PO1']);
   assert.deepEqual(scope.rows.map((row) => Number(row.scrutins)), [1, 1]);
   const first = await client.query('select * from public.an_group_vote_page($1,1,0)', [actors[0].id]);
   const second = await client.query('select * from public.an_group_vote_page($1,1,1)', [actors[1].id]);
@@ -657,5 +658,50 @@ test('les organes homonymes sont réunis pour la navigation sans confondre leurs
   const other = await client.query('select * from public.an_group_vote_page($1,16,0)', [actors[2].id]);
   assert.equal(other.rows.length, 1);
   assert.equal(other.rows[0].group_ref, 'PO3');
+  const directory = await client.query('select * from public.an_group_directory()');
+  assert.equal(directory.rows.find((row) => row.display_name === 'Même nom').identity_count, 2);
+  assert.equal(Number(directory.rows.find((row) => row.display_name === 'Même nom').vote_count), 2);
+  await client.query('reset role');
+});
+
+test('les variantes explicites de nom partagent la navigation, sans fusionner les autres groupes', async () => {
+  const client = await freshDb();
+  const { rows: [source] } = await client.query(`insert into public.sources
+    (url,publisher,document_title,sha256) values
+    ('https://data.assemblee-nationale.fr/variantes-test.zip','Assemblée nationale','Variantes de test',$1)
+    returning id`, ['e'.repeat(64)]);
+  const { rows: actors } = await client.query(`insert into public.actors (name,kind,external_id)
+    values ('La France insoumise','group','an-organe:PO10'),
+           ('La France insoumise - Nouveau Front Populaire','group','an-organe:PO11'),
+           ('Écologie Démocratie Solidarité','group','an-organe:PO12'),
+           ('Écologiste et Social','group','an-organe:PO13')
+    returning id,name,external_id`);
+  for (const [date, ref, status] of [
+    ['2022-01-01', 'PO10', 'published'],
+    ['2025-01-01', 'PO11', 'published'],
+    ['2026-01-01', 'PO11', 'draft'],
+    ['2024-01-01', 'PO12', 'published'],
+    ['2025-02-01', 'PO13', 'published'],
+  ]) {
+    await client.query(`insert into public.evidence
+      (source_id,title,kind,institution,occurred_at,source_url,status,detail)
+      values ($1,$2,'vote','assemblee',$3,$4,$5,$6::jsonb)`, [
+      source.id, `Scrutin n° 1 — ${date}`, date,
+      `https://www.assemblee-nationale.fr/dyn/17/scrutins/${date.slice(0, 4)}`,
+      status, JSON.stringify({ groupes: [{ organe_ref: ref, position_majoritaire: 'pour', pour: 1 }] }),
+    ]);
+  }
+  await client.query('set role anon');
+  const directory = await client.query('select * from public.an_group_directory()');
+  assert.equal(directory.rows.length, 3);
+  const lfi = directory.rows.find((row) => row.display_name === 'La France insoumise');
+  assert.deepEqual(lfi.official_names, ['La France insoumise', 'La France insoumise - Nouveau Front Populaire']);
+  assert.equal(Number(lfi.vote_count), 2);
+  const scope = await client.query('select * from public.an_group_vote_scope($1)', [actors[1].id]);
+  assert.deepEqual(scope.rows.map((row) => row.group_ref), ['PO11', 'PO10']);
+  const votes = await client.query('select * from public.an_group_vote_page($1,16,0)', [actors[0].id]);
+  assert.deepEqual(votes.rows.map((row) => row.group_ref), ['PO11', 'PO10']);
+  const distinct = await client.query('select * from public.an_group_vote_page($1,16,0)', [actors[2].id]);
+  assert.deepEqual(distinct.rows.map((row) => row.group_ref), ['PO12']);
   await client.query('reset role');
 });
