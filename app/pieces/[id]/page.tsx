@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
 import { PartyVoteBreakdown } from '@/components/party-vote-chart';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
-import { getActorNames, getEvidenceItem, getPartyVotesForScrutin } from '@/lib/data';
+import { getActorNames, getEvidenceItem, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type PartyVoteCoverage } from '@/lib/data';
 import {
   RELATION_NOTES,
   formatDate,
@@ -48,8 +48,15 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   const detail = (evidence.detail ?? {}) as { groupes?: GroupPosition[]; topics_source?: { values?: string[]; note?: string } };
   const groups = Array.isArray(detail.groupes) ? detail.groupes : [];
   let partyVotes: Awaited<ReturnType<typeof getPartyVotesForScrutin>> = [];
+  let partyCoverage: PartyVoteCoverage | null = null;
+  let partyVotesUnavailable = false;
   if (evidence.kind === 'vote' && evidence.institution === 'assemblee') {
-    try { partyVotes = await getPartyVotesForScrutin(evidence.id); } catch { /* source-level vote remains visible */ }
+    try {
+      [partyVotes, partyCoverage] = await Promise.all([
+        getPartyVotesForScrutin(evidence.id),
+        getPartyVoteCoverageForScrutin(evidence.id),
+      ]);
+    } catch { partyVotesUnavailable = true; }
   }
   const topicsSource = detail.topics_source;
   let groupNames = new Map<string, string>();
@@ -161,7 +168,13 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
         </section>
       ) : null}
 
-      {partyVotes.length ? <PartyVoteBreakdown rows={partyVotes} sourceUrl={evidence.source_url} /> : null}
+      {evidence.kind === 'vote' ? partyVotes.length ? (
+        <PartyVoteBreakdown rows={partyVotes} coverage={partyCoverage} sourceUrl={evidence.source_url} />
+      ) : <section className="panel party-vote-unavailable" id="votes-par-parti"><h2>Part des votes par parti</h2><p>{evidence.institution === 'assemblee'
+        ? partyVotesUnavailable ? 'Le décompte par parti est temporairement indisponible.'
+          : partyCoverage ? 'La liste nominative officielle est vérifiée, mais aucune affiliation unique à un parti ne permet d’attribuer ces positions.'
+            : 'Aucun décompte par parti vérifié n’est disponible pour ce scrutin : la liste nominative et le total officiel doivent concorder avant affichage.'
+        : 'Les positions individuelles reliées à un parti ne sont pas encore disponibles pour cette institution dans la base.'}</p><p className="hint">Le scrutin officiel et son résultat restent consultables ci-dessus.</p></section> : null}
 
       {links.length ? (
         <section>

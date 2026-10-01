@@ -60,7 +60,11 @@ export default function MethodePage() {
         </p>
         <p>
           Les scrutins non nominatifs ne révèlent pas la position individuelle des élus, et les positions individuelles
-          de vote ne sont pas stockées dans cette base. La position d’un élu n’est jamais déduite de son groupe.
+          de vote ne sont pas stockées dans cette base : seuls des décomptes agrégés par parti sont conservés pour les
+          scrutins de l’Assemblée dont la liste nominative rejoint le total officiel. La position d’un élu n’est jamais
+          déduite de son groupe. Sur chaque fiche, la part pour, contre, abstention et non-vote d’un parti est calculée
+          parmi les positions nominatives rattachées à ce parti dans ce seul scrutin ; les affiliations absentes ou
+          ambiguës restent hors du calcul. Sénat et Parlement européen n’ont pas encore de décompte équivalent ici.
         </p>
       </section>
 

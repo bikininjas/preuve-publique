@@ -64,6 +64,11 @@ export interface PartyVoteDashboard {
   parties: PartyVoteRow[];
 }
 
+export interface PartyVoteCoverage {
+  recorded_individuals: number;
+  unattributed_individuals: number;
+}
+
 /** Vote counts from individual AN ballots with one dated, sourced party link. */
 export async function getPartyVoteDashboard(keywords: string[]): Promise<PartyVoteDashboard> {
   const db = client();
@@ -102,6 +107,16 @@ export async function getPartyVotesForScrutin(id: string): Promise<PartyVoteRow[
     abstention: Number(row.abstention), non_votant: Number(row.non_votant),
     scrutins: 1,
   }));
+}
+
+export async function getPartyVoteCoverageForScrutin(id: string): Promise<PartyVoteCoverage | null> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.from('vote_party_coverage')
+    .select('recorded_individuals,unattributed_individuals')
+    .eq('vote_id', id).maybeSingle();
+  if (error) throw new DataUnavailableError();
+  return data as PartyVoteCoverage | null;
 }
 
 export interface PartyVoteDetail {
