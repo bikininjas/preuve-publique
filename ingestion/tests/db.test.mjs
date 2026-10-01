@@ -32,6 +32,7 @@ const MIGRATIONS = [
   '20261005000000_party_vote_tallies.sql',
   '20261006000000_party_vote_details.sql',
   '20261007000000_senat_group_votes.sql',
+  '20261008000000_group_name_navigation.sql',
 ];
 
 async function freshDb() {
@@ -611,5 +612,50 @@ test('les décomptes de groupe du Sénat suivent la publication et refusent les 
   const details = await client.query("select * from public.vote_group_details('TEST',array['logement'],15,0)");
   assert.equal(details.rows.length, 1);
   assert.equal(Number(details.rows[0].total_count), 1);
+  await client.query('reset role');
+});
+
+test('les organes homonymes sont réunis pour la navigation sans confondre leurs identifiants ni révéler les brouillons', async () => {
+  const client = await freshDb();
+  const { rows: [source] } = await client.query(`insert into public.sources
+    (url,publisher,document_title,sha256) values
+    ('https://data.assemblee-nationale.fr/groupes-test.zip','Assemblée nationale','Groupes de test',$1)
+    returning id`, ['d'.repeat(64)]);
+  const { rows: actors } = await client.query(`insert into public.actors (name,kind,external_id)
+    values ('Même nom','group','an-organe:PO1'),
+           ('Même nom','group','an-organe:PO2'),
+           ('Autre nom','group','an-organe:PO3')
+    returning id,name,external_id`);
+  for (const [date, ref, status, position] of [
+    ['2018-01-01', 'PO1', 'published', 'pour'],
+    ['2024-01-01', 'PO2', 'published', 'contre'],
+    ['2025-01-01', 'PO2', 'draft', 'pour'],
+    ['2023-01-01', 'PO3', 'published', 'abstention'],
+  ]) {
+    await client.query(`insert into public.evidence
+      (source_id,title,kind,institution,occurred_at,source_url,status,detail)
+      values ($1,$2,'vote','assemblee',$3,$4,$5,$6::jsonb)`, [
+      source.id, `Scrutin n° 1 — ${date}`, date,
+      `https://www.assemblee-nationale.fr/dyn/17/scrutins/${date.slice(0, 4)}`,
+      status, JSON.stringify({ groupes: [{ organe_ref: ref, position_majoritaire: position,
+        pour: Number(position === 'pour'), contre: Number(position === 'contre'),
+        abstentions: Number(position === 'abstention') }] }),
+    ]);
+  }
+  await client.query('set role anon');
+  const scope = await client.query('select * from public.an_group_vote_scope($1)', [actors[0].id]);
+  assert.deepEqual(scope.rows.map((row) => row.group_ref), ['PO1', 'PO2']);
+  assert.deepEqual(scope.rows.map((row) => Number(row.scrutins)), [1, 1]);
+  const first = await client.query('select * from public.an_group_vote_page($1,1,0)', [actors[0].id]);
+  const second = await client.query('select * from public.an_group_vote_page($1,1,1)', [actors[1].id]);
+  assert.equal(first.rows[0].group_ref, 'PO2');
+  assert.equal(first.rows[0].position_majoritaire, 'contre');
+  assert.equal(Number(first.rows[0].total_count), 2);
+  assert.equal(second.rows[0].group_ref, 'PO1');
+  assert.equal(second.rows[0].position_majoritaire, 'pour');
+  assert.equal(Number(second.rows[0].total_count), 2);
+  const other = await client.query('select * from public.an_group_vote_page($1,16,0)', [actors[2].id]);
+  assert.equal(other.rows.length, 1);
+  assert.equal(other.rows[0].group_ref, 'PO3');
   await client.query('reset role');
 });

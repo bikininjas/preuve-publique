@@ -253,8 +253,6 @@ export interface EvidenceQuery {
   kind?: EvidenceKind;
   institution?: Institution;
   actorId?: string;
-  /** AN group reference copied into the published vote's structured detail. */
-  groupRef?: string;
   /** Rubrique publiée par la source (Sénat aujourd'hui) : filtre exact. */
   topic?: string;
   /** French full-text terms, matched against title and excerpt. */
@@ -281,7 +279,6 @@ export async function getEvidence(query: EvidenceQuery = {}): Promise<Evidence[]
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
-  if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
   if (query.offset) request = request.range(query.offset, query.offset + Math.min(Math.max(query.limit ?? 12, 1), 100) - 1);
   const { data, error } = await request;
   if (error) throw new DataUnavailableError();
@@ -304,7 +301,6 @@ export async function getEvidencePage(query: EvidenceQuery = {}): Promise<Eviden
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
-  if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
   if (query.topic) request = request.contains('topics', [query.topic]);
   if (query.titleFilter) request = request.or(query.titleFilter);
   if (query.terms?.trim()) {
@@ -336,7 +332,6 @@ async function countPublished(query: EvidenceQuery): Promise<number> {
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
-  if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
   if (query.topic) request = request.contains('topics', [query.topic]);
   if (query.titleFilter) request = request.or(query.titleFilter);
   if (query.terms?.trim()) {
@@ -443,19 +438,53 @@ export async function getActor(id: string): Promise<Actor | null> {
   return (data as unknown as Actor) ?? null;
 }
 
-/** Counts of published AN scrutins carrying this group's institutional majority label. */
-export async function getGroupPositionCounts(groupRef: string): Promise<Record<'pour' | 'contre' | 'abstention', number>> {
+/** One official AN group identifier behind a shared display name. */
+export interface GroupActorScope {
+  group_ref: string;
+  first_vote: string;
+  last_vote: string;
+  scrutins: number;
+  pour: number;
+  contre: number;
+  abstention: number;
+}
+
+/** One published scrutin; its group reference is preserved when names repeat. */
+export interface GroupActorVote {
+  vote_id: string;
+  title: string;
+  occurred_at: string;
+  source_url: string;
+  group_ref: string;
+  position_majoritaire: string | null;
+  pour: number;
+  contre: number;
+  abstentions: number;
+  total_count: number;
+}
+
+export async function getGroupActorScope(actorId: string): Promise<GroupActorScope[]> {
   const db = client();
-  if (!db) return { pour: 0, contre: 0, abstention: 0 };
-  const positions = ['pour', 'contre', 'abstention'] as const;
-  const counts = await Promise.all(positions.map(async (position) => {
-    const { count, error } = await db.from('evidence').select('id', { count: 'exact', head: true })
-      .eq('status', 'published').eq('kind', 'vote').eq('institution', 'assemblee')
-      .contains('detail', { groupes: [{ organe_ref: groupRef, position_majoritaire: position }] });
-    if (error) throw new DataUnavailableError();
-    return count ?? 0;
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.rpc('an_group_vote_scope', { _actor_id: actorId });
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as GroupActorScope[]).map((row) => ({
+    ...row, scrutins: Number(row.scrutins), pour: Number(row.pour),
+    contre: Number(row.contre), abstention: Number(row.abstention),
   }));
-  return { pour: counts[0], contre: counts[1], abstention: counts[2] };
+}
+
+export async function getGroupActorVotes(actorId: string, page: number, limit = 16): Promise<GroupActorVote[]> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.rpc('an_group_vote_page', {
+    _actor_id: actorId, _limit: limit, _offset: (page - 1) * limit,
+  });
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as GroupActorVote[]).map((row) => ({
+    ...row, pour: Number(row.pour), contre: Number(row.contre),
+    abstentions: Number(row.abstentions), total_count: Number(row.total_count),
+  }));
 }
 
 /**
