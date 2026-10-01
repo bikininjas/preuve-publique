@@ -34,8 +34,9 @@ export default async function ScrutinsPage({ searchParams }: { searchParams: Pro
   if ((subject || category) && (!institution || institution === 'assemblee')) {
     try { dashboard = await getPartyVoteDashboard(keywords); } catch { /* explicit state below */ }
   }
-  if ((subject || category) && institution === 'senat') {
-    try { groupDashboard = await getGroupVoteDashboard(keywords); } catch { /* explicit state below */ }
+  if (institution === 'senat') {
+    // An empty search word matches all published Sénat titles in the scoped RPC.
+    try { groupDashboard = await getGroupVoteDashboard(keywords.length ? keywords : ['']); } catch { /* explicit state below */ }
   }
   if (partyId && (!institution || institution === 'assemblee')) {
     try { partyDetails = await getPartyVoteDetails(partyId, keywords, partyPage); } catch { /* explicit state below */ }
@@ -75,7 +76,7 @@ export default async function ScrutinsPage({ searchParams }: { searchParams: Pro
     <div className="filter-heading"><div className="eyebrow">02 / Affiner</div><h2>Institution et mots clés</h2></div>
     <nav className="pills" aria-label="Filtrer par institution"><Link className={!institution ? 'active' : ''} href={hrefFor(1, subject?.id ?? null, null)}>Toutes les institutions</Link>{INSTITUTIONS.filter((value) => value !== 'legifrance').map((value) => <Link className={institution === value ? 'active' : ''} href={hrefFor(1, subject?.id ?? null, value)} key={value}>{institutionLabel(value)}</Link>)}</nav>
     <form className="searchbar" method="get" action="/scrutins"><input type="hidden" name="institution" value={institution ?? ''} /><input type="hidden" name="subject" value={subject?.id ?? ''} /><input type="hidden" name="category" value={category?.id ?? ''} /><label className="sr-only" htmlFor="vote-search">Rechercher un scrutin</label><input id="vote-search" type="search" name="q" defaultValue={terms} placeholder="Texte, mesure ou numéro de scrutin…" /><button className="button" type="submit">Rechercher ↗</button></form>
-    {groupDashboard ? <GroupVoteChart title={subject?.label ?? category?.label ?? ''} dashboard={groupDashboard} groupHref={(ref) => `${hrefFor(1, subject?.id ?? null, institution, category?.id ?? null, null, ref)}#group-details`} />
+    {groupDashboard ? <GroupVoteChart title={subject?.label ?? category?.label ?? 'Tous les scrutins du Sénat'} dashboard={groupDashboard} groupHref={(ref) => `${hrefFor(1, subject?.id ?? null, institution, category?.id ?? null, null, ref)}#group-details`} />
       : dashboard ? <PartyVoteChart title={subject?.label ?? category?.label ?? ''} dashboard={dashboard} partyHref={(id) => `${hrefFor(1, subject?.id ?? null, institution ?? null, category?.id ?? null, id)}#party-details`} />
         : subject || category ? <Empty>{institution === 'senat' ? 'Le graphique des votes par groupe est indisponible pour le moment.' : institution && institution !== 'assemblee' ? 'Les votes par groupe ou parti ne sont pas encore disponibles pour cette institution.' : 'Le graphique des votes par parti est indisponible pour le moment.'}</Empty> : null}
     {(dashboard || groupDashboard) && terms ? <p className="hint">Le graphique couvre tout le sujet sélectionné ; la recherche « {terms} » affine seulement la liste ci-dessous.</p> : null}
