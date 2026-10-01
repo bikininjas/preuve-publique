@@ -6,6 +6,7 @@
  */
 export const VOTE_SUBJECT_GROUPS = [
   {
+    id: 'vie-quotidienne',
     label: 'Vie quotidienne',
     subjects: [
       { id: 'sante', label: 'Santé et hôpitaux', keywords: ['santé', 'hôpital', 'hôpitaux', 'soins', 'médical', 'sage-femme'] },
@@ -16,6 +17,7 @@ export const VOTE_SUBJECT_GROUPS = [
     ],
   },
   {
+    id: 'economie-territoire',
     label: 'Économie et territoire',
     subjects: [
       { id: 'budget', label: 'Budget de l’État', keywords: ['loi de finances', 'budget', 'crédits de la mission'] },
@@ -28,6 +30,7 @@ export const VOTE_SUBJECT_GROUPS = [
     ],
   },
   {
+    id: 'droits-institutions',
     label: 'Droits et institutions',
     subjects: [
       { id: 'immigration', label: 'Immigration et nationalité', keywords: ['immigration', 'nationalité', 'asile'] },
@@ -38,6 +41,15 @@ export const VOTE_SUBJECT_GROUPS = [
 ] as const;
 
 export type VoteSubject = (typeof VOTE_SUBJECT_GROUPS)[number]['subjects'][number];
+export type VoteCategory = (typeof VOTE_SUBJECT_GROUPS)[number];
+
+export function findVoteCategory(id: string | undefined): VoteCategory | null {
+  return VOTE_SUBJECT_GROUPS.find((category) => category.id === id) ?? null;
+}
+
+export function categoryKeywords(category: VoteCategory): string[] {
+  return [...new Set(category.subjects.flatMap((subject) => [...subject.keywords]))];
+}
 
 export function findVoteSubject(id: string | undefined): VoteSubject | null {
   if (!id) return null;
@@ -51,4 +63,8 @@ export function findVoteSubject(id: string | undefined): VoteSubject | null {
 /** PostgREST OR expression, only ever built from the controlled list above. */
 export function voteSubjectFilter(subject: VoteSubject): string {
   return subject.keywords.map((keyword) => `title.ilike.%${keyword}%`).join(',');
+}
+
+export function voteCategoryFilter(category: VoteCategory): string {
+  return categoryKeywords(category).map((keyword) => `title.ilike.%${keyword}%`).join(',');
 }

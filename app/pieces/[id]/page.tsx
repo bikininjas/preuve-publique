@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
+import { PartyVoteBreakdown } from '@/components/party-vote-chart';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
-import { getActorNames, getEvidenceItem } from '@/lib/data';
+import { getActorNames, getEvidenceItem, getPartyVotesForScrutin } from '@/lib/data';
 import {
   RELATION_NOTES,
   formatDate,
@@ -46,6 +47,10 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   const refs = Array.isArray(evidence.detail?.refs) ? evidence.detail.refs : [];
   const detail = (evidence.detail ?? {}) as { groupes?: GroupPosition[]; topics_source?: { values?: string[]; note?: string } };
   const groups = Array.isArray(detail.groupes) ? detail.groupes : [];
+  let partyVotes: Awaited<ReturnType<typeof getPartyVotesForScrutin>> = [];
+  if (evidence.kind === 'vote' && evidence.institution === 'assemblee') {
+    try { partyVotes = await getPartyVotesForScrutin(evidence.id); } catch { /* source-level vote remains visible */ }
+  }
   const topicsSource = detail.topics_source;
   let groupNames = new Map<string, string>();
   if (groups.length) {
@@ -155,6 +160,8 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
           <GroupPositions groups={groups} names={groupNames} />
         </section>
       ) : null}
+
+      {partyVotes.length ? <PartyVoteBreakdown rows={partyVotes} sourceUrl={evidence.source_url} /> : null}
 
       {links.length ? (
         <section>

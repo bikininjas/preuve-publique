@@ -156,6 +156,7 @@ Limites assumées, écrites noir sur blanc :
 | Rubriques Sénat (30/09/2026) | 30 rubriques publiées par la source, portées par 666 lois ; héritées par 1 612 scrutins du même dossier (545 sans dossier de loi) |
 | Publication par contrôle de conformité (30/09/2026) | 3 624 pièces (666 lois et 2 157 scrutins du Sénat, 801 scrutins de l'AN sur l'ensemble d'un texte) : 3 624 conformes, 0 écart ; 16 783 pièces restent en brouillon |
 | Publication automatique pilote (01/10/2026) | 50 scrutins AN supplémentaires, indice documentaire 0,990 ; 3 674 publiées et 16 733 brouillons vérifiés en base |
+| Bulletins nominatifs par parti (01/10/2026) | 847 scrutins AN sur 851 publiés contrôlés contre le décompte officiel ; 9 808 lignes scrutin/parti, 179 000 bulletins enregistrés dont 157 210 rattachés par affiliation unique datée, 21 790 non attribués ; 4 scrutins exclus pour divergence du décompte ; base ≈ 75 Mo |
 | Base après import du référentiel | 71 Mo mesurés (53 Mo avant le référentiel) |
 | Passage répété du même staging | 0 insertion, pièces inchangées (idempotent) |
 
@@ -186,7 +187,7 @@ après les passages de contrôle de septembre 2026, dont les archives brutes).
 npm run test:ingestion   # normalisation, analyseurs, liens, migrations + RLS (PGlite)
 ```
 
-Les tests d'intégration appliquent les deux migrations à un PostgreSQL réel
+Les tests d'intégration appliquent les migrations à un PostgreSQL réel
 embarqué (PGlite), poussent un staging, vérifient l'idempotence, la protection
 des pièces relues/publiées, et l'effet réel des politiques RLS pour le rôle
 `anon`. Une vérification ponctuelle utile avant tout import massif :
@@ -195,6 +196,20 @@ des pièces relues/publiées, et l'effet réel des politiques RLS pour le rôle
 npm run ingest -- fetch an-scrutins --legislatures=15 --limit=50
 npm run ingest -- push --staging <dossier> --dry-run   # nécessite DB_PG_URL
 ```
+
+### Décomptes par parti issus des scrutins AN
+
+`node ingestion/party-votes.mjs` calcule les bulletins individuels par parti à
+partir des archives officielles déjà conservées dans le staging. Il vérifie les
+empreintes SHA-256 contre le manifeste et la source en base, le total nominatif
+contre le décompte officiel et l'unicité de l'affiliation datée de chaque
+député. Les affiliations ambiguës ou absentes restent hors des barres. Le
+calcul est en lecture seule par défaut ; `--write` remplace les décomptes des
+scrutins vérifiés dans une transaction. `--staging=<dossier>` choisit un autre
+staging AN. Les tables et RPC nécessaires sont dans les deux dernières
+migrations. Les graphiques regroupent des bulletins, jamais des promesses ni
+une opinion unique attribuée au parti sur un thème entier. Sénat et Parlement
+européen attendent des sources nominatives et affiliations équivalentes.
 
 ## Migrations
 

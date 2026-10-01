@@ -4,7 +4,7 @@
 substitutions:
   _REGION: europe-west1
   _AR_REPOSITORY: preuvepublique
-  _SERVICE: preuve-publique
+  _SERVICE: preuve-publique-git
 steps:
   - id: build
     name: gcr.io/cloud-builders/docker

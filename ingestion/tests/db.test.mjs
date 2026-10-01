@@ -29,6 +29,8 @@ const MIGRATIONS = [
   '20261002000000_admin_review.sql',
   '20261003000000_actor_relations.sql',
   '20261004000000_evidence_topics.sql',
+  '20261005000000_party_vote_tallies.sql',
+  '20261006000000_party_vote_details.sql',
 ];
 
 async function freshDb() {
@@ -530,4 +532,48 @@ test('les rubriques viennent de la source, se propagent par dossier, et comptent
   assert.deepEqual(counts.rows, [{ topic: 'Police et sécurité', pieces: 1 }]);
   await client.query('reset role');
   cleanup(dir);
+});
+
+test('les votes nominatifs par parti restent invisibles avant publication, et ne sont jamais modifiables anonymement', async () => {
+  const client = await freshDb();
+  const { rows: [source] } = await client.query(`
+    insert into public.sources (url, publisher, document_title, sha256)
+    values ('https://data.assemblee-nationale.fr/test.zip', 'Assemblée nationale', 'Archive de test', $1)
+    returning id`, ['a'.repeat(64)]);
+  const { rows: [party] } = await client.query(`
+    insert into public.actors (name, kind, external_id)
+    values ('Parti de test', 'party', 'an-organe:PO999') returning id`);
+  const { rows: [vote] } = await client.query(`
+    insert into public.evidence (source_id, title, kind, institution, occurred_at, source_url, status)
+    values ($1, 'Scrutin n° 1 — le logement', 'vote', 'assemblee', '2024-07-10',
+            'https://www.assemblee-nationale.fr/dyn/17/scrutins/1', 'draft') returning id`, [source.id]);
+  await client.query(`
+    insert into public.vote_party_coverage
+      (vote_id, recorded_individuals, unattributed_individuals, official_individuals, archive_sha256)
+    values ($1, 3, 1, 3, $2)`, [vote.id, 'a'.repeat(64)]);
+  await client.query(`
+    insert into public.vote_party_tallies (vote_id, party_id, pour, contre)
+    values ($1, $2, 1, 1)`, [vote.id, party.id]);
+
+  await client.query('set role anon');
+  assert.equal((await client.query('select count(*)::int n from public.vote_party_tallies')).rows[0].n, 0);
+  assert.equal((await client.query('select count(*)::int n from public.actors')).rows[0].n, 0);
+  assert.equal((await client.query("select * from public.vote_party_summary(array['logement'])")).rows.length, 0);
+  await assert.rejects(() => client.query(`
+    update public.vote_party_tallies set pour = 2 where vote_id = $1`, [vote.id]));
+  await client.query('reset role');
+
+  await client.query("update public.evidence set status = 'published' where id = $1", [vote.id]);
+  await client.query('set role anon');
+  const summary = await client.query("select * from public.vote_party_summary(array['logement'])");
+  assert.equal(summary.rows.length, 1);
+  assert.equal(summary.rows[0].party_name, 'Parti de test');
+  assert.equal(Number(summary.rows[0].pour), 1);
+  const scope = await client.query("select * from public.vote_party_scope(array['logement'])");
+  assert.equal(Number(scope.rows[0].documented_scrutins), 1);
+  assert.equal(Number(scope.rows[0].unattributed_individuals), 1);
+  const details = await client.query("select * from public.vote_party_details($1,array['logement'],15,0)", [party.id]);
+  assert.equal(details.rows.length, 1);
+  assert.equal(Number(details.rows[0].total_count), 1);
+  await client.query('reset role');
 });
