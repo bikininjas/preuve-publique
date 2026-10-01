@@ -547,6 +547,9 @@ main.admin { max-width:none; }
 .group-kpis>div { background:#e7efea; padding:23px; display:flex; flex-direction:column; gap:7px; }
 .group-kpis span { font-size:10px; text-transform:uppercase; letter-spacing:.09em; color:#4e6869; font-weight:900; }
 .group-kpis strong { font-family:Georgia,serif; font-size:37px; font-weight:500; }
+.group-identity-panel { margin:18px 0 30px; }
+.group-identity-panel ul { display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; }
+.group-identity-panel li { padding:8px 11px; background:#e7efea; font-size:12px; line-height:1.5; }
 .coverage { padding:25px 0 60px; }
 .coverage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
 .coverage-grid>div { background:white; display:flex; flex-direction:column; padding:25px; gap:8px; }

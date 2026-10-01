@@ -13,10 +13,23 @@ export default async function GroupesPage() {
   if (groupResult.status === 'fulfilled') groups = groupResult.value;
   else failed = true;
   if (partyResult.status === 'fulfilled') parties = partyResult.value;
+  const byName = new Map<string, { id: string; name: string; institutionalIds: number }>();
+  for (const group of groups) {
+    const current = byName.get(group.name);
+    if (current) {
+      current.institutionalIds++;
+      // The link is only an entry point: the detail page includes every
+      // institutional ID with this exact published name.
+      if (group.id < current.id) current.id = group.id;
+    } else {
+      byName.set(group.name, { id: group.id, name: group.name, institutionalIds: 1 });
+    }
+  }
+  const namedGroups = [...byName.values()];
   return <main>
     <div className="page-intro"><div className="eyebrow">Qui vote ?</div><h1>Groupes politiques<br /><em>et partis.</em></h1><p className="lead">Les assemblées publient des votes de groupes parlementaires. Un groupe peut réunir plusieurs partis ; son vote ne devient pas automatiquement celui de chacun d’eux. Parcourez les groupes identifiés dans les scrutins publiés.</p></div>
-    <div className="info-band"><strong>À distinguer</strong><span>Groupe parlementaire ≠ parti politique ≠ vote individuel. Les rattachements évoluent dans le temps et demandent une source datée.</span></div>
-    {failed ? <Empty>La liste des groupes est indisponible pour le moment.</Empty> : groups.length ? <><div className="list-heading"><h2>Groupes documentés</h2><span>{groups.length} groupes visibles</span></div><div className="group-grid">{groups.map((group) => <Link className="group-tile" href={`/groupes/${group.id}`} key={group.id}><span className="group-monogram">{group.name.slice(0, 2).toLocaleUpperCase('fr-FR')}</span><strong>{group.name}</strong><span className="tile-arrow">Voir les scrutins →</span></Link>)}</div></> : <Empty>Aucun groupe lié à un scrutin publié n’est visible pour le moment.</Empty>}
+    <div className="info-band"><strong>À distinguer</strong><span>Groupe parlementaire ≠ parti politique ≠ vote individuel. L’Assemblée peut donner plusieurs identifiants officiels au même intitulé au fil des législatures. La liste montre chaque nom une fois ; la fiche conserve les identifiants et les périodes distincts.</span></div>
+    {failed ? <Empty>La liste des groupes est indisponible pour le moment.</Empty> : namedGroups.length ? <><div className="list-heading"><h2>Groupes documentés</h2><span>{namedGroups.length} noms · {groups.length} identifiants officiels</span></div><div className="group-grid">{namedGroups.map((group) => <Link className="group-tile" href={`/groupes/${group.id}`} key={group.name}><span className="group-monogram">{group.name.slice(0, 2).toLocaleUpperCase('fr-FR')}</span><strong>{group.name}</strong><span className="tile-arrow">{group.institutionalIds > 1 ? `${group.institutionalIds} identifiants · ` : ''}Voir les scrutins →</span></Link>)}</div></> : <Empty>Aucun groupe lié à un scrutin publié n’est visible pour le moment.</Empty>}
     <section className="panel"><div className="eyebrow">Partis</div><h2>Des fiches de parti en préparation</h2><p>{parties.length ? `${parties.length} parti${parties.length > 1 ? 's' : ''} déjà identifié${parties.length > 1 ? 's' : ''} dans les sources publiées. ` : ''}Une fiche de parti fiable demande de relier ses programmes, ses déclarations et ses groupes à une date précise. Nous n’attribuons pas les votes d’un groupe à un parti sans ce rattachement documenté.</p><Link className="text-link" href="/observatoire">Voir les données à réunir →</Link></section>
   </main>;
 }
