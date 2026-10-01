@@ -39,10 +39,10 @@ export default async function AdminDashboardPage() {
 
   return (
     <>
+      <section className="admin-welcome"><div><div className="eyebrow">Vue d’ensemble</div><h2>Avant de publier,<br />remonter à la source.</h2><p>Les files ci-dessous séparent les documents importés des rapprochements éditoriaux. Chaque transition est signée et doit correspondre à une vérification réelle.</p></div><div className="admin-shortcuts"><Link href="/admin/review?status=draft">Relire les pièces <span>→</span></Link><Link href="/admin/links?status=draft">Examiner les liens <span>→</span></Link><Link href="/admin/runs">Contrôler les imports <span>→</span></Link></div></section>
       {counts ? (
         <>
-          <StatusNumbers title="Pièces" base="/admin/review" counts={counts.evidence} />
-          <StatusNumbers title="Rapprochements documentaires" base="/admin/links" counts={counts.links} />
+          <div className="admin-stats-grid"><StatusNumbers title="Pièces" base="/admin/review" counts={counts.evidence} /><StatusNumbers title="Rapprochements documentaires" base="/admin/links" counts={counts.links} /></div>
         </>
       ) : (
         <Notice>Les compteurs sont indisponibles pour le moment. Rechargez la page dans un instant.</Notice>
@@ -51,15 +51,12 @@ export default async function AdminDashboardPage() {
       <section className="panel">
         <h2>La règle de publication</h2>
         <p>
-          Rien n’est publié automatiquement : une pièce passe de <b>brouillon</b> à <b>relue</b>, puis de <b>relue</b> à{' '}
-          <b>publiée</b>, par une transition explicite qui enregistre la personne qui l’a validée. Un retour en arrière
-          se fait d’un cran. La base applique la même règle que cette interface : même connectée, une adresse absente de
-          la liste d’administration ne peut rien lire ni écrire.
+          Les scrutins officiels de l’Assemblée peuvent être publiés après une vérification automatique de l’archive, de
+          son empreinte et des données en base. Les autres pièces passent par la relecture humaine : <b>brouillon</b>,{' '}
+          <b>relue</b>, puis <b>publiée</b>. Les rapprochements interprétatifs restent soumis à une validation humaine.
         </p>
-        <p className="hint">
-          Le contenu des pièces vient des importeurs (connexion directe à la base) ; cette interface gère la relecture et
-          la publication.
-        </p>
+        <p className="hint">La vérification automatique porte sur la fidélité du document, jamais sur un jugement politique. <Link href="/admin/publication">Voir la règle et les contrôles →</Link></p>
+        <div className="review-checklist"><div><b>1. Identifier</b><span>Le document, sa date et son éditeur.</span></div><div><b>2. Contrôler</b><span>L’extrait, le repère et les chiffres dans la source.</span></div><div><b>3. Relier</b><span>Le périmètre exact avant tout rapprochement.</span></div><div><b>4. Publier</b><span>Une trace de relecture explicite et révisable.</span></div></div>
       </section>
 
       <section className="panel">

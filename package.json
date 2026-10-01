@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "ingest": "node ingestion/cli.mjs",
-    "test:ingestion": "node --test \"ingestion/tests/*.test.mjs\""
+    "test:ingestion": "node --test \"ingestion/tests/*.test.mjs\"",
+    "test:reader": "node --test \"tests/*.test.mjs\""
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",

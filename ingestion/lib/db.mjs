@@ -99,7 +99,7 @@ export async function upsertActor(client, actor) {
 
 async function findEvidence(client, record) {
   const { rows } = await client.query(
-    `select id, status, title, excerpt, occurred_at::text as occurred_at, source_url, source_locator, source_id, actor_id, detail
+    `select id, status, title, excerpt, occurred_at::text as occurred_at, source_url, source_locator, source_id, actor_id, detail, topics
      from public.evidence
      where institution is not distinct from $1 and kind = $2 and external_id = $3`,
     [record.institution, record.kind, record.external_id],
@@ -141,7 +141,15 @@ function evidenceChanged(existing, record, { sourceId, actorId, detailValue }) {
     || (existing.source_locator ?? null) !== (record.source_locator ?? null)
     || existing.source_id !== sourceId
     || (existing.actor_id ?? null) !== (actorId ?? null)
+    || !sameTopics(existing.topics, record.topics)
     || canonicalJson(existing.detail) !== canonicalJson(detailValue);
+}
+
+/** Rubriques : comparaison d'ensembles ordonnés (la source fixe l'ordre). */
+export function sameTopics(existing, incoming) {
+  const a = Array.isArray(existing) ? existing : [];
+  const b = Array.isArray(incoming) ? incoming : [];
+  return a.length === b.length && a.every((topic, index) => topic === b[index]);
 }
 
 /**
@@ -159,11 +167,12 @@ export async function upsertEvidence(client, record, { initialStatus = 'draft', 
   if (!existing) {
     const { rows } = await client.query(
       `insert into public.evidence
-         (source_id, actor_id, title, excerpt, kind, institution, occurred_at, source_url, source_locator, external_id, status, detail)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12::jsonb)
+         (source_id, actor_id, title, excerpt, kind, institution, occurred_at, source_url, source_locator, external_id, status, detail, topics)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12::jsonb, $13::text[])
        returning id`,
       [resolvedSourceId, resolvedActorId, record.title, record.excerpt, record.kind, record.institution,
-        record.occurred_at, record.source_url, record.source_locator, record.external_id, initialStatus, detailJson],
+        record.occurred_at, record.source_url, record.source_locator, record.external_id, initialStatus, detailJson,
+        record.topics ?? []],
     );
     return { action: 'inserted', id: rows[0].id, status: initialStatus };
   }
@@ -176,10 +185,10 @@ export async function upsertEvidence(client, record, { initialStatus = 'draft', 
   await client.query(
     `update public.evidence set
        source_id = $2, actor_id = $3, title = $4, excerpt = $5, occurred_at = $6,
-       source_url = $7, source_locator = $8, detail = $9::jsonb
+       source_url = $7, source_locator = $8, detail = $9::jsonb, topics = $10::text[]
      where id = $1 and status = 'draft'`,
     [existing.id, resolvedSourceId, resolvedActorId, record.title, record.excerpt,
-      record.occurred_at, record.source_url, record.source_locator, detailJson],
+      record.occurred_at, record.source_url, record.source_locator, detailJson, record.topics ?? []],
   );
   return { action: 'updated', id: existing.id, status: 'draft' };
 }
@@ -224,6 +233,7 @@ export function emptyPushStats() {
     evidence: { total: 0, inserted: 0, updated: 0, unchanged: 0, locked_changed: 0 },
     links: { total: 0, inserted: 0, updated: 0, unchanged: 0, locked_changed: 0 },
     refs: { total: 0, added: 0, already: 0, missing: 0, locked_changed: 0 },
+    relations: { total: 0, inserted: 0, updated: 0, unchanged: 0, missing_actor: 0, missing_source: 0 },
     locked: [],
     notes: [],
   };
@@ -288,6 +298,8 @@ export async function pushStaging(client, stagingDir, { initialStatus = 'draft',
     }
     const refPatches = readJsonl(join(stagingDir, 'refs.jsonl'));
     await applyRefPatches(client, refPatches, stats);
+    const relationRows = readJsonl(join(stagingDir, 'actor-relations.jsonl'));
+    await applyActorRelations(client, relationRows, { stats, actorIds, sourceIds });
     if (dryRun) await client.query('rollback');
     else await client.query('commit');
   } catch (error) {
@@ -333,6 +345,143 @@ export async function applyRefPatches(client, patches, stats) {
     );
     stats.refs.added += 1;
   }
+}
+
+/**
+ * Actor relations (a person in a group, a person affiliated to a party) come
+ * from the institutions' own referential: they are dated facts, not
+ * interpretations, so they carry no review status — their visibility follows
+ * the two actors they link (each actor is public only through a published
+ * piece). Re-pushing the same mandate never duplicates a row.
+ */
+export async function upsertActorRelation(client, relation, { sourceId } = {}) {
+  const detailJson = relation.detail === null || relation.detail === undefined
+    ? null
+    : JSON.stringify(relation.detail);
+  const endedAt = relation.ended_at ?? null;
+  const { rows } = await client.query(
+    `select id, ended_at::text as ended_at, source_id, detail from public.actor_relations
+     where from_actor_id = $1 and to_actor_id = $2 and relation = $3 and started_at = $4`,
+    [relation.from_actor_id, relation.to_actor_id, relation.relation, relation.started_at],
+  );
+  if (!rows.length) {
+    const inserted = await client.query(
+      `insert into public.actor_relations
+         (from_actor_id, to_actor_id, relation, started_at, ended_at, source_id, detail)
+       values ($1, $2, $3, $4, $5, $6, $7::jsonb)
+       returning id`,
+      [relation.from_actor_id, relation.to_actor_id, relation.relation, relation.started_at, endedAt, sourceId, detailJson],
+    );
+    return { action: 'inserted', id: inserted.rows[0].id };
+  }
+  const existing = rows[0];
+  const changed = (existing.ended_at ?? null) !== endedAt
+    || existing.source_id !== sourceId
+    || canonicalJson(existing.detail) !== canonicalJson(detailJson === null ? null : JSON.parse(detailJson));
+  if (!changed) return { action: 'unchanged', id: existing.id };
+  await client.query(
+    'update public.actor_relations set ended_at = $2, source_id = $3, detail = $4::jsonb where id = $1',
+    [existing.id, endedAt, sourceId, detailJson],
+  );
+  return { action: 'updated', id: existing.id };
+}
+
+/**
+ * Resolve relation endpoints by their external id: the actors written by the
+ * same staging first, then whatever the database already holds. A relation
+ * whose endpoint or source is unknown is counted, never invented.
+ */
+export async function applyActorRelations(client, relations, { stats, actorIds = new Map(), sourceIds = new Map() } = {}) {
+  if (!relations.length) return stats;
+  const externalIds = new Set();
+  for (const relation of relations) {
+    if (!actorIds.has(relation.from_external_id)) externalIds.add(relation.from_external_id);
+    if (!actorIds.has(relation.to_external_id)) externalIds.add(relation.to_external_id);
+  }
+  if (externalIds.size) {
+    const { rows } = await client.query(
+      'select id, external_id from public.actors where external_id = any($1::text[])',
+      [[...externalIds]],
+    );
+    for (const row of rows) actorIds.set(row.external_id, row.id);
+  }
+  for (const relation of relations) {
+    stats.relations.total += 1;
+    const fromId = actorIds.get(relation.from_external_id);
+    const toId = actorIds.get(relation.to_external_id);
+    if (!fromId || !toId) { stats.relations.missing_actor += 1; continue; }
+    const sourceId = sourceIds.get(relation.source_url);
+    if (!sourceId) { stats.relations.missing_source += 1; continue; }
+    const result = await upsertActorRelation(client, { ...relation, from_actor_id: fromId, to_actor_id: toId }, { sourceId });
+    bump(stats.relations, result.action, null);
+  }
+  return stats;
+}
+
+/**
+ * Rubriques d'un dossier : un scrutin rattaché au même dossier que la loi
+ * reçoit les rubriques que la source publie pour ce dossier. Rien n'est deviné
+ * — le rattachement vient de la référence `senat:dossier` portée par les deux
+ * pièces — et l'origine est écrite dans `detail.topics_source` pour que la
+ * fiche puisse l'afficher. Les pièces relues ou publiées ne sont jamais
+ * modifiées (comptées « verrouillées »).
+ */
+export async function propagateTopics(client, { dryRun = false } = {}) {
+  const stats = {
+    laws: 0, dossiers: 0, examined: 0, updated: 0, unchanged: 0, no_dossier: 0, locked_changed: 0, notes: [],
+  };
+  const { rows: laws } = await client.query(
+    `select detail->'refs' as refs, topics
+     from public.evidence
+     where institution = 'senat' and kind = 'adopted_text' and topics <> '{}'`,
+  );
+  const byDossier = new Map();
+  for (const law of laws) {
+    for (const ref of Array.isArray(law.refs) ? law.refs : []) {
+      if (ref?.type !== 'senat:dossier' || !ref.value) continue;
+      const set = byDossier.get(ref.value) ?? new Set();
+      for (const topic of law.topics ?? []) set.add(topic);
+      byDossier.set(ref.value, set);
+    }
+  }
+  stats.laws = laws.length;
+  stats.dossiers = byDossier.size;
+
+  const { rows: votes } = await client.query(
+    "select id, status, topics, detail from public.evidence where institution = 'senat' and kind = 'vote'",
+  );
+  await client.query('begin');
+  try {
+    for (const vote of votes) {
+      stats.examined += 1;
+      const refs = Array.isArray(vote.detail?.refs) ? vote.detail.refs : [];
+      const matched = refs.filter((ref) => ref?.type === 'senat:dossier' && byDossier.has(ref.value));
+      if (!matched.length) { stats.no_dossier += 1; continue; }
+      const next = [...new Set(matched.flatMap((ref) => [...byDossier.get(ref.value)]))]
+        .sort((a, b) => a.localeCompare(b, 'fr'));
+      if (sameTopics(vote.topics, next)) { stats.unchanged += 1; continue; }
+      if (vote.status !== 'draft') { stats.locked_changed += 1; continue; }
+      const detail = {
+        ...(vote.detail ?? {}),
+        topics_source: {
+          type: 'senat:dossier',
+          values: matched.map((ref) => ref.value),
+          note: 'Rubriques publiées par le Sénat pour ce dossier, héritées par le scrutin qui y est rattaché.',
+        },
+      };
+      await client.query(
+        "update public.evidence set topics = $2::text[], detail = $3::jsonb where id = $1 and status = 'draft'",
+        [vote.id, next, JSON.stringify(detail)],
+      );
+      stats.updated += 1;
+    }
+    if (dryRun) await client.query('rollback');
+    else await client.query('commit');
+  } catch (error) {
+    await client.query('rollback');
+    throw error;
+  }
+  return stats;
 }
 
 export async function generateLinks(client, { dryRun = false } = {}) {
@@ -426,6 +575,7 @@ export async function databaseStats(client) {
   const { rows: tables } = await client.query(
     `select 'sources' as table, count(*)::int as count from public.sources
      union all select 'actors', count(*)::int from public.actors
+     union all select 'actor_relations', count(*)::int from public.actor_relations
      union all select 'evidence', count(*)::int from public.evidence
      union all select 'evidence_links', count(*)::int from public.evidence_links`,
   );

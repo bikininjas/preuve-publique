@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { GroupPositions, type GroupPosition } from '@/components/group-positions';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
-import { getEvidenceItem } from '@/lib/data';
+import { getActorNames, getEvidenceItem } from '@/lib/data';
 import {
   RELATION_NOTES,
   formatDate,
@@ -10,8 +11,10 @@ import {
   kindLabel,
   methodLabel,
   relationLabel,
+  topicSlug,
 } from '@/lib/labels';
 import { isUuid } from '@/lib/params';
+import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
 
 export const dynamic = 'force-dynamic';
 
@@ -36,11 +39,28 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   }
   if (!item) notFound();
   const { evidence, source, actor, links } = item;
+  const displayTitle = readerTitle(evidence);
+  const scope = voteScope(evidence);
+  const tally = evidence.kind === 'vote' ? voteTally(evidence) : null;
 
   const refs = Array.isArray(evidence.detail?.refs) ? evidence.detail.refs : [];
+  const detail = (evidence.detail ?? {}) as { groupes?: GroupPosition[]; topics_source?: { values?: string[]; note?: string } };
+  const groups = Array.isArray(detail.groupes) ? detail.groupes : [];
+  const topicsSource = detail.topics_source;
+  let groupNames = new Map<string, string>();
+  if (groups.length) {
+    try {
+      groupNames = await getActorNames(groups.map((group) => `an-organe:${group.organe_ref ?? ''}`));
+    } catch {
+      groupNames = new Map();
+    }
+  }
   const scalars = Object.entries(evidence.detail ?? {}).filter(
     ([key, value]) =>
-      key !== 'refs' && (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'),
+      key !== 'refs'
+      && key !== 'groupes'
+      && key !== 'topics_source'
+      && (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'),
   );
   const meta: MetaEntry[] = [
     {
@@ -54,6 +74,10 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
     ...(source ? [{ term: 'Document', children: source.document_title }] : []),
     { term: 'Repère dans la source', children: evidence.source_locator ?? '—' },
     { term: 'Type', children: kindLabel(evidence.kind) },
+    ...evidence.topics.map((topic) => ({
+      term: 'Rubrique',
+      children: <Link href={`/categories/${topicSlug(topic)}`}>{topic}</Link>,
+    })),
     ...refs.map((ref) => ({
       term: 'Référence documentaire',
       children: (
@@ -75,7 +99,8 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       <div className="eyebrow">
         {kindLabel(evidence.kind)} · {institutionLabel(evidence.institution)}
       </div>
-      <h1 className="title">{evidence.title}</h1>
+      <h1 className="title">{displayTitle}</h1>
+      {evidence.kind === 'vote' ? <p className="hint">Sujet du texte concerné · {scope ? `vote sur : ${scope.toLocaleLowerCase('fr-FR')}` : 'périmètre du vote à vérifier dans l’intitulé officiel'}. Un amendement ou une motion ne vaut pas vote sur l’ensemble du texte.</p> : null}
       <p className="resultline">
         {formatDate(evidence.occurred_at)}
         {actor ? <> · {actor.name}</> : null}
@@ -85,8 +110,15 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
             · référence <code>{evidence.external_id}</code>
           </>
         ) : null}
-        {evidence.reviewed_at ? <> · relue le {formatDate(evidence.reviewed_at)}</> : null}
+        {evidence.reviewed_at ? <> · {evidence.publication_method ? 'contrôlée' : 'relue'} le {formatDate(evidence.reviewed_at)}</> : null}
       </p>
+      {evidence.publication_confidence != null ? (
+        <p className="hint"><strong>Conformité à la source : {Math.round(Number(evidence.publication_confidence) * 100)} %.</strong> Archive officielle, empreinte SHA-256 et données du scrutin recoupées avant publication. Cet indice ne mesure ni la cohérence d’un parti ni l’effet d’une loi.</p>
+      ) : null}
+      {displayTitle !== evidence.title ? <p className="official-title"><strong>Intitulé officiel :</strong> {evidence.title}</p> : null}
+
+      {tally && (tally.pour !== null || tally.contre !== null) ? <div className="vote-metrics" aria-label="Décompte officiel du scrutin"><div><span>Pour</span><strong>{tally.pour?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Contre</span><strong>{tally.contre?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Abstentions</span><strong>{tally.abstentions?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Votants</span><strong>{tally.votants?.toLocaleString('fr-FR') ?? '—'}</strong></div></div> : null}
+      {evidence.kind === 'vote' ? <p className="hint">{scrutinNumber(evidence) ? `Scrutin n° ${scrutinNumber(evidence)} · ` : ''}Ces chiffres décrivent ce scrutin, pas la position de chaque élu. <a href={evidence.source_url} target="_blank" rel="noopener noreferrer">Vérifier le vote officiel ↗</a></p> : null}
 
       {evidence.excerpt ? (
         <Citation footer="Formulation reprise de la source ; le lien ci-dessous mène au document original.">
@@ -104,8 +136,25 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
               }`
             : 'Source récupérée par l’importeur ; le document original reste chez son éditeur.'}
         </p>
+        {topicsSource?.note ? (
+          <p className="hint">
+            {topicsSource.note}
+            {topicsSource.values?.length ? (
+              <>
+                {' '}Dossier : <code>{topicsSource.values.join(', ')}</code>.
+              </>
+            ) : null}
+          </p>
+        ) : null}
         {evidence.detail ? <RawJson summary="Faits structurés bruts (JSON copié de la source)" value={evidence.detail} /> : null}
       </section>
+
+      {groups.length ? (
+        <section>
+          <h2>Comment les groupes ont voté</h2>
+          <GroupPositions groups={groups} names={groupNames} />
+        </section>
+      ) : null}
 
       {links.length ? (
         <section>

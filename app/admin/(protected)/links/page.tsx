@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { FlashNotice } from '@/components/flash-notice';
 import { FilterForm, StatusSelect } from '@/components/filters';
-import { ReviewActions } from '@/components/review-actions';
 import { Queue, StatusBadge } from '@/components/ui';
 import { listLinksForReview } from '@/lib/admin';
 import { methodLabel, relationLabel } from '@/lib/labels';
@@ -24,7 +23,6 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
     if (target > 1) search.set('page', String(target));
     return `/admin/links?${search.toString()}`;
   };
-  const back = hrefFor(page);
 
   let items: Awaited<ReturnType<typeof listLinksForReview>>['items'] | null = null;
   let total = 0;
@@ -38,7 +36,7 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
 
   return (
     <>
-      <h2>Rapprochements documentaires</h2>
+      <div className="queue-intro"><div className="eyebrow">02 / Liens documentaires</div><h2>Rapprochements</h2><p>Vérifiez les deux pièces et leur référence commune avant de valider un lien. « Lié » ne signifie ni soutien ni contradiction.</p></div>
       <p className="hint">
         Un lien publié n’est visible publiquement que si <b>les deux</b> pièces qu’il relie sont publiées. Un lien
         signale une parenté documentaire (même référence de dossier, même proposition), jamais un soutien ni une
@@ -55,7 +53,7 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
         pageCount={Math.max(Math.ceil(total / PAGE_SIZE), 1)}
         noun="rapprochement"
         hrefFor={hrefFor}
-        head={['Lien', 'Statut', 'Action']}
+        head={['Lien', 'Statut']}
         failedText="La file des rapprochements est indisponible pour le moment."
         empty="Aucun rapprochement avec ces filtres."
         renderRow={(link) => (
@@ -77,9 +75,6 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
             </td>
             <td>
               <StatusBadge status={link.status} />
-            </td>
-            <td>
-              <ReviewActions table="evidence_links" id={link.id} status={link.status} back={back} />
             </td>
           </tr>
         )}

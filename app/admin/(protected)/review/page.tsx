@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { FlashNotice } from '@/components/flash-notice';
 import { FilterForm, KindSelect, SearchField, StatusSelect } from '@/components/filters';
-import { ReviewActions } from '@/components/review-actions';
 import { Queue, StatusBadge } from '@/components/ui';
 import { listEvidenceForReview } from '@/lib/admin';
 import { formatDate, institutionLabel, kindLabel, truncate } from '@/lib/labels';
@@ -29,7 +28,6 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
     if (target > 1) search.set('page', String(target));
     return `/admin/review?${search.toString()}`;
   };
-  const back = hrefFor(page);
 
   let items: Awaited<ReturnType<typeof listEvidenceForReview>>['items'] | null = null;
   let total = 0;
@@ -49,7 +47,7 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
 
   return (
     <>
-      <h2>Pièces à relire</h2>
+      <div className="queue-intro"><div className="eyebrow">01 / Documents</div><h2>Pièces à relire</h2><p>Ouvrez chaque fiche pour vérifier l’intitulé, la date, la source et les données structurées avant de changer son statut.</p></div>
       <FlashNotice params={params} />
       <FilterForm action="/admin/review">
         <StatusSelect value={status} />
@@ -63,7 +61,7 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
         pageCount={Math.max(Math.ceil(total / PAGE_SIZE), 1)}
         noun="pièce"
         hrefFor={hrefFor}
-        head={['Pièce', 'Statut', 'Action']}
+        head={['Pièce', 'Statut']}
         failedText="La file de relecture est indisponible pour le moment."
         empty={status === 'draft' ? 'Aucune pièce en brouillon : tout a été relu.' : 'Aucune pièce avec ces filtres.'}
         renderRow={(item) => (
@@ -84,9 +82,6 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
             <td>
               <StatusBadge status={item.status} />
               {item.reviewed_at ? <div className="sub">relue le {formatDate(item.reviewed_at)}</div> : null}
-            </td>
-            <td>
-              <ReviewActions table="evidence" id={item.id} status={item.status} back={back} />
             </td>
           </tr>
         )}

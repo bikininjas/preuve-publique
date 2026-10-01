@@ -158,6 +158,25 @@ export function buildActor(input) {
   };
 }
 
+/** Rubriques : uniquement celles que la source publie, jamais une déduction du site. */
+export const TOPIC_MAX = 80;
+
+export function buildTopics(value) {
+  if (value === null || value === undefined) return [];
+  const list = Array.isArray(value) ? value : [value];
+  const out = [];
+  const seen = new Set();
+  for (const item of list) {
+    const clean = cleanText(item, { max: TOPIC_MAX, field: 'topic' });
+    if (!clean) continue;
+    const key = clean.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(clean);
+  }
+  return out;
+}
+
 export function buildEvidence(input) {
   const kind = requireNonEmpty(input?.kind, 'kind', 40);
   if (!KINDS.includes(kind)) throw new ValidationError('kind', 'valeur non prévue', kind);
@@ -187,6 +206,7 @@ export function buildEvidence(input) {
     source_url: requireHttpsUrl(input?.source_url, 'source_url'),
     source_locator: input?.source_locator ? requireNonEmpty(input.source_locator, 'source_locator', 300) : null,
     detail,
+    topics: buildTopics(input?.topics),
     source: buildSource(input?.source),
     actor: input?.actor ? buildActor(input.actor) : null,
   };

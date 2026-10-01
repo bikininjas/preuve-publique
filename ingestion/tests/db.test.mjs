@@ -7,7 +7,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { PGlite } from '@electric-sql/pglite';
@@ -15,13 +15,20 @@ import { pgliteClient } from './helpers/pglite-client.mjs';
 import * as db from '../lib/db.mjs';
 import { buildEvidence } from '../lib/normalize.mjs';
 import { writeJson, writeJsonl } from '../lib/staging.mjs';
+import { saveRaw } from '../lib/staging.mjs';
+import { zipSync } from 'fflate';
+import { scrutinToRecord } from '../importers/an-scrutins.mjs';
+import { publishVerified, verifyArchive } from '../lib/auto-publish.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..', '..');
 const MIGRATIONS = [
   '20260929000000_initial.sql',
   '20260930000000_backend_pipeline.sql',
   '20261001000000_fix_reference_policies.sql',
+  '20261001052438_publication_confidence.sql',
   '20261002000000_admin_review.sql',
+  '20261003000000_actor_relations.sql',
+  '20261004000000_evidence_topics.sql',
 ];
 
 async function freshDb() {
@@ -87,6 +94,43 @@ function writeStaging(records) {
 }
 
 const cleanup = (dir) => rmSync(dir, { recursive: true, force: true });
+
+test('une archive AN intacte publie le brouillon, une divergence bloque la publication', async () => {
+  const client = await freshDb();
+  const dir = mkdtempSync(join(tmpdir(), 'pp-auto-publish-'));
+  try {
+    mkdirSync(join(dir, 'raw'));
+    const archiveUrl = 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip';
+    const fixture = readFileSync(join(ROOT, 'ingestion/tests/fixtures/an-scrutin.sample.json'), 'utf8');
+    const scrutin = JSON.parse(fixture).scrutin;
+    const raw = saveRaw(dir, 'Scrutins_XV.json.zip', zipSync({ 'scrutin.json': Buffer.from(fixture) }));
+    const source = {
+      url: archiveUrl, publisher: 'Assemblée nationale',
+      document_title: 'Scrutins publics — législature 15 (archive JSON officielle)',
+      published_at: null, retrieved_at: '2026-09-30T07:00:00.000Z', sha256: raw.sha256,
+    };
+    const record = scrutinToRecord(scrutin, {
+      legislature: 15, zipFile: 'Scrutins_XV.json.zip', zipUrl: archiveUrl,
+      retrievedAt: source.retrieved_at,
+    });
+    writeJsonl(join(dir, 'sources.jsonl'), [source]);
+    writeJsonl(join(dir, 'evidence.jsonl'), [record]);
+    writeJson(join(dir, 'manifest.json'), { importer: 'an-scrutins', raw: [{ url: archiveUrl, ...raw }] });
+    await db.pushStaging(client, dir);
+    const verified = await verifyArchive(dir);
+    const simulation = await publishVerified(client, verified, { limit: 1, dryRun: true });
+    assert.equal(simulation.published, 1);
+    assert.equal((await client.query("select count(*)::int as n from public.evidence where status='published'")).rows[0].n, 0);
+    const published = await publishVerified(client, verified, { limit: 1, dryRun: false });
+    assert.equal(published.published, 1);
+    const { rows } = await client.query('select status, publication_confidence, publication_checks from public.evidence');
+    assert.equal(rows[0].status, 'published');
+    assert.equal(Number(rows[0].publication_confidence), 0.99);
+    assert.equal(rows[0].publication_checks.interpretation, false);
+    writeJsonl(join(dir, 'evidence.jsonl'), [{ ...record, title: 'Titre modifié' }]);
+    await assert.rejects(verifyArchive(dir), /divergent/);
+  } finally { cleanup(dir); }
+});
 
 test('both migrations apply cleanly and add the pipeline columns', async () => {
   const client = await freshDb();
@@ -313,4 +357,177 @@ test('ingestion runs keep their stats and outcome', async () => {
   assert.equal(runs[0].status, 'ok');
   assert.equal(runs[0].stats.evidence.inserted, 3);
   assert.ok(runs[0].finished_at);
+});
+
+test('les liens d’acteurs sont idempotents et suivent la visibilité des deux acteurs', async () => {
+  const client = await freshDb();
+  const dir = mkdtempSync(join(tmpdir(), 'pp-relations-'));
+  const SOURCE_URL = 'https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip';
+  const source = {
+    url: SOURCE_URL,
+    publisher: 'Assemblée nationale',
+    document_title: 'Référentiel des acteurs, mandats et organes — législature 17 (archive JSON officielle)',
+    sha256: 'c'.repeat(64),
+    retrieved_at: '2026-01-02T03:04:05.000Z',
+  };
+  const group = { external_id: 'an-organe:PO845413', name: 'Groupe de test', kind: 'group' };
+  const party = { external_id: 'an-organe:PO833003', name: 'Parti de test', kind: 'party' };
+  const person = { external_id: 'an-acteur:PA1', name: 'Personne de test', kind: 'person' };
+  const relation = (to, extra = {}) => ({
+    from_external_id: person.external_id,
+    to_external_id: to,
+    relation: 'member_of',
+    started_at: '2024-07-18',
+    ended_at: null,
+    source_url: SOURCE_URL,
+    detail: { mandat_uid: 'PM1' },
+    ...extra,
+  });
+
+  writeJsonl(join(dir, 'sources.jsonl'), [source]);
+  writeJsonl(join(dir, 'actors.jsonl'), [group, party, person]);
+  writeJsonl(join(dir, 'evidence.jsonl'), [
+    draft({ external_id: 'AN-PERSONNE-1', title: 'Déclaration de test — personne', actor: person, source }),
+    draft({ external_id: 'AN-GROUPE-1', title: 'Déclaration de test — groupe', actor: group, source }),
+  ]);
+  writeJsonl(join(dir, 'actor-relations.jsonl'), [
+    relation(group.external_id),
+    relation(party.external_id, { relation: 'affiliated_to', detail: { mandat_uid: 'PM2' } }),
+    relation('an-organe:ABSENT'),
+  ]);
+  writeJson(join(dir, 'manifest.json'), {
+    importer: 'an-referentiel',
+    created_at: new Date().toISOString(),
+    options: {},
+    counts: {},
+    raw: [],
+    notes: [],
+  });
+
+  const first = await db.pushStaging(client, dir, {});
+  assert.equal(first.stats.relations.total, 3);
+  assert.equal(first.stats.relations.inserted, 2);
+  assert.equal(first.stats.relations.missing_actor, 1, 'un lien dont l’extrémité est absente est compté, jamais inventé');
+
+  const again = await db.pushStaging(client, dir, {});
+  assert.equal(again.stats.relations.unchanged, 2);
+  assert.equal(again.stats.relations.inserted, 0);
+
+  await client.query('set role anon');
+  const hidden = await client.query('select count(*)::int as n from public.actor_relations');
+  assert.equal(hidden.rows[0].n, 0, 'aucun lien visible tant qu’aucune pièce n’est publiée');
+  await assert.rejects(() => client.query(
+    `insert into public.actor_relations (from_actor_id, to_actor_id, relation, started_at, source_id)
+     values (gen_random_uuid(), gen_random_uuid(), 'member_of', '2024-07-18', gen_random_uuid())`,
+  ));
+  await client.query('reset role');
+
+  const { rows: pieces } = await client.query('select id, external_id from public.evidence order by external_id');
+  const personPiece = pieces.find((row) => row.external_id === 'AN-PERSONNE-1');
+  const groupPiece = pieces.find((row) => row.external_id === 'AN-GROUPE-1');
+  await db.setReviewStatus(client, { table: 'evidence', id: personPiece.id, status: 'reviewed', reviewer: 'test' });
+  await db.setReviewStatus(client, { table: 'evidence', id: personPiece.id, status: 'published', reviewer: 'test' });
+
+  // Une seule extrémité est publique : les liens restent invisibles.
+  await client.query('set role anon');
+  const oneEnd = await client.query('select count(*)::int as n from public.actor_relations');
+  assert.equal(oneEnd.rows[0].n, 0, 'un lien dont un seul acteur est public reste invisible');
+  await client.query('reset role');
+
+  await db.setReviewStatus(client, { table: 'evidence', id: groupPiece.id, status: 'reviewed', reviewer: 'test' });
+  await db.setReviewStatus(client, { table: 'evidence', id: groupPiece.id, status: 'published', reviewer: 'test' });
+
+  await client.query('set role anon');
+  const visible = await client.query('select relation, to_actor_id from public.actor_relations');
+  assert.equal(visible.rows.length, 1, 'seul le lien dont les deux acteurs sont publics est visible');
+  assert.equal(visible.rows[0].relation, 'member_of');
+  await client.query('reset role');
+  cleanup(dir);
+});
+
+test('les rubriques viennent de la source, se propagent par dossier, et comptent en public', async () => {
+  const client = await freshDb();
+  const dir = mkdtempSync(join(tmpdir(), 'pp-topics-'));
+  const source = {
+    url: 'https://data.senat.fr/data/dosleg/promulguees.csv',
+    publisher: 'Sénat',
+    document_title: 'Dossiers législatifs — lois promulguées (CSV officiel)',
+    sha256: 'd'.repeat(64),
+    retrieved_at: '2026-01-02T03:04:05.000Z',
+  };
+  writeJsonl(join(dir, 'sources.jsonl'), [source]);
+  writeJsonl(join(dir, 'actors.jsonl'), [
+    { external_id: 'an-organe:PO1', name: 'Groupe de test', kind: 'group' },
+  ]);
+  writeJsonl(join(dir, 'evidence.jsonl'), [
+    draft({
+      external_id: 'SENAT-LOI-1', kind: 'adopted_text', institution: 'senat',
+      title: 'Loi n° 1 — test', topics: ['Police et sécurité'],
+      detail: { refs: [{ type: 'senat:dossier', value: 'pjl1' }] },
+      source,
+    }),
+    draft({
+      external_id: 'SENAT-VOTE-1', kind: 'vote', institution: 'senat',
+      title: 'Scrutin n° 1 — test', detail: { refs: [{ type: 'senat:dossier', value: 'pjl1' }] },
+      source,
+    }),
+    draft({
+      external_id: 'AN-VOTE-1', kind: 'vote', institution: 'assemblee',
+      title: 'Scrutin n° 2 — test',
+      detail: {
+        groupes: [{ organe_ref: 'PO1', membres: 10, position_majoritaire: 'contre', pour: 1, contre: 9, abstentions: 0, non_votants: 0 }],
+      },
+      source,
+    }),
+  ]);
+  writeJson(join(dir, 'manifest.json'), {
+    importer: 'test', created_at: new Date().toISOString(), options: {}, counts: {}, raw: [], notes: [],
+  });
+
+  await db.pushStaging(client, dir, {});
+  const { rows: [law] } = await client.query("select topics from public.evidence where external_id = 'SENAT-LOI-1'");
+  assert.deepEqual(law.topics, ['Police et sécurité']);
+
+  // Propagation par référence de dossier : le scrutin hérite, une seconde
+  // exécution ne change plus rien.
+  const first = await db.propagateTopics(client, {});
+  assert.equal(first.examined, 1, 'seuls les scrutins du Sénat sont examinés');
+  assert.equal(first.updated, 1);
+  assert.equal(first.no_dossier, 0);
+  const second = await db.propagateTopics(client, {});
+  assert.equal(second.unchanged, 1);
+  const { rows: [vote] } = await client.query("select topics, detail from public.evidence where external_id = 'SENAT-VOTE-1'");
+  assert.deepEqual(vote.topics, ['Police et sécurité']);
+  assert.deepEqual(vote.detail.topics_source.values, ['pjl1']);
+
+  const publish = async (externalId) => {
+    const { rows: [row] } = await client.query('select id from public.evidence where external_id = $1', [externalId]);
+    await db.setReviewStatus(client, { table: 'evidence', id: row.id, status: 'reviewed', reviewer: 'test' });
+    await db.setReviewStatus(client, { table: 'evidence', id: row.id, status: 'published', reviewer: 'test' });
+  };
+
+  // Rien n'est publié : ni comptage, ni pièce, ni groupe.
+  await client.query('set role anon');
+  const emptyCounts = await client.query('select * from public.published_topic_counts()');
+  assert.equal(emptyCounts.rows.length, 0);
+  assert.equal((await client.query('select count(*)::int as n from public.actors')).rows[0].n, 0);
+  await client.query('reset role');
+
+  // Un vote publié rend lisible le seul groupe qu'il nomme.
+  await publish('AN-VOTE-1');
+  await client.query('set role anon');
+  const groups = await client.query('select external_id, name from public.actors');
+  assert.equal(groups.rows.length, 1);
+  assert.equal(groups.rows[0].external_id, 'an-organe:PO1');
+  assert.equal((await client.query('select * from public.published_topic_counts()')).rows.length, 0);
+  await client.query('reset role');
+
+  // La loi publiée apporte sa rubrique au comptage ; le scrutin resté brouillon
+  // ne compte pas, et sa rubrique héritée n'est pas visible non plus.
+  await publish('SENAT-LOI-1');
+  await client.query('set role anon');
+  const counts = await client.query('select topic, pieces from public.published_topic_counts()');
+  assert.deepEqual(counts.rows, [{ topic: 'Police et sécurité', pieces: 1 }]);
+  await client.query('reset role');
+  cleanup(dir);
 });

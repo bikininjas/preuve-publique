@@ -49,8 +49,13 @@ export interface Evidence {
   external_id: string | null;
   status: RowStatus;
   detail: EvidenceDetail | null;
+  /** Rubriques publiées par la source (ou héritées d'un dossier), jamais déduites ici. */
+  topics: string[];
   reviewed_by: string | null;
   reviewed_at: string | null;
+  publication_confidence?: number | null;
+  publication_method?: 'official_archive_replay' | null;
+  publication_checks?: Record<string, boolean> | null;
 }
 
 /**

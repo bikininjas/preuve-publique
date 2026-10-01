@@ -12,7 +12,7 @@ import { scrutinToRecord } from '../importers/an-scrutins.mjs';
 import { dossierToRecords } from '../importers/an-dossiers.mjs';
 import { decisionToRecord } from '../importers/pe-votes.mjs';
 import { textToRecord } from '../importers/pe-texts.mjs';
-import { rowToRecord } from '../importers/senat-texts.mjs';
+import { rowToRecord, parseSenatThemes, SENAT_TOPICS } from '../importers/senat-texts.mjs';
 import { parseCsv, rowsToObjects } from '../lib/csv.mjs';
 
 const fixture = (name) => readFileSync(join(import.meta.dirname, 'fixtures', name), 'utf8');
@@ -148,4 +148,28 @@ test('Sénat — promulgation rows become laws with an https dossier reference',
   assert.equal(record.source_url, 'https://www.senat.fr/dossier-legislatif/pjlf2022.html');
   assert.equal(record.detail.themes.includes('Budget'), true);
   assert.equal(record.source.sha256, 'a'.repeat(64));
+  // Les rubriques publiées par le Sénat sont reprises telles quelles : la liste
+  // brute reste dans le détail, l'analyse les sépare — y compris les trois
+  // libellés qui contiennent eux-mêmes une virgule.
+  assert.deepEqual(record.topics, [
+    'Budget',
+    'Économie et finances, fiscalité',
+    'Pouvoirs publics et Constitution',
+  ]);
+  assert.equal(record.detail.themes_analyse, 'rubriques reconnues');
+});
+
+test('Sénat — l’analyse des rubriques ne devine jamais', () => {
+  assert.deepEqual(parseSenatThemes('Police et sécurité, Société').topics, ['Police et sécurité', 'Société']);
+  assert.deepEqual(parseSenatThemes('Recherche, sciences et techniques').topics, ['Recherche, sciences et techniques']);
+  assert.deepEqual(parseSenatThemes('PME, commerce et artisanat').topics, ['PME, commerce et artisanat']);
+  assert.deepEqual(parseSenatThemes('').topics, []);
+  assert.deepEqual(parseSenatThemes(null).topics, []);
+  // Une valeur inconnue n'est pas rapprochée de force : aucune rubrique retenue.
+  const unknown = parseSenatThemes('Police et sécurité, Rubrique inventée');
+  assert.equal(unknown.complete, false);
+  assert.deepEqual(unknown.topics, []);
+  assert.equal(unknown.raw, 'Police et sécurité, Rubrique inventée');
+  // Vocabulaire de la source : unique et sans doublon.
+  assert.equal(new Set(SENAT_TOPICS).size, SENAT_TOPICS.length);
 });

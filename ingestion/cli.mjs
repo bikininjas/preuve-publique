@@ -22,8 +22,9 @@ import {
 } from './lib/staging.mjs';
 import { loadProjectEnv, requireDbUrl, redactPgUrl, PROJECT_ROOT } from './lib/env.mjs';
 import * as db from './lib/db.mjs';
+import { publishVerified, verifyArchive } from './lib/auto-publish.mjs';
 
-const IMPORTERS = ['an-scrutins', 'an-dossiers', 'senat-scrutins', 'senat-texts', 'pe-votes', 'pe-texts'];
+const IMPORTERS = ['an-scrutins', 'an-dossiers', 'an-referentiel', 'senat-scrutins', 'senat-texts', 'pe-votes', 'pe-texts'];
 
 const rel = (path) => relative(PROJECT_ROOT, path).replaceAll('\\', '/');
 const isTrue = (value) => value === true || value === 'true' || value === 'yes';
@@ -37,10 +38,13 @@ Commandes :
   push --staging <dossier>              pousse un staging en base (--dry-run pour vérifier sans écrire)
   run <importeur> [options]             fetch + push (--no-push pour ne faire que le fetch)
   link [--dry-run]                      rapprochements documentaires déterministes (statut brouillon)
+  topics [--dry-run]                    rubriques publiées par une source, héritées par les scrutins du même dossier
   review list [--table=] [--status=]    file de relecture
   review set --table= --id= --status= [--reviewer=]
   runs [--limit=N]                      derniers passages d'ingestion enregistrés
   measure                               volumes du staging et de la base
+  publish auto --staging=<dossier>      contrôle l’archive officielle et publie les scrutins conformes
+  run an-scrutins --auto-publish --yes  importe et publie automatiquement les scrutins conformes
 
 Options communes : --dry-run, --yes (confirme une écriture réelle), --label=<nom>
 Variables : DB_PG_URL (.env.local) pour toute commande qui écrit ou mesure.`);
@@ -101,7 +105,7 @@ async function cmdFetch(name, options) {
     notes: result.notes ?? [],
   };
   writeManifest(stagingDir, manifest);
-  console.log(`[${name}] ${result.counts.evidence} pièce(s), ${result.counts.sources} source(s), ${(result.rawFiles ?? []).length} fichier(s) brut(s)${result.counts.refs ? `, ${result.counts.refs} rattachement(s) de scrutins` : ''}`);
+  console.log(`[${name}] ${result.counts.evidence} pièce(s), ${result.counts.sources} source(s), ${(result.rawFiles ?? []).length} fichier(s) brut(s)${result.counts.refs ? `, ${result.counts.refs} rattachement(s) de scrutins` : ''}${result.counts.actors ? `, ${result.counts.actors} acteur(s)` : ''}${result.counts.relations ? `, ${result.counts.relations} lien(s) d’acteur(s)` : ''}`);
   for (const note of manifest.notes) console.log(`[${name}] note : ${note}`);
   console.log(`[${name}] manifeste : ${rel(join(stagingDir, 'manifest.json'))}`);
   return stagingDir;
@@ -116,6 +120,9 @@ function printPushStats(stats, dryRun) {
   }
   if (stats.refs?.total) {
     console.log(`  références de rattachement : ${stats.refs.added} ajoutées (${stats.refs.already} déjà présentes, ${stats.refs.missing} pièces absentes, ${stats.refs.locked_changed} verrouillées)`);
+  }
+  if (stats.relations?.total) {
+    console.log(`  liens d’acteurs : ${stats.relations.total} (${stats.relations.inserted} nouveaux, ${stats.relations.updated} mis à jour, ${stats.relations.unchanged} inchangés, ${stats.relations.missing_actor} sans acteur connu, ${stats.relations.missing_source} sans source)`);
   }
   if (stats.locked.length) {
     console.log('  pièces déjà relues ou publiées dont la source a changé (non écrites) :');
@@ -182,6 +189,33 @@ async function cmdLink(options) {
       if (runId) await db.finishRun(client, runId, { status: 'ok', stats });
       printPushStats({ ...stats, evidence: { total: 0, inserted: 0, updated: 0, unchanged: 0, locked_changed: 0 } }, dryRun);
       console.log(`  liens candidats : ${stats.links.total} (statut brouillon, revue humaine requise avant publication)`);
+    } catch (error) {
+      if (runId) await db.finishRun(client, runId, { status: 'error', stats: {}, error: String(error.message ?? error) });
+      throw error;
+    }
+  } finally {
+    await client.end();
+  }
+}
+
+async function cmdTopics(options) {
+  const dryRun = isTrue(options['dry-run']);
+  const client = await openDb();
+  try {
+    if (!dryRun && !isTrue(options.yes)) {
+      console.log('Écriture réelle demandée mais non confirmée : relancer avec --yes (ou --dry-run).');
+      process.exitCode = 1;
+      return;
+    }
+    let runId = null;
+    if (!dryRun) runId = await db.startRun(client, { importer: 'topics', options: { dryRun } });
+    try {
+      const stats = await db.propagateTopics(client, { dryRun });
+      if (runId) await db.finishRun(client, runId, { status: 'ok', stats });
+      console.log(dryRun ? 'Vérification terminée : transaction annulée, aucune écriture en base.' : 'Écriture appliquée.');
+      console.log(`  lois portant des rubriques : ${stats.laws} · dossiers : ${stats.dossiers}`);
+      console.log(`  scrutins examinés : ${stats.examined} (${stats.updated} mis à jour, ${stats.unchanged} inchangés, ${stats.no_dossier} sans dossier de loi, ${stats.locked_changed} verrouillés)`);
+      for (const note of stats.notes ?? []) console.log(`  note : ${note}`);
     } catch (error) {
       if (runId) await db.finishRun(client, runId, { status: 'error', stats: {}, error: String(error.message ?? error) });
       throw error;
@@ -285,6 +319,31 @@ async function cmdMeasure(options) {
   }
 }
 
+async function cmdAutoPublish(options, stagingDirOverride = null) {
+  if (!options.staging && !stagingDirOverride) throw new Error('publish auto exige --staging=<dossier>.');
+  const limit = Number(options['publish-limit'] ?? options.limit ?? 50);
+  const dryRun = isTrue(options['dry-run']) || !isTrue(options.yes);
+  const verified = await verifyArchive(resolve(stagingDirOverride ?? options.staging));
+  const client = await openDb();
+  try {
+    const runId = dryRun ? null : await db.startRun(client, {
+      importer: 'auto-publication-an-scrutins',
+      options: { staging: rel(resolve(stagingDirOverride ?? options.staging)), limit, confidence: verified.score },
+    });
+    let stats;
+    try {
+      stats = await publishVerified(client, verified, { limit, dryRun });
+      if (runId) await db.finishRun(client, runId, { status: 'ok', stats });
+    } catch (error) {
+      if (runId) await db.finishRun(client, runId, { status: 'error', error: String(error.message ?? error) });
+      throw error;
+    }
+    console.log(`${dryRun ? 'Simulation' : 'Publication'} : ${JSON.stringify(stats)}`);
+    console.log('Indice 0,99 = conformité documentaire à l’archive officielle, sans jugement politique.');
+    if (dryRun && !isTrue(options['dry-run'])) console.log('Relancer avec --yes pour publier.');
+  } finally { await client.end(); }
+}
+
 async function main() {
   loadProjectEnv();
   const [command, ...rest] = process.argv.slice(2);
@@ -298,14 +357,26 @@ async function main() {
     case 'push': return cmdPush(options);
     case 'run': {
       if (!positional[0]) throw new Error('run requiert un nom d’importeur (voir « list »).');
+      if (isTrue(options['auto-publish']) && positional[0] !== 'an-scrutins') {
+        throw new Error('--auto-publish est réservé à an-scrutins.');
+      }
       const stagingDir = await cmdFetch(positional[0], options);
       if (isTrue(options['no-push'])) return;
-      return cmdPush(options, { stagingDirOverride: stagingDir });
+      await cmdPush(options, { stagingDirOverride: stagingDir });
+      if (isTrue(options['auto-publish']) && isTrue(options.yes)) {
+        return cmdAutoPublish({ ...options, limit: options['publish-limit'] ?? 50 }, stagingDir);
+      }
+      return;
     }
     case 'link': return cmdLink(options);
+    case 'topics': return cmdTopics(options);
     case 'runs': return cmdRuns(options);
     case 'review': return cmdReview(positional[0], options);
     case 'measure': return cmdMeasure(options);
+    case 'publish': {
+      if (positional[0] !== 'auto') throw new Error('publish attend auto.');
+      return cmdAutoPublish(options);
+    }
     default:
       usage();
       if (command !== undefined) process.exitCode = 1;
