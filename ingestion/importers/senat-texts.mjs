@@ -18,6 +18,70 @@ export const help = `Options :
 
 const CSV_URL = 'https://data.senat.fr/data/dosleg/promulguees.csv';
 
+/**
+ * Vocabulaire publié par le Sénat dans la colonne « Thèmes » de
+ * `promulguees.csv` — relevé tel quel le 30/09/2026 (30 rubriques). Les valeurs
+ * du fichier sont des listes triées de ces rubriques, séparées par « , » ;
+ * trois rubriques contiennent elles-mêmes une virgule (« Économie et finances,
+ * fiscalité », « Recherche, sciences et techniques », « PME, commerce et
+ * artisanat »), d'où une analyse par correspondance du plus long libellé et une
+ * vérification par aller-retour. Aucune rubrique n'est ajoutée par le site.
+ */
+export const SENAT_TOPICS = [
+  'Affaires étrangères et coopération',
+  'Agriculture et pêche',
+  'Aménagement du territoire',
+  'Anciens combattants',
+  'Budget',
+  'Collectivités territoriales',
+  'Culture',
+  'Défense',
+  'Économie et finances, fiscalité',
+  'Éducation',
+  'Énergie',
+  'Entreprises',
+  'Environnement',
+  'Famille',
+  'Fonction publique',
+  'Justice',
+  'Logement et urbanisme',
+  'Outre-mer',
+  'PME, commerce et artisanat',
+  'Police et sécurité',
+  'Pouvoirs publics et Constitution',
+  'Questions sociales et santé',
+  'Recherche, sciences et techniques',
+  'Sécurité sociale',
+  'Société',
+  'Sports',
+  'Traités et conventions',
+  'Transports',
+  'Travail',
+  'Union européenne',
+];
+
+const TOPICS_BY_LENGTH = [...SENAT_TOPICS].sort((a, b) => b.length - a.length);
+
+/**
+ * « Police et sécurité, Société » → deux rubriques. Une valeur que l'analyse ne
+ * reconstruit pas entièrement est signalée (`complete: false`) et n'entre pas
+ * en base : mieux vaut une pièce sans rubrique qu'une rubrique tronquée.
+ */
+export function parseSenatThemes(value) {
+  const raw = String(value ?? '').replace(/\s+/g, ' ').trim();
+  if (!raw) return { topics: [], complete: true };
+  const topics = [];
+  let rest = raw;
+  while (rest) {
+    const match = TOPICS_BY_LENGTH.find((topic) => rest === topic || rest.startsWith(`${topic}, `));
+    if (!match) return { topics: [], complete: false, raw };
+    topics.push(match);
+    rest = rest === match ? '' : rest.slice(match.length + 2);
+  }
+  const sorted = [...topics].sort((a, b) => a.localeCompare(b, 'fr'));
+  return { topics, complete: true, sorted: sorted.every((topic, index) => topic === topics[index]) };
+}
+
 function dossierSlug(url) {
   try {
     const base = new URL(url).pathname.split('/').pop() ?? '';
@@ -29,6 +93,7 @@ function dossierSlug(url) {
 }
 
 export function rowToRecord(row, { iso, numero, title, refs, sha256, retrievedAt }) {
+  const themes = parseSenatThemes(row['Thèmes']);
   return buildEvidence({
     external_id: `loi-${numero}`,
     kind: 'adopted_text',
@@ -38,6 +103,7 @@ export function rowToRecord(row, { iso, numero, title, refs, sha256, retrievedAt
     occurred_at: iso,
     source_url: row['URL du dossier'],
     source_locator: `promulguees.csv — loi n° ${numero}`,
+    topics: themes.topics,
     detail: {
       loi_numero: numero,
       date_promulgation: iso,
@@ -47,6 +113,7 @@ export function rowToRecord(row, { iso, numero, title, refs, sha256, retrievedAt
       date_decision_cc: row['Date de la décision'] || null,
       type_dossier: row['Type de dossier'] || null,
       themes: row['Thèmes'] || null,
+      themes_analyse: themes.complete ? 'rubriques reconnues' : 'valeur non reconstruite, non reprise',
       refs,
     },
     source: {
@@ -81,6 +148,7 @@ export async function run({ options, stagingDir, log = () => {} }) {
   let skippedBefore = 0;
   let skippedNoNumber = 0;
   let truncatedTitles = 0;
+  let unparsedThemes = 0;
 
   for (const row of rows) {
     const datePromulgation = row['Date de promulgation'];
@@ -107,14 +175,16 @@ export async function run({ options, stagingDir, log = () => {} }) {
     if (slug) refs.push({ type: 'senat:dossier', value: slug });
 
     try {
-      evidence.push(rowToRecord(row, {
+      const record = rowToRecord(row, {
         iso,
         numero,
         title,
         refs,
         sha256: response.sha256,
         retrievedAt: response.fetchedAt,
-      }));
+      });
+      if (!record.topics.length && record.detail.themes) unparsedThemes += 1;
+      evidence.push(record);
     } catch (error) {
       if (error instanceof ValidationError) notes.push(`loi n° ${numero} non retenue : ${error.message}`);
       else throw error;
@@ -124,6 +194,7 @@ export async function run({ options, stagingDir, log = () => {} }) {
   const selected = limit ? evidence.slice(0, limit) : evidence;
   notes.push(`lignes écartées : ${skippedNoDate} sans date, ${skippedBefore} avant ${sinceIso}, ${skippedNoNumber} sans numéro de loi`);
   if (truncatedTitles) notes.push(`${truncatedTitles} titre(s) tronqué(s) à 500 caractères pour la base`);
+  if (unparsedThemes) notes.push(`${unparsedThemes} loi(s) dont la colonne « Thèmes » n'a pas été reconstruite : conservée telle quelle dans le détail, aucune rubrique retenue`);
 
   writeJsonl(`${stagingDir}/evidence.jsonl`, selected);
   writeJsonl(`${stagingDir}/sources.jsonl`, [{

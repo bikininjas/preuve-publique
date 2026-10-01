@@ -27,7 +27,7 @@ export function isRangeNotSatisfiable(error: unknown): boolean {
 }
 
 const EVIDENCE_COLUMNS =
-  'id,source_id,actor_id,title,excerpt,kind,institution,occurred_at,source_url,source_locator,external_id,status,detail,reviewed_by,reviewed_at';
+  'id,source_id,actor_id,title,excerpt,kind,institution,occurred_at,source_url,source_locator,external_id,status,detail,topics,reviewed_by,reviewed_at,publication_confidence,publication_method,publication_checks';
 
 function client(): SupabaseClient | null {
   const url = process.env.SUPABASE_URL;
@@ -44,6 +44,10 @@ export interface EvidenceQuery {
   kind?: EvidenceKind;
   institution?: Institution;
   actorId?: string;
+  /** AN group reference copied into the published vote's structured detail. */
+  groupRef?: string;
+  /** Rubrique publiée par la source (Sénat aujourd'hui) : filtre exact. */
+  topic?: string;
   /** French full-text terms, matched against title and excerpt. */
   terms?: string;
   limit?: number;
@@ -66,6 +70,7 @@ export async function getEvidence(query: EvidenceQuery = {}): Promise<Evidence[]
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
+  if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
   if (query.offset) request = request.range(query.offset, query.offset + Math.min(Math.max(query.limit ?? 12, 1), 100) - 1);
   const { data, error } = await request;
   if (error) throw new DataUnavailableError();
@@ -88,6 +93,8 @@ export async function getEvidencePage(query: EvidenceQuery = {}): Promise<Eviden
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
+  if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
+  if (query.topic) request = request.contains('topics', [query.topic]);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }
@@ -117,12 +124,48 @@ async function countPublished(query: EvidenceQuery): Promise<number> {
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.actorId) request = request.eq('actor_id', query.actorId);
+  if (query.groupRef) request = request.contains('detail', { groupes: [{ organe_ref: query.groupRef }] });
+  if (query.topic) request = request.contains('topics', [query.topic]);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }
   const { count, error } = await request;
   if (error) throw new DataUnavailableError();
   return count ?? 0;
+}
+
+/**
+ * Comptage public par rubrique, calculé par la base en rôle appelant : seul ce
+ * qui est publié est compté, et une rubrique n'apparaît que si elle est portée
+ * par au moins une pièce publiée.
+ */
+export async function getTopicCounts(): Promise<Array<{ topic: string; pieces: number }>> {
+  const db = client();
+  if (!db) return [];
+  const { data, error } = await db.rpc('published_topic_counts');
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as Array<{ topic: string; pieces: number }>).map((row) => ({
+    topic: row.topic,
+    pieces: Number(row.pieces),
+  }));
+}
+
+/**
+ * Noms des acteurs référencés par le détail d'une pièce (les groupes d'un
+ * scrutin, par exemple). La politique de lecture limite ces lignes à ce que le
+ * public peut déjà voir.
+ */
+export async function getActorNames(externalIds: string[]): Promise<Map<string, string>> {
+  const names = new Map<string, string>();
+  const db = client();
+  const ids = [...new Set(externalIds.filter(Boolean))];
+  if (!db || !ids.length) return names;
+  const { data, error } = await db.from('actors').select('external_id,name').in('external_id', ids);
+  if (error) throw new DataUnavailableError();
+  for (const row of (data ?? []) as Array<{ external_id: string | null; name: string }>) {
+    if (row.external_id) names.set(row.external_id, row.name);
+  }
+  return names;
 }
 
 /** French full-text search over published titles and excerpts. */
@@ -185,6 +228,21 @@ export async function getActor(id: string): Promise<Actor | null> {
     .maybeSingle();
   if (error) throw new DataUnavailableError();
   return (data as unknown as Actor) ?? null;
+}
+
+/** Counts of published AN scrutins carrying this group's institutional majority label. */
+export async function getGroupPositionCounts(groupRef: string): Promise<Record<'pour' | 'contre' | 'abstention', number>> {
+  const db = client();
+  if (!db) return { pour: 0, contre: 0, abstention: 0 };
+  const positions = ['pour', 'contre', 'abstention'] as const;
+  const counts = await Promise.all(positions.map(async (position) => {
+    const { count, error } = await db.from('evidence').select('id', { count: 'exact', head: true })
+      .eq('status', 'published').eq('kind', 'vote').eq('institution', 'assemblee')
+      .contains('detail', { groupes: [{ organe_ref: groupRef, position_majoritaire: position }] });
+    if (error) throw new DataUnavailableError();
+    return count ?? 0;
+  }));
+  return { pour: counts[0], contre: counts[1], abstention: counts[2] };
 }
 
 /**

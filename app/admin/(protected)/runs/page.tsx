@@ -15,7 +15,7 @@ export default async function RunsPage() {
 
   return (
     <>
-      <h2>Passages d’ingestion</h2>
+      <div className="queue-intro"><div className="eyebrow">03 / Traçabilité</div><h2>Passages d’ingestion</h2></div>
       <p className="hint">
         Chaque import lancé depuis la ligne de commande laisse une trace : importeur, options, volume et résultat. Ce
         journal est privé : il n’est lisible que par l’administration.

@@ -4,11 +4,11 @@ Ce fichier s'applique à tout le dépôt. Lisez le `README.md`, puis les fichier
 
 ## But du produit
 
-Construire une base de traçabilité des positions politiques en France et dans l'Union européenne, à partir de 2017 : **programme → déclaration → texte/amendement → scrutin → résultat législatif → indicateur documenté** lorsque pertinent. Le public voit les pièces et leur contexte, sans score de cohérence, gagnant d'une comparaison ou verdict automatique. Même méthode pour tous les acteurs politiques.
+Construire un observatoire lisible des décisions politiques en France et dans l'Union européenne, à partir de 2017. Point d'entrée : les **scrutins officiels** de l'Assemblée nationale, du Sénat et du Parlement européen, nommés clairement et regroupés par thèmes traçables. Relier, lorsque les sources le permettent, **programme → déclaration → texte/amendement → scrutin → résultat législatif → indicateur documenté**. Documenter les éventuels écarts entre parole et vote, les effets distributifs possibles, les inégalités, les indicateurs de vote ou de présence, et les affaires judiciaires avec leurs statuts. Le public voit les pièces, la méthode et le contexte, sans score de cohérence, gagnant d'une comparaison ou verdict automatique. Même méthode pour tous les acteurs politiques.
 
 ## État réel et limites
 
-- L'application est une base Next.js 16 déployable sur Cloud Run, avec Supabase gratuit. Le schéma SQL est préparé, mais son application à la base distante n'est pas acquise. Les imports et la comparaison ne sont pas encore implémentés.
+- L'application est une base Next.js 16 déployable sur Cloud Run, avec Supabase gratuit. État de la base distante vérifié le 01/10/2026 : sept migrations enregistrées, 20 407 pièces dont 3 674 publiées (2 157 scrutins du Sénat, 851 scrutins de l'Assemblée et 666 lois promulguées du Sénat), 3 797 rapprochements documentaires, 2 241 acteurs et 11 380 liens d'acteur datés. Aucun programme, déclaration, indicateur ou scrutin du Parlement européen n'est publié. La connexion Google de `/admin` reste protégée par `admin_users`. La comparaison interprétative (programme ↔ vote), les indicateurs d'inégalités et les dossiers judiciaires restent à construire ; le déploiement Cloud Run n'a pas encore eu lieu.
 - Ne jamais annoncer une source comme ingérée, un service comme déployé, une migration comme exécutée ou des données comme disponibles sans vérification effective.
 - Privilégier une progression verticale : un petit ensemble de documents officiels correctement reliés et contrôlés avant d'étendre l'historique. Évaluer le volume et le coût avant un import massif.
 

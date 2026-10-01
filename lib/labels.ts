@@ -74,6 +74,34 @@ export function relationLabel(relation: string): string {
   return RELATION_LABELS[relation as LinkRelation] ?? relation;
 }
 
+const POSITION_LABELS: Record<string, string> = {
+  pour: 'Pour',
+  contre: 'Contre',
+  abstention: 'Abstention',
+  'non-votant': 'Non-votant',
+};
+
+/** Position publiée par l'institution pour un groupe, jamais une déduction. */
+export function positionLabel(value: string | null | undefined): string {
+  if (!value) return 'Non publiée';
+  return POSITION_LABELS[String(value).toLowerCase()] ?? String(value);
+}
+
+/** « Police et sécurité » → « police-et-securite » : adresse stable d'une rubrique. */
+export function topicSlug(topic: string): string {
+  return topic
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** Retrouve le libellé exact à partir de l'adresse : jamais deviné, seulement retrouvé. */
+export function findTopicBySlug(topics: string[], slug: string): string | null {
+  return topics.find((topic) => topicSlug(topic) === slug) ?? null;
+}
+
 export function methodLabel(method: string): string {
   return METHOD_LABELS[method as LinkMethod] ?? method;
 }

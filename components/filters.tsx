@@ -84,3 +84,20 @@ export function StatusSelect({ value }: { value: string }) {
     </Field>
   );
 }
+
+/** Rubriques publiées par les sources : la liste vient du comptage public, jamais d'un vocabulaire local. */
+export function TopicSelect({ value, topics }: { value?: string; topics: Array<{ topic: string; pieces: number }> }) {
+  if (!topics.length) return null;
+  return (
+    <Field label="Rubrique">
+      <select name="topic" defaultValue={value ?? ''}>
+        <option value="">Toutes</option>
+        {topics.map((row) => (
+          <option value={row.topic} key={row.topic}>
+            {row.topic} ({row.pieces})
+          </option>
+        ))}
+      </select>
+    </Field>
+  );
+}

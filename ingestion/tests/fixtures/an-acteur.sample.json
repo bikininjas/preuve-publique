@@ -1,0 +1,86 @@
+{
+  "acteur": {
+    "@xmlns": "http://schemas.assemblee-nationale.fr/referentiel",
+    "@xsi:type": "Acteur_type",
+    "uid": {
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "IdActeur_type",
+      "#text": "PA267551"
+    },
+    "etatCivil": {
+      "ident": {
+        "civ": "M.",
+        "prenom": "Jacques",
+        "nom": "Lamblin",
+        "alpha": "Lamblin",
+        "trigramme": null
+      },
+      "infoNaissance": {
+        "dateNais": "1952-08-29",
+        "villeNais": "Nancy",
+        "depNais": "Meurthe-et-Moselle",
+        "paysNais": "France"
+      }
+    },
+    "profession": {
+      "libelleCourant": "Chirurgien-dentiste",
+      "socProcINSEE": { "catSocPro": "Professions libérales", "famSocPro": "Professions libérales" }
+    },
+    "uri_hatvp": "https://www.hatvp.fr/consulter-les-declarations/?nom=Lamblin",
+    "adresses": { "adresse": { "uid": "AD1", "type": "Adresse_Type" } },
+    "mandats": {
+      "mandat": [
+        {
+          "@xsi:type": "MandatSimple_Type",
+          "uid": "PM708140",
+          "acteurRef": "PA267551",
+          "legislature": "14",
+          "typeOrgane": "GP",
+          "dateDebut": "2015-06-02",
+          "datePublication": "2015-06-02",
+          "dateFin": "2017-06-20",
+          "preseance": "20",
+          "nominPrincipale": "1",
+          "infosQualite": { "codeQualite": "Membre", "libQualite": "Membre du", "libQualiteSex": "Membre du" },
+          "organes": { "organeRef": "PO707869" }
+        },
+        {
+          "@xsi:type": "MandatSimple_Type",
+          "uid": "PM710508",
+          "acteurRef": "PA267551",
+          "legislature": null,
+          "typeOrgane": "PARPOL",
+          "dateDebut": "2015-12-01",
+          "datePublication": null,
+          "dateFin": "2017-06-20",
+          "preseance": "5",
+          "nominPrincipale": "1",
+          "infosQualite": { "codeQualite": "Membre", "libQualite": "Membre", "libQualiteSex": "Membre" },
+          "organes": { "organeRef": "PO710396" }
+        },
+        {
+          "@xsi:type": "MandatSimple_Type",
+          "uid": "PM700001",
+          "acteurRef": "PA267551",
+          "legislature": "14",
+          "typeOrgane": "GE",
+          "dateDebut": "2015-06-02",
+          "dateFin": "2017-06-20",
+          "infosQualite": { "codeQualite": "Membre", "libQualite": "Membre", "libQualiteSex": "Membre" },
+          "organes": { "organeRef": "PO700001" }
+        },
+        {
+          "@xsi:type": "MandatSimple_Type",
+          "uid": "PM700002",
+          "acteurRef": "PA267551",
+          "legislature": "14",
+          "typeOrgane": "GP",
+          "dateDebut": null,
+          "dateFin": "2015-06-01",
+          "infosQualite": { "codeQualite": "Membre", "libQualite": "Membre du", "libQualiteSex": "Membre du" },
+          "organes": { "organeRef": "PO707869" }
+        }
+      ]
+    }
+  }
+}

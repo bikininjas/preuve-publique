@@ -6,11 +6,12 @@ import { getAdminSession } from '@/lib/admin';
 export const dynamic = 'force-dynamic';
 
 const ADMIN_LINKS = [
-  { href: '/admin', label: 'Vue d’ensemble' },
-  { href: '/admin/review', label: 'Pièces à relire' },
-  { href: '/admin/links', label: 'Rapprochements' },
-  { href: '/admin/runs', label: 'Passages d’ingestion' },
-  { href: '/pieces', label: 'Site public ↗' },
+  { href: '/admin', label: 'Tableau de bord' },
+  { href: '/admin/review', label: '01 · Pièces' },
+  { href: '/admin/links', label: '02 · Rapprochements' },
+  { href: '/admin/runs', label: '03 · Imports' },
+  { href: '/admin/publication', label: '04 · Publication' },
+  { href: '/', label: 'Voir le site ↗' },
 ];
 
 /**
@@ -48,7 +49,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           ) : (
             'Votre session n’est pas rattachée à une adresse autorisée.'
           )}{' '}
-          Pour l’instant, une seule adresse est autorisée ; les autorisations se gèrent dans la table{' '}
+          Les autorisations se gèrent dans la table{' '}
           <code>admin_users</code>.
         </p>
         <form action={signOut}>
@@ -64,12 +65,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <main className="admin">
       <div className="admin-head">
         <div>
-          <div className="eyebrow">Espace de relecture</div>
-          <h1>Administration</h1>
+          <div className="eyebrow">Preuve Publique / Administration</div>
+          <h1>Atelier de relecture</h1>
         </div>
         <div className="admin-who">
           <span>
-            Connecté : <b>{session.email}</b>
+            Compte connecté : <b>{session.email}</b>
           </span>
           <form action={signOut}>
             <button className="mini" type="submit">

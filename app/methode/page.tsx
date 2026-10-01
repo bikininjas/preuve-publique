@@ -77,6 +77,34 @@ export default function MethodePage() {
       </section>
 
       <section className="panel">
+        <h2>Rubriques</h2>
+        <p>
+          Les rubriques affichées viennent des sources, jamais d’une classification du site. Le Sénat publie une rubrique
+          pour chaque loi promulguée de son jeu de données : elle est reprise telle quelle, et un scrutin rattaché au
+          dossier de cette loi en hérite. La fiche d’un scrutin indique l’origine de ses rubriques et la référence de
+          dossier qui les lui a transmises.
+        </p>
+        <p>
+          Une rubrique range des documents ; elle ne dit rien de la position politique d’un acteur, et deux pièces d’une
+          même rubrique ne sont pas comparables pour autant — un amendement, un article et un texte entier ne sont pas
+          interchangeables. L’Assemblée nationale et le Parlement européen ne publient pas de rubrique équivalente dans
+          les jeux de données utilisés ici : leurs pièces n’apparaissent donc pas encore dans les rubriques.
+        </p>
+      </section>
+
+      <section className="panel">
+        <h2>Comparaisons, KPI et effets</h2>
+        <p>Pour comparer une parole et un vote, nous devons citer les deux formulations, identifier la mesure exacte, distinguer vote sur un article et vote sur un texte entier, puis faire relire le rapprochement. Une divergence éventuelle est présentée avec son contexte et les explications publiées par l’acteur ; elle ne devient jamais un verdict automatique.</p>
+        <p>Un taux de présence exige le nombre total de scrutins auxquels l’acteur pouvait participer et la période de son mandat. Une mesure de présence médiatique exige un corpus de médias défini, des dates et une méthode de comptage. Un indicateur d’inégalité exige unité, population, territoire, période, source et limites. Sans ces bases, aucun pourcentage n’est affiché.</p>
+        <p>Pour analyser qui bénéficie ou pâtit d’une mesure, il faut une étude d’impact ou des données documentées, préciser le groupe de population et les hypothèses, puis distinguer l’effet estimé de l’effet observé. La proximité entre un vote et une statistique ne prouve pas une causalité.</p>
+      </section>
+
+      <section className="panel">
+        <h2>Affaires judiciaires</h2>
+        <p>Une fiche devra distinguer enquête, poursuite, jugement, appel et décision définitive, dater chaque étape et citer une source primaire ou un document judiciaire accessible. Elle distinguera toujours la personne concernée du parti, rappellera la présomption d’innocence et sera mise à jour en cas d’évolution. Aucune fiche de ce type n’est disponible dans le modèle actuel.</p>
+      </section>
+
+      <section className="panel">
         <h2>Publication et relecture</h2>
         <p>
           Les importeurs versent chaque pièce en <b>brouillon</b>. Une pièce devient <b>relue</b>, puis <b>publiée</b>,
@@ -84,6 +112,17 @@ export default function MethodePage() {
           automatiquement. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le
           passage le signale et un humain décide. Tant qu’un relecteur n’a pas validé une pièce, elle reste invisible
           ici.
+        </p>
+        <p>
+          <b>État au 30 septembre 2026.</b> Le site publie les <b>lois promulguées du Sénat</b> (666), les <b>scrutins
+          publics du Sénat</b> (2 157) et les <b>scrutins de l’Assemblée nationale portant sur l’ensemble d’un texte</b>
+          (801). Ces 3 624 pièces ont été publiées après un <b>contrôle technique de conformité à la source</b> : le
+          fichier officiel conservé (empreinte SHA-256 enregistrée) a été réimporté et comparé pièce par pièce, sans
+          écart. Ce n’est <b>pas</b> une relecture humaine pièce par pièce, et la trace enregistrée sur chaque ligne le
+          dit exactement — « contrôle technique de conformité (passage de développement) ». Le reste de la base
+          (amendements, autres scrutins, textes de l’Assemblée et du Parlement européen) demeure en brouillon et
+          invisible ; les acteurs ne sont lisibles que par les pièces publiées qui les portent. Aucun rapprochement
+          interprétatif n’est publié, et aucun score ni verdict n’existe.
         </p>
       </section>
 

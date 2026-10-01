@@ -3,31 +3,22 @@ import Link from 'next/link';
 import './style.css';
 
 export const metadata: Metadata = {
-  title: { default: 'Preuve Publique', template: '%s · Preuve Publique' },
-  description: 'Des programmes aux votes : suivez les sources.',
+  title: { default: 'Preuve Publique — ce qu’ils disent, ce qu’ils votent', template: '%s · Preuve Publique' },
+  description: 'Explorer les scrutins officiels et remonter aux sources des positions politiques en France et en Europe.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
       <body>
+        <a className="skip-link" href="#contenu">Aller au contenu</a>
         <header className="site-header">
-          <Link className="brand" href="/">
-            Preuve Publique<span className="dot">.</span>
-          </Link>
-          <nav className="site-nav">
-            <Link href="/pieces">Pièces</Link>
-            <Link href="/methode">Méthode</Link>
-          </nav>
-          <span className="tag">France · Europe</span>
+          <Link className="brand" href="/" aria-label="Preuve Publique, accueil"><span className="brand-symbol">P<span>·</span></span><span>PREUVE<br />PUBLIQUE</span></Link>
+          <nav className="site-nav" aria-label="Navigation principale"><Link href="/scrutins">Scrutins</Link><Link href="/categories">Thèmes</Link><Link href="/groupes">Groupes</Link><Link href="/observatoire">Observatoire</Link><Link href="/methode">Méthode</Link></nav>
+          <Link className="header-action" href="/admin">Espace de relecture <span aria-hidden>↗</span></Link>
         </header>
-        {children}
-        <footer className="site-footer">
-          <span>Des documents, des dates, des votes. À chacun de se faire son opinion.</span>
-          <Link className="quiet" href="/admin">
-            Espace de relecture
-          </Link>
-        </footer>
+        <div id="contenu">{children}</div>
+        <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Des sources pour comprendre les décisions publiques.<br />France et Union européenne, depuis 2017.</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><Link href="/admin">Administration</Link></div></footer>
       </body>
     </html>
   );

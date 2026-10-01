@@ -1,0 +1,23 @@
+{
+  "organe": {
+    "@xmlns": "http://schemas.assemblee-nationale.fr/referentiel",
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "@xsi:type": "GroupePolitique_type",
+    "uid": "PO845413",
+    "codeType": "GP",
+    "libelle": "La France insoumise - Nouveau Front Populaire",
+    "libelleEdition": "du groupe La France insoumise - Nouveau Front Populaire",
+    "libelleAbrege": "LFI-NFP",
+    "libelleAbrev": "LFI-NFP",
+    "viMoDe": {
+      "dateDebut": "2024-07-18",
+      "dateAgrement": null,
+      "dateFin": null
+    },
+    "organeParent": null,
+    "chambre": "Assemblée nationale",
+    "legislature": "17",
+    "couleurAssociee": null,
+    "positionPolitique": null
+  }
+}

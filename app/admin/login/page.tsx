@@ -28,8 +28,8 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
 
   return (
     <main className="narrow">
-      <div className="eyebrow">Espace de relecture</div>
-      <h1>Connexion</h1>
+      <div className="eyebrow">Accès réservé / Équipe de relecture</div>
+      <h1>Un espace pour<br /><em>vérifier avant de publier.</em></h1>
 
       {session.status === 'unconfigured' ? (
         <Empty>
@@ -48,7 +48,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
             <Notice>
               <p>
                 L’adresse <b>{session.email}</b> n’est pas dans la liste d’administration. Pour l’instant, une seule
-                adresse est autorisée ; d’autres moyens d’accès viendront plus tard.
+                adresse est autorisée.
               </p>
               <form action={signOut}>
                 <button className="button secondary" type="submit">
