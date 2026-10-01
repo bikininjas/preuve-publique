@@ -40,6 +40,98 @@ export function isConfigured(): boolean {
   return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_PUBLISHABLE_KEY);
 }
 
+export interface PartyVoteRow {
+  party_id: string;
+  party_name: string;
+  pour: number;
+  contre: number;
+  abstention: number;
+  non_votant: number;
+  scrutins: number;
+}
+
+export interface PartyVoteScope {
+  total_scrutins: number;
+  documented_scrutins: number;
+  recorded_individuals: number;
+  unattributed_individuals: number;
+  first_date: string | null;
+  last_date: string | null;
+}
+
+export interface PartyVoteDashboard {
+  scope: PartyVoteScope;
+  parties: PartyVoteRow[];
+}
+
+/** Vote counts from individual AN ballots with one dated, sourced party link. */
+export async function getPartyVoteDashboard(keywords: string[]): Promise<PartyVoteDashboard> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const [summary, coverage] = await Promise.all([
+    db.rpc('vote_party_summary', { _keywords: keywords }),
+    db.rpc('vote_party_scope', { _keywords: keywords }),
+  ]);
+  if (summary.error || coverage.error || !coverage.data?.[0]) throw new DataUnavailableError();
+  const scope = coverage.data[0] as PartyVoteScope;
+  return {
+    scope: {
+      ...scope,
+      total_scrutins: Number(scope.total_scrutins),
+      documented_scrutins: Number(scope.documented_scrutins),
+      recorded_individuals: Number(scope.recorded_individuals),
+      unattributed_individuals: Number(scope.unattributed_individuals),
+    },
+    parties: ((summary.data ?? []) as PartyVoteRow[]).map((row) => ({
+      ...row,
+      pour: Number(row.pour), contre: Number(row.contre),
+      abstention: Number(row.abstention), non_votant: Number(row.non_votant),
+      scrutins: Number(row.scrutins),
+    })),
+  };
+}
+
+export async function getPartyVotesForScrutin(id: string): Promise<PartyVoteRow[]> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.rpc('vote_party_for_scrutin', { _vote_id: id });
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as PartyVoteRow[]).map((row) => ({
+    ...row,
+    pour: Number(row.pour), contre: Number(row.contre),
+    abstention: Number(row.abstention), non_votant: Number(row.non_votant),
+    scrutins: 1,
+  }));
+}
+
+export interface PartyVoteDetail {
+  vote_id: string;
+  party_name: string;
+  title: string;
+  occurred_at: string;
+  source_url: string;
+  pour: number;
+  contre: number;
+  abstention: number;
+  non_votant: number;
+  total_count: number;
+}
+
+export async function getPartyVoteDetails(partyId: string, keywords: string[], page: number, limit = 15): Promise<PartyVoteDetail[]> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.rpc('vote_party_details', {
+    _party_id: partyId, _keywords: keywords, _limit: limit, _offset: (page - 1) * limit,
+  });
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as PartyVoteDetail[]).map((row) => ({
+    ...row,
+    pour: Number(row.pour), contre: Number(row.contre),
+    abstention: Number(row.abstention), non_votant: Number(row.non_votant),
+    total_count: Number(row.total_count),
+  }));
+}
+
 export interface EvidenceQuery {
   kind?: EvidenceKind;
   institution?: Institution;

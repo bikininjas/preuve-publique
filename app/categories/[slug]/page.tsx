@@ -73,6 +73,8 @@ export default async function CategoryPage({
         de ses rubriques.
       </p></div>
 
+      <div className="info-band"><strong>Votes par parti</strong><span>Cette rubrique institutionnelle provient des dossiers du Sénat. Les scrutins sénatoriaux publiés ne comportent pas encore de bulletins individuels reliés à des partis dans cette base. <Link href="/categories">Voir les graphiques des catégories de navigation, fondés sur les scrutins nominatifs de l’Assemblée →</Link></span></div>
+
       {result.items.length ? (
         <>
           <p className="resultline">
