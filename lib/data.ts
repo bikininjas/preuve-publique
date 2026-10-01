@@ -69,6 +69,108 @@ export interface PartyVoteCoverage {
   unattributed_individuals: number;
 }
 
+export interface GroupVoteRow {
+  group_ref: string;
+  group_name: string;
+  pour: number;
+  contre: number;
+  abstention: number;
+  non_votant: number;
+  scrutins: number;
+}
+
+export interface GroupVoteScope {
+  total_scrutins: number;
+  documented_scrutins: number;
+  recorded_positions: number;
+  first_date: string | null;
+  last_date: string | null;
+}
+
+export interface GroupVoteDashboard {
+  scope: GroupVoteScope;
+  groups: GroupVoteRow[];
+}
+
+export interface GroupVoteCoverage {
+  page_sha256: string;
+  processed_at: string;
+}
+
+export async function getGroupVoteCoverageForScrutin(id: string): Promise<GroupVoteCoverage | null> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.from('vote_group_coverage')
+    .select('page_sha256,processed_at').eq('vote_id', id).maybeSingle();
+  if (error) throw new DataUnavailableError();
+  return data as GroupVoteCoverage | null;
+}
+
+/** Counts copied from the Sénat's official analysis by parliamentary group. */
+export async function getGroupVoteDashboard(keywords: string[]): Promise<GroupVoteDashboard> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const [summary, coverage] = await Promise.all([
+    db.rpc('vote_group_summary', { _keywords: keywords }),
+    db.rpc('vote_group_scope', { _keywords: keywords }),
+  ]);
+  if (summary.error || coverage.error || !coverage.data?.[0]) throw new DataUnavailableError();
+  const scope = coverage.data[0] as GroupVoteScope;
+  return {
+    scope: {
+      ...scope,
+      total_scrutins: Number(scope.total_scrutins),
+      documented_scrutins: Number(scope.documented_scrutins),
+      recorded_positions: Number(scope.recorded_positions),
+    },
+    groups: ((summary.data ?? []) as GroupVoteRow[]).map((row) => ({
+      ...row, pour: Number(row.pour), contre: Number(row.contre),
+      abstention: Number(row.abstention), non_votant: Number(row.non_votant),
+      scrutins: Number(row.scrutins),
+    })),
+  };
+}
+
+export async function getGroupVotesForScrutin(id: string): Promise<GroupVoteRow[]> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.from('vote_group_tallies')
+    .select('group_ref,group_name,pour,contre,abstention,non_votant')
+    .eq('vote_id', id);
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as GroupVoteRow[]).map((row) => ({
+    ...row, pour: Number(row.pour), contre: Number(row.contre),
+    abstention: Number(row.abstention), non_votant: Number(row.non_votant), scrutins: 1,
+  }));
+}
+
+export interface GroupVoteDetail {
+  vote_id: string;
+  group_name: string;
+  title: string;
+  occurred_at: string;
+  source_url: string;
+  pour: number;
+  contre: number;
+  abstention: number;
+  non_votant: number;
+  total_count: number;
+}
+
+export async function getGroupVoteDetails(groupRef: string, keywords: string[], page: number, limit = 15): Promise<GroupVoteDetail[]> {
+  const db = client();
+  if (!db) throw new DataUnavailableError();
+  const { data, error } = await db.rpc('vote_group_details', {
+    _group_ref: groupRef, _keywords: keywords, _limit: limit, _offset: (page - 1) * limit,
+  });
+  if (error) throw new DataUnavailableError();
+  return ((data ?? []) as GroupVoteDetail[]).map((row) => ({
+    ...row, pour: Number(row.pour), contre: Number(row.contre),
+    abstention: Number(row.abstention), non_votant: Number(row.non_votant),
+    total_count: Number(row.total_count),
+  }));
+}
+
 /** Vote counts from individual AN ballots with one dated, sourced party link. */
 export async function getPartyVoteDashboard(keywords: string[]): Promise<PartyVoteDashboard> {
   const db = client();
@@ -174,7 +276,7 @@ export async function getEvidence(query: EvidenceQuery = {}): Promise<Evidence[]
     .select(EVIDENCE_COLUMNS)
     .eq('status', 'published')
     .order('occurred_at', { ascending: false })
-    .order('id', { ascending: true })
+    .order('id', { ascending: false })
     .limit(Math.min(Math.max(query.limit ?? 12, 1), 100));
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
@@ -197,7 +299,7 @@ export async function getEvidencePage(query: EvidenceQuery = {}): Promise<Eviden
     .select(EVIDENCE_COLUMNS, { count: 'exact' })
     .eq('status', 'published')
     .order('occurred_at', { ascending: false })
-    .order('id', { ascending: true })
+    .order('id', { ascending: false })
     .range(offset, offset + limit - 1);
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);

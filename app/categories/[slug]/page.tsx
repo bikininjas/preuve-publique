@@ -73,12 +73,12 @@ export default async function CategoryPage({
         de ses rubriques.
       </p></div>
 
-      <div className="info-band"><strong>Votes par parti</strong><span>Cette rubrique institutionnelle provient des dossiers du Sénat. Les scrutins sénatoriaux publiés ne comportent pas encore de bulletins individuels reliés à des partis dans cette base. <Link href="/categories">Voir les graphiques des catégories de navigation, fondés sur les scrutins nominatifs de l’Assemblée →</Link></span></div>
+      <div className="info-band"><strong>Voir les votes</strong><span>Cette rubrique institutionnelle provient des dossiers du Sénat. Chaque fiche de scrutin affiche maintenant le décompte officiel par groupe parlementaire. Les graphiques par catégorie et sous-thème utilisent un autre classement, fondé sur les mots des titres. <Link href="/categories?institution=senat">Explorer les graphiques des groupes du Sénat →</Link></span></div>
 
       {result.items.length ? (
         <>
           <p className="resultline">
-            {result.total.toLocaleString('fr-FR')} pièce{result.total > 1 ? 's' : ''} · page {page} sur {pageCount}
+            {result.total.toLocaleString('fr-FR')} pièce{result.total > 1 ? 's' : ''} · page {page} sur {pageCount} · plus récentes d’abord
           </p>
           <div className="cards">
             {result.items.map((item) => (

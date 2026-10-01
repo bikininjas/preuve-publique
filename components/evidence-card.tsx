@@ -21,6 +21,7 @@ export function EvidenceCard({ item }: { item: Evidence }) {
       {item.topics?.length ? <div className="chip-row">{item.topics.slice(0, 2).map((topic) => <span className="chip" key={topic}>{topic}</span>)}</div> : null}
       {tally && (tally.pour !== null || tally.contre !== null) ? <div className="vote-mini"><span>Pour <b>{tally.pour ?? '—'}</b></span><span>Contre <b>{tally.contre ?? '—'}</b></span><span>Abst. <b>{tally.abstentions ?? '—'}</b></span></div> : null}
       {item.kind === 'vote' && item.institution === 'assemblee' ? <Link className="card-party-link" href={`/pieces/${item.id}#votes-par-parti`}>Voir les parts par parti →</Link> : null}
+      {item.kind === 'vote' && item.institution === 'senat' ? <Link className="card-party-link" href={`/pieces/${item.id}#votes-par-groupe`}>Voir les parts par groupe →</Link> : null}
       <p className="source">
         <a href={item.source_url} target="_blank" rel="noopener noreferrer">
           Source officielle ↗

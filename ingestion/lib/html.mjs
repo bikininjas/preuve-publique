@@ -10,6 +10,8 @@ const NAMED_ENTITIES = {
   icirc: 'î', iuml: 'ï', ocirc: 'ô', ugrave: 'ù', ucirc: 'û', uuml: 'ü',
   euml: 'ë', laquo: '«', raquo: '»', hellip: '…', ndash: '–', mdash: '—',
   oelig: 'œ', euro: '€', deg2: '°',
+  Eacute: 'É', Egrave: 'È', Ecirc: 'Ê', Agrave: 'À', Acirc: 'Â',
+  Ccedil: 'Ç', Icirc: 'Î', Ocirc: 'Ô', Ugrave: 'Ù', Ucirc: 'Û',
 };
 
 export function decodeEntities(text) {
