@@ -2,6 +2,8 @@
 
 **Voir ce que les acteurs politiques annoncent, votent et produisent — avec les documents originaux.**
 
+**Site public : [preuve-publique.fr](https://preuve-publique.fr/).** Référencement, indexation et aperçus de partage : [guide SEO et réseaux sociaux](docs/seo-et-partage.md).
+
 Preuve Publique est un projet citoyen consacré à la France et à l'Union européenne. Son point d'entrée est le scrutin officiel : retrouver le sujet d'un vote, les positions publiées, les acteurs concernés et le texte exact. Le projet veut aussi rapprocher les programmes électoraux et déclarations médiatiques des décisions parlementaires, suivre les effets documentés des politiques publiques, montrer les inégalités et contextualiser les affaires judiciaires. Chaque élément renvoie à sa source. Le site présente les faits et leurs limites pour que le visiteur se fasse sa propre opinion ; il ne donne ni note de « cohérence », ni verdict automatique.
 
 ## Cap éditorial

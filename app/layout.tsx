@@ -1,17 +1,26 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteNav } from '@/components/site-nav';
+import { SiteStructuredData } from '@/components/structured-data';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
+import { SITE_NAME, SITE_URL } from '@/lib/site';
 import './style.css';
+import './share.css';
 
 export const metadata: Metadata = {
-  title: { default: 'Preuve Publique — ce qu’ils disent, ce qu’ils votent', template: '%s · Preuve Publique' },
-  description: 'Explorer les scrutins officiels et remonter aux sources des positions politiques en France et en Europe.',
+  ...pageMetadata('/'),
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  title: { default: `${SEO_PAGES['/'].title} · ${SITE_NAME}`, template: `%s · ${SITE_NAME}` },
+  referrer: 'strict-origin-when-cross-origin',
+  icons: { icon: '/icon.svg', apple: '/apple-icon' },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr" data-scroll-behavior="smooth">
       <body>
+        <SiteStructuredData />
         <a className="skip-link" href="#contenu">Aller au contenu</a>
         <header className="site-header">
           <Link className="brand" href="/" aria-label="Preuve Publique, accueil"><span className="brand-symbol">P<span>·</span></span><span>PREUVE<br />PUBLIQUE</span></Link>
