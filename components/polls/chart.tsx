@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 import type { PollResult, PollScenario, PublishedPoll } from '@/lib/polls/types';
+import { pollDate,pollScore } from '@/lib/polls/format';
 
 const COLORS = ['#205c75', '#ab5035', '#7554a1', '#307052', '#925c20', '#a83f72', '#4c6171', '#81721d', '#137f80', '#635736', '#694154', '#224685', '#467620', '#984829', '#474774', '#677171'];
-export const pollDate = (date: string) => new Date(`${date}T12:00:00Z`).toLocaleDateString('fr-FR', { timeZone: 'UTC', day: 'numeric', month: 'short', year: 'numeric' });
-export const pollScore = (score: number) => `${score.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`;
 const sample = (size: number | null) => size === null ? 'non renseigné' : `${size.toLocaleString('fr-FR')} personnes`;
 
 interface Point { poll: PublishedPoll; scenario: PollScenario; result: PollResult; color: string }

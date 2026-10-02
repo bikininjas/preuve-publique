@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { PollChart, pollDate, pollScore } from './chart';
+import Link from 'next/link';
+import { PollChart } from './chart';
+import { pollDate,pollScore } from '@/lib/polls/format';
 import type { PollOptions, PollPage, PublishedPoll } from '@/lib/polls/types';
 
 async function api<T>(path: string, signal: AbortSignal): Promise<T> {
@@ -25,7 +27,7 @@ function PollDetails({ poll }: { poll: PublishedPoll }) {
       <p className="poll-roster">Hypothèse : {scenario.results.map((r) => r.candidate_name).join(' · ')}.</p>
       <div className="poll-table-scroll"><table><caption className="sr-only">Résultats publiés pour cette configuration</caption>
         <thead><tr><th scope="col">Candidat</th><th scope="col">Parti indiqué par Sondax</th><th scope="col">Intention de vote</th></tr></thead>
-        <tbody>{scenario.results.map((result) => <tr key={result.candidate_external_id}><th scope="row">{result.candidate_name}</th><td>{result.party ?? 'Non renseigné'}</td><td>{pollScore(result.score)}</td></tr>)}</tbody>
+        <tbody>{scenario.results.map((result) => <tr key={result.candidate_external_id}><th scope="row"><Link href={`/presidentielle-2027/candidats/${result.candidate_external_id}`}>{result.candidate_name} →</Link></th><td>{result.party ?? 'Non renseigné'}</td><td>{pollScore(result.score)}</td></tr>)}</tbody>
       </table></div>
     </section>)}
     <details className="poll-provenance"><summary>Trace de l’import et licence</summary>
@@ -76,6 +78,7 @@ export function PollExplorer() {
   const candidates = options?.candidates.filter((c) => roster.includes(c.id)) ?? [];
   const currentConfiguration = configurations.find((c) => c.key === configuration);
   return <section className="poll-explorer" aria-label="Explorer les intentions de vote">
+    <p className="profile-reading-key">Que proposent ces personnes, et comment ont-elles voté ? <Link href="/presidentielle-2027/candidats">Ouvrir leurs fiches →</Link> · <Link href="/presidentielle-2027/comparer">Comparer sur un sous-thème →</Link></p>
     {options ? <>
       <div className="poll-controls">
         <label>Tour<select value={round} onChange={(event) => change(() => {

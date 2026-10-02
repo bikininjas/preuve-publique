@@ -1,0 +1,25 @@
+{
+  "measures": [
+    {
+      "slug": "retraites-age-legal",
+      "subject": "retraites",
+      "question": "Quel âge légal de départ à la retraite ?",
+      "description": "Question de travail en brouillon. Décrire le dispositif exact, ses exceptions et la version du texte ; relier séparément les programmes datés, déclarations, articles, amendements et scrutins après lecture des pièces.",
+      "links": [{"evidence_external_id":"VTANR5L17V217","role":"vote","rationale":"Candidat au rapprochement : scrutin du 31 octobre 2024 sur l’ensemble de la proposition de loi visant à restaurer un système de retraite plus juste en annulant les dernières réformes portant sur l’âge de départ et le nombre d’annuités. Relire les dispositions et exceptions avant de qualifier le lien à l’âge légal. Le vote sur le texte entier ne vaut pas position sur chacune de ses mesures.","confidence":null}]
+    },
+    {
+      "slug": "logement-encadrement-loyers",
+      "subject": "logement",
+      "question": "Quelles règles pour l’encadrement des loyers ?",
+      "description": "Question de travail en brouillon. Préciser le territoire, le mécanisme, les exceptions et la version du dispositif avant de relier les pièces. Un scrutin sur un texte global ne suffit pas à établir une position sur cette mesure.",
+      "links": [{"evidence_external_id":"VTANR5L17V2262","role":"vote","rationale":"Candidat au rapprochement : scrutin du 5 juin 2025 sur l’ensemble de la proposition de loi expérimentant l’encadrement des loyers et améliorant l’habitat dans les outre-mer. Le territoire et les autres dispositions du texte doivent rester explicites ; ne pas extrapoler ce scrutin à toute politique des loyers.","confidence":null}]
+    },
+    {
+      "slug": "fiscalite-patrimoine",
+      "subject": "fiscalite",
+      "question": "Quelle imposition des patrimoines ?",
+      "description": "Question de travail en brouillon. Préciser l’assiette, les seuils, les taux et les personnes concernées dans le dispositif exact avant toute comparaison. Les documents restent identifiés par leur date et leur élection.",
+      "links": [{"evidence_external_id":"VTANR5L17V881","role":"vote","rationale":"Candidat au rapprochement : scrutin du 20 février 2025 sur l’ensemble de la proposition de loi instaurant un impôt plancher de 2 % sur le patrimoine des ultra riches. Lire l’assiette, les seuils et les exceptions avant de décrire la mesure. Aucune position individuelle n’est déduite de ce lien documentaire.","confidence":null}]
+    }
+  ]
+}

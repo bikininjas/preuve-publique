@@ -11,6 +11,7 @@ const ADMIN_LINKS = [
   { href: '/admin/links', label: '02 · Rapprochements' },
   { href: '/admin/runs', label: '03 · Imports' },
   { href: '/admin/publication', label: '04 · Publication' },
+  { href: '/admin/measures', label: '05 · Mesures et positions' },
   { href: '/', label: 'Voir le site ↗' },
 ];
 
