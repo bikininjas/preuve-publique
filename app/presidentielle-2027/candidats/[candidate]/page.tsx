@@ -33,7 +33,7 @@ export default async function CandidatePage({params,searchParams}:{params:Promis
   const day=new Date().toISOString().slice(0,10);
   const current=connections?.filter((c)=>connectionActive(c,day)) ?? [];
   const href=(target:number)=>`/presidentielle-2027/candidats/${candidate}?subject=${subject.id}&page=${target}#votes-personnels`;
-  return <main><Link className="text-link" href="/presidentielle-2027/candidats">← Toutes les personnes testées</Link>
+  return <main className="candidate-profile"><Link className="text-link" href="/presidentielle-2027/candidats">← Toutes les personnes testées</Link>
     <div className="page-intro"><div className="eyebrow">Personne testée · Présidentielle 2027</div><h1>{nominee.name}</h1><p className="lead">Des intentions de vote aux propositions et décisions documentées.</p></div>
     <div className="profile-reading-key"><p>Une présence dans un sondage ne confirme pas une candidature. Un rattachement financier, une adhésion et un soutien électoral sont des faits distincts. Les votes d’un parti ne remplacent pas ceux d’une personne.</p>
       <Link href={`/presidentielle-2027/comparer?candidate=${candidate}&subject=${subject.id}`}>Ajouter une autre personne à la comparaison →</Link></div>
