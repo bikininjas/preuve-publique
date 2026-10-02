@@ -5,7 +5,6 @@ import { THEME_STORAGE_KEY } from '@/lib/theme';
 
 const COOKIE = 'preuve-publique-cookie-consent';
 const STORAGE = COOKIE;
-const EVENT = 'preuve-publique-open-cookie-settings';
 type Choice = 'accepted' | 'refused' | null;
 
 function storedChoice(): Choice {
@@ -25,12 +24,9 @@ function saveChoice(choice: Exclude<Choice, null>) {
 
 export function CookieConsent() {
   const [choice, setChoice] = useState<Choice>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   useEffect(() => {
     setChoice(storedChoice());
-    const reopen = () => setOpen(true);
-    window.addEventListener(EVENT, reopen);
-    return () => window.removeEventListener(EVENT, reopen);
   }, []);
   const decide = (value: Exclude<Choice, null>) => { saveChoice(value); setChoice(value); setOpen(false); };
   if (choice && !open) return null;
@@ -50,5 +46,13 @@ export function CookieConsent() {
 }
 
 export function CookiePreferencesButton() {
-  return <button className="footer-cookie-button" type="button" onClick={() => window.dispatchEvent(new Event(EVENT))}>Gérer les cookies</button>;
+  const [open, setOpen] = useState(false);
+  const decide = (value: Exclude<Choice, null>) => { saveChoice(value); setOpen(false); };
+  return <>
+    <button className="footer-cookie-button" type="button" onClick={() => setOpen(true)}>Gérer les cookies</button>
+    {open ? <section className="cookie-consent" role="dialog" aria-modal="false" aria-labelledby="cookie-settings-title">
+      <div><p className="eyebrow">Vos choix</p><h2 id="cookie-settings-title">Préférences cookies</h2><p>Le site ne charge aucun traceur. Accepter autorise seulement la mémorisation de votre thème.</p></div>
+      <div className="cookie-actions"><button className="button secondary" type="button" onClick={() => decide('refused')}>Refuser</button><button className="button" type="button" onClick={() => decide('accepted')}>Accepter</button></div>
+    </section> : null}
+  </>;
 }
