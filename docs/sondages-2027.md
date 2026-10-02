@@ -103,6 +103,10 @@ Les fixtures ne nomment aucune personnalité réelle ; les tests ne contactent p
 - Le **site Cloud Run n’a pas été déployé** dans cette intervention. Les deux déclencheurs Cloud Build existants surveillent `master` ; la branche de travail n’est pas un déploiement.
 - Le secret de dépôt `POLLS_DB_PG_URL` a été configuré le 02/10/2026 après autorisation explicite de l’utilisateur ; sa présence a été vérifiée sans afficher sa valeur. Le workflow quotidien est livré mais **pas encore actif** : il n’est pas sur la branche par défaut. La fusion sur `master` rendra la planification disponible. La commande interne reste utilisable.
 
+## Préparation de la PR 17
+
+Le 02/10/2026, la branche a été actualisée avec `master` (PR 16). Les styles des sondages et les ajustements de compacité des cartes et graphiques sont conservés ensemble. Après intégration : build de production, lint, typage et les 72 tests hors ligne réussis. Le contrôle distant en lecture seule retrouve la migration `20261002061929`, 33 sondages publiés, 214 configurations, 1 702 résultats et 33 révisions ; RLS est actif sur les cinq tables, les rôles publics ne disposent d'aucun droit d'écriture et les deux RPC sont `security invoker`. La présence du secret GitHub a été revérifiée sans consulter sa valeur. La publication Git et le déploiement restent à confirmer après fusion.
+
 ## Fichiers livrés
 
 Créés :
