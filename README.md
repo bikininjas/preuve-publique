@@ -52,6 +52,10 @@ Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, gro
 
 ## Périmètre et méthode
 
+### Lire les sondages et les fiches de la présidentielle
+
+Les sondages proposent une série par personne, avec échelle explicite, et une vue d'ensemble avec échelle commune. Les points superposés gardent chaque configuration et chaque notice originale. Les fiches regroupent identité, rattachements datés, sondages et bulletins personnels. Les conteneurs publics occupent 90 % de la largeur desktop, et les filtres se replient sur mobile. Les thèmes clair et sombre sont disponibles. Voir [les choix et contrôles de l'interface présidentielle](docs/interface-presidentielle.md).
+
 La période de travail commence en 2017. La première couverture vise l'Assemblée nationale, le Sénat et le Parlement européen ; pour le droit français adopté, les dossiers législatifs de l'Assemblée nationale et les lois promulguées du Sénat, qui publient tous deux les références du Journal officiel (l'API Légifrance n'est pas utilisée : son compte est réservé en pratique au secteur public). Les programmes originaux et professions de foi complètent ces sources. Les déclarations médiatiques ne sont ajoutées que si l'enregistrement ou la transcription précise est accessible et vérifiable. Les collectivités locales ne font pas partie de la première version.
 
 Une fiche documentaire doit indiquer la date, l'auteur ou l'institution quand ils sont connus, le document original, son URL et le repère utile (page, article, numéro de scrutin, horodatage). Un rapprochement entre une promesse et un vote est documenté et révisable : un vote contre un texte entier ne prouve pas une opposition à chacune de ses mesures. Un scrutin non nominatif ne révèle pas la position individuelle des élus. Le site distingue pour, contre, abstention, non-participation et position individuelle indisponible.
