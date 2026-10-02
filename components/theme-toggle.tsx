@@ -1,7 +1,7 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import { THEME_STORAGE_KEY, type Theme } from '@/lib/theme';
+import { COOKIE_CONSENT_NAME, THEME_STORAGE_KEY, type Theme } from '@/lib/theme';
 
 const THEME_CHANGE_EVENT = 'preuve-publique-theme-change';
 const getTheme = (): Theme => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
@@ -30,7 +30,7 @@ export function ThemeToggle() {
     const nextTheme = getTheme() === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = nextTheme;
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      if (document.cookie.includes(`${COOKIE_CONSENT_NAME}=accepted`)) localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
     } catch {
       // The switch still works when persistent storage is unavailable.
     }

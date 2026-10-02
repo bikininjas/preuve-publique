@@ -1,4 +1,4 @@
-// Automated release is deliberately narrow: official AN vote archives only.
+// Automated release is deliberately narrow: official parliamentary vote snapshots.
 // A confidence score describes documentary conformity, not a political claim.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -6,6 +6,8 @@ import { isAbsolute, join, normalize, sep } from 'node:path';
 import { readJsonl, readManifest } from './staging.mjs';
 import { canonicalJson } from './db.mjs';
 import { parseZip, scrutinToRecord } from '../importers/an-scrutins.mjs';
+import { parseSessionPage, entryToRecord } from '../importers/senat-scrutins.mjs';
+import { titleTag } from './html.mjs';
 
 const OFFICIAL_PREFIX = 'https://data.assemblee-nationale.fr/static/openData/repository/';
 const SCORE = 0.99;
@@ -27,7 +29,8 @@ function rawPath(stagingDir, file) {
 
 export async function verifyArchive(stagingDir) {
   const manifest = readManifest(stagingDir);
-  if (manifest.importer !== 'an-scrutins') throw new Error('Publication automatique réservée aux archives de scrutins de l’Assemblée nationale.');
+  const institution = { 'an-scrutins': 'assemblee', 'senat-scrutins': 'senat' }[manifest.importer];
+  if (!institution) throw new Error('Publication automatique réservée aux sources officielles de scrutins AN/Sénat.');
   const sources = readJsonl(join(stagingDir, 'sources.jsonl'));
   const staged = readJsonl(join(stagingDir, 'evidence.jsonl'));
   if (!Array.isArray(manifest.raw) || !manifest.raw.length || !sources.length || !staged.length) {
@@ -35,8 +38,10 @@ export async function verifyArchive(stagingDir) {
   }
   const replayed = new Map();
   for (const raw of manifest.raw) {
-    if (typeof raw.url !== 'string' || !raw.url.startsWith(OFFICIAL_PREFIX)
-      || !/\/\d+\/loi\/scrutins\/[^/]+\.json\.zip$/.test(raw.url)) {
+    const official = institution === 'assemblee'
+      ? typeof raw.url === 'string' && raw.url.startsWith(OFFICIAL_PREFIX) && /\/\d+\/loi\/scrutins\/[^/]+\.json\.zip$/.test(raw.url)
+      : /^https:\/\/www\.senat\.fr\/scrutin-public\/scr\d{4}\.html$/.test(raw.url);
+    if (!official) {
       throw new Error('URL d’archive non officielle.');
     }
     const source = sources.find((item) => item.url === raw.url);
@@ -46,6 +51,19 @@ export async function verifyArchive(stagingDir) {
     const buffer = readFileSync(rawPath(stagingDir, raw.file));
     const sha = createHash('sha256').update(buffer).digest('hex');
     if (sha !== raw.sha256 || buffer.byteLength !== raw.bytes) throw new Error('Archive brute modifiée.');
+    if (institution === 'senat') {
+      const html = buffer.toString('utf8');
+      const session = Number(raw.url.match(/scr(\d{4})\.html$/)[1]);
+      const pageTitle = titleTag(html)?.replace(/\s*-\s*Sénat\s*$/, '') ?? null;
+      const entries = parseSessionPage(html, { session });
+      if (!entries.length) throw new Error('Page officielle du Sénat sans scrutin reconnu : vérifier la structure de la source.');
+      for (const entry of entries) {
+        const record = entryToRecord(entry, { pageUrl: raw.url, pageTitle, retrievedAt: source.retrieved_at });
+        if (replayed.has(record.external_id)) throw new Error('Identifiant de scrutin dupliqué dans les sources.');
+        replayed.set(record.external_id, record);
+      }
+      continue;
+    }
     const legislature = Number(raw.url.match(/repository\/(\d+)\/loi\/scrutins\//)?.[1]);
     if (![15, 16, 17].includes(legislature)) throw new Error('Législature non prise en charge.');
     const zipFile = raw.url.split('/').at(-1);
@@ -76,19 +94,21 @@ export async function verifyArchive(stagingDir) {
     seen.add(record.external_id);
   }
   if (rejected.length) throw new Error(`${rejected.length} pièce(s) du staging divergent de l’archive officielle ; publication annulée.`);
-  return { eligible, archiveCount: manifest.raw.length, score: SCORE };
+  return { eligible, institution, archiveCount: manifest.raw.length, score: SCORE };
 }
 
-export async function publishVerified(client, verified, { limit = 50, dryRun = true } = {}) {
+export async function publishVerified(client, verified, { limit = 50, dryRun = true, manageTransaction = true } = {}) {
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > 500) throw new Error('--limit doit être entre 1 et 500.');
   const stats = { archives: verified.archiveCount, verified: verified.eligible.length, published: 0, already: 0, rejected: 0, examined: 0, confidence: SCORE };
-  await client.query('begin');
+  const institution = verified.institution ?? 'assemblee';
+  if (!['assemblee', 'senat'].includes(institution)) throw new Error('Institution non prise en charge.');
+  if (manageTransaction) await client.query('begin');
   try {
     const keys = verified.eligible.map(({ record }) => record.external_id);
     const queue = await client.query(
       `select external_id, status from public.evidence
-       where institution = 'assemblee' and kind = 'vote' and external_id = any($1::text[])`,
-      [keys],
+       where institution = $2 and kind = 'vote' and external_id = any($1::text[])`,
+      [keys, institution],
     );
     const statuses = new Map(queue.rows.map((row) => [row.external_id, row.status]));
     stats.already = queue.rows.filter((row) => row.status === 'published').length;
@@ -100,8 +120,8 @@ export async function publishVerified(client, verified, { limit = 50, dryRun = t
                 e.occurred_at::text as occurred_at, e.source_url, e.source_locator, e.detail,
                 s.url as archive_url, s.sha256 as archive_sha256
          from public.evidence e join public.sources s on s.id = e.source_id
-         where e.external_id = $1 and e.institution = 'assemblee' and e.kind = 'vote'`,
-        [record.external_id],
+         where e.external_id = $1 and e.institution = $2 and e.kind = 'vote'`,
+        [record.external_id, institution],
       );
       if (rows.length !== 1) { stats.rejected += 1; continue; }
       const row = rows[0];
@@ -114,6 +134,7 @@ export async function publishVerified(client, verified, { limit = 50, dryRun = t
       const checks = {
         official_domain: true, archive_sha256: true, staging_replay: true,
         database_match: true, interpretation: false,
+        source_url: source.url, snapshot_sha256: source.sha256, retrieved_at: source.retrieved_at,
       };
       const result = await client.query(
         `update public.evidence set status = 'published', reviewed_by = 'contrôle automatique : archive officielle',
@@ -124,11 +145,10 @@ export async function publishVerified(client, verified, { limit = 50, dryRun = t
       );
       stats.published += result.rowCount;
     }
-    if (dryRun) await client.query('rollback');
-    else await client.query('commit');
+    if (manageTransaction) await client.query(dryRun ? 'rollback' : 'commit');
     return stats;
   } catch (error) {
-    await client.query('rollback');
+    if (manageTransaction) await client.query('rollback');
     throw error;
   }
 }

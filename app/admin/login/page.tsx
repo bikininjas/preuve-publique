@@ -10,11 +10,12 @@ export const metadata = { title: 'Connexion à l’espace de relecture' };
 
 const ERRORS: Record<string, string> = {
   indisponible: 'L’authentification n’est pas disponible sur ce déploiement pour le moment.',
-  code: 'La réponse du fournisseur était incomplète : aucun code d’autorisation reçu.',
-  echange: 'L’échange de jeton a échoué. Réessayez : l’ouverture de session repart de zéro.',
-  non_autorise: 'Cette adresse Google n’est pas autorisée pour l’instant.',
+  code: 'La connexion n’a pas pu être vérifiée. Recommencez depuis cette page.',
+  echange: 'La connexion n’a pas pu être vérifiée. Recommencez depuis cette page.',
+  non_autorise: 'Accès refusé.',
   session: 'Votre session a expiré avant l’action. Reconnectez-vous.',
-  dev: 'La connexion locale de débogage a échoué (compte technique absent, mot de passe désynchronisé, ou adresse hors de la liste d’administration).',
+  attendre: 'Trop de tentatives. Réessayez dans quelques minutes.',
+  dev: 'La connexion locale de débogage a échoué.',
 };
 
 export default async function AdminLoginPage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
@@ -33,23 +34,19 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
 
       {session.status === 'unconfigured' ? (
         <Empty>
-          L’authentification n’est pas configurée sur ce déploiement : renseignez <code>SUPABASE_URL</code> et{' '}
-          <code>SUPABASE_PUBLISHABLE_KEY</code>, puis activez le fournisseur Google dans le projet Supabase.
+          Cet accès n’est pas disponible pour le moment.
         </Empty>
       ) : (
         <>
           <p className="lead">
-            L’accès est réservé. La connexion se fait avec Google ; l’adresse est ensuite vérifiée contre la liste
-            d’administration de la base. Aucune donnée Google n’est conservée : seule l’adresse sert à vérifier l’accès.
+            L’accès est réservé aux personnes déjà autorisées. La connexion Google sert uniquement à vérifier le droit
+            d’accès ; aucune liste d’adresses ni donnée d’administration n’est rendue publique.
           </p>
           {first(params.ok) === 'deconnexion' ? <Notice kind="ok">Vous êtes déconnecté.</Notice> : null}
           {error ? <Notice>{ERRORS[error] ?? 'Connexion impossible.'}</Notice> : null}
           {session.status === 'not_allowed' ? (
             <Notice>
-              <p>
-                L’adresse <b>{session.email}</b> n’est pas dans la liste d’administration. Pour l’instant, une seule
-                adresse est autorisée.
-              </p>
+              <p>Accès refusé.</p>
               <form action={signOut}>
                 <button className="button secondary" type="submit">
                   Fermer cette session Google
@@ -63,8 +60,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
             </a>
           </p>
           <p className="hint">
-            Les adresses autorisées vivent dans la table <code>admin_users</code> (ajout par SQL pour l’instant). Une
-            adresse absente de la liste ne peut rien voir ni rien écrire, même connectée.
+            Les droits sont vérifiés côté serveur avant chaque accès. Une session non autorisée ne peut ni lire ni écrire.
           </p>
           {devAvailable ? (
             <div className="dev-signin">
@@ -74,8 +70,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
                 </button>
               </form>
               <p className="hint">
-                Compte technique <code>{devEmail}</code> défini dans <code>.env.local</code> ; ce raccourci n’existe
-                qu’en développement et suit les mêmes règles que Google (RLS + liste d’administration).
+                Ce raccourci n’existe qu’en développement et suit les mêmes règles d’autorisation.
               </p>
             </div>
           ) : null}

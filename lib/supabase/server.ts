@@ -13,7 +13,7 @@ import { cookies } from 'next/headers';
 
 export class AuthUnavailableError extends Error {
   constructor(
-    message = 'L’authentification n’est pas configurée : SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY sont absentes.',
+    message = 'L’authentification n’est pas disponible.',
   ) {
     super(message);
     this.name = 'AuthUnavailableError';
