@@ -36,6 +36,10 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
           INSTITUTION: ${{ matrix.institution }}
         run: |
+          curl --fail --silent --show-error --retry 3 \
+            https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt \
+            --output "$RUNNER_TEMP/supabase-ca.crt"
+          export NODE_EXTRA_CA_CERTS="$RUNNER_TEMP/supabase-ca.crt"
           if [ "$DRY_RUN" = "true" ]; then
             npm run scrutins:sync -- --institution="$INSTITUTION" --dry-run
           else
