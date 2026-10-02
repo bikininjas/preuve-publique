@@ -14,6 +14,8 @@ export const VOTE_SUBJECT_GROUPS = [
       { id: 'logement', label: 'Logement et loyers', keywords: ['logement', 'loyer', 'locataire'] },
       { id: 'retraites', label: 'Retraites', keywords: ['retraite'] },
       { id: 'securite-sociale', label: 'Sécurité sociale', keywords: ['sécurité sociale', 'assurance maladie'] },
+      { id: 'solidarite', label: 'Solidarité et prestations sociales', keywords: ['solidarité', 'prestations sociales', 'allocations familiales', 'allocation aux adultes', 'minima sociaux', 'pauvreté', 'protection sociale', 'revenu de solidarité'] },
+      { id: 'enfance', label: 'Enfance et protection des mineurs', keywords: ['protection des enfants', 'protéger les mineurs', 'protection de l’enfance', "protection de l'enfance"] },
     ],
   },
   {
@@ -23,6 +25,7 @@ export const VOTE_SUBJECT_GROUPS = [
       { id: 'budget', label: 'Budget de l’État', keywords: ['loi de finances', 'budget', 'crédits de la mission'] },
       { id: 'fiscalite', label: 'Impôts et taxes', keywords: ['impôt', 'taxe', 'fiscal'] },
       { id: 'travail', label: 'Travail et emploi', keywords: ['travail', 'emploi', 'chômage', 'salarié'] },
+      { id: 'entreprises', label: 'Entreprises et règles du marché', keywords: ['entreprise', 'concurrence', 'privatisation', 'libéralisation', 'compétitivité', 'simplification de la vie économique'] },
       { id: 'environnement', label: 'Climat et environnement', keywords: ['climat', 'environnement', 'biodiversité', 'artificialisation'] },
       { id: 'energie', label: 'Énergie', keywords: ['énergie', 'nucléaire', 'électricité'] },
       { id: 'transports', label: 'Transports', keywords: ['transport', 'ferroviaire', 'train'] },
@@ -34,6 +37,7 @@ export const VOTE_SUBJECT_GROUPS = [
     label: 'Droits et institutions',
     subjects: [
       { id: 'immigration', label: 'Immigration et nationalité', keywords: ['immigration', 'nationalité', 'asile'] },
+      { id: 'police', label: 'Police et sécurité publique', keywords: ['police', 'gendarmerie', 'sécurité intérieure', 'sécurité publique', 'maintien de l’ordre', "maintien de l'ordre", 'sécurité globale', 'ordre public'] },
       { id: 'justice', label: 'Justice', keywords: ['justice', 'judiciaire', 'pénal'] },
       { id: 'elections', label: 'Élections', keywords: ['élection', 'électoral', 'référendum'] },
     ],
@@ -67,4 +71,14 @@ export function voteSubjectFilter(subject: VoteSubject): string {
 
 export function voteCategoryFilter(category: VoteCategory): string {
   return categoryKeywords(category).map((keyword) => `title.ilike.%${keyword}%`).join(',');
+}
+
+/** Same substring matching as the public title filters; never infer a measure's direction. */
+export function voteTopicsForTitle(title: string) {
+  const normalized = title.toLocaleLowerCase('fr-FR');
+  return VOTE_SUBJECT_GROUPS.flatMap((category) => {
+    const subjects = category.subjects.filter((subject) =>
+      subject.keywords.some((keyword) => normalized.includes(keyword.toLocaleLowerCase('fr-FR'))));
+    return subjects.length ? [{ category, subjects }] : [];
+  });
 }

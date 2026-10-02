@@ -63,6 +63,7 @@ export function GroupSubjectChart({ title, subjectId, dashboard }: { title: stri
   const href = `/scrutins?institution=senat&subject=${subjectId}`;
   return <article className="party-subject-chart">
     <div className="party-subject-head"><h3><Link href={href}>{title} ↗</Link></h3><span>{number(dashboard.scope.documented_scrutins)} / {number(dashboard.scope.total_scrutins)} scrutins vérifiés</span></div>
+    {dashboard.scope.first_date && dashboard.scope.last_date ? <p className="hint">{formatDate(dashboard.scope.first_date)} – {formatDate(dashboard.scope.last_date)}</p> : null}
     {groups.length ? <><div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abst.</span><span className="non-votant">Non-part.</span></div>{groups.map((row) => <div className="party-subject-row" key={`${row.group_ref}:${row.group_name}`}><div><Link href={`${href}&group=${row.group_ref}#group-details`}>{row.group_name} ↗</Link><small>{number(total(row))} positions</small></div><GroupBar row={row} /><ShareLine row={row} /></div>)}<p className="party-subject-foot">Quatre noms de groupes affichés par volume de positions. <Link href={href}>Voir tous les groupes et scrutins →</Link></p></> : <p className="party-subject-foot">Aucune analyse par groupe vérifiée. <Link href={href}>Voir les scrutins →</Link></p>}
   </article>;
 }

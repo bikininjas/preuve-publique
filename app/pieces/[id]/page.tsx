@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
 import { PartyVoteBreakdown } from '@/components/party-vote-chart';
+import { VoteTopics } from '@/components/vote-topics';
 import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
@@ -134,6 +135,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       <div className="document-actions"><a className="button" href={evidence.source_url} target="_blank" rel="noopener noreferrer">Ouvrir la source officielle ↗</a>{evidence.publication_confidence != null ? <span className="document-confidence">Source recoupée · conformité {Math.round(Number(evidence.publication_confidence) * 100)}/100</span> : null}</div>
       {displayTitle !== evidence.title ? <details className="official-wording"><summary>Lire l’intitulé officiel complet</summary><p>{evidence.title}</p></details> : null}
       </header>
+      {evidence.kind === 'vote' ? <VoteTopics title={evidence.title} institution={evidence.institution} /> : null}
       <nav className="reading-nav" aria-label="Parcourir la fiche">{tally ? <a href="#resultat">Le résultat ↓</a> : null}{evidence.kind === 'vote' ? <a href={evidence.institution === 'senat' ? '#votes-par-groupe' : '#votes-par-parti'}>{evidence.institution === 'senat' ? 'Les votes par groupe ↓' : 'Les votes par parti ↓'}</a> : null}<a href="#provenance">Sources et contexte ↓</a></nav>
 
       {tally && (tally.pour !== null || tally.contre !== null) ? <section className="scrutin-result" id="resultat"><div><span className="eyebrow">Décompte officiel</span><h2>Le résultat en un regard.</h2><p className="hint">{tally.votants !== null ? `${tally.votants.toLocaleString('fr-FR')} votants indiqués dans la source.` : 'Nombre de votants non renseigné.'}</p></div><VoteDistribution tally={tally} /></section> : null}

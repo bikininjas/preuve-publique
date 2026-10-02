@@ -16,7 +16,7 @@ function PartyShareLine({ row }: { row: PartyVoteRow }) {
   </div>;
 }
 
-function PartyBar({ row }: { row: PartyVoteRow }) {
+export function PartyBar({ row }: { row: PartyVoteRow }) {
   const total = ballotCount(row);
   const segments = [
     { key: 'pour', count: row.pour, label: 'pour' },
@@ -37,6 +37,7 @@ export function PartySubjectChart({ title, subjectId, dashboard }: { title: stri
   const href = `/scrutins?subject=${subjectId}`;
   return <article className="party-subject-chart">
     <div className="party-subject-head"><h3><Link href={href}>{title} ↗</Link></h3><span>{number(dashboard.scope.documented_scrutins)} / {number(dashboard.scope.total_scrutins)} scrutins vérifiés</span></div>
+    {dashboard.scope.first_date && dashboard.scope.last_date ? <p className="hint">{formatDate(dashboard.scope.first_date)} – {formatDate(dashboard.scope.last_date)}</p> : null}
     {featured.length ? <>
       <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abst.</span><span className="non-votant">Non-votant</span></div>
       {featured.map((row) => <div className="party-subject-row" key={row.party_id}>

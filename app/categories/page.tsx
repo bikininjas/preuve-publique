@@ -2,10 +2,11 @@ import Link from 'next/link';
 import { PartySubjectChart, PartyVoteChart } from '@/components/party-vote-chart';
 import { GroupSubjectChart, GroupVoteChart } from '@/components/group-vote-chart';
 import { Empty } from '@/components/ui';
-import { getGroupVoteDashboard, getPartyVoteDashboard, getTopicCounts } from '@/lib/data';
+import { getTopicCounts, type PartyVoteDashboard, type GroupVoteDashboard } from '@/lib/data';
 import { first, type SearchParamsRecord } from '@/lib/params';
 import { topicSlug } from '@/lib/labels';
-import { categoryKeywords, VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
+import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
+import { getGroupThemes, getPartyThemes } from '@/lib/vote-theme-data';
 
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Votes par thème, parti et groupe' };
@@ -15,20 +16,10 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
   const allSubjects: Array<{ id: string; keywords: string[] }> = VOTE_SUBJECT_GROUPS.flatMap(
     (category) => category.subjects.map((subject) => ({ id: subject.id, keywords: [...subject.keywords] })),
   );
-  const subjects = [
-    ...VOTE_SUBJECT_GROUPS.map((category) => ({ id: category.id, keywords: categoryKeywords(category) })),
-    ...allSubjects,
-  ];
   const [topics, partyDashboards, groupDashboards] = await Promise.all([
     getTopicCounts().catch(() => null),
-    senate ? Promise.resolve([] as Array<readonly [string, Awaited<ReturnType<typeof getPartyVoteDashboard>> | null]>) : Promise.all(subjects.map(async ({ id, keywords }) => {
-      try { return [id, await getPartyVoteDashboard(keywords)] as const; }
-      catch { return [id, null] as const; }
-    })),
-    senate ? Promise.all(subjects.map(async ({ id, keywords }) => {
-      try { return [id, await getGroupVoteDashboard(keywords)] as const; }
-      catch { return [id, null] as const; }
-    })) : Promise.resolve([] as Array<readonly [string, Awaited<ReturnType<typeof getGroupVoteDashboard>> | null]>),
+    senate ? Promise.resolve(new Map<string, PartyVoteDashboard | null>()) : getPartyThemes(),
+    senate ? getGroupThemes() : Promise.resolve(new Map<string, GroupVoteDashboard | null>()),
   ]);
   const items = topics ?? [];
   const unavailable = topics === null;
@@ -50,20 +41,21 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
       <nav className="pills" aria-label="Choisir une institution pour les graphiques"><Link className={!senate ? 'active' : ''} href="/categories">Assemblée · partis</Link><Link className={senate ? 'active' : ''} href="/categories?institution=senat">Sénat · groupes</Link></nav>
       <nav className="theme-jumps" aria-label="Aller à une catégorie">{VOTE_SUBJECT_GROUPS.map((category, index) => <a href={`#theme-${category.id}`} key={category.id}><span>{String(index + 1).padStart(2, '0')}</span><strong>{category.label}</strong><small>{category.subjects.length} sous-thèmes <b aria-hidden="true">↓</b></small></a>)}</nav>
       <p className="hint chart-reading-note">Les sujets peuvent se recouper : leurs totaux ne s’additionnent pas. Chaque barre décrit les positions enregistrées, jamais une opinion sur tout le thème. {senate ? 'Un groupe parlementaire n’est pas un parti.' : 'Le rattachement à un parti repose sur une affiliation datée.'}</p>
+      <nav className="subtheme-index" aria-label="Aller directement à un sous-thème">{VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}><strong>{category.label}</strong><div className="pills">{category.subjects.map((subject) => <a href={`#sous-theme-${subject.id}`} key={subject.id}>{subject.label} ↓</a>)}</div></div>)}</nav>
 
       <div className="category-vote-overview">
         {VOTE_SUBJECT_GROUPS.map((category) => <section className="theme-section" id={`theme-${category.id}`} key={category.id}>
           {senate ? groupById.get(category.id) ? <GroupVoteChart title={category.label} dashboard={groupById.get(category.id)!} href={`/scrutins?institution=senat&category=${category.id}`} groupHref={(ref) => `/scrutins?institution=senat&category=${category.id}&group=${ref}#group-details`} previewLimit={8} /> : <Empty>Les votes par groupe pour « {category.label} » sont indisponibles.</Empty>
             : partyById.get(category.id) ? <PartyVoteChart title={category.label} dashboard={partyById.get(category.id)!} href={`/scrutins?category=${category.id}`} partyHref={(partyId) => `/scrutins?category=${category.id}&party=${partyId}#party-details`} previewLimit={8} /> : <Empty>Les votes par parti pour « {category.label} » sont indisponibles.</Empty>}
-          <details className="subtheme-disclosure"><summary><span><strong>Aller plus loin : {category.subjects.length} sous-thèmes</strong><small>{category.subjects.map((subject) => subject.label).join(' · ')}</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary>
+          <div className="visible-subthemes"><h3>{category.label} : les {category.subjects.length} sous-thèmes</h3>
           <div className="party-subject-grid">{category.subjects.map((subject) => {
             const group = groupById.get(subject.id);
             const party = partyById.get(subject.id);
-            return senate && group ? <GroupSubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={group} />
-              : !senate && party ? <PartySubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={party} />
-                : <div key={subject.id} className="party-subject-chart"><h3><Link href={`/scrutins?${senate ? 'institution=senat&' : ''}subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>;
+            return <div id={`sous-theme-${subject.id}`} key={subject.id}>{senate && group ? <GroupSubjectChart title={subject.label} subjectId={subject.id} dashboard={group} />
+              : !senate && party ? <PartySubjectChart title={subject.label} subjectId={subject.id} dashboard={party} />
+                : <div className="party-subject-chart"><h3><Link href={`/scrutins?${senate ? 'institution=senat&' : ''}subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>}</div>;
           })}</div>
-          </details>
+          </div>
         </section>)}
       </div>
 
