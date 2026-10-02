@@ -10,6 +10,7 @@ import './theme.css';
 import './presidential.css';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { THEME_INIT_SCRIPT } from '@/lib/theme';
+import { CookieConsent, CookiePreferencesButton } from '@/components/cookie-consent';
 
 export const metadata: Metadata = {
   ...pageMetadata('/'),
@@ -33,7 +34,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="header-actions"><ThemeToggle /><Link className="header-action" href="/admin" aria-label="Espace de relecture">Espace de relecture <span aria-hidden>↗</span></Link></div>
         </header>
         <div id="contenu">{children}</div>
-        <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Des sources pour comprendre les décisions publiques.<br />France et Union européenne, depuis 2017.</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><Link href="/admin">Administration</Link></div></footer>
+        <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Des sources pour comprendre les décisions publiques.<br />France et Union européenne, depuis 2017.</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><CookiePreferencesButton /><Link href="/admin">Administration</Link></div></footer>
+        <CookieConsent />
       </body>
     </html>
   );

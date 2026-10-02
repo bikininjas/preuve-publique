@@ -32,7 +32,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="eyebrow">Espace de relecture</div>
         <h1>Non configuré</h1>
         <p className="empty">
-          Ce déploiement n’a pas de base configurée (<code>SUPABASE_URL</code>, <code>SUPABASE_PUBLISHABLE_KEY</code>).
+          Cet accès n’est pas disponible pour le moment.
         </p>
       </main>
     );
@@ -44,15 +44,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="eyebrow">Accès refusé</div>
         <h1>Cette adresse n’est pas autorisée.</h1>
         <p className="lead">
-          {session.email ? (
-            <>
-              L’adresse <b>{session.email}</b> n’est pas dans la liste d’administration.
-            </>
-          ) : (
-            'Votre session n’est pas rattachée à une adresse autorisée.'
-          )}{' '}
-          Les autorisations se gèrent dans la table{' '}
-          <code>admin_users</code>.
+          Votre session n’est pas autorisée à accéder à cet espace.
         </p>
         <form action={signOut}>
           <button className="button secondary" type="submit">

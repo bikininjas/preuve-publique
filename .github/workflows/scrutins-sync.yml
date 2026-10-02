@@ -1,0 +1,50 @@
+name: Synchroniser les scrutins officiels
+on:
+  schedule:
+    - cron: '41 5 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Vérifier les sources et annuler la transaction
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: scrutins-daily-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        institution: [assemblee, senat]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.18.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run test:ingestion
+      - name: Synchronisation et journal
+        env:
+          DB_PG_URL: ${{ secrets.POLLS_DB_PG_URL }}
+          SCRUTINS_REPORT: scrutins-report.json
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          INSTITUTION: ${{ matrix.institution }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            npm run scrutins:sync -- --institution="$INSTITUTION" --dry-run
+          else
+            npm run scrutins:sync -- --institution="$INSTITUTION" --yes
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scrutins-${{ matrix.institution }}
+          path: scrutins-report.json
+          if-no-files-found: ignore
+          retention-days: 7

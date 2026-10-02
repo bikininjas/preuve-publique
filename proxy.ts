@@ -12,8 +12,15 @@ export async function proxy(request: NextRequest) {
     target.search = request.nextUrl.search;
     return NextResponse.redirect(target,308);
   }
-  if (request.nextUrl.pathname === '/admin' || request.nextUrl.pathname.startsWith('/admin/')) return updateSession(request);
-  return NextResponse.next();
+  const admin = request.nextUrl.pathname === '/admin' || request.nextUrl.pathname.startsWith('/admin/');
+  const response = admin ? await updateSession(request) : NextResponse.next();
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('Referrer-Policy', admin ? 'no-referrer' : 'strict-origin-when-cross-origin');
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  response.headers.set('Content-Security-Policy', "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'");
+  if (admin) response.headers.set('Cache-Control', 'no-store, private');
+  return response;
 }
 
 export const config = {
