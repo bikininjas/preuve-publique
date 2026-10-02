@@ -25,7 +25,9 @@ function PartyBar({ row }: { row: PartyVoteRow }) {
     { key: 'non-votant', count: row.non_votant, label: 'non-votants' },
   ];
   return <div className="party-bar" role="img" aria-label={`${row.party_name} : ${share(row.pour, total)} pour, ${share(row.contre, total)} contre, ${share(row.abstention, total)} abstentions, ${share(row.non_votant, total)} non-votants parmi ${number(total)} positions nominatives enregistrées`}>
-    {segments.map((segment) => segment.count ? <span key={segment.key} className={`party-segment ${segment.key}`} style={{ width: `${segment.count / total * 100}%` }} title={`${number(segment.count)} ${segment.label}`} /> : null)}
+    {segments.map((segment) => segment.count ? <span key={segment.key} className={`party-segment ${segment.key}`} style={{ width: `${segment.count / total * 100}%` }} title={`${number(segment.count)} ${segment.label}`}>
+      {segment.count / total >= .25 ? <span aria-hidden="true">{share(segment.count, total)}</span> : null}
+    </span> : null)}
   </div>;
 }
 
@@ -96,7 +98,7 @@ export function PartyVoteBreakdown({ rows, coverage, sourceUrl }: { rows: PartyV
   const attributed = sorted.reduce((sum, row) => sum + ballotCount(row), 0);
   return <section className="party-chart party-chart-detail" id="votes-par-parti">
     <div className="party-chart-head"><div><span className="eyebrow">À partir des bulletins individuels</span><h2>Part des votes par parti dans ce scrutin</h2></div></div>
-    <p>Chaque pourcentage a pour dénominateur les {coverage ? 'positions' : 'bulletins'} nominatifs <strong>rattachés à ce parti dans ce scrutin</strong>, y compris les non-votants enregistrés. Ce n’est pas la part de ce parti parmi tous les députés. {coverage ? `${number(attributed)} positions rattachées à un parti sur ${number(coverage.recorded_individuals)} nominatives ; ${number(coverage.unattributed_individuals)} sans affiliation unique sont exclues des barres.` : 'Le total nominatif détaillé est indisponible.'}</p>
+    <p>Chaque pourcentage est calculé parmi les {coverage ? 'positions nominatives' : 'bulletins nominatifs'} <strong>de ce parti dans ce scrutin</strong>, y compris les non-votants enregistrés. Ce n’est pas la part de ce parti parmi tous les députés. {coverage ? `${number(attributed)} positions rattachées à un parti sur ${number(coverage.recorded_individuals)} nominatives ; ${number(coverage.unattributed_individuals)} sans affiliation unique sont exclues des barres.` : 'Le total nominatif détaillé est indisponible.'}</p>
     <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div>
     <div className="party-chart-rows">{sorted.map((row) => <div className="party-chart-row" key={row.party_id}>
       <div className="party-chart-name"><strong><Link href={`/scrutins?party=${row.party_id}#party-details`}>{row.party_name} ↗</Link></strong></div><PartyBar row={row} />

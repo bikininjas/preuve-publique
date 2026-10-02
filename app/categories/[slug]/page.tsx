@@ -65,7 +65,7 @@ export default async function CategoryPage({
           ← Toutes les rubriques
         </Link>
       </p>
-      <div className="page-intro compact"><div className="eyebrow">Rubrique publiée par la source</div>
+      <div className="page-intro reading-intro compact"><div className="eyebrow">Rubrique publiée par la source</div>
       <h1>{topic}</h1>
       <p className="lead">
         Les pièces ci-dessous portent cette rubrique telle que la source la publie. Les scrutins rattachés au dossier

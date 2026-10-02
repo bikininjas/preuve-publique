@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
 import { PartyVoteBreakdown } from '@/components/party-vote-chart';
 import { GroupVoteBreakdown } from '@/components/group-vote-chart';
+import { VoteDistribution } from '@/components/vote-distribution';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
 import { getActorNames, getEvidenceItem, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
 import {
@@ -96,6 +97,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
     ...(source ? [{ term: 'Document', children: source.document_title }] : []),
     { term: 'Repère dans la source', children: evidence.source_locator ?? '—' },
     { term: 'Type', children: kindLabel(evidence.kind) },
+    ...(evidence.external_id ? [{ term: 'Référence de la pièce', children: evidence.external_id }] : []),
     ...evidence.topics.map((topic) => ({
       term: 'Rubrique',
       children: <Link href={`/categories/${topicSlug(topic)}`}>{topic}</Link>,
@@ -112,13 +114,13 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   ];
 
   return (
-    <main>
+    <main className="evidence-detail">
       <p className="breadcrumb">
         <Link className="quiet" href="/pieces">
           ← Toutes les pièces
         </Link>
       </p>
-      <div className="eyebrow">
+      <header className="document-heading"><div className="eyebrow">
         {kindLabel(evidence.kind)} · {institutionLabel(evidence.institution)}
       </div>
       <h1 className="title">{displayTitle}</h1>
@@ -126,56 +128,21 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       <p className="resultline">
         {formatDate(evidence.occurred_at)}
         {actor ? <> · {actor.name}</> : null}
-        {evidence.external_id ? (
-          <>
-            {' '}
-            · référence <code>{evidence.external_id}</code>
-          </>
-        ) : null}
+        {scrutinNumber(evidence) ? <> · scrutin n° {scrutinNumber(evidence)}</> : null}
         {evidence.reviewed_at ? <> · {evidence.publication_method ? 'contrôlée' : 'relue'} le {formatDate(evidence.reviewed_at)}</> : null}
       </p>
-      {evidence.publication_confidence != null ? (
-        <p className="hint"><strong>Conformité à la source : {Math.round(Number(evidence.publication_confidence) * 100)} %.</strong> Archive officielle, empreinte SHA-256 et données du scrutin recoupées avant publication. Cet indice ne mesure ni la cohérence d’un parti ni l’effet d’une loi.</p>
-      ) : null}
-      {displayTitle !== evidence.title ? <p className="official-title"><strong>Intitulé officiel :</strong> {evidence.title}</p> : null}
+      <div className="document-actions"><a className="button" href={evidence.source_url} target="_blank" rel="noopener noreferrer">Ouvrir la source officielle ↗</a>{evidence.publication_confidence != null ? <span className="document-confidence">Source recoupée · conformité {Math.round(Number(evidence.publication_confidence) * 100)}/100</span> : null}</div>
+      {displayTitle !== evidence.title ? <details className="official-wording"><summary>Lire l’intitulé officiel complet</summary><p>{evidence.title}</p></details> : null}
+      </header>
+      <nav className="reading-nav" aria-label="Parcourir la fiche">{tally ? <a href="#resultat">Le résultat ↓</a> : null}{evidence.kind === 'vote' ? <a href={evidence.institution === 'senat' ? '#votes-par-groupe' : '#votes-par-parti'}>{evidence.institution === 'senat' ? 'Les votes par groupe ↓' : 'Les votes par parti ↓'}</a> : null}<a href="#provenance">Sources et contexte ↓</a></nav>
 
-      {tally && (tally.pour !== null || tally.contre !== null) ? <div className="vote-metrics" aria-label="Décompte officiel du scrutin"><div><span>Pour</span><strong>{tally.pour?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Contre</span><strong>{tally.contre?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Abstentions</span><strong>{tally.abstentions?.toLocaleString('fr-FR') ?? '—'}</strong></div><div><span>Votants</span><strong>{tally.votants?.toLocaleString('fr-FR') ?? '—'}</strong></div></div> : null}
+      {tally && (tally.pour !== null || tally.contre !== null) ? <section className="scrutin-result" id="resultat"><div><span className="eyebrow">Décompte officiel</span><h2>Le résultat en un regard.</h2><p className="hint">{tally.votants !== null ? `${tally.votants.toLocaleString('fr-FR')} votants indiqués dans la source.` : 'Nombre de votants non renseigné.'}</p></div><VoteDistribution tally={tally} /></section> : null}
       {evidence.kind === 'vote' ? <p className="hint">{scrutinNumber(evidence) ? `Scrutin n° ${scrutinNumber(evidence)} · ` : ''}Ces chiffres décrivent ce scrutin, pas la position de chaque élu. <a href={evidence.source_url} target="_blank" rel="noopener noreferrer">Vérifier le vote officiel ↗</a></p> : null}
 
       {evidence.excerpt ? (
         <Citation footer="Formulation reprise de la source ; le lien ci-dessous mène au document original.">
           {evidence.excerpt}
         </Citation>
-      ) : null}
-
-      <section className="panel">
-        <h2>Provenance</h2>
-        <MetaList items={meta} />
-        <p className="hint">
-          {source
-            ? `Récupéré le ${formatDateTime(source.retrieved_at)}${
-                source.sha256 ? ` · empreinte SHA-256 ${source.sha256.slice(0, 12)}…` : ''
-              }`
-            : 'Source récupérée par l’importeur ; le document original reste chez son éditeur.'}
-        </p>
-        {topicsSource?.note ? (
-          <p className="hint">
-            {topicsSource.note}
-            {topicsSource.values?.length ? (
-              <>
-                {' '}Dossier : <code>{topicsSource.values.join(', ')}</code>.
-              </>
-            ) : null}
-          </p>
-        ) : null}
-        {evidence.detail ? <RawJson summary="Faits structurés bruts (JSON copié de la source)" value={evidence.detail} /> : null}
-      </section>
-
-      {groups.length ? (
-        <section>
-          <h2>Comment les groupes ont voté</h2>
-          <GroupPositions groups={groups} names={groupNames} />
-        </section>
       ) : null}
 
       {evidence.kind === 'vote' && evidence.institution === 'senat' ? senateVotes.length ? (
@@ -188,6 +155,18 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
           : partyCoverage ? 'La liste nominative officielle est vérifiée, mais aucune affiliation unique à un parti ne permet d’attribuer ces positions.'
             : 'Aucun décompte par parti vérifié n’est disponible pour ce scrutin : la liste nominative et le total officiel doivent concorder avant affichage.'
         : 'Les positions individuelles reliées à un parti ne sont pas encore disponibles pour cette institution dans la base.'}</p><p className="hint">Le scrutin officiel et son résultat restent consultables ci-dessus.</p></section> : null}
+
+      {groups.length ? <details className="document-provenance"><summary><span><strong>Analyse officielle par groupe parlementaire</strong><small>Les décomptes de groupe, distincts des affiliations à un parti</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary><div className="provenance-content"><GroupPositions groups={groups} names={groupNames} /></div></details> : null}
+
+      <details className="document-provenance" id="provenance">
+        <summary><span><strong>Sources, contexte et données du scrutin</strong><small>Document original, références et contrôles de publication</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary>
+        <div className="provenance-content"><MetaList items={meta} />
+        <p className="hint">{source ? `Récupéré le ${formatDateTime(source.retrieved_at)}${source.sha256 ? ` · empreinte SHA-256 ${source.sha256.slice(0, 12)}…` : ''}` : 'Source récupérée par l’importeur ; le document original reste chez son éditeur.'}</p>
+        {evidence.publication_confidence != null ? <p className="hint"><strong>Conformité à la source : {Math.round(Number(evidence.publication_confidence) * 100)} %.</strong> Archive officielle, empreinte SHA-256 et données du scrutin recoupées avant publication. Cet indice ne mesure ni la cohérence d’un parti ni l’effet d’une loi.</p> : null}
+        {topicsSource?.note ? <p className="hint">{topicsSource.note}{topicsSource.values?.length ? <> Dossier : <code>{topicsSource.values.join(', ')}</code>.</> : null}</p> : null}
+        {evidence.detail ? <RawJson summary="Faits structurés bruts (JSON copié de la source)" value={evidence.detail} /> : null}
+        </div>
+      </details>
 
       {links.length ? (
         <section>
