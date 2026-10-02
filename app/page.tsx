@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import { EvidenceCard } from '@/components/evidence-card';
 import { VoteDistribution } from '@/components/vote-distribution';
-import { getEvidencePage } from '@/lib/data';
+import { PartyProfileCard, PROFILE_SUBJECTS } from '@/components/party-profile-card';
+import { VoteTopics } from '@/components/vote-topics';
+import { getEvidencePage, getPartyVotesForScrutin } from '@/lib/data';
+import { getAllPartyVotes, getPartyThemes } from '@/lib/vote-theme-data';
+import { ballotTotal } from '@/lib/vote-profile';
 import { formatDate, institutionLabel } from '@/lib/labels';
 import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
 import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
@@ -17,6 +21,16 @@ export default async function Home() {
   catch { failed = true; }
   const latest = votes?.items[0];
   const latestTally = latest ? voteTally(latest) : null;
+  const [partyDashboard, partyThemes, recentParties] = await Promise.all([
+    getAllPartyVotes().catch(() => null),
+    getPartyThemes([...VOTE_SUBJECT_GROUPS.map((category) => category.id), ...PROFILE_SUBJECTS]),
+    getEvidencePage({ kind: 'vote', institution: 'assemblee', limit: 1 }).then(async (result) => ({
+      date: result.items[0]?.occurred_at,
+      rows: result.items[0] ? await getPartyVotesForScrutin(result.items[0].id) : [],
+    })).catch(() => null),
+  ]);
+  const featuredParties = [...(recentParties?.rows ?? [])].sort((a, b) => ballotTotal(b) - ballotTotal(a) || a.party_name.localeCompare(b.party_name, 'fr'))
+    .slice(0, 6).map((row) => partyDashboard?.parties.find((party) => party.party_id === row.party_id)).filter((row) => row !== undefined);
 
   return (
     <main className="home">
@@ -33,6 +47,7 @@ export default async function Home() {
           <div className="latest-vote-kicker"><span>À la une de la base</span><span className="latest-vote-seal">Source officielle ↗</span></div>
           {latest ? <><div className="latest-vote-meta"><span>{institutionLabel(latest.institution)}</span><time dateTime={latest.occurred_at}>{formatDate(latest.occurred_at)}</time></div>
             <h2><Link href={`/pieces/${latest.id}`}>{readerTitle(latest)}</Link></h2>
+            <VoteTopics title={latest.title} institution={latest.institution} />
             <p className="latest-vote-scope">{scrutinNumber(latest) ? `Scrutin n° ${scrutinNumber(latest)} · ` : ''}{voteScope(latest) ?? 'Périmètre dans la source'}</p>
             {latestTally ? <VoteDistribution tally={latestTally} /> : <p className="hint">Décompte à consulter dans la source officielle.</p>}
             <Link className="latest-vote-link" href={`/pieces/${latest.id}`}>Qui a voté quoi ? <span aria-hidden="true">→</span></Link>
@@ -50,6 +65,14 @@ export default async function Home() {
       <section className="section-pad" id="derniers-scrutins">
         <div className="section-heading"><div><div className="eyebrow">Explorer les décisions</div><h2>Les derniers scrutins publiés</h2></div><Link className="text-link" href="/scrutins">Tous les scrutins →</Link></div>
         {failed ? <p className="empty">Les scrutins sont indisponibles pour le moment.</p> : votes?.items.length ? <><div className="cards">{votes.items.map((item) => <EvidenceCard item={item} key={item.id} />)}</div><p className="section-foot">{votes.total.toLocaleString('fr-FR')} scrutins publiés dans la base. Ce nombre décrit la couverture du site, pas l’activité totale des assemblées.</p></> : <p className="empty">Aucun scrutin publié sur ce déploiement. Les fiches apparaîtront après vérification des sources.</p>}
+      </section>
+
+      <section className="section-pad home-party-profiles" id="partis">
+        <div className="section-heading"><div><div className="eyebrow">Les choix dans les urnes parlementaires</div><h2>Un parti. Plusieurs sujets.</h2></div><Link className="text-link" href="/partis">Tous les profils de vote →</Link></div>
+        <p className="lead">Entreprises, solidarité, immigration, police : voyez les répartitions des votes, puis retrouvez la mesure exacte derrière chaque chiffre.</p>
+        <div className="profile-reading-key"><div className="party-chart-legend"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div><p>« Pour » signifie pour le texte soumis au vote. Un sujet ne dit pas si la mesure renforce ou réduit une protection. Les pourcentages portent sur les positions des députés attribuables au parti, non-votants inclus.</p></div>
+        {partyDashboard && featuredParties.length ? <><p className="resultline">Six partis affichés au maximum, par volume de positions dans le dernier scrutin AN publié{recentParties?.date ? ` (${formatDate(recentParties.date)})` : ''}. Les graphiques couvrent tout le corpus daté ci-dessous.</p><div className="party-profile-grid">{featuredParties.map((party) => <PartyProfileCard key={party.party_id} party={party} themes={partyThemes} scope={partyDashboard.scope} />)}</div></> : <p className="empty">Les profils de vote sont temporairement indisponibles. <Link href="/partis">Ouvrir le récapitulatif des partis →</Link></p>}
+        <p className="section-foot"><Link href="/categories?institution=senat">Au Sénat : explorer les votes des groupes →</Link> · <Link href="/methode#profils-vote">Comment lire ces chiffres ?</Link></p>
       </section>
 
       <section className="topic-feature section-pad">

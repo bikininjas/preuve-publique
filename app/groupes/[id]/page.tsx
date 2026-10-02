@@ -1,3 +1,4 @@
+import { VoteTopics } from '@/components/vote-topics';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Empty, Pager } from '@/components/ui';
@@ -53,7 +54,7 @@ export default async function GroupePage({ params, searchParams }: {
           const summary = { kind: 'vote' as const, title: vote.title };
           const voteNumber = scrutinNumber(summary);
           const span = voteScope(summary);
-          return <article className="vote-row" key={vote.vote_id}><div><span className="count">Assemblée nationale · {formatDate(vote.occurred_at)}{voteNumber ? ` · n° ${voteNumber}` : ''} · groupe <code>{vote.group_ref}</code></span>{span ? <p className="hint">Vote sur : {span}</p> : null}<h3><Link href={`/pieces/${vote.vote_id}`}>{readerTitle(summary)}</Link></h3><a href={vote.source_url} target="_blank" rel="noopener noreferrer">Scrutin officiel ↗</a></div><div className="position-cell"><span>Position majoritaire publiée</span><strong>{positionLabel(vote.position_majoritaire)}</strong><small>Pour {vote.pour} · Contre {vote.contre} · Abst. {vote.abstentions}</small></div></article>;
+          return <article className="vote-row" key={vote.vote_id}><div><span className="count">Assemblée nationale · {formatDate(vote.occurred_at)}{voteNumber ? ` · n° ${voteNumber}` : ''} · groupe <code>{vote.group_ref}</code></span>{span ? <p className="hint">Vote sur : {span}</p> : null}<h3><Link href={`/pieces/${vote.vote_id}`}>{readerTitle(summary)}</Link></h3><VoteTopics title={vote.title} institution="assemblee" /><a href={vote.source_url} target="_blank" rel="noopener noreferrer">Scrutin officiel ↗</a></div><div className="position-cell"><span>Position majoritaire publiée</span><strong>{positionLabel(vote.position_majoritaire)}</strong><small>Pour {vote.pour} · Contre {vote.contre} · Abst. {vote.abstentions}</small></div></article>;
         })}</div> : <Empty>Aucun scrutin publié pour ce groupe dans cette période de la base.</Empty>}
         <Pager page={page} pageCount={pageCount} hrefFor={(target) => `/groupes/${id}${target > 1 ? `?page=${target}` : ''}`} />
       </> : <Empty>Les positions publiées de ce groupe ne sont pas encore reliées aux scrutins visibles. Aucun vote ne lui est attribué par déduction.</Empty>}

@@ -3,6 +3,7 @@ import type { Evidence } from '@/lib/types';
 import { formatDate, institutionLabel, kindLabel } from '@/lib/labels';
 import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
 import { VoteDistribution } from '@/components/vote-distribution';
+import { VoteTopics } from '@/components/vote-topics';
 
 /** One published piece, as shown in the browsing lists. */
 export function EvidenceCard({ item }: { item: Evidence }) {
@@ -18,6 +19,7 @@ export function EvidenceCard({ item }: { item: Evidence }) {
         <Link href={`/pieces/${item.id}`}>{readerTitle(item)}</Link>
       </h3>
       {number ? <p className="card-ref">Scrutin officiel n° {number}</p> : null}
+      {item.kind === 'vote' ? <VoteTopics title={item.title} institution={item.institution} /> : null}
       {item.publication_confidence != null ? <p className="card-confidence" title="Conformité documentaire à la source ; cet indice ne mesure pas une interprétation politique.">Source recoupée · conformité {Math.round(Number(item.publication_confidence) * 100)}/100</p> : null}
       {item.topics?.length ? <div className="chip-row">{item.topics.slice(0, 2).map((topic) => <span className="chip" key={topic}>{topic}</span>)}</div> : null}
       {tally && (tally.pour !== null || tally.contre !== null) ? <VoteDistribution tally={tally} compact /> : null}

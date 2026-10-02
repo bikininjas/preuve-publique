@@ -6,7 +6,7 @@ Preuve Publique est un projet citoyen consacré à la France et à l'Union europ
 
 ## Cap éditorial
 
-- **Scrutins compréhensibles** : afficher d'abord le sujet du texte et le périmètre précis du vote (texte entier, article, amendement ou motion), puis conserver l'intitulé officiel et le numéro sur la fiche. Toutes les listes de scrutins sont triées par date du vote décroissante, y compris les filtres, les pages de groupe, l'accueil et la file de relecture. La page des scrutins propose des sous-thèmes exploratoires fondés sur des mots de l'intitulé officiel ; la page « Thèmes » garde séparément les rubriques publiées par les sources. Ces repères désignent un sujet, jamais un sens de vote.
+- **Scrutins compréhensibles** : afficher d'abord le sujet du texte et le périmètre précis du vote (texte entier, article, amendement ou motion), puis conserver l'intitulé officiel et le numéro sur la fiche. Toutes les listes de scrutins sont triées par date du vote décroissante, y compris les filtres, les pages de groupe, l'accueil et la file de relecture. La page des scrutins propose des sous-thèmes exploratoires fondés sur des mots de l'intitulé officiel ; la page « Thèmes » présente les graphiques des catégories et sous-thèmes et garde séparément les rubriques publiées par les sources. Ces repères désignent un sujet, jamais un sens de vote.
 - **Partis et groupes** : analyser Assemblée nationale, Sénat et Parlement européen selon les données effectivement disponibles. Les votes de groupe ne sont attribués à un parti que si son lien avec ce groupe est daté et sourcé. Une position de groupe ne vaut pas vote individuel.
 - **Parole et actes** : mettre les citations exactes d'un programme ou d'une déclaration face au scrutin portant sur la même mesure, avec le contexte du texte et les motifs publics du vote. Indiquer l'édition, la date de publication et l'élection du programme ; utiliser la version officielle la plus récente applicable à la période. Ne pas présenter un programme ancien comme celui de 2027, ni une proposition publiée après le scrutin comme une promesse déjà en vigueur. Toute divergence proposée demande une justification et une relecture humaine avant publication.
 - **Effets distributifs et inégalités** : documenter les populations susceptibles de bénéficier ou de pâtir d'une mesure avec des études d'impact ou indicateurs publics, unité, période, territoire, hypothèses et limites. Ne pas déduire un effet causal d'un seul vote.
@@ -14,6 +14,22 @@ Preuve Publique est un projet citoyen consacré à la France et à l'Union europ
 - **Affaires judiciaires** : distinguer personne, parti et procédure ; dater enquête, poursuite, décision et recours, avec sources et présomption d'innocence. Aucun catalogue judiciaire n'est encore présent dans le modèle de données.
 
 L'interface met ces objectifs en évidence sans remplir les manques par des chiffres ou accusations d'exemple. Les chantiers sans données vérifiées apparaissent explicitement comme tels sur `/observatoire`.
+
+### Profils de vote par thème et sous-thème
+
+- L'accueil affiche jusqu'à six cartes de partis sélectionnés par volume de positions dans le **dernier scrutin AN publié**. Chaque carte présente les trois catégories et quatre zooms : entreprises et règles du marché, solidarité et prestations sociales, immigration et nationalité, police et sécurité publique. Les graphiques couvrent **tout le corpus daté**, pas seulement le scrutin de sélection.
+- `/partis` affiche les partis avec des bulletins attribuables, archives comprises, triés par volume documenté : recherche par nom ou initiales, douze cartes par page. `/partis/[id]` présente les trois catégories, les **19 sous-thèmes** et les derniers scrutins individuels rattachables au parti, paginés et triés par date décroissante. Les affiliations anciennes restent distinctes : aucun parti actuel n'hérite automatiquement des votes d'un ancien nom.
+- `/categories` présente les graphiques de tous les sous-thèmes **visibles dès le chargement**, avec un index d'accès direct. Le Sénat conserve ses décomptes par **groupe**, sans les attribuer à un parti. Les cartes, fiches de scrutin et listes de votes affichent les catégories et sous-thèmes repérés dans le titre, avec des liens vers les mêmes filtres.
+- La taxonomie et ses mots contrôlés sont dans `lib/vote-subjects.ts`. `voteTopicsForTitle` applique le même rapprochement par sous-chaîne que les filtres publics SQL `ILIKE`. Le titre officiel entier est utilisé ; un titre simplifié ne remplace jamais la source. Les sujets peuvent se recouper : ne pas additionner leurs agrégats ni la somme des sous-thèmes pour reconstituer une catégorie.
+- **Dénominateur** : pour / (pour + contre + abstention + non-votant enregistré), au sein du parti et du corpus filtré. Les cartes précisent volume, nombre de scrutins et période du corpus. Les bulletins sans affiliation unique et les scrutins non conformes restent exclus. Une absence de données n'est jamais affichée comme 0 % de soutien.
+- **Sujet et direction sont distincts** : un texte contenant « immigration » peut ouvrir ou restreindre un droit ; un amendement peut supprimer une mesure. Les barres ne sont donc pas des scores « libéral », « social » ou « sécuritaire ». Qualifier une orientation exige une analyse du dispositif exact, des références et une validation humaine ; aucun programme récent ni rapprochement interprétatif n'est inventé. La méthode publique explique ces limites dans `/methode#profils-vote`.
+- `lib/vote-theme-data.ts` réutilise les RPC publiques existantes, avec RLS, un cache serveur de cinq minutes par taxonomie/base et des lots de quatre sujets maximum (deux RPC par sujet). Aucune migration ni écriture distante n'est nécessaire. Une requête échouée n'est pas mise en cache comme résultat vide ; les vues distinguent indisponibilité et absence de bulletins. Le premier chargement d'un corpus complet effectue 44 RPC (3 catégories + 19 sous-thèmes) ; les cartes de l'accueil n'en demandent que 14, plus la synthèse générale et la sélection du dernier scrutin.
+
+### Vérification de cette interface (02/10/2026)
+
+- `npm run build`, `npm run lint` et `npm run test:reader` : compilation, typage, lint et sept tests ciblés (périmètre du scrutin, chevauchement des sujets, absence de direction inférée, dénominateur avec non-votants et absence de données).
+- Vérification dans le navigateur avec les lectures publiques réelles : six partis sur l'accueil, 40 partis accessibles dans l'annuaire paginé, 19 graphiques de sous-thèmes visibles à l'Assemblée et au Sénat, profil RN et navigation vers les trois scrutins de solidarité attribuables au parti (64 pour, 19 abstentions, soit 77,1 % pour parmi 83 positions). Tri décroissant des derniers scrutins contrôlé.
+- Contrôle mobile à 390 px : accueil, annuaire, profil, thèmes et fiche de scrutin ; aucun débordement horizontal constaté. Aucun fichier de capture créé. La connexion Google et les règles d'accès administrateur ne sont pas modifiées.
 
 ## Périmètre et méthode
 
@@ -37,7 +53,9 @@ La connexion Google de `/admin` passe par Supabase Auth et la liste `admin_users
 
 | Adresse | Contenu |
 |---|---|
-| `/` | accueil : derniers scrutins publiés et accès direct aux sujets recherchés |
+| `/` | accueil : profils de partis par thème et sous-thème, derniers scrutins publiés et accès direct aux sujets recherchés |
+| `/partis` | récapitulatif des partis, catégories et zooms sur quatre sous-thèmes |
+| `/partis/[id]` | profil individuel : trois catégories, dix-neuf sous-thèmes, parts et derniers votes sourcés |
 | `/scrutins` | scrutins publiés, catégories et sous-thèmes lexicaux, graphiques par parti pour l'Assemblée et par groupe pour le Sénat, détail scrutin par scrutin et recherche |
 | `/groupes` | annuaire visuel des groupes de l'Assemblée : 21 regroupements de navigation pour 42 identifiants officiels visibles, recherche par ancien nom, filtre temporel et répartition des positions majoritaires publiées |
 | `/groupes/<id>` | scrutins publiés de l'Assemblée pour les variantes explicites du nom, du plus récent au plus ancien ; intitulé, identifiant, période et voix de chaque organe restent distincts |
