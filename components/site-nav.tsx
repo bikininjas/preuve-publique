@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 const links = [
   ['/scrutins', 'Scrutins'], ['/categories', 'Thèmes'], ['/partis', 'Partis'], ['/groupes', 'Groupes'],
   ['/observatoire', 'Observatoire'], ['/methode', 'Méthode'],
+  ['/presidentielle-2027', 'Présidentielle 2027'],
 ] as const;
 
 export function SiteNav() {

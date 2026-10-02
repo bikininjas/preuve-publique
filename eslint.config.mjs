@@ -6,6 +6,7 @@ export default defineConfig([
   globalIgnores([
     '.next/**',
     'out/**',
+    '.cache/**',
     'next-env.d.ts',
     // Staging is fetched raw material, not source code.
     'ingestion/.staging/**',
