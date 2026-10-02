@@ -51,7 +51,7 @@ export function Pager({
 }) {
   if (pageCount <= 1) return null;
   return (
-    <nav className="pager">
+    <nav className="pager" aria-label="Pagination">
       {page > 1 ? <Link href={hrefFor(page - 1)}>← Précédent</Link> : <span />}
       <span>
         Page {page} sur {pageCount}

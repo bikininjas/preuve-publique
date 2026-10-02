@@ -4,7 +4,7 @@ export const metadata = { title: 'Méthode' };
 
 export default function MethodePage() {
   return (
-    <main>
+    <main className="method-page">
       <div className="eyebrow">Méthode et limites</div>
       <h1>Ce que le site montre, et ce qu’il ne dit pas.</h1>
       <p className="lead">
@@ -14,7 +14,9 @@ export default function MethodePage() {
         verdict automatique.
       </p>
 
-      <section className="panel">
+      <nav className="reading-nav" aria-label="Parcourir la méthode"><a href="#sources">Les sources ↓</a><a href="#rapprochements">Les rapprochements ↓</a><a href="#comparaisons">Parole et vote ↓</a><a href="#publication">La publication ↓</a></nav>
+
+      <section className="panel" id="sources">
         <h2>Sources</h2>
         <ul>
           <li>
@@ -73,7 +75,7 @@ export default function MethodePage() {
       </section>
 
       <section className="panel">
-        <h2>Rapprochements</h2>
+        <h2 id="rapprochements">Rapprochements</h2>
         <p>
           Un rapprochement entre deux pièces a toujours une justification, une méthode, une confiance et un statut de
           relecture. Le lien <code>related</code> signifie seulement qu’il existe un lien documentaire : ce n’est ni
@@ -109,7 +111,7 @@ export default function MethodePage() {
       </section>
 
       <section className="panel">
-        <h2>Comparaisons, KPI et effets</h2>
+        <h2 id="comparaisons">Comparaisons, KPI et effets</h2>
         <p>Pour comparer une parole et un vote, nous devons citer les deux formulations, identifier la mesure exacte, distinguer vote sur un article et vote sur un texte entier, puis faire relire le rapprochement. Une divergence éventuelle est présentée avec son contexte et les explications publiées par l’acteur ; elle ne devient jamais un verdict automatique.</p>
         <p>Pour un programme, nous indiquons son édition, sa date de publication et l’élection concernée. Nous retenons la version officielle la plus récente applicable à la période examinée. Un programme d’une élection précédente ne sera pas présenté comme le programme de 2027 : si celui-ci manque, nous le dirons. Une proposition publiée après un vote peut éclairer une position ultérieure, mais ne prouve pas qu’elle était défendue au moment du scrutin.</p>
         <p>Un taux de présence exige le nombre total de scrutins auxquels l’acteur pouvait participer et la période de son mandat. Une mesure de présence médiatique exige un corpus de médias défini, des dates et une méthode de comptage. Un indicateur d’inégalité exige unité, population, territoire, période, source et limites. Sans ces bases, aucun pourcentage n’est affiché.</p>
@@ -122,7 +124,7 @@ export default function MethodePage() {
       </section>
 
       <section className="panel">
-        <h2>Publication et relecture</h2>
+        <h2 id="publication">Publication et relecture</h2>
         <p>
           Les importeurs versent chaque pièce en <b>brouillon</b>. Les scrutins officiels de l’Assemblée nationale
           peuvent être publiés après un contrôle automatique de l’archive, de son empreinte et des données en base.

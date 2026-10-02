@@ -37,25 +37,25 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
   const total = items.reduce((sum, item) => sum + item.pieces, 0);
 
   return (
-    <main>
-      <div className="page-intro"><div className="eyebrow">Explorer par sujet</div>
+    <main className="theme-explorer">
+      <div className="page-intro reading-intro"><div className="eyebrow">Explorer par sujet</div>
       <h1>Voir les votes.<br /><em>{senate ? 'Groupe par groupe.' : 'Parti par parti.'}</em></h1>
       <p className="lead">{senate ?
-        'Au Sénat, les graphiques reprennent les décomptes officiels par groupe parlementaire, scrutin par scrutin. Un groupe n’est pas un parti : aucune affiliation politique individuelle n’est déduite ici. Les sujets sont exploratoires et peuvent se recouper.' :
+        'Pour, contre, abstention : explorez les décomptes officiels du Sénat par groupe parlementaire. Passez du thème au scrutin exact, avec sa date et sa source.' :
         <>
-        Trois grandes catégories et un graphique pour chacun des quinze sous-thèmes. Les barres comptent les bulletins individuels de députés
-        rattachés à un parti par le référentiel daté de l’Assemblée nationale. Ouvrez un sujet pour retrouver les scrutins
-        exacts et leurs sources. Un scrutin peut apparaître dans plusieurs sous-thèmes : n’additionnez pas leurs totaux.
-        Une couleur ne dit pas ce qu’un parti pense de tout un domaine.</>}
+        Les bulletins individuels de députés, regroupés en trois catégories et {allSubjects.length} sous-thèmes.
+        Passez d’une vue d’ensemble au scrutin exact, avec sa date et sa source.</>}
       </p></div>
 
       <nav className="pills" aria-label="Choisir une institution pour les graphiques"><Link className={!senate ? 'active' : ''} href="/categories">Assemblée · partis</Link><Link className={senate ? 'active' : ''} href="/categories?institution=senat">Sénat · groupes</Link></nav>
+      <nav className="theme-jumps" aria-label="Aller à une catégorie">{VOTE_SUBJECT_GROUPS.map((category, index) => <a href={`#theme-${category.id}`} key={category.id}><span>{String(index + 1).padStart(2, '0')}</span><strong>{category.label}</strong><small>{category.subjects.length} sous-thèmes <b aria-hidden="true">↓</b></small></a>)}</nav>
+      <p className="hint chart-reading-note">Les sujets peuvent se recouper : leurs totaux ne s’additionnent pas. Chaque barre décrit les positions enregistrées, jamais une opinion sur tout le thème. {senate ? 'Un groupe parlementaire n’est pas un parti.' : 'Le rattachement à un parti repose sur une affiliation datée.'}</p>
 
       <div className="category-vote-overview">
-        {VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}>
+        {VOTE_SUBJECT_GROUPS.map((category) => <section className="theme-section" id={`theme-${category.id}`} key={category.id}>
           {senate ? groupById.get(category.id) ? <GroupVoteChart title={category.label} dashboard={groupById.get(category.id)!} href={`/scrutins?institution=senat&category=${category.id}`} groupHref={(ref) => `/scrutins?institution=senat&category=${category.id}&group=${ref}#group-details`} previewLimit={8} /> : <Empty>Les votes par groupe pour « {category.label} » sont indisponibles.</Empty>
             : partyById.get(category.id) ? <PartyVoteChart title={category.label} dashboard={partyById.get(category.id)!} href={`/scrutins?category=${category.id}`} partyHref={(partyId) => `/scrutins?category=${category.id}&party=${partyId}#party-details`} previewLimit={8} /> : <Empty>Les votes par parti pour « {category.label} » sont indisponibles.</Empty>}
-          <div className="category-subtheme-heading"><div className="eyebrow">Sous-thèmes de {category.label}</div><h3>Un sujet, des votes précis.</h3></div>
+          <details className="subtheme-disclosure"><summary><span><strong>Aller plus loin : {category.subjects.length} sous-thèmes</strong><small>{category.subjects.map((subject) => subject.label).join(' · ')}</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary>
           <div className="party-subject-grid">{category.subjects.map((subject) => {
             const group = groupById.get(subject.id);
             const party = partyById.get(subject.id);
@@ -63,7 +63,8 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
               : !senate && party ? <PartySubjectChart key={subject.id} title={subject.label} subjectId={subject.id} dashboard={party} />
                 : <div key={subject.id} className="party-subject-chart"><h3><Link href={`/scrutins?${senate ? 'institution=senat&' : ''}subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>;
           })}</div>
-        </div>)}
+          </details>
+        </section>)}
       </div>
 
       <div className="section-heading category-source-heading"><div><div className="eyebrow">Classement des institutions</div><h2>Rubriques publiées par les sources</h2></div></div>

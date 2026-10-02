@@ -11,7 +11,9 @@ function GroupBar({ row }: { row: GroupVoteRow }) {
   return <div className="party-bar" role="img" aria-label={`${row.group_name} : ${share(row.pour, denominator)} pour, ${share(row.contre, denominator)} contre, ${share(row.abstention, denominator)} abstentions, ${share(row.non_votant, denominator)} non-participations parmi ${number(denominator)} positions`}>
     {([
       ['pour', row.pour], ['contre', row.contre], ['abstention', row.abstention], ['non-votant', row.non_votant],
-    ] as const).map(([key, count]) => count ? <span className={`party-segment ${key}`} key={key} style={{ width: `${count / denominator * 100}%` }} title={`${number(count)} ${key}`} /> : null)}
+    ] as const).map(([key, count]) => count ? <span className={`party-segment ${key}`} key={key} style={{ width: `${count / denominator * 100}%` }} title={`${number(count)} ${key}`}>
+      {count / denominator >= .25 ? <span aria-hidden="true">{share(count, denominator)}</span> : null}
+    </span> : null)}
   </div>;
 }
 

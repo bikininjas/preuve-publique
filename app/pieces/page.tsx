@@ -58,7 +58,7 @@ export default async function PiecesPage({ searchParams }: { searchParams: Promi
 
   return (
     <main>
-      <div className="page-intro"><div className="eyebrow">La bibliothèque des preuves</div>
+      <div className="page-intro reading-intro"><div className="eyebrow">La bibliothèque des preuves</div>
       <h1>Tout retrouver,<br /><em>tout vérifier.</em></h1>
       <p className="lead">
         Scrutins, textes, programmes, déclarations et indicateurs lorsqu’ils sont publiés. Chaque fiche garde son
@@ -76,12 +76,12 @@ export default async function PiecesPage({ searchParams }: { searchParams: Promi
         <Empty>La base documentaire n’est pas accessible pour le moment.</Empty>
       ) : !isConfigured() ? (
         <Empty>
-          La base documentaire n’est pas configurée sur ce déploiement (variables <code>SUPABASE_*</code> absentes).
+          Le catalogue est temporairement indisponible sur ce déploiement.
         </Empty>
       ) : result.items.length ? (
         <>
           <p className="resultline">
-            {result.total} pièce{result.total > 1 ? 's' : ''}
+            {result.total.toLocaleString('fr-FR')} pièce{result.total > 1 ? 's' : ''}
             {terms ? <> pour « {terms} »</> : null} · page {page} sur {pageCount} · plus récentes d’abord
           </p>
           <div className="cards">
