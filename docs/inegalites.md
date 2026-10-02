@@ -1,5 +1,7 @@
 # Corpus d’inégalités de l’observatoire
 
+**Actualisation du 02/10/2026 : les 24 indicateurs sont désormais publiés sur demande explicite de l’utilisateur, sans nouvelle relecture.** Voir [la règle et la trace de publication](publication-indicateurs.md). Les paragraphes ci-dessous décrivent les imports précédents en brouillon.
+
 État vérifié le 02/10/2026 : **22 nouvelles fiches importées en brouillon**, en deux lots de 16 et 6 pièces, avec quatorze documents primaires téléchargés et empreintés (9 163 274 octets). Avec les deux fiches pilotes de pauvreté et de Gini, la base contient **24 indicateurs, tous en brouillon**. Les reprises simulées renvoient respectivement 16 et 6 `unchanged`, zéro insertion et zéro modification. Le rôle public `anon` ne voit aucun indicateur. Aucune nouvelle migration, publication ou livraison web n’a été effectuée pour ces extensions.
 
 ## Couverture du premier ensemble
