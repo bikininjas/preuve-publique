@@ -1,10 +1,12 @@
+import { SeoPage } from '@/components/seo-page';
+import type { SearchParamsRecord } from '@/lib/params';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { Empty } from '@/components/ui';
 import { getActors, getGroupDirectory } from '@/lib/data';
 import { GroupDirectory } from './directory';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Groupes parlementaires | Preuve Publique' };
 
 export default async function GroupesPage() {
   let groups: Awaited<ReturnType<typeof getGroupDirectory>> = [];
@@ -20,7 +22,7 @@ export default async function GroupesPage() {
   const mostDocumented = [...groups].sort((a, b) => b.vote_count - a.vote_count).slice(0, 4);
   const largest = mostDocumented[0]?.vote_count ?? 1;
 
-  return <main className="group-explorer">
+  return <main className="group-explorer"><SeoPage path="/groupes" />
     <section className="group-editorial-hero">
       <div className="group-hero-copy">
         <div className="group-hero-kicker"><span className="group-hero-dot" /> Assemblée nationale · scrutins publiés</div>
@@ -47,4 +49,8 @@ export default async function GroupesPage() {
 
     <section className="group-party-note"><span className="eyebrow">Et les partis ?</span><h2>Un groupe n’est pas un parti.</h2><p>{parties.length ? `${parties.length} parti${parties.length > 1 ? 's' : ''} identifié${parties.length > 1 ? 's' : ''} dans les sources publiées. ` : ''}Pour relier un scrutin à un parti, il faut une affiliation datée et sourcée. Le décompte majoritaire d’un groupe ne représente pas le vote individuel de tous ses membres.</p><Link className="text-link" href="/categories">Explorer les votes par thème ↗</Link></section>
   </main>;
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/groupes',SEO_PAGES['/groupes'],await searchParams);
 }

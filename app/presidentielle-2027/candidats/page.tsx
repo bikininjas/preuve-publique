@@ -1,13 +1,15 @@
+import { SeoPage } from '@/components/seo-page';
+import type { SearchParamsRecord } from '@/lib/params';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { pollOptions } from '@/lib/polls/data';
 import { candidateProfiles } from '@/lib/candidates/data';
 import { Empty } from '@/components/ui';
 
 export const dynamic='force-dynamic';
-export const metadata={title:'Personnes testées : des sondages aux pièces'};
 export default async function CandidatesPage() {
   const [options,profiles]=await Promise.all([pollOptions().catch(()=>null),candidateProfiles().catch(()=>null)]);
-  return <main><Link href="/presidentielle-2027/sondages" className="text-link">← Les sondages</Link>
+  return <main><SeoPage path="/presidentielle-2027/candidats" /><Link href="/presidentielle-2027/sondages" className="text-link">← Les sondages</Link>
     <div className="page-intro"><div className="eyebrow">Présidentielle 2027 · Des sondages aux pièces</div><h1>Comprendre les positions</h1>
       <p className="lead">Retrouver les rattachements datés, les votes personnels et les pièces sur les mêmes questions.</p></div>
     <div className="profile-reading-key"><p>Ces personnes figurent dans des hypothèses de sondage. Cela n’établit ni une candidature officielle ni un programme pour 2027. Les sondages mesurent une intention de vote ; les pièces documentent les propositions et les décisions.</p>
@@ -20,4 +22,8 @@ export default async function CandidatesPage() {
         <Link className="text-link" href={`/presidentielle-2027/candidats/${candidate.id}`}>Positions, rattachements et sources →</Link></article>;
     })}</div>:<Empty>La liste des personnes testées est temporairement indisponible.</Empty>}
   </main>;
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/presidentielle-2027/candidats',SEO_PAGES['/presidentielle-2027/candidats'],await searchParams);
 }

@@ -1,3 +1,5 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import { EvidenceCard } from '@/components/evidence-card';
 import { FilterForm, InstitutionSelect, KindSelect, SearchField, TopicSelect } from '@/components/filters';
 import { Empty, Pager } from '@/components/ui';
@@ -7,7 +9,6 @@ import { EVIDENCE_KINDS, INSTITUTIONS } from '@/lib/types';
 import type { EvidenceKind, EvidencePage, Institution } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Pièces publiées' };
 
 const PAGE_SIZE = 24;
 
@@ -57,7 +58,7 @@ export default async function PiecesPage({ searchParams }: { searchParams: Promi
   };
 
   return (
-    <main>
+    <main><SeoPage path="/pieces" />
       <div className="page-intro reading-intro"><div className="eyebrow">La bibliothèque des preuves</div>
       <h1>Tout retrouver,<br /><em>tout vérifier.</em></h1>
       <p className="lead">
@@ -100,4 +101,8 @@ export default async function PiecesPage({ searchParams }: { searchParams: Promi
       )}
     </main>
   );
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/pieces',SEO_PAGES['/pieces'],await searchParams);
 }

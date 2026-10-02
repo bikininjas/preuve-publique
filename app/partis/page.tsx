@@ -1,3 +1,5 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { PartyProfileCard, PROFILE_SUBJECTS } from '@/components/party-profile-card';
 import { Empty, Pager } from '@/components/ui';
@@ -7,7 +9,6 @@ import { ballotTotal } from '@/lib/vote-profile';
 import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Partis : les votes par thème et sous-thème' };
 
 export default async function PartiesPage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
   const params = await searchParams;
@@ -21,7 +22,7 @@ export default async function PartiesPage({ searchParams }: { searchParams: Prom
   const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr-FR');
   const filtered = parties.filter((party) => normalize(party.party_name).includes(normalize(query)) || normalize(party.party_name.split(/\s+/).map((word) => word[0]).join('')) === normalize(query));
   const shown = filtered.slice((page - 1) * 12, page * 12);
-  return <main>
+  return <main><SeoPage path="/partis" />
     <div className="page-intro reading-intro"><div className="eyebrow">Les votes, parti par parti</div><h1>Un parti.<br /><em>Des choix documentés.</em></h1><p className="lead">Économie, protection sociale, immigration, police : explorez les bulletins des députés par thème, puis ouvrez chaque mesure pour comprendre le vote.</p></div>
     <div className="profile-reading-key"><div className="party-chart-legend"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div><p>Les pourcentages portent sur les textes et amendements trouvés dans le corpus, pas sur une orientation « libérale » ou « sociale ». Un vote pour un amendement de suppression peut s’opposer à la mesure du texte. Les partis et leurs anciens noms restent distincts selon les affiliations datées.</p><Link href="/methode#profils-vote">Comprendre les chiffres →</Link></div>
     <form className="searchbar" action="/partis" method="get"><label className="sr-only" htmlFor="party-search">Chercher un parti</label><input id="party-search" type="search" name="q" maxLength={80} defaultValue={query} placeholder="Nom ou initiales du parti…" /><button className="button" type="submit">Rechercher ↗</button></form>
@@ -30,4 +31,8 @@ export default async function PartiesPage({ searchParams }: { searchParams: Prom
     <Pager page={page} pageCount={Math.max(1, Math.ceil(filtered.length / 12))} hrefFor={(target) => `/partis?${new URLSearchParams({ ...(query ? { q: query } : {}), page: String(target) })}`} />
     <p className="section-foot">Au Sénat, les données disponibles portent sur les groupes parlementaires. <Link href="/categories?institution=senat">Explorer les groupes du Sénat par sujet →</Link></p>
   </main>;
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/partis',SEO_PAGES['/partis'],await searchParams);
 }

@@ -1,3 +1,5 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { EvidenceCard } from '@/components/evidence-card';
 import { VoteDistribution } from '@/components/vote-distribution';
@@ -33,7 +35,7 @@ export default async function Home() {
     .slice(0, 6).map((row) => partyDashboard?.parties.find((party) => party.party_id === row.party_id)).filter((row) => row !== undefined);
 
   return (
-    <main className="home">
+    <main className="home"><SeoPage path="/" />
       <section className="hero evidence-hero">
         <div className="hero-copy">
           <div className="eyebrow"><span className="live-dot" /> L’observatoire des décisions publiques</div>
@@ -88,3 +90,5 @@ export default async function Home() {
     </main>
   );
 }
+
+export const metadata = pageMetadata('/');

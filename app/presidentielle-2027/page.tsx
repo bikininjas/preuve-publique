@@ -1,8 +1,9 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = { title: 'Présidentielle 2027' };
 export default function PresidentialPage() {
-  return <main className="reading-page">
+  return <main className="reading-page"><SeoPage path="/presidentielle-2027" />
     <div className="eyebrow">France · Élection présidentielle</div><h1>Présidentielle 2027</h1>
     <p className="lead">Des repères datés pour suivre la campagne et retrouver les sources.</p>
     <section className="panel"><span className="eyebrow">Intentions de vote</span><h2>Sondages</h2>
@@ -13,3 +14,5 @@ export default function PresidentialPage() {
     <p className="hint">Les intentions de vote ne prédisent pas le résultat de l’élection. Les programmes officiels de 2027 seront documentés lorsqu’ils seront disponibles.</p>
   </main>;
 }
+
+export const metadata = pageMetadata('/presidentielle-2027');

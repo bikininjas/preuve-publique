@@ -1,3 +1,6 @@
+import { SeoPage } from '@/components/seo-page';
+import type { SearchParamsRecord } from '@/lib/params';
+import { publicEvidence as getEvidenceItem, documentMetadata } from '@/lib/seo-content';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
@@ -7,7 +10,7 @@ import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { EditorialContext } from '@/components/editorial-context';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
-import { getActorNames, getEvidenceItem, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
+import { getActorNames, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
 import {
   RELATION_NOTES,
   formatDate,
@@ -37,7 +40,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   }
   if (unavailable) {
     return (
-      <main className="narrow">
+      <main className="narrow"><SeoPage path={`/pieces/${id}`} />
         <h1>Pièce indisponible</h1>
         <Empty>La base documentaire n’est pas accessible pour le moment. Réessayez plus tard.</Empty>
       </main>
@@ -117,7 +120,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   ];
 
   return (
-    <main className="evidence-detail">
+    <main className="evidence-detail"><SeoPage path={`/pieces/${id}`} />
       <p className="breadcrumb">
         <Link className="quiet" href="/pieces">
           ← Toutes les pièces
@@ -199,4 +202,9 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       ) : null}
     </main>
   );
+}
+
+export async function generateMetadata({params,searchParams}:{params:Promise<{id:string}>;searchParams:Promise<SearchParamsRecord>}) {
+  const {id} = await params;
+  return documentMetadata(`/pieces/${id}`,await searchParams);
 }

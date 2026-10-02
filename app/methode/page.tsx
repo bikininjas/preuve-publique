@@ -1,10 +1,11 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = { title: 'Méthode' };
 
 export default function MethodePage() {
   return (
-    <main className="method-page">
+    <main className="method-page"><SeoPage path="/methode" />
       <div className="eyebrow">Méthode et limites</div>
       <h1>Ce que le site montre, et ce qu’il ne dit pas.</h1>
       <p className="lead">
@@ -163,3 +164,5 @@ export default function MethodePage() {
     </main>
   );
 }
+
+export const metadata = pageMetadata('/methode');

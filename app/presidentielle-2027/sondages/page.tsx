@@ -1,11 +1,11 @@
+import { SeoPage } from '@/components/seo-page';
+import type { SearchParamsRecord } from '@/lib/params';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { PollExplorer } from '@/components/polls/explorer';
 
-export const metadata = { title: 'Sondages · Présidentielle 2027',
-  description: 'Intentions de vote publiées par les instituts, avec dates de terrain, configurations de candidats et sources originales. Données Sondax.' };
-
 export default function PollsPage() {
-  return <main className="polls-page">
+  return <main className="polls-page"><SeoPage path="/presidentielle-2027/sondages" />
     <p className="breadcrumb"><Link href="/presidentielle-2027">Présidentielle 2027</Link> / Sondages</p>
     <div className="eyebrow">Mesures publiées · France</div><h1>Les intentions de vote,<br />avec leurs sources.</h1>
     <p className="lead">Suivre les sondages de la présidentielle 2027, une hypothèse de candidatures à la fois.</p>
@@ -20,4 +20,8 @@ export default function PollsPage() {
       <p>Licence des données et de leur adaptation : <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Les réutilisations doivent conserver l’attribution et la même licence. L’API expose les URLs originales, les révisions Wikipédia et les empreintes du fichier importé.</p>
     </section>
   </main>;
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/presidentielle-2027/sondages',SEO_PAGES['/presidentielle-2027/sondages'],await searchParams);
 }
