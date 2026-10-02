@@ -31,6 +31,23 @@ L'interface met ces objectifs en évidence sans remplir les manques par des chif
 - Vérification dans le navigateur avec les lectures publiques réelles : six partis sur l'accueil, 40 partis accessibles dans l'annuaire paginé, 19 graphiques de sous-thèmes visibles à l'Assemblée et au Sénat, profil RN et navigation vers les trois scrutins de solidarité attribuables au parti (64 pour, 19 abstentions, soit 77,1 % pour parmi 83 positions). Tri décroissant des derniers scrutins contrôlé.
 - Contrôle mobile à 390 px : accueil, annuaire, profil, thèmes et fiche de scrutin ; aucun débordement horizontal constaté. Aucun fichier de capture créé. La connexion Google et les règles d'accès administrateur ne sont pas modifiées.
 
+### Densité des cartes et graphiques (02/10/2026)
+
+Les cartes documentaires, profils de partis, sous-thèmes, groupes, indicateurs et graphiques partagent des espacements plus courts. Les valeurs, les intitulés complets, les périodes, les dénominateurs, les sources et les limites restent visibles ; aucun contenu n'est supprimé pour réduire la hauteur. Les grilles de sous-thèmes et de groupes affichent trois colonnes à partir de 1 200 px, deux sur les formats intermédiaires et une sur mobile. Les gros compteurs adaptent leur taille aux petits écrans.
+
+Mesures DOM avant/après à largeur identique de 1 280 px, avec les données publiques réelles :
+
+| Élément mesuré | Avant | Après | Hauteur gagnée |
+|---|---:|---:|---:|
+| Graphique immigration de `/scrutins` | 1 594 px | 1 281 px | 20 % |
+| Première ligne du graphique | 84 px | 66 px | 21 % |
+| Carte de scrutin immigration | 498 px | 417 px | 16 % |
+| Carte de parti à l'accueil | 711 px | 608 px | 14 % |
+| Carte de sous-thème | 528 px | 442 px | 16 % |
+| Carte de groupe | 296 px | 230 px | 22 % |
+
+Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, groupes, profil de parti et détail de scrutin ; contrôles à 320, 390, 768 et 1 280 px. Aucun débordement horizontal ni compteur tronqué constaté après ajustement. Le checkout de présentation est isolé du travail en cours sur les sondages. Le build local utilise Webpack pour les dépendances partagées du checkout ; le build Cloud Run utilise le compilateur normal du projet.
+
 ## Périmètre et méthode
 
 La période de travail commence en 2017. La première couverture vise l'Assemblée nationale, le Sénat et le Parlement européen ; pour le droit français adopté, les dossiers législatifs de l'Assemblée nationale et les lois promulguées du Sénat, qui publient tous deux les références du Journal officiel (l'API Légifrance n'est pas utilisée : son compte est réservé en pratique au secteur public). Les programmes originaux et professions de foi complètent ces sources. Les déclarations médiatiques ne sont ajoutées que si l'enregistrement ou la transcription précise est accessible et vérifiable. Les collectivités locales ne font pas partie de la première version.
