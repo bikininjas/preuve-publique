@@ -9,5 +9,10 @@ out
 *.pem
 *.key
 *.log
+.cache
+.codex-remote-attachments
+*.tsbuildinfo
+client_secret_*.json
+supabase/.temp
 # Fetched raw material stays out of the image build context.
 ingestion/.staging

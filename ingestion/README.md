@@ -24,10 +24,40 @@ Principes :
 4. **Provenance systématique.** Chaque passage conserve les fichiers bruts
    (HTML, JSON, CSV, zip) avec leur SHA-256 dans le staging, et la base garde
    l'URL exacte, le repère dans la source et la date de récupération.
-5. **Pas de données personnelles de vote.** Les archives AN et l'API du
-   Parlement européen contiennent les positions individuelles ; elles ne sont
-   **pas** stockées ici. Elles exigent leur propre table revue (pour / contre /
-   abstention / non-participation), conformément à la méthode du projet.
+5. **Bulletins individuels vérifiés.** Les agrégats AN sont reconstruits à partir
+   des archives nominatives contrôlées et des rattachements datés. Le parcours
+   candidats conserve 1 549 bulletins personnels dans `candidate_ballots`,
+   pour 847 scrutins dont les décomptes ont été vérifiés. Une position de parti
+   ou de groupe n'est jamais attribuée à une personne. Aucun scrutin ni bulletin
+   du Parlement européen n'est actuellement publié.
+
+## Sondages, candidats et mesures
+
+Les sondages ont un modèle descriptif distinct des pièces officielles ; leurs
+révisions, contrôles, commandes et workflow quotidien sont décrits dans
+[sondages-2027.md](../docs/sondages-2027.md). Le workflow est sur `master` et son
+secret est configuré ; un contrôle manuel sans écriture a réussi le 02/10/2026.
+
+Le parcours [candidats-positions.md](../docs/candidats-positions.md) décrit
+l'import transactionnel des identités, rattachements et bulletins depuis les
+archives conservées. `--publish-facts` publie uniquement les faits recoupés.
+L'import éditorial garde les mesures et leurs liens en brouillon ; la revue
+humaine est disponible dans `/admin/measures`. Le lot pilote comporte trois
+questions et trois liens de scrutin, tous en brouillon, sans programme inventé.
+
+```bash
+npm run polls:sync -- --dry-run
+npm run candidates:sync -- --dry-run --publish-facts
+npm run measures:import -- --file=ingestion/candidates/pilot.json
+npm run test:polls
+npm run test:candidates
+```
+
+Ces commandes ont leurs propres modes de simulation : le sondage valide le CSV
+sans base ; les candidats et mesures exécutent la transaction puis l'annulent.
+Conserver les archives et manifestes SHA-256 dans `ingestion/.staging/` pour
+rejouer les contrôles. Les fichiers ponctuels de préparation des PR peuvent
+être supprimés ; les sources, migrations et fixtures font partie du projet.
 
 ## Commandes
 

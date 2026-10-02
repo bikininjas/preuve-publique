@@ -100,48 +100,18 @@ Les fixtures ne nomment aucune personnalité réelle ; les tests ne contactent p
 - **72 tests hors ligne passent** (13 sondages + 59 existants). Lint, typage et build de production réussis. Les erreurs de lint provenant du dossier de cache local `.cache` sont exclues explicitement, comme les sorties `.next` déjà exclues.
 - Contrôle navigateur : sélection de plusieurs candidats, détail d’un point et URL exacte, filtre Ifop, période de septembre, second tour limité au duel sélectionné. À 390 px, aucune extension horizontale de la page ; le graphique garde son défilement interne. Les bornes de période réagissent à l’événement `input`, y compris pour les champs date natifs. Les candidats de la liste choisie sont tous cochés au départ.
 - Le contrôle Supabase ne signale aucune nouvelle alerte pour les objets de sondage. Il reste des avertissements concernant des fonctions et réglages Auth antérieurs à cette fonctionnalité ; leur correction n’a pas été incluse ici. Référence : https://supabase.com/docs/guides/database/database-linter.
-- Le **site Cloud Run n’a pas été déployé** dans cette intervention. Les deux déclencheurs Cloud Build existants surveillent `master` ; la branche de travail n’est pas un déploiement.
-- Le secret de dépôt `POLLS_DB_PG_URL` a été configuré le 02/10/2026 après autorisation explicite de l’utilisateur ; sa présence a été vérifiée sans afficher sa valeur. Le workflow quotidien est livré mais **pas encore actif** : il n’est pas sur la branche par défaut. La fusion sur `master` rendra la planification disponible. La commande interne reste utilisable.
+- La [PR #17](https://github.com/bikininjas/preuve-publique/pull/17) a été fusionnée le 02/10/2026 à 06:52 UTC. Le build `dd6cfcb4-f03e-4b3a-b8ef-873237b9b614` a livré le commit `abd059e` sur Cloud Run ; la révision `preuve-publique-git-00030-24x` est prête. Un second déclencheur a échoué sur un droit IAM après construction et poussée de son image ; les deux chemins sont distingués dans le README.
+- Le secret de dépôt `POLLS_DB_PG_URL` est configuré et sa présence a été revérifiée sans afficher sa valeur. Le workflow est désormais sur `master`, disponible pour la planification quotidienne. Le [lancement manuel du 02/10/2026](https://github.com/bikininjas/preuve-publique/actions/runs/36977803429), sur le commit fusionné, a réussi en mode sans écriture. Une exécution planifiée avec écriture reste à constater dans Actions, le journal et la date de dernière réussite en base.
 
-## Préparation de la PR 17
+## Repères dans le dépôt
 
-Le 02/10/2026, la branche a été actualisée avec `master` (PR 16). Les styles des sondages et les ajustements de compacité des cartes et graphiques sont conservés ensemble. Après intégration : build de production, lint, typage et les 72 tests hors ligne réussis. Le contrôle distant en lecture seule retrouve la migration `20261002061929`, 33 sondages publiés, 214 configurations, 1 702 résultats et 33 révisions ; RLS est actif sur les cinq tables, les rôles publics ne disposent d'aucun droit d'écriture et les deux RPC sont `security invoker`. La présence du secret GitHub a été revérifiée sans consulter sa valeur. La publication Git et le déploiement restent à confirmer après fusion.
+- `ingestion/polls/` : parseur, CLI, synchronisation transactionnelle et tests avec fixtures fictives.
+- `supabase/migrations/20261002061929_presidential_polls.sql` : schéma, droits et RPC.
+- `lib/polls/` : types, provenance, filtres, lectures publiques et formatage partagé.
+- `app/api/polls/` : API paginée ; `app/presidentielle-2027/` et `components/polls/` : interface.
+- `.github/workflows/polls-sync.yml` : contrôle manuel et synchronisation quotidienne.
+- [candidats-positions.md](candidats-positions.md) : passage du nom testé dans un sondage aux identités, rattachements, bulletins et mesures relues.
 
-## Fichiers livrés
-
-Créés :
-
-- `.github/workflows/polls-sync.yml`
-- `app/api/polls/route.ts`
-- `app/api/polls/options/route.ts`
-- `app/api/polls/candidates/[candidate]/history/route.ts`
-- `app/presidentielle-2027/page.tsx`
-- `app/presidentielle-2027/sondages/page.tsx`
-- `components/polls/explorer.tsx`
-- `components/polls/chart.tsx`
-- `lib/polls/types.ts`
-- `lib/polls/query.ts`
-- `lib/polls/data.ts`
-- `lib/polls/providers.ts`
-- `ingestion/polls/sondax.ts`
-- `ingestion/polls/sync.ts`
-- `ingestion/polls/cli.ts`
-- `ingestion/polls/tests/parser.test.mjs`
-- `ingestion/polls/tests/database.test.mjs`
-- `ingestion/polls/tests/fixtures/sondax.csv`
-- `supabase/migrations/20261002061929_presidential_polls.sql`
-- `docs/sondages-2027.md`
-
-Modifiés :
-
-- `README.md` : entrée de la fonctionnalité et commandes.
-- `app/admin/(protected)/runs/page.tsx` : explication du journal et déclenchement interne.
-- `app/style.css` : présentation et adaptation mobile.
-- `components/site-nav.tsx` : entrée Présidentielle 2027.
-- `ingestion/lib/csv.mjs` : mode strict optionnel, existants préservés.
-- `ingestion/lib/db.mjs` : type documentaire de l’erreur du journal.
-- `package.json` : commandes de synchronisation, tests et typage.
-- `tsconfig.json` : imports TypeScript explicites pour partager le code avec Node.
-- `eslint.config.mjs` : exclusion des artefacts de cache locaux.
-
-Ni fichier `.env`, ni CSV de production, ni capture, ni pièce jointe utilisateur dans cette livraison. Aucun paquet supplémentaire nécessaire ; lockfile inchangé.
+Les archives de production restent hors Git et du contexte Docker. Conserver
+les données sources nécessaires au rejeu ; supprimer seulement les fichiers
+ponctuels de préparation des PR ou de construction devenus inutiles.
