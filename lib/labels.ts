@@ -1,4 +1,14 @@
-import type { EvidenceKind, Institution, LinkMethod, LinkRelation, RowStatus } from '@/lib/types';
+import type { Evidence, EvidenceKind, Institution, LinkMethod, LinkRelation, RowStatus } from '@/lib/types';
+
+/** Respect the documented precision; the SQL month-start is only a sort key. */
+export function formatEvidenceDate(evidence: Evidence): string {
+  const indicator = evidence.kind === 'indicator' ? evidence.detail?.indicator as { publication_month?: unknown } | undefined : undefined;
+  const month = indicator?.publication_month;
+  if (typeof month === 'string' && /^\d{4}-(0[1-9]|1[0-2])$/.test(month) && evidence.occurred_at === `${month}-01`) {
+    return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T00:00:00Z`));
+  }
+  return formatDate(evidence.occurred_at);
+}
 
 /**
  * Libellés français partagés par le site public et l'espace de relecture.

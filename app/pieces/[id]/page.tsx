@@ -11,6 +11,7 @@ import { getActorNames, getEvidenceItem, getGroupVoteCoverageForScrutin, getGrou
 import {
   RELATION_NOTES,
   formatDate,
+  formatEvidenceDate,
   formatDateTime,
   institutionLabel,
   kindLabel,
@@ -128,7 +129,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       <h1 className="title">{displayTitle}</h1>
       {evidence.kind === 'vote' ? <p className="hint">Sujet du texte concerné · {scope ? `vote sur : ${scope.toLocaleLowerCase('fr-FR')}` : 'périmètre du vote à vérifier dans l’intitulé officiel'}. Un amendement ou une motion ne vaut pas vote sur l’ensemble du texte.</p> : null}
       <p className="resultline">
-        {formatDate(evidence.occurred_at)}
+        {formatEvidenceDate(evidence)}
         {actor ? <> · {actor.name}</> : null}
         {scrutinNumber(evidence) ? <> · scrutin n° {scrutinNumber(evidence)}</> : null}
         {evidence.reviewed_at ? <> · {evidence.publication_method ? 'contrôlée' : 'relue'} le {formatDate(evidence.reviewed_at)}</> : null}

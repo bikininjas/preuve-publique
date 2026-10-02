@@ -7,7 +7,7 @@ import { canonicalJson, connect, startRun, finishRun, upsertEvidence } from '../
 import { loadProjectEnv, requireDbUrl } from '../lib/env.mjs';
 import domains from '../../lib/inequality-domains.json' with { type: 'json' };
 
-const HOSTS = new Set(['www.cnccep.fr', 'www.insee.fr', 'www.cours-appel.justice.fr', 'www.cereq.fr', 'drees.solidarites-sante.gouv.fr']);
+const HOSTS = new Set(['www.cnccep.fr', 'www.insee.fr', 'www.cours-appel.justice.fr', 'www.cereq.fr', 'drees.solidarites-sante.gouv.fr', 'www.ipp.eu', 'www.enseignementsup-recherche.gouv.fr', 'www.defenseurdesdroits.fr']);
 const KINDS = new Set(['program', 'statement', 'indicator', 'judicial_event']);
 const nonempty = (value) => typeof value === 'string' && Boolean(value.trim());
 
@@ -32,6 +32,9 @@ export function validateDocument(document) {
       if (p.series.at(-1).period !== p.period || p.series.at(-1).value !== p.value) throw new Error('Dernier point incompatible avec la valeur affichée.');
       if (p.domain && !domains.some(({ id }) => id === p.domain)) throw new Error('Domaine d’inégalité inconnu.');
       if (p.measurement_type && !['observation', 'simulation', 'testing'].includes(p.measurement_type)) throw new Error('Type de mesure inconnu.');
+      // Une date SQL de classement ne doit pas inventer le jour de publication.
+      if (p.publication_month !== undefined && (typeof p.publication_month !== 'string' || !/^\d{4}-(0[1-9]|1[0-2])$/.test(p.publication_month)
+        || record.occurred_at !== `${p.publication_month}-01` || record.source?.published_at != null)) throw new Error('Précision mensuelle incompatible avec la date de publication.');
       if (p.comparisons !== undefined) {
         if (!nonempty(p.value_label) || !nonempty(p.comparison_note) || !Array.isArray(p.comparisons) || p.comparisons.length < 2 || p.comparisons.length > 10
           || !p.comparisons.every((row) => nonempty(row.label) && Number.isFinite(row.value) && !Object.hasOwn(row, 'unit') && !Object.hasOwn(row, 'period'))

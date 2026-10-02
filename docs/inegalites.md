@@ -1,6 +1,6 @@
 # Corpus d’inégalités de l’observatoire
 
-État vérifié le 02/10/2026 : **16 nouvelles fiches importées en brouillon**, neuf documents primaires téléchargés et empreintés (3 138 804 octets). Avec les deux fiches pilotes de pauvreté et de Gini, la base contient **18 indicateurs, tous en brouillon**. Le second passage simulé renvoie 16 `unchanged`, zéro insertion et zéro modification. Le rôle public `anon` ne voit aucune fiche du nouveau lot. Aucune nouvelle migration, publication ou livraison web n’a été effectuée pour cette extension.
+État vérifié le 02/10/2026 : **22 nouvelles fiches importées en brouillon**, en deux lots de 16 et 6 pièces, avec quatorze documents primaires téléchargés et empreintés (9 163 274 octets). Avec les deux fiches pilotes de pauvreté et de Gini, la base contient **24 indicateurs, tous en brouillon**. Les reprises simulées renvoient respectivement 16 et 6 `unchanged`, zéro insertion et zéro modification. Le rôle public `anon` ne voit aucun indicateur. Aucune nouvelle migration, publication ou livraison web n’a été effectuée pour ces extensions.
 
 ## Couverture du premier ensemble
 
@@ -45,12 +45,38 @@ npm run test:observatory
 
 L’import exige des documents officiels, vérifie l’édition de chaque page HTML et la signature des PDF, conserve SHA-256 et date de récupération, et reste limité aux brouillons. Il vérifie aussi les valeurs de référence et les dénominateurs des comparaisons. Les protections de la première livraison contre l’écrasement des pièces ou sources déjà relues restent actives. Les fichiers originaux sont ignorés par Git et ne sont pas stockés dans Postgres. Les métadonnées et données structurées du lot représentent un faible volume ; le lot reste limité à 20 pièces et 25 Mo de téléchargement.
 
-L’interface de cette branche propose `/admin/inegalites` sous le contrôle existant `admin_users`, avec 18 fiches, neuf domaines, statuts et accès aux documents. La page publique `/observatoire` utilise le même rendu des comparaisons après publication, avec une lecture plafonnée à 24 indicateurs et un lien vers le catalogue paginé. Si davantage de fiches existent, l’échantillon est annoncé. Les brouillons ne sont ni affichés ni comptés publiquement.
+L’interface de cette branche propose `/admin/inegalites` sous le contrôle existant `admin_users`, avec 24 fiches, neuf domaines, statuts et accès aux documents. La page publique `/observatoire` utilise le même rendu des comparaisons après publication, avec une lecture plafonnée à 24 indicateurs et un lien vers le catalogue paginé. Si davantage de fiches existent, l’échantillon est annoncé. Les brouillons ne sont ni affichés ni comptés publiquement.
 
 La publication attend une relecture humaine réelle dans les fiches d’administration, conformément à `AGENTS.md`. Le nouveau rendu doit ensuite être livré séparément. Le compte technique n’a marqué aucune pièce relue ou publiée.
 
-Contrôles : build Next.js, TypeScript, lint, 19 tests (dont transaction, idempotence, contraintes et RLS), comptage réel après import, reprise simulée, vue de relecture desktop et mobile 390 px sans débordement horizontal, absence des brouillons dans `/observatoire` et refus du lien public vers une fiche non publiée.
+Contrôles : build Next.js, TypeScript, lint, 21 tests (dont transaction, idempotence, contraintes et RLS), comptage réel après import, reprise simulée, vue de relecture desktop et mobile 390 px sans débordement horizontal, absence des brouillons dans `/observatoire` et refus du lien public vers une fiche non publiée.
+
+## Complément : fiscalité et accès aux études, à l’emploi et au logement
+
+Le lot `inegalites-acces-fiscalite-2026-10-02` ajoute six brouillons à partir de cinq documents primaires (6 024 470 octets). Leur reprise simulée renvoie six pièces inchangées. Les sources IPP et Défenseur des droits sont les publications des équipes qui ont produit les estimations, et non des commentaires médiatiques.
+
+| Domaine | Mesure ajoutée | Période | Source et repère | Relecture |
+|---|---|---|---|---|
+| Taxes indirectes | Contribution des prélèvements sur production et consommation : +3,9 points de Gini | 2023 | [Insee Analyses 118](https://www.insee.fr/fr/statistiques/8974371), figure 3b et méthode | [Fiche](https://preuve-publique.fr/admin/pieces/e346077f-3851-4a74-a3eb-5f6136851825) |
+| Très hauts revenus | Taux effectif direct : 46 % au seuil du top 0,1 %, 26 % parmi le top 0,0002 % | 2016 | [Note IPP 92, version du 7 juin 2023](https://www.ipp.eu/wp-content/uploads/2023/06/Note_IPP_Billionaires-version-actualisee.pdf), pages 1 et 5 imprimées | [Fiche](https://preuve-publique.fr/admin/pieces/29457e91-4d70-4970-a45c-d3a186cd928d) |
+| Filières sélectives | CPGE : 50 % d’origine cadre, 10,4 % employée, 6,4 % ouvrière | Rentrée 2025-2026 | [SIES, Note Flash 02](https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2026-02/nf-sies-2026-02--39443.pdf), page 2, tableau origine sociale, colonne Ensemble | [Fiche](https://preuve-publique.fr/admin/pieces/c4d83fbb-209f-448a-9fc1-d5e478600b36) |
+| Origine perçue / recrutement | Ratio ajusté de risque de déclarer une discrimination : 2,8 par rapport aux personnes perçues comme blanches exclusivement | Enquête 2024, expériences sur cinq ans | [Défenseur des droits / OIT, 18e baromètre](https://www.defenseurdesdroits.fr/sites/default/files/2025-12/ddd_EAD-2024_OIT-18_20251209.pdf), annexe 2, page 34 imprimée | [Fiche](https://preuve-publique.fr/admin/pieces/b1af87f3-3b79-4bbe-811b-fb49957b150c) |
+| Origine perçue / carrière | Même comparaison, déroulement de carrière : ratio ajusté 1,7 | Même enquête et période | Même source, autre colonne de l’annexe 2 | [Fiche](https://preuve-publique.fr/admin/pieces/6198d63f-abae-4d1d-b24a-195f4a621b6a) |
+| Discrimination locative | Demandes de visite : 38,1 % de réponses positives avec un nom signalant une origine maghrébine, 46,3 % avec une origine française présumée | Mars 2018 | [Étude MICADO, Défenseur des droits / TEPP-CNRS](https://www.defenseurdesdroits.fr/sites/default/files/2023-08/ddd-etude-test-discrimination-acces-logement-origine-20191008.pdf), page 7, groupe témoin au suivi de trois mois | [Fiche](https://preuve-publique.fr/admin/pieces/e8cc6096-46a9-4ea4-89b2-5f91ea6c0a8e) |
+
+Les comptes distribués incluent des hypothèses d’incidence : +3,9 n’est ni un taux de TVA ni un taux d’impôt individuel. L’étude IPP rapporte les impôts directs au revenu économique, profits non distribués inclus, et exclut les taxes indirectes ; ses données de 2016 précèdent les réformes de 2017-2018. Elle est publiée en 2023 et conservée comme repère historique, sans extrapolation à la fiscalité actuelle.
+
+La composition sociale des CPGE ne mesure pas des probabilités d’admission ; les catégories affichées ne sont pas exhaustives et 4,3 % des origines sociales sont non renseignées. Le PDF ne donne que le mois de publication : `source.published_at` reste nul et `publication_month=2026-02`. Le premier jour du mois dans `occurred_at` sert uniquement au classement exigé par le schéma ; les cartes et les fiches affichent **février 2026**, sans fabriquer un jour exact.
+
+Les ratios du baromètre concernent des expériences déclarées et des caractéristiques ajustées dans le modèle, et ne sont pas des taux bruts ni des condamnations. Les catégories d’origine perçue ne sont pas interchangeables avec la nationalité ou l’ascendance migratoire. Le testing locatif porte sur des agences sélectionnées à risque discriminatoire, sans représentativité de l’ensemble du marché. Dans les agences ayant reçu le courrier d’alerte, l’écart n’est plus significatif à 3 et 9 mois, mais réapparaît à 15 mois ; ce contexte figure dans la fiche.
+
+```powershell
+npm run observatory:import -- --file ingestion/observatory/inequalities-access-tax.json --dry-run
+npm run observatory:import -- --file ingestion/observatory/inequalities-access-tax.json --yes
+```
+
+Contrôles complémentaires : 21 tests réussis, relecture des valeurs et dénominateurs dans les publications primaires, rollback et idempotence du troisième lot, contraintes de précision mensuelle, vérification distante des six empreintes et de `source.published_at` nul pour les CPGE, 24 indicateurs en brouillon et zéro indicateur accessible au rôle `anon`.
 
 ## Extensions encore à documenter
 
-Prochaines séries pertinentes : TVA et autres impôts indirects selon les revenus, fiscalité effective des très hauts patrimoines avec définition du revenu retenu, accès aux filières sélectives et postes dirigeants, discriminations au logement, surpeuplement, santé et renoncement aux soins, handicap, territoires et non-recours à d’autres prestations. Pour chaque extension, choisir une source primaire, vérifier les catégories et périodes comparables, puis importer un lot limité. Aucune valeur manquante n’est remplacée par zéro ou par une hypothèse politique.
+Prochaines séries pertinentes : TVA seule selon les revenus, fiscalité après les réformes de 2017-2018, postes dirigeants, surpeuplement, santé et renoncement aux soins, handicap, territoires et non-recours à d’autres prestations. Pour chaque extension, choisir une source primaire, vérifier les catégories et périodes comparables, puis importer un lot limité. Aucune valeur manquante n’est remplacée par zéro ou par une hypothèse politique.

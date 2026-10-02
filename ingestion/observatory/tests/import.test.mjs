@@ -8,8 +8,9 @@ import { validateDocument, prepareDocument, importDocument, parseOptions } from 
 
 const pilot = () => JSON.parse(readFileSync(new URL('../pilot.json', import.meta.url), 'utf8'));
 const inequalities = () => JSON.parse(readFileSync(new URL('../inequalities.json', import.meta.url), 'utf8'));
+const accessTax = () => JSON.parse(readFileSync(new URL('../inequalities-access-tax.json', import.meta.url), 'utf8'));
 const inequalityFetch = async (url) => {
-  const body = Buffer.from(url.endsWith('.pdf') ? '%PDF-1.7 source primaire' : inequalities().records.filter((r) => r.source_url === url).flatMap((r) => r.detail.source_verification.markers).join(' '));
+  const body = Buffer.from(url.endsWith('.pdf') ? '%PDF-1.7 source primaire' : [...inequalities().records, ...accessTax().records].filter((r) => r.source_url === url).flatMap((r) => r.detail.source_verification.markers).join(' '));
   return { body, bytes: body.length, finalUrl: url, fetchedAt: '2026-10-02T12:00:00Z', sha256: createHash('sha256').update(body).digest('hex') };
 };
 const fakeFetch = async (url) => {
@@ -89,6 +90,11 @@ test('Postgres : rollback, idempotence, verrouillage des pièces relues et RLS p
     assert.equal((await pg.query('select count(*)::int as n from public.evidence')).rows[0].n, 6);
     assert.equal((await importDocument(db, expanded, { dryRun: false })).inserted, 16);
     assert.equal((await importDocument(db, expanded, { dryRun: false })).unchanged, 16);
+    const extension = await prepareDocument(accessTax(), { fetchDocument: inequalityFetch });
+    await importDocument(db, extension);
+    assert.equal((await pg.query('select count(*)::int as n from public.evidence')).rows[0].n, 22);
+    assert.equal((await importDocument(db, extension, { dryRun: false })).inserted, 6);
+    assert.equal((await importDocument(db, extension, { dryRun: false })).unchanged, 6);
     await pg.exec('set role anon');
     assert.equal((await pg.query('select count(*)::int as n from public.evidence')).rows[0].n, 0);
     assert.equal((await pg.query('select count(*)::int as n from public.sources')).rows[0].n, 0);
@@ -115,4 +121,17 @@ test('Postgres : rollback, idempotence, verrouillage des pièces relues et RLS p
     await pg.exec('reset role');
     await assert.rejects(pg.query("update public.evidence set detail='{}'::jsonb where kind='judicial_event'"), /evidence_judicial_context_check/);
   } finally { await pg.close(); }
+});
+
+test('publication connue au mois : aucun jour exact fabriqué, sources primaires et budget vérifiés', async () => {
+  for (const mutate of [
+    (r) => { r.detail.indicator.publication_month = '2026-13'; },
+    (r) => { r.occurred_at = '2026-02-20'; },
+    (r) => { r.source.published_at = '2026-02-01'; },
+  ]) { const doc = accessTax(); mutate(doc.records[2]); assert.throws(() => validateDocument(doc), /Précision mensuelle/); }
+  const result = await prepareDocument(accessTax(), { fetchDocument: inequalityFetch });
+  assert.equal(result.sourceCount, 5);
+  assert.equal(result.records.length, 6);
+  assert.equal(result.records[2].source.published_at, null);
+  await assert.rejects(prepareDocument(accessTax(), { fetchDocument: async (url) => ({ ...await inequalityFetch(url), bytes: 10_000_001 }) }), /Budget/);
 });

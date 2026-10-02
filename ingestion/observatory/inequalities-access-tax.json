@@ -1,0 +1,281 @@
+{
+  "edition": "inegalites-acces-fiscalite-2026-10-02",
+  "records": [
+    {
+      "external_id": "inegalites:taxes-production-consommation-2023",
+      "kind": "indicator",
+      "title": "Taxes sur la production et la consommation : contribution aux inégalités",
+      "excerpt": null,
+      "occurred_at": "2026-04-16",
+      "source_url": "https://www.insee.fr/fr/statistiques/8974371",
+      "source_locator": "Figure 3b, ligne Prélèvements sur la production et la consommation ; Sources et méthodes",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Revenus des ménages élargis à l’ensemble de l’économie en 2023 — Insee Analyses 118",
+        "published_at": "2026-04-16"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "118",
+            "16/04/2026",
+            "3,9"
+          ]
+        },
+        "indicator": {
+          "domain": "fiscalite",
+          "measurement_type": "observation",
+          "value": 3.9,
+          "unit": "points de Gini",
+          "period": "2023",
+          "geography": "France",
+          "population": "Population des comptes nationaux distribués ; secteurs institutionnels de l’économie nationale",
+          "method": "Comptes nationaux distribués 2023, semi-définitifs, base 2020 ; ventilation expérimentale par niveau de vie usuel.",
+          "limits": "Signe positif = hausse des inégalités dans cette décomposition. Inclut la TVA et les taxes de production ; ne mesure pas la TVA seule ni un taux d’imposition individuel. Hypothèses d’incidence et de répartition ; ensemble des transferts publics réduit les inégalités.",
+          "source_edition": "Revenus des ménages élargis à l’ensemble de l’économie en 2023 — Insee Analyses 118 · publication du 2026-04-16",
+          "series": [
+            {
+              "period": "2023",
+              "value": 3.9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:imposition-hauts-revenus-2016",
+      "kind": "indicator",
+      "title": "Très hauts revenus : taux effectif d’imposition directe",
+      "excerpt": null,
+      "occurred_at": "2023-06-07",
+      "source_url": "https://www.ipp.eu/wp-content/uploads/2023/06/Note_IPP_Billionaires-version-actualisee.pdf",
+      "source_locator": "PDF, pages 1 et 5 (pagination imprimée), résumé et commentaire de la figure 1b ; encadré 3",
+      "source": {
+        "publisher": "Institut des politiques publiques (IPP)",
+        "document_title": "Quels impôts les milliardaires paient-ils ? — Note IPP 92, version actualisée du 7 juin 2023",
+        "published_at": "2023-06-07"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "fiscalite",
+          "measurement_type": "observation",
+          "value": 26,
+          "value_label": "0,0002 % des foyers aux revenus les plus élevés",
+          "unit": "% du revenu économique",
+          "period": "2016",
+          "geography": "France",
+          "population": "Foyers fiscaux résidents situés en haut de la distribution du revenu économique",
+          "method": "Appariement des déclarations fiscales des ménages et entreprises ; profits non distribués des sociétés contrôlées et cotisations non contributives intégrés au revenu. Impôt sur les sociétés attribué aux actionnaires.",
+          "comparisons": [
+            {
+              "label": "Au seuil des 0,1 % les plus hauts revenus",
+              "value": 46
+            },
+            {
+              "label": "0,0002 % des foyers aux revenus les plus élevés",
+              "value": 26
+            }
+          ],
+          "comparison_note": "Valeurs arrondies du commentaire de l’IPP ; 46 % au seuil du top 0,1 %, pas moyenne de tous les foyers du top 0,1 %.",
+          "limits": "Données 2016, avant les réformes de 2017-2018 ; ne décrit pas la fiscalité actuelle. Exclut TVA, impôts de production et fiscalité immobilière. Revenu économique, pas patrimoine ni revenu disponible.",
+          "source_edition": "Quels impôts les milliardaires paient-ils ? — Note IPP 92, version actualisée du 7 juin 2023 · publication du 2023-06-07",
+          "series": [
+            {
+              "period": "2016",
+              "value": 26
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:cpge-origine-sociale-2025",
+      "kind": "indicator",
+      "title": "Prépas aux grandes écoles : composition sociale des effectifs",
+      "excerpt": null,
+      "occurred_at": "2026-02-01",
+      "source_url": "https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2026-02/nf-sies-2026-02--39443.pdf",
+      "source_locator": "PDF, page 2, tableau Origine sociale des étudiants en CPGE par filière en 2025-2026, colonne Ensemble",
+      "source": {
+        "publisher": "Ministère de l’Enseignement supérieur / SIES",
+        "document_title": "Les effectifs en classes préparatoires aux grandes écoles à la rentrée 2025-2026 — Note Flash 02, février 2026",
+        "published_at": null
+      },
+      "detail": {
+        "indicator": {
+          "domain": "etudes",
+          "measurement_type": "observation",
+          "value": 50,
+          "value_label": "Familles de cadres et professions intellectuelles supérieures",
+          "unit": "% des inscrits en CPGE",
+          "period": "Rentrée 2025-2026",
+          "geography": "France",
+          "population": "Étudiants sous statut scolaire, CPGE publiques et privées sous ou hors contrat",
+          "method": "Systèmes d’information Scolarité, Scolege et enseignement agricole ; catégories sociales des familles publiées par le SIES.",
+          "comparisons": [
+            {
+              "label": "Familles de cadres et professions intellectuelles supérieures",
+              "value": 50
+            },
+            {
+              "label": "Familles d’employés",
+              "value": 10.4
+            },
+            {
+              "label": "Familles d’ouvriers",
+              "value": 6.4
+            }
+          ],
+          "comparison_note": "Part de chaque origine sociale parmi tous les inscrits en CPGE ; catégories affichées non exhaustives.",
+          "limits": "Composition des effectifs, pas chances d’admission selon l’origine. 4,3 % d’origine sociale non renseignée. La note ne précise pas ici la règle de choix du parent ; ne pas assimiler PCS et revenu du ménage.",
+          "publication_month": "2026-02",
+          "source_edition": "Les effectifs en classes préparatoires aux grandes écoles à la rentrée 2025-2026 — Note Flash 02, février 2026 · publication en février 2026 ; jour non renseigné dans le PDF",
+          "series": [
+            {
+              "period": "Rentrée 2025-2026",
+              "value": 50
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:discrimination-origine-recrutement-2024",
+      "kind": "indicator",
+      "title": "Origine perçue : risque de déclarer une discrimination dans la recherche d’emploi",
+      "excerpt": null,
+      "occurred_at": "2025-12-10",
+      "source_url": "https://www.defenseurdesdroits.fr/sites/default/files/2025-12/ddd_EAD-2024_OIT-18_20251209.pdf",
+      "source_locator": "PDF, page 34 imprimée, annexe 2, ligne Origine perçue, colonne 2024 — recherche d’emploi ; méthodologie pages 7-9",
+      "source": {
+        "publisher": "Défenseur des droits / Organisation internationale du travail",
+        "document_title": "Les évolutions des discriminations dans l’emploi entre 2016 et 2024 — 18e baromètre, décembre 2025",
+        "published_at": "2025-12-10"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "origine",
+          "measurement_type": "observation",
+          "value": 2.8,
+          "value_label": "Personnes perçues comme noires, arabes ou maghrébines",
+          "unit": "fois le risque de référence",
+          "period": "Enquête Accès aux droits 2024 (cinq dernières années)",
+          "geography": "France métropolitaine",
+          "population": "Personnes actives (en emploi ou au chômage) de 18 à 64 ans ; 3 646 observations dans le modèle",
+          "method": "Enquête téléphonique pondérée, terrain du 10 octobre 2024 au 11 janvier 2025 ; ratios de risque ajustés aux caractéristiques du modèle de l’annexe 2.",
+          "comparisons": [
+            {
+              "label": "Personnes perçues comme blanches exclusivement",
+              "value": 1
+            },
+            {
+              "label": "Personnes perçues comme noires, arabes ou maghrébines",
+              "value": 2.8
+            }
+          ],
+          "comparison_note": "Risque de rapporter une discrimination dans le cadre de la recherche d’emploi, relativement au groupe de référence, fixé à 1 ; écart significatif au seuil de 1 %.",
+          "limits": "Déclarations d’expériences, pas condamnations ni taux brut. Origine perçue selon l’enquête, distincte du statut d’immigré, de la nationalité ou d’une catégorie biologique ; association ajustée, pas preuve de causalité politique.",
+          "source_edition": "Les évolutions des discriminations dans l’emploi entre 2016 et 2024 — 18e baromètre, décembre 2025 · publication du 2025-12-10",
+          "series": [
+            {
+              "period": "Enquête Accès aux droits 2024 (cinq dernières années)",
+              "value": 2.8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:discrimination-origine-carriere-2024",
+      "kind": "indicator",
+      "title": "Origine perçue : risque de déclarer une discrimination dans la carrière",
+      "excerpt": null,
+      "occurred_at": "2025-12-10",
+      "source_url": "https://www.defenseurdesdroits.fr/sites/default/files/2025-12/ddd_EAD-2024_OIT-18_20251209.pdf",
+      "source_locator": "PDF, page 34 imprimée, annexe 2, ligne Origine perçue, colonne 2024 — déroulement de carrière ; méthodologie pages 7-9",
+      "source": {
+        "publisher": "Défenseur des droits / Organisation internationale du travail",
+        "document_title": "Les évolutions des discriminations dans l’emploi entre 2016 et 2024 — 18e baromètre, décembre 2025",
+        "published_at": "2025-12-10"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "origine",
+          "measurement_type": "observation",
+          "value": 1.7,
+          "value_label": "Personnes perçues comme noires, arabes ou maghrébines",
+          "unit": "fois le risque de référence",
+          "period": "Enquête Accès aux droits 2024 (cinq dernières années)",
+          "geography": "France métropolitaine",
+          "population": "Personnes actives (en emploi ou au chômage) de 18 à 64 ans ; 3 646 observations dans le modèle",
+          "method": "Enquête téléphonique pondérée, terrain du 10 octobre 2024 au 11 janvier 2025 ; ratios de risque ajustés aux caractéristiques du modèle de l’annexe 2.",
+          "comparisons": [
+            {
+              "label": "Personnes perçues comme blanches exclusivement",
+              "value": 1
+            },
+            {
+              "label": "Personnes perçues comme noires, arabes ou maghrébines",
+              "value": 1.7
+            }
+          ],
+          "comparison_note": "Risque de rapporter une discrimination dans le déroulement de carrière, relativement au groupe de référence, fixé à 1 ; écart significatif au seuil de 1 %.",
+          "limits": "Déclarations d’expériences, pas condamnations ni taux brut. Origine perçue selon l’enquête, distincte du statut d’immigré, de la nationalité ou d’une catégorie biologique ; association ajustée, pas preuve de causalité politique.",
+          "source_edition": "Les évolutions des discriminations dans l’emploi entre 2016 et 2024 — 18e baromètre, décembre 2025 · publication du 2025-12-10",
+          "series": [
+            {
+              "period": "Enquête Accès aux droits 2024 (cinq dernières années)",
+              "value": 1.7
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:discrimination-logement-micado-2018",
+      "kind": "indicator",
+      "title": "Logement locatif : réponses aux demandes de visite selon le nom",
+      "excerpt": null,
+      "occurred_at": "2019-10-08",
+      "source_url": "https://www.defenseurdesdroits.fr/sites/default/files/2023-08/ddd-etude-test-discrimination-acces-logement-origine-20191008.pdf",
+      "source_locator": "PDF, page 7 imprimée, premier test à trois mois, groupe témoin ; graphique 1 page 8 ; méthodologie page 5",
+      "source": {
+        "publisher": "Défenseur des droits / TEPP-CNRS",
+        "document_title": "Test de discrimination dans l’accès au logement selon l’origine — Études & résultats, octobre 2019",
+        "published_at": "2019-10-08"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "logement",
+          "measurement_type": "testing",
+          "value": 38.1,
+          "value_label": "Candidat présumé d’origine maghrébine",
+          "unit": "% de réponses positives",
+          "period": "Mars 2018 — suivi à trois mois",
+          "geography": "50 plus grandes aires urbaines françaises",
+          "population": "Agences du groupe témoin sans courrier d’alerte, parmi 343 agences sélectionnées à risque discriminatoire",
+          "method": "Étude MICADO : demandes fictives de visite, profils identiques à l’exception du nom et prénom signalant une origine supposée ; groupes d’agences assignés aléatoirement.",
+          "comparisons": [
+            {
+              "label": "Candidat présumé d’origine maghrébine",
+              "value": 38.1
+            },
+            {
+              "label": "Candidat présumé d’origine française",
+              "value": 46.3
+            }
+          ],
+          "comparison_note": "Même groupe témoin et même vague ; différence de 8,2 points statistiquement significative.",
+          "limits": "Échantillon sélectionné, non représentatif du marché locatif entier ; première réponse, pas attribution finale. Dans les agences alertées, l’écart n’est plus significatif à 3 et 9 mois, mais réapparaît à 15 mois ; aucune extrapolation à 2026.",
+          "source_edition": "Test de discrimination dans l’accès au logement selon l’origine — Études & résultats, octobre 2019 · publication du 2019-10-08",
+          "series": [
+            {
+              "period": "Mars 2018 — suivi à trois mois",
+              "value": 38.1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
