@@ -481,6 +481,20 @@ p,ul { color:var(--muted); }
 .indicator-value span { font-size:13px; }
 .editorial-context .table { width:100%; }
 .editorial-context caption { text-align:left; padding:10px 0; font-size:13px; }
+.indicator-method { font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--muted); }
+.indicator-reference { font-weight:600; }
+.indicator-comparisons { margin:18px 0; }
+.indicator-comparisons>div { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; padding:10px 0; border-top:1px solid var(--line); }
+.indicator-comparisons dt { font-size:13px; }
+.indicator-comparisons dd { margin:0; text-align:right; font-weight:700; }
+.indicator-comparisons dd span { display:block; font-size:11px; font-weight:400; }
+.inequality-nav { display:flex; flex-wrap:wrap; gap:8px; margin:24px 0; }
+.inequality-nav a { padding:9px 12px; border:1px solid var(--line); font-size:13px; text-decoration:none; }
+.inequality-nav a:hover { text-decoration:underline; }
+.inequality-domain { padding:28px 0; scroll-margin-top:24px; }
+.inequality-domain>h3 { font:500 clamp(24px,3vw,34px)/1.2 Georgia,serif; margin:0 0 20px; }
+.inequality-domain .cards>div { min-width:0; }
+.inequality-domain .card { margin-top:8px; }
 .feature-card { padding:30px; background:var(--navy); min-height:350px; display:flex; flex-direction:column; }
 .feature-card:nth-child(2) { background:#22464d; }
 .feature-card:nth-child(3) { background:#614136; }

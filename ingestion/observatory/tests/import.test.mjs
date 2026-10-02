@@ -4,9 +4,14 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteClient } from '../../tests/helpers/pglite-client.mjs';
-import { validateDocument, prepareDocument, importDocument } from '../import.mjs';
+import { validateDocument, prepareDocument, importDocument, parseOptions } from '../import.mjs';
 
 const pilot = () => JSON.parse(readFileSync(new URL('../pilot.json', import.meta.url), 'utf8'));
+const inequalities = () => JSON.parse(readFileSync(new URL('../inequalities.json', import.meta.url), 'utf8'));
+const inequalityFetch = async (url) => {
+  const body = Buffer.from(url.endsWith('.pdf') ? '%PDF-1.7 source primaire' : inequalities().records.filter((r) => r.source_url === url).flatMap((r) => r.detail.source_verification.markers).join(' '));
+  return { body, bytes: body.length, finalUrl: url, fetchedAt: '2026-10-02T12:00:00Z', sha256: createHash('sha256').update(body).digest('hex') };
+};
 const fakeFetch = async (url) => {
   const body = Buffer.from(url.includes('insee.fr') ? '2063 15,4 0,297 07/07/2025' : '%PDF-1.7 source primaire');
   return { body, bytes: body.length, finalUrl: url, fetchedAt: '2026-10-02T12:00:00Z', sha256: createHash('sha256').update(body).digest('hex') };
@@ -35,6 +40,32 @@ test('les empreintes sont calculées sur les documents ; une page de protection 
   await assert.rejects(prepareDocument(pilot(), { fetchDocument: async (url) => ({ ...await fakeFetch(url), finalUrl: 'https://example.org/login' }) }), /Redirection/);
 });
 
+test('comparaisons : référence, dénominateur, groupes distincts et unités communes obligatoires', () => {
+  validateDocument(inequalities());
+  for (const mutate of [
+    (p) => { delete p.comparison_note; },
+    (p) => { p.comparisons[1].label = p.comparisons[0].label; },
+    (p) => { p.value = 999; p.series[0].value = 999; },
+    (p) => { p.comparisons[0].unit = 'euros'; },
+    (p) => { p.comparisons[0].period = 'autre année'; },
+    (p) => { p.domain = 'invente'; },
+  ]) { const doc = inequalities(); mutate(doc.records[0].detail.indicator); assert.throws(() => validateDocument(doc)); }
+  assert.equal(parseOptions([]).dryRun, true);
+  assert.equal(parseOptions(['--file', 'ingestion/observatory/inequalities.json', '--yes']).dryRun, false);
+  for (const args of [['--file'], ['--yes', '--dry-run'], ['--publish'], ['--file', 'a', '--file', 'b']]) assert.throws(() => parseOptions(args));
+});
+
+test('chaque édition HTML est vérifiée même si plusieurs indicateurs partagent une source', async () => {
+  let calls = 0;
+  const doc = inequalities();
+  const result = await prepareDocument(doc, { fetchDocument: async (url) => { calls++; return inequalityFetch(url); } });
+  assert.equal(calls, 9);
+  assert.equal(result.records.length, 16);
+  doc.records[2].detail.source_verification.markers.push('édition absente');
+  await assert.rejects(prepareDocument(doc, { fetchDocument: inequalityFetch }), /édition officielle/);
+  await assert.rejects(prepareDocument(inequalities(), { fetchDocument: async (url) => ({ ...await inequalityFetch(url), body: Buffer.from('Access denied') }) }), /édition officielle/);
+});
+
 test('Postgres : rollback, idempotence, verrouillage des pièces relues et RLS publique', async () => {
   const pg = new PGlite();
   try {
@@ -53,6 +84,11 @@ test('Postgres : rollback, idempotence, verrouillage des pièces relues et RLS p
     const first = await importDocument(db, prepared, { dryRun: false });
     assert.equal(first.inserted, 6);
     assert.equal((await importDocument(db, prepared, { dryRun: false })).unchanged, 6);
+    const expanded = await prepareDocument(inequalities(), { fetchDocument: inequalityFetch });
+    await importDocument(db, expanded);
+    assert.equal((await pg.query('select count(*)::int as n from public.evidence')).rows[0].n, 6);
+    assert.equal((await importDocument(db, expanded, { dryRun: false })).inserted, 16);
+    assert.equal((await importDocument(db, expanded, { dryRun: false })).unchanged, 16);
     await pg.exec('set role anon');
     assert.equal((await pg.query('select count(*)::int as n from public.evidence')).rows[0].n, 0);
     assert.equal((await pg.query('select count(*)::int as n from public.sources')).rows[0].n, 0);

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { EvidenceCard } from '@/components/evidence-card';
+import { InequalitySections } from '@/components/inequality-sections';
 import { Empty } from '@/components/ui';
 import { getEvidencePage, isConfigured } from '@/lib/data';
 import type { EvidencePage } from '@/lib/types';
@@ -24,7 +25,7 @@ export default async function ObservatoirePage() {
   // reste indisponible, sans transformer l’absence de connexion en zéro pièce.
   const queries = [
     { kind: 'program' as const, limit: 3 }, { kind: 'statement' as const, limit: 3 },
-    { kind: 'indicator' as const, limit: 3 }, { kind: 'judicial_event' as const, limit: 3 },
+    { kind: 'indicator' as const, limit: 24 }, { kind: 'judicial_event' as const, limit: 3 },
     { kind: 'vote' as const, institution: 'assemblee' as const, limit: 1 },
     { kind: 'vote' as const, institution: 'senat' as const, limit: 1 },
     { kind: 'vote' as const, institution: 'parlement_europeen' as const, limit: 1 },
@@ -47,7 +48,7 @@ export default async function ObservatoirePage() {
     <section className="observatory-grid" aria-label="Contenus publiés"><article className="feature-card"><span className="feature-num">01 / COMPARER</span><h2>Parole & vote</h2><p>Lire la proposition dans son édition électorale, puis vérifier le texte et le périmètre du scrutin. Une archive de 2022 ne représente pas un programme de 2027.</p><a className="availability" href="#parole-vote">{count(programs)} programmes · {count(statements)} déclarations publiés ↓</a></article><article className="feature-card"><span className="feature-num">02 / MESURER</span><h2>Inégalités</h2><p>Consulter les valeurs avec leur unité, leur période, leur territoire et leur méthode. Une évolution observée ne prouve pas l’effet d’un vote.</p><a className="availability" href="#inegalites">{count(indicators)} indicateurs publiés ↓</a></article><article className="feature-card"><span className="feature-num">03 / CONTEXTUALISER</span><h2>Affaires judiciaires</h2><p>Distinguer les faits allégués, les décisions et les recours. Une étape datée ne décrit pas nécessairement l’état actuel de la procédure.</p><a className="availability" href="#justice">{count(judicial)} étapes judiciaires publiées ↓</a></article></section>
     <PublishedSection id="parole-vote" title="Les propositions à la source." intro="Documents originaux et extraits identifiés. Un document seul ne valide aucun rapprochement parole/vote. Les programmes officiels de 2027 sont présentés uniquement lorsqu’une source de cette édition est publiée." result={programs} href="/pieces?kind=program" empty="Aucun programme validé n’est encore publié. Les archives électorales doivent être relues avec leur édition et leur contexte avant publication." />
     {statements === null || statements.total > 0 ? <PublishedSection id="declarations" title="Les déclarations documentées." intro="Formulation exacte et circonstances, avec un repère dans l’enregistrement ou la transcription." result={statements} href="/pieces?kind=statement" empty="Aucune déclaration publiée." /> : <p className="hint">Aucune déclaration médiatique vérifiée n’est publiée pour l’instant.</p>}
-    <PublishedSection id="inegalites" title="Les indicateurs documentés." intro="Les fiches donnent la population observée, la série de la même édition et ses limites. Aucun effet causal n’est attribué à un scrutin." result={indicators} href="/pieces?kind=indicator" empty="Aucun indicateur validé n’est encore publié. Les valeurs, le champ et la méthode doivent être contrôlés avant publication." />
+    <InequalitySections result={indicators} />
     <PublishedSection id="justice" title="Les étapes judiciaires sourcées." intro="Pièces judiciaires datées, distinctes d’un dossier complet sur une personne ou un parti. Les informations manquantes et les recours sont explicités ; la présomption d’innocence s’applique aux faits non définitivement jugés." result={judicial} href="/pieces?kind=judicial_event" empty="Aucune étape judiciaire validée n’est encore publiée. Les documents et l’état de la procédure demandent une relecture humaine." />
     <div className="cta"><Link className="button" href="/scrutins">Explorer les scrutins →</Link><Link className="button secondary" href="/methode">Lire la méthode</Link></div>
   </main>;

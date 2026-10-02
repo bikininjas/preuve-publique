@@ -5,8 +5,9 @@ import { buildEvidence } from '../lib/normalize.mjs';
 import { requestBuffer } from '../lib/http.mjs';
 import { canonicalJson, connect, startRun, finishRun, upsertEvidence } from '../lib/db.mjs';
 import { loadProjectEnv, requireDbUrl } from '../lib/env.mjs';
+import domains from '../../lib/inequality-domains.json' with { type: 'json' };
 
-const HOSTS = new Set(['www.cnccep.fr', 'www.insee.fr', 'www.cours-appel.justice.fr']);
+const HOSTS = new Set(['www.cnccep.fr', 'www.insee.fr', 'www.cours-appel.justice.fr', 'www.cereq.fr', 'drees.solidarites-sante.gouv.fr']);
 const KINDS = new Set(['program', 'statement', 'indicator', 'judicial_event']);
 const nonempty = (value) => typeof value === 'string' && Boolean(value.trim());
 
@@ -29,6 +30,16 @@ export function validateDocument(document) {
       const p = record.detail?.indicator;
       if (!p || !Number.isFinite(p.value) || !['unit', 'period', 'geography', 'population', 'method', 'limits'].every((key) => nonempty(p[key])) || !Array.isArray(p.series) || !p.series.length || !p.series.every((row) => nonempty(row.period) && Number.isFinite(row.value))) throw new Error('Indicateur sans valeur, champ ou méthode.');
       if (p.series.at(-1).period !== p.period || p.series.at(-1).value !== p.value) throw new Error('Dernier point incompatible avec la valeur affichée.');
+      if (p.domain && !domains.some(({ id }) => id === p.domain)) throw new Error('Domaine d’inégalité inconnu.');
+      if (p.measurement_type && !['observation', 'simulation', 'testing'].includes(p.measurement_type)) throw new Error('Type de mesure inconnu.');
+      if (p.comparisons !== undefined) {
+        if (!nonempty(p.value_label) || !nonempty(p.comparison_note) || !Array.isArray(p.comparisons) || p.comparisons.length < 2 || p.comparisons.length > 10
+          || !p.comparisons.every((row) => nonempty(row.label) && Number.isFinite(row.value) && !Object.hasOwn(row, 'unit') && !Object.hasOwn(row, 'period'))
+          || new Set(p.comparisons.map((row) => row.label)).size !== p.comparisons.length
+          || !p.comparisons.some((row) => row.label === p.value_label && row.value === p.value)) throw new Error('Comparaison sans dénominateur, groupes distincts ou valeur de référence.');
+      }
+      const markers = record.detail?.source_verification?.markers;
+      if (markers !== undefined && (!Array.isArray(markers) || markers.length < 2 || !markers.every(nonempty))) throw new Error('Repères de vérification incomplets.');
     }
     if (record.kind === 'judicial_event') {
       const p = record.detail?.judicial;
@@ -51,10 +62,6 @@ export async function prepareDocument(document, { fetchDocument = requestBuffer,
       const finalUrl = new URL(fetched.finalUrl);
       if (!HOSTS.has(finalUrl.hostname) || finalUrl.protocol !== 'https:') throw new Error('Redirection hors source autorisée.');
       if (new URL(record.source_url).pathname.endsWith('.pdf') && fetched.body.subarray(0, 5).toString() !== '%PDF-') throw new Error('Le document reçu n’est pas un PDF.');
-      if (record.source_url.includes('insee.fr')) {
-        const text = fetched.body.toString('utf8');
-        if (!['2063', '15,4', '0,297', '07/07/2025'].every((marker) => text.includes(marker))) throw new Error('L’édition Insee attendue n’est pas retrouvée.');
-      }
       bytes += fetched.bytes;
       if (archiveDir) {
         mkdirSync(archiveDir, { recursive: true });
@@ -63,6 +70,12 @@ export async function prepareDocument(document, { fetchDocument = requestBuffer,
       sources.set(record.source_url, fetched);
     }
     const fetched = sources.get(record.source_url);
+    if (!new URL(record.source_url).pathname.endsWith('.pdf')) {
+      const markers = record.detail?.source_verification?.markers
+        ?? (record.source_url === 'https://www.insee.fr/fr/statistiques/8600989' ? ['2063', '15,4', '0,297', '07/07/2025'] : []);
+      const plain = fetched.body.toString('utf8').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').normalize('NFKC').replace(/\s+/g, ' ');
+      if (markers.length < 2 || !markers.every((marker) => plain.includes(marker.normalize('NFKC')))) throw new Error('L’édition officielle attendue n’est pas retrouvée.');
+    }
     records.push(buildEvidence({ ...record, institution: null,
       source: { ...record.source, url: record.source_url, retrieved_at: fetched.fetchedAt, sha256: fetched.sha256 },
       detail: { ...record.detail, editorial_batch: document.edition },
@@ -109,11 +122,20 @@ export async function importDocument(db, prepared, { dryRun = true } = {}) {
   }
 }
 
+export function parseOptions(args) {
+  let file = new URL('./pilot.json', import.meta.url);
+  let mode;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--file' && args[i + 1] && !args[i + 1].startsWith('--') && file instanceof URL) file = resolve(args[++i]);
+    else if (['--yes', '--dry-run'].includes(args[i]) && !mode) mode = args[i];
+    else throw new Error('Options : --file chemin.json, --dry-run (défaut) ou --yes (écriture en brouillon).');
+  }
+  return { file, dryRun: mode !== '--yes' };
+}
+
 async function main() {
-  const args = process.argv.slice(2);
-  if (args.some((arg) => !['--yes', '--dry-run'].includes(arg)) || args.includes('--yes') && args.includes('--dry-run')) throw new Error('Options : --dry-run (défaut) ou --yes (écriture en brouillon).');
-  const dryRun = !args.includes('--yes');
-  const document = JSON.parse(readFileSync(new URL('./pilot.json', import.meta.url), 'utf8'));
+  const { file, dryRun } = parseOptions(process.argv.slice(2));
+  const document = JSON.parse(readFileSync(file, 'utf8'));
   const prepared = await prepareDocument(document, { archiveDir: resolve('ingestion/.staging/observatoire/raw') });
   loadProjectEnv();
   const db = await connect(requireDbUrl(), { applicationName: 'preuve-publique-observatoire' });

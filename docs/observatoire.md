@@ -1,5 +1,7 @@
 # Premier lot documentaire de l’observatoire
 
+Extension du 02/10/2026 : [seize nouvelles fiches d’inégalités](inegalites.md) ont été importées en brouillon, portant le corpus éditorial à 22 pièces et les indicateurs à 18. Leur guide détaille neuf domaines, les sources, les liens de relecture et les vérifications. La vue `/admin/inegalites` et le regroupement public par domaine sont préparés dans cette branche.
+
 État contrôlé le 02/10/2026 : la migration `20261002121123_observatory_editorial_evidence.sql` est enregistrée dans Supabase et les six pièces ci-dessous sont importées **en brouillon**. Aucune de ces pièces, aucun rapprochement et aucune accusation ne sont publiés. L’interface de cette branche est vérifiée localement ; cela ne prouve pas son déploiement sur Cloud Run.
 
 ## Pièces à relire

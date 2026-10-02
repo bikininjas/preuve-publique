@@ -2,7 +2,7 @@ import type { Evidence } from '@/lib/types';
 import { formatDate } from '@/lib/labels';
 
 type Program = { author: string; election: string; edition: string; election_date: string; publication_date: string | null; date_note: string; scope_note: string };
-type Indicator = { value: number; unit: string; period: string; geography: string; population: string; method: string; limits: string; series: Array<{ period: string; value: number }> };
+type Indicator = { value: number; value_label?: string; unit: string; period: string; geography: string; population: string; method: string; limits: string; source_edition?: string; measurement_type?: string; comparison_note?: string; comparisons?: Array<{ label: string; value: number }>; series: Array<{ period: string; value: number }> };
 type Judicial = { court: string; stage: string; status_at_event: string; current_status_note: string; presumption_note: string };
 
 /** Editorial summaries are labelled; they never appear as verbatim quotations. */
@@ -21,14 +21,21 @@ export function EditorialContext({ evidence, compact = false }: { evidence: Evid
       {!compact ? <><p>{program.edition}</p><p className="hint">{program.date_note} Date de publication : {program.publication_date ? formatDate(program.publication_date) : 'non précisée dans la source'}.</p></> : null}
     </> : null}
     {evidence.kind === 'indicator' && indicator ? <>
+      {indicator.measurement_type ? <p className="indicator-method">{({ observation: 'Observation statistique', simulation: 'Estimation par simulation', testing: 'Expérience par testing' } as Record<string, string>)[indicator.measurement_type] ?? 'Méthode documentée'}</p> : null}
       <p className="indicator-value"><strong>{indicator.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })}</strong> <span>{indicator.unit} · {indicator.period}</span></p>
+      {indicator.value_label ? <p className="indicator-reference">{indicator.value_label}</p> : null}
+      {indicator.comparisons?.length ? <>
+        <dl className="indicator-comparisons" aria-label={`Comparaison en ${indicator.unit}`}>{indicator.comparisons.map((row) => <div key={row.label}><dt>{row.label}</dt><dd>{row.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })} <span>{indicator.unit}</span></dd></div>)}</dl>
+        <p className="hint">{indicator.comparison_note}</p>
+      </> : null}
       <p><strong>Territoire : </strong>{indicator.geography}</p>
       {!compact ? <>
         <p><strong>Population : </strong>{indicator.population}</p>
         <p><strong>Méthode : </strong>{indicator.method}</p>
-        <table className="table"><caption>Valeurs de la même édition de la source</caption><thead><tr><th scope="col">Année</th><th scope="col">Valeur ({indicator.unit})</th></tr></thead><tbody>{indicator.series.map((point) => <tr key={point.period}><th scope="row">{point.period}</th><td>{point.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })}</td></tr>)}</tbody></table>
+        {indicator.series.length > 1 || !indicator.comparisons?.length ? <table className="table"><caption>Valeurs de la même édition de la source{indicator.value_label ? ` — ${indicator.value_label}` : ''}</caption><thead><tr><th scope="col">Période</th><th scope="col">Valeur ({indicator.unit})</th></tr></thead><tbody>{indicator.series.map((point) => <tr key={point.period}><th scope="row">{point.period}</th><td>{point.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })}</td></tr>)}</tbody></table> : null}
       </> : null}
       <p className="hint">{indicator.limits}</p>
+      {indicator.source_edition ? <p className="hint"><strong>Édition : </strong>{indicator.source_edition}</p> : null}
     </> : null}
     {evidence.kind === 'judicial_event' && judicial ? <>
       <p><strong>{judicial.court}</strong> · {judicial.stage}</p>
