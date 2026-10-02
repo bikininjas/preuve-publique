@@ -1,0 +1,11 @@
+[
+  { "id": "revenus-patrimoine", "label": "Pauvreté, revenus et patrimoine" },
+  { "id": "cout-vie", "label": "Coût de la vie" },
+  { "id": "fiscalite", "label": "Impôts et redistribution" },
+  { "id": "genre", "label": "Femmes et hommes" },
+  { "id": "origine", "label": "Origine et discriminations" },
+  { "id": "etudes", "label": "Accès aux études supérieures" },
+  { "id": "emplois", "label": "Accès aux postes et carrières" },
+  { "id": "logement", "label": "Logement" },
+  { "id": "aides", "label": "Aides et accès aux droits" }
+]

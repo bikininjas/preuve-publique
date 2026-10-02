@@ -11,6 +11,8 @@
     "polls:sync": "node --experimental-strip-types ingestion/polls/cli.ts",
     "candidates:sync": "node ingestion/candidates/cli.mjs",
     "measures:import": "node ingestion/candidates/editorial.mjs",
+    "observatory:import": "node ingestion/observatory/import.mjs",
+    "test:observatory": "node --test \"ingestion/observatory/tests/*.test.mjs\"",
     "test:candidates": "node --experimental-strip-types --test \"ingestion/candidates/tests/*.test.mjs\"",
     "test:polls": "node --experimental-strip-types --test \"ingestion/polls/tests/*.test.mjs\"",
     "typecheck": "tsc --noEmit",

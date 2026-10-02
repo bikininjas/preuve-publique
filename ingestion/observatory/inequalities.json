@@ -1,0 +1,814 @@
+{
+  "edition": "inegalites-2026-10-02",
+  "records": [
+    {
+      "external_id": "inegalites:patrimoine-concentration-2024",
+      "kind": "indicator",
+      "title": "Patrimoine : ce que possèdent les ménages les mieux dotés",
+      "excerpt": null,
+      "occurred_at": "2025-12-09",
+      "source_url": "https://www.insee.fr/fr/statistiques/8672665",
+      "source_locator": "Encadré, figure « Répartition de la masse totale de patrimoine », colonne patrimoine brut total",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Les montants de patrimoine détenus par les ménages en 2024 — Insee Focus 371",
+        "published_at": "2025-12-09"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "371",
+            "09/12/2025",
+            "48 %"
+          ]
+        },
+        "indicator": {
+          "domain": "revenus-patrimoine",
+          "measurement_type": "observation",
+          "value": 48,
+          "value_label": "10 % des ménages les mieux dotés",
+          "unit": "% du patrimoine brut total",
+          "period": "Début 2024",
+          "geography": "France hors Mayotte",
+          "population": "Ménages en logement ordinaire",
+          "method": "Enquête Histoire de vie et Patrimoine 2023-2024.",
+          "comparisons": [
+            {
+              "label": "1 % des ménages les mieux dotés",
+              "value": 15
+            },
+            {
+              "label": "10 % des ménages les mieux dotés",
+              "value": 48
+            },
+            {
+              "label": "50 % des ménages les mieux dotés",
+              "value": 93
+            }
+          ],
+          "comparison_note": "Parts cumulées de la même masse : ces groupes se recouvrent.",
+          "limits": "Patrimoine brut, avant déduction des dettes ; stock distinct du revenu annuel.",
+          "source_edition": "Les montants de patrimoine détenus par les ménages en 2024 — Insee Focus 371 · publication du 2025-12-09",
+          "series": [
+            {
+              "period": "Début 2024",
+              "value": 48
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:inflation-total-2023",
+      "kind": "indicator",
+      "title": "Inflation : perte simulée à consommation inchangée",
+      "excerpt": null,
+      "occurred_at": "2024-11-21",
+      "source_url": "https://www.insee.fr/fr/statistiques/8242413",
+      "source_locator": "Figure 2a, colonne Ensemble",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Inflation et niveaux de vie en 2023 — France, portrait social 2024",
+        "published_at": "2024-11-21"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "21/11/2024",
+            "7,1",
+            "2,5"
+          ]
+        },
+        "indicator": {
+          "domain": "cout-vie",
+          "measurement_type": "simulation",
+          "value": -7.1,
+          "value_label": "10 % des personnes les plus modestes",
+          "unit": "% du niveau de vie contrefactuel",
+          "period": "2023",
+          "geography": "France métropolitaine",
+          "population": "Personnes en logement ordinaire, revenu du ménage positif ou nul, personne de référence non étudiante",
+          "method": "Ines 2023 et Budget de famille 2017 actualisé : consommation inchangée, niveau de vie élargi au chèque énergie et aux bourses du secondaire.",
+          "comparisons": [
+            {
+              "label": "10 % des personnes les plus modestes",
+              "value": -7.1
+            },
+            {
+              "label": "10 % des personnes les plus aisées",
+              "value": -3.1
+            }
+          ],
+          "comparison_note": "Variation simulée, rapportée au niveau de vie avant évolution des revenus et transferts.",
+          "limits": "Signe négatif = perte. Exclut les adaptations de consommation ; estimation, pas évolution observée du pouvoir d’achat.",
+          "source_edition": "Inflation et niveaux de vie en 2023 — France, portrait social 2024 · publication du 2024-11-21",
+          "series": [
+            {
+              "period": "2023",
+              "value": -7.1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:inflation-alimentation-2023",
+      "kind": "indicator",
+      "title": "Alimentation : poids du surcoût pour les ménages modestes",
+      "excerpt": null,
+      "occurred_at": "2024-11-21",
+      "source_url": "https://www.insee.fr/fr/statistiques/8242413",
+      "source_locator": "Figure 2a, colonne Alimentation",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Inflation et niveaux de vie en 2023 — France, portrait social 2024",
+        "published_at": "2024-11-21"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "21/11/2024",
+            "7,1",
+            "2,5"
+          ]
+        },
+        "indicator": {
+          "domain": "cout-vie",
+          "measurement_type": "simulation",
+          "value": -2.5,
+          "value_label": "10 % des personnes les plus modestes",
+          "unit": "% du niveau de vie contrefactuel",
+          "period": "2023",
+          "geography": "France métropolitaine",
+          "population": "Personnes en logement ordinaire, revenu du ménage positif ou nul, personne de référence non étudiante",
+          "method": "Ines 2023 et Budget de famille 2017 actualisé : consommation inchangée, niveau de vie élargi au chèque énergie et aux bourses du secondaire.",
+          "comparisons": [
+            {
+              "label": "10 % des personnes les plus modestes",
+              "value": -2.5
+            },
+            {
+              "label": "10 % des personnes les plus aisées",
+              "value": -1
+            }
+          ],
+          "comparison_note": "Variation simulée, rapportée au niveau de vie avant évolution des revenus et transferts.",
+          "limits": "Signe négatif = perte. Exclut les adaptations de consommation ; estimation, pas évolution observée du pouvoir d’achat.",
+          "source_edition": "Inflation et niveaux de vie en 2023 — France, portrait social 2024 · publication du 2024-11-21",
+          "series": [
+            {
+              "period": "2023",
+              "value": -2.5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:redistribution-rapport-2023",
+      "kind": "indicator",
+      "title": "Revenus : écart avant et après impôts et prestations",
+      "excerpt": null,
+      "occurred_at": "2024-11-21",
+      "source_url": "https://www.insee.fr/fr/statistiques/8242361",
+      "source_locator": "Figure 1 et commentaire, rapport des niveaux de vie moyens des quintiles extrêmes",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Redistribution monétaire — France, portrait social 2024",
+        "published_at": "2024-11-21"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "21/11/2024",
+            "31,6",
+            "60,8"
+          ]
+        },
+        "indicator": {
+          "domain": "fiscalite",
+          "measurement_type": "simulation",
+          "value": 4.3,
+          "value_label": "Après redistribution",
+          "unit": "fois",
+          "period": "2023",
+          "geography": "France métropolitaine",
+          "population": "Personnes en logement ordinaire, revenu du ménage positif ou nul, personne de référence non étudiante",
+          "method": "Modèle Ines 2023, ERFS 2021 actualisée.",
+          "comparisons": [
+            {
+              "label": "Avant redistribution",
+              "value": 8.4
+            },
+            {
+              "label": "Après redistribution",
+              "value": 4.3
+            }
+          ],
+          "comparison_note": "Niveau de vie moyen des 20 % les plus aisés divisé par celui des 20 % les plus modestes ; groupes classés avant redistribution.",
+          "limits": "Prélèvements directs non contributifs et prestations monétaires ; TVA, services publics, retraites et assurance chômage exclus.",
+          "source_edition": "Redistribution monétaire — France, portrait social 2024 · publication du 2024-11-21",
+          "series": [
+            {
+              "period": "2023",
+              "value": 4.3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:impot-revenu-redistribution-2023",
+      "kind": "indicator",
+      "title": "Impôt sur le revenu : contribution à la réduction des inégalités",
+      "excerpt": null,
+      "occurred_at": "2024-11-21",
+      "source_url": "https://www.insee.fr/fr/statistiques/8242361",
+      "source_locator": "Figure 2, ligne Impôt sur le revenu, colonne Contribution",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Redistribution monétaire — France, portrait social 2024",
+        "published_at": "2024-11-21"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "21/11/2024",
+            "31,6",
+            "60,8"
+          ]
+        },
+        "indicator": {
+          "domain": "fiscalite",
+          "measurement_type": "simulation",
+          "value": 31.6,
+          "value_label": "Impôt sur le revenu, crédits inclus",
+          "unit": "% de la réduction des inégalités",
+          "period": "2023",
+          "geography": "France métropolitaine",
+          "population": "Personnes en logement ordinaire, revenu du ménage positif ou nul, personne de référence non étudiante",
+          "method": "Ines 2023 : décomposition par poids et progressivité (pseudo-Gini).",
+          "limits": "Part de la réduction attribuée par le modèle, pas taux d’imposition. TVA et services publics exclus.",
+          "source_edition": "Redistribution monétaire — France, portrait social 2024 · publication du 2024-11-21",
+          "series": [
+            {
+              "period": "2023",
+              "value": 31.6
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:revenu-salarial-2024",
+      "kind": "indicator",
+      "title": "Femmes et hommes : revenus salariaux annuels",
+      "excerpt": null,
+      "occurred_at": "2026-02-26",
+      "source_url": "https://www.insee.fr/fr/statistiques/8743657",
+      "source_locator": "Figure 1b, revenus salariaux moyens en 2024",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Écart de salaire entre femmes et hommes en 2024 — Insee Focus 377",
+        "published_at": "2026-02-26"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "377",
+            "26/02/2026",
+            "21,8"
+          ]
+        },
+        "indicator": {
+          "domain": "genre",
+          "measurement_type": "observation",
+          "value": 22060,
+          "value_label": "Femmes",
+          "unit": "€ nets par an",
+          "period": "2024",
+          "geography": "France hors Mayotte",
+          "population": "Emploi principal dans le privé, hors apprentis, stagiaires, agriculture et particuliers-employeurs",
+          "method": "Base Tous salariés 2024 ; rémunérations annuelles effectives.",
+          "comparisons": [
+            {
+              "label": "Femmes",
+              "value": 22060
+            },
+            {
+              "label": "Hommes",
+              "value": 28220
+            }
+          ],
+          "comparison_note": "Même champ ; inclut les différences de durée et de volume de travail.",
+          "limits": "Écart brut de 21,8 %, pas mesure de discrimination à poste égal.",
+          "source_edition": "Écart de salaire entre femmes et hommes en 2024 — Insee Focus 377 · publication du 2026-02-26",
+          "series": [
+            {
+              "period": "2024",
+              "value": 22060
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:salaire-eqtp-2024",
+      "kind": "indicator",
+      "title": "Femmes et hommes : écart de salaire à temps de travail égal",
+      "excerpt": null,
+      "occurred_at": "2026-02-26",
+      "source_url": "https://www.insee.fr/fr/statistiques/8743657",
+      "source_locator": "Figure 1a et section répartition par métiers",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Écart de salaire entre femmes et hommes en 2024 — Insee Focus 377",
+        "published_at": "2026-02-26"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "377",
+            "26/02/2026",
+            "21,8"
+          ]
+        },
+        "indicator": {
+          "domain": "genre",
+          "measurement_type": "observation",
+          "value": 14,
+          "unit": "% de moins que les hommes",
+          "period": "2024",
+          "geography": "France hors Mayotte",
+          "population": "Emploi principal dans le privé ; mêmes exclusions que le revenu salarial",
+          "method": "Écart des moyennes en équivalent temps plein, rapporté au salaire masculin.",
+          "limits": "Métier et établissement non neutralisés ; à emploi et établissement comparables, la source mesure 3,6 %, sans isoler toute discrimination.",
+          "series": [
+            {
+              "period": "2022",
+              "value": 14.8
+            },
+            {
+              "period": "2023",
+              "value": 14.2
+            },
+            {
+              "period": "2024",
+              "value": 14
+            }
+          ],
+          "source_edition": "Écart de salaire entre femmes et hommes en 2024 — Insee Focus 377 · publication du 2026-02-26"
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:femmes-hauts-salaires-2024",
+      "kind": "indicator",
+      "title": "Femmes : représentation dans les emplois les mieux rémunérés",
+      "excerpt": null,
+      "occurred_at": "2026-02-26",
+      "source_url": "https://www.insee.fr/fr/statistiques/8743657",
+      "source_locator": "Figure 4, centième 99 et moyenne (pondération EQTP)",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Écart de salaire entre femmes et hommes en 2024 — Insee Focus 377",
+        "published_at": "2026-02-26"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "377",
+            "26/02/2026",
+            "21,8"
+          ]
+        },
+        "indicator": {
+          "domain": "genre",
+          "measurement_type": "observation",
+          "value": 24.1,
+          "value_label": "1 % des emplois les mieux rémunérés",
+          "unit": "% de femmes",
+          "period": "2024",
+          "geography": "France",
+          "population": "Emplois du privé, alternants et stagiaires inclus, hors agriculture et particuliers-employeurs",
+          "method": "Base Tous salariés 2024, emplois pondérés en EQTP.",
+          "comparisons": [
+            {
+              "label": "1 % des emplois les mieux rémunérés",
+              "value": 24.1
+            },
+            {
+              "label": "Ensemble des emplois",
+              "value": 41.9
+            }
+          ],
+          "comparison_note": "Part de femmes au sein de chaque ensemble, pas probabilité individuelle d’accès.",
+          "limits": "Hauts salaires, pas uniquement fonctions dirigeantes ; champ différent du revenu salarial.",
+          "source_edition": "Écart de salaire entre femmes et hommes en 2024 — Insee Focus 377 · publication du 2026-02-26",
+          "series": [
+            {
+              "period": "2024",
+              "value": 24.1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:chomage-origine-2025",
+      "kind": "indicator",
+      "title": "Chômage : immigrés, descendants et personnes sans ascendance migratoire directe",
+      "excerpt": null,
+      "occurred_at": "2026-06-22",
+      "source_url": "https://www.insee.fr/fr/statistiques/4195420",
+      "source_locator": "Tableaux immigrés et descendants, lignes Ensemble, colonne Taux de chômage",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Inactivité, chômage et emploi des immigrés et descendants d’immigrés — données 2025",
+        "published_at": "2026-06-22"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "22/06/2026",
+            "12,4",
+            "11,7"
+          ]
+        },
+        "indicator": {
+          "domain": "origine",
+          "measurement_type": "observation",
+          "value": 12.4,
+          "value_label": "Immigrés",
+          "unit": "% des actifs",
+          "period": "2025",
+          "geography": "France hors Mayotte",
+          "population": "Actifs de 15 à 64 ans en logement ordinaire",
+          "method": "Enquête Emploi ; chômage au sens du BIT.",
+          "comparisons": [
+            {
+              "label": "Immigrés",
+              "value": 12.4
+            },
+            {
+              "label": "Descendants d’immigrés",
+              "value": 11.7
+            },
+            {
+              "label": "Sans ascendance migratoire directe",
+              "value": 6.5
+            }
+          ],
+          "comparison_note": "Immigré = né étranger à l’étranger ; descendant = né en France avec au moins un parent immigré.",
+          "limits": "Catégories migratoires, sans classement par couleur de peau. Écarts bruts : âge, diplôme et autres facteurs non neutralisés.",
+          "source_edition": "Inactivité, chômage et emploi des immigrés et descendants d’immigrés — données 2025 · publication du 2026-06-22",
+          "series": [
+            {
+              "period": "2025",
+              "value": 12.4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:recrutement-origine-2019-2021",
+      "kind": "indicator",
+      "title": "Recrutement : effet de l’origine supposée du nom",
+      "excerpt": null,
+      "occurred_at": "2023-03-30",
+      "source_url": "https://www.insee.fr/fr/statistiques/6793310",
+      "source_locator": "Figure 1, ligne Rappel, ensembles des noms à consonance maghrébine et française ; sources et méthodes",
+      "source": {
+        "publisher": "Insee / Dares",
+        "document_title": "Discriminations sur le marché du travail des personnes d’origine maghrébine — édition 2023",
+        "published_at": "2023-03-30"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "30/03/2023",
+            "22,8",
+            "33,3"
+          ]
+        },
+        "indicator": {
+          "domain": "origine",
+          "measurement_type": "testing",
+          "value": 22.8,
+          "value_label": "Noms à consonance maghrébine",
+          "unit": "% de candidatures rappelées",
+          "period": "Décembre 2019 – avril 2021",
+          "geography": "France",
+          "population": "9 600 candidatures fictives à 2 400 offres, 11 catégories de métiers",
+          "method": "Testing Dares/IPP/ISM Corum, candidatures de qualité comparable.",
+          "comparisons": [
+            {
+              "label": "Noms à consonance maghrébine",
+              "value": 22.8
+            },
+            {
+              "label": "Noms à consonance française",
+              "value": 33.3
+            }
+          ],
+          "comparison_note": "Rappel = intérêt manifeste du recruteur ; origine perçue à travers nom et prénom.",
+          "limits": "Effet sur les rappels dans ce protocole, pas sur toutes les embauches ; ne mesure ni couleur de peau ni origine réelle.",
+          "source_edition": "Discriminations sur le marché du travail des personnes d’origine maghrébine — édition 2023 · publication du 2023-03-30",
+          "series": [
+            {
+              "period": "Décembre 2019 – avril 2021",
+              "value": 22.8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:diplome-origine-sociale-2017",
+      "kind": "indicator",
+      "title": "Études longues : diplômes selon le milieu des parents",
+      "excerpt": null,
+      "occurred_at": "2024-05-14",
+      "source_url": "https://www.cereq.fr/sites/default/files/2024-05/Bref_452-web_0.pdf",
+      "source_locator": "PDF page 2, encadrés 1 et 2, supérieur long bac+5 et plus",
+      "source": {
+        "publisher": "Céreq",
+        "document_title": "Origine sociale, diplôme et insertion : la force des liens — Bref 452",
+        "published_at": "2024-05-14"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "etudes",
+          "measurement_type": "observation",
+          "value": 11,
+          "value_label": "Famille à dominante ouvrière",
+          "unit": "% diplômés de bac+5 ou plus",
+          "period": "Sortants 2016-2017",
+          "geography": "France, jeunes nés en France",
+          "population": "Sortants de formation initiale, PCS d’au moins un parent renseignée",
+          "method": "Enquête Génération 2017, interrogation en 2020.",
+          "comparisons": [
+            {
+              "label": "Deux parents cadres",
+              "value": 55
+            },
+            {
+              "label": "Famille à dominante ouvrière",
+              "value": 11
+            }
+          ],
+          "comparison_note": "Dominante ouvrière : deux ouvriers, ou un ouvrier et un employé.",
+          "limits": "Cohorte historique ; diplôme obtenu, pas taux d’admission actuel.",
+          "source_edition": "Origine sociale, diplôme et insertion : la force des liens — Bref 452 · publication du 2024-05-14",
+          "series": [
+            {
+              "period": "Sortants 2016-2017",
+              "value": 11
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:cadres-origine-sociale-2020",
+      "kind": "indicator",
+      "title": "Postes de cadre : accès selon le milieu des parents",
+      "excerpt": null,
+      "occurred_at": "2024-05-14",
+      "source_url": "https://www.cereq.fr/sites/default/files/2024-05/Bref_452-web_0.pdf",
+      "source_locator": "PDF page 4, encadré 5, part de cadres en octobre 2020",
+      "source": {
+        "publisher": "Céreq",
+        "document_title": "Origine sociale, diplôme et insertion : la force des liens — Bref 452",
+        "published_at": "2024-05-14"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "emplois",
+          "measurement_type": "observation",
+          "value": 10,
+          "value_label": "Famille à dominante ouvrière",
+          "unit": "% en poste de cadre",
+          "period": "Octobre 2020",
+          "geography": "France, jeunes nés en France",
+          "population": "Sortants 2016-2017 en emploi en octobre 2020 ; tous diplômes",
+          "method": "Enquête Génération 2017 ; PCS des parents.",
+          "comparisons": [
+            {
+              "label": "Deux parents cadres",
+              "value": 51
+            },
+            {
+              "label": "Famille à dominante ouvrière",
+              "value": 10
+            }
+          ],
+          "comparison_note": "Dominante ouvrière : deux ouvriers, ou un ouvrier et un employé.",
+          "limits": "Conditionné à l’emploi ; écarts descriptifs, sans neutraliser filière, diplôme précis ou expérience.",
+          "source_edition": "Origine sociale, diplôme et insertion : la force des liens — Bref 452 · publication du 2024-05-14",
+          "series": [
+            {
+              "period": "Octobre 2020",
+              "value": 10
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:cadres-bac5-origine-sociale-2020",
+      "kind": "indicator",
+      "title": "Postes de cadre : écarts parmi les diplômés de bac+5 et plus",
+      "excerpt": null,
+      "occurred_at": "2024-05-14",
+      "source_url": "https://www.cereq.fr/sites/default/files/2024-05/Bref_452-web_0.pdf",
+      "source_locator": "PDF page 4, encadré 5, part de cadres en octobre 2020",
+      "source": {
+        "publisher": "Céreq",
+        "document_title": "Origine sociale, diplôme et insertion : la force des liens — Bref 452",
+        "published_at": "2024-05-14"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "emplois",
+          "measurement_type": "observation",
+          "value": 60,
+          "value_label": "Famille à dominante ouvrière",
+          "unit": "% en poste de cadre",
+          "period": "Octobre 2020",
+          "geography": "France, jeunes nés en France",
+          "population": "Sortants 2016-2017 en emploi en octobre 2020 ; bac+5 ou plus",
+          "method": "Enquête Génération 2017 ; PCS des parents.",
+          "comparisons": [
+            {
+              "label": "Deux parents cadres",
+              "value": 78
+            },
+            {
+              "label": "Famille à dominante ouvrière",
+              "value": 60
+            }
+          ],
+          "comparison_note": "Dominante ouvrière : deux ouvriers, ou un ouvrier et un employé.",
+          "limits": "Conditionné à l’emploi ; écarts descriptifs, sans neutraliser filière, diplôme précis ou expérience.",
+          "source_edition": "Origine sociale, diplôme et insertion : la force des liens — Bref 452 · publication du 2024-05-14",
+          "series": [
+            {
+              "period": "Octobre 2020",
+              "value": 60
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:logement-effort-2024",
+      "kind": "indicator",
+      "title": "Logement : part du revenu absorbée selon la richesse",
+      "excerpt": null,
+      "occurred_at": "2026-09-23",
+      "source_url": "https://www.insee.fr/fr/statistiques/9053584",
+      "source_locator": "Figure 3, taux d’effort net par quartile de revenus par UC en 2024",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Le logement pèse moins sur le budget des ménages en 2024, sauf pour les plus modestes — Insee Première 2128",
+        "published_at": "2026-09-23"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "2128",
+            "23/09/2026",
+            "32,1"
+          ]
+        },
+        "indicator": {
+          "domain": "logement",
+          "measurement_type": "observation",
+          "value": 32.1,
+          "value_label": "Quart des ménages les plus modestes",
+          "unit": "% des revenus",
+          "period": "Début 2024",
+          "geography": "France hors Mayotte",
+          "population": "Résidences principales en logement ordinaire, hors référence étudiante et revenus négatifs",
+          "method": "Enquête Logement 2023-2024 ; dépenses rapportées aux revenus, aides déduites.",
+          "comparisons": [
+            {
+              "label": "Quart des ménages les plus modestes",
+              "value": 32.1
+            },
+            {
+              "label": "Deuxième quart",
+              "value": 21.8
+            },
+            {
+              "label": "Troisième quart",
+              "value": 17.4
+            },
+            {
+              "label": "Quart des ménages les plus aisés",
+              "value": 11.6
+            }
+          ],
+          "comparison_note": "Ménages classés selon leurs revenus par unité de consommation.",
+          "limits": "Ratio agrégé, pas médiane des taux individuels ; remboursements immobiliers inclus.",
+          "source_edition": "Le logement pèse moins sur le budget des ménages en 2024, sauf pour les plus modestes — Insee Première 2128 · publication du 2026-09-23",
+          "series": [
+            {
+              "period": "Début 2024",
+              "value": 32.1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:aides-logement-effort-2024",
+      "kind": "indicator",
+      "title": "Aides au logement : allègement pour les ménages modestes",
+      "excerpt": null,
+      "occurred_at": "2026-09-23",
+      "source_url": "https://www.insee.fr/fr/statistiques/9053584",
+      "source_locator": "Figure 3, premier quartile, taux d’effort brut et net en 2024",
+      "source": {
+        "publisher": "Insee",
+        "document_title": "Le logement pèse moins sur le budget des ménages en 2024, sauf pour les plus modestes — Insee Première 2128",
+        "published_at": "2026-09-23"
+      },
+      "detail": {
+        "source_verification": {
+          "markers": [
+            "2128",
+            "23/09/2026",
+            "32,1"
+          ]
+        },
+        "indicator": {
+          "domain": "aides",
+          "measurement_type": "observation",
+          "value": 32.1,
+          "value_label": "Après déduction des aides",
+          "unit": "% des revenus",
+          "period": "Début 2024",
+          "geography": "France hors Mayotte",
+          "population": "Quart des ménages les plus modestes ; mêmes exclusions que la fiche logement",
+          "method": "Enquête Logement 2023-2024 ; différence comptable brut/net.",
+          "comparisons": [
+            {
+              "label": "Avant déduction des aides",
+              "value": 39
+            },
+            {
+              "label": "Après déduction des aides",
+              "value": 32.1
+            }
+          ],
+          "comparison_note": "Même groupe : allègement de 6,9 points de revenu.",
+          "limits": "N’inclut pas les ménages hors logement ordinaire ; ne mesure pas l’effet causal d’une réforme.",
+          "source_edition": "Le logement pèse moins sur le budget des ménages en 2024, sauf pour les plus modestes — Insee Première 2128 · publication du 2026-09-23",
+          "series": [
+            {
+              "period": "Début 2024",
+              "value": 32.1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "inegalites:rsa-non-recours-2018",
+      "kind": "indicator",
+      "title": "RSA : aides non perçues par des foyers estimés éligibles",
+      "excerpt": null,
+      "occurred_at": "2022-02-11",
+      "source_url": "https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-05/DD92_0.pdf",
+      "source_locator": "PDF page 36 (page imprimée 31), tableau 6 et section 2.1 ; champ détaillé page imprimée 39",
+      "source": {
+        "publisher": "Drees",
+        "document_title": "Mesurer régulièrement le non-recours au RSA — Dossiers de la Drees 92",
+        "published_at": "2022-02-11"
+      },
+      "detail": {
+        "indicator": {
+          "domain": "aides",
+          "measurement_type": "simulation",
+          "value": 34,
+          "unit": "% des foyers estimés éligibles",
+          "period": "2018, moyenne trimestrielle",
+          "geography": "France métropolitaine",
+          "population": "Logements ordinaires ; référence de moins de 65 ans, non étudiante, hors congé parental, handicap et pension d’invalidité ; autres exclusions du rapport",
+          "method": "ERFS 2018 et Ines : éligibilité simulée confrontée aux versements.",
+          "limits": "Estimation historique sensible aux hypothèses de ressources ; pas taux actuel, ni preuve d’un refus administratif.",
+          "source_edition": "Mesurer régulièrement le non-recours au RSA — Dossiers de la Drees 92 · publication du 2022-02-11",
+          "series": [
+            {
+              "period": "2018, moyenne trimestrielle",
+              "value": 34
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

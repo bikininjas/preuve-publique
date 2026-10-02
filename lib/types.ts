@@ -1,14 +1,14 @@
 // Types mirroring supabase/migrations/20260929000000_initial.sql and
 // 20260930000000_backend_pipeline.sql. Keep in sync with the SQL checks.
 
-export type EvidenceKind = 'program' | 'statement' | 'amendment' | 'vote' | 'adopted_text' | 'indicator';
+export type EvidenceKind = 'program' | 'statement' | 'amendment' | 'vote' | 'adopted_text' | 'indicator' | 'judicial_event';
 export type Institution = 'assemblee' | 'senat' | 'parlement_europeen' | 'legifrance';
 export type RowStatus = 'draft' | 'reviewed' | 'published';
 export type LinkRelation = 'related' | 'same_proposal' | 'legislative_outcome';
 export type LinkMethod = 'deterministic' | 'llm' | 'human';
 
 export const EVIDENCE_KINDS: readonly EvidenceKind[] = [
-  'program', 'statement', 'amendment', 'vote', 'adopted_text', 'indicator',
+  'program', 'statement', 'amendment', 'vote', 'adopted_text', 'indicator', 'judicial_event',
 ];
 export const INSTITUTIONS: readonly Institution[] = [
   'assemblee', 'senat', 'parlement_europeen', 'legifrance',

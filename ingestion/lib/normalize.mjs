@@ -3,7 +3,7 @@
 // pushed to the database without a surprise, and a record that cannot be
 // traced back to its source is rejected.
 
-export const KINDS = ['program', 'statement', 'amendment', 'vote', 'adopted_text', 'indicator'];
+export const KINDS = ['program', 'statement', 'amendment', 'vote', 'adopted_text', 'indicator', 'judicial_event'];
 export const INSTITUTIONS = ['assemblee', 'senat', 'parlement_europeen', 'legifrance'];
 export const ACTOR_KINDS = ['person', 'party', 'group'];
 
