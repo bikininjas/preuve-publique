@@ -1,0 +1,35 @@
+name: Synchroniser les sondages Sondax
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Valider le CSV sans écrire en base
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: sondax-polls-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.18.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run test:polls
+      - name: Contrôle sans écriture
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run
+        run: npm run polls:sync -- --dry-run
+      - name: Synchronisation transactionnelle
+        if: github.event_name == 'schedule' || !inputs.dry_run
+        env:
+          DB_PG_URL: ${{ secrets.POLLS_DB_PG_URL }}
+        run: npm run polls:sync -- --yes --publish

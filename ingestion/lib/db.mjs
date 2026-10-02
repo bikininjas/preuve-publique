@@ -519,6 +519,11 @@ export async function startRun(client, { importer, options = {} }) {
   return rows[0].id;
 }
 
+/**
+ * @param {object} client
+ * @param {string} id
+ * @param {{ status: string, stats?: object, error?: string | null }} result
+ */
 export async function finishRun(client, id, { status, stats = {}, error = null }) {
   await client.query(
     'update public.ingestion_runs set finished_at = now(), status = $2, stats = $3::jsonb, error = $4 where id = $1',

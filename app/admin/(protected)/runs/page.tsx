@@ -20,6 +20,7 @@ export default async function RunsPage() {
         Chaque import lancé depuis la ligne de commande laisse une trace : importeur, options, volume et résultat. Ce
         journal est privé : il n’est lisible que par l’administration.
       </p>
+      <p className="hint">Les synchronisations de sondages apparaissent sous <code>polls:sondax</code>, avec les ajouts, modifications, données conservées et empreintes. Un opérateur peut lancer <code>npm run polls:sync -- --yes --publish</code> depuis un environnement interne disposant de la connexion d’ingestion. La synchronisation ne s’exécute pas dans le service web.</p>
 
       {!runs ? (
         <Notice>Le journal est indisponible pour le moment.</Notice>

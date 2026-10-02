@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "eslint .",
     "ingest": "node ingestion/cli.mjs",
+    "polls:sync": "node --experimental-strip-types ingestion/polls/cli.ts",
+    "test:polls": "node --experimental-strip-types --test \"ingestion/polls/tests/*.test.mjs\"",
+    "typecheck": "tsc --noEmit",
     "test:ingestion": "node --test \"ingestion/tests/*.test.mjs\"",
     "test:reader": "node --test \"tests/*.test.mjs\""
   },
