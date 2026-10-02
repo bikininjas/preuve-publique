@@ -4,6 +4,7 @@ import { formatDate, institutionLabel, kindLabel } from '@/lib/labels';
 import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { VoteTopics } from '@/components/vote-topics';
+import { EditorialContext } from '@/components/editorial-context';
 
 /** One published piece, as shown in the browsing lists. */
 export function EvidenceCard({ item }: { item: Evidence }) {
@@ -25,6 +26,7 @@ export function EvidenceCard({ item }: { item: Evidence }) {
       {tally && (tally.pour !== null || tally.contre !== null) ? <VoteDistribution tally={tally} compact /> : null}
       {item.kind === 'vote' && item.institution === 'assemblee' ? <Link className="card-party-link" href={`/pieces/${item.id}#votes-par-parti`}>Voir les parts par parti →</Link> : null}
       {item.kind === 'vote' && item.institution === 'senat' ? <Link className="card-party-link" href={`/pieces/${item.id}#votes-par-groupe`}>Voir les parts par groupe →</Link> : null}
+      <EditorialContext evidence={item} compact />
       <p className="source">
         <a href={item.source_url} target="_blank" rel="noopener noreferrer">
           Source officielle ↗

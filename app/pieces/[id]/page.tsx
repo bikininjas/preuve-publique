@@ -5,6 +5,7 @@ import { PartyVoteBreakdown } from '@/components/party-vote-chart';
 import { VoteTopics } from '@/components/vote-topics';
 import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { VoteDistribution } from '@/components/vote-distribution';
+import { EditorialContext } from '@/components/editorial-context';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
 import { getActorNames, getEvidenceItem, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
 import {
@@ -141,6 +142,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       {tally && (tally.pour !== null || tally.contre !== null) ? <section className="scrutin-result" id="resultat"><div><span className="eyebrow">Décompte officiel</span><h2>Le résultat en un regard.</h2><p className="hint">{tally.votants !== null ? `${tally.votants.toLocaleString('fr-FR')} votants indiqués dans la source.` : 'Nombre de votants non renseigné.'}</p></div><VoteDistribution tally={tally} /></section> : null}
       {evidence.kind === 'vote' ? <p className="hint">{scrutinNumber(evidence) ? `Scrutin n° ${scrutinNumber(evidence)} · ` : ''}Ces chiffres décrivent ce scrutin, pas la position de chaque élu. <a href={evidence.source_url} target="_blank" rel="noopener noreferrer">Vérifier le vote officiel ↗</a></p> : null}
 
+      <EditorialContext evidence={evidence} />
       {evidence.excerpt ? (
         <Citation footer="Formulation reprise de la source ; le lien ci-dessous mène au document original.">
           {evidence.excerpt}
@@ -161,7 +163,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       {groups.length ? <details className="document-provenance"><summary><span><strong>Analyse officielle par groupe parlementaire</strong><small>Les décomptes de groupe, distincts des affiliations à un parti</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary><div className="provenance-content"><GroupPositions groups={groups} names={groupNames} /></div></details> : null}
 
       <details className="document-provenance" id="provenance">
-        <summary><span><strong>Sources, contexte et données du scrutin</strong><small>Document original, références et contrôles de publication</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary>
+        <summary><span><strong>Sources, contexte et données de la pièce</strong><small>Document original, références et contrôles de publication</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary>
         <div className="provenance-content"><MetaList items={meta} />
         <p className="hint">{source ? `Récupéré le ${formatDateTime(source.retrieved_at)}${source.sha256 ? ` · empreinte SHA-256 ${source.sha256.slice(0, 12)}…` : ''}` : 'Source récupérée par l’importeur ; le document original reste chez son éditeur.'}</p>
         {evidence.publication_confidence != null ? <p className="hint"><strong>Conformité à la source : {Math.round(Number(evidence.publication_confidence) * 100)} %.</strong> Archive officielle, empreinte SHA-256 et données du scrutin recoupées avant publication. Cet indice ne mesure ni la cohérence d’un parti ni l’effet d’une loi.</p> : null}

@@ -1,0 +1,91 @@
+{
+  "edition": "observatoire-pilote-2026-10-02",
+  "records": [
+    {
+      "external_id": "observatoire:programme:macron:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Emmanuel Macron — retraite : profession de foi présidentielle de 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-07-Emmanuel-Macron-Declaration.pdf",
+      "source_locator": "PDF, page 3, rubrique Pour travailler plus ; contexte page 2",
+      "excerpt": "Report de l'âge légal de départ à la retraite à 65 ans.",
+      "source": { "publisher": "CNCCEP — document d’Emmanuel Macron", "document_title": "Emmanuel Macron — Nous tous — profession de foi, premier tour 2022", "published_at": null },
+      "detail": {
+        "excerpt_type": "quote",
+        "program": { "author": "Emmanuel Macron", "election": "Présidentielle française 2022 — premier tour", "edition": "Profession de foi officielle, version générale", "election_date": "2022-04-10", "publication_date": null, "date_note": "La date affichée est celle du premier tour. Le PDF ne précise pas sa date de publication ; aucune date n’est inventée.", "scope_note": "Archive de 2022, pas un programme de 2027. La page 2 précise le recul progressif et les incapacités, carrières longues ou pénibles. Aucun rapprochement avec un scrutin n’est validé." }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:le-pen:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Marine Le Pen — retraite : profession de foi présidentielle de 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-06-Marine-Le-Pen-Declaration-accessible.pdf",
+      "source_locator": "PDF, page 2, rubrique Augmenter votre pouvoir d’achat, paragraphe sur les aînés",
+      "excerpt": "Je garantirai à chacun une retraite juste et digne à partir de 60 ans",
+      "actor": { "name": "Marine Le Pen", "kind": "person", "external_id": "an-acteur:PA720614" },
+      "source": { "publisher": "CNCCEP — document de Marine Le Pen", "document_title": "Marine Le Pen — profession de foi, premier tour 2022", "published_at": null },
+      "detail": {
+        "excerpt_type": "quote",
+        "program": { "author": "Marine Le Pen", "election": "Présidentielle française 2022 — premier tour", "edition": "Profession de foi officielle, PDF accessible de la version générale", "election_date": "2022-04-10", "publication_date": null, "date_note": "La date affichée est celle du premier tour. Le PDF ne précise pas sa date de publication ; aucune date n’est inventée.", "scope_note": "L’extrait est partiel : la même phrase précise un système progressif de 40 à 42 annuités. Archive de 2022, pas un programme de 2027. Aucun rapprochement avec un scrutin n’est validé." }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:melenchon:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Jean-Luc Mélenchon — retraite : profession de foi présidentielle de 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-08-Jean-Luc-Melenchon-Declaration-accessible.pdf",
+      "source_locator": "PDF, page 2, rubrique Vivre dignement, paragraphe sur la retraite",
+      "excerpt": "Le droit à la retraite à 60 ans avec 40 années de cotisation sera rétabli",
+      "actor": { "name": "Jean-Luc Mélenchon", "kind": "person", "external_id": "an-acteur:PA2150" },
+      "source": { "publisher": "CNCCEP — document de Jean-Luc Mélenchon", "document_title": "Jean-Luc Mélenchon — profession de foi, premier tour du 10 avril 2022", "published_at": null },
+      "detail": {
+        "excerpt_type": "quote",
+        "program": { "author": "Jean-Luc Mélenchon", "election": "Présidentielle française 2022 — premier tour", "edition": "Profession de foi officielle, PDF accessible de la version générale", "election_date": "2022-04-10", "publication_date": null, "date_note": "La date affichée est celle du premier tour. Le PDF ne précise pas sa date de publication ; aucune date n’est inventée.", "scope_note": "Archive de 2022, pas un programme de 2027. Extrait sur l’âge de départ et les cotisations ; le document complet reste la référence. Aucun rapprochement avec un scrutin n’est validé." }
+      }
+    },
+    {
+      "external_id": "observatoire:insee:ip2063:pauvrete:2023",
+      "kind": "indicator",
+      "title": "Pauvreté monétaire — France métropolitaine, 2023",
+      "occurred_at": "2025-07-07",
+      "source_url": "https://www.insee.fr/fr/statistiques/8600989",
+      "source_locator": "Insee Première n° 2063, figure 3 : indicateurs de pauvreté au seuil de 60 % du niveau de vie médian",
+      "excerpt": null,
+      "source": { "publisher": "Insee", "document_title": "Niveau de vie et pauvreté en 2023 — Insee Première n° 2063", "published_at": "2025-07-07" },
+      "detail": {
+        "summary": "En 2023, 15,4 % des personnes du champ de l’enquête vivent sous le seuil de pauvreté fixé à 60 % du niveau de vie médian.",
+        "indicator": { "value": 15.4, "unit": "%", "period": "2023", "geography": "France métropolitaine", "population": "Personnes vivant en logement ordinaire, dans un ménage dont le revenu déclaré est positif ou nul et dont la personne de référence n’est pas étudiante.", "method": "Enquête Revenus fiscaux et sociaux (ERFS), Insee-DGFiP-Cnaf-Cnav-CCMSA ; seuil à 60 % du niveau de vie médian après redistribution.", "limits": "Le champ ne couvre ni les collectivités d’outre-mer ni les personnes hors logement ordinaire. Série reprise dans cette édition ; les révisions et ruptures doivent être contrôlées avant comparaison. Aucune causalité attribuée à un vote.", "series": [{ "period": "2021", "value": 14.5 }, { "period": "2022", "value": 14.4 }, { "period": "2023", "value": 15.4 }] }
+      }
+    },
+    {
+      "external_id": "observatoire:insee:ip2063:gini:2023",
+      "kind": "indicator",
+      "title": "Inégalités de niveau de vie — indice de Gini, 2023",
+      "occurred_at": "2025-07-07",
+      "source_url": "https://www.insee.fr/fr/statistiques/8600989",
+      "source_locator": "Insee Première n° 2063, figure 2 : indicateurs d’inégalités de niveau de vie de 1996 à 2023",
+      "excerpt": null,
+      "source": { "publisher": "Insee", "document_title": "Niveau de vie et pauvreté en 2023 — Insee Première n° 2063", "published_at": "2025-07-07" },
+      "detail": {
+        "summary": "L’indice de Gini des niveaux de vie est de 0,297 en 2023 sur le champ de l’enquête.",
+        "indicator": { "value": 0.297, "unit": "indice de 0 à 1", "period": "2023", "geography": "France métropolitaine", "population": "Personnes vivant en logement ordinaire, dans un ménage dont le revenu déclaré est positif ou nul et dont la personne de référence n’est pas étudiante.", "method": "ERFS, Insee-DGFiP-Cnaf-Cnav-CCMSA ; niveau de vie après redistribution. L’indice varie de 0 (égalité parfaite) à 1 (inégalité extrême).", "limits": "Cet indice décrit les niveaux de vie, pas le patrimoine. Le champ exclut les personnes hors logement ordinaire et l’outre-mer. Les mesures d’autres enquêtes ne sont pas interchangeables. Aucune causalité attribuée à un vote.", "series": [{ "period": "2021", "value": 0.294 }, { "period": "2022", "value": 0.294 }, { "period": "2023", "value": 0.297 }] }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:assistants-fn:appel:2025-04-01",
+      "kind": "judicial_event",
+      "title": "Assistants parlementaires du Front National — saisine en appel du 1er avril 2025",
+      "occurred_at": "2025-04-01",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2025-04/CP-%20cour%20d%27appel%20de%20Paris%20dossier%20RN.pdf",
+      "source_locator": "Communiqué de presse du 1er avril 2025, page 1, premier paragraphe",
+      "excerpt": null,
+      "source": { "publisher": "Cour d’appel de Paris — Première présidence et parquet général", "document_title": "Communiqué de presse — appels dans l’affaire des assistants parlementaires du Front National", "published_at": "2025-04-01" },
+      "detail": {
+        "summary": "La cour d’appel de Paris annonce trois appels contre la décision rendue le 31 mars 2025 dans ce dossier.",
+        "judicial": { "case_id": "assistants-parlementaires-fn", "court": "Cour d’appel de Paris", "stage": "Saisine en appel", "status_at_event": "Trois appels annoncés au 1er avril 2025", "current_status_note": "Étape historique uniquement. Ce communiqué ne décrit pas l’état de la procédure au 2 octobre 2026. La décision d’appel, les personnes concernées et les éventuels recours ultérieurs restent à recouper avec des sources judiciaires avant publication d’un dossier actuel.", "presumption_note": "Le communiqué ne nomme pas les appelants et ne détaille ni faits reprochés ni peines. Aucun acteur n’est attribué par déduction. Distinguer la procédure, les personnes et le parti ; respecter la présomption d’innocence pour les faits non définitivement jugés." }
+      }
+    }
+  ]
+}

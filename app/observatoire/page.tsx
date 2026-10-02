@@ -1,28 +1,54 @@
 import Link from 'next/link';
-import { getEvidencePage } from '@/lib/data';
+import { EvidenceCard } from '@/components/evidence-card';
+import { Empty } from '@/components/ui';
+import { getEvidencePage, isConfigured } from '@/lib/data';
+import type { EvidencePage } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Observatoire' };
 
-const DOMAINS = ['Revenus & patrimoine', 'Travail & emploi', 'Logement', 'Santé', 'Éducation', 'Territoires', 'Environnement', 'Services publics'];
+function PublishedSection({ id, title, intro, result, href, empty }: {
+  id: string; title: string; intro: string; result: EvidencePage | null;
+  href: string; empty: string;
+}) {
+  return <section className="observatory-section" id={id}>
+    <div className="section-heading"><div><h2>{title}</h2><p className="hint">{intro}</p></div>{result && result.total > 0 ? <Link className="text-link" href={href}>Tout consulter ({result.total.toLocaleString('fr-FR')}) →</Link> : null}</div>
+    {result === null ? <Empty>Les données de cette rubrique sont temporairement indisponibles.</Empty>
+      : result.items.length ? <div className="cards">{result.items.map((item) => <EvidenceCard key={item.id} item={item} />)}</div>
+      : <Empty>{empty}</Empty>}
+  </section>;
+}
 
 export default async function ObservatoirePage() {
-  let counts: { programs: number; statements: number; indicators: number } | null = null;
-  let votesByInstitution: { assemblee: number; senat: number; parlement_europeen: number } | null = null;
-  try {
-    const [programs, statements, indicators, assemblee, senat, parlement] = await Promise.all([
-      getEvidencePage({ kind: 'program', limit: 1 }), getEvidencePage({ kind: 'statement', limit: 1 }), getEvidencePage({ kind: 'indicator', limit: 1 }),
-      getEvidencePage({ kind: 'vote', institution: 'assemblee', limit: 1 }), getEvidencePage({ kind: 'vote', institution: 'senat', limit: 1 }), getEvidencePage({ kind: 'vote', institution: 'parlement_europeen', limit: 1 }),
-    ]);
-    counts = { programs: programs.total, statements: statements.total, indicators: indicators.total };
-    votesByInstitution = { assemblee: assemblee.total, senat: senat.total, parlement_europeen: parlement.total };
-  } catch { /* explicit unavailable state */ }
+  // Une panne d’une rubrique n’efface pas les autres. Une base non configurée
+  // reste indisponible, sans transformer l’absence de connexion en zéro pièce.
+  const queries = [
+    { kind: 'program' as const, limit: 3 }, { kind: 'statement' as const, limit: 3 },
+    { kind: 'indicator' as const, limit: 3 }, { kind: 'judicial_event' as const, limit: 3 },
+    { kind: 'vote' as const, institution: 'assemblee' as const, limit: 1 },
+    { kind: 'vote' as const, institution: 'senat' as const, limit: 1 },
+    { kind: 'vote' as const, institution: 'parlement_europeen' as const, limit: 1 },
+  ];
+  const results = isConfigured() ? await Promise.allSettled(queries.map((query) => getEvidencePage(query))) : [];
+  const pages = queries.map((_, index) => {
+    const result = results[index];
+    return result?.status === 'fulfilled' ? result.value : null;
+  });
+  const [programs, statements, indicators, judicial, assemblee, senat, parlement] = pages;
+  const count = (page: EvidencePage | null) => page ? page.total.toLocaleString('fr-FR') : '—';
   return <main>
-    <div className="page-intro reading-intro"><div className="eyebrow">Au-delà du scrutin</div><h1>Relier les décisions<br /><em>à la vie réelle.</em></h1><p className="lead">Votes, discours, programmes, effets possibles et inégalités : ces questions méritent des dossiers suivis dans le temps. Voici les chantiers éditoriaux et leurs conditions de publication.</p></div>
-    <section className="coverage"><div className="section-heading"><div><div className="eyebrow">Couverture réelle de la base</div><h2>Ce qui est visible aujourd’hui.</h2></div></div><div className="coverage-grid"><div><span>Assemblée nationale</span><strong>{votesByInstitution?.assemblee.toLocaleString('fr-FR') ?? '—'}</strong><small>scrutins publiés</small></div><div><span>Sénat</span><strong>{votesByInstitution?.senat.toLocaleString('fr-FR') ?? '—'}</strong><small>scrutins publiés</small></div><div><span>Parlement européen</span><strong>{votesByInstitution?.parlement_europeen.toLocaleString('fr-FR') ?? '—'}</strong><small>scrutins publiés</small></div></div><p className="hint">Ces nombres décrivent uniquement les pièces publiées dans Preuve Publique. Ils ne correspondent pas au nombre total de votes tenus par chaque institution.</p></section>
-    <section className="observatory-grid"><article className="feature-card"><span className="feature-num">01 / COMPARER</span><h2>Parole & vote</h2><p>Mettre côte à côte la formulation exacte d’un programme ou d’une déclaration et le scrutin portant sur la même mesure. Le périmètre du texte et le motif du vote doivent être vérifiés par une personne.</p><span className="availability">{counts ? `${counts.programs} programmes · ${counts.statements} déclarations publiés` : 'Données indisponibles'}</span></article><article className="feature-card"><span className="feature-num">02 / MESURER</span><h2>Inégalités</h2><p>Suivre des indicateurs publics avec unité, période, couverture géographique, méthode et source. Une évolution ne sera jamais attribuée à un scrutin par simple proximité dans le temps.</p><span className="availability">{counts ? `${counts.indicators} indicateurs publiés` : 'Données indisponibles'}</span></article><article className="feature-card"><span className="feature-num">03 / CONTEXTUALISER</span><h2>Affaires judiciaires</h2><p>Présenter les faits allégués, la procédure, les décisions, les recours et l’état actuel, avec leurs dates et sources judiciaires. Présomption d’innocence et distinction entre personne et parti sont indispensables.</p><span className="availability">Aucune fiche judiciaire dans le modèle actuel</span></article></section>
-    <section className="section-pad"><div className="section-heading"><div><div className="eyebrow">Indicateurs à documenter</div><h2>Les domaines à suivre</h2></div></div><div className="domain-grid">{DOMAINS.map((domain, index) => <div className="domain-tile" key={domain}><span>{String(index + 1).padStart(2, '0')}</span><strong>{domain}</strong><small>Sources et séries à documenter</small></div>)}</div></section>
-    <section className="info-band big"><strong>Des KPI avec un dénominateur</strong><span>Présence aux scrutins, répartition des votes et présence médiatique n’ont de sens qu’avec une période, un périmètre, une source et une méthode stables. Aucun pourcentage ne sera affiché avant de réunir ces éléments.</span></section>
-    <div className="cta"><Link className="button" href="/scrutins">Explorer les scrutins disponibles →</Link><Link className="button secondary" href="/methode">Lire la méthode</Link></div>
+    <div className="page-intro reading-intro"><div className="eyebrow">Au-delà du scrutin</div><h1>Relier les décisions<br /><em>à la vie réelle.</em></h1><p className="lead">Retrouver les propositions originales, les indicateurs publics et les étapes judiciaires documentées. Chaque pièce garde sa date, son périmètre et sa source ; les rapprochements demandent une relecture humaine.</p></div>
+    <nav className="reading-nav" aria-label="Rubriques de l’observatoire"><a href="#parole-vote">Parole & vote ↓</a><a href="#inegalites">Inégalités ↓</a><a href="#justice">Affaires judiciaires ↓</a></nav>
+    <section className="coverage"><div className="section-heading"><div><div className="eyebrow">Couverture réelle de la base</div><h2>Les scrutins consultables.</h2></div></div><div className="coverage-grid">{[
+      { title: 'Assemblée nationale', page: assemblee, institution: 'assemblee' },
+      { title: 'Sénat', page: senat, institution: 'senat' },
+      { title: 'Parlement européen', page: parlement, institution: 'parlement_europeen' },
+    ].map(({ title, page, institution }) => <div key={institution}><span>{title}</span><strong>{count(page)}</strong><small>{page ? 'scrutins publiés' : 'comptage indisponible'}</small>{page && page.total > 0 ? <Link className="text-link" href={`/scrutins?institution=${institution}`}>Consulter les votes →</Link> : page ? <p className="hint">Corpus non publié à ce jour.</p> : null}</div>)}</div><p className="hint">Ces nombres décrivent les pièces publiées dans Preuve Publique, pas tous les votes tenus par chaque institution.</p></section>
+    <section className="observatory-grid" aria-label="Contenus publiés"><article className="feature-card"><span className="feature-num">01 / COMPARER</span><h2>Parole & vote</h2><p>Lire la proposition dans son édition électorale, puis vérifier le texte et le périmètre du scrutin. Une archive de 2022 ne représente pas un programme de 2027.</p><a className="availability" href="#parole-vote">{count(programs)} programmes · {count(statements)} déclarations publiés ↓</a></article><article className="feature-card"><span className="feature-num">02 / MESURER</span><h2>Inégalités</h2><p>Consulter les valeurs avec leur unité, leur période, leur territoire et leur méthode. Une évolution observée ne prouve pas l’effet d’un vote.</p><a className="availability" href="#inegalites">{count(indicators)} indicateurs publiés ↓</a></article><article className="feature-card"><span className="feature-num">03 / CONTEXTUALISER</span><h2>Affaires judiciaires</h2><p>Distinguer les faits allégués, les décisions et les recours. Une étape datée ne décrit pas nécessairement l’état actuel de la procédure.</p><a className="availability" href="#justice">{count(judicial)} étapes judiciaires publiées ↓</a></article></section>
+    <PublishedSection id="parole-vote" title="Les propositions à la source." intro="Documents originaux et extraits identifiés. Un document seul ne valide aucun rapprochement parole/vote. Les programmes officiels de 2027 sont présentés uniquement lorsqu’une source de cette édition est publiée." result={programs} href="/pieces?kind=program" empty="Aucun programme validé n’est encore publié. Les archives électorales doivent être relues avec leur édition et leur contexte avant publication." />
+    {statements === null || statements.total > 0 ? <PublishedSection id="declarations" title="Les déclarations documentées." intro="Formulation exacte et circonstances, avec un repère dans l’enregistrement ou la transcription." result={statements} href="/pieces?kind=statement" empty="Aucune déclaration publiée." /> : <p className="hint">Aucune déclaration médiatique vérifiée n’est publiée pour l’instant.</p>}
+    <PublishedSection id="inegalites" title="Les indicateurs documentés." intro="Les fiches donnent la population observée, la série de la même édition et ses limites. Aucun effet causal n’est attribué à un scrutin." result={indicators} href="/pieces?kind=indicator" empty="Aucun indicateur validé n’est encore publié. Les valeurs, le champ et la méthode doivent être contrôlés avant publication." />
+    <PublishedSection id="justice" title="Les étapes judiciaires sourcées." intro="Pièces judiciaires datées, distinctes d’un dossier complet sur une personne ou un parti. Les informations manquantes et les recours sont explicités ; la présomption d’innocence s’applique aux faits non définitivement jugés." result={judicial} href="/pieces?kind=judicial_event" empty="Aucune étape judiciaire validée n’est encore publiée. Les documents et l’état de la procédure demandent une relecture humaine." />
+    <div className="cta"><Link className="button" href="/scrutins">Explorer les scrutins →</Link><Link className="button secondary" href="/methode">Lire la méthode</Link></div>
   </main>;
 }

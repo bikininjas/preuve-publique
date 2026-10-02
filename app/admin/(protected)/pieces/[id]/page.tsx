@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FlashNotice } from '@/components/flash-notice';
 import { ReviewActions } from '@/components/review-actions';
+import { EditorialContext } from '@/components/editorial-context';
 import { Citation, DataTable, MetaList, Notice, RawJson, StatusBadge, type MetaEntry } from '@/components/ui';
 import { getEvidenceForAdmin } from '@/lib/admin';
 import {
@@ -94,6 +95,7 @@ export default async function AdminPiecePage({
       <FlashNotice params={query} />
       <div className="info-band admin-review-gate"><strong>Avant la transition</strong><span>Vérifier le lien source, le repère, la date et le périmètre du scrutin. Pour un rapprochement, ouvrir aussi l’autre pièce. La validation doit correspondre à une relecture effective.</span></div>
       <ReviewActions table="evidence" id={evidence.id} status={evidence.status} back={back} />
+      <EditorialContext evidence={evidence} />
 
       <section className="panel">
         <h2>Provenance</h2>

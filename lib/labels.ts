@@ -13,6 +13,7 @@ export const KIND_LABELS: Record<EvidenceKind, string> = {
   vote: 'Scrutin',
   adopted_text: 'Texte adopté',
   indicator: 'Indicateur',
+  judicial_event: 'Étape judiciaire',
 };
 
 export const INSTITUTION_LABELS: Record<Institution, string> = {

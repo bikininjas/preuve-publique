@@ -472,6 +472,15 @@ p,ul { color:var(--muted); }
 .position-cell strong { font-family:Georgia,serif; font-size:25px; font-weight:500; margin:7px 0; }
 .position-cell small { color:#66747a; }
 .observatory-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.observatory-section { padding:40px 0 12px; scroll-margin-top:24px; }
+.coverage-grid .text-link { display:block; margin-top:12px; font-size:13px; }
+.editorial-context { min-width:0; overflow-wrap:anywhere; }
+.editorial-context p { line-height:1.6; }
+.indicator-value { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; }
+.indicator-value strong { font:500 clamp(30px,4vw,48px)/1.1 Georgia,serif; }
+.indicator-value span { font-size:13px; }
+.editorial-context .table { width:100%; }
+.editorial-context caption { text-align:left; padding:10px 0; font-size:13px; }
 .feature-card { padding:30px; background:var(--navy); min-height:350px; display:flex; flex-direction:column; }
 .feature-card:nth-child(2) { background:#22464d; }
 .feature-card:nth-child(3) { background:#614136; }
