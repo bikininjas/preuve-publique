@@ -7,7 +7,7 @@ import { isUuid, safeAdminPath } from '@/lib/params';
 import { ROW_STATUSES } from '@/lib/types';
 import type { RowStatus } from '@/lib/types';
 
-const REVIEW_TABLES = ['evidence', 'evidence_links'] as const;
+const REVIEW_TABLES = ['evidence', 'evidence_links', 'policy_measures', 'policy_measure_evidence', 'candidate_connections'] as const;
 type ReviewTable = (typeof REVIEW_TABLES)[number];
 
 function withParams(path: string, values: Record<string, string>): string {

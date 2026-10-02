@@ -990,6 +990,25 @@ details[open]>summary .disclosure-plus { transform:rotate(45deg); }
 .theme-jumps strong { font-size:23px; }
 .group-directory-card { min-height:220px; padding:18px 20px 15px; }
 .group-card-core { margin:16px 0 13px; gap:12px; }
+.candidate-directory,.candidate-comparison-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:18px; margin-block:24px; }
+.candidate-profile { overflow-wrap:anywhere; }
+.candidate-directory .panel,.candidate-comparison-grid .panel { margin-top:0; min-width:0; }
+.candidate-form { display:flex; flex-wrap:wrap; gap:16px; align-items:end; }
+.candidate-form label { display:grid; gap:7px; flex:1 1 200px; min-width:0; }
+.candidate-form select { width:100%; min-width:0; max-width:100%; }
+.candidate-table-scroll { overflow-x:auto; max-width:100%; border:1px solid var(--line); border-radius:12px; }
+.candidate-vote-table { width:100%; border-collapse:collapse; font-size:14px; }
+.candidate-vote-table caption { text-align:left; padding:16px; }
+.candidate-vote-table th,.candidate-vote-table td { padding:16px; border-top:1px solid var(--line); text-align:left; vertical-align:top; min-width:150px; }
+.candidate-vote-table th:first-child { min-width:240px; max-width:480px; }
+.candidate-vote-table th a { display:block; margin-top:8px; }
+.candidate-vote-table details { margin-top:8px; font-weight:normal; }
+.candidate-position { display:inline-block; padding:5px 9px; border:1px solid currentColor; border-radius:8px; }
+.candidate-position.pour { color:var(--teal); }.candidate-position.contre { color:#9a423c; }
+.candidate-poll,.candidate-piece { padding-block:14px; border-bottom:1px solid var(--line); }
+.candidate-measures h5 { font-size:18px; margin-block:12px; }
+.candidate-measure-context { border-top:1px solid var(--line); padding-top:16px; }
+.candidate-measures code,.candidate-vote-table code { overflow-wrap:anywhere; }
 .group-card-core h3 { font-size:clamp(23px,2vw,29px); }
 .group-card-core>strong { font-size:35px; }
 .group-card-bottom { margin-top:14px; padding-top:11px; }

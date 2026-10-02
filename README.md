@@ -46,7 +46,7 @@ Mesures DOM avant/après à largeur identique de 1 280 px, avec les données pub
 | Carte de sous-thème | 528 px | 442 px | 16 % |
 | Carte de groupe | 296 px | 230 px | 22 % |
 
-Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, groupes, profil de parti et détail de scrutin ; contrôles à 320, 390, 768 et 1 280 px. Aucun débordement horizontal ni compteur tronqué constaté après ajustement. Le checkout de présentation est isolé du travail en cours sur les sondages. Le build local utilise Webpack pour les dépendances partagées du checkout ; le build Cloud Run utilise le compilateur normal du projet.
+Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, groupes, profil de parti et détail de scrutin ; contrôles à 320, 390, 768 et 1 280 px. Aucun débordement horizontal ni compteur tronqué constaté après ajustement. Ces styles sont intégrés aux parcours de sondages et de candidats ; le build de production utilise le compilateur normal du projet.
 
 ## Périmètre et méthode
 
@@ -58,11 +58,13 @@ Les effets observés (statistiques publiques, application d'une loi) demandent l
 
 ## État du dépôt
 
-Le dépôt contient une interface Next.js — site public et espace de relecture —, un modèle SQL (`sources`, `actors`, `actor_relations`, `evidence`, `evidence_links`, `admin_users`, colonne `topics`, `vote_party_coverage`, `vote_party_tallies`, `vote_group_coverage`, `vote_group_tallies`) avec politiques RLS et treize migrations, la logique serveur de lecture (`lib/`), les pipelines d'ingestion et l'outil de revue éditoriale (`ingestion/`), et une chaîne de construction pour Cloud Build et Cloud Run. Le site public affiche les pièces **publiées** : accueil, scrutins regroupés par sujets, graphiques de bulletins individuels rattachés aux partis à l'Assemblée nationale et décomptes officiels par groupe au Sénat, liste paginée, rubriques officielles, fiches avec provenance et page de méthode. L'espace `/admin` gère la relecture et la publication. Sans variables Supabase, chaque page affiche un état vide explicite.
+Le dépôt contient une interface Next.js — site public et espace de relecture —, un modèle SQL (`sources`, `actors`, `actor_relations`, `evidence`, `evidence_links`, `admin_users`, colonne `topics`, `vote_party_coverage`, `vote_party_tallies`, `vote_group_coverage`, `vote_group_tallies`) avec politiques RLS et quatorze migrations, la logique serveur de lecture (`lib/`), les pipelines d'ingestion et l'outil de revue éditoriale (`ingestion/`), et une chaîne de construction pour Cloud Build et Cloud Run. Le site public affiche les pièces **publiées** : accueil, scrutins regroupés par sujets, graphiques de bulletins individuels rattachés aux partis à l'Assemblée nationale et décomptes officiels par groupe au Sénat, liste paginée, rubriques officielles, fiches avec provenance et page de méthode. L'espace `/admin` gère la relecture et la publication. Sans variables Supabase, chaque page affiche un état vide explicite.
 
-**Les treize migrations ont été appliquées au projet Supabase** (`pntkhwdosrvsdybzsicp`) après inspection de l'historique et du schéma. Les politiques RLS et les droits de lecture ont été vérifiés en rôle `anon`. La base contient **20 407 pièces**, **2 241 acteurs**, **11 380 liens d'acteur datés**, **3 797 liens documentaires candidats**, 20 sources et environ **80 Mo** mesurés le 01/10/2026. Les migrations récentes ajoutent les décomptes nominatifs rattachables aux partis, les lectures publiques paginées et les décomptes officiels par groupe du Sénat : **2 157 scrutins**, **18 854 lignes scrutin/groupe**, **750 197 positions** ; aucune divergence avec les totaux officiels sur les pages importées.
+**Les quatorze migrations ont été appliquées au projet Supabase** (`pntkhwdosrvsdybzsicp`) après inspection de l'historique et du schéma. Les politiques RLS et les droits de lecture ont été vérifiés en rôle `anon`. La base contient **20 407 pièces**, **2 241 acteurs**, **11 380 liens d'acteur datés**, **3 797 liens documentaires candidats**, 20 sources et environ **80 Mo** mesurés le 01/10/2026. Les migrations récentes ajoutent les décomptes nominatifs rattachables aux partis, les lectures publiques paginées et les décomptes officiels par groupe du Sénat : **2 157 scrutins**, **18 854 lignes scrutin/groupe**, **750 197 positions** ; aucune divergence avec les totaux officiels sur les pages importées.
 
-**3 674 pièces sont publiées (01/10/2026)** : les **666 lois promulguées du Sénat**, les **2 157 scrutins publics du Sénat** et les **801 scrutins de l'Assemblée nationale portant sur l'ensemble d'un texte**. Elles l'ont été après un **contrôle technique de conformité à la source** — réimport du fichier officiel conservé (empreinte SHA-256 enregistrée) et comparaison pièce par pièce : 3 624 conformes, aucun écart ; 50 scrutins supplémentaires ont été publiés le 01/10/2026 par le pipeline automatique (archive officielle, SHA-256 et ligne en base recoupés, indice documentaire 0,990) — et **non** après une relecture humaine pièce par pièce : la trace enregistrée sur chaque ligne est « contrôle technique de conformité (passage de développement) ». **Les 16 733 autres pièces restent en brouillon et invisibles** ; les acteurs ne deviennent lisibles qu'à travers une pièce publiée qui les porte (42 groupes aujourd'hui) ; aucun rapprochement interprétatif n'est publié. Le contrôle automatique est limité aux scrutins officiels de l'Assemblée ; programmes, déclarations, interprétations et affaires judiciaires restent soumis à une revue humaine. Les importeurs ont été exercés sur les sources réelles et le chemin d'écriture vérifié sur un PostgreSQL local embarqué (PGlite) puis contre la base distante : insertion, idempotence, protection des pièces relues ou publiées, rattachements de références, propagation des rubriques, politiques RLS, recherche plein texte, et politiques de revue (adresse autorisée, adresse refusée, adresse désactivée). Aucun contenu politique d'exemple n'est présenté comme une donnée réelle.
+**État relu le 02/10/2026 : 3 674 pièces publiées**, soit **666 lois promulguées du Sénat**, **2 157 scrutins publics du Sénat** et **851 scrutins de l'Assemblée nationale**. La publication repose sur un contrôle technique de conformité aux archives officielles, avec empreinte SHA-256 et comparaison des faits ; elle ne vaut pas relecture humaine pièce par pièce. Le premier lot comptait 3 624 pièces conformes, puis 50 scrutins AN ont été publiés par le pipeline automatique le 01/10/2026 (indice documentaire 0,990). **Les 16 733 autres pièces restent en brouillon et invisibles**. Les références publiques restent bornées par les pièces et décomptes publiés ; les instantanés de candidats ont leurs propres politiques de lecture. Aucun rapprochement interprétatif n'est publié. Programmes, déclarations, interprétations et affaires judiciaires restent soumis à une revue humaine. Les tests PGlite et les imports distants ont vérifié insertion, idempotence, protection des pièces relues, provenance, recherche et droits de revue.
+
+Le corpus présidentiel contient **33 sondages publiés, 214 configurations et 1 702 résultats**, ainsi que **14 identités recoupées, 119 rattachements institutionnels datés et 1 549 bulletins personnels**. L'annuaire conserve les 26 personnes testées dans les sondages, dont douze sans correspondance institutionnelle documentée. Les trois questions pilotes et leurs trois liens de scrutin restent en brouillon. Méthodes et commandes : [sondages](docs/sondages-2027.md) et [candidats et mesures](docs/candidats-positions.md).
 
 La connexion Google de `/admin` passe par Supabase Auth et la liste `admin_users`. Elle a été exercée de bout en bout ; le site est déployé sur Cloud Run. Les accès OAuth et les variables d'exécution sont configurés hors du dépôt.
 
@@ -79,14 +81,20 @@ La connexion Google de `/admin` passe par Supabase Auth et la liste `admin_users
 | `/observatoire` | état des chantiers parole/vote, inégalités, indicateurs et affaires judiciaires, sans données inventées |
 | `/pieces` | liste paginée des pièces publiées, filtres type/institution, recherche plein texte |
 | `/pieces/<id>` | fiche : source et faits structurés, résultat officiel, parts pour/contre/abstention/non-vote par parti à l'Assemblée ou par groupe au Sénat lorsque les décomptes sont vérifiés |
-| `/categories` | page récapitulative : graphiques par parti (Assemblée) ou par groupe (Sénat) pour trois catégories et quinze sous-thèmes, puis rubriques publiées par les sources |
+| `/categories` | page récapitulative : graphiques par parti (Assemblée) ou par groupe (Sénat) pour trois catégories et dix-neuf sous-thèmes, puis rubriques publiées par les sources |
 | `/categories/<rubrique>` | pièces publiées portant cette rubrique, paginées |
 | `/methode` | méthode, sources officielles et limites assumées |
+| `/presidentielle-2027` | accès aux sondages, aux personnes testées et à la comparaison documentaire |
+| `/presidentielle-2027/sondages` | mesures Sondax, configurations exactes, filtres, graphique de points et sources originales |
+| `/presidentielle-2027/candidats` | annuaire des personnes testées, sans confirmation implicite de candidature officielle |
+| `/presidentielle-2027/candidats/[candidate]` | identité, rattachements datés, sondages, bulletins personnels et documents disponibles |
+| `/presidentielle-2027/comparer` | jusqu'à trois personnes, mêmes scrutins et sous-thème, avec données manquantes explicites |
 | `/admin` | atelier de relecture : compteurs, accès aux files et journal d'ingestion |
 | `/admin/review` | file des pièces : brouillon → relu → publié, retour d'un cran, relecteur enregistré |
 | `/admin/links` | file des rapprochements, mêmes transitions |
 | `/admin/runs` | passages d'ingestion (options, volumes, résultat) |
 | `/admin/publication` | règle automatique, indice de conformité et compteur |
+| `/admin/measures` | revue humaine des mesures, de leurs pièces et des adhésions, soutiens ou coalitions proposés |
 
 L'authentification passe par Google (Supabase Auth), restreinte par la table `admin_users` — deux adresses actives aujourd'hui : `sebpicot@gmail.com` et le compte technique de débogage local `debug-admin@preuve-publique.local` (voir plus bas). Aucune clé privilégiée n'est utilisée par le site : les écritures de revue passent par la clé publishable, en rôle `authenticated`, et la base refuse tout si l'adresse n'est pas dans la liste (politiques décrites dans `supabase/migrations/20261002000000_admin_review.sql`). La session est rafraîchie par `proxy.ts` (Next.js 16 : l'ancien `middleware.ts`), et seules les colonnes de statut et de trace de relecture sont inscriptibles par l'API : le contenu des pièces reste écrit par les importeurs.
 
@@ -132,11 +140,11 @@ npm run test:ingestion                                             # tests hors-
 
 Toute pièce importée naît au statut `draft` ; la publication exige une transition explicite avec un relecteur identifié. Un nouvel import n'écrase jamais une pièce relue ou publiée : un changement de source est signalé pour revue. Ces transitions se font depuis l'espace `/admin` (le relecteur enregistré est l'adresse Google connectée) ou depuis la CLI (`npm run ingest -- review set`) ; les deux chemins suivent le même graphe et les mêmes règles, vérifiés par les tests PGlite.
 
-## Développement local
-
 ### Sondages de la présidentielle 2027
 
-La section `/presidentielle-2027/sondages` présente les mesures Sondax par liste exacte de candidats, tour, période et institut, avec graphique de points et sources originales. Aucune moyenne n’est calculée. L’API interne, la migration dédiée, l’import transactionnel et le workflow quotidien sont décrits dans [docs/sondages-2027.md](docs/sondages-2027.md). La présence du workflow ne signifie pas qu’il est activé : il nécessite la branche par défaut, la migration et le secret d’ingestion.
+Les noms des sondages ouvrent désormais `/presidentielle-2027/candidats/[candidate]` : identité recoupée, rattachements datés, bulletins personnels et liens séparés vers les votes des partis. `/presidentielle-2027/comparer` présente les mêmes scrutins pour jusqu’à trois personnes, par sous-thème. Migration et import vérifiés le 02/10/2026 : 14 identités, 119 rattachements et 1 549 bulletins ; trois questions pilotes restent en brouillon. Le rattachement AN pour le financement public n’est pas une adhésion, et aucun programme 2027 ou score idéologique n’est inféré. La revue des mesures se trouve dans `/admin/measures`. Méthode, commandes et limites : [docs/candidats-positions.md](docs/candidats-positions.md).
+
+La section `/presidentielle-2027/sondages` présente les mesures Sondax par liste exacte de candidats, tour, période et institut, avec graphique de points et sources originales. Aucune moyenne n’est calculée. L’API interne, la migration dédiée, l’import transactionnel et le workflow quotidien sont décrits dans [docs/sondages-2027.md](docs/sondages-2027.md). Le workflow est sur `master`, le secret d’ingestion est configuré et un lancement manuel sans écriture a réussi le 02/10/2026. Ce contrôle ne prouve pas encore une exécution planifiée avec écriture.
 
 ```bash
 npm run polls:sync -- --dry-run
@@ -146,7 +154,9 @@ npm run test:polls
 
 Les données sont attribuées à « Sondax, d’après Wikipédia », sous CC BY-SA 4.0. Les anciens mois absents de ce fournisseur ne sont pas inventés. Les révisions et indisponibilités sont tracées dans les tables dédiées et le journal d’ingestion existant.
 
-Prérequis : Node.js 22 et npm.
+## Développement local
+
+Prérequis : Node.js **22.18+** et npm.
 
 ```bash
 npm ci
@@ -168,7 +178,11 @@ Les variables peuvent rester vides pour travailler sur l'interface : la page pr�
 ```bash
 npm run build        # build Next.js et vérification TypeScript
 npm run lint         # ESLint (config à la racine)
+npm run typecheck
 npm run test:ingestion
+npm run test:polls
+npm run test:candidates
+npm run test:reader
 ```
 
 Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécute sur le port attendu par Cloud Run.
@@ -178,6 +192,8 @@ Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécu
 La migration initiale est dans `supabase/migrations/20260929000000_initial.sql` ; `20260930000000_backend_pipeline.sql` ajoute les faits structurés copiés des sources (`detail`), la trace de relecture (`reviewed_by`, `reviewed_at`), la recherche plein texte française et le journal privé `ingestion_runs` ; `20261001000000_fix_reference_policies.sql` corrige les politiques de lecture de `sources` et `actors` (un `id` non qualifié y était résolu vers la table interne, ce qui rendait ces tables invisibles au public — le bug a été trouvé par une lecture réelle en rôle `anon` et couvert par un test) ; `20261002000000_admin_review.sql` ajoute la liste d'administration `admin_users`, les lectures d'administration (tous les statuts, journal d'ingestion) et les transitions de revue, limitées aux colonnes `status`, `reviewed_by` et `reviewed_at`, avec relecteur obligatoire hors brouillon ; `20261003000000_actor_relations.sql` ajoute `actor_relations` (liens datés entre acteurs : `member_of`, `affiliated_to`, `coalition_of`), lisibles publiquement seulement si **les deux** acteurs reliés le sont, et sans statut de relecture — ce sont des mandats recopiés d'un référentiel institutionnel, pas une interprétation ; `20261004000000_evidence_topics.sql` ajoute la colonne `topics` (rubriques publiées par la source, héritées par dossier le cas échéant), son comptage public (`published_topic_counts()`, fonction `security invoker`) et la lecture publique des **groupes nommés dans un vote publié** — un groupe n'existe publiquement que par la pièce qui publie sa position. La migration initiale crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
 
 La migration `20261001052438_publication_confidence.sql` ajoute l'indice de conformité documentaire, la méthode et les contrôles de publication automatique. Elle a été enregistrée sur le projet Supabase sous la version `20261001052438` ; les colonnes ne sont pas modifiables par `authenticated` ou `anon`.
+
+Les migrations `20261002061929_presidential_polls.sql` et `20261002092834_candidate_evidence_path.sql` sont également enregistrées en base. Elles ajoutent respectivement le modèle des sondages et les instantanés de candidats, bulletins, mesures et liens éditoriaux. Les cinq nouvelles tables de chaque parcours ont RLS ; leurs RPC publiques sont `security invoker`. Les commandes et contrôles d'import figurent dans les deux guides dédiés. Aucun programme ni rapprochement interprétatif n'est publié par ces imports factuels.
 
 Note d'historique : la base distante enregistre la troisième migration sous le jeton `20260930063114` alors que le fichier local s'appelle `20261001000000_fix_reference_policies.sql` — divergence antérieure à l'espace de relecture, à garder en tête avant un `supabase db push`. L'état réel de la base a été relu par requêtes directes (`pg_policies`, `has_function_privilege`, `has_column_privilege`) avant et après chaque application, plutôt que de « réparer » l'historique à l'aveugle.
 
@@ -195,7 +211,11 @@ Le fichier `cloudbuild.yaml` construit l'image avec le `Dockerfile`, la pousse d
 
 Si le registre est dans une autre région, modifier `_REGION` dans le déclencheur. Ne pas définir de substitution vide : elle peut écraser la valeur par défaut et rendre l'adresse de l'image invalide.
 
-État vérifié (01/10/2026) : l'application est déployée dans le service Cloud Run [`preuve-publique-git`](https://preuve-publique-git-919818604436.europe-west1.run.app), projet `preuve-publique`, région `europe-west1`. Les deux valeurs d'exécution `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` viennent de Secret Manager dans la configuration du service. Aucune chaîne PostgreSQL ni clé privilégiée n'est nécessaire au conteneur web. Contrôler la révision active et les pages publiques après chaque livraison ; le build web n'applique pas de migration SQL.
+État vérifié le 02/10/2026 : la PR #17 est fusionnée et les sondages sont déployés dans le service Cloud Run [`preuve-publique-git`](https://preuve-publique-git-919818604436.europe-west1.run.app), projet `preuve-publique`, région `europe-west1`. Le build `dd6cfcb4-f03e-4b3a-b8ef-873237b9b614` a livré le commit `abd059e` dans la révision `preuve-publique-git-00030-24x`. Cette référence est un instantané de livraison, pas une indication perpétuellement à jour de la révision active.
+
+Deux déclencheurs surveillent actuellement `master`. Celui géré par Cloud Run (`5ed4b917-d0cf-497c-a133-a2b6fe8bf682`) construit et livre avec sa configuration intégrée, dans `cloud-run-source-deploy`. Le déclencheur `preuve-publique` (`41dbd616-e222-4c40-b56d-30d2c357e0e3`) utilise `cloudbuild.yaml` et `preuvepublique` ; son dernier build `76ad52f4-5a94-4bc5-ae2b-a84b69a373c7` a construit et poussé l'image, puis échoué sur `iam.serviceaccounts.actAs`. Ne pas annoncer ce second chemin comme opérationnel ni élargir IAM à l'aveugle. Les substitutions ci-dessus décrivent le fichier du dépôt, pas celles du déclencheur intégré.
+
+Les deux valeurs d'exécution `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` viennent de Secret Manager. Aucune chaîne PostgreSQL ni clé privilégiée n'est nécessaire au conteneur web. Après chaque fusion, vérifier le build correspondant au SHA, la révision prête et son trafic, puis les pages et API publiques réelles ; le build web n'applique pas de migration SQL. Les fichiers locaux, caches, archives d'ingestion et téléchargements OAuth sont exclus du contexte Docker.
 
 La configuration initiale utilise zéro instance minimale et deux instances maximales. Cette limite ne garantit pas une facture nulle. Vérifier les quotas gratuits et configurer des alertes de budget ; nettoyer les anciennes images du registre. Supabase Free impose de limiter les données conservées : stocker les métadonnées et de courts extraits, garder les PDF originaux chez leurs éditeurs lorsque possible, mesurer avant tout import historique massif.
 
