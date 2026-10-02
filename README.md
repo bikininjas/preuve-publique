@@ -17,6 +17,8 @@ Preuve Publique est un projet citoyen consacré à la France et à l'Union europ
 
 L'interface met ces objectifs en évidence sans remplir les manques par des chiffres ou accusations d'exemple. Les chantiers sans données vérifiées apparaissent explicitement comme tels sur `/observatoire`.
 
+Depuis le 02/10/2026, les **24 indicateurs chiffrés de sources institutionnelles sont publiés**, sur demande explicite de l’utilisateur, sans nouvelle relecture. Les fiches conservent leurs sources et leurs limites, avec une mention qui distingue publication et validation humaine. La [trace et la règle de publication](docs/publication-indicateurs.md) remplacent l’attente de relecture pour ce lot.
+
 ### Profils de vote par thème et sous-thème
 
 - L'accueil affiche jusqu'à six cartes de partis sélectionnés par volume de positions dans le **dernier scrutin AN publié**. Chaque carte présente les trois catégories et quatre zooms : entreprises et règles du marché, solidarité et prestations sociales, immigration et nationalité, police et sécurité publique. Les graphiques couvrent **tout le corpus daté**, pas seulement le scrutin de sélection.

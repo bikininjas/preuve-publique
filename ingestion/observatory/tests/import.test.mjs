@@ -120,6 +120,26 @@ test('Postgres : rollback, idempotence, verrouillage des pièces relues et RLS p
     assert.equal((await pg.query('select count(*)::int as n from public.sources')).rows[0].n, 1);
     await pg.exec('reset role');
     await assert.rejects(pg.query("update public.evidence set detail='{}'::jsonb where kind='judicial_event'"), /evidence_judicial_context_check/);
+    // Nouvelle autorisation : chiffres institutionnels sans fausse relecture.
+    const directMigration = readdirSync(migrations).find((file) => file.endsWith('_official_indicators_without_review.sql'));
+    await pg.exec(readFileSync(new URL(directMigration, migrations), 'utf8'));
+    const directId = first.pieces[4].id;
+    const publishDirect = `update public.evidence set status='published',
+      publication_method='official_source_unreviewed',
+      publication_checks='{"official_source":true,"user_requested_without_review":true,"human_review":false}'::jsonb,
+      detail=jsonb_set(detail,'{publication}',jsonb_build_object('published_at',now())) where id=$1`;
+    await assert.rejects(pg.query(publishDirect, [first.pieces[0].id]), /evidence_editorial_review_check|evidence_direct_indicator_publication_check/);
+    await assert.rejects(pg.query(publishDirect, [first.pieces[5].id]), /evidence_editorial_review_check|evidence_direct_indicator_publication_check/);
+    await pg.query(publishDirect, [directId]);
+    assert.equal((await pg.query('select reviewed_by,reviewed_at,publication_confidence from public.evidence where id=$1', [directId])).rows[0].reviewed_by, null);
+    await assert.rejects(pg.query("update public.evidence set source_url='https://example.org/faux' where id=$1", [directId]), /evidence_direct_indicator_publication_check/);
+    await assert.rejects(pg.query("update public.evidence set publication_checks=null where id=$1", [directId]), /evidence_direct_indicator_publication_check/);
+    await pg.exec('set role anon');
+    assert.equal((await pg.query('select count(*)::int as n from public.evidence')).rows[0].n, 2);
+    await assert.rejects(pg.query("update public.evidence set status='draft' where id=$1", [directId]), /permission denied/);
+    await pg.exec('reset role; set role authenticated');
+    await assert.rejects(pg.query("update public.evidence set publication_method='official_source_unreviewed' where id=$1", [directId]), /permission denied/);
+    await pg.exec('reset role');
   } finally { await pg.close(); }
 });
 

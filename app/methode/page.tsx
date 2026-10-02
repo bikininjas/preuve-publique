@@ -138,8 +138,10 @@ export default function MethodePage() {
           Les importeurs versent chaque pièce en <b>brouillon</b>. Les scrutins officiels de l’Assemblée nationale
           peuvent être publiés après un contrôle automatique de l’archive, de son empreinte et des données en base.
           L’indice 0,990 mesure une conformité documentaire déterministe, pas la probabilité qu’une interprétation
-          politique soit vraie. Les autres pièces et tous les rapprochements interprétatifs demandent une validation
-          humaine. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le passage le
+          politique soit vraie. Les indicateurs chiffrés issus de publications institutionnelles peuvent être
+          publiés directement, sans relecture par Preuve Publique ; leurs fiches le précisent et conservent la
+          source, la période, le champ et les limites. Les autres pièces et tous les rapprochements interprétatifs
+          demandent une validation humaine. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le passage le
           signale et un humain décide.
         </p>
         <p>
