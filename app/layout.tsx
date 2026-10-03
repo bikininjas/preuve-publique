@@ -10,6 +10,8 @@ import './theme.css';
 import './presidential.css';
 import './cookies.css';
 import './reader.css';
+import './motion.css';
+import { VisualEffects } from '@/components/visual-effects';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { THEME_INIT_SCRIPT } from '@/lib/theme';
 import { CookieConsent } from '@/components/cookie-consent';
@@ -35,7 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteNav />
           <div className="header-actions"><ThemeToggle /></div>
         </header>
-        <div id="contenu">{children}</div>
+        <div id="contenu"><VisualEffects>{children}</VisualEffects></div>
         <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Documents publics · Depuis 2017<br />France et Union européenne</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><Link href="/confidentialite">Confidentialité et cookies</Link><CookieConsent /></div></footer>
       </body>
     </html>
