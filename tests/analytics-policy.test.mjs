@@ -17,7 +17,7 @@ test('la CSP autorise la balise et les collecteurs seulement sur un écran publi
 });
 
 test('pages privées, inconnues et configuration invalide ne reçoivent aucune autorisation Google', () => {
-  for (const path of ['/admin', '/admin/review', '/auth/callback', '/api/analytics/config', '/inconnu', '/confidentialite']) {
+  for (const path of ['/admin', '/admin/review', '/auth/callback', '/api/analytics/config', '/inconnu', '/confidentialite', '/preparer-mon-vote']) {
     assert.equal(contentSecurityPolicy(path, 'G-TEST123456').includes('google'), false, path);
   }
   for (const id of [undefined, '', 'incorrect']) {

@@ -45,7 +45,7 @@ export default async function Home() {
           <h1>Les votes publics,<br /><em>sujet par sujet.</em></h1>
           <p className="lead">Explorez les scrutins, les positions et les documents officiels depuis 2017.</p>
           <form className="hero-search" action="/scrutins" method="get"><label className="sr-only" htmlFor="home-search">Chercher un sujet ou un scrutin</label><input id="home-search" type="search" name="q" placeholder="Retraites, logement, budget…" maxLength={120} /><button type="submit" aria-label="Rechercher les scrutins">↗</button></form>
-          <div className="hero-shortcuts"><Link href="/scrutins">Tous les scrutins →</Link><Link href="/categories">Les votes par thème →</Link></div>
+          <div className="hero-shortcuts"><Link href="/scrutins">Tous les scrutins →</Link><Link href="/categories">Les votes par thème →</Link><Link href="/preparer-mon-vote">Préparer mon vote →</Link></div>
           <p className="hero-note">{votes ? <><b>{votes.total.toLocaleString('fr-FR')} scrutins publiés</b> · couverture du site</> : 'Des documents officiels, accessibles et datés.'}<br />Assemblée nationale et Sénat. Couverture européenne à venir.</p>
           <a className="hero-explore-cue" href="#sujets"><span aria-hidden="true">↓</span> Explorer les sujets</a>
         </div>
@@ -60,6 +60,11 @@ export default async function Home() {
             <a className="latest-vote-source" href={latest.source_url} target="_blank" rel="noopener noreferrer">Consulter le scrutin original ↗</a>
           </> : <p>{failed ? 'Le dernier scrutin est temporairement indisponible.' : 'Les scrutins apparaîtront après vérification des sources.'}</p>}
         </aside>
+      </section>
+
+      <section className="decision-entry" aria-labelledby="home-decision-title">
+        <div><span className="eyebrow">Première visite ?</span><h2 id="home-decision-title">Vous venez pour éclairer votre vote.</h2><p>Partez de vos sujets, comparez les mêmes pièces et gardez vos questions dans un carnet personnel.</p></div>
+        <Link className="button" href="/preparer-mon-vote">Préparer mon vote <span aria-hidden="true">↗</span></Link>
       </section>
 
       <section className="topic-feature section-pad" id="sujets">

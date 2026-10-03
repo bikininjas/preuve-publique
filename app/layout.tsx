@@ -11,6 +11,7 @@ import './presidential.css';
 import './cookies.css';
 import './reader.css';
 import './motion.css';
+import './decision.css';
 import { VisualEffects } from '@/components/visual-effects';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { THEME_INIT_SCRIPT } from '@/lib/theme';
