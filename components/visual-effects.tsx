@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
+import { ReadingProgress } from '@/components/reading-progress';
 
 const REVEAL_TARGETS = '.page-intro, .document-heading, .section-heading, .topic-tile, .evidence-card, .party-profile-card, .editorial-feature, .group-editorial-hero, .polls-hero, .candidate-hero, .presidential-entry-grid > .panel';
+const SPOTLIGHT_TARGETS = '.topic-tile, .evidence-card, .party-profile-card, .observatory-entries > a, .reading-continuation-grid > a';
 
 /** Decorative enhancement only: server-rendered content is always visible. */
 export function VisualEffects({ children }: { children: ReactNode }) {
@@ -137,5 +139,50 @@ export function VisualEffects({ children }: { children: ReactNode }) {
     };
   }, [pathname, isPublic]);
 
-  return <div ref={root} className={isPublic ? 'visual-surface' : undefined}>{children}</div>;
+  useEffect(() => {
+    const surface = root.current;
+    if (!surface || !isPublic) return;
+    const enabled = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+    let card: HTMLElement | null = null;
+    let frame = 0;
+    let x = 0;
+    let y = 0;
+    const clear = () => {
+      window.cancelAnimationFrame(frame);
+      frame = 0;
+      card?.removeAttribute('data-spotlight-active');
+      card?.style.removeProperty('--spotlight-x');
+      card?.style.removeProperty('--spotlight-y');
+      card = null;
+    };
+    const update = () => {
+      frame = 0;
+      if (!card || !enabled.matches || document.hidden) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--spotlight-x', `${(x - rect.left).toFixed(1)}px`);
+      card.style.setProperty('--spotlight-y', `${(y - rect.top).toFixed(1)}px`);
+      card.setAttribute('data-spotlight-active', '');
+    };
+    const move = (event: PointerEvent) => {
+      if (!enabled.matches || event.pointerType === 'touch') return;
+      const next = event.target instanceof Element ? event.target.closest<HTMLElement>(SPOTLIGHT_TARGETS) : null;
+      if (next !== card) { clear(); card = next && surface.contains(next) ? next : null; }
+      x = event.clientX;
+      y = event.clientY;
+      if (card && !frame) frame = window.requestAnimationFrame(update);
+    };
+    surface.addEventListener('pointermove', move, { passive: true });
+    surface.addEventListener('pointerleave', clear);
+    enabled.addEventListener('change', clear);
+    document.addEventListener('visibilitychange', clear);
+    return () => {
+      clear();
+      surface.removeEventListener('pointermove', move);
+      surface.removeEventListener('pointerleave', clear);
+      enabled.removeEventListener('change', clear);
+      document.removeEventListener('visibilitychange', clear);
+    };
+  }, [pathname, isPublic]);
+
+  return <div ref={root} className={isPublic ? 'visual-surface' : undefined}>{children}{isPublic ? <ReadingProgress /> : null}</div>;
 }

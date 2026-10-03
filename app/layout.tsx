@@ -37,7 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteNav />
           <div className="header-actions"><ThemeToggle /></div>
         </header>
-        <div id="contenu"><VisualEffects>{children}</VisualEffects></div>
+        <div id="contenu" tabIndex={-1}><VisualEffects>{children}</VisualEffects></div>
         <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Documents publics · Depuis 2017<br />France et Union européenne</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><Link href="/confidentialite">Confidentialité et cookies</Link><CookieConsent /></div></footer>
       </body>
     </html>

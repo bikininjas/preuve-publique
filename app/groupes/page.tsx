@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Empty } from '@/components/ui';
 import { getActors, getGroupDirectory } from '@/lib/data';
 import { GroupDirectory } from './directory';
+import { HeroAtmosphere } from '@/components/editorial-decoration';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,6 +25,7 @@ export default async function GroupesPage() {
 
   return <main className="group-explorer"><SeoPage path="/groupes" />
     <section className="group-editorial-hero">
+      <HeroAtmosphere />
       <div className="group-hero-copy">
         <div className="group-hero-kicker"><span className="group-hero-dot" /> Assemblée nationale · scrutins publiés</div>
         <h1>Groupes parlementaires</h1>
