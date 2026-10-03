@@ -60,6 +60,8 @@ L’ancien choix du bandeau consacré au thème n’est pas un accord pour Analy
 
 Le chargement de `gtag.js` et les commandes de mesure commencent uniquement après un accord valide : fonctionnement de type [Consent Mode de base](https://developers.google.com/tag-platform/security/concepts/consent-mode). Aucun ping de refus n’est envoyé à Google. Le retrait désactive la balise, supprime les cookies `_ga` / `_ga_…`, puis recharge la page pour décharger ses écouteurs. Les cookies de session Supabase restent distincts.
 
+La CSP autorise la balise et les connexions documentées pour [Analytics sans fonctionnalités Ads](https://developers.google.com/tag-platform/security/guides/csp) uniquement sur les écrans publics connus, lorsque l’identifiant de mesure est configuré. Les pages privées conservent la politique fermée. Cette autorisation réseau n’active pas la balise : le choix du visiteur est toujours vérifié avant son chargement.
+
 Les pages vues sont limitées aux écrans publics connus. Les recherches, fragments, identifiants de pièces, personnes, partis et thèmes sont retirés des URL et titres transmis ; les fiches sont regroupées par type d’écran. Les routes d’administration, d’authentification, d’API et les routes inconnues sont exclues. Les paramètres publicitaires restent refusés ; les cookies d’audience sont configurés à 180 jours sans prolongation automatique. Le mode de débogage Analytics est limité aux hôtes locaux.
 
 Les principes de refus aussi simple que l’acceptation, de conservation du choix et de retrait accessible suivent les [recommandations de la CNIL sur les traceurs](https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies/FAQ). Cette intégration et sa politique décrivent le traitement configuré ; elles ne constituent pas une certification juridique générale du site.
@@ -79,7 +81,7 @@ Les contrôles d’accès `admin_users`, RLS et transitions de revue existants s
 
 - `npm run build` : réussi, TypeScript inclus.
 - `npm run lint` : réussi.
-- `npm run test:reader` : **31 tests réussis** après intégration de la branche principale, dont navigation de retour, consentement, déclenchement du tag, retrait, graphiques, SEO et partage.
+- `npm run test:reader` : **33 tests réussis** après intégration de la branche principale et adaptation de la CSP, dont navigation de retour, consentement, tag, retrait, CSP, graphiques, SEO et partage.
 - `npm run test:polls` : **13 tests réussis**. Le découpage des lignes de la fixture est compatible LF et CRLF ; le parseur d’ingestion n’est pas modifié.
 - `npm run test:candidates` : **4 tests réussis**.
 - `node --test ingestion/tests/admin.test.mjs` : **5 tests réussis**, couvrant la liste d’administration, RLS et les écritures autorisées dans PGlite.
