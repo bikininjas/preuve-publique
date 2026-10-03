@@ -157,7 +157,7 @@ export function dossierToRecords(dossier, { legislature, zipFile, zipUrl, retrie
 }
 
 /** Stream the zip entry by entry: one decompressed file in memory at a time. */
-async function parseZip(buffer, onEntry) {
+export async function parseZip(buffer, onEntry) {
   const errors = [];
   let entries = 0;
   const unzip = new Unzip((file) => {

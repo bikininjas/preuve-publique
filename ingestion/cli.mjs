@@ -159,7 +159,7 @@ async function cmdPush(options, { stagingDirOverride = null } = {}) {
       });
     }
     try {
-      const { stats } = await db.pushStaging(client, stagingDir, { initialStatus, dryRun });
+      const { stats } = await db.pushStaging(client, stagingDir, { initialStatus, dryRun, essentialVotesOnly: true });
       if (runId) await db.finishRun(client, runId, { status: 'ok', stats });
       printPushStats(stats, dryRun);
     } catch (error) {

@@ -3,9 +3,11 @@ import { createStagingDir, readJsonl, saveRaw, writeJsonl, writeManifest } from 
 import { requestText, HttpError } from '../lib/http.mjs';
 import { titleTag } from '../lib/html.mjs';
 import { run as fetchAssembly } from '../importers/an-scrutins.mjs';
+import { run as fetchEuropeanVotes } from '../importers/pe-votes.mjs';
 import { parseSessionPage, entryToRecord } from '../importers/senat-scrutins.mjs';
 import { verifyArchive, publishVerified } from '../lib/auto-publish.mjs';
 import { startRun, finishRun, upsertSource, upsertEvidence } from '../lib/db.mjs';
+import { selectEssentialVotes, focusPublishedVotes } from '../lib/vote-selection.mjs';
 
 export function dailyWindow(now = new Date()) {
   const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
@@ -23,9 +25,15 @@ export function selectRecent(verified, window) {
 }
 
 export async function fetchDaily(institution, window, { root, request = requestText } = {}) {
-  const importer = institution === 'assemblee' ? 'an-scrutins' : 'senat-scrutins';
+  const importer = {assemblee:'an-scrutins',senat:'senat-scrutins',parlement_europeen:'pe-votes'}[institution];
+  if (!importer) throw new Error('Institution non prise en charge.');
   const dir = createStagingDir(importer, { root, label: 'quotidien' });
-  if (institution === 'assemblee') {
+  if (institution === 'parlement_europeen') {
+    const years=[...new Set([window.since.slice(0,4),window.today.slice(0,4)])].join(',');
+    const options={years,since:window.since,until:window.today};
+    const result=await fetchEuropeanVotes({options,stagingDir:dir});
+    writeManifest(dir,{importer,options,created_at:new Date().toISOString(),raw:result.rawFiles,counts:result.counts,notes:result.notes});
+  } else if (institution === 'assemblee') {
     const result = await fetchAssembly({ options: { legislatures: '17', limit: '0' }, stagingDir: dir });
     writeManifest(dir, { importer, created_at: new Date().toISOString(), raw: result.rawFiles, counts: result.counts, notes: result.notes });
   } else {
@@ -57,7 +65,7 @@ export async function fetchDaily(institution, window, { root, request = requestT
 }
 
 export async function syncDaily(client, { institution, now = new Date(), dryRun = true, fetch = fetchDaily, root } = {}) {
-  if (!['assemblee', 'senat'].includes(institution)) throw new Error('Institution attendue : assemblee ou senat.');
+  if (!['assemblee', 'senat','parlement_europeen'].includes(institution)) throw new Error('Institution attendue : assemblee, senat ou parlement_europeen.');
   const window = dailyWindow(now);
   const stats = { institution, dry_run: dryRun, since: window.since, today: window.today, fetched: 0, recent: 0, already: 0, inserted: 0, updated: 0, published: 0 };
   // Also prevents overlap with a manually launched copy outside GitHub Actions.
@@ -75,7 +83,9 @@ export async function syncDaily(client, { institution, now = new Date(), dryRun 
     stats.sources = readJsonl(join(dir, 'sources.jsonl')).map(({ url, sha256, retrieved_at }) => ({ url, sha256, retrieved_at }));
     const { readManifest } = await import('../lib/staging.mjs');
     stats.notes = readManifest(dir).notes ?? [];
-    const recent = selectRecent(verified, window);
+    const selected = selectEssentialVotes(verified.eligible);
+    stats.out_of_scope = verified.eligible.length - selected.length;
+    const recent = selectRecent({ ...verified, eligible: selected }, window);
     stats.recent = recent.length;
     await client.query('begin');
     try {
@@ -95,6 +105,7 @@ export async function syncDaily(client, { institution, now = new Date(), dryRun 
       const publication = await publishVerified(client, { ...verified, eligible: candidates }, { limit: 500, dryRun: false, manageTransaction: false });
       if (publication.rejected || publication.published !== candidates.length) throw new Error('Conformité en base incomplète : import et publication annulés.');
       stats.published = publication.published;
+      stats.withdrawn = await focusPublishedVotes(client, institution);
       await client.query(dryRun ? 'rollback' : 'commit');
     } catch (error) { await client.query('rollback'); throw error; }
     if (runId) await finishRun(client, runId, { status: 'ok', stats });

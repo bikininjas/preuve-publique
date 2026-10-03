@@ -21,6 +21,11 @@ function shortLabel(value: string): string {
  */
 export function readerTitle(item: Pick<Evidence, 'kind' | 'title'>): string {
   if (item.kind !== 'vote') return item.title;
+  // European decision labels often give a document identifier rather than its
+  // subject. Preserve it so different resolutions never acquire identical titles.
+  if (/^Vote du \d{4}-\d{2}-\d{2}\s*[-–—]/i.test(item.title)) {
+    return shortLabel(item.title.replace(/^Vote du \d{4}-\d{2}-\d{2}\s*[-–—]\s*/i, ''));
+  }
   const wording = voteWording(item.title);
   if (!wording) return item.title;
   const parents = [...wording.matchAll(/\b(?:projet|proposition) de (?:loi|résolution)\b/gi)];
@@ -51,6 +56,8 @@ export function readerTitle(item: Pick<Evidence, 'kind' | 'title'>): string {
 export function voteScope(item: Pick<Evidence, 'kind' | 'title'>): string | null {
   if (item.kind !== 'vote') return null;
   const subject = voteWording(item.title);
+  if (/(?:\(ensemble du texte\)|\bvote (?:unique|final))\.?$/i.test(subject)) return 'Texte entier';
+  if (/^(?:sur )?l['’]article (?:unique|\d+(?: bis| ter)?) constituant l['’]ensemble\b/i.test(subject)) return 'Texte entier';
   if (/^(?:sur )?l['’]ensemble\b/i.test(subject)) return 'Texte entier';
   if (/^(?:sur )?les amendements identiques\b/i.test(subject)) return 'Amendements identiques';
   const amendment = subject.match(/^(?:sur )?l['’]amendement n°\s*([\w-]+)/i);
@@ -79,6 +86,9 @@ const count = (value: unknown) => typeof value === 'number' && Number.isFinite(v
 /** The count comes from the source's structured vote record, never from an estimate. */
 export function voteTally(item: Pick<Evidence, 'detail'>): VoteTally | null {
   const raw = item.detail?.decompte;
+  if (!raw && item.detail && ('favor' in item.detail || 'against' in item.detail)) {
+    return { pour: count(item.detail.favor), contre: count(item.detail.against), abstentions: count(item.detail.abstentions), votants: count(item.detail.attendees) };
+  }
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
   const row = raw as Record<string, unknown>;
   return {

@@ -1,0 +1,491 @@
+{
+  "edition": "debat-politique-generale-tous-groupes-2025-01-14-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:declaration:stephane-peu:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Stéphane Peu — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Stéphane Peu (GDR), repères PDF pages 4, 6, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Stéphane Peu lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Stéphane Peu",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe GDR dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Stéphane Peu",
+          "matching_pdf_pages": [
+            4,
+            6,
+            8,
+            9,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:eric-ciotti:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Éric Ciotti — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Éric Ciotti (UDR), repères PDF pages 4, 17, 18, 39, 40",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Éric Ciotti lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Éric Ciotti",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe UDR dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Éric Ciotti",
+          "matching_pdf_pages": [
+            4,
+            17,
+            18,
+            39,
+            40
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:jean-philippe-tanguy:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Jean-Philippe Tanguy — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Jean-Philippe Tanguy (RN), repères PDF pages 4, 18, 19, 20, 40",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Jean-Philippe Tanguy lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Jean-Philippe Tanguy",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe RN dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Jean-Philippe Tanguy",
+          "matching_pdf_pages": [
+            4,
+            18,
+            19,
+            20,
+            40
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:gabriel-attal:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Gabriel Attal — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Gabriel Attal (EPR), repères PDF pages 4, 7, 13, 20, 21, 22, 23, 24, 40",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Gabriel Attal lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Gabriel Attal",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe EPR dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Gabriel Attal",
+          "matching_pdf_pages": [
+            4,
+            7,
+            13,
+            20,
+            21,
+            22,
+            23,
+            24,
+            40
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:mathilde-panot:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Mathilde Panot — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Mathilde Panot (LFI-NFP), repères PDF pages 4, 9, 12, 23, 24, 25, 26, 40, 41, 42, 43",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Mathilde Panot lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Mathilde Panot",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe LFI-NFP dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Mathilde Panot",
+          "matching_pdf_pages": [
+            4,
+            9,
+            12,
+            23,
+            24,
+            25,
+            26,
+            40,
+            41,
+            42,
+            43
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:boris-vallaud:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Boris Vallaud — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Boris Vallaud (SOC), repères PDF pages 4, 26, 27, 28, 41, 42, 43",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Boris Vallaud lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Boris Vallaud",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe SOC dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Boris Vallaud",
+          "matching_pdf_pages": [
+            4,
+            26,
+            27,
+            28,
+            41,
+            42,
+            43
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:laurent-wauquiez:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Laurent Wauquiez — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Laurent Wauquiez (DR), repères PDF pages 4, 20, 28, 29, 30, 43, 44",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Laurent Wauquiez lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Laurent Wauquiez",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe DR dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Laurent Wauquiez",
+          "matching_pdf_pages": [
+            4,
+            20,
+            28,
+            29,
+            30,
+            43,
+            44
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:cyrielle-chatelain:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Cyrielle Chatelain — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Cyrielle Chatelain (EcoS), repères PDF pages 4, 30, 31, 32, 43",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Cyrielle Chatelain lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Cyrielle Chatelain",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe EcoS dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Cyrielle Chatelain",
+          "matching_pdf_pages": [
+            4,
+            30,
+            31,
+            32,
+            43
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:marc-fesneau:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Marc Fesneau — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Marc Fesneau (Dem), repères PDF pages 4, 31, 32, 33, 34, 43",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Marc Fesneau lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Marc Fesneau",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe Dem dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Marc Fesneau",
+          "matching_pdf_pages": [
+            4,
+            31,
+            32,
+            33,
+            34,
+            43
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:sylvain-berrios:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Sylvain Berrios — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Sylvain Berrios (HOR), repères PDF pages 4, 34, 35, 36, 42, 44",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Sylvain Berrios lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Sylvain Berrios",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe HOR dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Sylvain Berrios",
+          "matching_pdf_pages": [
+            4,
+            34,
+            35,
+            36,
+            42,
+            44
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:stephane-lenormand:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Stéphane Lenormand — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Stéphane Lenormand (LIOT), repères PDF pages 4, 36, 44",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Stéphane Lenormand lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Stéphane Lenormand",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe LIOT dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Stéphane Lenormand",
+          "matching_pdf_pages": [
+            4,
+            36,
+            44
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:emeline-k-bidi:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Émeline K/Bidi — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Émeline K/Bidi (GDR), repères PDF pages 4, 37, 40, 44",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Émeline K/Bidi lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Émeline K/Bidi",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe GDR dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Émeline K/Bidi",
+          "matching_pdf_pages": [
+            4,
+            37,
+            40,
+            44
+          ]
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:sacha-houlie:debat-2025-01-14",
+      "kind": "statement",
+      "title": "Sacha Houlié — intervention dans le débat de politique générale du 14 janvier 2025",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral, sommaire et prise de parole de Sacha Houlié (NI), repères PDF pages 4, 38, 45",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Sacha Houlié lors du débat sur la déclaration du gouvernement. La transcription originale permet de lire le propos avec les réponses et le contexte de la séance.",
+        "statement": {
+          "author": "Sacha Houlié",
+          "date": "2025-01-14",
+          "context": "Débat de politique générale à l’Assemblée nationale, orateur indiqué pour le groupe NI dans le sommaire de séance",
+          "scope_note": "Aucune position de vote déduite du discours ou du groupe. Ce débat constitue un corpus daté commun à l’ensemble des groupes présents, pas la totalité des déclarations depuis 2017."
+        },
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "Sacha Houlié",
+          "matching_pdf_pages": [
+            4,
+            38,
+            45
+          ]
+        }
+      }
+    }
+  ]
+}

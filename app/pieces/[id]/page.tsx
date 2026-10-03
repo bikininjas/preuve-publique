@@ -2,6 +2,7 @@ import { SeoPage } from '@/components/seo-page';
 import type { SearchParamsRecord } from '@/lib/params';
 import { publicEvidence as getEvidenceItem, documentMetadata } from '@/lib/seo-content';
 import Link from 'next/link';
+import { InstitutionBadge } from '@/components/institution-badge';
 import { notFound } from 'next/navigation';
 import { GroupPositions, type GroupPosition } from '@/components/group-positions';
 import { PartyVoteBreakdown } from '@/components/party-vote-chart';
@@ -127,9 +128,10 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
           ← Toutes les pièces
         </Link>
       </p>
-      <header className="document-heading"><div className="eyebrow">
+      <header className="document-heading" data-institution={evidence.institution ?? undefined}><div className="eyebrow">
         {kindLabel(evidence.kind)} · {institutionLabel(evidence.institution)}
       </div>
+      <InstitutionBadge institution={evidence.institution} />
       <h1 className="title">{displayTitle}</h1>
       {evidence.kind === 'vote' ? <p className="hint">Sujet du texte concerné · {scope ? `vote sur : ${scope.toLocaleLowerCase('fr-FR')}` : 'périmètre du vote à vérifier dans l’intitulé officiel'}. Un amendement ou une motion ne vaut pas vote sur l’ensemble du texte.</p> : null}
       <p className="resultline">

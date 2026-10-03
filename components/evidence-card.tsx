@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Evidence } from '@/lib/types';
-import { formatEvidenceDate, institutionLabel, kindLabel } from '@/lib/labels';
+import { formatEvidenceDate, kindLabel } from '@/lib/labels';
+import { InstitutionBadge } from '@/components/institution-badge';
 import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { VoteTopics } from '@/components/vote-topics';
@@ -13,8 +14,9 @@ export function EvidenceCard({ item, review = false }: { item: Evidence; review?
   const tally = item.kind === 'vote' ? voteTally(item) : null;
   const href = `${review ? '/admin' : ''}/pieces/${item.id}`;
   return (
-    <article className={`card evidence-card${item.kind === 'indicator' && !review ? ' indicator-card' : ''}`}>
-      <div className="card-top"><span className="count">{kindLabel(item.kind)}{item.institution ? ` · ${institutionLabel(item.institution)}` : ''}</span><span className="card-date">{item.kind === 'indicator' ? 'Source : ' : ''}{formatEvidenceDate(item)}</span></div>
+    <article data-institution={item.institution ?? undefined} className={`card evidence-card${item.kind === 'indicator' && !review ? ' indicator-card' : ''}`}>
+      <div className="card-top"><span className="count">{kindLabel(item.kind)}</span><span className="card-date">{item.kind === 'indicator' ? 'Source : ' : ''}{formatEvidenceDate(item)}</span></div>
+      <InstitutionBadge institution={item.institution} />
       {scope ? <p className="card-vote-scope">Vote sur : <b>{scope}</b></p> : null}
       {item.kind === 'vote' ? <span className="card-topic-label">Sujet du texte concerné</span> : null}
       <h3>

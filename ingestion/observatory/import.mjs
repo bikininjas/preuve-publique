@@ -7,7 +7,7 @@ import { canonicalJson, connect, startRun, finishRun, upsertEvidence } from '../
 import { loadProjectEnv, requireDbUrl } from '../lib/env.mjs';
 import domains from '../../lib/inequality-domains.json' with { type: 'json' };
 
-const HOSTS = new Set(['www.cnccep.fr', 'www.insee.fr', 'www.cours-appel.justice.fr', 'www.cereq.fr', 'drees.solidarites-sante.gouv.fr', 'www.ipp.eu', 'www.enseignementsup-recherche.gouv.fr', 'www.defenseurdesdroits.fr']);
+const HOSTS = new Set(['www.cnccep.fr', 'www.insee.fr', 'www.cours-appel.justice.fr', 'www.cereq.fr', 'drees.solidarites-sante.gouv.fr', 'www.ipp.eu', 'www.enseignementsup-recherche.gouv.fr', 'www.defenseurdesdroits.fr', 'www.vie-publique.fr', 'www.info.gouv.fr', 'www.courdecassation.fr', 'www.tribunal-de-paris.justice.fr', 'www.elysee.fr', 'www.assemblee-nationale.fr']);
 const KINDS = new Set(['program', 'statement', 'indicator', 'judicial_event']);
 const nonempty = (value) => typeof value === 'string' && Boolean(value.trim());
 
@@ -25,6 +25,10 @@ export function validateDocument(document) {
     if (record.kind === 'program') {
       const p = record.detail?.program;
       if (!p || !['author', 'election', 'edition', 'election_date', 'date_note', 'scope_note'].every((key) => nonempty(p[key])) || !Object.hasOwn(p, 'publication_date')) throw new Error('Édition électorale incomplète.');
+    }
+    if (record.kind === 'statement') {
+      const p = record.detail?.statement;
+      if (!p || !['author', 'date', 'context', 'scope_note'].every((key) => nonempty(p[key])) || p.date !== record.occurred_at) throw new Error('Déclaration sans auteur, date, contexte ou limite.');
     }
     if (record.kind === 'indicator') {
       const p = record.detail?.indicator;

@@ -25,7 +25,7 @@ function archive(root, raw) {
   return bytes;
 }
 
-export async function syncCandidates(db, { referential, votes, publish = false, dryRun = true, identities = IDENTITIES }) {
+export async function syncCandidates(db, { referential, votes, publish = false, dryRun = true, identities = IDENTITIES, currentSnapshotsOnly = false }) {
   const manifest = JSON.parse(readFileSync(join(referential,'manifest.json'),'utf8'));
   const voteManifest = JSON.parse(readFileSync(join(votes,'manifest.json'),'utf8'));
   if (manifest.importer !== 'an-referentiel' || voteManifest.importer !== 'an-scrutins') throw new CandidateImportError('Importeurs de staging invalides.');
@@ -76,7 +76,9 @@ export async function syncCandidates(db, { referential, votes, publish = false, 
     }
     const { rows: eligible } = await db.query(`select e.id,e.external_id,c.archive_sha256
       from public.evidence e join public.vote_party_coverage c on c.vote_id=e.id
-      where e.kind='vote' and e.institution='assemblee' and e.status='published'`);
+      join public.sources s on s.id=e.source_id
+      where e.kind='vote' and e.institution='assemblee' and e.status='published'
+        and (not $1::boolean or c.archive_sha256=s.sha256)`, [currentSnapshotsOnly]);
     const eligibleById = new Map(eligible.map((row) => [row.external_id,row]));
     stats.eligibleVotes=eligible.length;
     const found = new Set();

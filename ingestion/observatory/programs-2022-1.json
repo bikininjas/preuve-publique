@@ -1,0 +1,121 @@
+{
+  "edition": "professions-foi-2022-complet-lot-1-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:programme:nathalie-arthaud:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Nathalie Arthaud — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-01-Nathalie-Arthaud-Declaration.pdf",
+      "source_locator": "CNCCEP, candidat n° 01, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Nathalie Arthaud",
+        "document_title": "Nathalie Arthaud — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Nathalie Arthaud, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Nathalie Arthaud",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "01",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:nicolas-dupont-aignan:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Nicolas Dupont-Aignan — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-02-Nicolas-Dupont-Aignan-Declaration-accessible.pdf",
+      "source_locator": "CNCCEP, candidat n° 02, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Nicolas Dupont-Aignan",
+        "document_title": "Nicolas Dupont-Aignan — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Nicolas Dupont-Aignan, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Nicolas Dupont-Aignan",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "02",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:anne-hidalgo:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Anne Hidalgo — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-03-Anne-Hidalgo-Declaration.pdf",
+      "source_locator": "CNCCEP, candidat n° 03, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Anne Hidalgo",
+        "document_title": "Anne Hidalgo — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Anne Hidalgo, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Anne Hidalgo",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "03",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:yannick-jadot:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Yannick Jadot — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-04-Yannick-Jadot-Declaration-accessible.pdf",
+      "source_locator": "CNCCEP, candidat n° 04, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Yannick Jadot",
+        "document_title": "Yannick Jadot — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Yannick Jadot, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Yannick Jadot",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "04",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    }
+  ]
+}

@@ -6,6 +6,7 @@
 import { join } from 'node:path';
 import { readJsonl, readManifest } from './staging.mjs';
 import { evidenceKey } from './normalize.mjs';
+import { selectEssentialVotes } from './vote-selection.mjs';
 
 export const REVIEW_TABLES = ['evidence', 'evidence_links'];
 export const ROW_STATUSES = ['draft', 'reviewed', 'published'];
@@ -249,12 +250,16 @@ function bump(bucket, action, entry) {
  * dryRun performs the whole write path then rolls back: SQL is exercised,
  * nothing is persisted.
  */
-export async function pushStaging(client, stagingDir, { initialStatus = 'draft', dryRun = false } = {}) {
+export async function pushStaging(client, stagingDir, { initialStatus = 'draft', dryRun = false, essentialVotesOnly = false } = {}) {
   const manifest = readManifest(stagingDir);
   const sources = readJsonl(join(stagingDir, 'sources.jsonl'));
   const actors = readJsonl(join(stagingDir, 'actors.jsonl'));
-  const evidenceRows = readJsonl(join(stagingDir, 'evidence.jsonl'));
+  const fetchedRows = readJsonl(join(stagingDir, 'evidence.jsonl'));
+  const evidenceRows = essentialVotesOnly
+    ? [...fetchedRows.filter(row => row.kind !== 'vote'), ...selectEssentialVotes(fetchedRows.filter(row => row.kind === 'vote'))]
+    : fetchedRows;
   const stats = emptyPushStats();
+  stats.out_of_scope = fetchedRows.length - evidenceRows.length;
   const sourceIds = new Map();
   const actorIds = new Map();
 

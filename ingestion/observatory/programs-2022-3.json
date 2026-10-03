@@ -1,0 +1,121 @@
+{
+  "edition": "professions-foi-2022-complet-lot-3-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:programme:valerie-pecresse:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Valérie Pécresse — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-09-Valerie-Pecresse-Declaration-accessible.pdf",
+      "source_locator": "CNCCEP, candidat n° 09, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Valérie Pécresse",
+        "document_title": "Valérie Pécresse — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Valérie Pécresse, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Valérie Pécresse",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "09",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:philippe-poutou:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Philippe Poutou — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-10-Philippe-Poutou-Declaration.pdf",
+      "source_locator": "CNCCEP, candidat n° 10, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Philippe Poutou",
+        "document_title": "Philippe Poutou — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Philippe Poutou, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Philippe Poutou",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "10",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:fabien-roussel:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Fabien Roussel — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-11-Fabien-Roussel-Declaration-accessible.pdf",
+      "source_locator": "CNCCEP, candidat n° 11, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Fabien Roussel",
+        "document_title": "Fabien Roussel — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Fabien Roussel, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Fabien Roussel",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "11",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:eric-zemmour:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Éric Zemmour — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-12-Eric-Zemmour-Declaration.pdf",
+      "source_locator": "CNCCEP, candidat n° 12, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Éric Zemmour",
+        "document_title": "Éric Zemmour — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Éric Zemmour, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Éric Zemmour",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "12",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    }
+  ]
+}

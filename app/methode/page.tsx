@@ -1,6 +1,7 @@
 import { SeoPage } from '@/components/seo-page';
 import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
+import { InstitutionBadge } from '@/components/institution-badge';
 
 
 export default function MethodePage() {
@@ -13,6 +14,15 @@ export default function MethodePage() {
       </p>
 
       <nav className="reading-nav" aria-label="Parcourir la méthode"><a href="#sources">Les sources ↓</a><a href="#rapprochements">Les rapprochements ↓</a><a href="#comparaisons">Parole et vote ↓</a><a href="#publication">La publication ↓</a></nav>
+
+      <section className="panel" id="selection-scrutins">
+        <h2>Les scrutins retenus</h2>
+        <div className="institution-legend"><InstitutionBadge institution="assemblee" /><InstitutionBadge institution="senat" /><InstitutionBadge institution="parlement_europeen" /></div>
+        <p>Pour l’Assemblée nationale et le Sénat, le corpus privilégie le dernier scrutin public disponible sur l’ensemble d’un projet ou d’une proposition de loi dans chaque chambre, qu’il aboutisse à une adoption ou à un rejet. Les votes sur les amendements, les parties du texte et les motions sont exclus de cette sélection.</p>
+        <p>Les scrutins sont regroupés par identifiant officiel du dossier. Lorsqu’il manque, seuls des intitulés identiques dans une même législature sont regroupés. Le dernier vote disponible peut être une première lecture : il ne prouve pas, à lui seul, l’adoption définitive d’une loi. La mention « lecture définitive » n’est utilisée que si la source l’indique. Certaines lois sont adoptées sans scrutin public d’ensemble ; leur absence ici ne constitue pas un rejet.</p>
+        <p>Pour le Parlement européen, seuls les votes explicitement désignés comme vote final, vote unique ou vote sur l’ensemble du texte sont retenus. Une résolution européenne n’est pas nécessairement un acte législatif. Un résultat absent de la source reste indiqué comme indisponible.</p>
+        <p className="hint">La <a href="https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-navette-parlementaire.html" target="_blank" rel="noopener noreferrer">navette parlementaire décrite par le Sénat</a> précise les conditions d’adoption d’un même texte par les deux chambres et du dernier mot de l’Assemblée.</p>
+      </section>
 
       <section className="panel" id="sources">
         <h2>Sources</h2>
@@ -60,7 +70,7 @@ export default function MethodePage() {
         </p>
         <p>
           Les scrutins non nominatifs ne révèlent pas la position individuelle des élus, et les positions individuelles
-          de vote ne sont pas stockées dans cette base : seuls des décomptes agrégés par parti sont conservés pour les
+          de vote sont conservées pour les personnes dont l’identité institutionnelle a été recoupée. Des décomptes agrégés par parti sont aussi conservés pour les
           scrutins de l’Assemblée dont la liste nominative rejoint le total officiel. La position d’un élu n’est jamais
           déduite de son groupe. Sur chaque fiche, la part pour, contre, abstention et non-vote d’un parti est calculée
           parmi les positions nominatives rattachées à ce parti dans ce seul scrutin ; les affiliations absentes ou
