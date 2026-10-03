@@ -7,12 +7,9 @@ export default function MethodePage() {
   return (
     <main className="method-page"><SeoPage path="/methode" />
       <div className="eyebrow">Méthode et limites</div>
-      <h1>Ce que le site montre, et ce qu’il ne dit pas.</h1>
+      <h1>Méthode et sources</h1>
       <p className="lead">
-        Preuve Publique rapproche des documents officiels : programmes et professions de foi, déclarations sourcées,
-        amendements, scrutins, textes adoptés et, lorsque c’est pertinent, indicateurs publics documentés. Le site
-        présente les pièces et leur contexte ; il ne donne ni note de cohérence, ni gagnant d’une comparaison, ni
-        verdict automatique.
+        Comment les documents sont sourcés, rapprochés et publiés. Aucun score de cohérence, classement politique ou verdict automatique.
       </p>
 
       <nav className="reading-nav" aria-label="Parcourir la méthode"><a href="#sources">Les sources ↓</a><a href="#rapprochements">Les rapprochements ↓</a><a href="#comparaisons">Parole et vote ↓</a><a href="#publication">La publication ↓</a></nav>
@@ -123,7 +120,7 @@ export default function MethodePage() {
         <h2>Profils de vote : thèmes, sous-thèmes et sens des mesures</h2>
         <p>Les <Link href="/partis">cartes des partis</Link> et leurs profils présentent trois grandes catégories et dix-neuf sous-thèmes. Le classement cherche des fragments précis dans l’intitulé officiel du scrutin : il s’agit d’un repère documentaire, distinct des rubriques publiées par les institutions. Une fiche peut appartenir à plusieurs sous-thèmes ; leurs totaux ne s’additionnent pas. Un sujet sans bulletin attribuable reste indiqué sans pourcentage.</p>
         <p>Chaque barre représente les positions nominatives rattachables à un parti par une affiliation datée : pour, contre, abstention et non-votant enregistré. Le pourcentage « pour » est le nombre de bulletins pour divisé par la somme de ces quatre positions, au sein du parti et du corpus sélectionné. Ce n’est ni la proportion de projets soutenus, ni la part du parti parmi tous les députés, ni un taux de présence. Les positions sans affiliation unique et les décomptes non conformes sont exclus. Les périodes décrivent les scrutins trouvés pour tous les partis, pas l’âge du parti ; les anciennes affiliations restent distinctes.</p>
-        <p>L’accueil sélectionne au maximum six partis par volume de positions dans le dernier scrutin publié de l’Assemblée. Leurs barres portent sur l’ensemble du corpus daté, pas sur ce seul scrutin. Le récapitulatif affiche tous les partis avec des bulletins attribuables, archives comprises, triés par volume. Chaque sous-thème permet d’ouvrir les votes exacts du parti, les plus récents en premier. Au Sénat, la même exploration présente les groupes parlementaires et leurs décomptes officiels ; aucun parti n’en est déduit.</p>
+        <p>L’accueil sélectionne au maximum six partis par volume de positions dans le dernier scrutin publié de l’Assemblée. Si cette sélection ne fournit aucun bulletin attribuable ou est indisponible, il affiche les six partis les plus documentés dans le corpus, archives comprises, en signalant ce changement de périmètre. Leurs barres portent sur l’ensemble du corpus daté, pas sur ce seul scrutin. Le récapitulatif affiche tous les partis avec des bulletins attribuables, archives comprises, triés par volume. Chaque sous-thème permet d’ouvrir les votes exacts du parti, les plus récents en premier. Au Sénat, la même exploration présente les groupes parlementaires et leurs décomptes officiels ; aucun parti n’en est déduit.</p>
         <p>Une barre sur « Entreprises et règles du marché » n’est pas un taux de soutien au libéralisme. Un vote sur l’immigration peut faciliter un accueil ou le restreindre ; un amendement peut supprimer un renforcement des pouvoirs de police. Pour montrer le sens d’une mesure, il faut qualifier le dispositif exact, son périmètre et ses effets avec la source, puis faire valider cette analyse. Le site n’attribue donc pas automatiquement une orientation « sociale », « libérale » ou « sécuritaire » à un bulletin. Aucun rapprochement validé avec un programme officiel récent n’est actuellement publié dans ces profils.</p>
       </section>
 

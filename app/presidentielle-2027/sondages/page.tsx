@@ -9,12 +9,11 @@ export default function PollsPage() {
   return <main className="polls-page"><SeoPage path="/presidentielle-2027/sondages" />
     <p className="breadcrumb"><Link href="/presidentielle-2027">Présidentielle 2027</Link> / Sondages</p>
     <header className="presidential-hero polls-hero">
-      <div><div className="eyebrow">Présidentielle 2027 · L’observatoire des sondages</div>
-        <h1>Le pouls de <em>2027.</em></h1>
-        <p className="lead">Les intentions de vote, une hypothèse à la fois. Explorez les mesures, retrouvez chaque source.</p>
-        <div className="presidential-actions"><a className="button" href="#explorer-sondages">Explorer les sondages ↓</a><Link className="text-link" href="/presidentielle-2027/candidats">Découvrir les personnes testées ↗</Link></div>
+      <div><div className="eyebrow">Présidentielle 2027</div>
+        <h1>Sondages</h1>
+        <p className="lead">Intentions de vote par institut, date de terrain et hypothèse de candidatures.</p>
       </div>
-      <div className="presidential-hero-note"><span className="hero-edition" aria-hidden="true">20<br />27<span>FRANCE</span></span><p>Des mesures publiées.<br />Des hypothèses explicites.<br /><strong>Les sources à portée de main.</strong></p></div>
+      <div className="presidential-hero-note"><span className="hero-edition" aria-hidden="true">2027</span></div>
     </header>
     <nav className="presidential-tabs" aria-label="Présidentielle 2027"><Link href="/presidentielle-2027/sondages" aria-current="page">Sondages</Link><Link href="/presidentielle-2027/candidats">Personnes testées</Link><Link href="/presidentielle-2027/comparer">Comparer les pièces</Link><a href="#sources-sondages">Méthode & sources ↗</a></nav>
     <details className="presidential-reading"><summary>Bien lire un sondage <span>Un point = une mesure, jamais une prévision</span></summary>

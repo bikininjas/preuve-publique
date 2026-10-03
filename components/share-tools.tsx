@@ -84,13 +84,13 @@ export function ShareTools({path,document:page}:{path:string;document:SeoDocumen
   }
 
   return <aside className="share-tools" data-share-tools aria-label="Partager cette page">
-    <div className="share-tools-row"><span className="share-label">Partager</span>
+    <details className="share-disclosure"><summary>Partager <span aria-hidden="true">↗</span></summary><div className="share-menu"><div className="share-tools-row">
       {SOCIAL_NETWORKS.map(network=><a key={network.id} className="share-control" href={socialShareUrl(network.id,url,page.title)} onClick={event=>{event.currentTarget.href=socialShareUrl(network.id,currentUrl(),page.title);}} target="_blank" rel="noopener noreferrer nofollow" aria-label={`Partager sur ${network.label}`} title={`Partager sur ${network.label}`}><ShareIcon kind={network.id} /><span className="share-network-name">{network.label}</span></a>)}
       <button type="button" className="share-control" onClick={copyLink} title="Copier le lien" aria-label="Copier le lien"><ShareIcon kind="copy" /><span className="share-network-name">Copier le lien</span></button>
       <button type="button" className="share-control share-ai" onClick={openAi} aria-haspopup="dialog"><ShareIcon kind="ai" /><span>Envoyer à une IA</span></button>
     </div>
     <span className="share-feedback" role="status">{message}</span>
-    {manualLink ? <input className="share-manual-link" readOnly value={manualLink} aria-label="Lien à copier manuellement" onFocus={event=>event.currentTarget.select()} /> : null}
+    {manualLink ? <input className="share-manual-link" readOnly value={manualLink} aria-label="Lien à copier manuellement" onFocus={event=>event.currentTarget.select()} /> : null}</div></details>
     <dialog ref={dialog} className="share-ai-dialog" aria-labelledby="share-ai-title">
       <div className="share-dialog-heading"><div><span className="eyebrow">Comprendre avec les sources</span><h2 id="share-ai-title">Envoyer à une IA</h2></div><button type="button" className="share-dialog-close" onClick={()=>dialog.current?.close()} aria-label="Fermer le sélecteur d’IA">×</button></div>
       <p>Choisissez une IA pour copier le prompt préparé à partir de cette page, de ses filtres et du contenu affiché. Vous pouvez le modifier avant de le coller.</p>

@@ -59,11 +59,10 @@ export default async function PiecesPage({ searchParams }: { searchParams: Promi
 
   return (
     <main><SeoPage path="/pieces" />
-      <div className="page-intro reading-intro"><div className="eyebrow">La bibliothèque des preuves</div>
-      <h1>Tout retrouver,<br /><em>tout vérifier.</em></h1>
+      <div className="page-intro reading-intro"><div className="eyebrow">Catalogue documentaire</div>
+      <h1>Pièces publiées</h1>
       <p className="lead">
-        Scrutins, textes, programmes, déclarations et indicateurs lorsqu’ils sont publiés. Chaque fiche garde son
-        document original, sa date et un repère précis. Le catalogue ne montre que les pièces publiées.
+        Retrouvez les documents par mot clé, type ou institution, avec leur date et leur source.
       </p></div>
 
       <FilterForm action="/pieces">

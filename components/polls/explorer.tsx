@@ -95,7 +95,7 @@ export function PollExplorer() {
     <aside className="poll-filter-panel" aria-label="Filtres des sondages">
       <details className="poll-filter-disclosure" open={filtersOpen} onToggle={(event) => setFiltersOpen(event.currentTarget.open)}>
       <summary>Affiner la sélection <span>{round === 1 ? 'Premier tour' : 'Second tour'} · {institute || 'Tous les instituts'}</span></summary>
-      <div className="poll-filter-heading"><span className="eyebrow">Votre sélection</span><h2>Une hypothèse,<br />des mesures.</h2><p>Ajustez le tour, l’institut et la période.</p></div>
+      <div className="poll-filter-heading"><h2>Filtres</h2></div>
     {options ? <>
       <div className="poll-controls">
         <label>Tour<select value={round} onChange={(event) => change(() => {
