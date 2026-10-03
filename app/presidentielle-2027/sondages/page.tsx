@@ -3,12 +3,14 @@ import type { SearchParamsRecord } from '@/lib/params';
 import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { PollExplorer } from '@/components/polls/explorer';
+import { HeroAtmosphere } from '@/components/editorial-decoration';
 
 
 export default function PollsPage() {
   return <main className="polls-page"><SeoPage path="/presidentielle-2027/sondages" />
     <p className="breadcrumb"><Link href="/presidentielle-2027">Présidentielle 2027</Link> / Sondages</p>
     <header className="presidential-hero polls-hero">
+      <HeroAtmosphere />
       <div><div className="eyebrow">Présidentielle 2027</div>
         <h1>Sondages</h1>
         <p className="lead">Intentions de vote par institut, date de terrain et hypothèse de candidatures.</p>

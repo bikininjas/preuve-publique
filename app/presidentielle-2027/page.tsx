@@ -6,6 +6,7 @@ export default function PresidentialPage() {
   return <main className="reading-page presidential-overview"><SeoPage path="/presidentielle-2027" />
     <div className="eyebrow">France · Élection présidentielle</div><h1>Présidentielle 2027</h1>
     <p className="lead">Sondages, personnes testées et comparaison des pièces documentées.</p>
+    <section className="decision-entry"><div><span className="eyebrow">Pour commencer</span><h2>Construire votre choix, pièce par pièce.</h2><p>Choisissez vos sujets et préparez un parcours de lecture avec votre carnet personnel.</p></div><Link className="button" href="/preparer-mon-vote">Préparer mon vote →</Link></section>
     <div className="presidential-entry-grid">
     <section className="panel"><span className="eyebrow">Intentions de vote</span><h2>Sondages</h2>
       <p>Intentions de vote, dates de terrain et hypothèses testées par les instituts.</p>

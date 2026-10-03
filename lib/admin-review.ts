@@ -2,6 +2,14 @@ import { enumParam, first, pageParam, type SearchParamsRecord } from './params.t
 import { EVIDENCE_KINDS, INSTITUTIONS, type EvidenceKind, type Institution, type RowStatus } from './types.ts';
 
 export const REVIEW_STATUSES = ['draft', 'reviewed', 'published', 'all'] as const;
+export const REVIEW_SCOPES = ['all', 'recent-votes', 'historical-votes', 'editorial'] as const;
+export type ReviewScope = (typeof REVIEW_SCOPES)[number];
+
+/** Same calendar window as daily ingestion, including both boundary days. */
+export function reviewWindow(now = new Date()) {
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+  return { today, since: new Date(Date.parse(`${today}T00:00:00Z`) - 30 * 86400000).toISOString().slice(0, 10) };
+}
 
 export interface ReviewFilters {
   status: RowStatus | 'all';
@@ -9,6 +17,7 @@ export interface ReviewFilters {
   institution?: Institution;
   terms: string;
   page: number;
+  scope?: ReviewScope;
 }
 
 export function reviewFilters(params: SearchParamsRecord): ReviewFilters {
@@ -18,6 +27,7 @@ export function reviewFilters(params: SearchParamsRecord): ReviewFilters {
     institution: enumParam(params.institution, INSTITUTIONS),
     terms: (first(params.q) ?? '').trim().slice(0, 120),
     page: pageParam(params.page),
+    scope: enumParam(params.scope, REVIEW_SCOPES),
   };
 }
 
@@ -27,6 +37,7 @@ export function reviewQueueHref(filters: ReviewFilters, page = filters.page): st
   if (filters.kind) search.set('kind', filters.kind);
   if (filters.institution) search.set('institution', filters.institution);
   if (filters.terms) search.set('q', filters.terms);
+  if (filters.scope && filters.scope !== 'all') search.set('scope', filters.scope);
   if (page > 1) search.set('page', String(page));
   return `/admin/review?${search}`;
 }

@@ -1,5 +1,6 @@
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { isRangeNotSatisfiable } from '@/lib/data';
+import { reviewWindow, type ReviewScope } from '@/lib/admin-review';
 import type {
   Actor,
   Evidence,
@@ -79,6 +80,7 @@ export interface ReviewQuery {
   terms?: string;
   offset?: number;
   limit?: number;
+  scope?: ReviewScope;
 }
 
 export interface LinkedEvidenceRef {
@@ -98,23 +100,32 @@ export interface AdminLinkRow extends EvidenceLink {
   to: LinkedEvidenceRef | null;
 }
 
-/** Pieces of every status, newest first, for the review queue. */
-export async function listEvidenceForReview(query: ReviewQuery = {}): Promise<EvidencePage> {
-  const db = await createClient();
-  const limit = Math.min(Math.max(query.limit ?? 50, 1), 100);
-  const offset = Math.max(query.offset ?? 0, 0);
+function evidenceReviewRequest(db: Awaited<ReturnType<typeof createClient>>, query: ReviewQuery, head = false) {
   let request = db
     .from('evidence')
-    .select(ADMIN_EVIDENCE_COLUMNS, { count: 'exact' })
-    .order('occurred_at', { ascending: false })
-    .order('id', { ascending: false })
-    .range(offset, offset + limit - 1);
+    .select(ADMIN_EVIDENCE_COLUMNS, { count: 'exact', head });
   if (query.status && query.status !== 'all') request = request.eq('status', query.status);
   if (query.kind) request = request.eq('kind', query.kind);
   if (query.institution) request = request.eq('institution', query.institution);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }
+  if (query.scope === 'recent-votes' || query.scope === 'historical-votes') {
+    const window = reviewWindow();
+    request = request.eq('kind', 'vote').in('institution', ['assemblee', 'senat']);
+    request = query.scope === 'historical-votes' ? request.lt('occurred_at', window.since) : request.gte('occurred_at', window.since).lte('occurred_at', window.today);
+  } else if (query.scope === 'editorial') {
+    request = request.in('kind', ['program', 'statement', 'indicator', 'judicial_event']);
+  }
+  return request;
+}
+
+/** Pieces of every status, newest first, for the review queue. */
+export async function listEvidenceForReview(query: ReviewQuery = {}): Promise<EvidencePage> {
+  const db = await createClient();
+  const limit = Math.min(Math.max(query.limit ?? 50, 1), 100);
+  const offset = Math.max(query.offset ?? 0, 0);
+  const request = evidenceReviewRequest(db, query).order('occurred_at', { ascending: false }).order('id', { ascending: false }).range(offset, offset + limit - 1);
   const { data, error, count } = await request;
   if (error) {
     if (isRangeNotSatisfiable(error)) {
@@ -136,14 +147,7 @@ export async function listEvidenceForReview(query: ReviewQuery = {}): Promise<Ev
 /** Count-only query with the same filters, used when a page is past the end. */
 async function countEvidenceForReview(query: ReviewQuery): Promise<number> {
   const db = await createClient();
-  let request = db.from('evidence').select('id', { count: 'exact', head: true });
-  if (query.status && query.status !== 'all') request = request.eq('status', query.status);
-  if (query.kind) request = request.eq('kind', query.kind);
-  if (query.institution) request = request.eq('institution', query.institution);
-  if (query.terms?.trim()) {
-    request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
-  }
-  const { count, error } = await request;
+  const { count, error } = await evidenceReviewRequest(db, query, true);
   if (error) throw new AdminDataError();
   return count ?? 0;
 }

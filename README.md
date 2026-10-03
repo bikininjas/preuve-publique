@@ -98,9 +98,10 @@ Le site utilise le thème sombre par défaut. Le switch soleil/lune dans l'en-t�
 | `/presidentielle-2027/sondages` | mesures Sondax, configurations exactes, filtres, graphique de points et sources originales |
 | `/presidentielle-2027/candidats` | annuaire des personnes testées, sans confirmation implicite de candidature officielle |
 | `/presidentielle-2027/candidats/[candidate]` | identité, rattachements datés, sondages, bulletins personnels et documents disponibles |
-| `/presidentielle-2027/comparer` | jusqu'à trois personnes, mêmes scrutins et sous-thème, avec données manquantes explicites |
+| `/presidentielle-2027/comparer` | jusqu'à trois personnes, mêmes scrutins, sous-thème et période, table de couverture et question documentaire modifiable |
+| `/preparer-mon-vote` | choix de sujets, comparaison avec les mêmes personnes, notes privées et carnet texte à conserver sur son appareil |
 | `/admin` | atelier de relecture : compteurs, accès aux files et journal d'ingestion |
-| `/admin/review` | file des pièces : brouillon → relu → publié, retour d'un cran, relecteur enregistré |
+| `/admin/review` | pièces récentes, archives ou chantiers éditoriaux ; brouillon → relu → publié, retour d'un cran, relecteur enregistré |
 | `/admin/links` | file des rapprochements, mêmes transitions |
 | `/admin/runs` | passages d'ingestion (options, volumes, résultat) |
 | `/admin/publication` | règle automatique, indice de conformité et compteur |

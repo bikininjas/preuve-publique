@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import { DataUnavailableError } from '@/lib/data';
+import { DataUnavailableError, isRangeNotSatisfiable } from '@/lib/data';
 import type { Evidence } from '@/lib/types';
 import type { CandidateProfile,CandidateConnection,CandidateVote,PolicyMeasure,MeasureEvidence } from './types';
+import type { ComparisonPeriod } from './comparison';
 
 function client() {
   if(!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_KEY) throw new DataUnavailableError();
@@ -20,7 +21,28 @@ export async function candidateConnections(slugs:string[]):Promise<CandidateConn
   if(error) throw new DataUnavailableError();
   return data as CandidateConnection[];
 }
-export async function candidateVotes(slugs:string[],keywords:readonly string[],page=1):Promise<{total:number;votes:CandidateVote[]}> {
+export async function candidateVotes(slugs:string[],keywords:readonly string[],page=1,period:ComparisonPeriod={}):Promise<{total:number;votes:CandidateVote[]}> {
+  if (period.error) throw new DataUnavailableError();
+  if (period.from || period.to) {
+    const db = client();
+    const requestFor = (head = false) => {
+      let request = db.from('evidence').select('id,title,occurred_at,source_url,source_locator,detail,positions:candidate_ballots!inner(candidate_slug,position,archive_sha256)', { count: 'exact', head })
+        .eq('status', 'published').eq('kind', 'vote').eq('institution', 'assemblee').in('positions.candidate_slug', slugs.slice(0, 3));
+      // Keywords come only from the controlled subject taxonomy, as in the RPC.
+      if (keywords.length) request = request.or(keywords.map((keyword) => `title.ilike.%${keyword}%`).join(','));
+      if (period.from) request = request.gte('occurred_at', period.from);
+      if (period.to) request = request.lte('occurred_at', period.to);
+      return request;
+    };
+    const { data, error, count } = await requestFor().order('occurred_at', { ascending: false }).order('id', { ascending: true }).range((page - 1) * 15, page * 15 - 1);
+    if (error) {
+      if (!isRangeNotSatisfiable(error)) throw new DataUnavailableError();
+      const counted = await requestFor(true);
+      if (counted.error) throw new DataUnavailableError();
+      return { total: counted.count ?? 0, votes: [] };
+    }
+    return { total: count ?? 0, votes: (data ?? []).map((vote) => ({ ...vote, positions: vote.positions.map((position) => ({ candidate: position.candidate_slug, position: position.position, archive_sha256: position.archive_sha256 })) })) as CandidateVote[] };
+  }
   const {data,error}=await client().rpc('candidate_vote_comparison',{_candidates:slugs.slice(0,3),_keywords:[...keywords],_limit:15,_offset:(page-1)*15});
   if(error || !data || !Array.isArray(data.votes)) throw new DataUnavailableError();
   return data;

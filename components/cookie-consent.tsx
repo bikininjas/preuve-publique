@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 import { stopAnalytics, trackPage } from '@/lib/analytics-client';
 import {
@@ -115,9 +116,9 @@ export function CookieConsent() {
       <button ref={trigger} type="button" className="cookie-preferences-link" onClick={() => setPreferencesOpen(true)} aria-haspopup="dialog" aria-expanded={open}>
         Gérer mes cookies
       </button>
-      {open ? (
+      {open ? createPortal(
         <div className="cookie-banner" role="dialog" aria-modal="false" aria-labelledby="cookie-title" aria-describedby="cookie-description" tabIndex={-1} ref={dialog} onKeyDown={(event) => { if (event.key === 'Escape' && consent) close(); }}>
-          <div className="cookie-copy">
+          <div className="consent-content">
             <div className="eyebrow">Votre vie privée</div>
             <h2 id="cookie-title">La mesure d’audience, à votre choix.</h2>
             <p id="cookie-description">
@@ -133,7 +134,7 @@ export function CookieConsent() {
             </> : null}
             {consent || !measurementId ? <button className="cookie-close" type="button" onClick={close}>Fermer</button> : null}
           </div>
-        </div>
+        </div>, document.body
       ) : null}
     </>
   );
