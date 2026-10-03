@@ -14,19 +14,21 @@ export function EditorialContext({ evidence, compact = false }: { evidence: Evid
   const judicial = detail.judicial as Judicial | undefined;
   const summary = typeof detail.summary === 'string' ? detail.summary : null;
   return <div className="editorial-context">
-    {summary ? <p><strong>Résumé documentaire : </strong>{summary}</p> : null}
+    {summary && (evidence.kind !== 'indicator' || !indicator) ? <p><strong>Résumé documentaire : </strong>{summary}</p> : null}
     {evidence.kind === 'program' && program ? <>
       <p><strong>{program.author}</strong> · {program.election}</p>
       <p className="hint">{program.scope_note}</p>
       {!compact ? <><p>{program.edition}</p><p className="hint">{program.date_note} Date de publication : {program.publication_date ? formatDate(program.publication_date) : 'non précisée dans la source'}.</p></> : null}
     </> : null}
     {evidence.kind === 'indicator' && indicator ? <>
-      {evidence.publication_method === 'official_source_unreviewed' ? <p className="hint">Chiffres de la source institutionnelle, publiés sans relecture par Preuve Publique.</p> : null}
+      {evidence.publication_method === 'official_source_unreviewed' ? <p className="hint indicator-publication-note">{compact ? 'Sans relecture par Preuve Publique' : 'Chiffres de la source institutionnelle, publiés sans relecture par Preuve Publique.'}</p> : null}
       {indicator.measurement_type ? <p className="indicator-method">{({ observation: 'Observation statistique', simulation: 'Estimation par simulation', testing: 'Expérience par testing' } as Record<string, string>)[indicator.measurement_type] ?? 'Méthode documentée'}</p> : null}
       <p className="indicator-value"><strong>{indicator.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })}</strong> <span>{indicator.unit} · {indicator.period}</span></p>
       {indicator.value_label ? <p className="indicator-reference">{indicator.value_label}</p> : null}
+      {summary ? <p><strong>Résumé documentaire : </strong>{summary}</p> : null}
       {indicator.comparisons?.length ? <>
-        <dl className="indicator-comparisons" aria-label={`Comparaison en ${indicator.unit}`}>{indicator.comparisons.map((row) => <div key={row.label}><dt>{row.label}</dt><dd>{row.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })} <span>{indicator.unit}</span></dd></div>)}</dl>
+        {compact ? <p className="indicator-comparison-unit">Comparaison en {indicator.unit}</p> : null}
+        <dl className="indicator-comparisons" aria-label={`Comparaison en ${indicator.unit}`}>{indicator.comparisons.map((row) => <div key={row.label}><dt>{row.label}</dt><dd>{row.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })} {!compact ? <span>{indicator.unit}</span> : null}</dd></div>)}</dl>
         <p className="hint">{indicator.comparison_note}</p>
       </> : null}
       <p><strong>Territoire : </strong>{indicator.geography}</p>
@@ -35,7 +37,7 @@ export function EditorialContext({ evidence, compact = false }: { evidence: Evid
         <p><strong>Méthode : </strong>{indicator.method}</p>
         {indicator.series.length > 1 || !indicator.comparisons?.length ? <table className="table"><caption>Valeurs de la même édition de la source{indicator.value_label ? ` — ${indicator.value_label}` : ''}</caption><thead><tr><th scope="col">Période</th><th scope="col">Valeur ({indicator.unit})</th></tr></thead><tbody>{indicator.series.map((point) => <tr key={point.period}><th scope="row">{point.period}</th><td>{point.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })}</td></tr>)}</tbody></table> : null}
       </> : null}
-      <p className="hint">{indicator.limits}</p>
+      <p className="hint indicator-limits">{indicator.limits}</p>
       {indicator.source_edition ? <p className="hint"><strong>Édition : </strong>{indicator.source_edition}</p> : null}
     </> : null}
     {evidence.kind === 'judicial_event' && judicial ? <>

@@ -40,7 +40,7 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
       </p></div>
 
       <nav className="pills" aria-label="Choisir une institution pour les graphiques"><Link className={!senate ? 'active' : ''} href="/categories">Assemblée · partis</Link><Link className={senate ? 'active' : ''} href="/categories?institution=senat">Sénat · groupes</Link></nav>
-      <nav className="theme-jumps" aria-label="Aller à une catégorie">{VOTE_SUBJECT_GROUPS.map((category, index) => <a href={`#theme-${category.id}`} key={category.id}><span>{String(index + 1).padStart(2, '0')}</span><strong>{category.label}</strong><small>{category.subjects.length} sous-thèmes <b aria-hidden="true">↓</b></small></a>)}</nav>
+      <nav className="theme-jumps" id="index-themes" aria-label="Aller à une catégorie">{VOTE_SUBJECT_GROUPS.map((category, index) => <a href={`#theme-${category.id}`} key={category.id}><span>{String(index + 1).padStart(2, '0')}</span><strong>{category.label}</strong><small>{category.subjects.length} sous-thèmes <b aria-hidden="true">↓</b></small></a>)}</nav>
       <p className="hint chart-reading-note">Les sujets peuvent se recouper : leurs totaux ne s’additionnent pas. Chaque barre décrit les positions enregistrées, jamais une opinion sur tout le thème. {senate ? 'Un groupe parlementaire n’est pas un parti.' : 'Le rattachement à un parti repose sur une affiliation datée.'}</p>
       <details className="reader-disclosure"><summary>Aller directement à un sous-thème <span>{allSubjects.length} sujets</span></summary><nav className="subtheme-index" aria-label="Aller directement à un sous-thème">{VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}><strong>{category.label}</strong><div className="pills">{category.subjects.map((subject) => <a href={`#sous-theme-${subject.id}`} key={subject.id}>{subject.label} ↓</a>)}</div></div>)}</nav></details>
 
@@ -57,6 +57,7 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
                 : <div className="party-subject-chart"><h3><Link href={`/scrutins?${senate ? 'institution=senat&' : ''}subject=${subject.id}`}>{subject.label} ↗</Link></h3><p>Graphique indisponible pour le moment.</p></div>}</div>;
           })}</div>
           </div>
+          <nav className="section-return" aria-label={'Poursuivre depuis ' + category.label}><a href="#index-themes">Catégories ↑</a><Link href={'/scrutins?institution=' + (senate ? 'senat' : 'assemblee') + '&category=' + category.id}>Tous les scrutins de ce thème →</Link></nav>
         </section>)}
       </div>
 

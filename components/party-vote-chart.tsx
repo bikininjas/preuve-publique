@@ -90,7 +90,7 @@ export function PartyVoteChart({ title, dashboard, href, previewLimit, partyHref
       {!previewLimit && hidden.length ? <details className="party-chart-rest"><summary>Afficher les {hidden.length} autres partis</summary><div className="party-chart-rows">{hidden.map(renderRow)}</div></details> : null}
     </> : <p className="empty">Aucun bulletin de parti attribuable sur les scrutins de ce sujet. Les votes du Sénat n’ont pas encore de rattachement individuel aux partis dans cette base.</p>}
     <p className="party-chart-method">Un segment représente des <strong>bulletins individuels</strong> sur les scrutins trouvés, pas l’opinion d’un parti sur tout le thème. Un député n’est compté que si l’archive officielle indique son vote et qu’une seule affiliation datée à un parti est connue ce jour-là. Les {number(scope.unattributed_individuals)} bulletins sans rattachement certain sont exclus des barres. Les scrutins dont le décompte nominatif diverge du total officiel sont exclus. Tri par nombre de bulletins documentés.</p>
-    <div className="party-program-slot"><span>Parole ↔ vote</span><p>Une comparaison demande le programme officiel de l’élection concernée, sa date, une citation exacte et un scrutin sur la <strong>même mesure</strong>. Un ancien programme ne sera pas présenté comme celui de 2027 ; une proposition publiée après un scrutin sera datée comme position ultérieure. Aucun verdict n’est déduit de ce graphique.</p></div>
+    <p className="party-chart-more">Comparer ces votes à un programme demande une source de l’élection concernée et la même mesure. <Link href="/methode#comparaisons">Lire les précautions →</Link></p>
   </section>;
 }
 

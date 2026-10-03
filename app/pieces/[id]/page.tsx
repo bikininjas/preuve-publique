@@ -9,6 +9,7 @@ import { VoteTopics } from '@/components/vote-topics';
 import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { EditorialContext } from '@/components/editorial-context';
+import { ReadingContinuation } from '@/components/reading-continuation';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
 import { getActorNames, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
 import {
@@ -200,6 +201,19 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
           </div>
         </section>
       ) : null}
+      <ReadingContinuation links={evidence.kind === 'vote' ? [
+        { href: '/scrutins' + (evidence.institution ? '?institution=' + evidence.institution : ''), title: 'Autres scrutins', note: evidence.institution ? institutionLabel(evidence.institution) : 'Toutes les institutions' },
+        { href: '/categories' + (evidence.institution === 'senat' ? '?institution=senat' : ''), title: 'Votes par thème', note: evidence.institution === 'senat' ? 'Groupes du Sénat' : 'Partis à l’Assemblée nationale' },
+        { href: '/methode#profils-vote', title: 'Méthode de lecture', note: 'Périmètres, sources et dénominateurs' },
+      ] : evidence.kind === 'indicator' ? [
+        { href: '/observatoire#inegalites', title: 'Autres indicateurs', note: 'Explorer les domaines d’inégalités' },
+        { href: '/pieces?kind=indicator', title: 'Catalogue des indicateurs', note: 'Toutes les fiches publiées' },
+        { href: '/methode#comparaisons', title: 'Lire les comparaisons', note: 'Méthodes et limites' },
+      ] : [
+        { href: '/pieces?kind=' + evidence.kind, title: 'Pièces du même type', note: kindLabel(evidence.kind) },
+        { href: '/observatoire', title: 'Observatoire', note: 'Documents et indicateurs publiés' },
+        { href: '/methode', title: 'Méthode et sources', note: 'Les règles de publication' },
+      ]} />
     </main>
   );
 }
