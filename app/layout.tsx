@@ -32,10 +32,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="site-header">
           <Link className="brand" href="/" aria-label="Preuve Publique, accueil"><span className="brand-symbol">P<span>·</span></span><span>PREUVE<br />PUBLIQUE</span></Link>
           <SiteNav />
-          <div className="header-actions"><ThemeToggle /><Link className="header-action" href="/admin" aria-label="Espace de relecture">Espace de relecture <span aria-hidden>↗</span></Link></div>
+          <div className="header-actions"><ThemeToggle /></div>
         </header>
         <div id="contenu">{children}</div>
-        <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Des sources pour comprendre les décisions publiques.<br />France et Union européenne, depuis 2017.</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><Link href="/confidentialite">Confidentialité et cookies</Link><CookieConsent /><Link href="/admin">Administration</Link></div></footer>
+        <footer className="site-footer"><div><Link className="footer-brand" href="/">PREUVE PUBLIQUE<span>.</span></Link><p>Des sources pour comprendre les décisions publiques.<br />France et Union européenne, depuis 2017.</p></div><div className="footer-links"><Link href="/pieces">Toutes les pièces</Link><Link href="/methode">Méthode et limites</Link><Link href="/confidentialite">Confidentialité et cookies</Link><CookieConsent /></div></footer>
       </body>
     </html>
   );
