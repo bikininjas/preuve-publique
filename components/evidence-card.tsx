@@ -13,7 +13,7 @@ export function EvidenceCard({ item, review = false }: { item: Evidence; review?
   const tally = item.kind === 'vote' ? voteTally(item) : null;
   const href = `${review ? '/admin' : ''}/pieces/${item.id}`;
   return (
-    <article className="card evidence-card">
+    <article className={`card evidence-card${item.kind === 'indicator' && !review ? ' indicator-card' : ''}`}>
       <div className="card-top"><span className="count">{kindLabel(item.kind)}{item.institution ? ` · ${institutionLabel(item.institution)}` : ''}</span><span className="card-date">{item.kind === 'indicator' ? 'Source : ' : ''}{formatEvidenceDate(item)}</span></div>
       {scope ? <p className="card-vote-scope">Vote sur : <b>{scope}</b></p> : null}
       {item.kind === 'vote' ? <span className="card-topic-label">Sujet du texte concerné</span> : null}
