@@ -5,6 +5,7 @@ import { ReviewActions } from '@/components/review-actions';
 import { EditorialContext } from '@/components/editorial-context';
 import { Citation, DataTable, MetaList, Notice, RawJson, StatusBadge, type MetaEntry } from '@/components/ui';
 import { getEvidenceForAdmin } from '@/lib/admin';
+import { adminPieceHref, reviewReturnPath } from '@/lib/admin-review';
 import {
   formatEvidenceDate,
   formatDateTime,
@@ -28,6 +29,8 @@ export default async function AdminPiecePage({
   const { id } = await params;
   const query = await searchParams;
   if (!isUuid(id)) notFound();
+  const returnTo = reviewReturnPath(query.returnTo);
+  const returnLabel = returnTo.startsWith('/admin/links?') ? 'Retour aux rapprochements' : 'Retour à la file des pièces';
 
   let item: Awaited<ReturnType<typeof getEvidenceForAdmin>> = null;
   let failed = false;
@@ -39,6 +42,7 @@ export default async function AdminPiecePage({
   if (failed) {
     return (
       <>
+        <p className="breadcrumb"><Link className="quiet" href={returnTo} prefetch={false}>← {returnLabel}</Link></p>
         <h2>Pièce</h2>
         <Notice>Cette pièce n’a pas pu être chargée. Rechargez la page dans un instant.</Notice>
       </>
@@ -47,7 +51,7 @@ export default async function AdminPiecePage({
   if (!item) notFound();
 
   const { evidence, source, actor, links } = item;
-  const back = `/admin/pieces/${evidence.id}`;
+  const back = adminPieceHref(evidence.id, returnTo);
   const meta: MetaEntry[] = [
     {
       term: 'Adresse source',
@@ -83,8 +87,8 @@ export default async function AdminPiecePage({
   return (
     <>
       <p className="breadcrumb">
-        <Link className="quiet" href="/admin/review?status=all">
-          ← Toutes les pièces (revue)
+        <Link className="quiet" href={returnTo} prefetch={false}>
+          ← {returnLabel}
         </Link>
       </p>
       <h2 className="title">{evidence.title}</h2>
@@ -116,7 +120,7 @@ export default async function AdminPiecePage({
                 <tr key={link.id}>
                   <td>
                     <div className="sub">{relationLabel(link.relation)}</div>
-                    {related ? <Link href={`/admin/pieces/${related.id}`}>{related.title}</Link> : '—'}
+                    {related ? <Link href={adminPieceHref(related.id, returnTo)} prefetch={false}>{related.title}</Link> : '—'}
                     {link.rationale ? <div className="sub">{link.rationale}</div> : null}
                   </td>
                   <td>

@@ -15,6 +15,7 @@ export const dynamic = 'force-dynamic';
 // No guessed lastModified: the source/vote date is not the page's update date.
 const cachedSitemap = unstable_cache(async (): Promise<MetadataRoute.Sitemap> => {
   const paths = new Set(Object.keys(SEO_PAGES));
+  paths.add('/confidentialite');
   if (process.env.SUPABASE_URL && process.env.SUPABASE_PUBLISHABLE_KEY) {
     const [pieces,topics,groups,parties,options] = await Promise.all([
       publishedPieceIds(),getTopicCounts(),getGroupDirectory(),getAllPartyVotes(),pollOptions(),

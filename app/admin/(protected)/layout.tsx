@@ -1,20 +1,10 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { signOut } from '@/app/admin/actions';
+import { AdminNav } from '@/components/admin-nav';
 import { getAdminSession } from '@/lib/admin';
+import './admin.css';
 
 export const dynamic = 'force-dynamic';
-
-const ADMIN_LINKS = [
-  { href: '/admin', label: 'Tableau de bord' },
-  { href: '/admin/review', label: '01 · Pièces' },
-  { href: '/admin/links', label: '02 · Rapprochements' },
-  { href: '/admin/runs', label: '03 · Imports' },
-  { href: '/admin/publication', label: '04 · Publication' },
-  { href: '/admin/measures', label: '05 · Mesures et positions' },
-  { href: '/admin/inegalites', label: '06 · Inégalités' },
-  { href: '/', label: 'Voir le site ↗' },
-];
 
 /**
  * Gate for the review space. Server-side check on every request: no session →
@@ -73,13 +63,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </form>
         </div>
       </div>
-      <nav className="admin-nav">
-        {ADMIN_LINKS.map((link) => (
-          <Link href={link.href} key={link.href}>
-            {link.label}
-          </Link>
-        ))}
-      </nav>
+      <AdminNav />
       {children}
     </main>
   );

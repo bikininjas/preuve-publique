@@ -5,7 +5,7 @@ import { parseSondax, documentHash, downloadSondax, SONDAX_URL, MIRROR_URL } fro
 import { parsePollQuery, configurationKey } from '../../../lib/polls/query.ts';
 
 const fixture = readFileSync(new URL('./fixtures/sondax.csv', import.meta.url), 'utf8');
-const lines = fixture.trimEnd().split('\n');
+const lines = fixture.trimEnd().split(/\r?\n/);
 const response = (body = fixture, contentType = 'text/csv') => ({ body: Buffer.from(body),
   bytes: Buffer.byteLength(body), contentType, finalUrl: SONDAX_URL, sha256: 'a'.repeat(64), fetchedAt: '2026-06-01T01:02:03Z' });
 

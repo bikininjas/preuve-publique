@@ -2,7 +2,7 @@
 
 **Voir ce que les acteurs politiques annoncent, votent et produisent — avec les documents originaux.**
 
-**Site public : [preuve-publique.fr](https://preuve-publique.fr/).** Référencement, indexation et aperçus de partage : [guide SEO et réseaux sociaux](docs/seo-et-partage.md).
+**Site de production : [preuve-publique.fr](https://preuve-publique.fr/).** Utiliser ce domaine pour les liens publics et les vérifications des parcours. Référencement, indexation et aperçus de partage : [guide SEO et réseaux sociaux](docs/seo-et-partage.md).
 
 Preuve Publique est un projet citoyen consacré à la France et à l'Union européenne. Son point d'entrée est le scrutin officiel : retrouver le sujet d'un vote, les positions publiées, les acteurs concernés et le texte exact. Le projet veut aussi rapprocher les programmes électoraux et déclarations médiatiques des décisions parlementaires, suivre les effets documentés des politiques publiques, montrer les inégalités et contextualiser les affaires judiciaires. Chaque élément renvoie à sa source. Le site présente les faits et leurs limites pour que le visiteur se fasse sa propre opinion ; il ne donne ni note de « cohérence », ni verdict automatique.
 
@@ -78,6 +78,8 @@ La connexion Google de `/admin` passe par Supabase Auth et la liste `admin_users
 
 ## Site public et espace de relecture
 
+Le site utilise le thème sombre par défaut. Le switch soleil/lune dans l'en-tête permet de passer au thème clair ; le choix est conservé dans le navigateur (`preuve-publique-theme`) et partagé entre ses onglets. Le thème mémorisé est appliqué avant l'affichage du contenu, sans rendre les pages statiques dynamiques. Si le stockage local est bloqué, le switch reste utilisable pendant la visite.
+
 | Adresse | Contenu |
 |---|---|
 | `/` | accueil : profils de partis par thème et sous-thème, derniers scrutins publiés et accès direct aux sujets recherchés |
@@ -122,12 +124,14 @@ Pour déboguer l'espace de relecture sans repasser par la connexion Google (clé
 
 Ces étapes ont été exécutées le 30/09/2026 pour `localhost:3000` ; elles restent la référence pour un nouvel environnement ou pour la production :
 
-1. **Console Google Cloud** → *Google Auth Platform* → *Clients* → créer un client OAuth de type **Web application**. Origines JavaScript autorisées : l'adresse publique du site et `http://localhost:3000`. URI de redirection autorisée : `https://<project-ref>.supabase.co/auth/v1/callback` (l'adresse exacte est affichée sur la page du fournisseur Google du tableau de bord Supabase).
+1. **Console Google Cloud** → *Google Auth Platform* → *Clients* → créer un client OAuth de type **Web application**. Origines JavaScript autorisées : `https://preuve-publique.fr` et `http://localhost:3000`. URI de redirection autorisée : `https://<project-ref>.supabase.co/auth/v1/callback` (l'adresse exacte est affichée sur la page du fournisseur Google du tableau de bord Supabase).
 2. **Tableau de bord Supabase** → *Authentication* → *Providers* → **Google** : activer, coller l'identifiant client et le secret.
-3. **Supabase** → *Authentication* → *URL Configuration* : *Site URL* = adresse publique du site ; *Redirect URLs* : `<adresse publique>/auth/callback` et `http://localhost:3000/auth/callback`.
+3. **Supabase** → *Authentication* → *URL Configuration* : *Site URL* = `https://preuve-publique.fr` ; *Redirect URLs* : `https://preuve-publique.fr/auth/callback` et `http://localhost:3000/auth/callback`.
 4. Vérifier : ouvrir `/admin`, se connecter avec Google, valider une pièce, contrôler qu'elle apparaît sur `/pieces`.
 
 Les variables d'exécution du service web restent `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` (aucune clé supplémentaire n'est nécessaire : l'identifiant et le secret Google vivent dans la configuration du projet Supabase). Les valeurs `GGL_OAUTH_CLIENT_ID` / `GGL_OAUTH_CLIENT_SECRET` d'un `.env.local` ne sont **pas lues par l'application** — ce sont des valeurs de passage vers le tableau de bord ; elles ne doivent jamais être commitées, et peuvent être supprimées une fois le fournisseur activé.
+
+Ces adresses indiquent la configuration attendue pour le nouveau domaine de production. Leur présence dans la documentation ne confirme pas une modification des réglages OAuth ou Supabase : contrôler la connexion sur ce domaine après toute mise à jour de ces réglages.
 
 ## Ingestion et revue éditoriale
 
@@ -179,6 +183,7 @@ Variables utilisées par l'application :
 | `SUPABASE_URL` | Adresse de l'API Supabase, côté serveur |
 | `SUPABASE_PUBLISHABLE_KEY` | Clé publique Supabase, côté serveur dans cette application |
 | `DB_PG_URL` | Réservée à d'éventuels outils de migration ou d'ingestion ; jamais nécessaire au frontend |
+| `GA_MEASUREMENT_ID` | Identifiant public de la propriété GA4, lu à l’exécution ; la collecte reste bloquée avant consentement |
 | `DEV_ADMIN_EMAIL` / `DEV_ADMIN_PASSWORD` | Connexion technique locale de l'espace de relecture ; ignorées en production (voir « Compte technique de débogage local ») |
 
 Les variables peuvent rester vides pour travailler sur l'interface : la page présente alors l'état vide. Le fichier `.env.local` est ignoré par Git. Ne placez aucun identifiant réel dans `.env.example`, les fichiers Markdown ou les journaux CI. Avec de vraies valeurs `SUPABASE_URL` / `SUPABASE_PUBLISHABLE_KEY` et le fournisseur Google activé pour `http://localhost:3000/auth/callback`, l'espace de relecture fonctionne aussi en local sur `/admin`, et la connexion technique locale évite d'avoir à repasser par Google.
@@ -195,6 +200,8 @@ npm run test:reader
 
 Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécute sur le port attendu par Cloud Run.
 
+Le parcours de relecture, la propriété Analytics dédiée et le bandeau de consentement sont décrits dans [docs/admin-analytics-consent.md](docs/admin-analytics-consent.md), avec les réglages vérifiés et les étapes d’activation en production.
+
 ## Base de données
 
 La migration initiale est dans `supabase/migrations/20260929000000_initial.sql` ; `20260930000000_backend_pipeline.sql` ajoute les faits structurés copiés des sources (`detail`), la trace de relecture (`reviewed_by`, `reviewed_at`), la recherche plein texte française et le journal privé `ingestion_runs` ; `20261001000000_fix_reference_policies.sql` corrige les politiques de lecture de `sources` et `actors` (un `id` non qualifié y était résolu vers la table interne, ce qui rendait ces tables invisibles au public — le bug a été trouvé par une lecture réelle en rôle `anon` et couvert par un test) ; `20261002000000_admin_review.sql` ajoute la liste d'administration `admin_users`, les lectures d'administration (tous les statuts, journal d'ingestion) et les transitions de revue, limitées aux colonnes `status`, `reviewed_by` et `reviewed_at`, avec relecteur obligatoire hors brouillon ; `20261003000000_actor_relations.sql` ajoute `actor_relations` (liens datés entre acteurs : `member_of`, `affiliated_to`, `coalition_of`), lisibles publiquement seulement si **les deux** acteurs reliés le sont, et sans statut de relecture — ce sont des mandats recopiés d'un référentiel institutionnel, pas une interprétation ; `20261004000000_evidence_topics.sql` ajoute la colonne `topics` (rubriques publiées par la source, héritées par dossier le cas échéant), son comptage public (`published_topic_counts()`, fonction `security invoker`) et la lecture publique des **groupes nommés dans un vote publié** — un groupe n'existe publiquement que par la pièce qui publie sa position. La migration initiale crée des tables publiques accessibles **en lecture seule** aux rôles anonymes et authentifiés, avec RLS : seuls les éléments au statut `published` et leurs références admissibles sont visibles. Les écritures de l'ingestion doivent passer par une connexion de confiance distincte, jamais par la clé publiée au navigateur.
@@ -209,6 +216,8 @@ Avant de lancer cette migration sur un projet Supabase existant, inspecter le sc
 
 ## Déploiement Cloud Build → Cloud Run
 
+L'adresse publique de production est [https://preuve-publique.fr/](https://preuve-publique.fr/). Le service Cloud Run reste `preuve-publique-git`, dans `europe-west1` ; son adresse technique `https://preuve-publique-git-919818604436.europe-west1.run.app` reste une référence d'infrastructure. Les liens partagés et les contrôles de parcours après livraison utilisent le domaine public, notamment [les scrutins](https://preuve-publique.fr/scrutins), [les sondages](https://preuve-publique.fr/presidentielle-2027/sondages) et [l'espace de relecture](https://preuve-publique.fr/admin).
+
 Le fichier `cloudbuild.yaml` construit l'image avec le `Dockerfile`, la pousse dans Artifact Registry, puis déploie le service Cloud Run. Le projet Google Cloud et l'identifiant du build sont fournis par Cloud Build. Les substitutions par défaut sont :
 
 | Substitution | Valeur par défaut | Signification |
@@ -219,7 +228,7 @@ Le fichier `cloudbuild.yaml` construit l'image avec le `Dockerfile`, la pousse d
 
 Si le registre est dans une autre région, modifier `_REGION` dans le déclencheur. Ne pas définir de substitution vide : elle peut écraser la valeur par défaut et rendre l'adresse de l'image invalide.
 
-État vérifié le 02/10/2026 : la PR #17 est fusionnée et les sondages sont déployés dans le service Cloud Run [`preuve-publique-git`](https://preuve-publique-git-919818604436.europe-west1.run.app), projet `preuve-publique`, région `europe-west1`. Le build `dd6cfcb4-f03e-4b3a-b8ef-873237b9b614` a livré le commit `abd059e` dans la révision `preuve-publique-git-00030-24x`. Cette référence est un instantané de livraison, pas une indication perpétuellement à jour de la révision active.
+État vérifié le 02/10/2026 : la PR #17 est fusionnée et les sondages sont déployés dans le service Cloud Run `preuve-publique-git`, projet `preuve-publique`, région `europe-west1`. Le build `dd6cfcb4-f03e-4b3a-b8ef-873237b9b614` a livré le commit `abd059e` dans la révision `preuve-publique-git-00030-24x`. Cette référence est un instantané de livraison, pas une indication perpétuellement à jour de la révision active.
 
 Deux déclencheurs surveillent actuellement `master`. Celui géré par Cloud Run (`5ed4b917-d0cf-497c-a133-a2b6fe8bf682`) construit et livre avec sa configuration intégrée, dans `cloud-run-source-deploy`. Le déclencheur `preuve-publique` (`41dbd616-e222-4c40-b56d-30d2c357e0e3`) utilise `cloudbuild.yaml` et `preuvepublique` ; son dernier build `76ad52f4-5a94-4bc5-ae2b-a84b69a373c7` a construit et poussé l'image, puis échoué sur `iam.serviceaccounts.actAs`. Ne pas annoncer ce second chemin comme opérationnel ni élargir IAM à l'aveugle. Les substitutions ci-dessus décrivent le fichier du dépôt, pas celles du déclencheur intégré.
 
