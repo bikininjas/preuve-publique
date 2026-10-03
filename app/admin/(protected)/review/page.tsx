@@ -5,14 +5,14 @@ import { Queue, StatusBadge } from '@/components/ui';
 import { listEvidenceForReview } from '@/lib/admin';
 import { formatDate, institutionLabel, kindLabel, truncate } from '@/lib/labels';
 import { type SearchParamsRecord } from '@/lib/params';
-import { adminPieceHref, reviewFilters, reviewQueueHref } from '@/lib/admin-review';
+import { adminPieceHref, reviewFilters, reviewQueueHref, reviewWindow } from '@/lib/admin-review';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Pièces à relire' };
+export const metadata = { title: 'Pièces et publication' };
 
 const PAGE_SIZE = 50;
 const STATUS_TABS = [
-  { status: 'draft', label: 'À relire' },
+  { status: 'draft', label: 'Brouillons' },
   { status: 'reviewed', label: 'Relues' },
   { status: 'published', label: 'Publiées' },
   { status: 'all', label: 'Toutes' },
@@ -21,16 +21,18 @@ const STATUS_TABS = [
 export default async function ReviewQueuePage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
   const params = await searchParams;
   const filters = reviewFilters(params);
-  const { status, kind, institution, terms, page } = filters;
+  const { status, kind, institution, terms, page, scope } = filters;
+  const window = reviewWindow();
   const hrefFor = (target: number) => reviewQueueHref(filters, target);
   const returnTo = hrefFor(page);
-  const hasFilters = Boolean(kind || institution || terms);
+  const hasFilters = Boolean(kind || institution || terms || (scope && scope !== 'all'));
 
   let items: Awaited<ReturnType<typeof listEvidenceForReview>>['items'] | null = null;
   let total = 0;
   try {
     const result = await listEvidenceForReview({
       status,
+      scope,
       kind,
       institution,
       terms: terms || undefined,
@@ -45,7 +47,9 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
 
   return (
     <>
-      <div className="queue-intro"><div className="eyebrow">01 / Documents</div><h2>Pièces à relire</h2><p>Les pièces sont classées par date du document, de la plus récente à la plus ancienne. Ouvrez chaque fiche pour vérifier l’intitulé, la date, la source et les données structurées avant de changer son statut.</p></div>
+      <div className="queue-intro"><div className="eyebrow">01 / Documents</div><h2>Pièces et publication</h2><p>Un brouillon est une pièce non publiée, pas nécessairement une pièce incorrecte. Les archives importées peuvent attendre leur premier contrôle ; les liens éditoriaux ont leur propre file de revue.</p></div>
+      <div className="admin-queue-guide"><div><b>Scrutins récents</b><p>La synchronisation AN/Sénat couvre du {formatDate(window.since)} au {formatDate(window.today)}, dates incluses. Un brouillon récent demande de consulter le journal.</p></div><div><b>Archives</b><p>Les scrutins antérieurs restent hors de cette reprise quotidienne. Leur publication passe par un lot contrôlé depuis les sources officielles.</p></div><div><b>Revue éditoriale</b><p>Programmes, déclarations et dossiers sensibles demandent leur contexte et une relecture. Un rapprochement se vérifie séparément.</p></div></div>
+      <p className="hint"><Link href="/admin/runs">Consulter les passages d’ingestion →</Link> · <Link href="/admin/publication">Voir les contrôles de publication →</Link>. Le statut seul ne permet pas de distinguer « pas encore contrôlé » d’une anomalie détectée.</p>
       <FlashNotice params={params} />
       <nav className="review-status-tabs" aria-label="Statut des pièces">
         {STATUS_TABS.map((tab) => (
@@ -56,6 +60,7 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
       </nav>
       <FilterForm key={returnTo} action="/admin/review">
         <input type="hidden" name="status" value={status} />
+        <label className="field">File de travail<select name="scope" defaultValue={scope ?? 'all'}><option value="all">Toutes les pièces</option><option value="recent-votes">Scrutins AN/Sénat récents</option><option value="historical-votes">Archives de scrutins AN/Sénat</option><option value="editorial">Programmes, déclarations, indicateurs et judiciaire</option></select></label>
         <InstitutionSelect value={institution} />
         <KindSelect value={kind} />
         <SearchField value={terms} />
@@ -69,9 +74,9 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
         pageCount={Math.max(Math.ceil(total / PAGE_SIZE), 1)}
         noun="pièce"
         hrefFor={hrefFor}
-        head={['Pièce', 'Statut']}
+        head={['Pièce', 'Publication']}
         failedText="La file de relecture est indisponible pour le moment."
-        empty={status === 'draft' && !hasFilters ? 'Aucune pièce en brouillon dans cette file.' : 'Aucune pièce avec ces filtres. Modifiez la recherche ou effacez les filtres.'}
+        empty={status === 'draft' && scope === 'recent-votes' && !kind && !institution && !terms ? <>Aucun scrutin récent en brouillon dans cette file. Les anciennes pièces restent dans <Link href="/admin/review?status=draft&scope=historical-votes" prefetch={false}>les archives à contrôler</Link>.</> : status === 'draft' && !hasFilters ? 'Aucune pièce en brouillon dans cette file.' : 'Aucune pièce avec ces filtres. Modifiez la recherche ou effacez les filtres.'}
         renderRow={(item) => (
           <tr key={item.id}>
             <td>
@@ -89,6 +94,7 @@ export default async function ReviewQueuePage({ searchParams }: { searchParams: 
             </td>
             <td>
               <StatusBadge status={item.status} />
+              {item.status === 'draft' && item.kind === 'vote' && ['assemblee','senat'].includes(item.institution ?? '') ? <div className="sub">{item.occurred_at < window.since ? 'Archive : hors reprise quotidienne' : item.occurred_at <= window.today ? 'Période récente : consulter le journal' : 'Date future : vérifier la source'}</div> : null}
               {item.reviewed_at ? <div className="sub">relue le {formatDate(item.reviewed_at)}</div> : null}
             </td>
           </tr>

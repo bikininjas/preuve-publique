@@ -138,6 +138,24 @@
 .candidate-subject-panel h2 { font-size: 32px; margin: 10px 0 20px; }
 .candidate-form label { font-size: 12px; font-weight: 700; }
 .candidate-form select { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); padding: 13px; font: inherit; min-height: 46px; }
+.candidate-form input[type="date"] { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); padding: 12px; font: inherit; min-height: 46px; min-width: 0; width: 100%; }
+.comparison-period { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px; border: 1px solid var(--line); border-radius: 10px; padding: 14px; min-width: 0; }
+.comparison-period legend { font-size: 12px; font-weight: 700; padding-inline: 6px; }
+.comparison-period label { flex: 1 1 180px; min-width: 0; }
+.comparison-period p { flex-basis: 100%; margin: 0; }
+.comparison-coverage { margin-block: 28px; padding: clamp(16px, 3vw, 28px); border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.comparison-coverage h2 { margin-top: 10px; font-size: clamp(28px, 4vw, 42px); }
+.comparison-coverage > p { max-width: 100ch; }
+.coverage-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.coverage-table caption { text-align: left; color: var(--muted); padding-block: 12px; }
+.coverage-table th, .coverage-table td { padding: 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; min-width: 150px; }
+.coverage-table th:first-child { min-width: 200px; }
+.coverage-table td span { display: block; margin-top: 5px; color: var(--muted); }
+.comparison-question { margin-top: 28px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; }
+.comparison-question summary { cursor: pointer; font-weight: 700; min-height: 44px; }
+.comparison-question label { display: grid; gap: 10px; font-size: 13px; font-weight: 700; }
+.comparison-question textarea { width: 100%; min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font: 14px/1.6 Arial, sans-serif; resize: vertical; }
+.comparison-question textarea:focus-visible, .candidate-form input:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .candidate-evidence-section { margin-top: 32px; }
 .candidate-evidence-section > p { font-size: 14px; max-width: 100ch; }
 .candidate-evidence-section .empty { padding: 24px; background: var(--surface); border: 1px dashed var(--line); border-radius: 12px; font-size: 14px; }

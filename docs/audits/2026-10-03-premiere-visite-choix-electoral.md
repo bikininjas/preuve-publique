@@ -47,6 +47,8 @@ Le premier dossier pourrait partir d’une question de vie quotidienne que le co
 
 ## Priorité recommandée après cette PR
 
+Suite réalisée dans cette PR : la table des inconnues, une période commune dans la comparaison et une question documentaire modifiable sont désormais présentes. Voir [la réalisation et ses limites](../comparaison-et-files-de-revue.md). La couverture des bulletins est celle de la page consultée ; aucune couverture globale, aucun contrôle de présence et aucun programme manquant ne sont inférés.
+
 1. Livrer un premier dossier complet et relu, accessible depuis le carnet. Montrer le texte voté et ses limites est plus utile qu’ajouter une nouvelle synthèse de pourcentages.
 2. Ajouter la table des inconnues et une période commune à la comparaison. Les différences de couverture doivent être lisibles avant toute interprétation.
 3. Étendre ensuite les propositions, justifications et effets documentés, avec les mêmes exigences pour chaque acteur.

@@ -43,6 +43,7 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
         signale une parenté documentaire (même référence de dossier, même proposition), jamais un soutien ni une
         contradiction.
       </p>
+      <p className="hint">Une proposition peut rapprocher des documents déjà publics. Le contrôle de leur fidélité à la source et la validation de leur lien sont deux travaux distincts.</p>
       <FlashNotice params={params} />
       <FilterForm key={status} action="/admin/links">
         <StatusSelect value={status} />
@@ -77,6 +78,7 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
             </td>
             <td>
               <StatusBadge status={link.status} />
+              <div className="sub">{link.from?.status === 'published' && link.to?.status === 'published' ? link.status === 'published' ? 'Lien et deux pièces publiés' : 'Deux pièces publiques ; lien à examiner séparément' : 'Publication des pièces à compléter pour rendre le lien public'}</div>
             </td>
           </tr>
         )}
