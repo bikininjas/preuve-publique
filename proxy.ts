@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { updateSession } from '@/lib/supabase/proxy';
 import { SITE_URL } from '@/lib/site';
+import { contentSecurityPolicy } from '@/lib/analytics-policy';
 
 // Canonical host redirects happen before rendering. Session refresh is
 // restricted to the review space; public visits never call Supabase Auth.
@@ -18,7 +19,7 @@ export async function proxy(request: NextRequest) {
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('Referrer-Policy', admin ? 'no-referrer' : 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
-  response.headers.set('Content-Security-Policy', "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'");
+  response.headers.set('Content-Security-Policy', contentSecurityPolicy(request.nextUrl.pathname, process.env.GA_MEASUREMENT_ID));
   if (admin) response.headers.set('Cache-Control', 'no-store, private');
   return response;
 }

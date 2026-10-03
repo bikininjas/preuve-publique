@@ -35,6 +35,7 @@ function subscribe(onChange: () => void) {
 
 export function CookieConsent() {
   const pathname = usePathname();
+  const documentIsPublic = useRef(Boolean(analyticsPage(pathname)));
   const raw = useSyncExternalStore(subscribe, getConsentSnapshot, () => null);
   const consent = parseConsent(raw);
   const [measurementId, setMeasurementId] = useState<string | null>(null);
@@ -69,6 +70,12 @@ export function CookieConsent() {
 
   useEffect(() => {
     if (!configured) return;
+    if (measurementId && parseConsent(raw)?.analytics && documentIsPublic.current !== Boolean(analyticsPage(pathname))) {
+      // Response CSP belongs to the document and does not change on client navigation.
+      stopAnalytics();
+      window.location.reload();
+      return;
+    }
     if (measurementId && parseConsent(raw)?.analytics && analyticsPage(pathname)) {
       trackPage(measurementId, pathname, raw);
     } else if (stopAnalytics()) {
