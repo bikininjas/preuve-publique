@@ -1,6 +1,3 @@
-/**
- * Adresse publique canonique du site. Sert de base absolue au sitemap.xml,
- * au robots.txt et aux métadonnées : le domaine de production documenté,
- * jamais un domaine de prévisualisation.
- */
+/** Domaine public de production, indépendant de l'hôte de la requête. */
 export const SITE_URL = 'https://preuve-publique.fr';
+export const SITE_NAME = 'Preuve Publique';

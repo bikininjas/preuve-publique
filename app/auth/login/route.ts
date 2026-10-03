@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, isSupabaseConfigured, publicOrigin } from '@/lib/supabase/server';
 import { safeAdminPath } from '@/lib/params';
+import { mayStartAdminLogin } from '@/lib/admin-rate-limit';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +14,10 @@ export async function GET(request: Request) {
   const origin = publicOrigin(request);
   const next = safeAdminPath(url.searchParams.get('next'), '/admin');
   const noStore = { 'cache-control': 'no-store' } as const;
+
+  if (!mayStartAdminLogin(request.headers.get('x-forwarded-for'))) {
+    return NextResponse.redirect(`${origin}/admin/login?error=attendre`, { status: 303, headers: noStore });
+  }
 
   if (!isSupabaseConfigured()) {
     return NextResponse.redirect(`${origin}/admin/login?error=indisponible`, { status: 303, headers: noStore });

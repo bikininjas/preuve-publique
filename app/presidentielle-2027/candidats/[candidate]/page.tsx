@@ -1,9 +1,11 @@
+import { SeoPage } from '@/components/seo-page';
+import { publicPollOptions as pollOptions, documentMetadata } from '@/lib/seo-content';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Empty,Pager } from '@/components/ui';
 import { CandidateVoteTable,MeasureCards } from '@/components/candidates/evidence';
 import { CandidatePollCards } from '@/components/candidates/poll-cards';
-import { pollOptions,listPolls } from '@/lib/polls/data';
+import { listPolls } from '@/lib/polls/data';
 import { candidateProfiles,candidateConnections,candidateVotes,policyMeasures } from '@/lib/candidates/data';
 import { CONNECTION_LABELS,connectionActive } from '@/lib/candidates/method';
 import { VOTE_SUBJECT_GROUPS,findVoteSubject } from '@/lib/vote-subjects';
@@ -12,7 +14,6 @@ import { formatDate } from '@/lib/labels';
 import { candidateInitials } from '@/lib/polls/presentation';
 
 export const dynamic='force-dynamic';
-export const metadata={title:'Du candidat aux positions documentées'};
 export default async function CandidatePage({params,searchParams}:{params:Promise<{candidate:string}>;searchParams:Promise<SearchParamsRecord>}) {
   const {candidate}=await params;
   if(!/^[a-z0-9][a-z0-9-]{0,79}$/.test(candidate)) notFound();
@@ -20,7 +21,7 @@ export default async function CandidatePage({params,searchParams}:{params:Promis
   const subject=findVoteSubject(first(query.subject)) ?? findVoteSubject('retraites')!;
   const page=pageParam(query.page);
   const [options,profiles]=await Promise.all([pollOptions().catch(()=>null),candidateProfiles().catch(()=>null)]);
-  if(!options) return <main><Empty>Les fiches candidates sont temporairement indisponibles.</Empty></main>;
+  if(!options) return <main><SeoPage path={`/presidentielle-2027/candidats/${candidate}`} /><Empty>Les fiches candidates sont temporairement indisponibles.</Empty></main>;
   const nominee=options.candidates.find((c)=>c.id===candidate);
   if(!nominee) notFound();
   const profile=profiles?.find((p)=>p.provider==='sondax' && p.candidate_external_id===candidate);
@@ -34,7 +35,7 @@ export default async function CandidatePage({params,searchParams}:{params:Promis
   const day=new Date().toISOString().slice(0,10);
   const current=connections?.filter((c)=>connectionActive(c,day)) ?? [];
   const href=(target:number)=>`/presidentielle-2027/candidats/${candidate}?subject=${subject.id}&page=${target}#votes-personnels`;
-  return <main className="candidate-profile"><Link className="text-link" href="/presidentielle-2027/candidats">← Toutes les personnes testées</Link>
+  return <main className="candidate-profile"><SeoPage path={`/presidentielle-2027/candidats/${candidate}`} /><Link className="text-link" href="/presidentielle-2027/candidats">← Toutes les personnes testées</Link>
     <header className="presidential-hero candidate-hero"><div className="candidate-hero-identity"><div className="candidate-monogram" aria-hidden="true">{candidateInitials(nominee.name)}</div><div><div className="eyebrow">Personne testée · Présidentielle 2027</div><h1>{nominee.name}</h1><p className="lead">Des intentions de vote aux décisions documentées.</p><span className="candidate-identity-status">{profile?'Identité institutionnelle recoupée':profiles?'Identité institutionnelle non recoupée':'Registre des identités indisponible'}</span></div></div>
       <Link className="button" href={`/presidentielle-2027/comparer?candidate=${candidate}&subject=${subject.id}`}>Comparer les pièces ↗</Link>
     </header>
@@ -64,4 +65,9 @@ export default async function CandidatePage({params,searchParams}:{params:Promis
       {votes?<><CandidateVoteTable profiles={[identity]} votes={votes.votes}/><Pager page={page} pageCount={Math.max(1,Math.ceil(votes.total/15))} hrefFor={href}/></>:<Empty>Les bulletins personnels sont temporairement indisponibles.</Empty>}</section>
     </div></div>
   </main>;
+}
+
+export async function generateMetadata({params,searchParams}:{params:Promise<{candidate:string}>;searchParams:Promise<SearchParamsRecord>}) {
+  const {candidate} = await params;
+  return documentMetadata(`/presidentielle-2027/candidats/${candidate}`,await searchParams);
 }

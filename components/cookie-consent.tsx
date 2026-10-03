@@ -10,6 +10,7 @@ import {
 } from '@/lib/consent';
 
 let sessionChoice: string | null = null;
+const LEGACY_CHOICE_KEY = 'preuve-publique-cookie-consent';
 
 function getConsentSnapshot(): string | null {
   let raw = sessionChoice;
@@ -83,10 +84,14 @@ export function CookieConsent() {
   function choose(analytics: boolean) {
     const reload = !analytics && stopAnalytics();
     sessionChoice = JSON.stringify(createConsent(analytics));
-    try { localStorage.setItem(CONSENT_STORAGE_KEY, sessionChoice); } catch {
+    try {
+      localStorage.setItem(CONSENT_STORAGE_KEY, sessionChoice);
+      localStorage.removeItem(LEGACY_CHOICE_KEY);
+    } catch {
       // If persistence fails, remove an old agreement so a later reload cannot restore it.
       try { localStorage.removeItem(CONSENT_STORAGE_KEY); } catch { /* Storage unavailable. */ }
     }
+    document.cookie = `${LEGACY_CHOICE_KEY}=; Max-Age=0; Path=/; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`;
     window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
     setPreferencesOpen(false);
     trigger.current?.focus();

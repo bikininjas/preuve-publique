@@ -1,3 +1,5 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { PartySubjectChart, PartyVoteChart } from '@/components/party-vote-chart';
 import { GroupSubjectChart, GroupVoteChart } from '@/components/group-vote-chart';
@@ -9,7 +11,6 @@ import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 import { getGroupThemes, getPartyThemes } from '@/lib/vote-theme-data';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Votes par thème, parti et groupe' };
 
 export default async function CategoriesPage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
   const senate = first((await searchParams).institution) === 'senat';
@@ -28,7 +29,7 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
   const total = items.reduce((sum, item) => sum + item.pieces, 0);
 
   return (
-    <main className="theme-explorer">
+    <main className="theme-explorer"><SeoPage path="/categories" />
       <div className="page-intro reading-intro"><div className="eyebrow">Explorer par sujet</div>
       <h1>Voir les votes.<br /><em>{senate ? 'Groupe par groupe.' : 'Parti par parti.'}</em></h1>
       <p className="lead">{senate ?
@@ -87,4 +88,8 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
       )}
     </main>
   );
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/categories',SEO_PAGES['/categories'],await searchParams);
 }

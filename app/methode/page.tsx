@@ -1,10 +1,11 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = { title: 'Méthode' };
 
 export default function MethodePage() {
   return (
-    <main className="method-page">
+    <main className="method-page"><SeoPage path="/methode" />
       <div className="eyebrow">Méthode et limites</div>
       <h1>Ce que le site montre, et ce qu’il ne dit pas.</h1>
       <p className="lead">
@@ -137,8 +138,10 @@ export default function MethodePage() {
           Les importeurs versent chaque pièce en <b>brouillon</b>. Les scrutins officiels de l’Assemblée nationale
           peuvent être publiés après un contrôle automatique de l’archive, de son empreinte et des données en base.
           L’indice 0,990 mesure une conformité documentaire déterministe, pas la probabilité qu’une interprétation
-          politique soit vraie. Les autres pièces et tous les rapprochements interprétatifs demandent une validation
-          humaine. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le passage le
+          politique soit vraie. Les indicateurs chiffrés issus de publications institutionnelles peuvent être
+          publiés directement, sans relecture par Preuve Publique ; leurs fiches le précisent et conservent la
+          source, la période, le champ et les limites. Les autres pièces et tous les rapprochements interprétatifs
+          demandent une validation humaine. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le passage le
           signale et un humain décide.
         </p>
         <p>
@@ -163,3 +166,5 @@ export default function MethodePage() {
     </main>
   );
 }
+
+export const metadata = pageMetadata('/methode');

@@ -2,7 +2,7 @@
 
 **Voir ce que les acteurs politiques annoncent, votent et produisent — avec les documents originaux.**
 
-**Site de production : [preuve-publique.fr](https://preuve-publique.fr/).** Utiliser ce domaine pour les liens publics et les vérifications des parcours.
+**Site de production : [preuve-publique.fr](https://preuve-publique.fr/).** Utiliser ce domaine pour les liens publics et les vérifications des parcours. Référencement, indexation et aperçus de partage : [guide SEO et réseaux sociaux](docs/seo-et-partage.md).
 
 Preuve Publique est un projet citoyen consacré à la France et à l'Union européenne. Son point d'entrée est le scrutin officiel : retrouver le sujet d'un vote, les positions publiées, les acteurs concernés et le texte exact. Le projet veut aussi rapprocher les programmes électoraux et déclarations médiatiques des décisions parlementaires, suivre les effets documentés des politiques publiques, montrer les inégalités et contextualiser les affaires judiciaires. Chaque élément renvoie à sa source. Le site présente les faits et leurs limites pour que le visiteur se fasse sa propre opinion ; il ne donne ni note de « cohérence », ni verdict automatique.
 
@@ -16,6 +16,8 @@ Preuve Publique est un projet citoyen consacré à la France et à l'Union europ
 - **Affaires judiciaires** : distinguer personne, parti et procédure ; dater enquête, poursuite, décision et recours, avec sources et présomption d'innocence. Aucun catalogue judiciaire n'est encore présent dans le modèle de données.
 
 L'interface met ces objectifs en évidence sans remplir les manques par des chiffres ou accusations d'exemple. Les chantiers sans données vérifiées apparaissent explicitement comme tels sur `/observatoire`.
+
+Depuis le 02/10/2026, les **24 indicateurs chiffrés de sources institutionnelles sont publiés**, sur demande explicite de l’utilisateur, sans nouvelle relecture. Les fiches conservent leurs sources et leurs limites, avec une mention qui distingue publication et validation humaine. La [trace et la règle de publication](docs/publication-indicateurs.md) remplacent l’attente de relecture pour ce lot.
 
 ### Profils de vote par thème et sous-thème
 
@@ -51,6 +53,10 @@ Mesures DOM avant/après à largeur identique de 1 280 px, avec les données pub
 Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, groupes, profil de parti et détail de scrutin ; contrôles à 320, 390, 768 et 1 280 px. Aucun débordement horizontal ni compteur tronqué constaté après ajustement. Ces styles sont intégrés aux parcours de sondages et de candidats ; le build de production utilise le compilateur normal du projet.
 
 ## Périmètre et méthode
+
+### Lire les sondages et les fiches de la présidentielle
+
+Les sondages proposent une série par personne, avec échelle explicite, et une vue d'ensemble avec échelle commune. Les points superposés gardent chaque configuration et chaque notice originale. Les fiches regroupent identité, rattachements datés, sondages et bulletins personnels. Les conteneurs publics occupent 90 % de la largeur desktop, et les filtres se replient sur mobile. Les thèmes clair et sombre sont disponibles. Voir [les choix et contrôles de l'interface présidentielle](docs/interface-presidentielle.md).
 
 La période de travail commence en 2017. La première couverture vise l'Assemblée nationale, le Sénat et le Parlement européen ; pour le droit français adopté, les dossiers législatifs de l'Assemblée nationale et les lois promulguées du Sénat, qui publient tous deux les références du Journal officiel (l'API Légifrance n'est pas utilisée : son compte est réservé en pratique au secteur public). Les programmes originaux et professions de foi complètent ces sources. Les déclarations médiatiques ne sont ajoutées que si l'enregistrement ou la transcription précise est accessible et vérifiable. Les collectivités locales ne font pas partie de la première version.
 

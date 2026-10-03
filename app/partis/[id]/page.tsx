@@ -1,3 +1,5 @@
+import { SeoPage } from '@/components/seo-page';
+import { documentMetadata } from '@/lib/seo-content';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PartyBar } from '@/components/party-vote-chart';
@@ -12,7 +14,6 @@ import { ballotTotal, formatBallotShare } from '@/lib/vote-profile';
 import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Profil de vote : thèmes et sous-thèmes' };
 
 export default async function PartyPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<SearchParamsRecord> }) {
   const { id } = await params;
@@ -21,10 +22,10 @@ export default async function PartyPage({ params, searchParams }: { params: Prom
   const [dashboard, themes, votes] = await Promise.all([
     getAllPartyVotes().catch(() => null), getPartyThemes(), getPartyVoteDetails(id, [], page).catch(() => null),
   ]);
-  if (!dashboard) return <main><Empty>Le profil de vote est temporairement indisponible.</Empty></main>;
+  if (!dashboard) return <main><SeoPage path={`/partis/${id}`} /><Empty>Le profil de vote est temporairement indisponible.</Empty></main>;
   const party = dashboard.parties.find((row) => row.party_id === id);
   if (!party) notFound();
-  return <main className="party-profile-page">
+  return <main className="party-profile-page"><SeoPage path={`/partis/${id}`} />
     <Link className="text-link" href="/partis">← Tous les partis</Link>
     <div className="page-intro reading-intro"><div className="eyebrow">Affiliations datées · Assemblée nationale</div><h1>{party.party_name}</h1><p className="lead">Comment ses députés ont-ils voté sur les sujets documentés ? Du thème à la mesure exacte : les pour, les contre et les abstentions, avec les sources.</p></div>
     <div className="profile-reading-key"><div className="party-chart-legend"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div><p>{party.scrutins.toLocaleString('fr-FR')} scrutins attribuables · {ballotTotal(party).toLocaleString('fr-FR')} positions. Corpus publié : {formatDate(dashboard.scope.first_date)} – {formatDate(dashboard.scope.last_date)}. Les périodes ci-dessous décrivent les scrutins trouvés pour tous les partis, pas la durée d’existence de ce parti.</p><p>Une barre décrit les bulletins sur des textes identifiés par leurs titres. Elle ne mesure ni un soutien global à un thème, ni une orientation idéologique. Les sous-thèmes se recoupent : leurs chiffres ne s’additionnent pas.</p><Link href="/methode#profils-vote">Lire la méthode →</Link></div>
@@ -49,4 +50,9 @@ export default async function PartyPage({ params, searchParams }: { params: Prom
     </section>
     <section className="panel"><h2>Programme ↔ vote</h2><p>Aucun rapprochement validé avec un programme officiel récent n’est publié dans ces profils. Qualifier une mesure de « libérale », « sociale », restrictive sur l’immigration ou renforçant les pouvoirs de police demande de lire le texte exact et de faire valider cette qualification. Un mot dans un titre ne suffit pas.</p></section>
   </main>;
+}
+
+export async function generateMetadata({params,searchParams}:{params:Promise<{id:string}>;searchParams:Promise<SearchParamsRecord>}) {
+  const {id} = await params;
+  return documentMetadata(`/partis/${id}`,await searchParams);
 }

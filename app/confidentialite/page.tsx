@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { analyticsMeasurementId } from '@/lib/consent';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Confidentialité et cookies', description: 'Vos choix concernant la mesure d’audience, les cookies et les données personnelles sur Preuve Publique.' };
+export const metadata = { title: 'Confidentialité et cookies', description: 'Vos choix concernant la mesure d’audience, les cookies et les données personnelles sur Preuve Publique.', alternates: { canonical: '/confidentialite' } };
 
 export default function PrivacyPage() {
   const enabled = Boolean(analyticsMeasurementId(process.env.GA_MEASUREMENT_ID));

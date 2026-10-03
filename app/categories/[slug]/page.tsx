@@ -1,8 +1,10 @@
+import { SeoPage } from '@/components/seo-page';
+import { publicTopics as getTopicCounts, documentMetadata } from '@/lib/seo-content';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { EvidenceCard } from '@/components/evidence-card';
 import { Empty, Pager } from '@/components/ui';
-import { getEvidencePage, getTopicCounts } from '@/lib/data';
+import { getEvidencePage } from '@/lib/data';
 import { findTopicBySlug, topicSlug } from '@/lib/labels';
 import { pageParam, type SearchParamsRecord } from '@/lib/params';
 
@@ -30,7 +32,7 @@ export default async function CategoryPage({
   }
   if (unavailable) {
     return (
-      <main className="narrow">
+      <main className="narrow"><SeoPage path={`/categories/${slug}`} />
         <h1>Rubrique indisponible</h1>
         <Empty>La base documentaire n’est pas accessible pour le moment. Réessayez plus tard.</Empty>
       </main>
@@ -47,7 +49,7 @@ export default async function CategoryPage({
     result = await getEvidencePage({ topic, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
   } catch {
     return (
-      <main className="narrow">
+      <main className="narrow"><SeoPage path={`/categories/${slug}`} />
         <h1>Rubrique indisponible</h1>
         <Empty>La base documentaire n’est pas accessible pour le moment. Réessayez plus tard.</Empty>
       </main>
@@ -59,7 +61,7 @@ export default async function CategoryPage({
     `/categories/${topicSlug(topic)}${target > 1 ? `?page=${target}` : ''}`;
 
   return (
-    <main>
+    <main><SeoPage path={`/categories/${slug}`} />
       <p className="breadcrumb">
         <Link className="quiet" href="/categories">
           ← Toutes les rubriques
@@ -92,4 +94,9 @@ export default async function CategoryPage({
       )}
     </main>
   );
+}
+
+export async function generateMetadata({params,searchParams}:{params:Promise<{slug:string}>;searchParams:Promise<SearchParamsRecord>}) {
+  const {slug} = await params;
+  return documentMetadata(`/categories/${slug}`,await searchParams);
 }

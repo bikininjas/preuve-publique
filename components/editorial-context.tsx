@@ -21,6 +21,7 @@ export function EditorialContext({ evidence, compact = false }: { evidence: Evid
       {!compact ? <><p>{program.edition}</p><p className="hint">{program.date_note} Date de publication : {program.publication_date ? formatDate(program.publication_date) : 'non précisée dans la source'}.</p></> : null}
     </> : null}
     {evidence.kind === 'indicator' && indicator ? <>
+      {evidence.publication_method === 'official_source_unreviewed' ? <p className="hint">Chiffres de la source institutionnelle, publiés sans relecture par Preuve Publique.</p> : null}
       {indicator.measurement_type ? <p className="indicator-method">{({ observation: 'Observation statistique', simulation: 'Estimation par simulation', testing: 'Expérience par testing' } as Record<string, string>)[indicator.measurement_type] ?? 'Méthode documentée'}</p> : null}
       <p className="indicator-value"><strong>{indicator.value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })}</strong> <span>{indicator.unit} · {indicator.period}</span></p>
       {indicator.value_label ? <p className="indicator-reference">{indicator.value_label}</p> : null}

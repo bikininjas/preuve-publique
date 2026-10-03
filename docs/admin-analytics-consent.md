@@ -55,6 +55,8 @@ Le bandeau propose « Tout refuser » et « Tout accepter » avec la même prés
 
 Le choix versionné est conservé localement pendant **180 jours**, aussi bien pour un refus que pour un accord. Un choix absent, expiré ou invalide n’autorise aucune collecte. Une modification dans un autre onglet est prise en compte.
 
+L’ancien choix du bandeau consacré au thème n’est pas un accord pour Analytics : un nouveau choix explicite est demandé. Lors de ce choix, l’ancienne préférence et son cookie sont supprimés. Le thème reste une préférence d’affichage demandée directement par le visiteur, indépendante de la mesure d’audience.
+
 Le chargement de `gtag.js` et les commandes de mesure commencent uniquement après un accord valide : fonctionnement de type [Consent Mode de base](https://developers.google.com/tag-platform/security/concepts/consent-mode). Aucun ping de refus n’est envoyé à Google. Le retrait désactive la balise, supprime les cookies `_ga` / `_ga_…`, puis recharge la page pour décharger ses écouteurs. Les cookies de session Supabase restent distincts.
 
 Les pages vues sont limitées aux écrans publics connus. Les recherches, fragments, identifiants de pièces, personnes, partis et thèmes sont retirés des URL et titres transmis ; les fiches sont regroupées par type d’écran. Les routes d’administration, d’authentification, d’API et les routes inconnues sont exclues. Les paramètres publicitaires restent refusés ; les cookies d’audience sont configurés à 180 jours sans prolongation automatique. Le mode de débogage Analytics est limité aux hôtes locaux.

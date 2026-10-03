@@ -1,3 +1,5 @@
+import { SeoPage } from '@/components/seo-page';
+import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { EvidenceCard } from '@/components/evidence-card';
 import { VoteTopics } from '@/components/vote-topics';
@@ -12,7 +14,6 @@ import { readerTitle } from '@/lib/reader';
 import { categoryKeywords, findVoteCategory, findVoteSubject, voteCategoryFilter, voteSubjectFilter, VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Scrutins officiels' };
 const PAGE_SIZE = 18;
 
 export default async function ScrutinsPage({ searchParams }: { searchParams: Promise<SearchParamsRecord> }) {
@@ -64,7 +65,7 @@ export default async function ScrutinsPage({ searchParams }: { searchParams: Pro
     const base = hrefFor(1);
     return `${base}${base.includes('?') ? '&' : '?'}party_page=${target}#group-details`;
   };
-  return <main className="vote-explorer">
+  return <main className="vote-explorer"><SeoPage path="/scrutins" />
     <div className="page-intro reading-intro compact"><div className="eyebrow">La base des votes</div><h1>Partir du sujet.<br /><em>Retrouver le vote.</em></h1><p className="lead">Les décisions officielles, du plus récent au plus ancien. Choisissez un sujet, une institution ou un mot clé. Chaque fiche distingue le texte entier, l’article et l’amendement.</p></div>
     <nav className="reading-nav" aria-label="Parcourir cette page"><a href="#resultats">{result ? `${result.total.toLocaleString('fr-FR')} scrutins` : 'Les scrutins'} <span aria-hidden="true">↓</span></a>{dashboard || groupDashboard ? <a href="#synthese">La synthèse des votes <span aria-hidden="true">↓</span></a> : null}<Link href="/categories">Comparer les thèmes <span aria-hidden="true">↗</span></Link></nav>
 
@@ -89,4 +90,8 @@ export default async function ScrutinsPage({ searchParams }: { searchParams: Pro
     <section id="resultats">{result ? <><div className="list-heading"><h2>{subject?.label ?? category?.label ?? (terms ? `Résultats pour « ${terms} »` : 'Tous les scrutins')}</h2><span>{result.total.toLocaleString('fr-FR')} fiche{result.total > 1 ? 's' : ''} · plus récents d’abord</span></div>{(subject || category) && terms ? <p className="resultline">Avec les mots « {terms} »</p> : null}{result.items.length ? <div className="cards">{result.items.map((item) => <EvidenceCard item={item} key={item.id} />)}</div> : <Empty>Aucun scrutin publié ne correspond à ces filtres. Essayez un autre sujet ou retirez un filtre.</Empty>}<Pager page={page} pageCount={Math.max(1, Math.ceil(result.total / PAGE_SIZE))} hrefFor={hrefFor} /></> : <Empty>La base des scrutins est indisponible pour le moment.</Empty>}</section>
     <p className="section-foot">Les positions de groupe ne sont affichées que lorsqu’elles figurent dans la source. <Link href="/methode">Comprendre la méthode →</Link></p>
   </main>;
+}
+
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParamsRecord>}) {
+  return pageMetadata('/scrutins',SEO_PAGES['/scrutins'],await searchParams);
 }
