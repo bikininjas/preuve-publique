@@ -1,0 +1,181 @@
+{
+  "edition": "etapes-judiciaires-sources-primaires-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:justice:assistants-parlementaires-fn:2026-07-07",
+      "kind": "judicial_event",
+      "title": "Assistants parlementaires du Front National — arrêt en appel du 7 juillet 2026",
+      "occurred_at": "2026-07-07",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20CP.pdf",
+      "source_locator": "PDF, pages 1 à 3, décision, motivation et mention du pourvoi ; tableau individuel dans l’annexe officielle",
+      "excerpt": null,
+      "source": {
+        "publisher": "Cour d’appel de Paris",
+        "document_title": "Assistants parlementaires du Front National — arrêt en appel du 7 juillet 2026",
+        "published_at": "2026-07-07"
+      },
+      "detail": {
+        "summary": "La cour d’appel publie les motifs de son arrêt du 7 juillet 2026. Les situations individuelles et les périodes retenues ou relaxées doivent être distinguées ; le communiqué prévoit la possibilité d’un pourvoi.",
+        "judicial": {
+          "case_id": "assistants-parlementaires-fn",
+          "court": "Cour d’appel de Paris",
+          "stage": "Arrêt en appel",
+          "status_at_event": "Arrêt rendu en appel, avec condamnations et relaxes pour certaines périodes ; recours en cassation possible selon le communiqué",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi.",
+          "annex_url": "https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20Tableau.pdf"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:assistants-parlementaires-modem:2024-02-08",
+      "kind": "judicial_event",
+      "title": "Assistants parlementaires du MoDem — appel annoncé par le parquet le 8 février 2024",
+      "occurred_at": "2024-02-08",
+      "source_url": "https://www.tribunal-de-paris.justice.fr/sites/default/files/2024-06/2024-02-08%20-%20appel%20de%20la%20relaxe%20partielle%20du%20dossier%20MODEM.pdf",
+      "source_locator": "Communiqué du parquet, PDF page 1",
+      "excerpt": null,
+      "source": {
+        "publisher": "Parquet de Paris",
+        "document_title": "Assistants parlementaires du MoDem — appel annoncé par le parquet le 8 février 2024",
+        "published_at": "2024-02-08"
+      },
+      "detail": {
+        "summary": "Le parquet de Paris communique sur son appel dans le dossier des assistants parlementaires du MoDem. L’appel et les appréciations du parquet doivent rester distincts d’une décision de culpabilité.",
+        "judicial": {
+          "case_id": "assistants-parlementaires-modem",
+          "court": "Parquet de Paris",
+          "stage": "Appel du parquet",
+          "status_at_event": "Annonce d’un appel du jugement de première instance ; aucune décision d’appel décrite dans cette pièce",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi."
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:financement-libyen:2025-11-13",
+      "kind": "judicial_event",
+      "title": "Financement libyen — annonce du calendrier d’appel le 13 novembre 2025",
+      "occurred_at": "2025-11-13",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2025-11/CP-%20CA%20PARIS%20Audiencement%20en%20appel%20du%20dossier%20dit%20du%20financement%20Libyen_0.pdf",
+      "source_locator": "PDF page 1, paragraphe annonçant les dates d’audience",
+      "excerpt": null,
+      "source": {
+        "publisher": "Cour d’appel de Paris",
+        "document_title": "Financement libyen — annonce du calendrier d’appel le 13 novembre 2025",
+        "published_at": "2025-11-13"
+      },
+      "detail": {
+        "summary": "La cour d’appel annonce le calendrier de l’audience du dossier dit du financement libyen. Ce document de procédure ne contient ni décision d’appel ni conclusion sur la culpabilité.",
+        "judicial": {
+          "case_id": "financement-libyen",
+          "court": "Cour d’appel de Paris",
+          "stage": "Audiencement en appel",
+          "status_at_event": "Audience annoncée du 16 mars au 3 juin 2026 ; le communiqué ne contient pas le résultat de cette audience",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi."
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:vivendi-bollore-ciam:2025-04-22",
+      "kind": "judicial_event",
+      "title": "Vivendi — décision sur le recours contre l’AMF du 22 avril 2025",
+      "occurred_at": "2025-04-22",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2025-04/CP_Cour%20d%27appel%20de%20Paris_5_7_AMF_Vivendi_SE.pdf",
+      "source_locator": "PDF page 1, décision sur le recours Ciam Fund contre la décision de l’AMF",
+      "excerpt": null,
+      "source": {
+        "publisher": "Cour d’appel de Paris, chambre de la régulation économique et financière",
+        "document_title": "Vivendi — décision sur le recours contre l’AMF du 22 avril 2025",
+        "published_at": "2025-04-22"
+      },
+      "detail": {
+        "summary": "Le communiqué documente l’arrêt du 22 avril 2025 sur le recours de Ciam Fund. Cette étape doit se lire avec la décision de renvoi de juillet 2026, qui retient une solution différente.",
+        "judicial": {
+          "case_id": "vivendi-bollore-ciam",
+          "court": "Cour d’appel de Paris, chambre de la régulation économique et financière",
+          "stage": "Arrêt sur recours contre une décision de l’AMF",
+          "status_at_event": "Décision historique ensuite cassée, selon le communiqué officiel du 8 juillet 2026",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi."
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:vivendi-bollore-ciam:2026-07-08",
+      "kind": "judicial_event",
+      "title": "Vivendi – Bolloré — arrêt sur renvoi du 8 juillet 2026",
+      "occurred_at": "2026-07-08",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2026-07/2-20260708%20CP%20Vivendi.pdf",
+      "source_locator": "PDF pages 1 et 2, rubriques La procédure et La décision",
+      "excerpt": null,
+      "source": {
+        "publisher": "Cour d’appel de Paris, formation solennelle",
+        "document_title": "Vivendi – Bolloré — arrêt sur renvoi du 8 juillet 2026",
+        "published_at": "2026-07-08"
+      },
+      "detail": {
+        "summary": "Sur renvoi après cassation, la cour ne retient pas le contrôle de Vivendi par les personnes examinées au sens des dispositions en cause. Il s’agit d’un contentieux de droit des sociétés, sans verdict pénal.",
+        "judicial": {
+          "case_id": "vivendi-bollore-ciam",
+          "court": "Cour d’appel de Paris, formation solennelle",
+          "stage": "Arrêt sur renvoi après cassation",
+          "status_at_event": "Absence de contrôle retenue dans le cadre des dispositions du code de commerce examinées par la cour",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi."
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:chlordécone:2024-04-24",
+      "kind": "judicial_event",
+      "title": "Chlordécone — réquisitions du parquet général du 24 avril 2024",
+      "occurred_at": "2024-04-24",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2024-04/Communiqu%C3%A9%20de%20presse%20r%C3%A9quisitoire%20affaire%20Chlordecone.pdf",
+      "source_locator": "Communiqué de presse, PDF, réquisitions du parquet général",
+      "excerpt": null,
+      "source": {
+        "publisher": "Parquet général près la cour d’appel de Paris",
+        "document_title": "Chlordécone — réquisitions du parquet général du 24 avril 2024",
+        "published_at": "2024-04-24"
+      },
+      "detail": {
+        "summary": "Le parquet général communique sur ses réquisitions aux fins de non-lieu dans le dossier du chlordécone. Les réquisitions restent distinctes d’une décision judiciaire et des effets sanitaires documentés.",
+        "judicial": {
+          "case_id": "chlordécone",
+          "court": "Parquet général près la cour d’appel de Paris",
+          "stage": "Réquisitions aux fins de non-lieu",
+          "status_at_event": "Position du parquet général ; elle ne constitue pas à elle seule une décision de la juridiction",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi."
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:justice:francis-szpiner-corruption:2026-07-09",
+      "kind": "judicial_event",
+      "title": "Francis Szpiner — mise en examen annoncée en juillet 2026",
+      "occurred_at": "2026-07-09",
+      "source_url": "https://www.tribunal-de-paris.justice.fr/sites/default/files/2026-07/2026-07-16%20-%20CP%20mise%20en%20examen%20SZPINER.pdf",
+      "source_locator": "PDF page 1, premier paragraphe ; communiqué daté du 10 juillet 2026, événement du 9 juillet",
+      "excerpt": null,
+      "source": {
+        "publisher": "Parquet de Paris — juges d’instruction",
+        "document_title": "Francis Szpiner — mise en examen annoncée en juillet 2026",
+        "published_at": "2026-07-10"
+      },
+      "detail": {
+        "summary": "Le parquet indique une mise en examen intervenue le 9 juillet 2026. Il s’agit d’un acte d’instruction portant sur des soupçons, sans conclusion de culpabilité.",
+        "judicial": {
+          "case_id": "francis-szpiner-corruption",
+          "court": "Parquet de Paris — juges d’instruction",
+          "stage": "Mise en examen",
+          "status_at_event": "Mise en examen annoncée pour corruption passive par un élu ; aucune condamnation contenue dans le communiqué",
+          "current_status_note": "Étape datée. Les recours ou décisions postérieurs à ce document ne sont pas tous recoupés au 3 octobre 2026 ; ne pas présenter cette fiche comme un dossier actuel exhaustif.",
+          "presumption_note": "Distinguer enquête, poursuite, réquisitions et décision. Aucune culpabilité déduite d’une mise en examen ou d’un appel. Les décisions ne sont réputées définitives que si leur état de recours est établi."
+        }
+      }
+    }
+  ]
+}

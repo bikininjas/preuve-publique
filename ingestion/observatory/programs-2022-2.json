@@ -1,0 +1,131 @@
+{
+  "edition": "professions-foi-2022-complet-lot-2-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:programme:jean-lassalle:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Jean Lassalle — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-05-Jean-Lassalle-Declaration.pdf",
+      "source_locator": "CNCCEP, candidat n° 05, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Jean Lassalle",
+        "document_title": "Jean Lassalle — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Jean Lassalle, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Jean Lassalle",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "05",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:le-pen:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Marine Le Pen — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-06-Marine-Le-Pen-Declaration-accessible.pdf",
+      "source_locator": "CNCCEP, candidat n° 06, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Marine Le Pen",
+        "document_title": "Marine Le Pen — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Marine Le Pen, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Marine Le Pen",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "06",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      },
+      "actor": {
+        "name": "Marine Le Pen",
+        "kind": "person",
+        "external_id": "an-acteur:PA720614"
+      }
+    },
+    {
+      "external_id": "observatoire:programme:macron:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Emmanuel Macron — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-07-Emmanuel-Macron-Declaration.pdf",
+      "source_locator": "CNCCEP, candidat n° 07, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Emmanuel Macron",
+        "document_title": "Emmanuel Macron — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Emmanuel Macron, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Emmanuel Macron",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "07",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:programme:melenchon:presidentielle-2022:t1",
+      "kind": "program",
+      "title": "Jean-Luc Mélenchon — profession de foi officielle complète, présidentielle 2022",
+      "occurred_at": "2022-04-10",
+      "source_url": "https://www.cnccep.fr/pdfs/Candidat-08-Jean-Luc-Melenchon-Declaration-accessible.pdf",
+      "source_locator": "CNCCEP, candidat n° 08, version générale : PDF complet, toutes les pages",
+      "excerpt": null,
+      "source": {
+        "publisher": "CNCCEP — document de Jean-Luc Mélenchon",
+        "document_title": "Jean-Luc Mélenchon — profession de foi officielle, premier tour 2022",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Document électoral original de Jean-Luc Mélenchon, mis à disposition par la CNCCEP pour le premier tour de la présidentielle de 2022. Toutes les propositions se consultent dans le PDF original.",
+        "program": {
+          "author": "Jean-Luc Mélenchon",
+          "election": "Présidentielle française 2022 — premier tour",
+          "edition": "Profession de foi officielle, version générale complète",
+          "election_date": "2022-04-10",
+          "publication_date": null,
+          "date_note": "Classement à la date du scrutin ; la date exacte de publication du document est inconnue.",
+          "scope_note": "Archive de 2022. Cette fiche couvre toute la profession de foi ; elle ne constitue ni un programme de 2027 ni la totalité du programme développé du candidat. Aucun jugement sur les votes ni rapprochement interprétatif.",
+          "document_scope": "whole_document",
+          "candidate_number": "08",
+          "inventory_url": "https://www.cnccep.fr/candidats.html"
+        }
+      },
+      "actor": {
+        "name": "Jean-Luc Mélenchon",
+        "kind": "person",
+        "external_id": "an-acteur:PA2150"
+      }
+    }
+  ]
+}

@@ -6,19 +6,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import pg from 'pg';
+import { connect, startRun, finishRun } from './lib/db.mjs';
+import { loadProjectEnv, requireDbUrl } from './lib/env.mjs';
 import { parseZip } from './importers/an-scrutins.mjs';
 import { aggregatePartyVotes } from './lib/party-vote-aggregation.mjs';
 
-const { Client } = pg;
 const NON_PARTY_LABELS = new Set(['Non déclaré(s)', 'Non rattaché(s)']);
 const stagingArg = process.argv.find((arg) => arg.startsWith('--staging='));
 const STAGING = path.resolve(stagingArg?.slice('--staging='.length) ?? 'ingestion/.staging/an-scrutins/2026-09-30_07-28-18');
 
 async function main() {
-  if (!process.env.DB_PG_URL) throw new Error('DB_PG_URL requis');
-  const client = new Client({ connectionString: process.env.DB_PG_URL, ssl: { rejectUnauthorized: false } });
-  await client.connect();
+  loadProjectEnv();
+  const client = await connect(requireDbUrl());
+  let run;
   try {
     const manifest = JSON.parse(fs.readFileSync(path.join(STAGING, 'manifest.json'), 'utf8'));
     if (manifest.importer !== 'an-scrutins') throw new Error('Staging AN invalide');
@@ -91,46 +91,59 @@ async function main() {
     stats.found = found.size;
     stats.parties = rows.length;
     if (stats.found !== stats.published) throw new Error(`${stats.published - stats.found} scrutin(s) publié(s) absent(s) des archives`);
-    console.log(stats);
-    if (!process.argv.includes('--write')) return;
+    const { rows: existing } = await client.query('select vote_id from public.vote_party_coverage');
+    const existingIds = new Set(existing.map((row) => row.vote_id));
+    let additions = coverage.filter((row) => !existingIds.has(row.voteId));
+    let additionIds = new Set(additions.map((row) => row.voteId));
+    let newTallies = rows.filter((row) => additionIds.has(row.voteId));
+    stats.preserved = coverage.length - additions.length;
+    stats.newCoverage = additions.length;
+    stats.newTallies = newTallies.length;
+    if (!process.argv.includes('--write')) { console.log(JSON.stringify(stats)); return; }
     const { rows: [{ table_ready: tableReady }] } = await client.query("select to_regclass('public.vote_party_tallies') is not null as table_ready");
     if (!tableReady) throw new Error('Migration vote_party_tallies absente');
+    run = await startRun(client, { importer: 'an-party-coverage-backfill', options: { staging: path.basename(STAGING), preserveExisting: true } });
     await client.query('begin');
     try {
-      const ids = coverage.map((row) => row.voteId);
-      await client.query('delete from public.vote_party_tallies where vote_id = any($1::uuid[])', [ids]);
-      for (let offset = 0; offset < coverage.length; offset += 200) {
+      await client.query('select pg_advisory_xact_lock(734001904)');
+      const { rows: current } = await client.query('select vote_id from public.vote_party_coverage');
+      const currentIds = new Set(current.map((row) => row.vote_id));
+      additions = coverage.filter((row) => !currentIds.has(row.voteId));
+      additionIds = new Set(additions.map((row) => row.voteId));
+      newTallies = rows.filter((row) => additionIds.has(row.voteId));
+      stats.preserved = coverage.length - additions.length;
+      stats.newCoverage = additions.length;
+      stats.newTallies = newTallies.length;
+      for (let offset = 0; offset < additions.length; offset += 200) {
         await client.query(`
           insert into public.vote_party_coverage
             (vote_id, recorded_individuals, unattributed_individuals, official_individuals, archive_sha256)
           select x.vote_id, x.recorded, x.unattributed, x.official_count, x.hash
           from jsonb_to_recordset($1::jsonb) as x(vote_id uuid, recorded int, unattributed int, official_count int, hash text)
-          on conflict (vote_id) do update set
-            recorded_individuals = excluded.recorded_individuals,
-            unattributed_individuals = excluded.unattributed_individuals,
-            official_individuals = excluded.official_individuals,
-            archive_sha256 = excluded.archive_sha256,
-            processed_at = now()
-        `, [JSON.stringify(coverage.slice(offset, offset + 200).map((row) => ({
+          on conflict (vote_id) do nothing
+        `, [JSON.stringify(additions.slice(offset, offset + 200).map((row) => ({
           vote_id: row.voteId, recorded: row.recorded, unattributed: row.unattributed,
           official_count: row.officialCount, hash: row.hash,
         })))]);
       }
-      for (let offset = 0; offset < rows.length; offset += 500) {
+      for (let offset = 0; offset < newTallies.length; offset += 500) {
         await client.query(`
           insert into public.vote_party_tallies
             (vote_id, party_id, pour, contre, abstention, non_votant)
           select x.vote_id, x.party_id, x.pour, x.contre, x.abstention, x.non_votant
           from jsonb_to_recordset($1::jsonb) as x(vote_id uuid, party_id uuid,
             pour int, contre int, abstention int, non_votant int)
-        `, [JSON.stringify(rows.slice(offset, offset + 500).map((row) => ({
+          on conflict (vote_id, party_id) do nothing
+        `, [JSON.stringify(newTallies.slice(offset, offset + 500).map((row) => ({
           vote_id: row.voteId, party_id: row.partyId, ...row.counts,
         })))]);
       }
       await client.query('commit');
-      console.log(`Import terminé : ${coverage.length} scrutins, ${rows.length} lignes de parti.`);
+      await finishRun(client, run, { status: 'ok', stats });
+      console.log(JSON.stringify(stats));
     } catch (error) {
       await client.query('rollback');
+      await finishRun(client, run, { status: 'error', error: 'Reprise annulée ; aucun décompte existant modifié.' });
       throw error;
     }
   } finally {

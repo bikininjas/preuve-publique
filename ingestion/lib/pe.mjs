@@ -28,8 +28,8 @@ export function eliTail(value) {
   return String(value ?? '').replace(/^eli\/dl\/[a-z]+\//, '');
 }
 
-export async function peGetJson(url, { minDelayMs = 1500, timeoutMs = 60_000 } = {}) {
-  const response = await requestText(url, {
+export async function peGetJson(url, { minDelayMs = 1500, timeoutMs = 60_000, request = requestText } = {}) {
+  const response = await request(url, {
     headers: { accept: PE_ACCEPT },
     minDelayMs,
     timeoutMs,
@@ -40,7 +40,7 @@ export async function peGetJson(url, { minDelayMs = 1500, timeoutMs = 60_000 } =
     fetchedAt: response.fetchedAt,
     sha256: response.sha256,
     bytes: response.bytes,
-    json: JSON.parse(response.text),
+    json: response.status === 204 ? { data: [] } : JSON.parse(response.text),
   };
 }
 
@@ -48,15 +48,21 @@ export async function peGetJson(url, { minDelayMs = 1500, timeoutMs = 60_000 } =
  * Iterate offset/limit pages of a collection endpoint, yielding each page.
  * Stops when a page returns fewer than `limit` items.
  */
-export async function pePaginate(baseUrl, { minDelayMs = 1500, limit = 50, maxPages = 200 } = {}) {
+export async function pePaginate(baseUrl, { minDelayMs = 1500, limit = 50, maxPages = 200, getJson = peGetJson } = {}) {
   const pages = [];
   for (let offset = 0, page = 0; page < maxPages; page += 1, offset += limit) {
     const separator = baseUrl.includes('?') ? '&' : '?';
     const pageUrl = `${baseUrl}${separator}limit=${limit}&offset=${offset}`;
-    const result = await peGetJson(pageUrl, { minDelayMs });
+    const result = await getJson(pageUrl, { minDelayMs });
     const data = Array.isArray(result.json?.data) ? result.json.data : [];
     pages.push({ ...result, data });
-    if (data.length < limit) break;
+    if (data.length < limit) return pages;
   }
-  return pages;
+  throw new Error('Pagination européenne plafonnée : le corpus serait incomplet.');
+}
+
+/** Older parliamentary terms use an expanded JSON-LD property. */
+export function activityDate(value) {
+  const date = value?.activity_date ?? value?.['eli-dl:activity_date']?.['@value'];
+  return typeof date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(date) ? date.slice(0, 10) : null;
 }

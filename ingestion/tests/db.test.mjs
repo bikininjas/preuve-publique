@@ -18,7 +18,12 @@ import { writeJson, writeJsonl } from '../lib/staging.mjs';
 import { saveRaw } from '../lib/staging.mjs';
 import { zipSync } from 'fflate';
 import { scrutinToRecord } from '../importers/an-scrutins.mjs';
+import { dossierToRecords } from '../importers/an-dossiers.mjs';
 import { publishVerified, verifyArchive } from '../lib/auto-publish.mjs';
+import { releaseArchive } from '../backfill/official-votes.mjs';
+import { importOfficial } from '../backfill/import-official.mjs';
+import { syncDaily } from '../daily/sync.mjs';
+import { decisionToRecord } from '../importers/pe-votes.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..', '..');
 const MIGRATIONS = [
@@ -65,7 +70,7 @@ function draft(overrides = {}) {
     external_id: 'VTANR5L15V2944',
     kind: 'vote',
     institution: 'assemblee',
-    title: 'Scrutin n° 2944 — article 24 bis',
+    title: "Scrutin n° 2944 — l'ensemble du projet de loi de test",
     excerpt: null,
     occurred_at: '2020-10-07',
     source_url: 'https://www.assemblee-nationale.fr/dyn/15/scrutins/2944',
@@ -108,7 +113,8 @@ test('une archive AN intacte publie le brouillon, une divergence bloque la publi
     const archiveUrl = 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip';
     const fixture = readFileSync(join(ROOT, 'ingestion/tests/fixtures/an-scrutin.sample.json'), 'utf8');
     const scrutin = JSON.parse(fixture).scrutin;
-    const raw = saveRaw(dir, 'Scrutins_XV.json.zip', zipSync({ 'scrutin.json': Buffer.from(fixture) }));
+    scrutin.titre = "l'ensemble du projet de loi de test (première lecture).";
+    const raw = saveRaw(dir, 'Scrutins_XV.json.zip', zipSync({ 'scrutin.json': Buffer.from(JSON.stringify({scrutin})) }));
     const source = {
       url: archiveUrl, publisher: 'Assemblée nationale',
       document_title: 'Scrutins publics — législature 15 (archive JSON officielle)',
@@ -151,6 +157,112 @@ test('both migrations apply cleanly and add the pipeline columns', async () => {
   assert.equal(runs.rows[0].n, 0);
 });
 
+test('une loi AN exige le rejeu du dossier et ne permet pas de publier une pièce éditoriale', async () => {
+  const client = await freshDb();
+  const dir = mkdtempSync(join(tmpdir(), 'pp-law-release-'));
+  try {
+    mkdirSync(join(dir, 'raw'));
+    const url = 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/dossiers_legislatifs/Dossiers_Legislatifs_XV.json.zip';
+    const fixture = readFileSync(join(ROOT, 'ingestion/tests/fixtures/an-dossier.sample.json'), 'utf8');
+    const raw = saveRaw(dir, 'dossiers.zip', zipSync({ 'dossier.json': Buffer.from(fixture) }));
+    const source = { url, publisher: 'Assemblée nationale', document_title: 'Dossiers', sha256: raw.sha256, retrieved_at: '2026-10-03T12:00:00Z' };
+    const [record] = dossierToRecords(JSON.parse(fixture).dossierParlementaire, { legislature: 15, zipFile: 'Dossiers_Legislatifs_XV.json.zip', zipUrl: url, retrievedAt: source.retrieved_at }).evidence;
+    writeJsonl(join(dir, 'sources.jsonl'), [source]);
+    writeJsonl(join(dir, 'evidence.jsonl'), [record]);
+    writeJson(join(dir, 'manifest.json'), { importer: 'an-dossiers', raw: [{ url, ...raw }] });
+    await db.pushStaging(client, dir);
+    const verified = await verifyArchive(dir);
+    assert.equal((await releaseArchive(client, verified)).published, 1);
+    assert.equal((await client.query("select count(*)::int n from evidence where status='published'")).rows[0].n, 0);
+    assert.equal((await releaseArchive(client, verified, { dryRun: false })).published, 1);
+    await assert.rejects(publishVerified(client, { ...verified, kind: 'program' }), /non prise en charge/);
+    writeJsonl(join(dir, 'evidence.jsonl'), [{ ...record, title: 'Loi inventée' }]);
+    await assert.rejects(verifyArchive(dir), /divergent/);
+  } finally { cleanup(dir); }
+});
+
+test('rejeu européen : dernière page obligatoire, empreinte de chaque page et pièce concordante',async()=>{
+ const dir=mkdtempSync(join(tmpdir(),'pp-pe-replay-'));
+ try {
+  mkdirSync(join(dir,'raw'));
+  const url='https://data.europarl.europa.eu/api/v2/meetings/MTG-PL-2025-01-20/decisions';
+  const fixture=JSON.parse(readFileSync(join(ROOT,'ingestion/tests/fixtures/pe-decision.sample.json'),'utf8'));
+  const decisions=Array.from({length:50},(_,i)=>({...fixture,activity_id:`MTG-PL-2025-01-20-DEC-${i}`}));
+  const raw=[
+   {url:'https://data.europarl.europa.eu/api/v2/meetings?year=2025&limit=50&offset=0',...saveRaw(dir,'meetings.json',Buffer.from(JSON.stringify({data:[{activity_id:'MTG-PL-2025-01-20',activity_date:'2025-01-20'}]})))},
+   {url:`${url}?limit=50&offset=0`,...saveRaw(dir,'page-0.json',Buffer.from(JSON.stringify({data:decisions})))},
+   {url:`${url}?limit=50&offset=50`,...saveRaw(dir,'page-50.json',Buffer.from(JSON.stringify({data:[]})))},
+  ];
+  const source={url,publisher:'Parlement européen',document_title:'Décisions',sha256:raw[1].sha256,retrieved_at:'2026-10-03T12:00:00Z'};
+  const records=decisions.map(d=>decisionToRecord(d,{sittingDate:'2025-01-20',sourceUrl:url,sourceTitle:'Décisions',retrievedAt:source.retrieved_at}));
+  writeJsonl(join(dir,'evidence.jsonl'),records);writeJsonl(join(dir,'sources.jsonl'),[source]);
+  writeJson(join(dir,'manifest.json'),{importer:'pe-votes',raw});
+  const verified=await verifyArchive(dir);
+  assert.equal(verified.eligible.length,50);assert.equal(verified.eligible[0].source.snapshot_pages.length,2);
+  writeJson(join(dir,'manifest.json'),{importer:'pe-votes',raw:raw.slice(0,2)});
+  await assert.rejects(verifyArchive(dir),/pagination incomplète/);
+  writeJson(join(dir,'manifest.json'),{importer:'pe-votes',raw});
+  writeJsonl(join(dir,'evidence.jsonl'),[{...records[0],title:'Interprétation non sourcée'},...records.slice(1)]);
+  await assert.rejects(verifyArchive(dir),/différente/);
+  writeJsonl(join(dir,'evidence.jsonl'),records);
+  saveRaw(dir,'page-50.json',Buffer.from('{"data":[{}]}'));
+  await assert.rejects(verifyArchive(dir),/Page européenne modifiée/);
+ }finally{cleanup(dir);}
+});
+
+test('publication par lots : limite, divergences, pièces relues et annulation de toute la reprise', async () => {
+  const client = await freshDb();
+  const records = Array.from({ length: 4 }, (_, i) => draft({ external_id: `VTANR5L15V${500+i}`, title: `Scrutin n° ${500+i} — l'ensemble du projet de loi de test ${i}` }));
+  const ids = [];
+  for (const record of records) ids.push((await db.upsertEvidence(client, record)).id);
+  await client.query("update public.evidence set status='reviewed',reviewed_by='lecteur',reviewed_at=now() where id=$1", [ids[3]]);
+  const verified = { institution: 'assemblee', archiveCount: 1, eligible: records.map((record) => ({ record, source: record.source })) };
+  const limited = await publishVerified(client, verified, { limit: 2, dryRun: true });
+  assert.equal(limited.published, 2);
+  assert.equal(limited.examined, 2);
+  assert.equal((await client.query("select count(*)::int as n from evidence where status='published'")).rows[0].n, 0);
+  await client.query("update evidence set title='Titre différent' where id=$1", [ids[1]]);
+  await assert.rejects(releaseArchive(client, verified, { dryRun: false }), /annulée/);
+  assert.equal((await client.query("select count(*)::int as n from evidence where status='published'")).rows[0].n, 0);
+  await client.query('update evidence set title=$2 where id=$1', [ids[1], records[1].title]);
+  const result = await releaseArchive(client, verified, { dryRun: false });
+  assert.equal(result.published, 3);
+  assert.equal((await client.query('select status from evidence where id=$1', [ids[3]])).rows[0].status, 'reviewed');
+  const again = await releaseArchive(client, verified, { dryRun: false });
+  assert.equal(again.published, 0);
+});
+
+test('daily sync inserts only the latest whole vote and withdraws the previous reading atomically', async () => {
+  const client = await freshDb();
+  const dir = mkdtempSync(join(tmpdir(), 'pp-daily-focus-'));
+  try {
+    mkdirSync(join(dir, 'raw'));
+    const template = JSON.parse(readFileSync(join(ROOT, 'ingestion/tests/fixtures/an-scrutin.sample.json'), 'utf8')).scrutin;
+    const url = 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip';
+    const originals = [
+      { ...template, uid:'VTANR5L15V9',numero:'9',dateScrutin:'2026-09-10',titre:"l'ensemble du projet de loi de test (première lecture)." },
+      { ...template, uid:'VTANR5L15V100',numero:'100',dateScrutin:'2026-09-30',titre:"l'ensemble du projet de loi de test (lecture définitive)." },
+      { ...template, uid:'VTANR5L15V200',numero:'200',dateScrutin:'2026-09-30',titre:"l'amendement n° 1 au projet de loi de test." },
+    ];
+    const raw = saveRaw(dir,'Scrutins_XV.json.zip',zipSync(Object.fromEntries(originals.map((scrutin,index)=>[`${index}.json`,Buffer.from(JSON.stringify({scrutin}))]))));
+    const source={url,publisher:'Assemblée nationale',document_title:'Scrutins',sha256:raw.sha256,retrieved_at:'2026-10-03T12:00:00Z'};
+    const records=originals.map(scrutin=>scrutinToRecord(scrutin,{legislature:15,zipFile:'Scrutins_XV.json.zip',zipUrl:url,retrievedAt:source.retrieved_at}));
+    writeJsonl(join(dir,'sources.jsonl'),[source]);writeJsonl(join(dir,'evidence.jsonl'),records);
+    writeJson(join(dir,'manifest.json'),{importer:'an-scrutins',raw:[{url,...raw}]});
+    const old=await db.upsertEvidence(client,records[0],{sourceId:await db.upsertSource(client,source)});
+    await client.query("update evidence set status='published' where id=$1",[old.id]);
+    const options={institution:'assemblee',now:new Date('2026-10-03T12:00:00Z'),fetch:async()=>dir};
+    const simulated=await syncDaily(client,options);
+    assert.equal(simulated.inserted,1);assert.equal(simulated.withdrawn,1);
+    assert.equal((await client.query('select count(*)::int n from evidence')).rows[0].n,1);
+    const actual=await syncDaily(client,{...options,dryRun:false});
+    assert.equal(actual.published,1);assert.equal(actual.out_of_scope,2);
+    assert.equal((await client.query("select external_id from evidence where status='published'")).rows[0].external_id,'VTANR5L15V100');
+    assert.equal((await client.query('select count(*)::int n from evidence')).rows[0].n,2);
+    assert.equal((await syncDaily(client,{...options,dryRun:false})).inserted,0);
+  } finally { cleanup(dir); }
+});
+
 test('push is idempotent and a reviewed piece is never overwritten', async () => {
   const client = await freshDb();
   const dir = writeStaging([draft()]);
@@ -190,6 +302,20 @@ test('push is idempotent and a reviewed piece is never overwritten', async () =>
   assert.equal(after.status, 'published');
   assert.equal(after.reviewed_by, 'relecture de test');
   cleanup(dir);
+});
+
+test('import officiel groupé : simulation, idempotence et aucune modification d’une pièce validée',async()=>{
+  const client=await freshDb();
+  const records=[draft({external_id:'batch-1'}),draft({external_id:'batch-2',title:"Scrutin n° 2 — l'ensemble du projet de loi de test 2"})];
+  const verified={institution:'assemblee',kind:'vote',eligible:records.map(record=>({record,source:record.source}))};
+  assert.equal((await importOfficial(client,verified)).inserted,2);
+  assert.equal((await client.query('select count(*)::int n from evidence')).rows[0].n,0);
+  assert.equal((await importOfficial(client,verified,{dryRun:false})).inserted,2);
+  assert.equal((await importOfficial(client,verified,{dryRun:false})).unchanged,2);
+  await client.query("update evidence set status='published' where external_id='batch-1'");
+  const altered={...verified,eligible:[{record:{...records[0],title:"Scrutin n° 2 — l'ensemble du projet de loi divergent"},source:records[0].source}]};
+  await assert.rejects(importOfficial(client,altered,{dryRun:false}),/validée diverge/);
+  assert.equal((await client.query("select title from evidence where external_id='batch-1'")).rows[0].title,records[0].title);
 });
 
 test('a dry run exercises the SQL and rolls everything back', async () => {

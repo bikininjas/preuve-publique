@@ -1,0 +1,30 @@
+{
+  "edition": "justice-chronologie-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:justice:assistants-fn:appel:2025-04-01",
+      "kind": "judicial_event",
+      "title": "Assistants parlementaires du Front National — saisine en appel du 1er avril 2025",
+      "occurred_at": "2025-04-01",
+      "source_url": "https://www.cours-appel.justice.fr/sites/default/files/2025-04/CP-%20cour%20d%27appel%20de%20Paris%20dossier%20RN.pdf",
+      "source_locator": "Communiqué de presse du 1er avril 2025, page 1, premier paragraphe",
+      "excerpt": null,
+      "source": {
+        "publisher": "Cour d’appel de Paris — Première présidence et parquet général",
+        "document_title": "Communiqué de presse — appels dans l’affaire des assistants parlementaires du Front National",
+        "published_at": "2025-04-01"
+      },
+      "detail": {
+        "summary": "La cour d’appel de Paris annonce trois appels contre la décision rendue le 31 mars 2025 dans ce dossier.",
+        "judicial": {
+          "case_id": "assistants-parlementaires-fn",
+          "court": "Cour d’appel de Paris",
+          "stage": "Saisine en appel",
+          "status_at_event": "Trois appels annoncés au 1er avril 2025",
+          "current_status_note": "Étape historique. Un arrêt en appel daté du 7 juillet 2026 est documenté dans une autre fiche de ce dossier. Les recours postérieurs ne sont pas tous recoupés au 3 octobre 2026 ; cette pièce ne suffit pas à décrire le statut actuel des personnes concernées.",
+          "presumption_note": "Le communiqué ne nomme pas les appelants et ne détaille ni faits reprochés ni peines. Aucun acteur n’est attribué par déduction. Distinguer la procédure, les personnes et le parti ; respecter la présomption d’innocence pour les faits non définitivement jugés."
+        }
+      }
+    }
+  ]
+}

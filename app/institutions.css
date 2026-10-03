@@ -1,0 +1,20 @@
+/* Institution colours describe the chamber, independently of vote outcomes. */
+:root { --an-colour: #90c6ff; --senat-colour: #ccb0ff; --pe-colour: #72ddd2; }
+:root[data-theme="light"] { --an-colour: #175ca5; --senat-colour: #7140a9; --pe-colour: #096e69; }
+[data-institution="assemblee"] { --institution-colour: var(--an-colour); }
+[data-institution="senat"] { --institution-colour: var(--senat-colour); }
+[data-institution="parlement_europeen"] { --institution-colour: var(--pe-colour); }
+.institution-badge {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  max-width: 100%; margin: 9px 0; padding: 6px 10px; border-radius: 5px;
+  border: 1px solid color-mix(in srgb, var(--institution-colour, var(--muted)) 50%, var(--line));
+  background: color-mix(in srgb, var(--institution-colour, var(--muted)) 9%, var(--surface));
+  color: var(--institution-colour, var(--muted)); font: 700 12px/1.5 Arial, sans-serif;
+}
+.institution-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.evidence-card[data-institution], .vote-row[data-institution], .document-heading[data-institution] { border-left: 3px solid var(--institution-colour, var(--line)); }
+.document-heading[data-institution] { padding-left: 18px; }
+.pills a[data-institution] { color: var(--institution-colour); border-color: color-mix(in srgb, var(--institution-colour) 50%, var(--line)); }
+.pills a[data-institution].active { color: var(--paper); background: var(--institution-colour); border-color: var(--institution-colour); }
+.institution-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 12px 0 22px; }
+.institution-legend .institution-badge { margin: 0; }

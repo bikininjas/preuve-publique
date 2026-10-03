@@ -13,6 +13,7 @@ export const description = 'Textes adoptés par le Parlement européen en pléni
 export const defaults = { years: '2025,2026', 'min-delay-ms': '1500', limit: '0' };
 export const help = `Options :
   --years=2025,2026   années de textes adoptés à importer
+  --until=AAAA-MM-JJ  borne incluse (par défaut : aujourd’hui)
   --limit=N           nombre maximal de textes retenus au total (0 = tous)
   --min-delay-ms=N    espacement minimal entre requêtes`;
 
@@ -64,6 +65,8 @@ export async function run({ options, stagingDir, log = () => {} }) {
   if (!years.length) throw new Error('Aucune année valide dans --years.');
   const minDelayMs = Number.parseInt(options['min-delay-ms'] ?? defaults['min-delay-ms'], 10) || 0;
   const limit = Number.parseInt(options.limit ?? defaults.limit, 10) || 0;
+  const until = String(options.until ?? new Date().toISOString().slice(0,10));
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(until)) throw new Error('--until exige une date ISO.');
 
   const evidence = [];
   const sources = [];
@@ -71,9 +74,11 @@ export async function run({ options, stagingDir, log = () => {} }) {
   const notes = [];
 
   for (const year of years) {
-    const sourceUrl = `${PE_API}/adopted-texts`;
+    // Search-score ordering is unstable across offset pages with tied scores.
+    // The documented unique document identifier supplies a stable order.
+    const sourceUrl = `${PE_API}/adopted-texts?year=${year}&sort-by=doc-id%3Aasc`;
     log(`Textes adoptés ${year}`);
-    const pages = await pePaginate(`${sourceUrl}?year=${year}`, { minDelayMs });
+    const pages = await pePaginate(sourceUrl, { minDelayMs });
     const items = pages.flatMap((page) => page.data);
     const retrievedAt = pages[0]?.fetchedAt ?? new Date().toISOString();
     for (const page of pages) {
@@ -90,6 +95,7 @@ export async function run({ options, stagingDir, log = () => {} }) {
     });
     let kept = 0;
     for (const item of items) {
+      if (item.document_date > until) continue;
       if (limit && evidence.length >= limit) break;
       try {
         evidence.push(textToRecord(item, { sourceUrl, retrievedAt }));

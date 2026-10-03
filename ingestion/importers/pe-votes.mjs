@@ -8,19 +8,22 @@
 
 import { saveRaw, writeJsonl } from '../lib/staging.mjs';
 import { buildEvidence, clampTitle, ValidationError } from '../lib/normalize.mjs';
-import { PE_API, eliTail, peGetJson, pePaginate, pickLabel } from '../lib/pe.mjs';
+import { PE_API, eliTail, pePaginate, pickLabel, activityDate } from '../lib/pe.mjs';
 
 export const name = 'pe-votes';
 export const description = 'Votes en plénière du Parlement européen (décisions par séance).';
 export const defaults = { years: '2025,2026', 'min-delay-ms': '1500', 'max-sittings': '0' };
 export const help = `Options :
   --years=2025,2026    années de séances plénières à importer
+  --until=AAAA-MM-JJ   borne incluse (par défaut : aujourd’hui), exclut les séances futures
+  --since=AAAA-MM-JJ   borne inférieure incluse, facultative
   --max-sittings=N     limite le nombre de séances traitées (0 = toutes)
   --min-delay-ms=N     espacement minimal entre requêtes (limite de l'API : ~500/5 min)`;
 
 const PLENARY_SITTING = 'def/ep-activities/PLENARY_SITTING';
 
 export function decisionToRecord(decision, { sitting, sittingDate, sourceUrl, sourceTitle, retrievedAt }) {
+  const date = activityDate(decision) ?? sittingDate;
   const outcome = decision.decision_outcome ? String(decision.decision_outcome).split('/').pop() : null;
   const label = pickLabel(decision.activity_label) ?? '(libellé non fourni par la source)';
   const recordedIn = Array.isArray(decision.recorded_in_a_realization_of)
@@ -30,9 +33,9 @@ export function decisionToRecord(decision, { sitting, sittingDate, sourceUrl, so
     external_id: decision.activity_id,
     kind: 'vote',
     institution: 'parlement_europeen',
-    title: `Vote du ${decision.activity_date} — ${clampTitle(label, 400)}`,
+    title: `Vote du ${date} — ${clampTitle(label, 400)}`,
     excerpt: null,
-    occurred_at: decision.activity_date,
+    occurred_at: date,
     source_url: sourceUrl,
     source_locator: `${decision.activity_id} — ${outcome ?? 'résultat non fourni'}`,
     detail: {
@@ -63,6 +66,10 @@ export async function run({ options, stagingDir, log = () => {} }) {
   if (!years.length) throw new Error('Aucune année valide dans --years.');
   const minDelayMs = Number.parseInt(options['min-delay-ms'] ?? defaults['min-delay-ms'], 10) || 0;
   const maxSittings = Number.parseInt(options['max-sittings'] ?? defaults['max-sittings'], 10) || 0;
+  const until = String(options.until ?? new Date().toISOString().slice(0, 10));
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(until)) throw new Error('--until exige une date ISO.');
+  const since = options.since ?? '2017-01-01';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(since) || since > until) throw new Error('--since exige une date ISO antérieure à --until.');
 
   const evidence = [];
   const sources = [];
@@ -79,7 +86,7 @@ export async function run({ options, stagingDir, log = () => {} }) {
       rawFiles.push({ url: page.url, ...raw, fetched_at: page.fetchedAt, content_type: 'application/ld+json' });
     }
     const meetings = meetingPages.flatMap((page) => page.data)
-      .filter((meeting) => meeting.had_activity_type === PLENARY_SITTING);
+      .filter((meeting) => meeting.had_activity_type === PLENARY_SITTING && activityDate(meeting) && activityDate(meeting) >= since && activityDate(meeting) <= until);
     log(`  ${meetings.length} séances plénières`);
 
     for (const meeting of meetings) {
@@ -95,12 +102,12 @@ export async function run({ options, stagingDir, log = () => {} }) {
       }
       const votes = decisions.filter((decision) => decision.type === 'Vote');
       skippedDecisions += decisions.length - votes.length;
-      const sourceTitle = `Décisions de la séance ${meeting.activity_date} (${sittingId})`;
+      const sourceTitle = `Décisions de la séance ${activityDate(meeting)} (${sittingId})`;
       sources.push({
         url: decisionsUrl,
         publisher: 'Parlement européen',
         document_title: sourceTitle,
-        published_at: meeting.activity_date ?? null,
+        published_at: activityDate(meeting),
         sha256: pages[0]?.sha256 ?? null,
         retrieved_at: retrievedAt,
       });
@@ -109,7 +116,7 @@ export async function run({ options, stagingDir, log = () => {} }) {
         try {
           evidence.push(decisionToRecord(decision, {
             sitting: sittingId,
-            sittingDate: meeting.activity_date,
+            sittingDate: activityDate(meeting),
             sourceUrl: decisionsUrl,
             sourceTitle,
             retrievedAt,
@@ -122,7 +129,7 @@ export async function run({ options, stagingDir, log = () => {} }) {
       }
       sittingsDone += 1;
       log(`  ${sittingId} : ${votes.length} votes retenus (${decisions.length - votes.length} décisions non-votes ignorées)`);
-      if (kept === 0 && votes.length === 0) notes.push(`${sittingId} : aucun vote dans cette séance`);
+      if (kept === 0 && votes.length === 0) notes.push(`${sittingId} : aucun vote renvoyé par l’API pour cette séance`);
     }
     if (maxSittings && sittingsDone >= maxSittings) break;
   }

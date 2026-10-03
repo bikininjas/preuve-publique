@@ -88,6 +88,9 @@ test('import nominatif : empreintes vérifiées, simulation, idempotence et chan
   const options={referential,votes,publish:true,identities:[{slug:'alice',name:'Alice Exemple',reference:'PA123'}]};
   assert.equal((await syncCandidates(db,options)).ballots,1);
   assert.equal((await pg.query('select * from candidate_profiles')).rows.length,0);
+  assert.equal((await syncCandidates(db,{...options,currentSnapshotsOnly:true})).eligibleVotes,0);
+  await pg.query('update public.sources set sha256=$1',[raw.sha256]);
+  assert.equal((await syncCandidates(db,{...options,currentSnapshotsOnly:true})).ballots,1);
   assert.equal((await syncCandidates(db,{...options,dryRun:false})).ballots,1);
   assert.equal((await syncCandidates(db,{...options,dryRun:false})).ballots,0);
   await pg.exec("update candidate_ballots set position='contre'");

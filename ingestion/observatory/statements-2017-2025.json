@@ -1,0 +1,208 @@
+{
+  "edition": "discours-institutionnels-2017-2025-2026-10-03",
+  "records": [
+    {
+      "external_id": "observatoire:declaration:edouard-philippe:2017-07-04",
+      "kind": "statement",
+      "title": "Édouard Philippe — Déclaration de politique générale à l’Assemblée nationale",
+      "occurred_at": "2017-07-04",
+      "source_url": "https://www.info.gouv.fr/upload/media/default/0001/01/2017_07_declaration_de_politique_generale_de_m._edouard_philippe_premier_ministre_-_assemblee_nationale_-_04.07.2017.pdf",
+      "source_locator": "PDF, pages 1 à 17 : discours original de Édouard Philippe",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "Édouard Philippe — Déclaration de politique générale à l’Assemblée nationale, 2017-07-04",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Édouard Philippe du 2017-07-04, dans le cadre suivant : Déclaration de politique générale à l’Assemblée nationale. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "Édouard Philippe",
+          "date": "2017-07-04",
+          "context": "Déclaration de politique générale à l’Assemblée nationale",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.vie-publique.fr/discours/203050-declaration-politique-generale-edouard-philippe-premier-ministre",
+        "source_verification": {
+          "pdf_pages": 17,
+          "checked_author": "Édouard Philippe",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:edouard-philippe:2019-06-12",
+      "kind": "statement",
+      "title": "Édouard Philippe — Déclaration de politique générale à l’Assemblée nationale",
+      "occurred_at": "2019-06-12",
+      "source_url": "https://www.info.gouv.fr/upload/media/default/0001/01/2019_06_declaration_de_politique_generale_de_m._edouard_philippe_premier_ministre_-_assemblee_nationale_-_12.06.2019.pdf",
+      "source_locator": "PDF, pages 1 à 19 : discours original de Édouard Philippe",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "Édouard Philippe — Déclaration de politique générale à l’Assemblée nationale, 2019-06-12",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Édouard Philippe du 2019-06-12, dans le cadre suivant : Déclaration de politique générale à l’Assemblée nationale. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "Édouard Philippe",
+          "date": "2019-06-12",
+          "context": "Déclaration de politique générale à l’Assemblée nationale",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.info.gouv.fr/actualite/11045-declaration-de-politique-generale-a-l-assemblee-nationale",
+        "source_verification": {
+          "pdf_pages": 19,
+          "checked_author": "Édouard Philippe",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:jean-castex:2020-07-15",
+      "kind": "statement",
+      "title": "Jean Castex — Déclaration de politique générale à l’Assemblée nationale",
+      "occurred_at": "2020-07-15",
+      "source_url": "https://www.info.gouv.fr/upload/media/default/0001/01/2020_07_declaration-de-politique-generale-de-m-jean-castex-premier-ministre.pdf",
+      "source_locator": "PDF, pages 1 à 12 : discours original de Jean Castex",
+      "excerpt": null,
+      "source": {
+        "publisher": "Matignon — Service communication",
+        "document_title": "Jean Castex — Déclaration de politique générale à l’Assemblée nationale, 2020-07-15",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Jean Castex du 2020-07-15, dans le cadre suivant : Déclaration de politique générale à l’Assemblée nationale. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "Jean Castex",
+          "date": "2020-07-15",
+          "context": "Déclaration de politique générale à l’Assemblée nationale",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.info.gouv.fr/actualite/11670-la-declaration-de-politique-generale-du-premier-ministre-jean-castex-a-l-assemblee-nationale",
+        "source_verification": {
+          "pdf_pages": 12,
+          "checked_author": "Jean Castex",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:elisabeth-borne:2022-07-06",
+      "kind": "statement",
+      "title": "Élisabeth Borne — Déclaration de politique générale à l’Assemblée nationale",
+      "occurred_at": "2022-07-06",
+      "source_url": "https://www.info.gouv.fr/upload/media/content/0001/03/08889bef09b2bf46a98c6e3475eb31a91dbe59cc.pdf",
+      "source_locator": "PDF, pages 1 à 39 : discours original de Élisabeth Borne",
+      "excerpt": null,
+      "source": {
+        "publisher": "Matignon — Service communication",
+        "document_title": "Élisabeth Borne — Déclaration de politique générale à l’Assemblée nationale, 2022-07-06",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Élisabeth Borne du 2022-07-06, dans le cadre suivant : Déclaration de politique générale à l’Assemblée nationale. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "Élisabeth Borne",
+          "date": "2022-07-06",
+          "context": "Déclaration de politique générale à l’Assemblée nationale",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.info.gouv.fr/communique/declaration-de-politique-generale-delisabeth-borne",
+        "source_verification": {
+          "pdf_pages": 39,
+          "checked_author": "Élisabeth Borne",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:elisabeth-borne-retraites:2023-01-10",
+      "kind": "statement",
+      "title": "Élisabeth Borne — Présentation du projet de réforme des retraites",
+      "occurred_at": "2023-01-10",
+      "source_url": "https://www.info.gouv.fr/upload/media/content/0001/05/18ff5bc756a04f062603bcc1fa4ad7b396f02b70.pdf",
+      "source_locator": "PDF, pages 1 à 11 : discours original de Élisabeth Borne",
+      "excerpt": null,
+      "source": {
+        "publisher": "Matignon — Service communication",
+        "document_title": "Élisabeth Borne — Présentation du projet de réforme des retraites, 2023-01-10",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Élisabeth Borne du 2023-01-10, dans le cadre suivant : Présentation du projet de réforme des retraites. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "Élisabeth Borne",
+          "date": "2023-01-10",
+          "context": "Présentation du projet de réforme des retraites",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.info.gouv.fr/discours/discours-de-la-premiere-ministre-elisabeth-borne-pour-nos-retraites-justice-equilibre-progres",
+        "source_verification": {
+          "pdf_pages": 11,
+          "checked_author": "Élisabeth Borne",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:gabriel-attal:2024-01-30",
+      "kind": "statement",
+      "title": "Gabriel Attal — Déclaration de politique générale à l’Assemblée nationale",
+      "occurred_at": "2024-01-30",
+      "source_url": "https://www.info.gouv.fr/upload/media/content/0001/08/89a9931a1b637400697b7308595922df213b3805.pdf",
+      "source_locator": "PDF, pages 1 à 37 : discours original de Gabriel Attal",
+      "excerpt": null,
+      "source": {
+        "publisher": "Matignon — Service communication",
+        "document_title": "Gabriel Attal — Déclaration de politique générale à l’Assemblée nationale, 2024-01-30",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de Gabriel Attal du 2024-01-30, dans le cadre suivant : Déclaration de politique générale à l’Assemblée nationale. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "Gabriel Attal",
+          "date": "2024-01-30",
+          "context": "Déclaration de politique générale à l’Assemblée nationale",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.info.gouv.fr/actualite/ce-quil-faut-retenir-de-la-declaration-de-politique-generale-de-gabriel-attal",
+        "source_verification": {
+          "pdf_pages": 37,
+          "checked_author": "Gabriel Attal",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    },
+    {
+      "external_id": "observatoire:declaration:francois-bayrou:2025-01-14",
+      "kind": "statement",
+      "title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale",
+      "occurred_at": "2025-01-14",
+      "source_url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2024-2025/premiere-seance-du-mardi-14-janvier-2025.pdf",
+      "source_locator": "Compte rendu intégral du 14 janvier 2025, rubrique Déclaration du gouvernement et débat, intervention de François Bayrou",
+      "excerpt": null,
+      "source": {
+        "publisher": "Assemblée nationale — compte rendu intégral",
+        "document_title": "François Bayrou — Déclaration de politique générale à l’Assemblée nationale, 2025-01-14",
+        "published_at": null
+      },
+      "detail": {
+        "summary": "Intervention de François Bayrou du 2025-01-14, dans le cadre suivant : Déclaration de politique générale à l’Assemblée nationale. Le texte original est conservé chez son éditeur institutionnel.",
+        "statement": {
+          "author": "François Bayrou",
+          "date": "2025-01-14",
+          "context": "Déclaration de politique générale à l’Assemblée nationale",
+          "scope_note": "Fiche du discours original, sans déduction sur un vote ni reprise des chiffres annoncés comme résultats mesurés. Lot de discours gouvernementaux, pas un recensement de toutes les déclarations politiques."
+        },
+        "original_page_url": "https://www.info.gouv.fr/actualite/ce-quil-faut-retenir-de-la-declaration-de-politique-generale-de-francois-bayrou",
+        "source_verification": {
+          "pdf_pages": 45,
+          "checked_author": "François Bayrou",
+          "text_extraction": "pypdf, contrôle de l’auteur dans les octets téléchargés"
+        }
+      }
+    }
+  ]
+}

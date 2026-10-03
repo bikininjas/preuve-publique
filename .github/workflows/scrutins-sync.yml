@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        institution: [assemblee, senat]
+        institution: [assemblee, senat, parlement_europeen]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
