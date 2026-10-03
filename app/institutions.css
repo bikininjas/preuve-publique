@@ -12,7 +12,7 @@
   color: var(--institution-colour, var(--muted)); font: 700 12px/1.5 Arial, sans-serif;
 }
 .institution-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-.evidence-card[data-institution], .vote-row[data-institution], .document-heading[data-institution] { border-left: 3px solid var(--institution-colour, var(--line)); }
+:root[data-theme] :is(.evidence-card, .vote-row, .document-heading)[data-institution] { border-left: 3px solid var(--institution-colour, var(--line)); }
 .document-heading[data-institution] { padding-left: 18px; }
 .pills a[data-institution] { color: var(--institution-colour); border-color: color-mix(in srgb, var(--institution-colour) 50%, var(--line)); }
 .pills a[data-institution].active { color: var(--paper); background: var(--institution-colour); border-color: var(--institution-colour); }
