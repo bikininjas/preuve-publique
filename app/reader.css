@@ -1,0 +1,143 @@
+/* Public reading surfaces; the private review workspace keeps its own layout. */
+main:has(> .share-tools) { padding-top: 28px; }
+main:has(> .share-tools):has(> .page-intro), main.method-page { position: relative; }
+main:has(> .page-intro) > .share-tools, .method-page > .share-tools { position: absolute; right: 0; top: 24px; margin: 0; }
+main:has(> .share-tools) .page-intro .eyebrow { max-width: calc(100% - 130px); }
+main:has(> .share-tools) .page-intro { padding-bottom: 8px; margin-bottom: 20px; }
+main:has(> .share-tools) :is(.page-intro h1, > h1) {
+  font-size: clamp(36px, 4.2vw, 58px); margin: 12px 0 16px; line-height: 1.08;
+  text-wrap: balance;
+}
+main:has(> .share-tools) .lead { font-size: 17px; line-height: 1.6; max-width: 78ch; margin: 12px 0 18px; }
+main:has(> .share-tools) .eyebrow { font-size: 10px; line-height: 1.6; letter-spacing: .12em; }
+main:has(> .share-tools) :is(.section-heading, .list-heading) { gap: 16px; }
+main:has(> .share-tools) .section-heading h2 { font-size: clamp(26px, 2.8vw, 36px); }
+main:has(> .share-tools) .button:not(.secondary):not(.light) { background: var(--orange); border-color: var(--orange); color: #102334; }
+main:has(> .share-tools) .button.secondary { color: var(--ink); border-color: var(--line); }
+main:has(> .share-tools) .evidence-card { border-radius: 14px; padding: 24px; }
+main:has(> .share-tools) .evidence-card h3 { font-size: clamp(23px, 2vw, 29px); line-height: 1.2; }
+main:has(> .share-tools) :is(.card, .party-profile-card, .profile-subtheme, .group-directory-card) { min-width: 0; }
+main:has(> .share-tools) :is(.party-profile-card, .profile-subtheme, .group-directory-card) { border-radius: 14px; }
+main:has(> .share-tools) .profile-reading-key { border-radius: 12px; padding: 18px 22px; margin-block: 18px; }
+main:has(> .share-tools) .profile-reading-key p { font-size: 13px; margin-block: 10px; }
+
+/* Sharing stays available without a permanent row of six competing actions. */
+.share-tools { display: flex; justify-content: flex-end; margin: 0 0 12px; }
+.share-disclosure { position: relative; }
+.share-disclosure > summary { display: flex; align-items: center; gap: 16px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; }
+.share-disclosure > summary::-webkit-details-marker { display: none; }
+.share-disclosure > summary:hover { background: var(--surface-raised); }
+.share-disclosure[open] > summary { border-color: var(--teal); }
+.share-menu { position: absolute; right: 0; top: calc(100% + 8px); width: min(520px, calc(100vw - 48px)); padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: 0 12px 32px #0003; z-index: 10; }
+.share-tools-row { justify-content: flex-start; gap: 8px; }
+.share-menu .share-control { min-height: 44px; font-size: 12px; }
+.share-menu .share-feedback { text-align: left; }
+
+/* Native disclosures keep the full subject index one click away. */
+.reader-disclosure { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); margin: 18px 0 24px; }
+.reader-disclosure > summary { padding: 16px 20px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.reader-disclosure > summary > span { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 12px; }
+.reader-disclosure .subtheme-index { border: 0; margin: 0; border-radius: 0 0 12px 12px; background: transparent; }
+.reader-disclosure .subject-directory { margin: 0; border: 0; border-radius: 0 0 12px 12px; }
+.reader-disclosure .subject-directory h2 { font-size: 25px; }
+.reader-disclosure > summary:focus-visible, .share-disclosure > summary:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.vote-explorer .searchbar { margin-block: 18px; }
+.vote-explorer .reading-nav { margin-block: 14px 20px; }
+.theme-explorer .theme-jumps { margin-block: 20px; }
+.theme-explorer .theme-jumps a { padding: 20px; border-radius: 12px; }
+.theme-explorer .theme-jumps strong { font-size: 25px; }
+.theme-explorer .chart-reading-note { margin-block: 16px; }
+
+/* The home page starts with useful entry points, then a short recent preview. */
+.home .evidence-hero { padding: clamp(24px, 3vw, 42px); gap: 32px; border-radius: 18px; align-items: start; }
+.home .evidence-hero h1 { font-size: clamp(40px, 4.5vw, 65px); margin: 20px 0; }
+.home .evidence-hero .lead { color: #c8d7d9; max-width: 44ch; }
+.home .latest-vote { border-radius: 12px; box-shadow: none; padding: 24px; }
+.home .latest-vote h2 { font-size: 27px; line-height: 1.18; }
+.home .latest-vote-kicker { padding-bottom: 14px; }
+.home .latest-vote-scope { margin-bottom: 18px; }
+.home .latest-vote-link { margin-top: 14px; padding-top: 14px; }
+.home .latest-vote-meta { margin-block: 16px; }
+.home .section-pad { padding-block: 32px; }
+.home .topic-grid { gap: 12px; }
+.home .topic-tile { padding: 22px; min-height: 126px; border: 1px solid var(--line); border-radius: 14px; }
+.home .topic-tile strong { font-size: 27px; }
+.home .topic-tile small { margin-top: 18px; }
+.home .editorial-feature { border-radius: 16px; padding: 32px; }
+.home .editorial-feature h2 { font-size: 34px; }
+
+.group-editorial-hero { border-radius: 18px; padding: 32px; gap: 32px; }
+.group-editorial-hero h1 { font-size: clamp(40px, 4.5vw, 62px); margin: 20px 0; }
+.group-hero-copy > p { font-size: 16px; }
+.group-hero-link { border-radius: 8px; margin: 12px 0 24px; }
+.group-hero-visual { transform: none; box-shadow: none; border-radius: 12px; padding: 24px; }
+.group-hero-visual > p { font-size: 30px; margin-block: 20px; }
+.group-visual-foot { margin-top: 16px; }
+.group-method-note { padding-block: 22px; }
+.group-directory { padding-top: 32px; }
+.group-directory-heading h2 { font-size: 34px; margin: 0; }
+.group-directory-tools { margin-top: 24px; }
+.group-party-note { border-radius: 14px; margin-top: 40px; padding: 28px; }
+.group-profile-hero { border-radius: 18px; padding: 30px; }
+.group-profile-hero h1 { font-size: clamp(36px, 4.5vw, 60px); }
+.group-profile-hero p { font-size: 16px; }
+
+.polls-hero { padding: 28px 32px; border-radius: 16px; }
+.polls-hero h1 { font-size: 52px; margin-block: 12px; }
+.polls-hero .lead { margin-bottom: 0; }
+.polls-hero .hero-edition { font-size: 68px; line-height: 1; }
+.poll-filter-heading h2 { font-size: 28px; margin: 0 0 18px; }
+.candidate-hero { padding: 28px; }
+.candidate-hero h1 { font-size: clamp(34px, 4vw, 58px); margin-block: 12px; }
+.presidential-tabs a:last-child[href^="/"] { margin-left: 0; }
+.candidate-directory .panel { display: flex; flex-direction: column; padding: 24px; border-radius: 14px; }
+.candidate-directory h2 { font-size: 28px; line-height: 1.15; margin: 0 0 12px; }
+.candidate-directory p { font-size: 14px; }
+.candidate-directory .text-link { margin-top: auto; padding-top: 12px; font-size: 12px; }
+.presidential-entry-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-block: 24px; }
+.presidential-entry-grid .panel { display: flex; flex-direction: column; margin: 0; padding: 24px; }
+.presidential-entry-grid h2 { font-size: 28px; margin-top: 12px; }
+.presidential-entry-grid .button { margin-top: auto; align-self: start; }
+.method-page { max-width: 1040px; }
+.method-page .panel { margin-top: 24px; }
+.method-page .panel p, .method-page .panel li { max-width: 95ch; }
+.document-heading h1 { font-size: clamp(32px, 3.8vw, 54px); line-height: 1.15; text-wrap: balance; }
+.privacy-page h1 { font-size: clamp(36px, 4.2vw, 58px); line-height: 1.1; }
+.privacy-page .lead { font-size: 17px; }
+
+@media (max-width: 900px) {
+  .presidential-entry-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 740px) {
+  main:has(> .share-tools) { padding-top: 18px; }
+  main:has(> .page-intro) > .share-tools, .method-page > .share-tools { position: static; margin-bottom: 8px; }
+  main:has(> .share-tools) .page-intro .eyebrow { max-width: none; }
+  main:has(> .share-tools) .page-intro { margin-bottom: 12px; }
+  main:has(> .share-tools) :is(.page-intro h1, > h1) { font-size: 36px; }
+  main:has(> .share-tools) .lead { font-size: 16px; }
+  .share-tools { margin-bottom: 8px; }
+  .share-menu { width: min(360px, calc(100vw - 60px)); padding: 14px; }
+  .share-menu .share-control { width: auto; padding: 10px 12px; }
+  .share-menu .share-network-name { display: inline; }
+  .reader-disclosure > summary { padding: 15px; }
+  .reader-disclosure > summary > span { display: block; margin: 6px 0 0 18px; }
+  .home .evidence-hero, .group-editorial-hero { padding: 24px; gap: 24px; }
+  .home .evidence-hero h1 { font-size: 40px; }
+  .home .topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .home .topic-tile { padding: 16px; min-height: 116px; }
+  .home .topic-tile strong { font-size: 23px; overflow-wrap: anywhere; }
+  .home .topic-tile small { font-size: 11px; }
+  .home .latest-vote h2 { font-size: 25px; }
+  .home .section-pad { padding-block: 26px; }
+  .group-editorial-hero h1 { font-size: 40px; }
+  .group-directory-heading { display: flex; flex-wrap: wrap; align-items: center; }
+  .group-directory-heading h2 { font-size: 30px; }
+  .group-directory-total { margin: 0; font-size: 16px; }
+  .group-profile-hero { padding: 24px; }
+  .polls-hero { padding: 24px; }
+  .polls-hero h1 { font-size: 40px; }
+  .candidate-hero { padding: 22px; }
+  .candidate-hero h1 { font-size: 36px; }
+  .candidate-directory h2 { font-size: 26px; }
+  .home .editorial-feature { padding: 24px; }
+}

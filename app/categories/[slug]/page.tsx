@@ -70,12 +70,10 @@ export default async function CategoryPage({
       <div className="page-intro reading-intro compact"><div className="eyebrow">Rubrique publiée par la source</div>
       <h1>{topic}</h1>
       <p className="lead">
-        Les pièces ci-dessous portent cette rubrique telle que la source la publie. Les scrutins rattachés au dossier
-        d’une loi en héritent : la référence du dossier figure sur chaque fiche, et la fiche du scrutin indique l’origine
-        de ses rubriques.
+        Pièces classées dans cette rubrique par le Sénat. Les scrutins liés à un dossier de loi héritent de sa rubrique ; chaque fiche en précise l’origine.
       </p></div>
 
-      <div className="info-band"><strong>Voir les votes</strong><span>Cette rubrique institutionnelle provient des dossiers du Sénat. Chaque fiche de scrutin affiche maintenant le décompte officiel par groupe parlementaire. Les graphiques par catégorie et sous-thème utilisent un autre classement, fondé sur les mots des titres. <Link href="/categories?institution=senat">Explorer les graphiques des groupes du Sénat →</Link></span></div>
+      <p className="hint">Les graphiques utilisent un classement distinct, par mots dans les titres. <Link className="text-link" href="/categories?institution=senat">Explorer les votes des groupes du Sénat →</Link></p>
 
       {result.items.length ? (
         <>

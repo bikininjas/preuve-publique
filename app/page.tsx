@@ -19,7 +19,7 @@ const featuredSubjects = [...VOTE_SUBJECT_GROUPS[0].subjects, ...VOTE_SUBJECT_GR
 export default async function Home() {
   let votes: Awaited<ReturnType<typeof getEvidencePage>> | null = null;
   let failed = false;
-  try { votes = await getEvidencePage({ kind: 'vote', limit: 6 }); }
+  try { votes = await getEvidencePage({ kind: 'vote', limit: 3 }); }
   catch { failed = true; }
   const latest = votes?.items[0];
   const latestTally = latest ? voteTally(latest) : null;
@@ -31,22 +31,23 @@ export default async function Home() {
       rows: result.items[0] ? await getPartyVotesForScrutin(result.items[0].id) : [],
     })).catch(() => null),
   ]);
-  const featuredParties = [...(recentParties?.rows ?? [])].sort((a, b) => ballotTotal(b) - ballotTotal(a) || a.party_name.localeCompare(b.party_name, 'fr'))
+  const recentPartySelection = Boolean(recentParties?.rows.length);
+  const featuredParties = [...(recentPartySelection ? recentParties!.rows : partyDashboard?.parties ?? [])].sort((a, b) => ballotTotal(b) - ballotTotal(a) || a.party_name.localeCompare(b.party_name, 'fr'))
     .slice(0, 6).map((row) => partyDashboard?.parties.find((party) => party.party_id === row.party_id)).filter((row) => row !== undefined);
 
   return (
     <main className="home"><SeoPage path="/" />
       <section className="hero evidence-hero">
         <div className="hero-copy">
-          <div className="eyebrow"><span className="live-dot" /> L’observatoire des décisions publiques</div>
-          <h1>Le débat passe.<br /><em>Les votes restent.</em></h1>
-          <p className="lead">Qui a voté pour ? Qui a voté contre ? Retrouvez les décisions officielles, thème par thème, avec les chiffres et les sources pour comprendre.</p>
+          <div className="eyebrow">Assemblée nationale · Sénat</div>
+          <h1>Les votes publics,<br /><em>sujet par sujet.</em></h1>
+          <p className="lead">Explorez les scrutins, les positions et les documents officiels depuis 2017.</p>
           <form className="hero-search" action="/scrutins" method="get"><label className="sr-only" htmlFor="home-search">Chercher un sujet ou un scrutin</label><input id="home-search" type="search" name="q" placeholder="Retraites, logement, budget…" maxLength={120} /><button type="submit" aria-label="Rechercher les scrutins">↗</button></form>
           <div className="hero-shortcuts"><Link href="/scrutins">Tous les scrutins →</Link><Link href="/categories">Les votes par thème →</Link></div>
           <p className="hero-note">{votes ? <><b>{votes.total.toLocaleString('fr-FR')} scrutins publiés</b> · couverture du site</> : 'Des documents officiels, accessibles et datés.'}<br />Assemblée nationale et Sénat. Couverture européenne à venir.</p>
         </div>
         <aside className="latest-vote" aria-label="Le scrutin publié le plus récent">
-          <div className="latest-vote-kicker"><span>À la une de la base</span><span className="latest-vote-seal">Source officielle ↗</span></div>
+          <div className="latest-vote-kicker"><span>Dernier scrutin publié</span><span className="latest-vote-seal">Source officielle</span></div>
           {latest ? <><div className="latest-vote-meta"><span>{institutionLabel(latest.institution)}</span><time dateTime={latest.occurred_at}>{formatDate(latest.occurred_at)}</time></div>
             <h2><Link href={`/pieces/${latest.id}`}>{readerTitle(latest)}</Link></h2>
             <VoteTopics title={latest.title} institution={latest.institution} />
@@ -58,10 +59,10 @@ export default async function Home() {
         </aside>
       </section>
 
-      <section className="home-strip" aria-label="Repères de lecture">
-        <div><span className="strip-index">01</span><strong>Lire le scrutin</strong><small>Le texte exact et la date du vote.</small></div>
-        <div><span className="strip-index">02</span><strong>Voir les positions</strong><small>Des groupes quand l’institution les publie.</small></div>
-        <div><span className="strip-index">03</span><strong>Remonter aux sources</strong><small>Le document original, sans raccourci trompeur.</small></div>
+      <section className="topic-feature section-pad" id="sujets">
+        <div className="section-heading"><h2>Explorer par sujet</h2><Link className="text-link" href="/scrutins">Tous les sujets →</Link></div>
+        <div className="topic-grid">{featuredSubjects.map((subject) => <Link className="topic-tile" href={`/scrutins?subject=${subject.id}`} key={subject.id}><strong>{subject.label}</strong><small>Voir les scrutins <b aria-hidden="true">↗</b></small></Link>)}</div>
+        <p className="section-foot">Repérage par mots dans les titres officiels, sans couverture exhaustive. <Link href="/categories">Graphiques par thème →</Link></p>
       </section>
 
       <section className="section-pad" id="derniers-scrutins">
@@ -70,22 +71,15 @@ export default async function Home() {
       </section>
 
       <section className="section-pad home-party-profiles" id="partis">
-        <div className="section-heading"><div><div className="eyebrow">Les choix dans les urnes parlementaires</div><h2>Un parti. Plusieurs sujets.</h2></div><Link className="text-link" href="/partis">Tous les profils de vote →</Link></div>
-        <p className="lead">Entreprises, solidarité, immigration, police : voyez les répartitions des votes, puis retrouvez la mesure exacte derrière chaque chiffre.</p>
+        <div className="section-heading"><h2>Profils des partis</h2><Link className="text-link" href="/partis">Tous les partis →</Link></div>
         <div className="profile-reading-key"><div className="party-chart-legend"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div><p>« Pour » signifie pour le texte soumis au vote. Un sujet ne dit pas si la mesure renforce ou réduit une protection. Les pourcentages portent sur les positions des députés attribuables au parti, non-votants inclus.</p></div>
-        {partyDashboard && featuredParties.length ? <><p className="resultline">Six partis affichés au maximum, par volume de positions dans le dernier scrutin AN publié{recentParties?.date ? ` (${formatDate(recentParties.date)})` : ''}. Les graphiques couvrent tout le corpus daté ci-dessous.</p><div className="party-profile-grid">{featuredParties.map((party) => <PartyProfileCard key={party.party_id} party={party} themes={partyThemes} scope={partyDashboard.scope} />)}</div></> : <p className="empty">Les profils de vote sont temporairement indisponibles. <Link href="/partis">Ouvrir le récapitulatif des partis →</Link></p>}
+        {partyDashboard && featuredParties.length ? <><p className="resultline">{recentPartySelection ? <>Six partis au maximum, par volume de positions dans le dernier scrutin AN publié{recentParties?.date ? ` (${formatDate(recentParties.date)})` : ''}.</> : <>Six partis au maximum, par volume de positions dans le corpus publié, archives comprises. {recentParties ? 'Le dernier scrutin AN ne fournit pas de bulletins attribuables à un parti dans la base.' : 'La sélection du dernier scrutin AN est indisponible.'}</>} Les graphiques couvrent tout le corpus daté ci-dessous.</p><div className="party-profile-grid">{featuredParties.map((party) => <PartyProfileCard key={party.party_id} party={party} themes={partyThemes} scope={partyDashboard.scope} />)}</div></> : <p className="empty">Les profils de vote sont temporairement indisponibles. <Link href="/partis">Ouvrir le récapitulatif des partis →</Link></p>}
         <p className="section-foot"><Link href="/categories?institution=senat">Au Sénat : explorer les votes des groupes →</Link> · <Link href="/methode#profils-vote">Comment lire ces chiffres ?</Link></p>
       </section>
 
-      <section className="topic-feature section-pad">
-        <div className="section-heading"><div><div className="eyebrow">Par sujet</div><h2>Partir d’une question concrète.</h2></div><Link className="text-link" href="/scrutins">Tous les sujets →</Link></div>
-        <div className="topic-grid">{featuredSubjects.map((subject, index) => <Link className="topic-tile" href={`/scrutins?subject=${subject.id}`} key={subject.id}><span>{String(index + 1).padStart(2, '0')} / REPÈRE DANS LE TITRE</span><strong>{subject.label}</strong><small>Explorer les scrutins portant ces mots dans l’intitulé <b>↗</b></small></Link>)}</div>
-        <p className="section-foot">Ces repères cherchent des mots dans les intitulés officiels et ne couvrent pas tous les votes. <Link href="/categories">Voir les graphiques par thème →</Link></p>
-      </section>
-
       <section className="editorial-feature section-pad">
-        <div><div className="eyebrow">Ce que nous construisons</div><h2>La preuve avant la conclusion.</h2></div>
-        <div><p>Comparer un programme, une déclaration et un vote exige de vérifier qu’ils parlent de la même mesure. Un vote sur un texte entier n’exprime pas une position sur chaque article. Les dossiers thématiques, indicateurs d’inégalités et affaires judiciaires seront publiés avec leurs sources et leur contexte, après relecture.</p><div className="cta"><Link className="button light" href="/methode">Lire notre méthode →</Link><Link className="text-link light-link" href="/observatoire">Voir les chantiers documentaires →</Link></div></div>
+        <div><h2>Sources et méthode</h2></div>
+        <div><p>Chaque fiche conserve sa source et le périmètre du vote. Les rapprochements interprétatifs nécessitent une validation humaine.</p><div className="cta"><Link className="button light" href="/methode">Lire la méthode →</Link><Link className="text-link light-link" href="/observatoire">Explorer l’observatoire →</Link></div></div>
       </section>
     </main>
   );

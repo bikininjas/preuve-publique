@@ -21,7 +21,7 @@ export function GroupDirectory({ groups }: { groups: GroupDirectoryEntry[] }) {
   }, [groups, period, query]);
 
   return <section id="annuaire" className="group-directory">
-    <div className="group-directory-heading"><div><span className="eyebrow">02 / Annuaire</span><h2>Retrouvez leur trace.</h2><p>Positions majoritaires de groupe sur les scrutins publiés, du plus récent au plus ancien.</p></div><span className="group-directory-total">{groups.length.toLocaleString('fr-FR')} regroupements</span></div>
+    <div className="group-directory-heading"><h2>Annuaire des groupes</h2><span className="group-directory-total">{groups.length.toLocaleString('fr-FR')} regroupements</span></div>
     <div className="group-directory-tools">
       <label className="group-search"><span>Rechercher un groupe ou un ancien nom</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ex. Socialistes, MoDem, NUPES…" /></label>
       <div className="group-periods" role="group" aria-label="Période de publication des votes">

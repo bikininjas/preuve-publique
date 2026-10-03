@@ -39,7 +39,7 @@ export default async function ObservatoirePage() {
   const [programs, statements, indicators, judicial, assemblee, senat, parlement] = pages;
   const count = (page: EvidencePage | null) => page ? page.total.toLocaleString('fr-FR') : '—';
   return <main><SeoPage path="/observatoire" />
-    <div className="page-intro reading-intro"><div className="eyebrow">Au-delà du scrutin</div><h1>Relier les décisions<br /><em>à la vie réelle.</em></h1><p className="lead">Retrouver les propositions originales, les indicateurs publics et les étapes judiciaires documentées. Chaque pièce garde sa date, son périmètre et sa source ; les rapprochements demandent une relecture humaine.</p></div>
+    <div className="page-intro reading-intro"><div className="eyebrow">Au-delà du scrutin</div><h1>Observatoire</h1><p className="lead">Programmes, déclarations, indicateurs et étapes judiciaires : les pièces disponibles et les données encore manquantes.</p></div>
     <nav className="reading-nav" aria-label="Rubriques de l’observatoire"><a href="#parole-vote">Parole & vote ↓</a><a href="#inegalites">Inégalités ↓</a><a href="#justice">Affaires judiciaires ↓</a></nav>
     <section className="coverage"><div className="section-heading"><div><div className="eyebrow">Couverture réelle de la base</div><h2>Les scrutins consultables.</h2></div></div><div className="coverage-grid">{[
       { title: 'Assemblée nationale', page: assemblee, institution: 'assemblee' },

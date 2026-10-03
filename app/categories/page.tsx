@@ -31,18 +31,18 @@ export default async function CategoriesPage({ searchParams }: { searchParams: P
   return (
     <main className="theme-explorer"><SeoPage path="/categories" />
       <div className="page-intro reading-intro"><div className="eyebrow">Explorer par sujet</div>
-      <h1>Voir les votes.<br /><em>{senate ? 'Groupe par groupe.' : 'Parti par parti.'}</em></h1>
+      <h1>Votes par thème</h1>
       <p className="lead">{senate ?
-        'Pour, contre, abstention : explorez les décomptes officiels du Sénat par groupe parlementaire. Passez du thème au scrutin exact, avec sa date et sa source.' :
+        'Les décomptes officiels du Sénat, par groupe parlementaire et par sujet.' :
         <>
         Les bulletins individuels de députés, regroupés en trois catégories et {allSubjects.length} sous-thèmes.
-        Passez d’une vue d’ensemble au scrutin exact, avec sa date et sa source.</>}
+        Chaque graphique ouvre les scrutins correspondants.</>}
       </p></div>
 
       <nav className="pills" aria-label="Choisir une institution pour les graphiques"><Link className={!senate ? 'active' : ''} href="/categories">Assemblée · partis</Link><Link className={senate ? 'active' : ''} href="/categories?institution=senat">Sénat · groupes</Link></nav>
       <nav className="theme-jumps" aria-label="Aller à une catégorie">{VOTE_SUBJECT_GROUPS.map((category, index) => <a href={`#theme-${category.id}`} key={category.id}><span>{String(index + 1).padStart(2, '0')}</span><strong>{category.label}</strong><small>{category.subjects.length} sous-thèmes <b aria-hidden="true">↓</b></small></a>)}</nav>
       <p className="hint chart-reading-note">Les sujets peuvent se recouper : leurs totaux ne s’additionnent pas. Chaque barre décrit les positions enregistrées, jamais une opinion sur tout le thème. {senate ? 'Un groupe parlementaire n’est pas un parti.' : 'Le rattachement à un parti repose sur une affiliation datée.'}</p>
-      <nav className="subtheme-index" aria-label="Aller directement à un sous-thème">{VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}><strong>{category.label}</strong><div className="pills">{category.subjects.map((subject) => <a href={`#sous-theme-${subject.id}`} key={subject.id}>{subject.label} ↓</a>)}</div></div>)}</nav>
+      <details className="reader-disclosure"><summary>Aller directement à un sous-thème <span>{allSubjects.length} sujets</span></summary><nav className="subtheme-index" aria-label="Aller directement à un sous-thème">{VOTE_SUBJECT_GROUPS.map((category) => <div key={category.id}><strong>{category.label}</strong><div className="pills">{category.subjects.map((subject) => <a href={`#sous-theme-${subject.id}`} key={subject.id}>{subject.label} ↓</a>)}</div></div>)}</nav></details>
 
       <div className="category-vote-overview">
         {VOTE_SUBJECT_GROUPS.map((category) => <section className="theme-section" id={`theme-${category.id}`} key={category.id}>
