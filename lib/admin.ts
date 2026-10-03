@@ -7,6 +7,7 @@ import type {
   EvidenceLink,
   EvidencePage,
   IngestionRun,
+  Institution,
   RowStatus,
   Source,
 } from '@/lib/types';
@@ -74,6 +75,7 @@ const LINK_COLUMNS =
 export interface ReviewQuery {
   status?: RowStatus | 'all';
   kind?: EvidenceKind;
+  institution?: Institution;
   terms?: string;
   offset?: number;
   limit?: number;
@@ -109,6 +111,7 @@ export async function listEvidenceForReview(query: ReviewQuery = {}): Promise<Ev
     .range(offset, offset + limit - 1);
   if (query.status && query.status !== 'all') request = request.eq('status', query.status);
   if (query.kind) request = request.eq('kind', query.kind);
+  if (query.institution) request = request.eq('institution', query.institution);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }
@@ -136,6 +139,7 @@ async function countEvidenceForReview(query: ReviewQuery): Promise<number> {
   let request = db.from('evidence').select('id', { count: 'exact', head: true });
   if (query.status && query.status !== 'all') request = request.eq('status', query.status);
   if (query.kind) request = request.eq('kind', query.kind);
+  if (query.institution) request = request.eq('institution', query.institution);
   if (query.terms?.trim()) {
     request = request.textSearch('search', query.terms.trim(), { config: 'french', type: 'websearch' });
   }

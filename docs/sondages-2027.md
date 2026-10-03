@@ -1,5 +1,7 @@
 # Sondages de la présidentielle 2027
 
+Parcours en production : [sondages](https://preuve-publique.fr/presidentielle-2027/sondages), [API des mesures](https://preuve-publique.fr/api/polls) et [options de filtre](https://preuve-publique.fr/api/polls/options). Le domaine public de référence est `https://preuve-publique.fr` ; utiliser ces adresses pour les vérifications après livraison.
+
 ## Décisions
 
 Les sondages sont des mesures publiées d’intentions de vote, pas des scrutins officiels, des programmes ni des liens interprétatifs. Ils sont donc stockés dans un modèle dédié (`polls`, `poll_scenarios`, `poll_results`) plutôt que dans `evidence`. L’import réutilise `ingestion/lib/csv.mjs`, le téléchargement avec reprises, la connexion PostgreSQL, les transactions et le journal privé `ingestion_runs`. La lecture web utilise uniquement la clé publishable, des RPC **security invoker** et RLS. Aucun secret PostgreSQL n’entre dans Cloud Run.

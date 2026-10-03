@@ -119,7 +119,12 @@ export interface QueueProps<T> {
  */
 export function Queue<T>({ items, total, page, pageCount, noun, hrefFor, head, renderRow, empty, failedText }: QueueProps<T>) {
   if (!items) return <Notice>{failedText}</Notice>;
-  if (!items.length) return <Empty>{empty}</Empty>;
+  if (!items.length) {
+    if (total > 0) {
+      return <Empty>Cette page dépasse les {total.toLocaleString('fr-FR')} résultats disponibles. <Link href={hrefFor(1)}>Revenir à la première page</Link>.</Empty>;
+    }
+    return <Empty>{empty}</Empty>;
+  }
   return (
     <>
       <p className="resultline">

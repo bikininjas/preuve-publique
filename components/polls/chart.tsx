@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import type { PollResult, PollScenario, PublishedPoll } from '@/lib/polls/types';
 import { pollDate,pollScore } from '@/lib/polls/format';
+import { pollSeriesColor } from '@/lib/polls/presentation';
 
-const COLORS = ['#205c75', '#ab5035', '#7554a1', '#307052', '#925c20', '#a83f72', '#4c6171', '#81721d', '#137f80', '#635736', '#694154', '#224685', '#467620', '#984829', '#474774', '#677171'];
 const sample = (size: number | null) => size === null ? 'non renseigné' : `${size.toLocaleString('fr-FR')} personnes`;
 
 interface Point { poll: PublishedPoll; scenario: PollScenario; result: PollResult; color: string }
@@ -14,11 +14,11 @@ function pointDescription(point: Point): string {
 }
 
 /** Individual points only. No averaging, smoothing, interpolation or ranking. */
-export function PollChart({ polls, selected }: { polls: PublishedPoll[]; selected: string[] }) {
+export function PollChart({ polls, selected, roster }: { polls: PublishedPoll[]; selected: string[]; roster: string[] }) {
   const [active, setActive] = useState<Point | null>(null);
   const points: Point[] = polls.flatMap((poll) => poll.scenarios.flatMap((scenario) => scenario.results
     .filter((result) => selected.includes(result.candidate_external_id))
-    .map((result) => ({ poll, scenario, result, color: COLORS[selected.indexOf(result.candidate_external_id) % COLORS.length] }))));
+    .map((result) => ({ poll, scenario, result, color: pollSeriesColor(result.candidate_external_id, roster) }))));
   if (!points.length) return <div className="empty">Aucune mesure à tracer. Sélectionnez au moins un candidat avec un résultat dans cette hypothèse et cette période.</div>;
   const dates = points.map((p) => Date.parse(p.poll.fieldwork_end));
   const first = Math.min(...dates), last = Math.max(...dates);
@@ -34,15 +34,15 @@ export function PollChart({ polls, selected }: { polls: PublishedPoll[]; selecte
       {ticks.map((tick) => <g key={tick}><line x1={left} x2={width - right} y1={y(tick)} y2={y(tick)} className="poll-grid-line" /><text x={left - 10} y={y(tick) + 5} textAnchor="end">{tick.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %</text></g>)}
       {dateTicks.map((date) => <text key={date} x={x(date)} y={height - 22} textAnchor={date === first && first !== last ? 'start' : date === last && first !== last ? 'end' : 'middle'}>{new Date(date).toLocaleDateString('fr-FR', { timeZone: 'UTC', day: 'numeric', month: 'short' })}</text>)}
       {points.map((point) => <circle key={`${point.poll.id}/${point.scenario.round}/${point.scenario.scenario_number}/${point.result.candidate_external_id}`}
-        cx={x(Date.parse(point.poll.fieldwork_end))} cy={y(point.result.score)} r={5.5} fill={point.color} stroke="white" strokeWidth={1.5}
+        cx={x(Date.parse(point.poll.fieldwork_end))} cy={y(point.result.score)} r={5.5} fill={point.color} stroke="var(--poll-point-outline)" strokeWidth={1.5}
         tabIndex={0} role="button" aria-label={pointDescription(point)} onMouseEnter={() => setActive(point)} onFocus={() => setActive(point)} onClick={() => setActive(point)}
         onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActive(point); } }}>
         <title>{pointDescription(point)}</title>
       </circle>)}
     </svg></div>
-    <div className="poll-legend">{selected.map((id, index) => {
+    <div className="poll-legend">{selected.map((id) => {
       const result = points.find((p) => p.result.candidate_external_id === id)?.result;
-      return result ? <span key={id}><i style={{ background: COLORS[index % COLORS.length] }} />{result.candidate_name}</span> : null;
+      return result ? <span key={id}><i style={{ background: pollSeriesColor(id, roster) }} />{result.candidate_name}</span> : null;
     })}</div>
     <div className="poll-point-detail" aria-live="polite">{chosen ? <>
       <strong>{chosen.result.candidate_name} · {pollScore(chosen.result.score)} · {chosen.poll.institute}</strong>

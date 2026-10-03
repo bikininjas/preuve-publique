@@ -1,5 +1,7 @@
 # Parcours sondages → candidat → pièces → sous-thèmes
 
+Parcours en production : [annuaire des personnes](https://preuve-publique.fr/presidentielle-2027/candidats), [comparaison documentaire](https://preuve-publique.fr/presidentielle-2027/comparer) et [revue des mesures](https://preuve-publique.fr/admin/measures), qui exige une session administrateur. Le domaine public de référence est `https://preuve-publique.fr` ; utiliser ces adresses pour les vérifications après livraison.
+
 ## Livré et vérifié le 02/10/2026
 
 Le lecteur ouvre une fiche depuis le nom dans un tableau de sondage, ou l’annuaire `/presidentielle-2027/candidats`. La fiche conserve les mesures individuelles, leurs configurations, dates de terrain, source originale et attribution Sondax. Elle distingue l’identité recoupée, les rattachements institutionnels datés, les propositions reliées aux mesures, les bulletins personnels et l’exploration séparée des partis.

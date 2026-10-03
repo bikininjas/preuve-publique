@@ -343,6 +343,38 @@ async function countPublished(query: EvidenceQuery): Promise<number> {
 }
 
 /**
+ * Index léger des pièces publiées (identifiant et date du document), destiné
+ * au sitemap. Deux colonnes suffisent : un plan de site n'a pas besoin du
+ * contenu. L'avancement se fait par plages successives, en suivant le total
+ * annoncé par PostgREST, même si la réponse est plafonnée en nombre de lignes.
+ */
+export async function getPublishedPieceIndex(): Promise<Array<{ id: string; occurred_at: string }>> {
+  const db = client();
+  if (!db) return [];
+  const rows: Array<{ id: string; occurred_at: string }> = [];
+  const PAGE = 1000;
+  let expected: number | null = null;
+  let batch: Array<{ id: string; occurred_at: string }> = [];
+  do {
+    const { data, error, count } = await db
+      .from('evidence')
+      .select('id,occurred_at', { count: 'exact' })
+      .eq('status', 'published')
+      .order('occurred_at', { ascending: false })
+      .order('id', { ascending: false })
+      .range(rows.length, rows.length + PAGE - 1);
+    if (error) {
+      if (isRangeNotSatisfiable(error)) break;
+      throw new DataUnavailableError();
+    }
+    if (typeof count === 'number') expected = count;
+    batch = (data ?? []) as unknown as Array<{ id: string; occurred_at: string }>;
+    rows.push(...batch);
+  } while (batch.length > 0 && (expected === null || rows.length < expected));
+  return rows;
+}
+
+/**
  * Comptage public par rubrique, calculé par la base en rôle appelant : seul ce
  * qui est publié est compté, et une rubrique n'apparaît que si elle est portée
  * par au moins une pièce publiée.

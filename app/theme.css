@@ -1,0 +1,197 @@
+/* Theme overrides follow the editorial stylesheet; light keeps its original palette. */
+:root {
+  color-scheme: dark;
+  --ink: #edf2f5;
+  --muted: #b2c0c9;
+  --paper: #0c1721;
+  --line: #344651;
+  --orange: #ff9b73;
+  --teal: #87d6ce;
+  --surface: #142430;
+  --surface-raised: #1c303b;
+  --accent-text: #ffb18d;
+  --vote-for: #80d5a9;
+  --vote-against: #f18c73;
+  --vote-abstain: #e6c573;
+  --poll-point-outline: #fff;
+  --poll-series-1: #205c75;
+  --poll-series-2: #ab5035;
+  --poll-series-3: #7554a1;
+  --poll-series-4: #307052;
+  --poll-series-5: #925c20;
+  --poll-series-6: #a83f72;
+  --poll-series-7: #4c6171;
+  --poll-series-8: #81721d;
+  --poll-series-9: #137f80;
+  --poll-series-10: #635736;
+  --poll-series-11: #694154;
+  --poll-series-12: #224685;
+  --poll-series-13: #467620;
+  --poll-series-14: #984829;
+  --poll-series-15: #474774;
+  --poll-series-16: #677171;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ink: #182533;
+  --muted: #52606b;
+  --paper: #f5f4ef;
+  --line: #d9dfdc;
+  --orange: #e96b43;
+  --teal: #247c7d;
+  --surface: #fff;
+  --surface-raised: #e8ece7;
+  --accent-text: #9e482b;
+  --vote-for: #23755d;
+  --vote-against: #bd503b;
+  --vote-abstain: #97721b;
+}
+
+.header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.header-actions .header-action { margin-left: 0; }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--ink); font: 700 12px Arial, Helvetica, sans-serif;
+  cursor: pointer; white-space: nowrap;
+}
+.theme-toggle:hover { border-color: var(--orange); }
+.theme-toggle svg { flex-shrink: 0; }
+.theme-track { display: inline-flex; align-items: center; width: 28px; height: 16px; padding: 2px; border-radius: 999px; background: var(--line); }
+.theme-track > span { width: 12px; height: 12px; border-radius: 50%; background: var(--ink); transition: transform .15s ease; }
+.theme-toggle[aria-checked="true"] .theme-track { background: var(--orange); }
+.theme-toggle[aria-checked="true"] .theme-track > span { background: #102334; transform: translateX(12px); }
+
+/* Surfaces and native controls. Never invert charts, photos or the full page. */
+[data-theme="dark"] :is(.panel, .card, .toolbar, .citation, .table, .mini, .art-card,
+  .searchbar, .hero-search, .latest-vote, .group-tile, .vote-row, .admin-nav,
+  .vote-metrics > div, .coverage-grid > div, .group-directory-card, .group-directory-empty,
+  .subject-group, .subject-picker, .subtheme-disclosure, .document-provenance,
+  .subtheme-index, .party-profile-card, .profile-subtheme, .poll-chart, .poll-card,
+  .reading-nav a, .mobile-subject-directory, .skip-link) {
+  background: var(--surface); border-color: var(--line);
+}
+[data-theme="dark"] :is(.field input, .field select, .field textarea, .group-search input,
+  .poll-controls input, .poll-controls select, .poll-configuration select, .candidate-form select) {
+  background: var(--surface); color: var(--ink); border-color: var(--line);
+}
+[data-theme="dark"] input::placeholder { color: var(--muted); opacity: 1; }
+[data-theme="dark"] :is(.stat, .review-checklist div, .table th, .candidate-vote-table thead,
+  .info-band, .official-title, .official-wording p, .admin-welcome, .group-kpis > div,
+  .group-profile .group-kpis > div, .group-identity-panel li, .group-party-note,
+  .profile-reading-key, .profile-subtheme.category-total, .poll-selected-roster, .scrutin-result,
+  .subject-directory, .party-subject-chart, .chip, .reading-nav a:hover) {
+  background: var(--surface-raised); border-color: var(--line);
+}
+[data-theme="dark"] :is(.topic-tile, .theme-jumps a) { background: #1c343b; }
+[data-theme="dark"] :is(.topic-tile:nth-child(3n+2), .theme-jumps a:nth-child(3n+2)) { background: #34312c; }
+[data-theme="dark"] :is(.topic-tile:nth-child(3n+3), .theme-jumps a:nth-child(3n+3)) { background: #2b2e38; }
+[data-theme="dark"] :is(.party-program-slot, .scope-chip, .card-vote-scope b) { background: #3b2d27; color: #ffd0b6; }
+[data-theme="dark"] :is(.party-program-slot p, .party-program-slot span) { color: inherit; }
+[data-theme="dark"] code { background: var(--surface-raised); }
+[data-theme="dark"] pre code { background: none; }
+[data-theme="dark"] .raw pre { background: var(--surface); border-color: var(--line); }
+[data-theme="dark"] ::selection { background: #ffb18d; color: #102334; }
+
+/* Labels and links on the public light surfaces also need a readable dark variant. */
+[data-theme="dark"] :is(.hint, .sub, .resultline, .tag, .empty, .section-foot, .card-date,
+  .card-ref, .vote-mini, .topic-tile span, .topic-tile small, .list-heading span,
+  .position-cell span, .position-cell small, .domain-tile small, .review-checklist span,
+  .vote-metrics span, .group-kpis span, .coverage-grid span, .coverage-grid small,
+  .group-directory-legend, .group-card-top, .group-card-bottom, .group-card-core p,
+  .group-card-chart-labels, .group-directory-empty, .group-directory-caveat,
+  .group-identity-item small, .latest-vote-meta, .latest-vote-scope, .latest-vote-source,
+  .distribution-values, .distribution-values > span, .distribution-note, .subject-picker summary small,
+  .subtheme-disclosure summary small, .theme-jumps small, .official-wording summary,
+  .profile-subtheme small, .profile-keywords, .party-subject-row small, .party-subject-foot,
+  .poll-card thead th, .raw summary, .latest-vote-seal, .subject-group h3,
+  .party-subject-head > span, .party-subject-chart .party-chart-legend,
+  .group-identity-item > div:nth-child(2) > span, .group-identity-end > span,
+  .home-strip small, .card-confidence, .document-confidence, .document-provenance summary small,
+  .mobile-subject-directory summary span, .site-footer, .card-topic-label, .field,
+  .stat span, .citation footer) { color: var(--muted); }
+[data-theme="dark"] :is(.quiet, .text-link, .eyebrow, .count, .source a, .section-foot a,
+  .card-party-link, .tile-arrow, .vote-row a:not(h3 a), .domain-tile span,
+  .footer-links a:hover, .group-method-note > a, .group-card-core small,
+  .group-card-bottom strong, .group-identity-number, .profile-reading-key a,
+  .theme-jumps span, .party-subject-foot a, .admin-shortcuts a:hover,
+  .latest-vote-link:hover, .latest-vote-kicker > span:first-child, .subject-category-link,
+  .subject-links a span, .subject-directory .hint a, .party-profile-card h3 a:hover,
+  .party-profile-subjects > a:hover, .strip-index, .card-vote-scope, .pager a,
+  .quiet:hover, .disclosure-plus) { color: var(--accent-text); }
+[data-theme="dark"] :is(.meta dt, .meta dd, .info-band strong, .official-title strong,
+  .party-subject-row a, .party-profile-subjects > a, .table th, .admin-nav a,
+  .reading-nav a, .subject-group a, .chip, .group-periods button,
+  .party-subject-head h3 a, .party-subject-chart > h3 a, .mini, .citation p) { color: var(--ink); }
+[data-theme="dark"] :is(.group-method-mark, .party-profile-theme strong, .profile-share) { color: var(--teal); }
+[data-theme="dark"] .group-monogram { background: #28464c; color: var(--teal); }
+[data-theme="dark"] :is(.site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"]) { color: var(--accent-text); }
+[data-theme="dark"] .header-action:hover { background: var(--ink); color: var(--paper); }
+[data-theme="dark"] .button.secondary:hover { background: var(--surface-raised); }
+[data-theme="dark"] :is(.mini:hover, .stat:hover) { background: var(--surface-raised); }
+[data-theme="dark"] :is(.pills a.active, .group-periods button[aria-pressed="true"],
+  .subject-group a.active, .subject-group a:hover, .admin-nav a:hover) {
+  background: var(--surface-raised); color: var(--ink); border-color: var(--teal);
+}
+[data-theme="dark"] .vote-topic-path a { background: #223d3e; color: #c5ebe0; }
+[data-theme="dark"] .vote-topic-path a:hover { background: #2a4d49; }
+[data-theme="dark"] .vote-topic-path .vote-topic-category { background: transparent; color: var(--muted); }
+[data-theme="dark"] :is(.distribution-track, .group-card-chart-track, .party-subject-row .party-bar) { background: #3c5059; }
+[data-theme="dark"] .party-chart-shares .pour { color: #80d5a9; }
+[data-theme="dark"] .party-chart-shares .contre { color: #f18c73; }
+[data-theme="dark"] .party-chart-shares .abstention { color: #e6c573; }
+[data-theme="dark"] .party-chart-shares .non-votant { color: #b5c7cb; }
+[data-theme="dark"] .candidate-position.contre { color: #f18c73; }
+
+/* Keep review statuses distinct, including their original textual labels. */
+[data-theme="dark"] .badge { background: var(--surface-raised); color: var(--muted); border-color: var(--line); }
+[data-theme="dark"] .notice { background: #3f2f27; color: #ffd0b6; border-color: var(--line); }
+[data-theme="dark"] :is(.notice.ok, .badge.published, .badge.run-ok, .mini.published, .mini.run-ok) { background: #203f35; color: #b6e6c8; }
+[data-theme="dark"] :is(.badge.draft, .mini.draft, .mini.run-running) { background: #403822; color: #f2d792; }
+[data-theme="dark"] :is(.notice.warn, .badge.reviewed, .badge.run-partial, .mini.reviewed, .mini.run-partial) { background: #3f2f27; color: #ffd0b6; }
+[data-theme="dark"] :is(.notice.error, .badge.run-error, .mini.run-error) { background: #432b2d; color: #ffbdb5; }
+[data-theme="dark"] .admin-head .mini { background: transparent; color: white; }
+
+/* Borders and paper shadows must change along with the surfaces. */
+[data-theme="dark"] :is(.vote-mini, .latest-vote-kicker, .latest-vote-link, .group-card-bottom,
+  .group-kpis, .admin-shortcuts a, .poll-point-detail, .poll-scenario, .poll-card th,
+  .poll-card td, .table td, .party-subject-row, .party-profile-card footer, .latest-vote-seal,
+  .party-profile-theme, .party-profile-subjects, .party-profile-subjects > a,
+  .vote-topic-path a, .mobile-subject-directory details, .provenance-content) { border-color: var(--line); }
+[data-theme="dark"] .mobile-subject-directory details { background: var(--surface); }
+[data-theme="dark"] :is(.hero-art, .latest-vote, .party-chart, .party-subject-chart) { box-shadow: 8px 8px 0 #071119; }
+[data-theme="dark"] .group-directory-card:hover { box-shadow: 6px 8px 0 #071119; border-color: var(--teal); }
+
+/* Preserve matching point/legend hues with enough luminance on the dark chart. */
+[data-theme="dark"] {
+  --poll-point-outline: #142430;
+  --poll-series-1: #80c7e5;
+  --poll-series-2: #f29c7f;
+  --poll-series-3: #bb9ae8;
+  --poll-series-4: #88d6b0;
+  --poll-series-5: #e9bb7c;
+  --poll-series-6: #f295c3;
+  --poll-series-7: #a2bdcf;
+  --poll-series-8: #ddd17e;
+  --poll-series-9: #70d7d5;
+  --poll-series-10: #c5b389;
+  --poll-series-11: #c69eaf;
+  --poll-series-12: #90b5ff;
+  --poll-series-13: #b2d87e;
+  --poll-series-14: #efab90;
+  --poll-series-15: #a8a8df;
+  --poll-series-16: #b6c5c5;
+}
+[data-theme="dark"] .poll-chart svg text { fill: var(--muted); }
+[data-theme="dark"] .poll-grid-line { stroke: var(--line); }
+[data-theme="dark"] .poll-chart circle:hover, [data-theme="dark"] .poll-chart circle:focus { stroke: var(--ink); }
+[data-theme="dark"] .poll-candidates input { accent-color: var(--teal); }
+
+@media (max-width: 1100px) { .header-actions { margin-left: auto; } }
+@media (max-width: 500px) {
+  .theme-toggle { width: 44px; padding: 0; }
+  .theme-label, .theme-track { display: none; }
+  .header-actions { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .theme-track > span { transition: none; } }

@@ -1,0 +1,67 @@
+.admin .admin-nav a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.admin .review-status-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 14px;
+}
+
+.admin .review-status-tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin .review-status-tabs a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.admin .review-reset {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.admin :is(.review-status-tabs a, .review-reset, .admin-nav a):focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.admin .admin-review-queue .table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.admin .admin-review-queue :is(th, td):last-child { width: 150px; }
+.admin .admin-review-queue td { overflow-wrap: anywhere; }
+.admin .admin-review-queue td > a { line-height: 1.55; }
+.admin .admin-review-queue .sub { margin-top: 6px; }
+.admin .admin-who b { overflow-wrap: anywhere; }
+
+@media (max-width: 740px) {
+  .admin .toolbar .field { min-width: 0; flex-basis: 100%; }
+  .admin .toolbar :is(input, select) { width: 100%; min-height: 44px; }
+  .admin .admin-review-queue .table { display: table; white-space: normal; overflow: visible; }
+  .admin .admin-review-queue :is(th, td) { padding: 10px 8px; }
+  .admin .admin-review-queue :is(th, td):last-child { width: 104px; }
+  .admin .admin-review-queue .badge { font-size: 10px; padding-inline: 6px; }
+  .admin .review-status-tabs { gap: 6px; }
+  .admin .review-status-tabs a { flex: 1 1 auto; padding-inline: 10px; font-size: 13px; }
+}

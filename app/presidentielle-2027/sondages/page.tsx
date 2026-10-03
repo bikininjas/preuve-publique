@@ -7,12 +7,19 @@ export const metadata = { title: 'Sondages · Présidentielle 2027',
 export default function PollsPage() {
   return <main className="polls-page">
     <p className="breadcrumb"><Link href="/presidentielle-2027">Présidentielle 2027</Link> / Sondages</p>
-    <div className="eyebrow">Mesures publiées · France</div><h1>Les intentions de vote,<br />avec leurs sources.</h1>
-    <p className="lead">Suivre les sondages de la présidentielle 2027, une hypothèse de candidatures à la fois.</p>
-    <div className="profile-reading-key"><strong>Comment lire ces mesures</strong>
+    <header className="presidential-hero polls-hero">
+      <div><div className="eyebrow">Présidentielle 2027 · L’observatoire des sondages</div>
+        <h1>Le pouls de <em>2027.</em></h1>
+        <p className="lead">Les intentions de vote, une hypothèse à la fois. Explorez les mesures, retrouvez chaque source.</p>
+        <div className="presidential-actions"><a className="button" href="#explorer-sondages">Explorer les sondages ↓</a><Link className="text-link" href="/presidentielle-2027/candidats">Découvrir les personnes testées ↗</Link></div>
+      </div>
+      <div className="presidential-hero-note"><span className="hero-edition" aria-hidden="true">20<br />27<span>FRANCE</span></span><p>Des mesures publiées.<br />Des hypothèses explicites.<br /><strong>Les sources à portée de main.</strong></p></div>
+    </header>
+    <nav className="presidential-tabs" aria-label="Présidentielle 2027"><Link href="/presidentielle-2027/sondages" aria-current="page">Sondages</Link><Link href="/presidentielle-2027/candidats">Personnes testées</Link><Link href="/presidentielle-2027/comparer">Comparer les pièces</Link><a href="#sources-sondages">Méthode & sources ↗</a></nav>
+    <details className="presidential-reading"><summary>Bien lire un sondage <span>Un point = une mesure, jamais une prévision</span></summary>
       <p>Un point représente le résultat d’un candidat dans une configuration testée par un institut. La date est la fin du terrain. Les listes de candidats, les instituts et les méthodes peuvent changer : ces mesures ne constituent ni une moyenne ni une prévision.</p>
       <p>Les numéros de configuration sont locaux à chaque sondage. Le filtre rapproche uniquement les listes exactes de candidats ; il ne garantit pas des méthodes ou des formulations identiques. L’échantillon total et la base de la configuration sont distingués lorsqu’ils sont disponibles.</p>
-    </div>
+    </details>
     <PollExplorer />
     <section id="sources-sondages" className="panel poll-method"><h2>Provenance et limites</h2>
       <p>Données : <a href="https://sondax.fr/" target="_blank" rel="noopener noreferrer">Sondax, d’après Wikipédia ↗</a>. Les valeurs sont reprises du <a href="https://sondax.fr/donnees.html" target="_blank" rel="noopener noreferrer">CSV documenté par Sondax</a>, avec la notice de la Commission des sondages ou la publication de l’institut. Ce sont des mesures rapportées par Sondax ; Preuve Publique n’effectue aucune moyenne et n’a pas revérifié chaque notice.</p>

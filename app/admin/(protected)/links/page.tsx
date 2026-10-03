@@ -3,6 +3,7 @@ import { FlashNotice } from '@/components/flash-notice';
 import { FilterForm, StatusSelect } from '@/components/filters';
 import { Queue, StatusBadge } from '@/components/ui';
 import { listLinksForReview } from '@/lib/admin';
+import { adminPieceHref } from '@/lib/admin-review';
 import { methodLabel, relationLabel } from '@/lib/labels';
 import { enumParam, pageParam, type SearchParamsRecord } from '@/lib/params';
 import type { RowStatus } from '@/lib/types';
@@ -43,9 +44,10 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
         contradiction.
       </p>
       <FlashNotice params={params} />
-      <FilterForm action="/admin/links">
+      <FilterForm key={status} action="/admin/links">
         <StatusSelect value={status} />
       </FilterForm>
+      <div className="admin-review-queue">
       <Queue
         items={items}
         total={total}
@@ -61,12 +63,12 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
             <td>
               <div>
                 <StatusBadge status={link.from?.status ?? 'draft'} />{' '}
-                {link.from ? <Link href={`/admin/pieces/${link.from.id}`}>{link.from.title}</Link> : '—'}
+                {link.from ? <Link href={adminPieceHref(link.from.id, hrefFor(page))} prefetch={false}>{link.from.title}</Link> : '—'}
               </div>
               <div className="sub">↓ {relationLabel(link.relation)}</div>
               <div>
                 <StatusBadge status={link.to?.status ?? 'draft'} />{' '}
-                {link.to ? <Link href={`/admin/pieces/${link.to.id}`}>{link.to.title}</Link> : '—'}
+                {link.to ? <Link href={adminPieceHref(link.to.id, hrefFor(page))} prefetch={false}>{link.to.title}</Link> : '—'}
               </div>
               <div className="sub">
                 {methodLabel(link.method)} · confiance {Number(link.confidence).toLocaleString('fr-FR')}
@@ -79,6 +81,7 @@ export default async function LinksQueuePage({ searchParams }: { searchParams: P
           </tr>
         )}
       />
+      </div>
     </>
   );
 }
