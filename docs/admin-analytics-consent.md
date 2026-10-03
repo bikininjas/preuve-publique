@@ -1,6 +1,6 @@
 # Relecture, Google Analytics et consentement
 
-État vérifié le 3 octobre 2026 : la propriété Google Analytics a été créée ; les changements web sont validés localement sur `codex/admin-review-workflow`. Ils ne sont pas encore livrés sur `preuve-publique.fr`.
+Contrôles préparatoires du 3 octobre 2026 : la propriété Google Analytics a été créée et les changements web ont été validés sur `codex/admin-review-workflow`, après intégration de la branche principale. La livraison de l’ensemble, frontend inclus, a été autorisée. Les références du build et de la révision livrée sont consignées dans la PR associée ; les étapes ci-dessous servent à vérifier l’activation sur `preuve-publique.fr`.
 
 ## Propriété dédiée
 
@@ -27,8 +27,9 @@ Réglages enregistrés et relus dans Analytics :
 - Collecte précise sur l’appareil et la zone géographique désactivée.
 - Personnalisation publicitaire autorisée dans **0 des 307 régions**.
 - Conservation des données utilisateur et des événements : **deux mois**, sans réinitialisation à chaque nouvelle activité. Les rapports agrégés ne sont pas soumis à cette durée.
+- Instantané des rapports : modèle « Comportement des utilisateurs ».
 
-La réception d’événements a été confirmée dans le rapport temps réel : un utilisateur actif et une page vue « Méthode · Preuve Publique », correspondant au test local après acceptation. Les événements `first_visit`, `session_start` et `page_view` apparaissent. Ce contrôle local ne prouve pas une collecte sur le site public, qui ne contient pas encore cette intégration.
+La réception d’événements a été confirmée dans le rapport temps réel : un utilisateur actif et une page vue « Méthode · Preuve Publique », correspondant au test local après acceptation. Les événements `first_visit`, `session_start` et `page_view` apparaissent. La collecte sur le domaine public doit être vérifiée séparément après livraison.
 
 ## Activation du site
 
@@ -43,7 +44,7 @@ Cette valeur est configurée dans le `.env.local` ignoré par Git. `.env.example
 Pour livrer :
 
 1. Relire et livrer les changements web. Le checkout contient aussi un travail frontend antérieur à cette intervention ; déterminer le périmètre de livraison avant de fusionner.
-2. Vérifier le service Cloud Run effectif, puis ajouter `GA_MEASUREMENT_ID` à ses variables d’exécution en préservant les variables et secrets existants. Le service documenté est `preuve-publique-git`, projet `preuve-publique`, région `europe-west1`. Cette configuration distante n’a pas été effectuée ici.
+2. Vérifier le service Cloud Run effectif, puis ajouter `GA_MEASUREMENT_ID` à ses variables d’exécution en préservant les variables et secrets existants. Service et registre contrôlés avant livraison : `preuve-publique-git`, projet `preuve-publique`, région `europe-west1`, registre `cloud-run-source-deploy`. Le déclencheur Cloud Run utilise ces valeurs et préserve les variables d’exécution ; le déclencheur fondé sur `cloudbuild.yaml` est désactivé.
 3. Contrôler la révision prête et son trafic, puis `/api/analytics/config` et `/confidentialite` sur `https://preuve-publique.fr`.
 4. Dans un navigateur neuf, vérifier l’absence de requête Google Analytics avant tout choix et après refus ; accepter pour vérifier une page vue dans les rapports temps réel, puis retirer l’accord et vérifier l’arrêt de la collecte. Contrôler également une navigation publique vers `/admin`.
 
@@ -78,7 +79,9 @@ Les contrôles d’accès `admin_users`, RLS et transitions de revue existants s
 
 - `npm run build` : réussi, TypeScript inclus.
 - `npm run lint` : réussi.
-- `npm run test:reader` : **20 tests réussis**, dont navigation de retour, validation et expiration du consentement, déclenchement du tag et retrait sans toucher à la session.
+- `npm run test:reader` : **31 tests réussis** après intégration de la branche principale, dont navigation de retour, consentement, déclenchement du tag, retrait, graphiques, SEO et partage.
+- `npm run test:polls` : **13 tests réussis**. Le découpage des lignes de la fixture est compatible LF et CRLF ; le parseur d’ingestion n’est pas modifié.
+- `npm run test:candidates` : **4 tests réussis**.
 - `node --test ingestion/tests/admin.test.mjs` : **5 tests réussis**, couvrant la liste d’administration, RLS et les écritures autorisées dans PGlite.
 - Navigateur local : aucun tag GA avant accord ou après refus conservé ; tag présent après accord ; retrait suivi du rechargement et absence du tag.
 - Analytics temps réel : réception de la page vue « Méthode · Preuve Publique » issue du test local après acceptation.
