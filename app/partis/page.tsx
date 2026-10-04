@@ -7,6 +7,8 @@ import { first, pageParam, type SearchParamsRecord } from '@/lib/params';
 import { getAllPartyVotes, getPartyThemes } from '@/lib/vote-theme-data';
 import { ballotTotal } from '@/lib/vote-profile';
 import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
+import { ParliamentComposition } from '@/components/parliament-composition';
+import { CHAMBERS } from '@/lib/parliament-composition';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,6 +16,8 @@ export default async function PartiesPage({ searchParams }: { searchParams: Prom
   const params = await searchParams;
   const query = (first(params.q) ?? '').trim().slice(0, 80);
   const page = pageParam(params.page);
+  const chamber = CHAMBERS.find(c => c.id === first(params.institution))?.id ?? 'assemblee';
+  const compositionQuery = { institution: chamber, ...(chamber === 'parlement_europeen' && first(params.scope) === 'france' ? { scope: 'france' } : {}) };
   const [dashboard, themes] = await Promise.all([
     getAllPartyVotes().catch(() => null),
     getPartyThemes([...VOTE_SUBJECT_GROUPS.map((category) => category.id), ...PROFILE_SUBJECTS]),
@@ -23,12 +27,14 @@ export default async function PartiesPage({ searchParams }: { searchParams: Prom
   const filtered = parties.filter((party) => normalize(party.party_name).includes(normalize(query)) || normalize(party.party_name.split(/\s+/).map((word) => word[0]).join('')) === normalize(query));
   const shown = filtered.slice((page - 1) * 12, page * 12);
   return <main><SeoPage path="/partis" />
-    <div className="page-intro reading-intro"><div className="eyebrow">Assemblée nationale · Affiliations datées</div><h1>Partis politiques</h1><p className="lead">Les bulletins des députés rattachés à chaque parti, par thème et par scrutin.</p><Link className="button" href="/partis/comparer">Comparer deux partis →</Link></div>
+    <div className="page-intro reading-intro"><div className="eyebrow">Assemblée nationale · Sénat · Parlement européen</div><h1>Partis politiques</h1><p className="lead">Découvrez les rattachements aux partis dans les trois assemblées, puis explorez les votes documentés des députés.</p><Link className="button" href="/partis/comparer">Comparer deux partis →</Link></div>
+    <ParliamentComposition mode="parties" params={params} />
+    <h2>Profils de vote à l’Assemblée nationale</h2>
     <div className="profile-reading-key"><div className="party-chart-legend"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div><p>Les pourcentages portent sur les textes et amendements trouvés dans le corpus, pas sur une orientation « libérale » ou « sociale ». Un vote pour un amendement de suppression peut s’opposer à la mesure du texte. Les partis et leurs anciens noms restent distincts selon les affiliations datées.</p><Link href="/methode#profils-vote">Comprendre les chiffres →</Link></div>
-    <form className="searchbar" action="/partis" method="get"><label className="sr-only" htmlFor="party-search">Chercher un parti</label><input id="party-search" type="search" name="q" maxLength={80} defaultValue={query} placeholder="Nom ou initiales du parti…" /><button className="button" type="submit">Rechercher ↗</button></form>
+    <form className="searchbar" action="/partis" method="get">{Object.entries(compositionQuery).map(([name, value]) => <input type="hidden" key={name} name={name} value={value} />)}<label className="sr-only" htmlFor="party-search">Chercher un parti</label><input id="party-search" type="search" name="q" maxLength={80} defaultValue={query} placeholder="Nom ou initiales du parti…" /><button className="button" type="submit">Rechercher ↗</button></form>
     <p className="resultline">{filtered.length} parti{filtered.length > 1 ? 's' : ''}{query ? ` pour « ${query} »` : ''} avec des bulletins attribuables · tri par volume documenté, archives comprises</p>
     {dashboard && shown.length ? <div className="party-profile-grid">{shown.map((party) => <PartyProfileCard key={party.party_id} party={party} themes={themes} scope={dashboard.scope} />)}</div> : <Empty>{dashboard ? 'Aucun profil sur cette page. Essayez un autre nom ou revenez à la première page.' : 'Les profils de vote sont temporairement indisponibles.'}</Empty>}
-    <Pager page={page} pageCount={Math.max(1, Math.ceil(filtered.length / 12))} hrefFor={(target) => `/partis?${new URLSearchParams({ ...(query ? { q: query } : {}), page: String(target) })}`} />
+    <Pager page={page} pageCount={Math.max(1, Math.ceil(filtered.length / 12))} hrefFor={(target) => `/partis?${new URLSearchParams({ ...compositionQuery, ...(query ? { q: query } : {}), page: String(target) })}`} />
     <p className="section-foot">Au Sénat, les données disponibles portent sur les groupes parlementaires. <Link href="/categories?institution=senat">Explorer les groupes du Sénat par sujet →</Link></p>
   </main>;
 }

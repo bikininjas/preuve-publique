@@ -1,0 +1,125 @@
+{
+  "asOf": "2025-11-30",
+  "source": {
+    "url": "https://www.senat.fr/fileadmin/cru-1766213612/Organisation_interne/Bureau/Comptes_rendus/2025/07_CR_Bureau_181225.pdf",
+    "publisher": "Sénat",
+    "locator": "Bureau du 18 décembre 2025 · annexe page 10 (11e page PDF)",
+    "sha256": "26b89ce3a5bcfa6dde55904cda523be951582600985e792ecd5a51c3da74b35f"
+  },
+  "buckets": [
+    {
+      "id": "senate-funding-0",
+      "name": "Les Républicains",
+      "seats": 124,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-1",
+      "name": "Parti socialiste",
+      "seats": 64,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-2",
+      "name": "Union des Démocrates Européens, Centristes et Indépendants",
+      "seats": 41,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-3",
+      "name": "Alliance centriste",
+      "seats": 24,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-4",
+      "name": "Horizons",
+      "seats": 21,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-5",
+      "name": "Ensemble ! (Majorité présidentielle)",
+      "seats": 18,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-6",
+      "name": "Parti communiste français",
+      "seats": 17,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-7",
+      "name": "Les Écologistes",
+      "seats": 16,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-8",
+      "name": "Régions et Peuples Solidaires",
+      "seats": 5,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-9",
+      "name": "Guadeloupe unie solidaire et responsable",
+      "seats": 4,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-10",
+      "name": "Rassemblement National",
+      "seats": 3,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-11",
+      "name": "Parti du Mouvement Populaire Franciscain",
+      "seats": 2,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-12",
+      "name": "Tapura Huiraatira",
+      "seats": 2,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-13",
+      "name": "Association Ambition Réunion",
+      "seats": 1,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-14",
+      "name": "Debout la France",
+      "seats": 1,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-15",
+      "name": "Parti progressiste démocratique guadeloupéen",
+      "seats": 1,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-16",
+      "name": "Pour La Réunion",
+      "seats": 1,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-17",
+      "name": "UDR-Union des droites républicaines",
+      "seats": 1,
+      "status": "known"
+    },
+    {
+      "id": "senate-funding-18",
+      "name": "Aucun rattachement",
+      "seats": 2,
+      "status": "unaffiliated"
+    }
+  ]
+}

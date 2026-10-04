@@ -16,6 +16,7 @@ import './institutions.css';
 import './justice.css';
 import './political.css';
 import './citizen.css';
+import './hemicycle.css';
 import { VisualEffects } from '@/components/visual-effects';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { THEME_INIT_SCRIPT } from '@/lib/theme';

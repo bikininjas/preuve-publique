@@ -10,8 +10,8 @@ export const SEO_PAGES: Record<string, SeoDocument> = {
   '/scrutins': { title: 'Scrutins : qui vote quoi à l’Assemblée et au Sénat ?', description: 'Retrouvez les votes officiels par sujet, parti ou groupe : pour, contre, abstention et non-participation, avec le texte exact et les sources.', section: 'Scrutins officiels' },
   '/pieces': { title: 'Documents et scrutins publiés', description: 'Consultez les pièces publiées de Preuve Publique : scrutins officiels, textes adoptés et documents politiques, avec leur date et leur provenance.', section: 'Base documentaire' },
   '/categories': { title: 'Votes par thème : économie, société et vie quotidienne', description: 'Explorez les votes par thème et sous-thème : logement, retraites, impôts, santé, immigration et sécurité. Chaque graphique renvoie aux scrutins officiels.', section: 'Thèmes et sous-thèmes' },
-  '/groupes': { title: 'Groupes parlementaires : retrouver leurs votes officiels', description: 'Retrouvez les groupes de l’Assemblée nationale, leurs noms et périodes documentées, et leurs positions majoritaires dans les scrutins publiés.', section: 'Groupes parlementaires' },
-  '/partis': { title: 'Partis politiques : leurs votes par thème', description: 'Comparez les bulletins rattachables aux partis par thème et sous-thème, avec les affiliations datées, les scrutins et les limites de la méthode.', section: 'Partis et votes' },
+  '/groupes': { title: 'Groupes parlementaires : hémicycles et votes officiels', description: 'Les effectifs des groupes à l’Assemblée nationale, au Sénat et au Parlement européen en hémicycle, avec les dates, sources et votes documentés.', section: 'Groupes parlementaires' },
+  '/partis': { title: 'Partis politiques : hémicycles et votes par thème', description: 'Explorez les rattachements aux partis dans les trois assemblées, leurs sources et leurs dates, puis les votes documentés par thème.', section: 'Partis et votes' },
   '/partis/comparer': { title: 'Comparer deux partis sur les mêmes scrutins', description: 'Deux partis côte à côte, texte par texte : pour, contre, abstentions et non-votants documentés, avec les sources et les affiliations datées.', section: 'Comparer les partis', parent: { name: 'Partis', path: '/partis' } },
   '/methode': { title: 'Méthode, sources et limites de l’observatoire', description: 'Comment les scrutins, les affiliations et les documents sont vérifiés : sources primaires, provenance, relecture humaine et limites des comparaisons.', section: 'Notre méthode' },
   '/observatoire': { title: 'Observatoire : parole politique, inégalités et justice', description: 'Suivez les chantiers documentaires sur les programmes, les votes, les inégalités et les procédures judiciaires. Sources, méthode et données manquantes explicites.', section: 'Observatoire citoyen' },
@@ -55,7 +55,7 @@ export function seoQuery(path: string, query: SearchParamsRecord = {}) {
       label += ` · ${VOTE_SUBJECT_GROUPS.find(category => category.id === value)!.label}`;
     } else {
       indexable = false;
-      if (['q', 'kind', 'topic', 'institution', 'subject', 'category', 'party', 'group', 'candidate', 'institute', 'round', 'start', 'end', 'configuration', 'party_page', 'group_page', 'left', 'right'].includes(key)) {
+      if (['q', 'kind', 'topic', 'institution', 'scope', 'subject', 'category', 'party', 'group', 'candidate', 'institute', 'round', 'start', 'end', 'configuration', 'party_page', 'group_page', 'left', 'right'].includes(key)) {
         for (const item of Array.isArray(raw) ? raw : [value]) normalized.append(key, item.slice(0, 200));
       }
     }
