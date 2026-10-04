@@ -40,6 +40,19 @@ test('LD does not require a promulgation; constitutional bills are excluded',()=
 test('one final whole vote per dossier, numeric order on the same date',()=>{
  const first=an("Scrutin n° 9 — l'ensemble du projet de loi test (lecture définitive).",{external_id:'VTANR5L17V9'});const last={...first,external_id:'VTANR5L17V100'};assert.deepEqual(selectEssentialVotes([first,last]),[last]);
 });
+
+test('daily replay preserves verified historical archives but revokes missing current proofs',()=>{
+ const current=finalAdoption(dossier([act('CMP-DEBATS-SN-DEC','2026-01-01','TSORTF18'),act('CMP-DEBATS-AN-DEC','2026-01-02','TSORTF18','VTANR5L17V2')]),source);
+ const historical={...current,source_url:source.url.replace('/17/','/15/')};
+ const record=an("Scrutin n° 2 — l'ensemble du projet de loi test (texte de la commission mixte paritaire).");
+ const historicRow={...record,detail:{...record.detail,final_adoption:historical}};
+ const currentRow={...record,detail:{...record.detail,final_adoption:current}};
+ const options={replayedSourceUrls:[source.url]};
+ assert.ok(voteSelection(attachFinalAdoptions([historicRow],[],options)[0]));
+ assert.equal(voteSelection(attachFinalAdoptions([currentRow],[],options)[0]),null);
+ assert.equal(voteSelection(attachFinalAdoptions([historicRow],[])[0]),null);
+ assert.equal(voteSelection(attachFinalAdoptions([historicRow],[],{replayedSourceUrls:[historical.source_url]})[0]),null);
+});
 test('European resolutions and decisions do not constitute final adoption of a French law',()=>{
  for(const title of ['A10-0001/2026 - Vote unique','RC-B10-0001/2026 - Proposition de résolution (ensemble du texte)','A10-0001/2026 - Proposition de décision (ensemble du texte)'])assert.equal(voteSelection({...an(title),institution:'parlement_europeen'}),null);
 });

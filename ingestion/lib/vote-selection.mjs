@@ -78,10 +78,10 @@ export function selectEssentialVotes(entries) {
 
 // Call inside the caller's transaction after inserting the newer official votes.
 // Existing metadata and review traces survive this reversible visibility change.
-export async function focusPublishedVotes(client, institution, proofs = []) {
+export async function focusPublishedVotes(client, institution, proofs = [], options = {}) {
   const { rows } = await client.query(`select id,kind,institution,title,external_id,occurred_at::text occurred_at,detail
     from public.evidence where kind='vote' and institution=$1 and status='published' for update`, [institution]);
-  const mapped = attachFinalAdoptions(rows, proofs);
+  const mapped = attachFinalAdoptions(rows, proofs, options);
   const kept = selectEssentialVotes(mapped);
   const keep = new Set(kept.map(row => row.id));
   const trace = kept.filter(row => row.detail?.final_adoption).map(row => ({ id: row.id, proof: row.detail.final_adoption }));

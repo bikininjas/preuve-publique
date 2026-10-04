@@ -47,7 +47,7 @@ export function finalAdoption(dossier, source) {
     source_locator: `Dossier ${dossier.uid}, acte ${last.uid} (${last.codeActe})` };
 }
 
-export function attachFinalAdoptions(entries, proofs) {
+export function attachFinalAdoptions(entries, proofs, { replayedSourceUrls } = {}) {
   return entries.map(entry => {
     const record = entry.record ?? entry;
     const refs = record.detail?.refs ?? [];
@@ -55,6 +55,10 @@ export function attachFinalAdoptions(entries, proofs) {
       && (record.institution === 'assemblee' ? p.vote_refs.includes(record.external_id)
         : p.senat_dossier && refs.some(r => r.type === 'senat:dossier' && r.value === p.senat_dossier)));
     if (!proof) {
+      // A current-legislature replay cannot revoke a verified historical source.
+      // Missing proofs in an archive that WAS replayed are still withdrawn.
+      if (replayedSourceUrls?.length && record.detail?.final_adoption
+        && !replayedSourceUrls.includes(record.detail.final_adoption.source_url)) return entry;
       if (!record.detail?.final_adoption) return entry;
       const { final_adoption, ...detail } = record.detail;
       const clean = { ...record, detail };

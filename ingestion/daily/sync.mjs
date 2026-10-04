@@ -84,7 +84,8 @@ export async function syncDaily(client, { institution, now = new Date(), dryRun 
     stats.source_latest = verified.eligible.map(({ record }) => record.occurred_at).sort().at(-1);
     stats.sources = readJsonl(join(dir, 'sources.jsonl')).map(({ url, sha256, retrieved_at }) => ({ url, sha256, retrieved_at }));
     const { readManifest } = await import('../lib/staging.mjs');
-    stats.notes = readManifest(dir).notes ?? [];
+    const manifest = readManifest(dir);
+    stats.notes = manifest.notes ?? [];
     const proofs = await readFinalAdoptions(dir);
     const selected = selectEssentialVotes(attachFinalAdoptions(verified.eligible, proofs));
     stats.out_of_scope = verified.eligible.length - selected.length;
@@ -108,7 +109,9 @@ export async function syncDaily(client, { institution, now = new Date(), dryRun 
       const publication = await publishVerified(client, { ...verified, eligible: candidates }, { limit: 500, dryRun: false, manageTransaction: false });
       if (publication.rejected || publication.published !== candidates.length) throw new Error('Conformité en base incomplète : import et publication annulés.');
       stats.published = publication.published;
-      stats.withdrawn = await focusPublishedVotes(client, institution, proofs);
+      stats.withdrawn = await focusPublishedVotes(client, institution, proofs, {
+        replayedSourceUrls: manifest.final_adoption_source ? [manifest.final_adoption_source.url] : [],
+      });
       await client.query(dryRun ? 'rollback' : 'commit');
     } catch (error) { await client.query('rollback'); throw error; }
     if (runId) await finishRun(client, runId, { status: 'ok', stats });

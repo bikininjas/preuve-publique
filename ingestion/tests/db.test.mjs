@@ -23,6 +23,7 @@ import { publishVerified, verifyArchive } from '../lib/auto-publish.mjs';
 import { releaseArchive } from '../backfill/official-votes.mjs';
 import { importOfficial } from '../backfill/import-official.mjs';
 import { syncDaily } from '../daily/sync.mjs';
+import { focusPublishedVotes } from '../lib/vote-selection.mjs';
 import { decisionToRecord } from '../importers/pe-votes.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..', '..');
@@ -302,6 +303,26 @@ test('push is idempotent and a reviewed piece is never overwritten', async () =>
   assert.equal(after.status, 'published');
   assert.equal(after.reviewed_by, 'relecture de test');
   cleanup(dir);
+});
+
+test('partial procedure replay withdraws current proof only and keeps historical votes in SQL',async()=>{
+ const client=await freshDb();
+ const archive=leg=>`https://data.assemblee-nationale.fr/static/openData/repository/${leg}/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip`;
+ const inserted=[];
+ for(const legislature of [15,17]){
+  const occurred_at=legislature===15?'2019-01-01':'2026-01-01';
+  const final_adoption={verified:true,method:'accord_cmp_deux_chambres',institution:'assemblee',occurred_at,source_url:archive(legislature),source_sha256:'a'.repeat(64)};
+  const record=draft({external_id:`VTANR5L${legislature}V1`,occurred_at,title:"Scrutin n° 1 — l'ensemble du projet de loi fictif (texte de la commission mixte paritaire)",detail:{sort:{code:'adopté'},refs:[{type:'an:dossier',value:`DLR5L${legislature}N1`}],final_adoption}});
+  const row=await db.upsertEvidence(client,record);
+  inserted.push(row.id);
+  await client.query("update evidence set status='published' where id=$1",[row.id]);
+ }
+ await client.query('begin');
+ assert.equal(await focusPublishedVotes(client,'assemblee',[],{replayedSourceUrls:[archive(17)]}),1);
+ await client.query('commit');
+ const rows=(await client.query('select id,status,detail from evidence order by occurred_at')).rows;
+ assert.equal(rows[0].id,inserted[0]);assert.equal(rows[0].status,'published');assert.equal(rows[0].detail.final_adoption.source_url,archive(15));
+ assert.equal(rows[1].id,inserted[1]);assert.equal(rows[1].status,'draft');
 });
 
 test('import officiel groupé : simulation, idempotence et aucune modification d’une pièce validée',async()=>{
