@@ -11,6 +11,7 @@ import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { EditorialContext } from '@/components/editorial-context';
 import { FinalAdoptionContext } from '@/components/final-adoption-context';
+import { VoteReading } from '@/components/vote-reading';
 import { ReadingContinuation } from '@/components/reading-continuation';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
 import { getActorNames, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
@@ -142,14 +143,14 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       </div>
       <InstitutionBadge institution={evidence.institution} />
       <h1 className="title">{displayTitle}</h1>
-      {evidence.kind === 'vote' ? <p className="hint">Sujet du texte concerné · {scope ? `vote sur : ${scope.toLocaleLowerCase('fr-FR')}` : 'périmètre du vote à vérifier dans l’intitulé officiel'}. Un amendement ou une motion ne vaut pas vote sur l’ensemble du texte.</p> : null}
+      {evidence.kind === 'vote' ? <p className="hint">{scope ? `Vote sur : ${scope.toLocaleLowerCase('fr-FR')}` : 'Périmètre à consulter dans la source'}.</p> : null}
+      <VoteReading evidence={evidence} />
       <p className="resultline">
         {formatEvidenceDate(evidence)}
         {actor ? <> · {actor.name}</> : null}
-        {scrutinNumber(evidence) ? <> · scrutin n° {scrutinNumber(evidence)}</> : null}
         {evidence.reviewed_at ? <> · {evidence.publication_method ? 'contrôlée' : 'relue'} le {formatDate(evidence.reviewed_at)}</> : null}
       </p>
-      <div className="document-actions"><a className="button" href={evidence.source_url} target="_blank" rel="noopener noreferrer">Ouvrir la source officielle ↗</a>{evidence.publication_confidence != null ? <span className="document-confidence">Source recoupée · conformité {Math.round(Number(evidence.publication_confidence) * 100)}/100</span> : null}</div>
+      <div className="document-actions"><a className="button" href={evidence.source_url} target="_blank" rel="noopener noreferrer">Ouvrir la source officielle ↗</a></div>
       {displayTitle !== evidence.title ? <details className="official-wording"><summary>Lire l’intitulé officiel complet</summary><p>{evidence.title}</p></details> : null}
       </header>
       {evidence.kind === 'vote' ? <VoteTopics title={evidence.title} institution={evidence.institution} /> : null}

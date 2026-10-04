@@ -22,6 +22,7 @@ export default async function PrepareVotePage() {
       <div className="decision-hero-principle"><span aria-hidden="true">↗</span><p>Votre choix vous appartient.<br />Preuve Publique vous aide à retrouver les faits et leurs sources.</p></div>
     </section>
 
+    <aside className="notebook-preview" aria-label="Exemple de carnet à compléter"><div><span className="eyebrow">Aperçu de votre mémo</span><h2>Un sujet, des pièces, vos questions.</h2><p>Choisissez jusqu’à trois thèmes. Retrouvez les votes, comparez deux partis ou des personnes, puis téléchargez vos notes.</p></div><blockquote><strong>Mon sujet : logement et loyers</strong><p>Quelle mesure précise a été adoptée ?<br />Ma pièce : un lien vers le scrutin.<br />Ma question ouverte : ce qui reste à vérifier.</p><small>Exemple de questions, à remplacer par les vôtres.</small></blockquote></aside>
     <DecisionGuide people={people} />
 
     <section className="decision-checks" aria-labelledby="decision-checks-title">

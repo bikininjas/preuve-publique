@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { PoliticalBadge } from '@/components/political-classification';
+import { VoteSample } from '@/components/vote-sample';
 import type { GroupVoteCoverage, GroupVoteDashboard, GroupVoteRow } from '@/lib/data';
 import { formatDate } from '@/lib/labels';
 
@@ -44,7 +45,7 @@ export function GroupVoteChart({ title, dashboard, href, previewLimit, groupHref
     <GroupBar row={row} />
     <div className="party-chart-total">{number(total(row))}<span>positions</span></div>
     <ShareLine row={row} />
-    <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-part.</div>
+    <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-part.<VoteSample scrutins={row.scrutins} /></div>
   </div>;
   return <section className="party-chart" aria-label={`Votes des groupes du Sénat : ${title}`}>
     <div className="party-chart-head"><div><span className="eyebrow">Analyse officielle par groupe · Sénat</span><h2>{title}</h2></div>{href ? <Link className="text-link" href={href}>Explorer ce sujet →</Link> : null}</div>

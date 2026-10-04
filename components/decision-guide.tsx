@@ -73,6 +73,7 @@ export function DecisionGuide({ people }: { people: DecisionPerson[] | null }) {
         <div className="decision-route-links">
           <Link href={route.votes} prefetch={false} target="_blank" rel="noopener noreferrer"><span>Lire ce qui a été soumis au vote</span><b aria-hidden="true">↗</b></Link>
           <Link href={route.comparison} prefetch={false} target="_blank" rel="noopener noreferrer"><span>{selectedPeople.length ? 'Comparer les bulletins personnels' : 'Choisir des personnes à comparer'}</span><b aria-hidden="true">↗</b></Link>
+          <Link href={route.parties} prefetch={false} target="_blank" rel="noopener noreferrer"><span>Comparer deux partis sur ce sujet</span><b aria-hidden="true">↗</b></Link>
         </div>
         <label className="decision-note">Ma question et ce qu’il reste à vérifier — {route.label}
           <textarea rows={3} maxLength={2000} value={notes[route.id] ?? ''} placeholder="Le changement précis qui m’intéresse, un lien vers une pièce, mes doutes…" onChange={(event) => {

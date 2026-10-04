@@ -8,6 +8,7 @@ const capitalize = (value: string) => value.charAt(0).toLocaleUpperCase('fr-FR')
 /** A short reading label; the exact institutional title remains on the fiche. */
 function shortLabel(value: string): string {
   const clean = value
+    .replace(/^l['’]organisation, à la gestion et au financement du sport professionnel/i, 'sport professionnel : organisation, gestion et financement')
     .replace(/\s*\((?:première|deuxième|nouvelle|lecture définitive|texte de la commission mixte paritaire)[^)]*\)\.?$/i, '')
     .replace(/[\s.]+$/, '').trim();
   if (clean.length <= 125) return capitalize(clean);
