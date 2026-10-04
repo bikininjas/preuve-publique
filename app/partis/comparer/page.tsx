@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SeoPage } from '@/components/seo-page';
 import { Empty, Pager } from '@/components/ui';
 import { VoteReading } from '@/components/vote-reading';
+import { VoteSample } from '@/components/vote-sample';
 import { getEvidencePage, getPartyVotesForScrutin, type PartyVoteRow } from '@/lib/data';
 import { getAllPartyVotes } from '@/lib/vote-theme-data';
 import { first, pageParam, type SearchParamsRecord } from '@/lib/params';
@@ -9,6 +10,7 @@ import { findVoteSubject, voteSubjectFilter, VOTE_SUBJECT_GROUPS } from '@/lib/v
 import { formatDate } from '@/lib/labels';
 import { readerTitle } from '@/lib/reader';
 import { pageMetadata, SEO_PAGES } from '@/lib/seo';
+import { ballotTotal } from '@/lib/vote-profile';
 
 export const dynamic = 'force-dynamic';
 const PAGE_SIZE = 8;
@@ -17,9 +19,9 @@ function Positions({ party, rows }: { party: PartyVoteRow; rows: PartyVoteRow[] 
   const row = rows?.find((entry) => entry.party_id === party.party_id);
   return <section className="party-comparison-position" aria-label={party.party_name}>
     <h3><Link href={`/partis/${party.party_id}`}>{party.party_name}</Link></h3>
-    {row ? <dl>{([
+    {row ? <><p className="comparison-denominator">{ballotTotal(row).toLocaleString('fr-FR')} position{ballotTotal(row) > 1 ? 's' : ''} attribuable{ballotTotal(row) > 1 ? 's' : ''} dans ce scrutin, non-votants inclus.</p><dl>{([
       ['Pour', row.pour], ['Contre', row.contre], ['Abstentions', row.abstention], ['Non-votants enregistrés', row.non_votant],
-    ] as const).map(([label, count]) => <div key={label}><dt>{label}</dt><dd>{count.toLocaleString('fr-FR')}</dd></div>)}</dl>
+    ] as const).map(([label, count]) => <div key={label}><dt>{label}</dt><dd>{count.toLocaleString('fr-FR')}</dd></div>)}</dl></>
       : <p className="hint">{rows === null ? 'Décompte temporairement indisponible.' : 'Aucun bulletin attribuable à ce parti dans ce scrutin. Cela ne signifie ni abstention, ni absence, ni opposition.'}</p>}
   </section>;
 }
@@ -48,6 +50,9 @@ export default async function ComparePartiesPage({ searchParams }: { searchParam
     if (subject) query.set('subject', subject.id);
     return `/partis/comparer?${query}#votes-communs`;
   };
+  const notebook = new URLSearchParams();
+  if (ready) { notebook.set('left', left.party_id); notebook.set('right', right.party_id); }
+  if (subject) notebook.set('subject', subject.id);
   return <main className="party-comparison-page"><SeoPage path="/partis/comparer" />
     <p className="breadcrumb"><Link href="/partis">← Tous les partis</Link></p>
     <div className="page-intro"><div className="eyebrow">Assemblée nationale · Les mêmes textes</div><h1>Deux partis, vote par vote.</h1><p className="lead">Comparez leurs bulletins sur un même sujet, sans passer d’une fiche à l’autre.</p></div>
@@ -64,6 +69,7 @@ export default async function ComparePartiesPage({ searchParams }: { searchParam
       : !result ? <Empty>Les scrutins sont temporairement indisponibles.</Empty>
       : <section id="votes-communs" aria-label="Comparaison sur les mêmes scrutins">
         <p className="resultline">{result.total.toLocaleString('fr-FR')} scrutin{result.total > 1 ? 's' : ''} publié{result.total > 1 ? 's' : ''} à l’Assemblée{subject ? ` · ${subject.label}` : ''} · plus récents d’abord.</p>
+        <VoteSample scrutins={result.total} />
         <p className="hint">Le même ensemble de scrutins est présenté pour les deux partis, y compris ceux sans bulletins attribuables. Chaque ligne décrit un texte précis ; elle ne mesure pas l’adhésion à tout un thème. Les motifs d’un vote contre peuvent différer.</p>
         {result.items.length ? result.items.map((vote) => <article className="party-comparison-vote" key={vote.id}>
           <header><time dateTime={vote.occurred_at}>{formatDate(vote.occurred_at)}</time><h2><Link href={`/pieces/${vote.id}`}>{readerTitle(vote)}</Link></h2><VoteReading evidence={vote} compact /><a href={vote.source_url} target="_blank" rel="noopener noreferrer">Source officielle ↗</a></header>
@@ -71,7 +77,7 @@ export default async function ComparePartiesPage({ searchParams }: { searchParam
         </article>) : <Empty>{result.total ? <>Cette page dépasse les résultats. <Link href={hrefFor(1)}>Revenir à la première page →</Link></> : 'Aucun scrutin publié ne correspond à ce sujet. Cette absence ne renseigne pas la position des partis.'}</Empty>}
         <Pager page={page} pageCount={Math.max(1, Math.ceil(result.total / PAGE_SIZE))} hrefFor={hrefFor} />
       </section>}
-    <p className="section-foot"><Link href="/preparer-mon-vote">Garder mes questions dans un carnet →</Link> · <Link href="/methode#profils-vote">Sources et limites des affiliations →</Link></p>
+    <p className="section-foot"><Link href={`/preparer-mon-vote${notebook.size ? `?${notebook}` : ''}`} target="_blank" rel="noopener noreferrer">Garder cette comparaison dans mon carnet →</Link> · <Link href="/methode#profils-vote">Sources et limites des affiliations →</Link></p>
   </main>;
 }
 

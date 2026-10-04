@@ -29,3 +29,11 @@ Les lectures réutilisent les fonctions publiques existantes et RLS. Huit scruti
 - Vérifications navigateur avec les données publiques : critères de sélection, cartes à un scrutin, détail de vote, comparaison paginée, partis identiques refusés, affiliation manquante distincte d’une abstention et carnet limité à trois sujets. Contrôles à 1 280, 390 et 320 px, thèmes clair et sombre, sans débordement horizontal.
 
 Ce document décrit les modifications et leurs contrôles locaux. Il ne constitue pas une preuve de déploiement.
+
+## Seconde passe
+
+La comparaison présentait les nombres bruts sans rappeler le total attribuable à chaque parti ; son lien vers le carnet perdait le sujet et les deux identités choisies. Les colonnes indiquent désormais leur dénominateur, et les corpus de moins de cinq scrutins portent aussi l’avertissement dans la comparaison.
+
+Le carnet reprend le sujet et les deux partis exacts du lien public, puis les conserve dans les liens de chaque nouveau thème et dans le mémo texte. Une identité manquante ou répétée est signalée, sans remplacement automatique. Les notes restent privées et ne passent jamais dans une URL. La lecture du référentiel des partis n’est demandée que pour deux identifiants valides ; aucune migration ni écriture distante.
+
+Contrôles : build et TypeScript, ESLint, 61 tests de lecture, parcours avec données publiques sur ordinateur et à 390 px. Le sujet est présélectionné, les deux partis survivent à l’ajout d’un thème et à l’export, et une sélection invalide laisse le parcours par sujet utilisable.

@@ -33,6 +33,8 @@
 .party-comparison-position dl { margin: 0; }
 .party-comparison-position dl > div { display: flex; gap: 12px; justify-content: space-between; padding-block: 6px; border-bottom: 1px solid var(--line); font-size: 14px; }
 .party-comparison-position dd { margin: 0; font-weight: 700; }
+.comparison-denominator { color: var(--muted); font-size: 12px; line-height: 1.5; margin-bottom: 12px; }
+.decision-selected-parties { padding: 12px; border-left: 3px solid var(--teal); background: var(--surface); overflow-wrap: anywhere; }
 #votes-communs { scroll-margin-top: 24px; }
 @media (max-width: 900px) { .party-comparison-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 740px) {
