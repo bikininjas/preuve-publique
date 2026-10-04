@@ -3,23 +3,23 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { VOTE_SUBJECT_GROUPS } from '@/lib/vote-subjects';
-import { decisionNotebook, decisionRoutes, type DecisionPerson } from '@/lib/decision-guide';
+import { decisionNotebook, decisionRoutes, type DecisionParty, type DecisionPerson } from '@/lib/decision-guide';
 
-export function DecisionGuide({ people }: { people: DecisionPerson[] | null }) {
-  const [subjects, setSubjects] = useState<string[]>([]);
+export function DecisionGuide({ people, initialSubjects = [], parties = [] }: { people: DecisionPerson[] | null; initialSubjects?: string[]; parties?: DecisionParty[] }) {
+  const [subjects, setSubjects] = useState<string[]>(() => decisionRoutes(initialSubjects, [], []).map(route => route.id));
   const [candidates, setCandidates] = useState(['', '', '']);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [downloaded, setDownloaded] = useState(false);
   const available = people ?? [];
   const selectedPeople = candidates.flatMap((id) => available.filter((person) => person.id === id));
-  const routes = decisionRoutes(subjects, candidates, available.map((person) => person.id));
+  const routes = decisionRoutes(subjects, candidates, available.map((person) => person.id), parties);
 
   const selectSubject = (id: string) => {
     setSubjects((current) => current.includes(id) ? current.filter((value) => value !== id) : current.length < 3 ? [...current, id] : current);
     setDownloaded(false);
   };
   const download = () => {
-    const file = new Blob([decisionNotebook(routes, selectedPeople, notes)], { type: 'text/plain;charset=utf-8' });
+    const file = new Blob([decisionNotebook(routes, selectedPeople, notes, parties)], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(file);
     const link = document.createElement('a');
     link.href = url;
@@ -52,6 +52,7 @@ export function DecisionGuide({ people }: { people: DecisionPerson[] | null }) {
         <div className="eyebrow">02 · Mettre les mêmes pièces côte à côte</div>
         <h2 id="decision-people-title">Qui souhaitez-vous examiner ?</h2>
         <p>Vous pouvez choisir jusqu’à trois personnes, ou commencer par les scrutins seuls.</p>
+        {parties.length ? <p className="decision-selected-parties"><strong>Partis retenus : {parties.map(party => party.name).join(' / ')}.</strong> Les liens et le mémo conservent votre comparaison.</p> : null}
         {people === null ? <p className="empty">La liste des personnes est temporairement indisponible. Votre parcours par sujet reste utilisable.</p>
           : people.length === 0 ? <p className="empty">Aucune personne testée n’est disponible dans le corpus publié.</p>
           : <><div className="decision-person-inputs">{candidates.map((candidate, index) => <label key={index}>
@@ -84,7 +85,7 @@ export function DecisionGuide({ people }: { people: DecisionPerson[] | null }) {
       </article>)}</div> : <div className="decision-start"><span aria-hidden="true">↖</span><p>Choisissez un premier sujet : les liens vers les scrutins et leur comparaison apparaîtront ici.</p></div>}
       <button type="button" className="button" disabled={!routes.length} onClick={download}>Télécharger mon carnet <span aria-hidden="true">↓</span></button>
       <p className="hint" role="status">{downloaded ? 'Carnet préparé pour téléchargement. Il contient vos notes et les liens de votre parcours.' : 'Fichier texte, modifiable et imprimable sur votre appareil.'}</p>
-      {routes.length ? <details className="decision-copy"><summary>Afficher le carnet à copier</summary><label>Carnet texte<textarea readOnly rows={10} value={decisionNotebook(routes, selectedPeople, notes)} onFocus={(event) => event.currentTarget.select()} /></label><p className="hint">Vous pouvez aussi copier ce texte dans un document sur votre appareil.</p></details> : null}
+      {routes.length ? <details className="decision-copy"><summary>Afficher le carnet à copier</summary><label>Carnet texte<textarea readOnly rows={10} value={decisionNotebook(routes, selectedPeople, notes, parties)} onFocus={(event) => event.currentTarget.select()} /></label><p className="hint">Vous pouvez aussi copier ce texte dans un document sur votre appareil.</p></details> : null}
     </section>
   </div>;
 }
