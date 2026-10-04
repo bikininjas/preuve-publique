@@ -5,6 +5,11 @@ import { peTextSubject } from '../lib/pe-document.ts';
 
 const vote = (title) => ({ kind: 'vote', title });
 
+test('le titre du sport garde ses trois objets avec une formulation courte', () => {
+  const item = vote('l’ensemble du projet de loi relatif à l’organisation, à la gestion et au financement du sport professionnel');
+  assert.equal(readerTitle(item), 'Sport professionnel : organisation, gestion et financement');
+});
+
 test('un article et un texte entier gardent leur périmètre et un sujet lisible', () => {
   const article = vote("Scrutin n° 4180 — l'article 2 de la proposition de loi visant à faire évoluer la formation de sage-femme (première lecture).");
   const entire = vote('Scrutin n° 738 — l’ensemble de la proposition de loi visant à renforcer les conditions d’accès à la nationalité française à Mayotte (première lecture).');

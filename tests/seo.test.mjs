@@ -9,6 +9,16 @@ test('tracking parameters preserve one canonical, pages keep their own URL', () 
   assert.equal(page.robots.index,true);
 });
 
+test('la comparaison conserve les deux partis, le sujet et la page dans son lien canonique', () => {
+  const selection = seoQuery('/partis/comparer', { left: 'a', right: 'b', subject: 'logement', page: '2' });
+  const url = new URL(selection.path, 'https://preuve-publique.fr');
+  assert.equal(url.searchParams.get('left'), 'a');
+  assert.equal(url.searchParams.get('right'), 'b');
+  assert.equal(url.searchParams.get('subject'), 'logement');
+  assert.equal(url.searchParams.get('page'), '2');
+  assert.equal(selection.indexable, false);
+});
+
 test('curated facets are finite; searches and combined facets do not become indexable', () => {
   const subject = pageMetadata('/scrutins',undefined,{subject:'logement',institution:'senat'});
   assert.equal(subject.robots.index,true);

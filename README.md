@@ -202,6 +202,8 @@ npm run test:reader
 
 Le build produit une application Next.js `standalone` ; le `Dockerfile` l'exécute sur le port attendu par Cloud Run.
 
+La [lecture citoyenne](docs/lecture-citoyenne.md) décrit les résumés de scrutin, les précautions sur les petits corpus et la comparaison de deux partis sur les mêmes textes (`/partis/comparer`), accessible depuis le carnet.
+
 Le parcours de relecture, la propriété Analytics dédiée et le bandeau de consentement sont décrits dans [docs/admin-analytics-consent.md](docs/admin-analytics-consent.md), avec les réglages vérifiés et les étapes d’activation en production.
 
 ## Base de données

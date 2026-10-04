@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { PoliticalBadge } from '@/components/political-classification';
+import { VoteSample } from '@/components/vote-sample';
+import { smallVoteSample } from '@/lib/vote-profile';
 import type { PartyVoteCoverage, PartyVoteDashboard, PartyVoteRow } from '@/lib/data';
 import { formatDate } from '@/lib/labels';
 
@@ -25,9 +27,9 @@ export function PartyBar({ row }: { row: PartyVoteRow }) {
     { key: 'abstention', count: row.abstention, label: 'abstentions' },
     { key: 'non-votant', count: row.non_votant, label: 'non-votants' },
   ];
-  return <div className="party-bar" role="img" aria-label={`${row.party_name} : ${share(row.pour, total)} pour, ${share(row.contre, total)} contre, ${share(row.abstention, total)} abstentions, ${share(row.non_votant, total)} non-votants parmi ${number(total)} positions nominatives enregistrées`}>
+  return <div className={`party-bar${smallVoteSample(row.scrutins) ? ' small-sample' : ''}`} role="img" aria-label={`${row.party_name} : ${share(row.pour, total)} pour, ${share(row.contre, total)} contre, ${share(row.abstention, total)} abstentions, ${share(row.non_votant, total)} non-votants parmi ${number(total)} votes individuels enregistrés`}>
     {segments.map((segment) => segment.count ? <span key={segment.key} className={`party-segment ${segment.key}`} style={{ width: `${segment.count / total * 100}%` }} title={`${number(segment.count)} ${segment.label}`}>
-      {segment.count / total >= .25 ? <span aria-hidden="true">{share(segment.count, total)}</span> : null}
+      {segment.count / total >= .25 && !smallVoteSample(row.scrutins) ? <span aria-hidden="true">{share(segment.count, total)}</span> : null}
     </span> : null)}
   </div>;
 }
@@ -44,7 +46,7 @@ export function PartySubjectChart({ title, subjectId, dashboard }: { title: stri
       {featured.map((row) => <div className="party-subject-row" key={row.party_id}>
         <div><Link href={`${href}&party=${row.party_id}#party-details`}>{row.party_name} ↗</Link><PoliticalBadge name={row.party_name} kind="party" /><small>{number(ballotCount(row))} positions</small></div>
         <PartyBar row={row} />
-        <PartyShareLine row={row} />
+        <PartyShareLine row={row} /><VoteSample scrutins={row.scrutins} />
       </div>)}
       <p className="party-subject-foot">Quatre partis affichés par volume de bulletins. <Link href={href}>Voir tous les partis et les scrutins →</Link></p>
     </> : <p className="party-subject-foot">Aucune position individuelle attribuable à un parti dans les scrutins vérifiés de ce sujet. <Link href={href}>Voir les scrutins →</Link></p>}
@@ -69,7 +71,7 @@ export function PartyVoteChart({ title, dashboard, href, previewLimit, partyHref
     <div className="party-chart-name"><strong>{partyHref ? <Link href={partyHref(row.party_id)}>{row.party_name} ↗</Link> : row.party_name}</strong><PoliticalBadge name={row.party_name} kind="party" /><small>{number(row.scrutins)} scrutin{row.scrutins > 1 ? 's' : ''} documenté{row.scrutins > 1 ? 's' : ''}</small></div>
     <PartyBar row={row} />
     <div className="party-chart-total">{number(ballotCount(row))}<span>bulletins</span></div>
-    <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-votants</div>
+    <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-votants<VoteSample scrutins={row.scrutins} /></div>
   </div>;
   return <section className="party-chart" aria-label={`Votes des partis : ${title}`}>
     <div className="party-chart-head">

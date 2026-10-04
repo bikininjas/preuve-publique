@@ -3,7 +3,7 @@ import { comparisonCandidates } from './candidates/method.ts';
 import { SITE_URL } from './site.ts';
 
 export type DecisionPerson = { id: string; name: string };
-export type DecisionRoute = { id: string; label: string; votes: string; comparison: string };
+export type DecisionRoute = { id: string; label: string; votes: string; comparison: string; parties: string };
 
 /** A reading itinerary, with the same corpus for every selected person. */
 export function decisionRoutes(subjects: string[], people: string[], available: string[]): DecisionRoute[] {
@@ -13,7 +13,7 @@ export function decisionRoutes(subjects: string[], people: string[], available: 
     if (!subject) return [];
     const params = new URLSearchParams({ subject: id });
     candidates.forEach((candidate) => params.append('candidate', candidate));
-    return [{ id, label: subject.label, votes: `/scrutins?subject=${id}`, comparison: `/presidentielle-2027/comparer?${params}` }];
+    return [{ id, label: subject.label, votes: `/scrutins?subject=${id}`, comparison: `/presidentielle-2027/comparer?${params}`, parties: `/partis/comparer?subject=${id}` }];
   }).slice(0, 3);
 }
 
@@ -28,6 +28,7 @@ export function decisionNotebook(routes: DecisionRoute[], people: DecisionPerson
       '', route.label.toLocaleUpperCase('fr-FR'),
       `Scrutins et textes : ${SITE_URL}${route.votes}`,
       `Même question, mêmes scrutins : ${SITE_URL}${route.comparison}`,
+      `Deux partis, mêmes textes : ${SITE_URL}${route.parties}`,
       'Ma question, les pièces retenues et ce qui reste à vérifier :',
       notes[route.id]?.trim() || '(à compléter)',
     ]),

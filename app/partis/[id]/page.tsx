@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { PoliticalBadge, PoliticalClassificationDetails } from '@/components/political-classification';
 import { notFound } from 'next/navigation';
 import { PartyBar } from '@/components/party-vote-chart';
+import { VoteSample } from '@/components/vote-sample';
 import { VoteTopics } from '@/components/vote-topics';
 import { Empty, Pager } from '@/components/ui';
 import { getPartyVoteDetails } from '@/lib/data';
@@ -41,6 +42,7 @@ export default async function PartyPage({ params, searchParams }: { params: Prom
         return <article className={subject.id === category.id ? 'profile-subtheme category-total' : 'profile-subtheme'} key={subject.id}>
           <h3><Link href={href}>{subject.label} ↗</Link></h3>
           {row && ballotTotal(row) ? <><strong className="profile-share">{formatBallotShare(row)}</strong><PartyBar row={row} /><p className="profile-vote-counts">{row.pour.toLocaleString('fr-FR')} pour · {row.contre.toLocaleString('fr-FR')} contre · {row.abstention.toLocaleString('fr-FR')} abst. · {row.non_votant.toLocaleString('fr-FR')} non-votants</p><small>{row.scrutins.toLocaleString('fr-FR')} scrutins · {ballotTotal(row).toLocaleString('fr-FR')} positions</small></> : <p>{entry ? 'Aucun bulletin attribuable dans les scrutins trouvés.' : 'Données temporairement indisponibles.'}</p>}
+          {row ? <VoteSample scrutins={row.scrutins} /> : null}
           {entry?.scope.first_date && entry.scope.last_date ? <small>Corpus du sujet : {formatDate(entry.scope.first_date)} – {formatDate(entry.scope.last_date)} · {entry.scope.documented_scrutins} / {entry.scope.total_scrutins} scrutins vérifiés</small> : null}
           <details className="profile-keywords"><summary>Mots recherchés dans le titre</summary><p>{subject.id === category.id ? [...new Set(category.subjects.flatMap((item) => [...item.keywords]))].join(' · ') : category.subjects.find((item) => item.id === subject.id)?.keywords.join(' · ')}</p></details>
           <Link className="text-link" href={href}>Ouvrir les votes exacts →</Link>
