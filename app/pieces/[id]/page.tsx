@@ -10,6 +10,7 @@ import { VoteTopics } from '@/components/vote-topics';
 import { GroupVoteBreakdown } from '@/components/group-vote-chart';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { EditorialContext } from '@/components/editorial-context';
+import { FinalAdoptionContext } from '@/components/final-adoption-context';
 import { ReadingContinuation } from '@/components/reading-continuation';
 import { Citation, Empty, MetaList, RawJson, type MetaEntry } from '@/components/ui';
 import { getActorNames, getGroupVoteCoverageForScrutin, getGroupVotesForScrutin, getPartyVoteCoverageForScrutin, getPartyVotesForScrutin, type GroupVoteCoverage, type PartyVoteCoverage } from '@/lib/data';
@@ -150,6 +151,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       {evidence.kind === 'vote' ? <p className="hint">{scrutinNumber(evidence) ? `Scrutin n° ${scrutinNumber(evidence)} · ` : ''}Ces chiffres décrivent ce scrutin, pas la position de chaque élu. <a href={evidence.source_url} target="_blank" rel="noopener noreferrer">Vérifier le vote officiel ↗</a></p> : null}
 
       <EditorialContext evidence={evidence} />
+      <FinalAdoptionContext evidence={evidence} />
       {evidence.excerpt ? (
         <Citation footer="Formulation reprise de la source ; le lien ci-dessous mène au document original.">
           {evidence.excerpt}

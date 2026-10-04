@@ -5,12 +5,9 @@ import { usePathname } from 'next/navigation';
 
 const ADMIN_LINKS = [
   { href: '/admin', label: 'Tableau de bord' },
-  { href: '/admin/review', label: '01 · Pièces' },
-  { href: '/admin/links', label: '02 · Rapprochements' },
-  { href: '/admin/runs', label: '03 · Imports' },
-  { href: '/admin/publication', label: '04 · Publication' },
-  { href: '/admin/measures', label: '05 · Mesures et positions' },
-  { href: '/admin/inegalites', label: '06 · Inégalités' },
+  { href: '/admin/scrutins', label: 'Votes d’adoption définitive' },
+  { href: '/admin/justice', label: 'Affaires et personnes' },
+  { href: '/admin/runs', label: 'Imports et erreurs' },
   { href: '/', label: 'Voir le site ↗' },
 ];
 
@@ -19,7 +16,7 @@ export function AdminNav() {
   return (
     <nav className="admin-nav" aria-label="Administration">
       {ADMIN_LINKS.map(({ href, label }) => {
-        const active = pathname === href || (href === '/admin/review' && pathname.startsWith('/admin/pieces/'));
+        const active = pathname === href;
         return <Link href={href} key={href} aria-current={active ? 'page' : undefined} prefetch={false}>{label}</Link>;
       })}
     </nav>

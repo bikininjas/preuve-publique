@@ -1,36 +1,58 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {voteSelection,selectEssentialVotes} from '../lib/vote-selection.mjs';
-const an=(title,extras={})=>({kind:'vote',institution:'assemblee',title,external_id:'VTANR5L17V20',occurred_at:'2026-01-02',detail:{refs:[{type:'an:dossier',value:'DLR5L17N1'}]},...extras});
-test('whole laws exclude amendments, parts, motions and non-legislative resolutions',()=>{
- for(const title of ["Scrutin n° 2 — l'amendement n° 12 à l'ensemble du projet de loi test", "Scrutin n° 2 — la première partie du projet de loi test", "Scrutin n° 2 — la motion de rejet du projet de loi test", "Scrutin n° 2 — l'ensemble de la proposition de résolution test"]){assert.equal(voteSelection(an(title)),null);}
- assert.equal(voteSelection(an("Scrutin n° 2 — l'ensemble du projet de loi test (lecture définitive)." )).definitive,true);
- assert.equal(voteSelection(an("Scrutin n° 2 — l'ensemble du projet de loi test (première lecture)." )).definitive,false);
- assert.ok(voteSelection({...an("Scrutin n° 2 — sur l'article 4 constituant l'ensemble de la proposition de loi test"),institution:'senat'}));
+import {finalAdoption,attachFinalAdoptions} from '../lib/final-adoption.mjs';
+const an=(title,extra={})=>({kind:'vote',institution:'assemblee',title,occurred_at:'2026-01-02',external_id:'VTANR5L17V2',detail:{sort:{code:'adopté'},refs:[{type:'an:dossier',value:'DLR5L17N1'}]},...extra});
+const source={url:'https://data.assemblee-nationale.fr/static/openData/repository/17/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip',sha256:'a'.repeat(64),retrieved_at:'2026-01-03T12:00:00Z'};
+const act=(code,day,fam='TSORTF01',ref=null)=>({uid:code+day,codeActe:code,dateActe:day+'T00:00:00Z',statutConclusion:{fam_code:fam},voteRefs:{voteRef:ref}});
+const dossier=acts=>({uid:'DLR5L17N1',titreDossier:{titre:'Protection des mineurs',senatChemin:'https://www.senat.fr/dossier-legislatif/ppl25-1.html'},actesLegislatifs:acts});
+test('first readings, rejection, amendments, motions and resolutions are excluded',()=>{
+ for(const title of ["Scrutin n° 2 — l'ensemble du projet de loi test (première lecture).","Scrutin n° 2 — l'amendement n° 1 au projet de loi test (lecture définitive)","Scrutin n° 2 — la motion de rejet au projet de loi test (lecture définitive)","Scrutin n° 2 — l'ensemble de la proposition de résolution test"]){assert.equal(voteSelection(an(title)),null);}
+ const final=an("Scrutin n° 2 — l'ensemble du projet de loi test (lecture définitive).");
+ assert.equal(voteSelection(final).definitive,true);
+ assert.equal(voteSelection({...final,detail:{sort:{code:'rejeté'}}}),null);
+ assert.equal(voteSelection({...final,detail:{}}),null);
+ assert.equal(voteSelection(an(final.title.replace('loi test','loi constitutionnelle test'))),null);
 });
-test('last whole vote keeps a rejection and uses numeric order on the same date',()=>{
- const title="Scrutin n° 2 — l'ensemble du projet de loi test";
- const first=an(title,{external_id:'VTANR5L17V9'}),last=an(title,{external_id:'VTANR5L17V100',detail:{refs:first.detail.refs,sort:{code:'rejeté'}}});
- assert.deepEqual(selectEssentialVotes([last,first]),[last]);
- assert.equal(voteSelection(last).definitive,false);
+test('a CMP vote is final only once both chambers adopted; later rejection cancels proof',()=>{
+ const sn=act('CMP-DEBATS-SN-DEC','2026-01-01','TSORTF18');const aa=act('CMP-DEBATS-AN-DEC','2026-01-02','TSORTF18','VTANR5L17V2');
+ assert.equal(finalAdoption(dossier([aa]),source),null);
+ assert.equal(finalAdoption(dossier([sn,{...aa,statutConclusion:{fam_code:'TSORTF07'}}]),source),null);
+ const p=finalAdoption(dossier([sn,aa]),source);assert.equal(p.method,'accord_cmp_deux_chambres');
+ assert.equal(finalAdoption(dossier([{...sn,dateActe:aa.dateActe},aa]),source),null);
+ const record=an("Scrutin n° 2 — l'ensemble du projet de loi test (texte de la commission mixte paritaire).");
+ assert.equal(voteSelection(record),null);assert.ok(voteSelection(attachFinalAdoptions([record],[p])[0]));
+ assert.equal(voteSelection(attachFinalAdoptions([{...record,occurred_at:'2026-01-03'}],[p])[0]),null);
+ assert.equal(voteSelection(attachFinalAdoptions([{...record,external_id:'other'}],[p])[0]),null);
 });
-test('without a dossier only identical wording in the same legislature is grouped',()=>{
- const first=an("Scrutin n° 2 — l'ensemble du projet de loi de finances pour 2025 (première lecture).",{detail:{legislature:17}});
- const second={...first,title:first.title.replace('première lecture','lecture définitive'),occurred_at:'2026-01-04'};
- const other={...first,title:first.title.replace('2025','2026')};
- assert.deepEqual(selectEssentialVotes([first,other,second]),[second,other]);
+test('adoption conforme needs a successful opposite-chamber decision',()=>{
+ const sn=act('SN1-DEBATS-DEC','2026-01-02','TSORTF03');assert.equal(finalAdoption(dossier([sn]),source),null);
+ const p=finalAdoption(dossier([act('AN1-DEBATS-DEC','2026-01-01'),sn]),source);assert.equal(p.institution,'senat');assert.equal(p.method,'adoption_conforme');
+ const record={...an("Scrutin n° 2 — l'ensemble du projet de loi test"),institution:'senat',detail:{resultat:'Adoption',refs:[{type:'senat:dossier',value:'ppl25-1'}]}};
+ assert.ok(voteSelection(attachFinalAdoptions([record],[p])[0]));
+ assert.equal(finalAdoption(dossier([act('AN1-DEBATS-DEC','2026-01-01','TSORTF07'),sn]),source),null);
 });
-test('one European report can contain distinct whole decisions and resolutions',()=>{
- const base={kind:'vote',institution:'parlement_europeen',occurred_at:'2023-05-10'};
- const resolution={...base,external_id:'MTG-PL-2023-05-10-DEC-155028',title:'Vote du 2023-05-10 — A9-0142/2023 - Proposition de résolution (ensemble du texte)'};
- const firstDecision={...base,external_id:'MTG-PL-2023-05-10-DEC-155223',title:'Vote du 2023-05-10 — A9-0142/2023 - Proposition de décision (ensemble du texte)'};
- const decision={...firstDecision,external_id:'MTG-PL-2023-05-10-DEC-155224',title:firstDecision.title.replace('Proposition de décision','Propositions de décision')};
- assert.deepEqual(selectEssentialVotes([resolution,firstDecision,decision]),[resolution,decision]);
+test('LD does not require a promulgation; constitutional bills are excluded',()=>{
+ const d=dossier([act('ANLD-DEBATS-DEC','2026-01-02','TSORTF01','VTANR5L17V2')]);assert.equal(finalAdoption(d,source).method,'lecture_definitive');
+ assert.equal(finalAdoption({...d,titreDossier:{titre:'Loi constitutionnelle'}},source),null);
+ assert.equal(finalAdoption(d,{...source,sha256:null}),null);
+});
+test('one final whole vote per dossier, numeric order on the same date',()=>{
+ const first=an("Scrutin n° 9 — l'ensemble du projet de loi test (lecture définitive).",{external_id:'VTANR5L17V9'});const last={...first,external_id:'VTANR5L17V100'};assert.deepEqual(selectEssentialVotes([first,last]),[last]);
 });
 
-test('European votes require final source wording and a document identifier',()=>{
- const pe=title=>({kind:'vote',institution:'parlement_europeen',title});
- assert.ok(voteSelection(pe('Vote du 2026-01-02 — A10-0001/2026 - Vote unique')));
- assert.ok(voteSelection(pe('Vote du 2026-01-02 — RC-B10-0001/2026 - Proposition de résolution (ensemble du texte)')));
- for(const title of ['Vote du 2026-01-02 — A10-0001/2026 - Am 1','Vote du 2026-01-02 — § 5','Vote du 2026-01-02 — Accord sur l’ensemble des contingents - A10-0001/2026 - Procédure d’approbation'])assert.equal(voteSelection(pe(title)),null);
+test('daily replay preserves verified historical archives but revokes missing current proofs',()=>{
+ const current=finalAdoption(dossier([act('CMP-DEBATS-SN-DEC','2026-01-01','TSORTF18'),act('CMP-DEBATS-AN-DEC','2026-01-02','TSORTF18','VTANR5L17V2')]),source);
+ const historical={...current,source_url:source.url.replace('/17/','/15/')};
+ const record=an("Scrutin n° 2 — l'ensemble du projet de loi test (texte de la commission mixte paritaire).");
+ const historicRow={...record,detail:{...record.detail,final_adoption:historical}};
+ const currentRow={...record,detail:{...record.detail,final_adoption:current}};
+ const options={replayedSourceUrls:[source.url]};
+ assert.ok(voteSelection(attachFinalAdoptions([historicRow],[],options)[0]));
+ assert.equal(voteSelection(attachFinalAdoptions([currentRow],[],options)[0]),null);
+ assert.equal(voteSelection(attachFinalAdoptions([historicRow],[])[0]),null);
+ assert.equal(voteSelection(attachFinalAdoptions([historicRow],[],{replayedSourceUrls:[historical.source_url]})[0]),null);
+});
+test('European resolutions and decisions do not constitute final adoption of a French law',()=>{
+ for(const title of ['A10-0001/2026 - Vote unique','RC-B10-0001/2026 - Proposition de résolution (ensemble du texte)','A10-0001/2026 - Proposition de décision (ensemble du texte)'])assert.equal(voteSelection({...an(title),institution:'parlement_europeen'}),null);
 });

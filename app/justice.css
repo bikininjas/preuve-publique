@@ -1,0 +1,54 @@
+.justice-dashboard, .justice-case-body { --justice-final: #a63d27; --justice-pending: #aa6915; --justice-proceedings: #a27817; --justice-claimant: #177178; --justice-cleared: #456fa4; }
+[data-theme="dark"] .justice-dashboard, [data-theme="dark"] .justice-case-body { --justice-final: #ff9274; --justice-pending: #ebba72; --justice-proceedings: #e9ca71; --justice-claimant: #71d8cf; --justice-cleared: #9cbff2; }
+.justice-method, .justice-limit { border-left: 3px solid var(--justice-claimant); padding: 12px 20px; background: color-mix(in srgb, var(--justice-claimant) 7%, transparent); border-radius: 0 12px 12px 0; }
+.justice-method p { margin: 6px 0; font-size: 14px; }
+.justice-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 24px 0; }
+.justice-controls label { font-size: 13px; font-weight: 700; display: grid; gap: 8px; }
+.justice-controls select { width: 100%; min-width: 0; min-height: 44px; color: inherit; border: 1px solid #809997; background: transparent; border-radius: 8px; padding: 10px; font: inherit; }
+.justice-controls option { color: #173034; background: #f6f5ef; }
+.justice-result { font-size: 14px; }
+.justice-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.justice-chart { min-width: 0; border: 1px solid #80999780; border-radius: 14px; padding: 22px; }
+.justice-chart h3 { margin: 0; font-size: 21px; }
+.justice-chart h4 { margin: 0 0 10px; font-size: 16px; }
+.justice-chart-wide { grid-column: 1 / -1; }
+.justice-chart-wide .justice-chart-row { display: inline-block; width: 50%; padding: 16px; vertical-align: top; }
+.justice-chart-row { padding: 20px 0; border-bottom: 1px solid #80999750; }
+.justice-chart-row:last-child { border-bottom: 0; }
+.justice-bar { display: grid; grid-template-columns: minmax(100px, 1.8fr) minmax(45px, 1fr) 24px; align-items: center; gap: 10px; margin: 10px 0; font-size: 12px; }
+.justice-bar strong { text-align: right; font-variant-numeric: tabular-nums; }
+.justice-track { height: 9px; background: #80999722; border-radius: 5px; overflow: hidden; }
+.justice-track i { height: 100%; display: block; border-radius: inherit; }
+.justice-coverage { margin: 24px 0; border: 1px solid #80999780; border-radius: 12px; padding: 18px; }
+.justice-coverage summary { cursor: pointer; font-weight: 700; }
+.justice-table-scroll { overflow-x: auto; }
+.justice-table-scroll table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.justice-table-scroll caption { text-align: left; padding: 14px 0; }
+.justice-table-scroll td, .justice-table-scroll th { padding: 12px; border-bottom: 1px solid #80999750; text-align: left; }
+.justice-table-scroll th { min-width: 150px; }
+.justice-table-scroll td { font-variant-numeric: tabular-nums; }
+.justice-dashboard small, .justice-case-body small { display: block; font-weight: 400; font-size: 12px; line-height: 1.6; margin-top: 4px; }
+.justice-cases { display: grid; gap: 12px; }
+.justice-case { border: 1px solid #80999780; border-radius: 12px; overflow: hidden; }
+.justice-case > summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; cursor: pointer; padding: 18px 22px; }
+.justice-case > summary strong { display: block; font-size: 19px; line-height: 1.4; }
+.justice-case > summary small { margin-bottom: 8px; }
+.justice-case-body { padding: 0 22px 22px; overflow-wrap: anywhere; }
+.justice-case-body h4 { font-size: 18px; margin: 24px 0 12px; }
+.justice-case-body h5 { font-size: 17px; margin: 0 0 8px; }
+.justice-person { border-top: 1px solid #80999750; padding: 18px 0; }
+.justice-person p { margin: 6px 0; font-size: 14px; }
+.justice-offences { padding-left: 20px; }
+.justice-offences li { margin-bottom: 14px; }
+.justice-offences p { margin: 4px 0; font-size: 14px; }
+.justice-sources { padding-left: 20px; }
+.justice-sources li { margin-bottom: 12px; }
+.justice-coverage td div + div { margin-top: 8px; }
+.justice-coverage th, .justice-coverage td { vertical-align: top; }
+@media (max-width: 740px) {
+  .justice-controls, .justice-charts { grid-template-columns: minmax(0, 1fr); }
+  .justice-chart-wide { grid-column: auto; }
+  .justice-chart-wide .justice-chart-row { width: 100%; padding: 16px 0; }
+  .justice-chart { padding: 16px; }
+  .justice-case > summary, .justice-case-body { padding-left: 16px; padding-right: 16px; }
+}

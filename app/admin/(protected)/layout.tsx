@@ -19,7 +19,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (session.status === 'unconfigured') {
     return (
       <main className="narrow">
-        <div className="eyebrow">Espace de relecture</div>
+        <div className="eyebrow">Administration</div>
         <h1>Non configuré</h1>
         <p className="empty">
           Cet accès n’est pas disponible pour le moment.
@@ -50,7 +50,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="admin-head">
         <div>
           <div className="eyebrow">Preuve Publique / Administration</div>
-          <h1>Atelier de relecture</h1>
+          <h1>Administration</h1>
         </div>
         <div className="admin-who">
           <span>
