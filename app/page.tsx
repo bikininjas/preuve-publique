@@ -42,17 +42,18 @@ export default async function Home() {
       <section className="hero evidence-hero">
         <HeroAtmosphere />
         <div className="hero-copy">
-          <div className="eyebrow">Assemblée nationale · Sénat</div>
-          <h1>Les votes publics,<br /><em>sujet par sujet.</em></h1>
-          <p className="lead">Explorez les scrutins, les positions et les documents officiels depuis 2017.</p>
-          <form className="hero-search" action="/scrutins" method="get"><label className="sr-only" htmlFor="home-search">Chercher un sujet ou un scrutin</label><input id="home-search" type="search" name="q" placeholder="Retraites, logement, budget…" maxLength={120} /><button type="submit" aria-label="Rechercher les scrutins">↗</button></form>
-          <div className="hero-shortcuts"><Link href="/scrutins">Tous les scrutins →</Link><Link href="/categories">Les votes par thème →</Link><Link href="/preparer-mon-vote">Préparer mon vote →</Link></div>
+          <div className="eyebrow">Un outil citoyen, des sources officielles</div>
+          <h1>Comprendre les décisions.<br /><em>Éclairer votre vote.</em></h1>
+          <p className="lead">Sur vos sujets, retrouvez les lois adoptées, les votes des partis et des groupes, et les sources pour vous faire votre propre opinion.</p>
+          <div className="hero-actions"><Link className="button" href="/preparer-mon-vote">Choisir mes sujets <span aria-hidden="true">↗</span></Link><Link className="hero-browse" href="/scrutins">Voir les lois adoptées <span aria-hidden="true">→</span></Link></div>
+          <label className="hero-search-label" htmlFor="home-search">Ou recherchez un sujet qui vous concerne</label>
+          <form className="hero-search" action="/scrutins" method="get"><input id="home-search" type="search" name="q" placeholder="Retraites, logement, budget…" maxLength={120} /><button type="submit" aria-label="Rechercher les scrutins">↗</button></form>
           <p className="hero-note">{votes ? <><b>{votes.total.toLocaleString('fr-FR')} votes d’adoption définitive publiés</b></> : 'Des documents officiels, accessibles et datés.'}<br />Une sélection de lois dont l’adoption parlementaire est achevée, avant promulgation. La couverture depuis 2017 reste partielle.</p>
           <details className="home-selection"><summary>Pourquoi ces votes ?</summary><p>La même règle s’applique à tous les sujets : vote adopté sur l’ensemble de la loi en lecture définitive, adoption sans modification après l’autre chambre, ou dernier vote après accord d’une commission mixte paritaire adopté par les deux chambres.</p><p>Amendements, motions, rejets, résolutions et lectures intermédiaires sont exclus. Un dernier vote disponible ne suffit pas. Les lois constitutionnelles et les résolutions européennes suivent d’autres procédures.</p><Link href="/methode#selection-scrutins">Voir les critères et les limites →</Link></details>
           <a className="hero-explore-cue" href="#sujets"><span aria-hidden="true">↓</span> Explorer les sujets</a>
         </div>
         <aside className="latest-vote" aria-label="Le scrutin publié le plus récent">
-          <div className="latest-vote-kicker"><span>Dernier scrutin publié</span><span className="latest-vote-seal">Source officielle</span></div>
+          <div className="latest-vote-kicker"><span>Une décision à comprendre</span><span className="latest-vote-seal">Source officielle</span></div>
           {latest ? <><div className="latest-vote-meta"><span>{institutionLabel(latest.institution)}</span><time dateTime={latest.occurred_at}>{formatDate(latest.occurred_at)}</time></div>
             <h2><Link href={`/pieces/${latest.id}`}>{readerTitle(latest)}</Link></h2>
             <VoteTopics title={latest.title} institution={latest.institution} />
@@ -66,7 +67,7 @@ export default async function Home() {
       </section>
 
       <section className="decision-entry" aria-labelledby="home-decision-title">
-        <div><span className="eyebrow">Première visite ?</span><h2 id="home-decision-title">Préparez votre vote en trois étapes.</h2><ol className="decision-steps"><li>Choisissez jusqu’à 3 sujets.</li><li>Comparez les votes sur les mêmes textes.</li><li>Notez vos questions et téléchargez votre mémo.</li></ol><Link href="/partis/comparer">Mettre deux partis côte à côte →</Link></div>
+        <div><span className="eyebrow">Votre parcours</span><h2 id="home-decision-title">Des sujets qui vous concernent à un choix éclairé.</h2><ol className="decision-steps"><li>Choisissez jusqu’à 3 sujets.</li><li>Comparez les votes sur les mêmes textes.</li><li>Notez vos questions et téléchargez votre mémo.</li></ol><Link href="/partis/comparer">Mettre deux partis côte à côte →</Link></div>
         <Link className="button" href="/preparer-mon-vote">Préparer mon vote <span aria-hidden="true">↗</span></Link>
       </section>
 

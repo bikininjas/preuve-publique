@@ -6,7 +6,7 @@ import { findVoteSubject, VOTE_SUBJECT_GROUPS } from './vote-subjects.ts';
 export type SeoDocument = { title: string; description: string; section: string; parent?: { name: string; path: string }; sourceUrl?: string };
 
 export const SEO_PAGES: Record<string, SeoDocument> = {
-  '/': { title: 'Votes des députés et sénateurs : scrutins et sources', description: 'Explorez les scrutins de l’Assemblée nationale et du Sénat, les votes des partis et les sources des décisions politiques, depuis 2017.', section: 'Les décisions, les sources, le contexte' },
+  '/': { title: 'Comprendre les décisions politiques, éclairer votre vote', description: 'Retrouvez les lois adoptées et les votes des partis et des groupes depuis 2017. Comparez sur vos sujets et préparez votre vote avec les sources officielles.', section: 'Comprendre les décisions, éclairer votre vote' },
   '/scrutins': { title: 'Scrutins : qui vote quoi à l’Assemblée et au Sénat ?', description: 'Retrouvez les votes officiels par sujet, parti ou groupe : pour, contre, abstention et non-participation, avec le texte exact et les sources.', section: 'Scrutins officiels' },
   '/pieces': { title: 'Documents et scrutins publiés', description: 'Consultez les pièces publiées de Preuve Publique : scrutins officiels, textes adoptés et documents politiques, avec leur date et leur provenance.', section: 'Base documentaire' },
   '/categories': { title: 'Votes par thème : économie, société et vie quotidienne', description: 'Explorez les votes par thème et sous-thème : logement, retraites, impôts, santé, immigration et sécurité. Chaque graphique renvoie aux scrutins officiels.', section: 'Thèmes et sous-thèmes' },

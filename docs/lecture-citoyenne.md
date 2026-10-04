@@ -37,3 +37,13 @@ La comparaison présentait les nombres bruts sans rappeler le total attribuable 
 Le carnet reprend le sujet et les deux partis exacts du lien public, puis les conserve dans les liens de chaque nouveau thème et dans le mémo texte. Une identité manquante ou répétée est signalée, sans remplacement automatique. Les notes restent privées et ne passent jamais dans une URL. La lecture du référentiel des partis n’est demandée que pour deux identifiants valides ; aucune migration ni écriture distante.
 
 Contrôles : build et TypeScript, ESLint, 61 tests de lecture, parcours avec données publiques sur ordinateur et à 390 px. Le sujet est présélectionné, les deux partis survivent à l’ajout d’un thème et à l’export, et une sélection invalide laisse le parcours par sujet utilisable.
+
+## Rendre le but visible dès l’accueil
+
+« Les votes publics, sujet par sujet » décrivait les données sans expliquer leur utilité. Le premier titre annonce désormais « Comprendre les décisions. Éclairer votre vote. ». Le texte précise ce qui est consultable : lois adoptées, votes des partis et des groupes, sources pour former sa propre opinion.
+
+L’action principale « Choisir mes sujets » mène directement au carnet. « Voir les lois adoptées » et la recherche restent accessibles pour une consultation libre. Une décision réelle illustre le service à côté de cette promesse ; le parcours en trois étapes explique ensuite comment passer de ses sujets à un mémo personnel. Les métadonnées de l’accueil reprennent cette finalité.
+
+Les sources, la sélection d’adoptions définitives et la couverture partielle depuis 2017 restent visibles. Les critères de sélection ont des couleurs explicites, lisibles sur le fond de l’accueil dans les deux thèmes.
+
+Contrôles : build et TypeScript, ESLint et 61 tests de lecture. Dans le navigateur, le titre et l’action principale sont visibles dès le premier écran à 1 280, 390 et 320 px, sans débordement horizontal. Le bouton mène au carnet, la recherche conserve sa requête et les critères sont accessibles dans les deux thèmes.
