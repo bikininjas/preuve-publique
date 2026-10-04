@@ -119,6 +119,11 @@ individuelle ni affiliation à un parti n'est inférée. Le passage est idempote
 
 ## Importeurs
 
+Les libellés de décisions européennes peuvent omettre le sujet du texte.
+Après l'import et la publication des séances, `npm run pe:subjects -- --dry-run`
+vérifie leur enrichissement descriptif ; `--yes` l'applique séparément du build.
+Voir [les sources, la reprise et les contrôles des intitulés européens](../docs/intitules-parlement-europeen.md).
+
 | Importeur | Source officielle | Pièces produites | Volume observé |
 |---|---|---|---|
 | `an-scrutins` | data.assemblee-nationale.fr, archives JSON par législature | `vote` (scrutins) | lég. 15 : 9,2 Mo / 4 417 scrutins ; lég. 17 : 26,3 Mo |

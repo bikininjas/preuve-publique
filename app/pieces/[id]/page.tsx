@@ -27,6 +27,7 @@ import {
 } from '@/lib/labels';
 import { isUuid } from '@/lib/params';
 import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
+import { peDocumentReference, peTextSubject } from '@/lib/pe-document';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,6 +53,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
   if (!item) notFound();
   const { evidence, source, actor, links } = item;
   const displayTitle = readerTitle(evidence);
+  const textSubject = peTextSubject(evidence);
   const scope = voteScope(evidence);
   const tally = evidence.kind === 'vote' ? voteTally(evidence) : null;
 
@@ -106,6 +108,12 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
     ...(source ? [{ term: 'Document', children: source.document_title }] : []),
     { term: 'Repère dans la source', children: evidence.source_locator ?? '—' },
     { term: 'Type', children: kindLabel(evidence.kind) },
+    ...(textSubject ? [
+      { term: 'Texte concerné', children: peDocumentReference(evidence.title)?.label },
+      { term: 'Sujet publié par le Parlement européen', children: textSubject.title },
+      { term: 'Source du sujet', children: <a href={textSubject.source_url} target="_blank" rel="noopener noreferrer">{textSubject.source_locator} ↗</a> },
+      { term: 'Sujet récupéré le', children: formatDateTime(textSubject.retrieved_at) },
+    ] : []),
     ...(evidence.external_id ? [{ term: 'Référence de la pièce', children: evidence.external_id }] : []),
     ...evidence.topics.map((topic) => ({
       term: 'Rubrique',
