@@ -1,6 +1,13 @@
-.home-selection { max-width: 65ch; margin: 12px 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.home .evidence-hero h1 { font-size: clamp(30px, 3.8vw, 54px); letter-spacing: -.025em; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; margin: 24px 0; }
+.hero-actions .button { min-height: 44px; }
+.hero-browse { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #e0e9e8; font-size: 14px; }
+.hero-browse:hover { color: white; text-decoration: underline; }
+.hero-search-label { display: block; color: #c8d7d9; font-size: 13px; line-height: 1.5; }
+.home .hero-search { margin: 8px 0 16px; }
+.home-selection { max-width: 65ch; margin: 12px 0; color: #c8d7d9; font-size: 13px; line-height: 1.6; }
 .home-selection summary, .card-trace summary, .political-details summary { cursor: pointer; min-height: 44px; padding-block: 10px; font-weight: 600; }
-.home-selection summary { color: var(--ink); }
+.home-selection summary, .home-selection a { color: #e0e9e8; }
 .vote-reading { padding: 18px; margin-block: 16px; border-left: 3px solid var(--teal); background: var(--surface); border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.6; }
 .vote-reading p { margin: 0 0 10px; }
 .vote-reading p:last-child { margin-bottom: 0; }
@@ -38,6 +45,8 @@
 #votes-communs { scroll-margin-top: 24px; }
 @media (max-width: 900px) { .party-comparison-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 740px) {
+  .home .evidence-hero h1 { font-size: clamp(30px, 8.5vw, 40px); }
+  .hero-actions { margin: 20px 0; gap: 4px 18px; }
   .vote-meaning, .notebook-preview, .party-comparison-pair, .party-comparison-filters { grid-template-columns: 1fr; }
   .party-comparison-vote, .notebook-preview { padding: 16px; }
   .decision-steps { display: block; }
