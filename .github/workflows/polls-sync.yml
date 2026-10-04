@@ -32,4 +32,9 @@ jobs:
         if: github.event_name == 'schedule' || !inputs.dry_run
         env:
           DB_PG_URL: ${{ secrets.POLLS_DB_PG_URL }}
-        run: npm run polls:sync -- --yes --publish
+        run: |
+          curl --fail --silent --show-error --retry 3 \
+            https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt \
+            --output "$RUNNER_TEMP/supabase-ca.crt"
+          export NODE_EXTRA_CA_CERTS="$RUNNER_TEMP/supabase-ca.crt"
+          npm run polls:sync -- --yes --publish
