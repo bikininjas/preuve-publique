@@ -1,5 +1,7 @@
 # Premier lot documentaire de l’observatoire
 
+Extension du 04/10/2026 : [22 dossiers judiciaires structurés](affaires-judiciaires.md) sont importés en brouillon, avec motifs, rôles, décisions et rattachements datés. Les graphiques publics lisent uniquement les pièces publiées ; `/admin/justice` permet de contrôler les brouillons. Le répertoire de 30 formations et 30 entrées parlementaires ne constitue pas un recensement exhaustif des affaires.
+
 **Actualisation du 02/10/2026 : les 24 indicateurs chiffrés sont publiés sans nouvelle relecture, sur demande explicite de l’utilisateur.** Les programmes et l’étape judiciaire restent en brouillon. Voir [publication des chiffres institutionnels](publication-indicateurs.md) ; les états ci-dessous décrivent les étapes antérieures.
 
 Extensions du 02/10/2026 : [vingt-deux nouvelles fiches d’inégalités](inegalites.md) ont été importées en deux lots de seize et six brouillons, portant le corpus éditorial à 28 pièces et les indicateurs à 24. Leur guide détaille neuf domaines, les sources, les liens de relecture et les vérifications, y compris la fiscalité des très hauts revenus, les taxes indirectes, les CPGE et les discriminations selon l’origine perçue. La vue `/admin/inegalites` et le regroupement public par domaine sont préparés dans cette branche.

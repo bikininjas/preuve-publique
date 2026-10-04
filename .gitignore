@@ -29,3 +29,6 @@ ingestion/.staging/
 
 # User attachments are not project sources
 .codex-remote-attachments/
+
+# Judicial personal data is supplied separately, outside the public repository.
+ingestion/observatory/judicial-*.json

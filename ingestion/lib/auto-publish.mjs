@@ -17,7 +17,7 @@ const SCORE = 0.99;
 const FIELDS = ['external_id', 'kind', 'institution', 'title', 'excerpt', 'occurred_at', 'source_url', 'source_locator'];
 const normalizedDetail = (value) => {
   if (!value || typeof value !== 'object') return null;
-  const { refs, topics_source, ...rest } = value;
+  const { refs, topics_source, final_adoption, ...rest } = value;
   return rest;
 };
 const same = (a, b) => FIELDS.every((key) => (a[key] ?? null) === (b[key] ?? null))

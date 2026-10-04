@@ -1,0 +1,456 @@
+{
+  "checked_at": "2026-10-04",
+  "scope": "Formations des déclarations de financement AN de novembre 2025, groupes AN/Sénat/PE et formations historiques nécessaires aux dossiers. Répertoire non exhaustif des partis français.",
+  "entities": [
+    {
+      "id": "ps",
+      "label": "Parti socialiste",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-regions-et-peuples-solidaires",
+      "label": "Régions et peuples solidaires",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "lr",
+      "label": "Les Républicains",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-union-des-democrates-europeens-centristes-et-independants",
+      "label": "Union des démocrates européens, centristes et indépendants",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "horizons",
+      "label": "Horizons",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-ensemble-majorite-presidentielle",
+      "label": "Ensemble ! (majorité présidentielle)",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "ecologistes",
+      "label": "Les Écologistes - EELV",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-udr-union-des-droites-pour-la-republique",
+      "label": "UDR - Union des Droites pour la République",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "pcf",
+      "label": "Parti communiste français",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "lfi",
+      "label": "La France Insoumise",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-alliance-centriste",
+      "label": "Alliance centriste",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-peyi-a",
+      "label": "Péyi-A",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "rn",
+      "label": "Rassemblement national",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-parti-progressiste-democratique-guadeloupeen",
+      "label": "Parti progressiste démocratique guadeloupéen",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-association-ambition-reunion",
+      "label": "Association ambition Réunion",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-rezistan-s-egalite-974",
+      "label": "Rézistan's Égalité 974",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-a-here-ia-porinetia",
+      "label": "A here ia Porinetia",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-pour-la-reunion",
+      "label": "Pour la Réunion",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-generations-nc",
+      "label": "Générations NC",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-tavini-huiraatira-no-te-ao-ma-ohi-front-de-liberation-de-polynesie",
+      "label": "Tavini Huiraatira No Te Ao Ma'ohi - Front de libération de Polynésie",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-archipel-demain",
+      "label": "Archipel demain",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-debout-la-france",
+      "label": "Debout la France",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-mouvement-de-decolonisation-et-d-emancipation-sociale",
+      "label": "Mouvement de décolonisation et d'émancipation sociale",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-progres-974",
+      "label": "Progrès-974",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "formation-tapura-huiraatira",
+      "label": "Tapura Huiraatira",
+      "kind": "party",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2026",
+      "scope_note": "Formation citée dans les rattachements de financement déclarés en novembre 2025. Ce répertoire ne prouve aucune adhésion individuelle."
+    },
+    {
+      "id": "ump",
+      "label": "Union pour un mouvement populaire (historique)",
+      "kind": "party",
+      "source_url": "https://www.vie-publique.fr/discours/164926-tribune-de-m-nicolas-sarkozy-ministre-de-linterieur-et-de-lamenageme",
+      "scope_note": "Dénomination historique, distinguée des Républicains."
+    },
+    {
+      "id": "eelv",
+      "label": "Europe Écologie Les Verts (historique)",
+      "kind": "party",
+      "source_url": "https://lesecologistes.fr/posts/6OfZQDqgftAYeUEn61UF7G/resultats-du-vote-sur-les-nouveaux-statuts",
+      "scope_note": "Appartenance historique ; aucune attribution automatique aux Écologistes actuels."
+    },
+    {
+      "id": "flnks",
+      "label": "Front de libération nationale kanak et socialiste",
+      "kind": "party",
+      "source_url": "https://www.vie-publique.fr/en-bref/271195-nouvelle-caledonie-vers-lorganisation-dune-deuxieme-consultation",
+      "scope_note": "Front politique de Nouvelle-Calédonie, distinct des groupes parlementaires."
+    },
+    {
+      "id": "modem",
+      "label": "Mouvement démocrate",
+      "kind": "party",
+      "source_url": "https://www.mouvementdemocrate.fr/mouvement-d%C3%A9mocrate/statuts-2448",
+      "scope_note": "Répertoire de formation ; aucune adhésion individuelle n'en est déduite."
+    },
+    {
+      "id": "renaissance",
+      "label": "Renaissance",
+      "kind": "party",
+      "source_url": "https://parti-renaissance.fr/le-parti",
+      "scope_note": "Répertoire de formation ; aucune adhésion individuelle n'en est déduite."
+    },
+    {
+      "id": "an-rn",
+      "label": "Rassemblement National",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-epr",
+      "label": "Ensemble pour la République",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-lfi",
+      "label": "La France insoumise - Nouveau Front Populaire",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-socialistes",
+      "label": "Socialistes et apparentés",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-droite",
+      "label": "Droite Républicaine",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-ecologiste",
+      "label": "Écologiste et Social",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-democrates",
+      "label": "Les Démocrates",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-horizons",
+      "label": "Horizons & Indépendants",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-liot",
+      "label": "Libertés, Indépendants, Outre-mer et Territoires",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-gdr",
+      "label": "Gauche Démocrate et Républicaine",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-udr",
+      "label": "Union des droites pour la République",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "an-ni",
+      "label": "Non-inscrits — Assemblée nationale",
+      "kind": "group",
+      "chamber": "Assemblée nationale",
+      "source_url": "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique",
+      "scope_note": "Réunion administrative ou non-inscrits : ne constitue pas un groupe politique."
+    },
+    {
+      "id": "senat-lr",
+      "label": "Les Républicains — Sénat",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-ser",
+      "label": "Socialiste, Écologiste et Républicain",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-uc",
+      "label": "Union Centriste",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-lirt",
+      "label": "Les Indépendants - République et Territoires",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-rdpi",
+      "label": "Rassemblement des démocrates, progressistes et indépendants",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-crce",
+      "label": "Communiste Républicain Citoyen et Écologiste - Kanaky",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-rdse",
+      "label": "Rassemblement Démocratique et Social Européen",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-est",
+      "label": "Écologiste - Solidarité et Territoires",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "senat-ni",
+      "label": "Non-inscrits — Sénat",
+      "kind": "group",
+      "chamber": "Sénat",
+      "source_url": "https://www.senat.fr/senateurs/grp.html",
+      "scope_note": "Réunion administrative ou non-inscrits : ne constitue pas un groupe politique."
+    },
+    {
+      "id": "ep-ppe",
+      "label": "Parti populaire européen (PPE)",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-sd",
+      "label": "Alliance progressiste des socialistes et démocrates (S&D)",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-pfe",
+      "label": "Patriotes pour l’Europe",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-ecr",
+      "label": "Conservateurs et réformistes européens",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-renew",
+      "label": "Renew Europe",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-verts",
+      "label": "Verts / Alliance libre européenne",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-gauche",
+      "label": "La Gauche au Parlement européen — GUE/NGL",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-esn",
+      "label": "Europe des nations souveraines",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Répertoire actuel ; les affiliations individuelles doivent être datées et sourcées."
+    },
+    {
+      "id": "ep-ni",
+      "label": "Non-inscrits — Parlement européen",
+      "kind": "group",
+      "chamber": "Parlement européen",
+      "source_url": "https://www.europarl.europa.eu/about-parliament/fr/organisation-and-rules/organisation/political-groups",
+      "scope_note": "Réunion administrative ou non-inscrits : ne constitue pas un groupe politique."
+    }
+  ]
+}

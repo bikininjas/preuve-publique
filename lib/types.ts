@@ -54,7 +54,7 @@ export interface Evidence {
   reviewed_by: string | null;
   reviewed_at: string | null;
   publication_confidence?: number | null;
-  publication_method?: 'official_archive_replay' | 'official_source_unreviewed' | null;
+  publication_method?: 'official_archive_replay' | 'official_source_unreviewed' | 'judicial_source_verified' | null;
   publication_checks?: Record<string, boolean> | null;
 }
 

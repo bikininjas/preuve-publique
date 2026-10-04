@@ -147,12 +147,12 @@ export default function MethodePage() {
           L’indice 0,990 mesure une conformité documentaire déterministe, pas la probabilité qu’une interprétation
           politique soit vraie. Les indicateurs chiffrés issus de publications institutionnelles peuvent être
           publiés directement, sans relecture par Preuve Publique ; leurs fiches le précisent et conservent la
-          source, la période, le champ et les limites. Les autres pièces et tous les rapprochements interprétatifs
+          source, la période, le champ et les limites. Les faits judiciaires structurés peuvent également être publiés automatiquement à partir de documents judiciaires vérifiables, avec appartenances datées, motifs, rôles et statut des recours. Cette publication ne vaut pas validation humaine. Les autres pièces et les rapprochements interprétatifs
           demandent une validation humaine. Un nouvel import n’écrase jamais une pièce relue ou publiée : si la source a changé, le passage le
           signale et un humain décide.
         </p>
         <p>
-          <b>État vérifié au 1er octobre 2026.</b> Le site publie les <b>lois promulguées du Sénat</b> (666), les <b>scrutins
+          <b>Bilan historique au 1er octobre 2026, antérieur au recentrage sur les adoptions définitives.</b> Le site publie les <b>lois promulguées du Sénat</b> (666), les <b>scrutins
           publics du Sénat</b> (2 157) et les <b>scrutins de l’Assemblée nationale portant sur l’ensemble d’un texte</b>
           (801). Ces 3 624 pièces ont été publiées après un <b>contrôle technique de conformité à la source</b> : le
           fichier officiel conservé (empreinte SHA-256 enregistrée) a été réimporté et comparé pièce par pièce, sans

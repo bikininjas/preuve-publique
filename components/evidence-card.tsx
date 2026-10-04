@@ -17,7 +17,7 @@ export function EvidenceCard({ item, review = false }: { item: Evidence; review?
     <article data-institution={item.institution ?? undefined} className={`card evidence-card${item.kind === 'indicator' && !review ? ' indicator-card' : ''}`}>
       <div className="card-top"><span className="count">{kindLabel(item.kind)}</span><span className="card-date">{item.kind === 'indicator' ? 'Source : ' : ''}{formatEvidenceDate(item)}</span></div>
       <InstitutionBadge institution={item.institution} />
-      {scope ? <p className="card-vote-scope">Vote sur : <b>{scope}</b></p> : null}
+      {scope ? <p className="card-vote-scope">{item.kind === 'vote' && (item.detail?.final_adoption || /lecture définitive/i.test(item.title)) ? <b>Adoption définitive de la loi</b> : <>Vote sur : <b>{scope}</b></>}</p> : null}
       {item.kind === 'vote' ? <span className="card-topic-label">Sujet du texte concerné</span> : null}
       <h3>
         <Link href={href}>{readerTitle(item)}</Link>

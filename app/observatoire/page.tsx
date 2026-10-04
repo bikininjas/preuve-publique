@@ -3,6 +3,8 @@ import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { EvidenceCard } from '@/components/evidence-card';
 import { InequalitySections } from '@/components/inequality-sections';
+import { JudicialDashboard } from '@/components/judicial-dashboard';
+import { getJudicialEvidence } from '@/lib/judicial-data';
 import { Empty } from '@/components/ui';
 import { getEvidencePage, isConfigured } from '@/lib/data';
 import type { EvidencePage } from '@/lib/types';
@@ -25,12 +27,12 @@ export default async function ObservatoirePage() {
   // Une rubrique indisponible ne masque pas les autres et ne vaut pas zéro pièce.
   const queries = [
     { kind: 'program' as const, limit: 3 }, { kind: 'statement' as const, limit: 3 },
-    { kind: 'indicator' as const, limit: 24 }, { kind: 'judicial_event' as const, limit: 3 },
+    { kind: 'indicator' as const, limit: 24 }, { kind: 'judicial_event' as const, limit: 100 },
     { kind: 'vote' as const, institution: 'assemblee' as const, limit: 1 },
     { kind: 'vote' as const, institution: 'senat' as const, limit: 1 },
     { kind: 'vote' as const, institution: 'parlement_europeen' as const, limit: 1 },
   ];
-  const results = isConfigured() ? await Promise.allSettled(queries.map((query) => getEvidencePage(query))) : [];
+  const results = isConfigured() ? await Promise.allSettled(queries.map((query) => query.kind === 'judicial_event' ? getJudicialEvidence() : getEvidencePage(query))) : [];
   const pages = queries.map((_, index) => {
     const result = results[index];
     return result?.status === 'fulfilled' ? result.value : null;
@@ -47,7 +49,7 @@ export default async function ObservatoirePage() {
     <InequalitySections result={indicators} />
     <PublishedSection id="parole-vote" title="Programmes" intro="Édition électorale et extraits identifiés. Une archive d’une autre élection ne représente pas un programme de 2027 ; un document seul ne valide aucun rapprochement avec un vote." result={programs} href="/pieces?kind=program" empty="Aucun programme validé n’est encore publié. Les archives doivent être relues avec leur édition et leur contexte." />
     {statements === null || statements.total > 0 ? <PublishedSection id="declarations" title="Déclarations" intro="Formulation exacte, circonstances et repère dans l’enregistrement ou la transcription." result={statements} href="/pieces?kind=statement" empty="Aucune déclaration publiée." /> : <p className="hint">Aucune déclaration médiatique vérifiée n’est publiée pour l’instant.</p>}
-    <PublishedSection id="justice" title="Étapes judiciaires" intro="Les étapes sont datées, avec leurs recours ; elles ne décrivent pas nécessairement l’état actuel d’une procédure. La présomption d’innocence s’applique aux faits non définitivement jugés." result={judicial} href="/pieces?kind=judicial_event" empty="Aucune étape judiciaire validée n’est encore publiée. Les documents et l’état de la procédure demandent une relecture humaine." />
+    <JudicialDashboard result={judicial} />
     <section className="coverage"><div className="section-heading"><div><div className="eyebrow">Corpus publié dans Preuve Publique</div><h2>Scrutins disponibles</h2></div></div><div className="coverage-grid">{[
       { title: 'Assemblée nationale', page: assemblee, institution: 'assemblee' },
       { title: 'Sénat', page: senat, institution: 'senat' },

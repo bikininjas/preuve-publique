@@ -1,9 +1,11 @@
 import type { Evidence } from '@/lib/types';
 import { formatDate } from '@/lib/labels';
+import { validateJudicialSnapshot } from '@/lib/judicial';
+import { JudicialDetails } from './judicial-details';
 
 type Program = { author: string; election: string; edition: string; election_date: string; publication_date: string | null; date_note: string; scope_note: string };
 type Indicator = { value: number; value_label?: string; unit: string; period: string; geography: string; population: string; method: string; limits: string; source_edition?: string; measurement_type?: string; comparison_note?: string; comparisons?: Array<{ label: string; value: number }>; series: Array<{ period: string; value: number }> };
-type Judicial = { court: string; stage: string; status_at_event: string; current_status_note: string; presumption_note: string };
+type Judicial = { court: string; stage: string; status_at_event: string; current_status_note: string; presumption_note: string; snapshot?: unknown };
 
 /** Editorial summaries are labelled; they never appear as verbatim quotations. */
 export function EditorialContext({ evidence, compact = false }: { evidence: Evidence; compact?: boolean }) {
@@ -41,10 +43,12 @@ export function EditorialContext({ evidence, compact = false }: { evidence: Evid
       {indicator.source_edition ? <p className="hint"><strong>Édition : </strong>{indicator.source_edition}</p> : null}
     </> : null}
     {evidence.kind === 'judicial_event' && judicial ? <>
+      {evidence.publication_method === 'judicial_source_verified' ? <p className="hint">Faits sourcés publiés automatiquement · sans relecture humaine par Preuve Publique.</p> : null}
       <p><strong>{judicial.court}</strong> · {judicial.stage}</p>
       <p><strong>Au {formatDate(evidence.occurred_at)} : </strong>{judicial.status_at_event}</p>
       <p className="hint">{judicial.current_status_note}</p>
       {!compact ? <p className="hint">{judicial.presumption_note}</p> : null}
+      {!compact && validateJudicialSnapshot(judicial.snapshot) ? <JudicialDetails snapshot={judicial.snapshot} /> : null}
     </> : null}
   </div>;
 }

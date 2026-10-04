@@ -70,12 +70,12 @@ function draft(overrides = {}) {
     external_id: 'VTANR5L15V2944',
     kind: 'vote',
     institution: 'assemblee',
-    title: "Scrutin n° 2944 — l'ensemble du projet de loi de test",
+    title: "Scrutin n° 2944 — l'ensemble du projet de loi de test (lecture définitive)",
     excerpt: null,
     occurred_at: '2020-10-07',
     source_url: 'https://www.assemblee-nationale.fr/dyn/15/scrutins/2944',
     source_locator: 'json/VTANR5L15V2944.json dans Scrutins_XV.json.zip',
-    detail: { refs: [{ type: 'an:seance', value: 'SEANCE-1' }] },
+    detail: { sort: { code: 'adopté' }, refs: [{ type: 'an:seance', value: 'SEANCE-1' }] },
     source: {
       url: 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip',
       publisher: 'Assemblée nationale',
@@ -113,7 +113,7 @@ test('une archive AN intacte publie le brouillon, une divergence bloque la publi
     const archiveUrl = 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip';
     const fixture = readFileSync(join(ROOT, 'ingestion/tests/fixtures/an-scrutin.sample.json'), 'utf8');
     const scrutin = JSON.parse(fixture).scrutin;
-    scrutin.titre = "l'ensemble du projet de loi de test (première lecture).";
+    scrutin.titre = "l'ensemble du projet de loi de test (lecture définitive).";
     const raw = saveRaw(dir, 'Scrutins_XV.json.zip', zipSync({ 'scrutin.json': Buffer.from(JSON.stringify({scrutin})) }));
     const source = {
       url: archiveUrl, publisher: 'Assemblée nationale',
@@ -212,7 +212,7 @@ test('rejeu européen : dernière page obligatoire, empreinte de chaque page et 
 
 test('publication par lots : limite, divergences, pièces relues et annulation de toute la reprise', async () => {
   const client = await freshDb();
-  const records = Array.from({ length: 4 }, (_, i) => draft({ external_id: `VTANR5L15V${500+i}`, title: `Scrutin n° ${500+i} — l'ensemble du projet de loi de test ${i}` }));
+  const records = Array.from({ length: 4 }, (_, i) => draft({ external_id: `VTANR5L15V${500+i}`, title: `Scrutin n° ${500+i} — l'ensemble du projet de loi de test ${i} (lecture définitive)` }));
   const ids = [];
   for (const record of records) ids.push((await db.upsertEvidence(client, record)).id);
   await client.query("update public.evidence set status='reviewed',reviewed_by='lecteur',reviewed_at=now() where id=$1", [ids[3]]);
@@ -240,7 +240,7 @@ test('daily sync inserts only the latest whole vote and withdraws the previous r
     const template = JSON.parse(readFileSync(join(ROOT, 'ingestion/tests/fixtures/an-scrutin.sample.json'), 'utf8')).scrutin;
     const url = 'https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip';
     const originals = [
-      { ...template, uid:'VTANR5L15V9',numero:'9',dateScrutin:'2026-09-10',titre:"l'ensemble du projet de loi de test (première lecture)." },
+      { ...template, uid:'VTANR5L15V9',numero:'9',dateScrutin:'2026-09-10',titre:"l'ensemble du projet de loi de test (lecture définitive)." },
       { ...template, uid:'VTANR5L15V100',numero:'100',dateScrutin:'2026-09-30',titre:"l'ensemble du projet de loi de test (lecture définitive)." },
       { ...template, uid:'VTANR5L15V200',numero:'200',dateScrutin:'2026-09-30',titre:"l'amendement n° 1 au projet de loi de test." },
     ];
@@ -306,14 +306,14 @@ test('push is idempotent and a reviewed piece is never overwritten', async () =>
 
 test('import officiel groupé : simulation, idempotence et aucune modification d’une pièce validée',async()=>{
   const client=await freshDb();
-  const records=[draft({external_id:'batch-1'}),draft({external_id:'batch-2',title:"Scrutin n° 2 — l'ensemble du projet de loi de test 2"})];
+  const records=[draft({external_id:'batch-1'}),draft({external_id:'batch-2',title:"Scrutin n° 2 — l'ensemble du projet de loi de test 2 (lecture définitive)"})];
   const verified={institution:'assemblee',kind:'vote',eligible:records.map(record=>({record,source:record.source}))};
   assert.equal((await importOfficial(client,verified)).inserted,2);
   assert.equal((await client.query('select count(*)::int n from evidence')).rows[0].n,0);
   assert.equal((await importOfficial(client,verified,{dryRun:false})).inserted,2);
   assert.equal((await importOfficial(client,verified,{dryRun:false})).unchanged,2);
   await client.query("update evidence set status='published' where external_id='batch-1'");
-  const altered={...verified,eligible:[{record:{...records[0],title:"Scrutin n° 2 — l'ensemble du projet de loi divergent"},source:records[0].source}]};
+  const altered={...verified,eligible:[{record:{...records[0],title:"Scrutin n° 2 — l'ensemble du projet de loi divergent (lecture définitive)"},source:records[0].source}]};
   await assert.rejects(importOfficial(client,altered,{dryRun:false}),/validée diverge/);
   assert.equal((await client.query("select title from evidence where external_id='batch-1'")).rows[0].title,records[0].title);
 });
