@@ -1,0 +1,2218 @@
+{
+  "version": 1,
+  "retrievedAt": "2026-10-04",
+  "compositions": [
+    {
+      "institution": "assemblee",
+      "mode": "groups",
+      "scope": "all",
+      "total": 577,
+      "listed": 569,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Membres et apparentés décomptés une seule fois, selon leur mandat de groupe actif.",
+      "notes": [
+        "569 députés dans l’archive ; les 8 sièges restants ne sont pas décrits. Une absence de ligne ne prouve pas une vacance."
+      ],
+      "buckets": [
+        {
+          "id": "PO845401",
+          "name": "Rassemblement National",
+          "status": "known",
+          "seats": 118
+        },
+        {
+          "id": "PO845407",
+          "name": "Ensemble pour la République",
+          "status": "known",
+          "seats": 90
+        },
+        {
+          "id": "PO845413",
+          "name": "La France insoumise - Nouveau Front Populaire",
+          "status": "known",
+          "seats": 70
+        },
+        {
+          "id": "PO845419",
+          "name": "Socialistes et apparentés",
+          "status": "known",
+          "seats": 67
+        },
+        {
+          "id": "PO845425",
+          "name": "Droite Républicaine",
+          "status": "known",
+          "seats": 47
+        },
+        {
+          "id": "PO845439",
+          "name": "Écologiste et Social",
+          "status": "known",
+          "seats": 38
+        },
+        {
+          "id": "PO845454",
+          "name": "Les Démocrates",
+          "status": "known",
+          "seats": 37
+        },
+        {
+          "id": "PO845470",
+          "name": "Horizons & Indépendants",
+          "status": "known",
+          "seats": 34
+        },
+        {
+          "id": "PO845485",
+          "name": "Libertés, Indépendants, Outre-mer et Territoires",
+          "status": "known",
+          "seats": 23
+        },
+        {
+          "id": "PO845514",
+          "name": "Gauche Démocrate et Républicaine",
+          "status": "known",
+          "seats": 17
+        },
+        {
+          "id": "PO872880",
+          "name": "Union des droites pour la République",
+          "status": "known",
+          "seats": 17
+        },
+        {
+          "id": "PO840056",
+          "name": "Non inscrit",
+          "status": "unaffiliated",
+          "seats": 11
+        },
+        {
+          "id": "not-listed",
+          "name": "Sièges non décrits dans la source",
+          "status": "unknown",
+          "seats": 8
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_actifs_mandats_actifs_organes/AMO10_deputes_actifs_mandats_actifs_organes.json.zip",
+          "publisher": "Assemblée nationale",
+          "locator": "Députés en exercice · mandats actifs GP et PARPOL (AMO10)",
+          "retrievedAt": "2026-10-04",
+          "sha256": "f5010c8925ae4fb971c119ffa1690e8f0375b8c9abfcc1315aee421706fa783c"
+        }
+      ]
+    },
+    {
+      "institution": "assemblee",
+      "mode": "parties",
+      "scope": "all",
+      "total": 577,
+      "listed": 569,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Rattachements déclarés pour le financement public des partis, dans le référentiel des députés en exercice. Ils ne prouvent pas une adhésion.",
+      "notes": [
+        "Un groupe, une coalition et un parti restent distincts. Les rattachements absents ou ambigus restent en gris."
+      ],
+      "buckets": [
+        {
+          "id": "PO761239",
+          "name": "Rassemblement national",
+          "status": "known",
+          "seats": 114
+        },
+        {
+          "id": "PO833003",
+          "name": "Ensemble ! (majorité présidentielle)",
+          "status": "known",
+          "seats": 111
+        },
+        {
+          "id": "PO744856",
+          "name": "La France Insoumise",
+          "status": "known",
+          "seats": 66
+        },
+        {
+          "id": "PO684932",
+          "name": "Parti socialiste",
+          "status": "known",
+          "seats": 61
+        },
+        {
+          "id": "PO710396",
+          "name": "Les Républicains",
+          "status": "known",
+          "seats": 40
+        },
+        {
+          "id": "PO852530",
+          "name": "Les Écologistes - EELV",
+          "status": "known",
+          "seats": 33
+        },
+        {
+          "id": "PO852528",
+          "name": "Horizons",
+          "status": "known",
+          "seats": 29
+        },
+        {
+          "id": "PO744858",
+          "name": "Régions et peuples solidaires",
+          "status": "known",
+          "seats": 18
+        },
+        {
+          "id": "PO852532",
+          "name": "UDR - Union des Droites pour la République",
+          "status": "known",
+          "seats": 17
+        },
+        {
+          "id": "PO684926",
+          "name": "Parti communiste français",
+          "status": "known",
+          "seats": 14
+        },
+        {
+          "id": "PO806444",
+          "name": "Union des démocrates européens, centristes et indépendants",
+          "status": "known",
+          "seats": 7
+        },
+        {
+          "id": "PO705103",
+          "name": "Non rattaché(s)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "PO806426",
+          "name": "Alliance centriste",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "PO852531",
+          "name": "Mouvement de décolonisation et d'émancipation sociale",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "PO806434",
+          "name": "Parti progressiste démocratique guadeloupéen",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "PO806436",
+          "name": "Péyi-A",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "PO686029",
+          "name": "Pour la Réunion",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "PO806442",
+          "name": "Rézistan's Égalité 974",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "PO852526",
+          "name": "A here ia Porinetia",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO852527",
+          "name": "Archipel demain",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO833001",
+          "name": "Association ambition Réunion",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO710611",
+          "name": "Debout la France",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO852529",
+          "name": "Générations NC",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO806438",
+          "name": "Progrès-974",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO744860",
+          "name": "Tapura Huiraatira",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "PO744862",
+          "name": "Tavini Huiraatira No Te Ao Ma'ohi - Front de libération de Polynésie",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "unknown",
+          "name": "Rattachement de financement non renseigné",
+          "status": "unknown",
+          "seats": 33
+        },
+        {
+          "id": "not-listed",
+          "name": "Sièges non décrits dans la source",
+          "status": "unknown",
+          "seats": 8
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/amo/deputes_actifs_mandats_actifs_organes/AMO10_deputes_actifs_mandats_actifs_organes.json.zip",
+          "publisher": "Assemblée nationale",
+          "locator": "Députés en exercice · mandats actifs GP et PARPOL (AMO10)",
+          "retrievedAt": "2026-10-04",
+          "sha256": "f5010c8925ae4fb971c119ffa1690e8f0375b8c9abfcc1315aee421706fa783c"
+        }
+      ]
+    },
+    {
+      "institution": "senat",
+      "mode": "groups",
+      "scope": "all",
+      "total": 348,
+      "listed": 348,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Groupes indiqués dans l’annuaire officiel des sénateurs actifs, apparentés et rattachés compris.",
+      "notes": [
+        "179 nouveaux sénateurs n’ont pas encore de groupe renseigné dans la source. Ils restent distincts des non-inscrits."
+      ],
+      "buckets": [
+        {
+          "id": "UMP",
+          "name": "Les Républicains",
+          "status": "known",
+          "seats": 53
+        },
+        {
+          "id": "SOC",
+          "name": "Socialiste, Écologiste et Républicain",
+          "status": "known",
+          "seats": 34
+        },
+        {
+          "id": "UC",
+          "name": "Union Centriste",
+          "status": "known",
+          "seats": 29
+        },
+        {
+          "id": "CRC",
+          "name": "Communiste Républicain Citoyen et Écologiste - Kanaky",
+          "status": "known",
+          "seats": 14
+        },
+        {
+          "id": "RTLI",
+          "name": "Les Indépendants - République et Territoires",
+          "status": "known",
+          "seats": 11
+        },
+        {
+          "id": "GEST",
+          "name": "Écologiste - Solidarité et Territoires",
+          "status": "known",
+          "seats": 9
+        },
+        {
+          "id": "RDSE",
+          "name": "du Rassemblement Démocratique et Social Européen",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "LREM",
+          "name": "Rassemblement des démocrates, progressistes et indépendants",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "NI",
+          "name": "Réunion administrative des Sénateurs ne figurant sur la liste d'aucun groupe",
+          "status": "unaffiliated",
+          "seats": 3
+        },
+        {
+          "id": "pending-group",
+          "name": "Groupe non encore renseigné (nouveaux sénateurs)",
+          "status": "unknown",
+          "seats": 179
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.senat.fr/api-senat/senateurs.json",
+          "publisher": "Sénat",
+          "locator": "Annuaire des sénateurs actifs · champ groupe",
+          "retrievedAt": "2026-10-04",
+          "sha256": "a6f9593336c809ddfb61d6c317184f3f1b4582e1b7a0644e8cf869ec896ad252"
+        }
+      ]
+    },
+    {
+      "institution": "senat",
+      "mode": "parties",
+      "scope": "all",
+      "total": 348,
+      "listed": 348,
+      "asOf": "2025-11-30",
+      "period": "Financement public 2026",
+      "basis": "Rattachements de financement déclarés aux partis. Ils ne prouvent pas une adhésion.",
+      "notes": [
+        "Cet état daté précède le renouvellement sénatorial de 2026. Il ne décrit pas les rattachements des nouveaux sénateurs."
+      ],
+      "buckets": [
+        {
+          "id": "senate-funding-0",
+          "name": "Les Républicains",
+          "seats": 124,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-1",
+          "name": "Parti socialiste",
+          "seats": 64,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-2",
+          "name": "Union des Démocrates Européens, Centristes et Indépendants",
+          "seats": 41,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-3",
+          "name": "Alliance centriste",
+          "seats": 24,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-4",
+          "name": "Horizons",
+          "seats": 21,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-5",
+          "name": "Ensemble ! (Majorité présidentielle)",
+          "seats": 18,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-6",
+          "name": "Parti communiste français",
+          "seats": 17,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-7",
+          "name": "Les Écologistes",
+          "seats": 16,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-8",
+          "name": "Régions et Peuples Solidaires",
+          "seats": 5,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-9",
+          "name": "Guadeloupe unie solidaire et responsable",
+          "seats": 4,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-10",
+          "name": "Rassemblement National",
+          "seats": 3,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-11",
+          "name": "Parti du Mouvement Populaire Franciscain",
+          "seats": 2,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-12",
+          "name": "Tapura Huiraatira",
+          "seats": 2,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-13",
+          "name": "Association Ambition Réunion",
+          "seats": 1,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-14",
+          "name": "Debout la France",
+          "seats": 1,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-15",
+          "name": "Parti progressiste démocratique guadeloupéen",
+          "seats": 1,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-16",
+          "name": "Pour La Réunion",
+          "seats": 1,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-17",
+          "name": "UDR-Union des droites républicaines",
+          "seats": 1,
+          "status": "known"
+        },
+        {
+          "id": "senate-funding-18",
+          "name": "Aucun rattachement",
+          "seats": 2,
+          "status": "unaffiliated"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.senat.fr/fileadmin/cru-1766213612/Organisation_interne/Bureau/Comptes_rendus/2025/07_CR_Bureau_181225.pdf",
+          "publisher": "Sénat",
+          "locator": "Bureau du 18 décembre 2025 · annexe page 10 (11e page PDF)",
+          "sha256": "26b89ce3a5bcfa6dde55904cda523be951582600985e792ecd5a51c3da74b35f",
+          "retrievedAt": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "institution": "parlement_europeen",
+      "mode": "groups",
+      "scope": "all",
+      "total": 720,
+      "listed": 719,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Groupes parlementaires européens déclarés dans la liste des députés en exercice.",
+      "notes": [
+        "719 députés dans la source sur 720 sièges. Les sièges non décrits restent en gris, sans présumer leur vacance."
+      ],
+      "buckets": [
+        {
+          "id": "PPE",
+          "name": "Groupe du Parti populaire européen (Démocrates-Chrétiens)",
+          "status": "known",
+          "seats": 184
+        },
+        {
+          "id": "S&D",
+          "name": "Groupe de l'Alliance Progressiste des Socialistes et Démocrates au Parlement européen",
+          "status": "known",
+          "seats": 135
+        },
+        {
+          "id": "PfE",
+          "name": "Groupe Patriotes pour l’Europe",
+          "status": "known",
+          "seats": 85
+        },
+        {
+          "id": "ECR",
+          "name": "Groupe des Conservateurs et Réformistes européens",
+          "status": "known",
+          "seats": 84
+        },
+        {
+          "id": "Renew",
+          "name": "Groupe Renew Europe",
+          "status": "known",
+          "seats": 78
+        },
+        {
+          "id": "Verts/ALE",
+          "name": "Groupe des Verts/Alliance libre européenne",
+          "status": "known",
+          "seats": 53
+        },
+        {
+          "id": "The Left",
+          "name": "Le groupe de la gauche au Parlement européen - GUE/NGL",
+          "status": "known",
+          "seats": 45
+        },
+        {
+          "id": "NI",
+          "name": "Non-inscrits",
+          "status": "unaffiliated",
+          "seats": 28
+        },
+        {
+          "id": "ESN",
+          "name": "Groupe «L'Europe des nations souveraines»",
+          "status": "known",
+          "seats": 27
+        },
+        {
+          "id": "not-listed",
+          "name": "Sièges non décrits dans la source",
+          "status": "unknown",
+          "seats": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/meps/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Députés en exercice · pays et groupe parlementaire",
+          "retrievedAt": "2026-10-04",
+          "sha256": "b8d20ff066fd8f8639ad46c4bb629356d88d292f1d2ca3d2f80d9a2fca0695d7"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Organisations en exercice · noms des groupes et partis nationaux",
+          "retrievedAt": "2026-10-04",
+          "sha256": "c76816dc5b1ae928b702e93ee71154ecaac19e2fdf1f8804844c090ee6837c63"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies",
+          "publisher": "Parlement européen",
+          "locator": "Détails /corporate-bodies/{id} · noms français ; empreinte de la collection",
+          "retrievedAt": "2026-10-04",
+          "sha256": "3d6c2d3f3552841a654f09df60941f4727b86a834e84f514ec72a93392aa5a22"
+        }
+      ]
+    },
+    {
+      "institution": "parlement_europeen",
+      "mode": "parties",
+      "scope": "all",
+      "total": 720,
+      "listed": 719,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Partis ou formations nationales déclarés dans les profils officiels ; les groupes européens restent distincts. Le code pays distingue les formations nationales.",
+      "notes": [
+        "719 députés dans la source sur 720 sièges. Les sièges non décrits restent en gris, sans présumer leur vacance."
+      ],
+      "buckets": [
+        {
+          "id": "org/6848:FR",
+          "name": "Rassemblement national (FR)",
+          "status": "known",
+          "seats": 29
+        },
+        {
+          "id": "org/6831:IT",
+          "name": "FRATELLI D' ITALIA (IT)",
+          "status": "known",
+          "seats": 24
+        },
+        {
+          "id": "org/6771:DE",
+          "name": "Christlich Demokratische Union Deutschlands (DE)",
+          "status": "known",
+          "seats": 23
+        },
+        {
+          "id": "org/6666:ES",
+          "name": "Partido Popular (ES)",
+          "status": "known",
+          "seats": 22
+        },
+        {
+          "id": "org/6702:PL",
+          "name": "Prawo i Sprawiedliwość (PL)",
+          "status": "known",
+          "seats": 20
+        },
+        {
+          "id": "org/6667:ES",
+          "name": "Partido Socialista Obrero Español (ES)",
+          "status": "known",
+          "seats": 19
+        },
+        {
+          "id": "org/6675:IT",
+          "name": "Partito Democratico (IT)",
+          "status": "known",
+          "seats": 19
+        },
+        {
+          "id": "org/7979:PL",
+          "name": "Koalicja Obywatelska (PL)",
+          "status": "known",
+          "seats": 18
+        },
+        {
+          "id": "org/6802:DE",
+          "name": "Alternative für Deutschland (DE)",
+          "status": "known",
+          "seats": 15
+        },
+        {
+          "id": "org/6772:DE",
+          "name": "Sozialdemokratische Partei Deutschlands (DE)",
+          "status": "known",
+          "seats": 14
+        },
+        {
+          "id": "org/6773:DE",
+          "name": "Bündnis 90/Die Grünen (DE)",
+          "status": "known",
+          "seats": 12
+        },
+        {
+          "id": "org/6737:HU",
+          "name": "Fidesz-Magyar Polgári Szövetség-Kereszténydemokrata Néppárt (HU)",
+          "status": "known",
+          "seats": 10
+        },
+        {
+          "id": "org/6728:FR",
+          "name": "Parti socialiste (FR)",
+          "status": "known",
+          "seats": 10
+        },
+        {
+          "id": "org/6878:FR",
+          "name": "La France Insoumise (FR)",
+          "status": "known",
+          "seats": 9
+        },
+        {
+          "id": "org/6708:RO",
+          "name": "Partidul Social Democrat (RO)",
+          "status": "known",
+          "seats": 9
+        },
+        {
+          "id": "org/6744:IT",
+          "name": "Forza Italia (IT)",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "org/6674:IT",
+          "name": "Movimento 5 Stelle (IT)",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "org/8001:NL",
+          "name": "Netherlands - PRO Europa (NL)",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "org/6706:PT",
+          "name": "Partido Socialista (PT)",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "org/6709:RO",
+          "name": "Partidul Naţional Liberal (RO)",
+          "status": "known",
+          "seats": 8
+        },
+        {
+          "id": "org/6794:CZ",
+          "name": "ANO 2011 (CZ)",
+          "status": "known",
+          "seats": 7
+        },
+        {
+          "id": "org/6870:IT",
+          "name": "Lega (IT)",
+          "status": "known",
+          "seats": 7
+        },
+        {
+          "id": "org/6730:GR",
+          "name": "Nea Demokratia (GR)",
+          "status": "known",
+          "seats": 7
+        },
+        {
+          "id": "org/6847:HU",
+          "name": "Tisztelet és Szabadság Párt (HU)",
+          "status": "known",
+          "seats": 7
+        },
+        {
+          "id": "org/6776:DE",
+          "name": "Christlich-Soziale Union in Bayern e.V. (DE)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6747:AT",
+          "name": "Freiheitliche Partei Österreichs (AT)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6734:HR",
+          "name": "Hrvatska demokratska zajednica (HR)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6696:NL",
+          "name": "Partij voor de Vrijheid (NL)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6874:SK",
+          "name": "Progresívne Slovensko (SK)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6935:FR",
+          "name": "Renaissance (FR)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6871:ES",
+          "name": "VOX (ES)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6712:SE",
+          "name": "Arbetarepartiet- Socialdemokraterna (SE)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6774:DE",
+          "name": "Freie Demokratische Partei (DE)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6856:PL",
+          "name": "Konfederacja Wolność i Niepodległość (PL)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6953:FR",
+          "name": "Les Écologistes (FR)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6827:FR",
+          "name": "Les Républicains (FR)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6745:AT",
+          "name": "Österreichische Volkspartei (AT)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6723:SK",
+          "name": "SMER-Sociálna demokracia (SK)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6746:AT",
+          "name": "Sozialdemokratische Partei Österreichs (AT)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/8006:DE",
+          "name": "Bündnis Soziale Gerechtigkeit und Wirtschaftliche Vernunft (DE)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6761:BG",
+          "name": "Citizens for European Development of Bulgaria (BG)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6741:IE",
+          "name": "Fianna Fáil Party (IE)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6742:IE",
+          "name": "Fine Gael Party (IE)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/7876:FR",
+          "name": "Identité Libertés (FR)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6726:FI",
+          "name": "Kansallinen Kokoomus (FI)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6713:SE",
+          "name": "Moderaterna (SE)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6705:PT",
+          "name": "Partido Social Democrata (PT)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6876:GR",
+          "name": "PASOK-KINAL (GR)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6719:SI",
+          "name": "Slovenska demokratska stranka (SI)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6735:HR",
+          "name": "Socijaldemokratska partija Hrvatske (HR)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6691:NL",
+          "name": "Volkspartij voor Vrijheid en Democratie (NL)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6915:RO",
+          "name": "Alianța pentru Unirea Românilor (RO)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6697:NL",
+          "name": "Christen Democratisch Appèl (NL)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6693:NL",
+          "name": "Democraten 66 (NL)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6775:DE",
+          "name": "DIE LINKE. (DE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6807:DE",
+          "name": "Freie Wähler (DE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6739:IE",
+          "name": "Independent (IE)",
+          "status": "unaffiliated",
+          "seats": 3
+        },
+        {
+          "id": "org/6836:PL",
+          "name": "Independent (PL)",
+          "status": "unaffiliated",
+          "seats": 3
+        },
+        {
+          "id": "org/6717:SE",
+          "name": "Miljöpartiet de gröna (SE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6821:FR",
+          "name": "Mouvement Démocrate (FR)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6756:BE",
+          "name": "Mouvement Réformateur (BE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6763:BG",
+          "name": "Movement for Rights and Freedoms (BG)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6754:BE",
+          "name": "Nieuw-Vlaamse Alliantie (BE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6899:PL",
+          "name": "Nowa Lewica (PL)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6768:CZ",
+          "name": "Občanská demokratická strana (CZ)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6689:MT",
+          "name": "Partit Laburista (MT)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6690:MT",
+          "name": "Partit Nazzjonalista (MT)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6785:FR",
+          "name": "Place publique (FR)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6648:BG",
+          "name": "Revival (BG)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6777:DK",
+          "name": "Socialdemokratiet (DK)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6661:DK",
+          "name": "Socialistisk Folkeparti (DK)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6810:SE",
+          "name": "Sverigedemokraterna (SE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6678:LT",
+          "name": "Tėvynės sąjunga-Lietuvos krikščionys demokratai (LT)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6795:FI",
+          "name": "Vasemmistoliitto (FI)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6751:BE",
+          "name": "Vlaams Belang (BE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6859:DE",
+          "name": "Volt (DE)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6640:PT",
+          "name": "Aliança Democrática (PT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6851:NL",
+          "name": "BoerBurgerBeweging (NL)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6762:BG",
+          "name": "Bulgarian Socialist Party (BG)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6716:SE",
+          "name": "Centerpartiet (SE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6927:PT",
+          "name": "Chega (PT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6755:BE",
+          "name": "Christen-Democratisch & Vlaams (BE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6731:GR",
+          "name": "Coalition of the Radical Left (GR)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6733:GR",
+          "name": "Communist Party of Greece (GR)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6793:CZ",
+          "name": "Czechia – TOP 09 (CZ)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6764:CY",
+          "name": "Democratic Rally (CY)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6724:HU",
+          "name": "Demokratikus Koalíció (HU)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6748:AT",
+          "name": "Die Grünen - Die Grüne Alternative (AT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6803:DE",
+          "name": "Die PARTEI (DE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6792:EE",
+          "name": "Eesti Keskerakond (EE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6781:GR",
+          "name": "Elliniki Lusi-Greek Solution (GR)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6896:IT",
+          "name": "Europa Verde - Verdi (IT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6909:SI",
+          "name": "GS (SI)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6895:SK",
+          "name": "Hnutie Republika (SK)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6919:FR",
+          "name": "Horizons (FR)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6843:CZ",
+          "name": "Independent (CZ)",
+          "status": "unaffiliated",
+          "seats": 2
+        },
+        {
+          "id": "org/6823:DE",
+          "name": "Independent (DE)",
+          "status": "unaffiliated",
+          "seats": 2
+        },
+        {
+          "id": "org/6826:IT",
+          "name": "Independent (IT)",
+          "status": "unaffiliated",
+          "seats": 2
+        },
+        {
+          "id": "org/6828:ES",
+          "name": "Independiente (ES)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6641:PT",
+          "name": "Iniciativa Liberal (PT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6849:EE",
+          "name": "Isamaa (EE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6649:LV",
+          "name": "Jaunā Vienotība (LV)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6797:LT",
+          "name": "Lietuvos socialdemokratų partija (LT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6685:LV",
+          "name": "Nacionālā apvienība \"Visu Latvijai!\" - \"Tēvzemei un Brīvībai/LNNK\" (LV)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6749:AT",
+          "name": "NEOS – Das Neue Österreich (AT)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6683:LU",
+          "name": "Parti chrétien social luxembourgeois (LU)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6758:BE",
+          "name": "Parti Socialiste (BE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/7962:RO",
+          "name": "Partidul Acțiunea Conservatoare (RO)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6811:ES",
+          "name": "PODEMOS (ES)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6704:PL",
+          "name": "Polskie Stronnictwo Ludowe (PL)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/7023:FR",
+          "name": "Sans parti (FR)",
+          "status": "unaffiliated",
+          "seats": 2
+        },
+        {
+          "id": "org/6740:IE",
+          "name": "Sinn Féin (IE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6665:EE",
+          "name": "Sotsiaaldemokraatlik Erakond (EE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6835:CZ",
+          "name": "Starostové a nezávisli (CZ)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6725:FI",
+          "name": "Suomen Keskusta (FI)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6672:FI",
+          "name": "Suomen Sosialidemokraattinen Puolue/Finlands Socialdemokratiska Parti (FI)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6711:RO",
+          "name": "Uniunea Democrată Maghiară din România (RO)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6872:RO",
+          "name": "Uniunea Salvați România (RO)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6718:SE",
+          "name": "Vänsterpartiet (SE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6663:DK",
+          "name": "Venstre, Danmarks Liberale Parti (DK)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6671:FI",
+          "name": "Vihreä liitto (FI)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6638:NL",
+          "name": "Volt (NL)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6912:BE",
+          "name": "Vooruit (BE)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6932:BG",
+          "name": "We continue the change – Democratic Bulgaria (BG)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/6686:LV",
+          "name": "\"Saskaņa\" sociāldemokrātiskā partija (LV)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6944:IT",
+          "name": "Alleanza Verdi e Sinistra (IT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7031:LU",
+          "name": "Alternativ Demokratesch Reformpartei (LU)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7991:BE",
+          "name": "Anders (BE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6655:LV",
+          "name": "Apvienotais saraksts — Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija (LV)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6913:IT",
+          "name": "Azione (IT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6707:PT",
+          "name": "Bloco de Esquerda (PT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6844:ES",
+          "name": "Bloque Nacionalista Galego (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6760:BE",
+          "name": "Christlich Soziale Partei (BE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7025:ES",
+          "name": "Compromís (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6784:ES",
+          "name": "Comuns (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6637:DK",
+          "name": "Danmarksdemokraterne (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6662:DK",
+          "name": "Dansk Folkeparti (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6684:LU",
+          "name": "Déi Gréng - Les Verts (LU)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6766:CY",
+          "name": "Democratic Party (CY)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6804:BG",
+          "name": "Democrats for Strong Bulgaria (BG)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6656:LT",
+          "name": "Demokratų sąjunga „Vardan Lietuvos“ (LT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6779:DK",
+          "name": "Det Konservative Folkeparti (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6778:DK",
+          "name": "Det Radikale Venstre (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7011:GR",
+          "name": "Dimokratikó Patriotikó Kínima (GR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7992:CY",
+          "name": "Direct Democracy Cyprus (CY)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7872:HR",
+          "name": "Dom i nacionalno okupljanje (HR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7978:RO",
+          "name": "Dreptate și Frăție (RO)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6757:BE",
+          "name": "Ecologistes Confédérés pour l'Organisation de Luttes Originales (BE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6664:EE",
+          "name": "Eesti Reformierakond (EE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6812:ES",
+          "name": "EH BILDU (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6863:DK",
+          "name": "Enhedslisten (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6669:ES",
+          "name": "Esquerra Republicana de Catalunya (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6799:DE",
+          "name": "Familien-Partei Deutschlands (DE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7013:GR",
+          "name": "Foní Loyikís (GR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7993:IT",
+          "name": "Futuro Nazionale (IT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6750:BE",
+          "name": "Groen (BE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7010:SK",
+          "name": "Hlas – sociálna demokracia (SK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6950:BE",
+          "name": "Independent (BE)",
+          "status": "unaffiliated",
+          "seats": 1
+        },
+        {
+          "id": "org/6833:GR",
+          "name": "Independent (GR)",
+          "status": "unaffiliated",
+          "seats": 1
+        },
+        {
+          "id": "org/6798:RO",
+          "name": "Independent (RO)",
+          "status": "unaffiliated",
+          "seats": 1
+        },
+        {
+          "id": "org/6818:HU",
+          "name": "Kereszténydemokrata Néppárt (HU)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6769:CZ",
+          "name": "Komunistická strana Čech a Moravy (CZ)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7029:PL",
+          "name": "Konfederacja Korony Polskiej (PL)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6770:CZ",
+          "name": "Křesťanská a demokratická unie - Československá strana lidová (CZ)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6722:SK",
+          "name": "Kresťanskodemokratické hnutie (SK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6714:SE",
+          "name": "Kristdemokraterna (SE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7022:IE",
+          "name": "Labour Party (IE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6653:LT",
+          "name": "Laisvės partija (LT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6930:LV",
+          "name": "Latvija pirmajā vietā (LV)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6791:LV",
+          "name": "Latvijas attīstībai (LV)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6903:BE",
+          "name": "Les Engagés (BE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6852:DK",
+          "name": "Liberal Alliance (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6715:SE",
+          "name": "Liberalerna (SE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6652:LT",
+          "name": "Liberalų sąjūdis (LT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6679:LT",
+          "name": "Lietuvos lenkų rinkimų akcija – Krikščioniškų šeimų sąjunga (LT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6680:LT",
+          "name": "Lietuvos valstiečių ir žaliųjų sąjunga (LT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6854:HU",
+          "name": "Mi Hazánk Mozgalom (HU)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6948:DK",
+          "name": "MODERATERNE (DK)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7034:CZ",
+          "name": "Motoristé sobě (CZ)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6949:ES",
+          "name": "Movimiento Sumar (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6647:HR",
+          "name": "Možemo! (HR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6639:NL",
+          "name": "Nieuw Sociaal Contract (NL)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6720:SI",
+          "name": "Nova Slovenija – Krščanski demokrati (SI)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6801:DE",
+          "name": "Ökologisch-Demokratische Partei (DE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7026:DE",
+          "name": "Partei des Fortschritts (DE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6808:DE",
+          "name": "PARTEI MENSCH KLIMA TIERSCHUTZ (DE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6682:LU",
+          "name": "Parti démocratique (LU)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6681:LU",
+          "name": "Parti ouvrier socialiste luxembourgeois (LU)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6817:PT",
+          "name": "Partido Comunista Português (PT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6879:PT",
+          "name": "Partido do Centro Democrático Social-Partido Popular (PT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6820:ES",
+          "name": "Partido Nacionalista Vasco (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6710:RO",
+          "name": "Partidul Mișcarea Populară (RO)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/5320:RO",
+          "name": "Partidul Social Democrat (RO)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6914:RO",
+          "name": "PARTIDULUI NAȚIONAL CONSERVATOR ROMÂN (PNCR) (RO)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6695:NL",
+          "name": "Partij voor de Dieren (NL)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6816:ES",
+          "name": "Partit dels Socialistes de Catalunya (PSC-PSOE) (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6670:FI",
+          "name": "Perussuomalaiset (FI)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6862:CZ",
+          "name": "PIRÁTI (CZ)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7012:GR",
+          "name": "Plefsi Eleftherias (GR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7989:SI",
+          "name": "Prerod – Stranka Vladimirja Prebiliča (SI)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6933:LV",
+          "name": "Progresīvie (LV)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6765:CY",
+          "name": "Progressive Party of Working People - Left - New Forces (CY)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6906:RO",
+          "name": "PUSL (RO)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6860:BE",
+          "name": "PVDA-PTB (BE)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6902:FR",
+          "name": "Reconquête! (FR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6645:RO",
+          "name": "S.O.S. România (RO)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7009:ES",
+          "name": "SE ACABÓ LA FIESTA (ES)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/8000:IT",
+          "name": "Sinistra Italiana (IT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6721:SI",
+          "name": "Socialni demokrati (SI)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/8002:IT",
+          "name": "Spazio Pubblico (IT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6699:NL",
+          "name": "Staatkundig Gereformeerde Partij (NL)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6676:IT",
+          "name": "Südtiroler Volkspartei (IT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6673:FI",
+          "name": "Svenska folkpartiet (FI)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6864:CZ",
+          "name": "Svoboda a přímá demokracie (CZ)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7021:LT",
+          "name": "Tautos ir teisingumo sąjunga (LT)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6931:BG",
+          "name": "There Is Such a People (BG)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/8004:PL",
+          "name": "Unia Centrum (PL)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7017:FR",
+          "name": "Union des démocrates et indépendants (FR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7921:FR",
+          "name": "Union des droites pour la République (FR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6783:BG",
+          "name": "Union of Democratic Forces (BG)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/6924:CY",
+          "name": "Εθνικό Λαϊκό Μέτωπο (CY)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "not-listed",
+          "name": "Sièges non décrits dans la source",
+          "status": "unknown",
+          "seats": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/meps/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Députés en exercice · pays et groupe parlementaire",
+          "retrievedAt": "2026-10-04",
+          "sha256": "b8d20ff066fd8f8639ad46c4bb629356d88d292f1d2ca3d2f80d9a2fca0695d7"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/meps",
+          "publisher": "Parlement européen",
+          "locator": "Profils /meps/{id} · NATIONAL_POLITICAL_GROUP · 719 documents ; empreinte de la collection",
+          "retrievedAt": "2026-10-04",
+          "sha256": "1d01a72ced809bd110a914df8b2bcea5980f71a8e80a6e09da1e7f0a911b31d9"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Organisations en exercice · noms des groupes et partis nationaux",
+          "retrievedAt": "2026-10-04",
+          "sha256": "c76816dc5b1ae928b702e93ee71154ecaac19e2fdf1f8804844c090ee6837c63"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies",
+          "publisher": "Parlement européen",
+          "locator": "Détails /corporate-bodies/{id} · noms français ; empreinte de la collection",
+          "retrievedAt": "2026-10-04",
+          "sha256": "3d6c2d3f3552841a654f09df60941f4727b86a834e84f514ec72a93392aa5a22"
+        }
+      ]
+    },
+    {
+      "institution": "parlement_europeen",
+      "mode": "groups",
+      "scope": "france",
+      "total": 81,
+      "listed": 81,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Groupes parlementaires européens déclarés dans la liste des députés en exercice.",
+      "notes": [
+        "Périmètre limité aux élus représentant la France, sans extrapolation aux autres pays."
+      ],
+      "buckets": [
+        {
+          "id": "PfE",
+          "name": "Groupe Patriotes pour l’Europe",
+          "status": "known",
+          "seats": 30
+        },
+        {
+          "id": "S&D",
+          "name": "Groupe de l'Alliance Progressiste des Socialistes et Démocrates au Parlement européen",
+          "status": "known",
+          "seats": 13
+        },
+        {
+          "id": "Renew",
+          "name": "Groupe Renew Europe",
+          "status": "known",
+          "seats": 13
+        },
+        {
+          "id": "The Left",
+          "name": "Le groupe de la gauche au Parlement européen - GUE/NGL",
+          "status": "known",
+          "seats": 9
+        },
+        {
+          "id": "Verts/ALE",
+          "name": "Groupe des Verts/Alliance libre européenne",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "PPE",
+          "name": "Groupe du Parti populaire européen (Démocrates-Chrétiens)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "ECR",
+          "name": "Groupe des Conservateurs et Réformistes européens",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "ESN",
+          "name": "Groupe «L'Europe des nations souveraines»",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "NI",
+          "name": "Non-inscrits",
+          "status": "unaffiliated",
+          "seats": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/meps/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Députés en exercice · pays et groupe parlementaire",
+          "retrievedAt": "2026-10-04",
+          "sha256": "b8d20ff066fd8f8639ad46c4bb629356d88d292f1d2ca3d2f80d9a2fca0695d7"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Organisations en exercice · noms des groupes et partis nationaux",
+          "retrievedAt": "2026-10-04",
+          "sha256": "c76816dc5b1ae928b702e93ee71154ecaac19e2fdf1f8804844c090ee6837c63"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies",
+          "publisher": "Parlement européen",
+          "locator": "Détails /corporate-bodies/{id} · noms français ; empreinte de la collection",
+          "retrievedAt": "2026-10-04",
+          "sha256": "3d6c2d3f3552841a654f09df60941f4727b86a834e84f514ec72a93392aa5a22"
+        }
+      ]
+    },
+    {
+      "institution": "parlement_europeen",
+      "mode": "parties",
+      "scope": "france",
+      "total": 81,
+      "listed": 81,
+      "asOf": "2026-10-04",
+      "period": "Membres en exercice",
+      "basis": "Partis ou formations nationales déclarés dans les profils officiels ; les groupes européens restent distincts. Le code pays distingue les formations nationales.",
+      "notes": [
+        "Périmètre limité aux élus représentant la France, sans extrapolation aux autres pays."
+      ],
+      "buckets": [
+        {
+          "id": "org/6848:FR",
+          "name": "Rassemblement national (FR)",
+          "status": "known",
+          "seats": 29
+        },
+        {
+          "id": "org/6728:FR",
+          "name": "Parti socialiste (FR)",
+          "status": "known",
+          "seats": 10
+        },
+        {
+          "id": "org/6878:FR",
+          "name": "La France Insoumise (FR)",
+          "status": "known",
+          "seats": 9
+        },
+        {
+          "id": "org/6935:FR",
+          "name": "Renaissance (FR)",
+          "status": "known",
+          "seats": 6
+        },
+        {
+          "id": "org/6953:FR",
+          "name": "Les Écologistes (FR)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/6827:FR",
+          "name": "Les Républicains (FR)",
+          "status": "known",
+          "seats": 5
+        },
+        {
+          "id": "org/7876:FR",
+          "name": "Identité Libertés (FR)",
+          "status": "known",
+          "seats": 4
+        },
+        {
+          "id": "org/6821:FR",
+          "name": "Mouvement Démocrate (FR)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6785:FR",
+          "name": "Place publique (FR)",
+          "status": "known",
+          "seats": 3
+        },
+        {
+          "id": "org/6919:FR",
+          "name": "Horizons (FR)",
+          "status": "known",
+          "seats": 2
+        },
+        {
+          "id": "org/7023:FR",
+          "name": "Sans parti (FR)",
+          "status": "unaffiliated",
+          "seats": 2
+        },
+        {
+          "id": "org/6902:FR",
+          "name": "Reconquête! (FR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7017:FR",
+          "name": "Union des démocrates et indépendants (FR)",
+          "status": "known",
+          "seats": 1
+        },
+        {
+          "id": "org/7921:FR",
+          "name": "Union des droites pour la République (FR)",
+          "status": "known",
+          "seats": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/meps/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Députés en exercice · pays et groupe parlementaire",
+          "retrievedAt": "2026-10-04",
+          "sha256": "b8d20ff066fd8f8639ad46c4bb629356d88d292f1d2ca3d2f80d9a2fca0695d7"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/meps",
+          "publisher": "Parlement européen",
+          "locator": "Profils /meps/{id} · NATIONAL_POLITICAL_GROUP · 719 documents ; empreinte de la collection",
+          "retrievedAt": "2026-10-04",
+          "sha256": "1d01a72ced809bd110a914df8b2bcea5980f71a8e80a6e09da1e7f0a911b31d9"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies/show-current?format=application%2Fld%2Bjson&offset=0&limit=1000",
+          "publisher": "Parlement européen",
+          "locator": "Organisations en exercice · noms des groupes et partis nationaux",
+          "retrievedAt": "2026-10-04",
+          "sha256": "c76816dc5b1ae928b702e93ee71154ecaac19e2fdf1f8804844c090ee6837c63"
+        },
+        {
+          "url": "https://data.europarl.europa.eu/api/v2/corporate-bodies",
+          "publisher": "Parlement européen",
+          "locator": "Détails /corporate-bodies/{id} · noms français ; empreinte de la collection",
+          "retrievedAt": "2026-10-04",
+          "sha256": "3d6c2d3f3552841a654f09df60941f4727b86a834e84f514ec72a93392aa5a22"
+        }
+      ]
+    }
+  ]
+}
