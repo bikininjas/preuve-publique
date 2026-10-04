@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PoliticalBadge } from '@/components/political-classification';
 import type { GroupVoteCoverage, GroupVoteDashboard, GroupVoteRow } from '@/lib/data';
 import { formatDate } from '@/lib/labels';
 
@@ -39,7 +40,7 @@ export function GroupVoteChart({ title, dashboard, href, previewLimit, groupHref
   const hidden = groups.slice(previewLimit ?? 12);
   const { scope } = dashboard;
   const renderRow = (row: GroupVoteRow) => <div className="party-chart-row" key={`${row.group_ref}:${row.group_name}`}>
-    <div className="party-chart-name"><strong>{groupHref ? <Link href={groupHref(row.group_ref)}>{row.group_name} ↗</Link> : row.group_name}</strong><small>{number(row.scrutins)} scrutin{row.scrutins > 1 ? 's' : ''} · groupe parlementaire</small></div>
+    <div className="party-chart-name"><strong>{groupHref ? <Link href={groupHref(row.group_ref)}>{row.group_name} ↗</Link> : row.group_name}</strong><PoliticalBadge name={row.group_name} kind="group" chamber="Sénat" /><small>{number(row.scrutins)} scrutin{row.scrutins > 1 ? 's' : ''} · groupe parlementaire</small></div>
     <GroupBar row={row} />
     <div className="party-chart-total">{number(total(row))}<span>positions</span></div>
     <ShareLine row={row} />
@@ -64,17 +65,17 @@ export function GroupSubjectChart({ title, subjectId, dashboard }: { title: stri
   return <article className="party-subject-chart">
     <div className="party-subject-head"><h3><Link href={href}>{title} ↗</Link></h3><span>{number(dashboard.scope.documented_scrutins)} / {number(dashboard.scope.total_scrutins)} scrutins vérifiés</span></div>
     {dashboard.scope.first_date && dashboard.scope.last_date ? <p className="hint">{formatDate(dashboard.scope.first_date)} – {formatDate(dashboard.scope.last_date)}</p> : null}
-    {groups.length ? <><div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abst.</span><span className="non-votant">Non-part.</span></div>{groups.map((row) => <div className="party-subject-row" key={`${row.group_ref}:${row.group_name}`}><div><Link href={`${href}&group=${row.group_ref}#group-details`}>{row.group_name} ↗</Link><small>{number(total(row))} positions</small></div><GroupBar row={row} /><ShareLine row={row} /></div>)}<p className="party-subject-foot">Quatre noms de groupes affichés par volume de positions. <Link href={href}>Voir tous les groupes et scrutins →</Link></p></> : <p className="party-subject-foot">Aucune analyse par groupe vérifiée. <Link href={href}>Voir les scrutins →</Link></p>}
+    {groups.length ? <><div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abst.</span><span className="non-votant">Non-part.</span></div>{groups.map((row) => <div className="party-subject-row" key={`${row.group_ref}:${row.group_name}`}><div><Link href={`${href}&group=${row.group_ref}#group-details`}>{row.group_name} ↗</Link><PoliticalBadge name={row.group_name} kind="group" chamber="Sénat" /><small>{number(total(row))} positions</small></div><GroupBar row={row} /><ShareLine row={row} /></div>)}<p className="party-subject-foot">Quatre noms de groupes affichés par volume de positions. <Link href={href}>Voir tous les groupes et scrutins →</Link></p></> : <p className="party-subject-foot">Aucune analyse par groupe vérifiée. <Link href={href}>Voir les scrutins →</Link></p>}
   </article>;
 }
 
-export function GroupVoteBreakdown({ rows, coverage, sourceUrl }: { rows: GroupVoteRow[]; coverage: GroupVoteCoverage | null; sourceUrl: string }) {
+export function GroupVoteBreakdown({ rows, coverage, sourceUrl, occurredAt }: { rows: GroupVoteRow[]; coverage: GroupVoteCoverage | null; sourceUrl: string; occurredAt: string }) {
   const sorted = [...rows].sort((a, b) => total(b) - total(a) || a.group_name.localeCompare(b.group_name, 'fr'));
   return <section className="party-chart party-chart-detail" id="votes-par-groupe">
     <div className="party-chart-head"><div><span className="eyebrow">Analyse officielle · Sénat</span><h2>Part des votes par groupe dans ce scrutin</h2></div></div>
     <p>Chaque pourcentage est calculé parmi les membres de ce groupe enregistrés pour ce scrutin, y compris les abstentions et les non-participations. Les données viennent directement de la page officielle du Sénat.</p>
     <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-participation</span></div>
-    <div className="party-chart-rows">{sorted.map((row) => <div className="party-chart-row" key={row.group_ref}><div className="party-chart-name"><strong>{row.group_name}</strong></div><GroupBar row={row} /><div className="party-chart-total">{number(total(row))}<span>membres</span></div><ShareLine row={row} /><div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-part.</div></div>)}</div>
+    <div className="party-chart-rows">{sorted.map((row) => <div className="party-chart-row" key={row.group_ref}><div className="party-chart-name"><strong>{row.group_name}</strong><PoliticalBadge name={row.group_name} kind="group" chamber="Sénat" asOf={occurredAt} /></div><GroupBar row={row} /><div className="party-chart-total">{number(total(row))}<span>membres</span></div><ShareLine row={row} /><div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-part.</div></div>)}</div>
     <p className="party-chart-method">Source : <a href={sourceUrl} target="_blank" rel="noopener noreferrer">analyse par groupes politiques du scrutin officiel ↗</a>. Page récupérée et vérifiée {coverage ? `le ${formatDate(coverage.processed_at)} · SHA-256 ${coverage.page_sha256.slice(0, 12)}…` : 'à une date indisponible'}. Les quatre totaux de tous les groupes ont été recoupés avec le résultat officiel. Ce décompte décrit le groupe à la date du vote, sans attribution à un parti.</p>
   </section>;
 }

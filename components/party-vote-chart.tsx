@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PoliticalBadge } from '@/components/political-classification';
 import type { PartyVoteCoverage, PartyVoteDashboard, PartyVoteRow } from '@/lib/data';
 import { formatDate } from '@/lib/labels';
 
@@ -41,7 +42,7 @@ export function PartySubjectChart({ title, subjectId, dashboard }: { title: stri
     {featured.length ? <>
       <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abst.</span><span className="non-votant">Non-votant</span></div>
       {featured.map((row) => <div className="party-subject-row" key={row.party_id}>
-        <div><Link href={`${href}&party=${row.party_id}#party-details`}>{row.party_name} ↗</Link><small>{number(ballotCount(row))} positions</small></div>
+        <div><Link href={`${href}&party=${row.party_id}#party-details`}>{row.party_name} ↗</Link><PoliticalBadge name={row.party_name} kind="party" /><small>{number(ballotCount(row))} positions</small></div>
         <PartyBar row={row} />
         <PartyShareLine row={row} />
       </div>)}
@@ -65,7 +66,7 @@ export function PartyVoteChart({ title, dashboard, href, previewLimit, partyHref
   const { scope } = dashboard;
   const attributed = scope.recorded_individuals - scope.unattributed_individuals;
   const renderRow = (row: PartyVoteRow) => <div className="party-chart-row" key={row.party_id}>
-    <div className="party-chart-name"><strong>{partyHref ? <Link href={partyHref(row.party_id)}>{row.party_name} ↗</Link> : row.party_name}</strong><small>{number(row.scrutins)} scrutin{row.scrutins > 1 ? 's' : ''} documenté{row.scrutins > 1 ? 's' : ''}</small></div>
+    <div className="party-chart-name"><strong>{partyHref ? <Link href={partyHref(row.party_id)}>{row.party_name} ↗</Link> : row.party_name}</strong><PoliticalBadge name={row.party_name} kind="party" /><small>{number(row.scrutins)} scrutin{row.scrutins > 1 ? 's' : ''} documenté{row.scrutins > 1 ? 's' : ''}</small></div>
     <PartyBar row={row} />
     <div className="party-chart-total">{number(ballotCount(row))}<span>bulletins</span></div>
     <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-votants</div>
@@ -102,7 +103,7 @@ export function PartyVoteBreakdown({ rows, coverage, sourceUrl }: { rows: PartyV
     <p>Chaque pourcentage est calculé parmi les {coverage ? 'positions nominatives' : 'bulletins nominatifs'} <strong>de ce parti dans ce scrutin</strong>, y compris les non-votants enregistrés. Ce n’est pas la part de ce parti parmi tous les députés. {coverage ? `${number(attributed)} positions rattachées à un parti sur ${number(coverage.recorded_individuals)} nominatives ; ${number(coverage.unattributed_individuals)} sans affiliation unique sont exclues des barres.` : 'Le total nominatif détaillé est indisponible.'}</p>
     <div className="party-chart-legend" aria-hidden="true"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div>
     <div className="party-chart-rows">{sorted.map((row) => <div className="party-chart-row" key={row.party_id}>
-      <div className="party-chart-name"><strong><Link href={`/scrutins?party=${row.party_id}#party-details`}>{row.party_name} ↗</Link></strong></div><PartyBar row={row} />
+      <div className="party-chart-name"><strong><Link href={`/scrutins?party=${row.party_id}#party-details`}>{row.party_name} ↗</Link></strong><PoliticalBadge name={row.party_name} kind="party" /></div><PartyBar row={row} />
       <div className="party-chart-total">{number(ballotCount(row))}<span>bulletins</span></div>
       <PartyShareLine row={row} />
       <div className="party-chart-values">{number(row.pour)} pour · {number(row.contre)} contre · {number(row.abstention)} abst. · {number(row.non_votant)} non-votants</div>

@@ -1,0 +1,11 @@
+.political-badge { display: inline-block; max-width: 100%; margin: .25rem .2rem .15rem 0; padding: .25rem .55rem; border: 1px solid var(--line); border-radius: .35rem; background: var(--surface); color: var(--ink); font-size: .7rem; font-weight: 500; line-height: 1.45; vertical-align: middle; overflow-wrap: anywhere; text-decoration: none; }
+.political-badge:hover, .political-badge:focus-visible { border-color: currentColor; text-decoration: underline; }
+.political-badge.undocumented { color: var(--muted); }
+.political-details { margin: 1rem 0 1.5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .5rem; }
+.political-details p { margin: .4rem 0; font-size: .85rem; overflow-wrap: anywhere; }
+.political-details > div + div { border-top: 1px solid var(--line); margin-top: .7rem; padding-top: .7rem; }
+.political-history { display: block; font-size: .8rem; color: var(--muted); }
+.political-reference-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: .8rem; }
+.political-reference-grid article { padding: .85rem; border: 1px solid var(--line); border-radius: .5rem; min-width: 0; }
+.political-reference-grid h3 { font-size: 1rem; }
+.political-reference-grid p { font-size: .8rem; }

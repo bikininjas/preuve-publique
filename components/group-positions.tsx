@@ -1,4 +1,5 @@
 import { DataTable } from '@/components/ui';
+import { PoliticalBadge } from '@/components/political-classification';
 import { positionLabel } from '@/lib/labels';
 
 export interface GroupPosition {
@@ -22,9 +23,11 @@ const asCount = (value: number | null | undefined) =>
 export function GroupPositions({
   groups,
   names,
+  occurredAt,
 }: {
   groups: GroupPosition[];
   names: Map<string, string>;
+  occurredAt: string;
 }) {
   const sorted = [...groups].sort((a, b) => (b.membres ?? 0) - (a.membres ?? 0));
   return (
@@ -37,7 +40,7 @@ export function GroupPositions({
           const name = names.get(`an-organe:${ref}`) ?? (ref || 'Groupe non identifié');
           return (
             <tr key={ref || name}>
-              <td>{name}</td>
+              <td>{name}<PoliticalBadge name={name} kind="group" chamber="Assemblée nationale" externalId={`an-organe:${ref}`} asOf={occurredAt} /></td>
               <td>{positionLabel(group.position_majoritaire)}</td>
               <td>{asCount(group.pour)}</td>
               <td>{asCount(group.contre)}</td>

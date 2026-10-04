@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { PoliticalBadge } from '@/components/political-classification';
 import type { GroupDirectoryEntry } from '@/lib/data';
 
 const normalized = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr-FR');
@@ -36,7 +37,7 @@ export function GroupDirectory({ groups }: { groups: GroupDirectoryEntry[] }) {
       const aliases = group.official_names.length > 1;
       return <Link href={`/groupes/${group.actor_id}`} className="group-directory-card" key={group.actor_id}>
         <div className="group-card-top"><span>{String(index + 1).padStart(2, '0')} / {group.last_vote.slice(0, 4)}</span><span>{group.identity_count} identifiant{group.identity_count > 1 ? 's' : ''} officiel{group.identity_count > 1 ? 's' : ''}</span></div>
-        <div className="group-card-core"><div><h3>{group.display_name}</h3><p>{group.display_name === 'Non inscrit' ? 'Catégorie administrative des députés sans groupe, avec un identifiant par législature' : aliases ? group.official_names.join(' · ') : group.identity_count > 1 ? 'Même intitulé officiel à plusieurs périodes' : 'Intitulé officiel unique dans les votes publiés'}</p></div><strong>{group.vote_count.toLocaleString('fr-FR')}<small>scrutins</small></strong></div>
+        <div className="group-card-core"><div><h3>{group.display_name}</h3><PoliticalBadge name={group.display_name} officialNames={group.official_names} kind="group" chamber="Assemblée nationale" linked={false} /><p>{group.display_name === 'Non inscrit' ? 'Catégorie administrative des députés sans groupe, avec un identifiant par législature' : aliases ? group.official_names.join(' · ') : group.identity_count > 1 ? 'Même intitulé officiel à plusieurs périodes' : 'Intitulé officiel unique dans les votes publiés'}</p></div><strong>{group.vote_count.toLocaleString('fr-FR')}<small>scrutins</small></strong></div>
         <div className="group-card-chart"><div className="group-card-chart-track" role="img" aria-label={`Sur ${positions} positions majoritaires : ${group.pour} pour, ${group.contre} contre, ${group.abstention} abstentions`}>
           {positions > 0 ? <><span className="group-chart-for" style={{ width: `${group.pour / positions * 100}%` }} /><span className="group-chart-against" style={{ width: `${group.contre / positions * 100}%` }} /><span className="group-chart-abstain" style={{ width: `${group.abstention / positions * 100}%` }} /></> : null}
         </div><div className="group-card-chart-labels"><span>Pour {group.pour}</span><span>Contre {group.contre}</span><span>Abst. {group.abstention}</span></div></div>

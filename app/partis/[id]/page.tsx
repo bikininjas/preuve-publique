@@ -1,6 +1,7 @@
 import { SeoPage } from '@/components/seo-page';
 import { documentMetadata } from '@/lib/seo-content';
 import Link from 'next/link';
+import { PoliticalBadge, PoliticalClassificationDetails } from '@/components/political-classification';
 import { notFound } from 'next/navigation';
 import { PartyBar } from '@/components/party-vote-chart';
 import { VoteTopics } from '@/components/vote-topics';
@@ -27,7 +28,8 @@ export default async function PartyPage({ params, searchParams }: { params: Prom
   if (!party) notFound();
   return <main className="party-profile-page"><SeoPage path={`/partis/${id}`} />
     <Link className="text-link" href="/partis">← Tous les partis</Link>
-    <div className="page-intro reading-intro"><div className="eyebrow">Affiliations datées · Assemblée nationale</div><h1>{party.party_name}</h1><p className="lead">Répartition des bulletins attribuables à ce parti dans le corpus publié.</p></div>
+    <div className="page-intro reading-intro"><div className="eyebrow">Affiliations datées · Assemblée nationale</div><h1>{party.party_name}</h1><PoliticalBadge name={party.party_name} kind="party" /><p className="lead">Répartition des bulletins attribuables à ce parti dans le corpus publié.</p></div>
+    <PoliticalClassificationDetails name={party.party_name} kind="party" />
     <div className="profile-reading-key"><div className="party-chart-legend"><span className="pour">Pour</span><span className="contre">Contre</span><span className="abstention">Abstention</span><span className="non-votant">Non-votant</span></div><p>{party.scrutins.toLocaleString('fr-FR')} scrutins attribuables · {ballotTotal(party).toLocaleString('fr-FR')} positions. Corpus publié : {formatDate(dashboard.scope.first_date)} – {formatDate(dashboard.scope.last_date)}. Les périodes ci-dessous décrivent les scrutins trouvés pour tous les partis, pas la durée d’existence de ce parti.</p><p>Une barre décrit les bulletins sur des textes identifiés par leurs titres. Elle ne mesure ni un soutien global à un thème, ni une orientation idéologique. Les sous-thèmes se recoupent : leurs chiffres ne s’additionnent pas.</p><Link href="/methode#profils-vote">Lire la méthode →</Link></div>
     <nav className="pills" aria-label="Aller à un thème du profil">{VOTE_SUBJECT_GROUPS.map((category) => <a href={`#profil-${category.id}`} key={category.id}>{category.label} ↓</a>)}<a href="#derniers-votes">Derniers votes ↓</a></nav>
     {VOTE_SUBJECT_GROUPS.map((category) => <section className="profile-category" id={`profil-${category.id}`} key={category.id}>

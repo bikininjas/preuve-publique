@@ -2,6 +2,7 @@ import { SeoPage } from '@/components/seo-page';
 import { publicActor as getActor, documentMetadata } from '@/lib/seo-content';
 import { VoteTopics } from '@/components/vote-topics';
 import Link from 'next/link';
+import { PoliticalBadge, PoliticalClassificationDetails } from '@/components/political-classification';
 import { notFound } from 'next/navigation';
 import { Empty, Pager } from '@/components/ui';
 import { getGroupActorScope, getGroupActorVotes } from '@/lib/data';
@@ -45,7 +46,8 @@ export default async function GroupePage({ params, searchParams }: {
 
   return <main className="group-profile"><SeoPage path={`/groupes/${id}`} />
     <p className="breadcrumb"><Link className="quiet" href="/groupes">← Tous les groupes</Link></p>
-    <section className="group-profile-hero"><div className="eyebrow">Assemblée nationale / fiche de navigation</div><h1>{displayName}</h1><p>Positions majoritaires du groupe dans les scrutins publiés, avec leurs sources.</p><div className="group-profile-hero-foot"><span>{scope?.length ?? 0} identifiant{scope?.length === 1 ? '' : 's'} distinct{scope?.length === 1 ? '' : 's'}</span><span>{firstVote && lastVote ? `Votes publiés ${firstVote.slice(0, 4)}–${lastVote.slice(0, 4)}` : 'Période indisponible'}</span></div></section>
+    <section className="group-profile-hero"><div className="eyebrow">Assemblée nationale / fiche de navigation</div><h1>{displayName}</h1><PoliticalBadge name={displayName} officialNames={officialNames} kind="group" chamber="Assemblée nationale" /><p>Positions majoritaires du groupe dans les scrutins publiés, avec leurs sources.</p><div className="group-profile-hero-foot"><span>{scope?.length ?? 0} identifiant{scope?.length === 1 ? '' : 's'} distinct{scope?.length === 1 ? '' : 's'}</span><span>{firstVote && lastVote ? `Votes publiés ${firstVote.slice(0, 4)}–${lastVote.slice(0, 4)}` : 'Période indisponible'}</span></div></section>
+    <PoliticalClassificationDetails name={displayName} officialNames={officialNames} kind="group" chamber="Assemblée nationale" />
     <nav className="reading-nav" aria-label="Parcourir la fiche du groupe"><a href="#votes-documentes">Votes documentés ↓</a><a href="#identifiants">Intitulés officiels ↓</a></nav>
     {failed ? <Empty>Les scrutins de ce groupe sont indisponibles pour le moment.</Empty>
       : scope && votes ? <>

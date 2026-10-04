@@ -6,6 +6,7 @@ import { Empty } from '@/components/ui';
 import { getActors, getGroupDirectory } from '@/lib/data';
 import { GroupDirectory } from './directory';
 import { HeroAtmosphere } from '@/components/editorial-decoration';
+import { PoliticalGroupReferences } from '@/components/political-group-references';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,6 +51,7 @@ export default async function GroupesPage() {
     {failed ? <Empty>La liste des groupes est indisponible pour le moment.</Empty> : groups.length ? <GroupDirectory groups={groups} /> : <Empty>Aucun groupe lié à un scrutin publié n’est visible pour le moment.</Empty>}
 
     <section className="group-party-note"><h2>Explorer aussi les partis</h2><p>{parties.length ? `${parties.length} partis identifiés dans les sources publiées. ` : ''}Leurs bulletins reposent sur des affiliations datées et sourcées.</p><Link className="text-link" href="/partis">Voir les profils des partis ↗</Link></section>
+    <PoliticalGroupReferences />
   </main>;
 }
 

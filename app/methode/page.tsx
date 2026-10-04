@@ -2,6 +2,7 @@ import { SeoPage } from '@/components/seo-page';
 import { pageMetadata, SEO_PAGES } from '@/lib/seo';
 import Link from 'next/link';
 import { InstitutionBadge } from '@/components/institution-badge';
+import { NUANCE_DICTIONARY_URL, POLITICAL_CLASSIFICATIONS, CLASSIFICATION_BASIS_LABELS } from '@/lib/political-classifications';
 
 
 export default function MethodePage() {
@@ -22,6 +23,20 @@ export default function MethodePage() {
         <p>Les scrutins sont regroupés par identifiant officiel du dossier. Lorsqu’il manque, seuls des intitulés identiques dans une même législature sont regroupés. Le dernier vote disponible peut être une première lecture : il ne prouve pas, à lui seul, l’adoption définitive d’une loi. La mention « lecture définitive » n’est utilisée que si la source l’indique. Certaines lois sont adoptées sans scrutin public d’ensemble ; leur absence ici ne constitue pas un rejet.</p>
         <p>Pour le Parlement européen, seuls les votes explicitement désignés comme vote final, vote unique ou vote sur l’ensemble du texte sont retenus. Une résolution européenne n’est pas nécessairement un acte législatif. Un résultat absent de la source reste indiqué comme indisponible.</p>
         <p className="hint">La <a href="https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-navette-parlementaire.html" target="_blank" rel="noopener noreferrer">navette parlementaire décrite par le Sénat</a> précise les conditions d’adoption d’un même texte par les deux chambres et du dernier mot de l’Assemblée.</p>
+      </section>
+
+      <section className="panel" id="classifications-politiques">
+        <h2>Classifications politiques : source, date et périmètre</h2>
+        <p>Les badges des partis reprennent les blocs de clivage de la circulaire du ministère de l’Intérieur du 2 février 2026 pour les municipales des 15 et 22 mars 2026. Ils décrivent les nuances attribuées aux candidatures investies ou soutenues dans ce scrutin. Le contexte « Municipales 2026 » reste visible à côté du nom, même dans une page de votes anciens. Il ne s’agit pas d’une classification universelle du parti pour toutes les élections.</p>
+        <p>Le Conseil d’État contrôle la légalité de la grille et l’absence d’erreur manifeste d’appréciation. Il n’établit pas lui-même une nomenclature des partis. Sa décision du 27 février 2026 rejette les recours de LFI et de l’UDR ; le contrôle attaché à ces formations ne signifie pas que chaque ligne de la grille a fait l’objet d’un recours. Pour LFI, le repère « Gauche · Sénatoriales 2023 », mentionné par la décision de 2024, est conservé dans l’historique.</p>
+        <p>Les groupes de l’Assemblée et du Sénat ne reçoivent jamais le bloc d’un parti par déduction. Une orientation déclarée est celle que le groupe revendique dans sa déclaration publiée officiellement. Une description institutionnelle est attribuée à son auteur, comme le service de recherche du Parlement européen (EPRS). Ces deux types de source sont distingués des nuances administratives. Une déclaration datée n’est pas appliquée aux anciens identifiants d’un groupe dans un scrutin.</p>
+        <p>« Orientation non documentée » signifie qu’aucune source admissible n’a été recoupée pour cette identité dans notre référentiel. Ce n’est ni une catégorie « Divers » ni une affirmation qu’aucune source n’existe. Les anciens noms, les formations proches, les groupes composites et les non-inscrits ne sont pas assimilés à un parti actuel. Ces repères ne qualifient ni un bulletin, ni la personne qui l’a déposé, ni une affaire judiciaire.</p>
+        <p><a href="https://www.legifrance.gouv.fr/circulaire/id/45645" target="_blank" rel="noopener noreferrer">Circulaire et annexes ↗</a> · <a href={NUANCE_DICTIONARY_URL} target="_blank" rel="noopener noreferrer">Dictionnaire officiel des nuances ↗</a> · <a href="https://www.legifrance.gouv.fr/circulaire/id/45684" target="_blank" rel="noopener noreferrer">Grille distincte des sénatoriales de septembre 2026 ↗</a>. Les badges présentés ici conservent explicitement le contexte municipal examiné par le Conseil d’État.</p>
+        <details className="document-provenance"><summary>Consulter le référentiel sourcé, vérifié le 4 octobre 2026</summary><div className="provenance-content political-reference-grid">{POLITICAL_CLASSIFICATIONS.map((entry) => <article key={`${entry.kind}:${entry.chamber}:${entry.names[0]}:${entry.context}`}>
+          <h3>{entry.names[0]} · {entry.label}</h3><p>{entry.kind === 'party' ? 'Parti' : entry.chamber} · {entry.context} · {CLASSIFICATION_BASIS_LABELS[entry.basis]}</p>
+          <p><a href={entry.source.url} target="_blank" rel="noopener noreferrer">{entry.source.publisher} ↗</a> · {entry.source.publishedAt}<br />{entry.source.locator}<br />Consulté le {entry.source.retrievedAt}.</p>
+          {entry.judicialReview ? <a href={entry.judicialReview.url} target="_blank" rel="noopener noreferrer">Décision du Conseil d’État ↗</a> : null}
+        </article>)}</div></details>
       </section>
 
       <section className="panel" id="sources">

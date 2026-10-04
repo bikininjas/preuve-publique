@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PoliticalBadge } from '@/components/political-classification';
 import { PartyBar } from '@/components/party-vote-chart';
 import type { PartyVoteDashboard, PartyVoteRow } from '@/lib/data';
 import { formatDate } from '@/lib/labels';
@@ -13,7 +14,7 @@ export function PartyProfileCard({ party, themes, scope }: {
   scope: PartyVoteDashboard['scope'];
 }) {
   return <article className="party-profile-card">
-    <header><span className="party-profile-mark" aria-hidden="true">{party.party_name.split(/\s+/).map((word) => word.replace(/[^\p{L}\p{N}]/gu, '')).filter(Boolean).map((word) => word[0]).join('').slice(0, 4).toLocaleUpperCase('fr-FR')}</span><div><span className="eyebrow">Bulletins individuels · Assemblée</span><h3><Link href={`/partis/${party.party_id}`}>{party.party_name}</Link></h3></div></header>
+    <header><span className="party-profile-mark" aria-hidden="true">{party.party_name.split(/\s+/).map((word) => word.replace(/[^\p{L}\p{N}]/gu, '')).filter(Boolean).map((word) => word[0]).join('').slice(0, 4).toLocaleUpperCase('fr-FR')}</span><div><span className="eyebrow">Bulletins individuels · Assemblée</span><h3><Link href={`/partis/${party.party_id}`}>{party.party_name}</Link></h3><PoliticalBadge name={party.party_name} kind="party" /></div></header>
     <div className="party-profile-themes">{VOTE_SUBJECT_GROUPS.map((category) => {
       const dashboard = themes.get(category.id);
       const row = dashboard?.parties.find((entry) => entry.party_id === party.party_id);

@@ -159,7 +159,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
       ) : null}
 
       {evidence.kind === 'vote' && evidence.institution === 'senat' ? senateVotes.length ? (
-        <GroupVoteBreakdown rows={senateVotes} coverage={senateCoverage} sourceUrl={evidence.source_url} />
+        <GroupVoteBreakdown rows={senateVotes} coverage={senateCoverage} sourceUrl={evidence.source_url} occurredAt={evidence.occurred_at} />
       ) : <section className="panel party-vote-unavailable" id="votes-par-groupe"><h2>Part des votes par groupe</h2><p>{senateVotesUnavailable ? 'Le décompte par groupe est temporairement indisponible.' : 'Aucun décompte par groupe vérifié n’est disponible pour ce scrutin.'}</p><p className="hint">Le résultat et la page officielle restent consultables ci-dessus.</p></section> : null}
       {evidence.kind === 'vote' && evidence.institution !== 'senat' ? partyVotes.length ? (
         <PartyVoteBreakdown rows={partyVotes} coverage={partyCoverage} sourceUrl={evidence.source_url} />
@@ -169,7 +169,7 @@ export default async function EvidenceDetailPage({ params }: { params: Promise<{
             : 'Aucun décompte par parti vérifié n’est disponible pour ce scrutin : la liste nominative et le total officiel doivent concorder avant affichage.'
         : 'Les positions individuelles reliées à un parti ne sont pas encore disponibles pour cette institution dans la base.'}</p><p className="hint">Le scrutin officiel et son résultat restent consultables ci-dessus.</p></section> : null}
 
-      {groups.length ? <details className="document-provenance"><summary><span><strong>Analyse officielle par groupe parlementaire</strong><small>Les décomptes de groupe, distincts des affiliations à un parti</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary><div className="provenance-content"><GroupPositions groups={groups} names={groupNames} /></div></details> : null}
+      {groups.length ? <details className="document-provenance"><summary><span><strong>Analyse officielle par groupe parlementaire</strong><small>Les décomptes de groupe, distincts des affiliations à un parti</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary><div className="provenance-content"><GroupPositions groups={groups} names={groupNames} occurredAt={evidence.occurred_at} /></div></details> : null}
 
       <details className="document-provenance" id="provenance">
         <summary><span><strong>Sources, contexte et données de la pièce</strong><small>Document original, références et contrôles de publication</small></span><span className="disclosure-plus" aria-hidden="true">+</span></summary>
