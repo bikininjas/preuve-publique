@@ -3,6 +3,7 @@ import type { Evidence } from '@/lib/types';
 import { formatEvidenceDate, kindLabel } from '@/lib/labels';
 import { InstitutionBadge } from '@/components/institution-badge';
 import { readerTitle, scrutinNumber, voteScope, voteTally } from '@/lib/reader';
+import { peDocumentReference } from '@/lib/pe-document';
 import { VoteDistribution } from '@/components/vote-distribution';
 import { VoteTopics } from '@/components/vote-topics';
 import { EditorialContext } from '@/components/editorial-context';
@@ -10,6 +11,7 @@ import { EditorialContext } from '@/components/editorial-context';
 /** One documentary piece; the protected review view links to its admin fiche. */
 export function EvidenceCard({ item, review = false }: { item: Evidence; review?: boolean }) {
   const number = scrutinNumber(item);
+  const document = item.kind === 'vote' && item.institution === 'parlement_europeen' ? peDocumentReference(item.title) : null;
   const scope = voteScope(item);
   const tally = item.kind === 'vote' ? voteTally(item) : null;
   const href = `${review ? '/admin' : ''}/pieces/${item.id}`;
@@ -23,6 +25,7 @@ export function EvidenceCard({ item, review = false }: { item: Evidence; review?
         <Link href={href}>{readerTitle(item)}</Link>
       </h3>
       {number ? <p className="card-ref">Scrutin officiel n° {number}</p> : null}
+      {document ? <p className="card-ref">Texte {document.label}</p> : null}
       {item.kind === 'vote' ? <VoteTopics title={item.title} institution={item.institution} /> : null}
       {item.publication_confidence != null ? <p className="card-confidence" title="Conformité documentaire à la source ; cet indice ne mesure pas une interprétation politique.">Source recoupée · conformité {Math.round(Number(item.publication_confidence) * 100)}/100</p> : null}
       {item.topics?.length ? <div className="chip-row">{item.topics.slice(0, 2).map((topic) => <span className="chip" key={topic}>{topic}</span>)}</div> : null}

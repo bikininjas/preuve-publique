@@ -1,4 +1,5 @@
 import type { Evidence } from '@/lib/types';
+import { peSubjectLabel, peTextSubject } from './pe-document.ts';
 
 const voteWording = (title: string) => title.replace(/^Scrutin n°\s*\d+\s*[—–-]\s*/i, '').trim();
 
@@ -19,8 +20,10 @@ function shortLabel(value: string): string {
  * an amendment receives its parent text's subject, while its own scope stays
  * visible in a separate badge. No position or effect is inferred here.
  */
-export function readerTitle(item: Pick<Evidence, 'kind' | 'title'>): string {
+export function readerTitle(item: Pick<Evidence, 'kind' | 'title'> & Partial<Pick<Evidence, 'institution' | 'detail'>>): string {
   if (item.kind !== 'vote') return item.title;
+  const subject = peTextSubject(item);
+  if (subject) return shortLabel(peSubjectLabel(subject.title));
   // European decision labels often give a document identifier rather than its
   // subject. Preserve it so different resolutions never acquire identical titles.
   if (/^Vote du \d{4}-\d{2}-\d{2}\s*[-–—]/i.test(item.title)) {

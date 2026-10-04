@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "ingest": "node ingestion/cli.mjs",
     "scrutins:sync": "node ingestion/daily/cli.mjs",
+    "pe:subjects": "node ingestion/pe-subjects.mjs",
     "polls:sync": "node --experimental-strip-types ingestion/polls/cli.ts",
     "candidates:sync": "node ingestion/candidates/cli.mjs",
     "measures:import": "node ingestion/candidates/editorial.mjs",
