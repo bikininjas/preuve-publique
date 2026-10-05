@@ -28,7 +28,7 @@ function Plot({ layers, first, last, ceiling, active, focus, onSelect }: {
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-  const height = layers.length > 1 ? 360 : 170;
+  const height = layers.length > 1 ? 320 : 150;
   const left = 48, right = 24, top = 22, bottom = 34;
   const x = (date: number) => first === last ? (left + width - right) / 2 : left + (date - first) / (last - first) * (width - left - right);
   const y = (score: number) => height - bottom - score / ceiling * (height - top - bottom);

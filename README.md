@@ -55,6 +55,8 @@ Mesures DOM avant/après à largeur identique de 1 280 px, avec les données pub
 
 Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, groupes, profil de parti et détail de scrutin ; contrôles à 320, 390, 768 et 1 280 px. Aucun débordement horizontal ni compteur tronqué constaté après ajustement. Ces styles sont intégrés aux parcours de sondages et de candidats ; le build de production utilise le compilateur normal du projet.
 
+Le 05/10/2026, une nouvelle passe limite les hémicycles à 440 px de large et resserre les marges des graphiques, cartes de résultats, indicateurs et comparaisons. À 1 280 px, sur les mêmes résultats chargés : hémicycle de 554 à 440 px de large (−21 %), carte de scrutin de 650 à 609 px de haut (−6 %), graphique de catégorie de 1 287 à 1 233 px (−4 %). Les séries de sondages occupent aussi moins de hauteur, avec les mêmes échelles, libellés et points sélectionnables. Les commandes des hémicycles conservent une hauteur minimale de 44 px ; aucun libellé n’est masqué pour gagner de la place.
+
 ## Périmètre et méthode
 
 ### Lire les sondages et les fiches de la présidentielle
