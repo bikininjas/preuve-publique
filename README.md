@@ -57,6 +57,8 @@ Vérifications sans captures : accueil, scrutins, thèmes Assemblée/Sénat, gro
 
 Le 05/10/2026, une nouvelle passe limite les hémicycles à 440 px de large et resserre les marges des graphiques, cartes de résultats, indicateurs et comparaisons. À 1 280 px, sur les mêmes résultats chargés : hémicycle de 554 à 440 px de large (−21 %), carte de scrutin de 650 à 609 px de haut (−6 %), graphique de catégorie de 1 287 à 1 233 px (−4 %). Les séries de sondages occupent aussi moins de hauteur, avec les mêmes échelles, libellés et points sélectionnables. Les commandes des hémicycles conservent une hauteur minimale de 44 px ; aucun libellé n’est masqué pour gagner de la place.
 
+La passe suivante du 05/10/2026 compacte aussi les tableaux : lignes de légende de 32 px sur ordinateur (44 px avec un pointeur tactile), largeur limitée à 520 px, cellules publiques moins espacées et intitulés complets conservés. À 1 280 px sur les mêmes données : légende AN de 596 à 446 px de haut, tableau de couverture de comparaison de 279 à 209 px, bulletins comparés de 345 à 259 px et résultats d’une configuration de sondage de 405 à 342 px. Sur mobile, les tableaux larges défilent dans leur cadre ; ouvrir une configuration de sondage n’élargit plus la page.
+
 ## Périmètre et méthode
 
 ### Lire les sondages et les fiches de la présidentielle
