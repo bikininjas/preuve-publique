@@ -211,6 +211,24 @@ main:not(.admin) .justice-chart-row { padding-block: 16px; }
 main:not(.admin) .justice-table-scroll :is(td, th) { padding: 10px; }
 main:not(.admin) .party-comparison-vote { padding: 20px; margin-block: 16px; }
 main:not(.admin) .party-comparison-position { padding: 16px; }
+
+/* Compact public tables: full labels wrap, numeric columns stay easy to scan. */
+main:not(.admin) table { font-size: 13px; line-height: 1.4; }
+main:not(.admin) table :is(th, td),
+main:not(.admin) :is(.table, .coverage-table, .candidate-vote-table, .poll-card table, .justice-table-scroll table) :is(th, td) { padding: 6px 8px; vertical-align: top; }
+main:not(.admin) table caption { padding: 8px; font-size: 12px; line-height: 1.4; }
+main:not(.admin) table :is(p, details) { margin-block: 4px; }
+main:not(.admin) .table { white-space: normal; }
+main:not(.admin) :is(.coverage-table, .candidate-vote-table) :is(th, td) { min-width: 110px; }
+main:not(.admin) .coverage-table th:first-child { min-width: 180px; }
+main:not(.admin) .candidate-vote-table th:first-child { min-width: 220px; }
+main:not(.admin) .candidate-vote-table th a { margin-top: 4px; }
+main:not(.admin) .coverage-table td span { margin-top: 2px; }
+main:not(.admin) .poll-card table { min-width: 360px; }
+main:not(.admin) .poll-card { min-width: 0; }
+main:not(.admin) .poll-table-scroll { max-width: 100%; }
+main:not(.admin) .poll-table-score { gap: 8px; }
+main:not(.admin) .poll-scenario { padding-top: 10px; }
 @media (max-width: 740px) {
   main:not(.admin) { --data-card-padding: 14px; --data-grid-gap: 8px; }
   main:not(.admin) .evidence-card { padding: 16px; }

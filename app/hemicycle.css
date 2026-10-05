@@ -24,19 +24,20 @@
 .hemicycle-key, .hemicycle-selection { font-size: 13px; line-height: 1.6; color: var(--muted); text-align: center; margin-block: 6px; }
 .hemicycle-selection { min-height: 32px; color: var(--ink); overflow-wrap: anywhere; }
 .hemicycle-reset { display: block; margin: 10px auto; min-height: 44px; padding: 8px 14px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 24px; cursor: pointer; font: inherit; font-size: 13px; }
-.hemicycle-legend h4 { font-size: 14px; margin: 0 0 8px; }
-.hemicycle-search { display: grid; gap: 8px; font-size: 12px; color: var(--muted); margin-bottom: 12px; }
-.hemicycle-search input { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 6px; font: inherit; font-size: 14px; }
+.hemicycle-legend { width: 100%; max-width: 520px; }
+.hemicycle-legend h4 { font-size: 14px; margin: 0 0 6px; }
+.hemicycle-search { display: grid; gap: 4px; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.hemicycle-search input { min-width: 0; width: 100%; min-height: 34px; padding: 6px 10px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 6px; font: inherit; font-size: 13px; }
 .hemicycle-legend ul { list-style: none; padding: 0; margin: 0; }
 .hemicycle-legend li { border-bottom: 1px solid var(--line); }
-.hemicycle-legend li button { display: grid; grid-template-columns: 12px minmax(0, 1fr) 38px 52px; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 8px 6px; text-align: left; color: var(--ink); background: transparent; border: 0; border-radius: 6px; cursor: pointer; font: inherit; font-size: 13px; line-height: 1.5; }
+.hemicycle-legend li button { display: grid; grid-template-columns: 10px minmax(0, 1fr) 32px 46px; align-items: center; gap: 8px; width: 100%; min-height: 32px; padding: 3px 4px; text-align: left; color: var(--ink); background: transparent; border: 0; border-radius: 6px; cursor: pointer; font: inherit; font-size: 13px; line-height: 1.35; }
 .hemicycle-legend li button[aria-pressed="true"] { background: var(--paper); outline: 2px solid var(--teal); }
 .hemicycle-legend li button > span:nth-child(2) { overflow-wrap: anywhere; }
 .hemicycle-legend strong, .hemicycle-legend small { text-align: right; font-variant-numeric: tabular-nums; }
 .hemicycle-legend small { color: var(--muted); font-size: 12px; }
 .seat-swatch { display: block; width: 11px; height: 11px; border-radius: 50%; }
 .seat-swatch.unknown { outline: 1px dashed var(--ink); outline-offset: 2px; }
-.hemicycle-legend summary { cursor: pointer; min-height: 44px; padding-block: 14px; font-size: 13px; font-weight: 600; }
+.hemicycle-legend summary { cursor: pointer; min-height: 34px; padding-block: 8px; font-size: 13px; font-weight: 600; }
 .composition-sources { display: flex; flex-direction: column; align-items: start; gap: 6px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
 .composition-sources span { color: var(--muted); }
 .composition-sources details { width: 100%; }
@@ -46,3 +47,4 @@
 .chamber-picker a:focus-visible, .composition-scope a:focus-visible, .hemicycle-legend button:focus-visible, .hemicycle-reset:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 @media (max-width: 900px) { .hemicycle-reading { grid-template-columns: 1fr; gap: 14px; } }
 @media (max-width: 390px) { .hemicycle-legend li button { gap: 7px; grid-template-columns: 10px minmax(0, 1fr) 29px 44px; padding-inline: 2px; font-size: 12px; } .chamber-picker a { padding-inline: 12px; font-size: 13px; } }
+@media (any-pointer: coarse) { .hemicycle-legend button, .hemicycle-legend summary, .hemicycle-search input { min-height: 44px; } }
