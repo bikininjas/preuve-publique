@@ -35,11 +35,11 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-grid px-4 py-3">
         <h2
           id="spectrometre"
-          className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink"
+          className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink"
         >
           Spectromètre de triangulation
         </h2>
-        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+        <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
           {covered.length}/6 piliers documentés · {total} pièces recoupées
         </p>
       </div>
@@ -99,18 +99,18 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
                 className={column.count > 0 ? "pp-led pp-led--on" : "pp-led pp-led--off"}
                 aria-hidden="true"
               />
-              <span className="font-mono text-[10px] tracking-[0.12em] text-muted">
+              <span className="font-mono text-[12px] tracking-[0.12em] text-muted">
                 {SPECTRUM_CODES[column.spectrum]}
               </span>
             </span>
-            <span className="font-mono text-[11px] leading-tight tracking-[0.08em] text-ink">
+            <span className="font-mono text-[13px] leading-tight tracking-[0.08em] text-ink">
               <Caviard label="[PILIER MASQUÉ]">{SPECTRUM_COLUMN_LABELS[column.spectrum]}</Caviard>
             </span>
             <span className="flex items-baseline gap-2">
               <span className="font-mono text-2xl leading-none text-ink">
                 {String(column.count).padStart(2, "0")}
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+              <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
                 {column.count === 0 ? "aucune pièce" : column.count > 1 ? "pièces" : "pièce"}
               </span>
             </span>
@@ -120,7 +120,7 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
 
       <div className="border-t border-grid px-4 py-4">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
             Jauge de consensus (score éditorial)
           </p>
           <p className="font-mono text-sm text-ink">{dossier.consensus_score}%</p>
@@ -137,7 +137,7 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
             );
           })}
         </div>
-        <p className="mt-3 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
+        <p className="mt-3 font-mono text-[12px] leading-relaxed tracking-[0.06em] text-muted">
           Le score est fixé par la rédaction lors de la constitution du dossier.
           Ce qui se compte, et se vérifie source par source, c&apos;est la
           couverture ci-dessus.

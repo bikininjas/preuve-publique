@@ -1,179 +1,129 @@
 import Link from "next/link";
 
-import OriginNotice from "@/components/OriginNotice";
+import CategoryChips from "@/components/CategoryChips";
+import DossierCard from "@/components/DossierCard";
+import Reveal from "@/components/Reveal";
 import SearchForm from "@/components/SearchForm";
-import { featuredDossier } from "@/server/services/dossier.service";
-import {
-  SPECTRUM_CODES,
-  SPECTRUM_DESCRIPTIONS,
-  SPECTRUM_LABELS,
-  SPECTRUM_ORDER,
-  VERDICT_STAMPS,
-  VERDICT_TONES,
-  formatLongDate,
-} from "@/lib/labels";
+import StatBand from "@/components/StatBand";
+import { categoryCounts, listPublishedDossiers } from "@/server/services/dossier.service";
+import { documentedSpectra } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
+/** Les quatre conditions du validateur, dites en une ligne chacune. */
+const RULES: { code: string; text: string }[] = [
+  { code: "01", text: "Une preuve primaire : archive d'époque ou donnée officielle." },
+  { code: "02", text: "Une validation académique : travaux à comité de lecture." },
+  { code: "03", text: "Deux bords politiques distincts, au minimum." },
+  { code: "04", text: "Une empreinte SHA-256 sur chaque pièce citée." },
+];
+
 export default async function HomePage() {
-  const featured = await featuredDossier();
-  const dossier = featured.ok ? featured.value : null;
-  const tone = dossier ? VERDICT_TONES[dossier.verdict] : "warn";
-  const toneClass =
-    tone === "true" ? "text-true" : tone === "warn" ? "text-warn" : "text-false";
-  const covered = dossier
-    ? new Set(dossier.sources.map((source) => source.spectrum)).size
-    : 0;
+  const [listed, counts] = await Promise.all([listPublishedDossiers(), categoryCounts()]);
+  const dossiers = listed.ok ? listed.value : [];
+  const pieces = dossiers.reduce((total, dossier) => total + dossier.sources.length, 0);
+  const fingerprints = dossiers.reduce(
+    (total, dossier) =>
+      total + dossier.sources.filter((source) => source.archive_sha256 !== null).length,
+    0,
+  );
+  const pillars = dossiers.reduce(
+    (total, dossier) => total + documentedSpectra(dossier.sources).length,
+    0,
+  );
+  const [latest, ...others] = dossiers;
 
   return (
-    <div className="space-y-10">
-      <section className="border border-grid bg-surface">
-        <p className="border-b border-gridsoft px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted sm:px-6">
-          Registre des vérifications · triangulation documentaire
+    <div className="space-y-12">
+      <section className="space-y-5">
+        <p className="pp-meta text-muted">Registre des vérifications · triangulation documentaire</p>
+        <h1 className="pp-h1 max-w-[20ch] font-serif text-ink">
+          La preuve ne doit pas dépendre de celui qui la porte.
+        </h1>
+        <p className="pp-lead max-w-[56ch] text-muted">
+          Chaque dossier croise archives d&apos;époque, travaux évalués par les pairs et
+          sources de tout le bord politique. Le lecteur juge le recoupement, pas
+          l&apos;autorité.
         </p>
-        <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)]">
-          <div className="border-gridsoft px-4 py-8 sm:px-6 lg:border-r">
-            <h1 className="max-w-3xl font-serif text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
-              La preuve ne doit pas dépendre de celui qui la porte.
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
-              Les vérifications classiques butent sur un réflexe légitime :
-              pourquoi croire une rédaction plutôt qu&apos;une autre ? Ici, chaque
-              dossier croise des archives d&apos;époque, des travaux évalués par
-              les pairs et des sources de tout le spectre politique. Le lecteur
-              juge le recoupement, pas l&apos;autorité — et peut recalculer
-              lui-même l&apos;empreinte de chaque citation.
-            </p>
-            <div className="mt-8 max-w-2xl">
-              <SearchForm />
-            </div>
-          </div>
-          <div className="flex flex-col justify-between gap-6 bg-surface2 px-4 py-8 sm:px-6">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                Méthode imposée par le code
-              </p>
-              <ul className="mt-4 space-y-3 font-mono text-[11px] leading-relaxed text-ink">
-                <li>01 · une preuve primaire obligatoire</li>
-                <li>02 · une source académique obligatoire</li>
-                <li>03 · deux bords politiques au minimum</li>
-                <li>04 · une empreinte par pièce</li>
-              </ul>
-            </div>
-            <p className="font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
-              Un dossier qui ne réunit pas ces quatre conditions reste un
-              brouillon : le pipeline de publication le refuse.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {featured.ok ? <OriginNotice origin={featured.origin} /> : null}
-
-      {!featured.ok ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-falsebd">
-          Lecture impossible : {featured.message}
-        </p>
-      ) : null}
-
-      {dossier ? (
-        <section className="border border-grid bg-surface">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-grid px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-            <span>Dossier publié le plus récent</span>
-            <span>
-              {covered}/6 piliers · {dossier.sources.length} pièces
-            </span>
-          </div>
-          <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(240px,300px)]">
-            <div className="border-gridsoft px-4 py-6 sm:px-6 lg:border-r">
-              <h2 className="font-serif text-3xl leading-tight tracking-tight text-ink">
-                <Link className="hover:text-false" href={`/dossiers/${dossier.slug}`}>
-                  « {dossier.claim_title} »
-                </Link>
-              </h2>
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
-                {dossier.verdict_summary}
-              </p>
-              <p className="mt-5 flex flex-wrap items-center gap-4">
-                <span className={`pp-stamp ${toneClass}`}>
-                  {VERDICT_STAMPS[dossier.verdict]}
-                </span>
-                <Link
-                  className="font-mono text-[10px] uppercase tracking-[0.14em] text-seal hover:underline"
-                  href={`/dossiers/${dossier.slug}`}
-                >
-                  Ouvrir le dossier →
-                </Link>
-              </p>
-            </div>
-            <div className="flex flex-col justify-between gap-4 bg-surface2 px-4 py-6 sm:px-6">
-              <div className="space-y-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                {SPECTRUM_ORDER.map((spectrum) => {
-                  const count = dossier.sources.filter(
-                    (source) => source.spectrum === spectrum,
-                  ).length;
-                  return (
-                    <p key={spectrum} className="flex items-center justify-between gap-3">
-                      <span className="flex items-center gap-2">
-                        <span
-                          className={count > 0 ? "pp-led pp-led--on" : "pp-led pp-led--off"}
-                          aria-hidden="true"
-                        />
-                        {SPECTRUM_CODES[spectrum]}
-                      </span>
-                      <span className={count > 0 ? "text-ink" : "text-muted"}>
-                        {String(count).padStart(2, "0")}
-                      </span>
-                    </p>
-                  );
-                })}
-              </div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink">
-                Consensus {dossier.consensus_score}%
-              </p>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="border border-grid bg-surface">
-        <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-grid px-4 py-3">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
-            Les six piliers du recoupement
-          </h2>
-          <Link
-            className="font-mono text-[10px] uppercase tracking-[0.14em] text-seal hover:underline"
-            href="/methode"
-          >
-            Méthode et limites →
+        <div className="flex flex-wrap items-center gap-2">
+          {latest !== undefined ? (
+            <Link className="pp-btn pp-btn--ink" href={`/dossiers/${latest.slug}`}>
+              Lire le dernier dossier
+            </Link>
+          ) : null}
+          <Link className="pp-btn" href="/methode">
+            Comment on vérifie
           </Link>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3">
-          {SPECTRUM_ORDER.map((spectrum) => (
-            <div
-              key={spectrum}
-              className="border-b border-r border-gridsoft px-4 py-5 last:border-b-0"
-            >
-              <p className="flex items-center justify-between">
-                <span className="font-mono text-[10px] tracking-[0.14em] text-seal">
-                  {SPECTRUM_CODES[spectrum]}
-                </span>
-                <span className="pp-led pp-led--off" aria-hidden="true" />
-              </p>
-              <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink">
-                {SPECTRUM_LABELS[spectrum]}
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-muted">
-                {SPECTRUM_DESCRIPTIONS[spectrum]}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p className="border-t border-grid px-4 py-3 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
-          Un pilier sans source n&apos;est pas comblé par une approximation : il
-          reste éteint, et le dossier dit pourquoi.
-        </p>
+        <StatBand
+          stats={[
+            { label: "Dossiers publiés", value: dossiers.length },
+            { label: "Pièces recoupées", value: pieces },
+            { label: "Empreintes vérifiables", value: fingerprints },
+            { label: "Piliers documentés", value: pillars, suffix: "/6" },
+          ]}
+        />
       </section>
+
+      {!listed.ok ? (
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
+          {listed.message} Aucune donnée locale ne remplace une lecture échouée.
+        </p>
+      ) : null}
+
+      <Reveal as="section" className="space-y-3">
+        <h2 className="pp-meta text-muted">Parcourir par catégorie</h2>
+        <CategoryChips counts={counts.ok ? counts.value : undefined} />
+      </Reveal>
+
+      <section className="space-y-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="pp-h2 font-serif text-ink">Le registre</h2>
+          <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
+            Tous les dossiers →
+          </Link>
+        </div>
+        {latest === undefined ? (
+          <p className="border border-dashed border-gridsoft px-4 py-6 text-muted">
+            Aucun dossier publié pour le moment.
+          </p>
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2">
+            <Reveal className="md:col-span-2">
+              <DossierCard dossier={latest} />
+            </Reveal>
+            {others.slice(0, 4).map((dossier, index) => (
+              <Reveal key={dossier.id} delay={60 * (index + 1)}>
+                <DossierCard dossier={dossier} />
+              </Reveal>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <Reveal as="section" className="space-y-3 border border-grid bg-surface p-4 sm:p-6">
+        <h2 className="pp-h2 font-serif text-ink">Quatre conditions, vérifiées par le code</h2>
+        <ol className="grid gap-2 sm:grid-cols-2">
+          {RULES.map((rule) => (
+            <li key={rule.code} className="flex items-baseline gap-3 border-b border-gridsoft pb-2">
+              <span className="pp-meta text-muted">{rule.code}</span>
+              <span className="pp-tight text-ink">{rule.text}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="pp-tight text-muted">
+          Un dossier qui ne réunit pas ces conditions reste un brouillon : le pipeline
+          de publication le refuse.{" "}
+          <Link className="text-seal hover:underline" href="/methode">
+            Méthode et limites →
+          </Link>
+        </p>
+      </Reveal>
+
+      <Reveal as="section" className="space-y-3">
+        <h2 className="pp-meta text-muted">Rechercher une affirmation</h2>
+        <SearchForm />
+      </Reveal>
     </div>
   );
 }

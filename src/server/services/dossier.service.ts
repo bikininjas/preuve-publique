@@ -4,6 +4,7 @@ import { searchSeedDossiers } from "../../lib/search.ts";
 import type {
   DataResult,
   Dossier,
+  DossierCategory,
   DossierSource,
   PoliticalSpectrum,
   Premise,
@@ -61,7 +62,7 @@ export function clearDossierCache(): void {
 }
 
 const SELECT_DOSSIER = `
-  id, slug, claim_title, verdict, verdict_summary, consensus_score, premises,
+  id, slug, claim_title, verdict, verdict_summary, category, consensus_score, premises,
   is_published, published_at,
   dossier_sources (
     id, spectrum, source_name, author_or_institution, publication_date,
@@ -95,6 +96,17 @@ const PREMISE_STATUSES: PremiseStatus[] = [
 ];
 
 const QUOTE_KINDS: QuoteKind[] = ["CITATION_EXACTE", "FAIT_DOCUMENTE"];
+
+const CATEGORIES: DossierCategory[] = [
+  "HISTOIRE",
+  "POLITIQUE",
+  "ECONOMIE",
+  "SOCIETE",
+  "FAITS_DIVERS",
+  "SANTE",
+  "ENVIRONNEMENT",
+  "INTERNATIONAL",
+];
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -174,7 +186,15 @@ function parseDossier(value: unknown): Dossier | null {
   const title = asString(value.claim_title);
   const verdict = asString(value.verdict);
   const summary = asString(value.verdict_summary);
-  if (slug === null || title === null || verdict === null || summary === null) {
+  const category = asString(value.category);
+  if (
+    slug === null ||
+    title === null ||
+    verdict === null ||
+    summary === null ||
+    category === null ||
+    !CATEGORIES.includes(category as DossierCategory)
+  ) {
     return null;
   }
   if (!VERDICTS.includes(verdict as VerdictStatus)) {
@@ -192,6 +212,7 @@ function parseDossier(value: unknown): Dossier | null {
     claim_title: title,
     verdict: verdict as VerdictStatus,
     verdict_summary: summary,
+    category: category as DossierCategory,
     consensus_score: typeof score === "number" && score >= 0 && score <= 100 ? score : 0,
     premises: parsePremises(value.premises),
     is_published: value.is_published === true,
@@ -384,6 +405,41 @@ export async function searchPublishedDossiers(
   const value: DataResult<Dossier[]> = { ok: true, origin: "supabase", value: ordered };
   writeCache(key, value);
   return value;
+}
+
+/**
+ * Dossiers publiés d'une catégorie. Le filtrage se fait ici plutôt qu'en SQL
+ * parce que la liste complète est déjà en cache pour l'accueil : une seule
+ * requête sert tout le site.
+ */
+export async function listPublishedByCategory(
+  category: DossierCategory,
+): Promise<DataResult<Dossier[]>> {
+  const all = await listPublishedDossiers();
+  if (!all.ok) {
+    return all;
+  }
+  return {
+    ok: true,
+    origin: all.origin,
+    value: all.value.filter((dossier) => dossier.category === category),
+  };
+}
+
+/** Nombre de dossiers publiés par catégorie (les catégories vides comptent 0). */
+export async function categoryCounts(): Promise<DataResult<Record<DossierCategory, number>>> {
+  const all = await listPublishedDossiers();
+  if (!all.ok) {
+    return all;
+  }
+  const counts = {} as Record<DossierCategory, number>;
+  for (const category of CATEGORIES) {
+    counts[category] = 0;
+  }
+  for (const dossier of all.value) {
+    counts[dossier.category] += 1;
+  }
+  return { ok: true, origin: all.origin, value: counts };
 }
 
 /** Le dossier mis en avant sur l'accueil : le premier publié, sinon null. */

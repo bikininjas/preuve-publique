@@ -56,6 +56,17 @@ export const PREMISE_STATUS_VALUES = [
 
 export const QUOTE_KIND_VALUES = ["CITATION_EXACTE", "FAIT_DOCUMENTE"] as const;
 
+export const CATEGORY_VALUES = [
+  "HISTOIRE",
+  "POLITIQUE",
+  "ECONOMIE",
+  "SOCIETE",
+  "FAITS_DIVERS",
+  "SANTE",
+  "ENVIRONNEMENT",
+  "INTERNATIONAL",
+] as const;
+
 const sha256Schema = z
   .string()
   .regex(SHA256_PATTERN, "empreinte SHA-256 attendue : 64 caractères hexadécimaux minuscules");
@@ -97,6 +108,7 @@ export const dossierSchema = z
     claim_title: z.string().trim().min(1),
     verdict: z.enum(VERDICT_VALUES),
     verdict_summary: z.string().trim().min(1),
+    category: z.enum(CATEGORY_VALUES),
     consensus_score: z.number().int().min(0).max(100),
     premises: z.array(premiseSchema),
     is_published: z.boolean(),

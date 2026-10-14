@@ -63,7 +63,7 @@ export default function EvidenceCard({
 
   return (
     <article className="border border-grid bg-surface">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gridsoft px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gridsoft px-3 py-2 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
         <span className="flex items-center gap-3">
           <span className="border border-grid px-2 py-0.5 text-ink">
             {pieceCode(order)}
@@ -77,13 +77,13 @@ export default function EvidenceCard({
       </div>
 
       <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(220px,280px)]">
-        <div className="border-gridsoft px-4 py-5 sm:px-6 lg:border-r">
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+        <div className="border-gridsoft px-3 py-3 sm:px-5 sm:py-4 lg:border-r">
+          <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-muted">
             <Caviard label="[PILIER MASQUÉ]">{SPECTRUM_LABELS[source.spectrum]}</Caviard>
           </p>
 
           <blockquote
-            className={`mt-3 border-l-4 pl-4 font-serif text-lg leading-relaxed text-ink ${
+            className={`mt-2 border-l-4 pl-3 font-serif text-lg leading-snug text-ink ${
               isQuote ? "border-warn" : "border-gridsoft"
             }`}
           >
@@ -92,13 +92,16 @@ export default function EvidenceCard({
             </span>
           </blockquote>
 
-          <p className="mt-4 text-sm leading-relaxed text-muted">
-            {source.context_explanation}
-          </p>
+          {/* Le commentaire est utile mais long : il ne mange plus trois
+              lignes de lecture avant la pièce suivante. */}
+          <details className="pp-fold mt-3">
+            <summary>Pourquoi cette pièce compte</summary>
+            <p className="pp-tight px-3 py-3 text-muted">{source.context_explanation}</p>
+          </details>
         </div>
 
-        <div className="flex flex-col justify-between gap-4 bg-surface2 px-4 py-5 sm:px-6">
-          <div className="space-y-1 font-mono text-[11px] leading-relaxed text-muted">
+        <div className="flex flex-col gap-3 bg-surface2 px-3 py-3 sm:px-5 sm:py-4">
+          <div className="space-y-0.5 font-mono text-[13px] leading-snug text-muted">
             <p className="text-ink">
               <Caviard>{source.source_name}</Caviard>
             </p>
@@ -109,11 +112,11 @@ export default function EvidenceCard({
             </p>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {source.archive_sha256 ? (
               <>
                 <p
-                  className="break-all font-mono text-[10px] leading-relaxed text-ink"
+                  className="break-all font-mono text-[12px] leading-relaxed text-ink"
                   title={source.archive_sha256}
                 >
                   sha256:{source.archive_sha256.slice(0, 24)}…
@@ -121,46 +124,48 @@ export default function EvidenceCard({
                 <button
                   type="button"
                   onClick={runAudit}
-                  className="inline-flex w-full items-center justify-center gap-2 border border-grid px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface"
+                  className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 border border-grid px-3 py-2 font-mono text-[13px] uppercase tracking-[0.12em] text-ink transition hover:bg-surface"
                 >
-                  <Fingerprint size={12} aria-hidden="true" />
-                  Auditer la preuve (WebCrypto)
+                  <Fingerprint size={13} aria-hidden="true" />
+                  Auditer l&apos;empreinte
                 </button>
               </>
             ) : (
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+              <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
                 empreinte non enregistrée
               </p>
             )}
 
-            {source.archive_storage_path ? (
-              <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-true">
-                <ShieldCheck size={12} aria-hidden="true" />
-                capture archivée
-              </p>
-            ) : (
-              <p
-                className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted"
-                title="Aucune capture n'a été déposée : le site n'annonce pas d'archive qui n'existe pas."
-              >
-                capture à venir
-              </p>
-            )}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              {source.archive_storage_path ? (
+                <p className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-true">
+                  <ShieldCheck size={12} aria-hidden="true" />
+                  capture archivée
+                </p>
+              ) : (
+                <p
+                  className="font-mono text-[12px] uppercase tracking-[0.1em] text-muted"
+                  title="Aucune capture n'a été déposée : le site n'annonce pas d'archive qui n'existe pas."
+                >
+                  capture à venir
+                </p>
+              )}
 
-            {source.original_url ? (
-              <a
-                className="block font-mono text-[10px] uppercase tracking-[0.12em] text-seal hover:underline"
-                href={source.original_url}
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                document d&apos;origine →
-              </a>
-            ) : (
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                URL d&apos;origine à documenter
-              </p>
-            )}
+              {source.original_url ? (
+                <a
+                  className="inline-flex min-h-[32px] items-center font-mono text-[12px] uppercase tracking-[0.1em] text-seal hover:underline"
+                  href={source.original_url}
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  document d&apos;origine →
+                </a>
+              ) : (
+                <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-muted">
+                  URL à documenter
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -174,7 +179,7 @@ export default function EvidenceCard({
         >
           <div className="w-full max-w-2xl border-2 border-grid bg-surface">
             <div className="flex items-center justify-between border-b border-grid px-4 py-3">
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
+              <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-ink">
                 Audit cryptographique — {pieceCode(order)}
               </p>
               <button
@@ -189,7 +194,7 @@ export default function EvidenceCard({
 
             <div className="space-y-4 px-4 py-4">
               <div
-                className={`relative overflow-hidden border px-3 py-2 font-mono text-[10px] leading-relaxed ${
+                className={`relative overflow-hidden border px-3 py-2 font-mono text-[12px] leading-relaxed ${
                   audit === "running" ? "pp-scan border-gridsoft" : "border-gridsoft"
                 }`}
               >
@@ -199,42 +204,42 @@ export default function EvidenceCard({
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="border border-gridsoft px-3 py-2">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
                     Empreinte publiée (serveur)
                   </p>
-                  <p className="mt-1 break-all font-mono text-[10px] text-ink">
+                  <p className="mt-1 break-all font-mono text-[12px] text-ink">
                     {source.archive_sha256 ?? "—"}
                   </p>
                 </div>
                 <div className="border border-gridsoft px-3 py-2">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
                     Empreinte recalculée (votre navigateur)
                   </p>
-                  <p className="mt-1 break-all font-mono text-[10px] text-ink">
+                  <p className="mt-1 break-all font-mono text-[12px] text-ink">
                     {audit === "running" ? "calcul en cours…" : (localHash ?? "—")}
                   </p>
                 </div>
               </div>
 
               {audit === "match" ? (
-                <p className="border-2 border-truebd bg-truebg px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-truebd">
+                <p className="border-2 border-truebd bg-truebg px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-truebd">
                   Intégrité confirmée localement par votre navigateur
                 </p>
               ) : null}
               {audit === "mismatch" ? (
-                <p className="border-2 border-falsebd bg-falsebg px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-falsebd">
+                <p className="border-2 border-falsebd bg-falsebg px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-falsebd">
                   Divergence : la citation affichée ne redonne pas l&apos;empreinte
                   publiée. Signalez ce dossier.
                 </p>
               ) : null}
               {audit === "unavailable" ? (
-                <p className="border border-gridsoft px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                <p className="border border-gridsoft px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
                   Ce navigateur n&apos;expose pas WebCrypto : aucune vérification
                   locale n&apos;a été faite.
                 </p>
               ) : null}
 
-              <p className="font-mono text-[10px] leading-relaxed text-muted">
+              <p className="font-mono text-[12px] leading-relaxed text-muted">
                 Le calcul est fait par votre navigateur (
                 <span className="text-ink">crypto.subtle.digest</span>), sur la
                 citation affichée — aucun appel réseau. Vous pouvez comparer :

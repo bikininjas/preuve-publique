@@ -7,7 +7,7 @@
 
 delete from public.dossiers where slug = 'hitler-et-les-nazis-etaient-de-gauche';
 insert into public.dossiers (
-  id, slug, claim_title, verdict, verdict_summary, consensus_score,
+  id, slug, claim_title, verdict, verdict_summary, category, consensus_score,
   premises, is_published, published_at
 ) values (
   '7f1c9a54-2b1e-4c8a-9d3f-1a5e6b7c8d90',
@@ -15,6 +15,7 @@ insert into public.dossiers (
   'Hitler et les nazis étaient de gauche',
   'FAUX'::verdict_status,
   'Le mot « socialiste » du sigle NSDAP relève d''une stratégie de récupération électorale assumée. Dès 1933, le régime détruit les syndicats, interne l''opposition de gauche, assassine sa propre aile anticapitaliste et privatise massivement au profit des grands cartels industriels.',
+  'HISTOIRE'::dossier_category,
   100,
   '[{"claim_part":"Le sigle NSDAP contient le mot « socialiste »","status":"VRAI_DETOURNE","detail":"Terme retenu en 1920 pour capter l''électorat ouvrier, mais redéfini par Hitler hors de la lutte des classes et contre le marxisme, avec garantie explicite de la propriété privée."},{"claim_part":"L''État nazi intervenait dans l''économie, donc il était de gauche","status":"CONFUSION_CONCEPTUELLE","detail":"Économie de guerre dirigiste appuyée sur des cartels privés (Krupp, IG Farben, Siemens) et sur des privatisations massives entre 1934 et 1937 : l''inverse d''une collectivisation ou d''une abolition de la propriété privée."},{"claim_part":"Le NSDAP avait des alliances et une politique de gauche","status":"FAUX","detail":"Accession à la chancellerie par une coalition avec la droite conservatrice (von Papen, DNVP), ouverture de Dachau en mars 1933 pour interner communistes et sociaux-démocrates, dissolution des syndicats le 2 mai 1933, assassinat de l''aile strasseriste en juin 1934."}]'::jsonb,
   true,
@@ -151,7 +152,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
-  id, slug, claim_title, verdict, verdict_summary, consensus_score,
+  id, slug, claim_title, verdict, verdict_summary, category, consensus_score,
   premises, is_published, published_at
 ) values (
   '8adc1cd9-e4d3-44e6-01ac-7e8f9a0b1c29',
@@ -159,6 +160,7 @@ insert into public.dossiers (
   'Brouillon de contrôle RLS (jamais publié)',
   'TROMPEUR'::verdict_status,
   'Ce brouillon existe pour vérifier que la lecture publique ne rend que les dossiers publiés. Il ne doit apparaître sur aucune page.',
+  'SOCIETE'::dossier_category,
   0,
   '[]'::jsonb,
   false,

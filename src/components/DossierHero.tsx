@@ -27,7 +27,7 @@ export default function DossierHero({
 
   return (
     <section className="border border-grid bg-surface">
-      <div className="flex flex-wrap items-stretch border-b border-grid font-mono text-[10px] uppercase tracking-[0.16em] text-muted sm:text-[11px]">
+      <div className="flex flex-wrap items-stretch border-b border-grid font-mono text-[12px] uppercase tracking-[0.16em] text-muted sm:text-[13px]">
         <span className="border-r border-gridsoft px-3 py-2">
           DOSSIER <span className="text-ink">{dossierCode(dossier.id)}</span>
         </span>
@@ -51,7 +51,7 @@ export default function DossierHero({
 
       <div className="grid gap-0 lg:grid-cols-[1fr_minmax(260px,320px)]">
         <div className="border-gridsoft px-5 py-8 sm:px-8 lg:border-r">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+          <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-muted">
             Affirmation examinée
           </p>
           <h1 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight text-ink sm:text-5xl">
@@ -66,23 +66,23 @@ export default function DossierHero({
 
         <div className="flex flex-col justify-between gap-6 bg-surface2 px-5 py-8 sm:px-8">
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-muted">
               Verdict
             </p>
             <div className={`pp-stamp mt-3 ${toneText}`}>{VERDICT_STAMPS[dossier.verdict]}</div>
           </div>
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-muted">
               Consensus documentaire
             </p>
             <p className="mt-2 font-mono text-4xl font-medium tracking-tight text-ink">
               {String(dossier.consensus_score).padStart(3, "0")}%
             </p>
-            <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+            <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
               Score éditorial — la couverture, elle, se compte
             </p>
           </div>
-          <ul className="space-y-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+          <ul className="space-y-1 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
             {[...spectra].slice(0, 6).map((spectrum) => (
               <li key={spectrum} className="flex items-center gap-2">
                 <span className="pp-led pp-led--on" aria-hidden="true" />

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="border border-grid bg-surface px-4 py-10 sm:px-8">
-      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+      <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-muted">
         Erreur 404 · registre
       </p>
       <h1 className="mt-3 font-serif text-4xl tracking-tight text-ink">
@@ -16,7 +16,7 @@ export default function NotFound() {
       </p>
       <p className="mt-6">
         <Link
-          className="border border-grid px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface2"
+          className="border border-grid px-4 py-2 font-mono text-[12px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface2"
           href="/"
         >
           Revenir au registre

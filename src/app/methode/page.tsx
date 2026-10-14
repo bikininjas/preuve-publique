@@ -47,7 +47,7 @@ export default function MethodPage() {
   return (
     <div className="space-y-8">
       <section className="border border-grid bg-surface px-4 py-8 sm:px-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+        <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-muted">
           Méthode · ce qui est forcé par le code
         </p>
         <h1 className="mt-3 max-w-3xl font-serif text-4xl leading-tight tracking-tight text-ink sm:text-5xl">
@@ -64,7 +64,7 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             01 · Règle de triangulation, forcée par le code
           </h2>
         </div>
@@ -78,10 +78,10 @@ export default function MethodPage() {
           <ol className="mt-5 grid gap-4 sm:grid-cols-2">
             {GUARD_RULES.map((rule, index) => (
               <li key={rule.title} className="border border-gridsoft px-4 py-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-seal">
+                <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-seal">
                   Règle {String(index + 1).padStart(2, "0")}
                 </p>
-                <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink">
+                <p className="mt-2 font-mono text-[13px] uppercase tracking-[0.1em] text-ink">
                   {rule.title}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{rule.detail}</p>
@@ -93,7 +93,7 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             02 · Les six piliers du recoupement
           </h2>
         </div>
@@ -104,10 +104,10 @@ export default function MethodPage() {
               className="border-b border-r border-gridsoft px-4 py-5 sm:px-6"
             >
               <dt className="flex items-center gap-3">
-                <span className="font-mono text-[10px] tracking-[0.14em] text-seal">
+                <span className="font-mono text-[12px] tracking-[0.14em] text-seal">
                   {SPECTRUM_CODES[spectrum]}
                 </span>
-                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-ink">
+                <span className="font-mono text-[13px] uppercase tracking-[0.1em] text-ink">
                   {SPECTRUM_LABELS[spectrum]}
                 </span>
               </dt>
@@ -121,7 +121,7 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             03 · Vérifier les preuves soi-même
           </h2>
         </div>
@@ -137,26 +137,26 @@ export default function MethodPage() {
             <p className="mt-4 text-sm leading-relaxed text-muted">
               Deux boutons sur chaque pièce : <span className="text-ink">Auditer
               la preuve</span> recalcule l&apos;empreinte <em>dans votre
-              navigateur</em> (<span className="font-mono text-[11px]">crypto.subtle.digest</span>),
+              navigateur</em> (<span className="font-mono text-[13px]">crypto.subtle.digest</span>),
               sans aucun appel réseau, et la compare à celle du site ; la route{" "}
-              <span className="font-mono text-[11px]">/api/verify/&lt;empreinte&gt;</span>{" "}
+              <span className="font-mono text-[13px]">/api/verify/&lt;empreinte&gt;</span>{" "}
               renvoie les métadonnées exactes qui ont servi au calcul.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
               Un dossier expose aussi sa racine d&apos;intégrité — hachage de la
               liste triée des empreintes de ses pièces — dans l&apos;en-tête{" "}
-              <span className="font-mono text-[11px]">X-Proof-Integrity-Root</span>{" "}
+              <span className="font-mono text-[13px]">X-Proof-Integrity-Root</span>{" "}
               de son API publique.
             </p>
           </div>
           <div className="bg-surface2 px-4 py-5 sm:px-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
               Chaîne canonique soumise au hachage
             </p>
-            <p className="mt-3 break-all border border-gridsoft bg-surface px-3 py-2 font-mono text-[10px] leading-relaxed text-ink">
+            <p className="mt-3 break-all border border-gridsoft bg-surface px-3 py-2 font-mono text-[12px] leading-relaxed text-ink">
               source_name|author_or_institution|publication_date|exact_quote
             </p>
-            <p className="mt-3 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
+            <p className="mt-3 font-mono text-[12px] leading-relaxed tracking-[0.06em] text-muted">
               Une date absente compte pour un champ vide : jamais une date
               inventée.
             </p>
@@ -166,7 +166,7 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             04 · L&apos;échelle de distorsion
           </h2>
         </div>
@@ -180,7 +180,7 @@ export default function MethodPage() {
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {DISTORTION_ORDER.map((status) => (
               <li key={status} className="border border-gridsoft px-4 py-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink">
+                <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink">
                   {PREMISE_STAMP_LABELS[status]}
                 </p>
                 <p className="mt-2 font-mono text-2xl text-ink">
@@ -194,7 +194,7 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             05 · Le mode « preuve à l&apos;aveugle »
           </h2>
         </div>
@@ -206,7 +206,7 @@ export default function MethodPage() {
             l&apos;état de l&apos;archive. Le lecteur se forme un avis sur la
             preuve, puis retire le caviardage et découvre qui la porte.
           </p>
-          <p className="mt-4 max-w-3xl font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
+          <p className="mt-4 max-w-3xl font-mono text-[12px] leading-relaxed tracking-[0.06em] text-muted">
             Le masquage est visuel : les données restent dans la page. Il sert à
             juger la preuve avant de savoir qui la porte, pas à cacher quoi que ce
             soit.
@@ -216,13 +216,13 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             06 · Ce qui est vérifiable, ce qui est éditorial
           </h2>
         </div>
         <ul className="divide-y divide-gridsoft px-4 sm:px-6">
           <li className="py-4 text-sm leading-relaxed text-muted">
-            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-true">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-true">
               Calculé et vérifiable
             </span>
             <p className="mt-2">
@@ -232,7 +232,7 @@ export default function MethodPage() {
             </p>
           </li>
           <li className="py-4 text-sm leading-relaxed text-muted">
-            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-warn">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-warn">
               Éditorial et assumé
             </span>
             <p className="mt-2">
@@ -242,7 +242,7 @@ export default function MethodPage() {
             </p>
           </li>
           <li className="py-4 text-sm leading-relaxed text-muted">
-            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-falsebd">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-falsebd">
               Jamais affiché
             </span>
             <p className="mt-2">
@@ -256,7 +256,7 @@ export default function MethodPage() {
 
       <section className="border border-grid bg-surface">
         <div className="border-b border-grid px-4 py-3 sm:px-6">
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+          <h2 className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink">
             07 · Limites assumées
           </h2>
         </div>
@@ -270,7 +270,7 @@ export default function MethodPage() {
           <li>
             La recherche combine plein texte française et fusion de rangs avec la
             similarité vectorielle (
-            <span className="font-mono text-[11px]">/api/search</span>) ; aucun
+            <span className="font-mono text-[13px]">/api/search</span>) ; aucun
             modèle d&apos;embeddings n&apos;étant branché, la branche vectorielle ne
             ramène rien pour l&apos;instant — aucune similarité n&apos;est simulée.
           </li>
@@ -287,7 +287,7 @@ export default function MethodPage() {
         </ul>
       </section>
 
-      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+      <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
         Voir le{" "}
         <Link
           className="text-seal hover:underline"

@@ -32,7 +32,7 @@ export default async function SearchPage({
       {results.ok ? <OriginNotice origin={results.origin} /> : null}
 
       {!results.ok ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-falsebd">
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 font-mono text-[13px] uppercase tracking-[0.1em] text-falsebd">
           Recherche impossible : {results.message}
         </p>
       ) : results.value.length === 0 ? (
@@ -40,7 +40,7 @@ export default async function SearchPage({
           <p className="font-serif text-xl text-ink">
             Aucun dossier publié ne correspond à « {query} ».
           </p>
-          <p className="mt-2 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
+          <p className="mt-2 font-mono text-[12px] leading-relaxed tracking-[0.06em] text-muted">
             La base ne contient que les dossiers publiés : une affirmation non
             traitée donne une absence de résultat, jamais une réponse
             approximative.
@@ -54,7 +54,7 @@ export default async function SearchPage({
               tone === "true" ? "text-true" : tone === "warn" ? "text-warn" : "text-false";
             return (
               <li key={dossier.slug} className="border-b border-gridsoft last:border-b-0">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gridsoft px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gridsoft px-4 py-2 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
                   <span>
                     {dossier.sources.length} pièces ·{" "}
                     {new Set(dossier.sources.map((source) => source.spectrum)).size}/6 piliers

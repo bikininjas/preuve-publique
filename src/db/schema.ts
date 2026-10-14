@@ -38,6 +38,17 @@ export const politicalSpectrum = pgEnum("political_spectrum", [
 
 export const quoteKind = pgEnum("quote_kind", ["CITATION_EXACTE", "FAIT_DOCUMENTE"]);
 
+export const dossierCategory = pgEnum("dossier_category", [
+  "HISTOIRE",
+  "POLITIQUE",
+  "ECONOMIE",
+  "SOCIETE",
+  "FAITS_DIVERS",
+  "SANTE",
+  "ENVIRONNEMENT",
+  "INTERNATIONAL",
+]);
+
 const tsvector = customType<{ data: string; driverData: string }>({
   dataType() {
     return "tsvector";
@@ -58,6 +69,7 @@ export const dossiers = pgTable(
     claimTitle: text("claim_title").notNull(),
     verdict: verdictStatus("verdict").notNull(),
     verdictSummary: text("verdict_summary").notNull(),
+    category: dossierCategory("category").notNull(),
     consensusScore: smallint("consensus_score").notNull(),
     premises: jsonb("premises").notNull().default(sql`'[]'::jsonb`),
     searchTsv: tsvector("search_tsv").generatedAlwaysAs(
@@ -72,6 +84,7 @@ export const dossiers = pgTable(
   (table) => [
     index("idx_dossiers_slug").on(table.slug),
     index("idx_dossiers_search_tsv").using("gin", table.searchTsv),
+    index("idx_dossiers_category_published").on(table.category),
   ],
 );
 
