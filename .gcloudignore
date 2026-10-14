@@ -12,6 +12,8 @@ client_secret_*.json
 *.log
 .cache/
 .codex-remote-attachments/
+# Reste de l'ancien projet (worktree Codex) : hors du nouveau depot
+ingestion/
 *.tsbuildinfo
 supabase/.temp/
 logs/

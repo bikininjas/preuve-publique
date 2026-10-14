@@ -73,6 +73,18 @@ modifier le projet. Respecter les instructions de l'utilisateur en priorité.
   `has_function_privilege` **et** par un appel REST réel en clé publishable.
 - Les versions de `package.json` restent figées (pas de `^`).
 
+## Archivage
+
+- Une capture est **immuable** : `upsert: false`, jamais d'écrasement. Si une copie
+  différente existe déjà pour le même chemin, s'arrêter et le dire, ne pas « réparer ».
+- Un dépôt n'est annoncé réussi qu'après **retéléchargement et rehachage** de la copie.
+- `archive_sha256` (empreinte de la citation) n'est **jamais** réécrit par une capture :
+  c'est l'identité publique que le lecteur recalcule depuis la page.
+  L'empreinte du fichier déposé va dans `archive_binary_sha256`.
+- `SUPABASE_SERVICE_ROLE_KEY` reste hors du conteneur web, hors des commits et hors des
+  journaux. Sans elle, le script refuse d'écrire (code 2) plutôt que de simuler.
+- Ne jamais déposer de PDF volumineux dans Postgres, ni de capture sans fiche.
+
 ## Vérifications attendues avant de dire « c'est fait »
 
 - `npm run typecheck`, `npm test`, `npm run build`.
