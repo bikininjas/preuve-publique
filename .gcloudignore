@@ -14,10 +14,5 @@ client_secret_*.json
 .codex-remote-attachments/
 *.tsbuildinfo
 supabase/.temp/
-ingestion/
-docs/
-tests/
-AGENTS.md
-README.md
 logs/
 pids/

@@ -1,6 +1,24 @@
-# Defaults for the resources created in Google Cloud. Override _REGION in the
-# trigger if the Artifact Registry repository is in another region.
-# PROJECT_ID and BUILD_ID are supplied by Cloud Build; no credentials live here.
+# Déploiement Cloud Build -> Cloud Run, réglé pour le coût le plus bas.
+#
+# Choix qui pèsent sur la facture :
+#   - europe-west1 (Belgique) et non Paris : Tier 1 = 0,000024 $/vCPU-s au-delà
+#     du quota gratuit, contre 0,0000336 $/vCPU-s en Tier 2 (europe-west9).
+#     Le mapping de domaine preuve-publique.fr existe déjà dans cette région et
+#     pointe sur le service `preuve-publique-git` : garder ce nom le réutilise.
+#   - min-instances=0 : aucune instance au repos, donc rien à payer sans trafic.
+#   - --cpu-throttling : CPU alloué uniquement pendant le traitement des requêtes.
+#   - max-instances=2 : plafond de facturation en cas de pic viral.
+#   - 512 Mi de mémoire : une génération d'image de partage (satori + resvg)
+#     tient dans cette enveloppe ; un plantage par manque de mémoire coûterait
+#     plus cher que la mémoire économisée.
+#
+# Le dépôt d'images doit exister avant le premier build :
+#   gcloud artifacts repositories create preuvepublique \
+#     --repository-format=docker --location=europe-west1 --project preuve-publique
+# puis (une fois) une politique de nettoyage pour rester dans le quota gratuit
+# de 0,5 Go : voir la commande en fin de fichier.
+#
+# PROJECT_ID et BUILD_ID sont fournis par Cloud Build ; aucun secret n'est écrit ici.
 substitutions:
   _REGION: europe-west1
   _AR_REPOSITORY: preuvepublique
@@ -24,10 +42,21 @@ steps:
       - '--platform=managed'
       - '--min-instances=0'
       - '--max-instances=2'
-      - '--concurrency=80'
-      - '--memory=512Mi'
       - '--cpu=1'
+      - '--memory=512Mi'
+      - '--concurrency=80'
+      - '--cpu-throttling'
+      - '--no-cpu-boost'
+      - '--port=8080'
       - '--allow-unauthenticated'
+      - '--set-secrets=SUPABASE_URL=NEXT_PUBLIC_SUPABASE_URL:latest,SUPABASE_PUBLISHABLE_KEY=NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:latest'
       - '--quiet'
 options:
   logging: CLOUD_LOGGING_ONLY
+
+# Politique de nettoyage du dépôt (une seule fois) :
+#   gcloud artifacts repositories set-cleanup-policies preuvepublique \
+#     --location=europe-west1 --project preuve-publique \
+#     --policy=cleanup-policy.json
+# avec deux règles : supprimer les images non étiquetées de plus d'un jour, et
+# les images étiquetées de plus de quatorze jours.

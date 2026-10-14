@@ -22,13 +22,9 @@ logs/
 pids/
 *.pid
 *.pid.lock
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-# Original ingestion material stays local for replay and provenance
-ingestion/.staging/
 
 # User attachments are not project sources
 .codex-remote-attachments/
 
-# Judicial personal data is supplied separately, outside the public repository.
-ingestion/observatory/judicial-*.json
+# Reste de l'ancien projet (worktree Codex), hors du nouveau depot
+ingestion/
