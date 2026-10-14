@@ -64,6 +64,7 @@ npm test               # 27 tests : données, garde de triangulation, crypto, qu
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité
+npm run archive:capture  # fiches d'archive réelles (--yes pour déposer) : voir « Archivage »
 ```
 
 `DB_PG_URL` (ou `DATABASE_POOLER_URL`) reste **hors du conteneur web** : le site ne lit
@@ -142,6 +143,46 @@ Space Grotesk (interface), JetBrains Mono (cotes, dates, empreintes, scores).
   caviardage ; le bouton les retire d'un mouvement mécanique. Le masquage est visuel
   (les données restent dans la page) : il sert à juger la preuve avant de savoir qui la
   porte, pas à cacher quoi que ce soit.
+
+## Archivage des preuves
+
+`npm run archive:capture` est le seul chemin qui dépose des captures. Il s'exécute **hors
+du conteneur web**, avec `DB_PG_URL` (écriture en base) et `SUPABASE_SERVICE_ROLE_KEY`
+(dépôt dans le bucket), et il est prudent par défaut : sans `--yes`, il calcule et affiche
+sans rien écrire.
+
+1. Une **fiche d'archive canonique** est construite par pièce (JSON normalisé NFC, clés
+   ordonnées, déterministe : mêmes entrées, mêmes octets) ; elle porte la citation, ses
+   métadonnées, la date de capture, et rappelle elle-même ce qu'elle ne prouve pas.
+2. Son empreinte SHA-256 est calculée sur les octets exacts (`node:crypto`).
+3. Elle est déposée dans le bucket public en lecture seule `immutable-archives` —
+   `upsert: false`, une capture n'est jamais écrasée : si une copie différente existe,
+   le script s'arrête en le disant.
+4. La base est mise à jour : `archive_storage_path` et `archive_binary_sha256`.
+5. La copie est **retéléchargée et rehachée** : le dépôt n'est déclaré réussi que si
+   l'empreinte relue est identique.
+
+Deux empreintes, deux rôles — à ne pas confondre :
+
+| Colonne | Ce qu'elle atteste | Qui peut la vérifier |
+|---|---|---|
+| `archive_sha256` | la **citation publiée** n'a pas bougé | n'importe quel lecteur, depuis la page (WebCrypto) et via `/api/verify/<empreinte>` |
+| `archive_binary_sha256` | le **fichier de capture** déposé dans le bucket | quiconque retélécharge la fiche et la hache |
+
+Une capture ne réécrit jamais `archive_sha256` : l'identité publique d'une preuve doit
+rester celle que le lecteur recalcule lui-même à partir de ce qu'il lit.
+
+```bash
+npm run archive:capture              # contrôle : calcule les fiches, n'écrit rien
+npm run archive:capture -- --fetch   # tente en plus un instantané des URL documentées
+npm run archive:capture -- --yes     # dépose dans le bucket et met la base à jour
+```
+
+**État au 14/10/2026** : le bucket `immutable-archives` existe (public en lecture, RLS
+actif sans aucune politique d'écriture) et le calcul des fiches est vérifié sur les 8
+pièces du dossier publié. Le **dépôt** n'a pas encore eu lieu : `SUPABASE_SERVICE_ROLE_KEY`
+n'est pas présente dans `.env.local`, et c'est la seule clé qui autorise une écriture
+Storage. Rien n'est simulé en attendant : les pièces affichent « capture à venir ».
 
 ## Déploiement : le moins cher possible
 

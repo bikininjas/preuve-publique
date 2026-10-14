@@ -125,11 +125,33 @@ curl -s https://preuve-publique.fr/api/verify/<empreinte-affichée>
   `Referrer-Policy: strict-origin-when-cross-origin`, plus HSTS et une
   politique de permissions restrictive (`next.config.ts`).
 
+## Archivage (bucket `immutable-archives`)
+
+`scripts/archive-capture.mts` construit, par pièce publiée, une fiche canonique
+(`src/lib/archive-record.ts`) : schéma versionné, dossier, source, citation canonique,
+date de capture, résultat de capture (`METADATA_ONLY`, `URL_SNAPSHOT` avec statut/type/
+octets/empreinte, ou `URL_UNAVAILABLE` avec la raison), et la liste de ses propres
+limites. La fiche est normalisée en NFC et déterministe.
+
+Le script est **idempotent et prudent** : `--yes` est requis pour écrire ; une copie
+existante n'est jamais écrasée (une capture est immuable) ; après dépôt, la copie est
+retéléchargée et hachée, et le succès n'est annoncé que si les empreintes coïncident.
+Il valide le dossier par le Triangulation Guard avant d'agir, et journalise en JSON.
+
+Le bucket est créé au premier passage (`public: true`, donc lecture par URL publique) ;
+`storage.objects` garde son RLS **sans aucune politique** : autrement dit, personne ne
+peut écrire sans la clé de service, et le conteneur web ne la reçoit jamais.
+
+Limite connue : sans `SUPABASE_SERVICE_ROLE_KEY`, le script s'arrête avec un code 2 et un
+message explicite — il ne fabrique jamais de capture locale en la présentant comme
+déposée.
+
 ## Ce qui n'existe pas encore
 
-- **Captures** : le bucket `immutable-archives` n'est pas créé et aucune source
-  n'a de capture. Le site affiche « capture à venir » et n'annonce jamais une
-  archive qu'il n'a pas.
+- **Captures** : le bucket `immutable-archives` existe (lecture publique, écriture
+  par clé de service) mais aucun dépôt n'a encore eu lieu — la clé de service n'est
+  pas encore dans `.env.local`. Le site affiche « capture à venir » et n'annonce
+  jamais une archive qu'il n'a pas.
 - **Embeddings** : aucune colonne `embedding` n'est remplie. La branche
   vectorielle de la recherche ne ramène donc rien : le classement est purement
   lexical, sans similarité simulée.
