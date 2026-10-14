@@ -85,6 +85,18 @@ modifier le projet. Respecter les instructions de l'utilisateur en priorité.
   journaux. Sans elle, le script refuse d'écrire (code 2) plutôt que de simuler.
 - Ne jamais déposer de PDF volumineux dans Postgres, ni de capture sans fiche.
 
+## Administration
+
+- L'espace de rédaction écrit avec **la session de l'utilisateur** (RLS), jamais avec une
+  clé de service. Une action serveur revérifie la session : c'est un point d'entrée public.
+- Les droits sont une **ligne** dans `admin_users`, pas une condition dans le code. Ne pas
+  écrire de liste d'adresses en dur, ne pas contourner `is_admin()`.
+- **Publier** signifie appeler le validateur de triangulation et afficher ses refus.
+  Ne jamais écrire `is_published = true` sans être passé par lui.
+- Après toute écriture : vider le cache de lecture du service et `revalidatePath`.
+- Modifier la citation d'une pièce **invalide son empreinte** : elle est recalculée, jamais
+  conservée telle quelle.
+
 ## Vérifications attendues avant de dire « c'est fait »
 
 - `npm run typecheck`, `npm test`, `npm run build`.
