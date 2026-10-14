@@ -3,6 +3,11 @@
 .next
 node_modules
 out
+tests
+scripts
+supabase
+docs
+coverage
 .env
 .env.*
 !.env.example
@@ -13,6 +18,5 @@ out
 .codex-remote-attachments
 *.tsbuildinfo
 client_secret_*.json
-supabase/.temp
-# Fetched raw material stays out of the image build context.
-ingestion/.staging
+AGENTS.md
+README.md
