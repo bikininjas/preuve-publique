@@ -120,6 +120,36 @@ empreinte valide sur chaque source. Un brouillon incomplet reste un brouillon.
 | `/recherche?q=` | recherche plein texte ; un brouillon ne remonte jamais |
 | `/methode` | méthode, règles forcées par le code, limites assumées |
 
+## Parcourir et publier
+
+Le registre se parcourt par **catégorie** (`/categories/<slug>`) ou en entier (`/dossiers`).
+Les huit catégories — Histoire, Politique, Économie, Société, Faits divers, Santé,
+Environnement, International — sont une énumération en base, validée par le Triangulation
+Guard : un dossier publié porte toujours une catégorie, et une catégorie vide reste vide
+plutôt que d'être remplie d'un texte d'attente.
+
+L'écriture passe par **`/admin`**, qui n'est ni un back-office hors du site ni une
+connexion privilégiée :
+
+- les comptes sont ceux de Supabase Auth ; les droits sont une **ligne en base** dans
+  `admin_users`, vérifiée par la fonction `is_admin()` (security definer). Retirer la
+  ligne retire l'accès, sans redéploiement ;
+- toutes les écritures passent par **la session de l'utilisateur**, donc par la RLS : le
+  conteneur ne reçoit jamais de clé de service ;
+- la page de publication appelle le validateur de triangulation et **affiche ses refus**
+  au lieu de publier malgré lui ; modifier une citation remet son empreinte à recalculer.
+
+```bash
+npm run dev          # puis http://localhost:3000/admin
+```
+
+## Interface
+
+Échelle typographique fluide (corps à 16-18 px, plancher des métadonnées à 12 px), cibles
+tactiles de 44 px, navigation complète sans JavaScript (menus `<details>`), fiches de
+dossier réutilisables, sommaire collant et pièces repliées par pilier. Le mouvement est
+sobre et respecte `prefers-reduced-motion` ; sans JavaScript, tout reste lisible.
+
 ## Direction artistique (brutalisme forensique)
 
 L'interface ne ressemble pas à un média d'opinion : grille suisse exposée (bordures 1px),
