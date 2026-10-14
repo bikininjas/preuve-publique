@@ -20,7 +20,7 @@ const TONE_TEXT: Record<"true" | "warn" | "false", string> = {
 export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
   if (premises.length === 0) {
     return (
-      <p className="border border-grid bg-surface p-4 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
+      <p className="border border-grid bg-surface p-4 font-mono text-[13px] uppercase tracking-[0.12em] text-muted">
         Aucune brique d&apos;affirmation documentée pour ce dossier.
       </p>
     );
@@ -31,11 +31,11 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-grid px-4 py-3">
         <h2
           id="radiographie"
-          className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink"
+          className="font-mono text-[13px] uppercase tracking-[0.18em] text-ink"
         >
           Radiographie du sophisme
         </h2>
-        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+        <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
           {premises.length} segments analysés
         </p>
       </div>
@@ -48,7 +48,7 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
             <li key={premise.claim_part} className="border-b border-gridsoft last:border-b-0">
               <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(240px,300px)]">
                 <div className="border-gridsoft px-4 py-5 sm:px-6 lg:border-r">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-muted">
                     SEGMENT {String(index + 1).padStart(2, "0")}
                   </p>
                   <p className="mt-2 font-serif text-xl leading-snug text-ink italic">
@@ -63,7 +63,7 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
                     {PREMISE_STAMP_LABELS[premise.status]}
                   </span>
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                    <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
                       Distorsion {level}%
                     </p>
                     <div className="mt-2 flex items-end gap-[2px]" aria-hidden="true">
@@ -95,7 +95,7 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
         })}
       </ol>
 
-      <p className="border-t border-grid px-4 py-3 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted">
+      <p className="border-t border-grid px-4 py-3 font-mono text-[12px] leading-relaxed tracking-[0.06em] text-muted">
         Échelle de distorsion : 0 (fait exact), 40 (vrai détourné), 60 (confusion
         conceptuelle), 100 (contredit par les pièces). Elle traduit le statut
         éditorial de chaque segment, elle ne le calcule pas.

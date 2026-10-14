@@ -4,7 +4,7 @@ export default function OriginNotice({ origin }: { origin: "supabase" | "seed" }
   }
   return (
     <p
-      className="border-2 border-warnbd bg-warnbg px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-warnbd"
+      className="border-2 border-warnbd bg-warnbg px-4 py-3 font-mono text-[13px] uppercase tracking-[0.1em] text-warnbd"
       role="status"
     >
       Supabase n&apos;est pas configuré : le site sert les dossiers de référence

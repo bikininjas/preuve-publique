@@ -33,7 +33,7 @@ export default function ThemeToggle() {
       onClick={() => apply(theme === "dark" ? "light" : "dark")}
       aria-label={theme === "dark" ? "Passer au thème papier" : "Passer au thème chambre noire"}
       title={theme === "dark" ? "Thème papier d'archive" : "Thème chambre noire"}
-      className="inline-flex items-center gap-2 border border-grid px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface2"
+      className="inline-flex items-center gap-2 border border-grid px-2.5 py-1.5 font-mono text-[13px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface2"
     >
       <Icon size={13} aria-hidden="true" />
       {theme === "dark" ? "PAPIER" : "NOIRE"}

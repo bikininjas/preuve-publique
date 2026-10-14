@@ -8,9 +8,17 @@ import DossierHero from "@/components/DossierHero";
 import EvidenceCard from "@/components/EvidenceCard";
 import FallacyAnatomy from "@/components/FallacyAnatomy";
 import OriginNotice from "@/components/OriginNotice";
+import Reveal from "@/components/Reveal";
 import { getPublishedDossier } from "@/server/services/dossier.service";
 import { computeIntegrityRoot } from "@/server/services/crypto.service";
-import { SPECTRUM_COLUMN_LABELS, SPECTRUM_ORDER, formatLongDate } from "@/lib/labels";
+import {
+  CATEGORY_LABELS,
+  CATEGORY_SLUGS,
+  SPECTRUM_COLUMN_LABELS,
+  SPECTRUM_ORDER,
+  formatLongDate,
+} from "@/lib/labels";
+import type { PoliticalSpectrum } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -44,11 +52,11 @@ export default async function DossierPage({ params }: PageProps) {
   if (!result.ok) {
     return (
       <div className="space-y-4">
-        <h1 className="font-serif text-3xl text-ink">Lecture impossible</h1>
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-falsebd">
+        <h1 className="pp-h1 font-serif text-ink">Lecture impossible</h1>
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
           {result.message}
         </p>
-        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+        <p className="pp-meta text-muted">
           Aucune donnée locale ne remplace une lecture échouée : le dossier
           s&apos;affiche complet ou pas du tout.
         </p>
@@ -65,70 +73,125 @@ export default async function DossierPage({ params }: PageProps) {
     .map((source) => source.archive_sha256)
     .filter((hash): hash is string => hash !== null);
   const integrityRoot = computeIntegrityRoot(hashes);
-  const bySpectrum = new Map<string, typeof dossier.sources>();
+
+  const bySpectrum = new Map<PoliticalSpectrum, typeof dossier.sources>();
   for (const spectrum of SPECTRUM_ORDER) {
     bySpectrum.set(spectrum, []);
   }
   for (const source of dossier.sources) {
-    const bucket = bySpectrum.get(source.spectrum);
-    if (bucket) {
-      bucket.push(source);
-    }
+    bySpectrum.get(source.spectrum)?.push(source);
   }
 
+  const filled = SPECTRUM_ORDER.filter((spectrum) => (bySpectrum.get(spectrum) ?? []).length > 0);
+  const firstFilled = filled[0];
+
+  const contents = [
+    { href: "#verdict", label: "Verdict" },
+    { href: "#anatomie", label: "Anatomie" },
+    { href: "#piliers", label: "Six piliers" },
+    { href: "#pieces", label: "Pièces" },
+    { href: "#integrite", label: "Intégrité" },
+  ];
+
   return (
-    <article className="space-y-8">
-      <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
+    <article className="pp-doc space-y-6">
+      <div id="verdict" className="scroll-mt-16">
+        <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2">
+        <Link className="pp-chip" href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}>
+          {CATEGORY_LABELS[dossier.category]}
+        </Link>
+        <Link className="pp-meta text-seal hover:underline" href="/dossiers">
+          Registre →
+        </Link>
+      </div>
+
+      {/* Sommaire collant : le dossier fait plusieurs écrans, le lecteur ne
+          doit jamais chercher où il en est. */}
+      <nav className="pp-toc" aria-label="Sommaire du dossier">
+        {contents.map((entry) => (
+          <a key={entry.href} href={entry.href}>
+            {entry.label}
+          </a>
+        ))}
+      </nav>
 
       <OriginNotice origin={result.origin} />
 
-      <ConvergenceSpectrometer dossier={dossier} />
+      <div id="piliers" className="scroll-mt-16">
+        <Reveal>
+          <ConvergenceSpectrometer dossier={dossier} />
+        </Reveal>
+      </div>
 
-      <FallacyAnatomy premises={dossier.premises} />
+      <div id="anatomie" className="scroll-mt-16">
+        <Reveal>
+          <FallacyAnatomy premises={dossier.premises} />
+        </Reveal>
+      </div>
 
-      <BlindModeProvider sources={dossier.sources.length}>
-        <div className="space-y-6">
-          <BlindModeSwitch />
+      <section id="pieces" className="scroll-mt-16 space-y-3">
+        <BlindModeProvider sources={dossier.sources.length}>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="pp-h3 font-serif text-ink">
+              Pièces à conviction ({dossier.sources.length})
+            </h2>
+            <BlindModeSwitch />
+          </div>
 
-          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
-            Pièces à conviction ({dossier.sources.length})
-          </h2>
-
+          {/* Un pilier = un dépliant : la preuve reste entière, mais le lecteur
+              n'a plus trois écrans de texte à traverser pour en changer. */}
           {SPECTRUM_ORDER.map((spectrum) => {
             const sources = bySpectrum.get(spectrum) ?? [];
             return (
-              <section key={spectrum} id={`pieces-${spectrum}`} className="scroll-mt-6 space-y-3">
-                <h3 className="flex items-center gap-3 border-b border-grid pb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+              <details
+                key={spectrum}
+                id={`pieces-${spectrum}`}
+                className="pp-fold scroll-mt-16"
+                open={spectrum === firstFilled}
+              >
+                <summary>
                   <span className="pp-led pp-led--on" aria-hidden="true" />
                   {SPECTRUM_COLUMN_LABELS[spectrum]}
-                  <span className="text-ink">{String(sources.length).padStart(2, "0")}</span>
-                </h3>
-                {sources.length === 0 ? (
-                  <p className="border border-dashed border-gridsoft px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Aucune pièce recoupée sur ce pilier.
-                  </p>
-                ) : (
-                  sources.map((source) => (
-                    <EvidenceCard key={source.id} source={source} order={source.display_order} />
-                  ))
-                )}
-              </section>
+                  <span className="ml-2 text-muted">
+                    {String(sources.length).padStart(2, "0")}
+                  </span>
+                </summary>
+                <div className="space-y-3 p-3">
+                  {sources.length === 0 ? (
+                    <p className="pp-meta border border-dashed border-gridsoft px-3 py-3 text-muted">
+                      Aucune pièce recoupée sur ce pilier — il reste éteint plutôt que
+                      d&apos;être comblé par une approximation.
+                    </p>
+                  ) : (
+                    sources.map((source) => (
+                      <EvidenceCard key={source.id} source={source} order={source.display_order} />
+                    ))
+                  )}
+                </div>
+              </details>
             );
           })}
-        </div>
-      </BlindModeProvider>
+        </BlindModeProvider>
+      </section>
 
-      <footer className="border border-grid bg-surface px-4 py-4 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted sm:px-6">
-        <p>
-          Racine d&apos;intégrité du dossier :{" "}
-          <span className="text-ink">{integrityRoot}</span> — hachage de la liste
-          triée des empreintes de ses pièces. Elle change à la moindre
+      <footer
+        id="integrite"
+        className="scroll-mt-16 space-y-2 border border-grid bg-surface px-4 py-4 sm:px-6"
+      >
+        <p className="pp-meta text-muted">Intégrité du dossier</p>
+        <p className="pp-tight text-muted">
+          Racine d&apos;intégrité :{" "}
+          <span className="font-mono text-ink break-all">{integrityRoot}</span> — hachage
+          de la liste triée des empreintes de ses pièces. Elle change à la moindre
           modification de citation.
         </p>
-        <p className="mt-2">
+        <p className="pp-tight text-muted">
           Provenance :{" "}
           {result.origin === "supabase"
-            ? "lecture Supabase, RLS (dossiers publiés uniquement)"
+            ? "lecture Supabase sous RLS (dossiers publiés uniquement)"
             : "dossiers de référence locaux (Supabase non configuré)"}{" "}
           · publié le {formatLongDate(dossier.published_at)} ·{" "}
           <Link className="text-seal hover:underline" href="/methode">

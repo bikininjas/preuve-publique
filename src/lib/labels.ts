@@ -1,4 +1,5 @@
 import type {
+  DossierCategory,
   PoliticalSpectrum,
   PremiseStatus,
   QuoteKind,
@@ -65,6 +66,63 @@ export const SPECTRUM_DESCRIPTIONS: Record<PoliticalSpectrum, string> = {
   DONNEES_BRUTES_OFFICIELLES:
     "Statistiques, registres et séries publiés par des administrations.",
 };
+
+/** Ordre de présentation des catégories dans la navigation. */
+export const CATEGORY_ORDER: DossierCategory[] = [
+  "POLITIQUE",
+  "HISTOIRE",
+  "ECONOMIE",
+  "SOCIETE",
+  "FAITS_DIVERS",
+  "SANTE",
+  "ENVIRONNEMENT",
+  "INTERNATIONAL",
+];
+
+export const CATEGORY_LABELS: Record<DossierCategory, string> = {
+  HISTOIRE: "Histoire",
+  POLITIQUE: "Politique",
+  ECONOMIE: "Économie",
+  SOCIETE: "Société",
+  FAITS_DIVERS: "Faits divers",
+  SANTE: "Santé",
+  ENVIRONNEMENT: "Environnement",
+  INTERNATIONAL: "International",
+};
+
+/** Ce qu'on trouve dans la catégorie, en une ligne (page de catégorie). */
+export const CATEGORY_DESCRIPTIONS: Record<DossierCategory, string> = {
+  HISTOIRE: "Affirmations sur le passé, confrontées aux archives et aux historiens.",
+  POLITIQUE: "Propos, votes et programmes politiques passés au crible des textes.",
+  ECONOMIE: "Chiffres, budgets et promesses économiques vérifiés à la source.",
+  SOCIETE: "Faits de société, statistiques publiques et débats de fond.",
+  FAITS_DIVERS: "Rumeurs et récits d'affaires, jugés sur pièces et non sur l'émotion.",
+  SANTE: "Santé, médicaments et allégations thérapeutiques face aux données.",
+  ENVIRONNEMENT: "Climat, énergie et pollutions : ce que disent les séries officielles.",
+  INTERNATIONAL: "Conflits et politique étrangère, recoupés par des sources de tous bords.",
+};
+
+/** Identifiant d'URL d'une catégorie (`/categories/faits-divers`). */
+export const CATEGORY_SLUGS: Record<DossierCategory, string> = {
+  HISTOIRE: "histoire",
+  POLITIQUE: "politique",
+  ECONOMIE: "economie",
+  SOCIETE: "societe",
+  FAITS_DIVERS: "faits-divers",
+  SANTE: "sante",
+  ENVIRONNEMENT: "environnement",
+  INTERNATIONAL: "international",
+};
+
+export function categoryFromSlug(slug: string): DossierCategory | null {
+  const normalized = slug.trim().toLowerCase();
+  for (const category of CATEGORY_ORDER) {
+    if (CATEGORY_SLUGS[category] === normalized) {
+      return category;
+    }
+  }
+  return null;
+}
 
 export const VERDICT_LABELS: Record<VerdictStatus, string> = {
   VRAI: "Vrai",

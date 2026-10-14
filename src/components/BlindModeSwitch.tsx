@@ -75,11 +75,11 @@ export function BlindModeSwitch() {
     <div className="flex flex-wrap items-center justify-between gap-4 border border-grid bg-surface px-4 py-3">
       <div className="flex items-center gap-3">
         <Sliders size={15} aria-hidden="true" className="text-muted" />
-        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
+        <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-ink">
           Mode preuve à l&apos;aveugle
         </span>
         <span
-          className="border border-grid px-2 py-0.5 font-mono text-[10px] tracking-[0.14em]"
+          className="border border-grid px-2 py-0.5 font-mono text-[12px] tracking-[0.14em]"
           aria-hidden="true"
         >
           {blind ? "CAVIARDÉ" : "CLAIR"}
@@ -90,7 +90,7 @@ export function BlindModeSwitch() {
         <button
           type="button"
           onClick={toggle}
-          className="pp-pulse inline-flex items-center gap-2 border-2 border-seal bg-surface px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-seal transition hover:bg-surface2"
+          className="pp-pulse inline-flex items-center gap-2 border-2 border-seal bg-surface px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-seal transition hover:bg-surface2"
         >
           <Icon size={14} aria-hidden="true" />
           Révéler la convergence politique des {sources} sources
@@ -100,7 +100,7 @@ export function BlindModeSwitch() {
           type="button"
           onClick={toggle}
           aria-pressed={blind}
-          className="inline-flex items-center gap-2 border border-grid px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface2"
+          className="inline-flex items-center gap-2 border border-grid px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-ink transition hover:bg-surface2"
         >
           <Icon size={14} aria-hidden="true" />
           Caviarder l&apos;origine des sources

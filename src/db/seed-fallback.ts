@@ -16,6 +16,7 @@ export const REFERENCE_DOSSIER: Dossier = {
   slug: "hitler-et-les-nazis-etaient-de-gauche",
   claim_title: "Hitler et les nazis étaient de gauche",
   verdict: "FAUX",
+  category: "HISTOIRE",
   verdict_summary:
     "Le mot « socialiste » du sigle NSDAP relève d'une stratégie de récupération électorale assumée. Dès 1933, le régime détruit les syndicats, interne l'opposition de gauche, assassine sa propre aile anticapitaliste et privatise massivement au profit des grands cartels industriels.",
   consensus_score: 100,
@@ -191,6 +192,7 @@ export const DRAFT_CONTROL_DOSSIER: Dossier = {
   slug: "brouillon-de-controle-rls",
   claim_title: "Brouillon de contrôle RLS (jamais publié)",
   verdict: "TROMPEUR",
+  category: "SOCIETE",
   verdict_summary:
     "Ce brouillon existe pour vérifier que la lecture publique ne rend que les dossiers publiés. Il ne doit apparaître sur aucune page.",
   consensus_score: 0,

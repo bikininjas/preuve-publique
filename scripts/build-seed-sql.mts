@@ -61,7 +61,7 @@ function sourceInsert(dossier: Dossier, source: DossierSource): string {
 function dossierInsert(dossier: Dossier): string {
   return [
     "insert into public.dossiers (",
-    "  id, slug, claim_title, verdict, verdict_summary, consensus_score,",
+    "  id, slug, claim_title, verdict, verdict_summary, category, consensus_score,",
     "  premises, is_published, published_at",
     ") values (",
     `  ${sqlText(dossier.id)},`,
@@ -69,6 +69,7 @@ function dossierInsert(dossier: Dossier): string {
     `  ${sqlText(dossier.claim_title)},`,
     `  ${sqlText(dossier.verdict)}::verdict_status,`,
     `  ${sqlText(dossier.verdict_summary)},`,
+    `  ${sqlText(dossier.category)}::dossier_category,`,
     `  ${String(dossier.consensus_score)},`,
     `  ${sqlText(JSON.stringify(dossier.premises))}::jsonb,`,
     `  ${dossier.is_published ? "true" : "false"},`,

@@ -27,6 +27,20 @@ export type PoliticalSpectrum =
 export type PremiseStatus = "VRAI" | "VRAI_DETOURNE" | "CONFUSION_CONCEPTUELLE" | "FAUX";
 
 /**
+ * Catégorie éditoriale du dossier : c'est elle qui permet de parcourir le
+ * registre (Histoire, Politique, Faits divers…) sans passer par la recherche.
+ */
+export type DossierCategory =
+  | "HISTOIRE"
+  | "POLITIQUE"
+  | "ECONOMIE"
+  | "SOCIETE"
+  | "FAITS_DIVERS"
+  | "SANTE"
+  | "ENVIRONNEMENT"
+  | "INTERNATIONAL";
+
+/**
  * Nature du contenu d'une source. Une citation entre guillemets et un fait
  * documenté ne se présentent pas de la même façon : le site ne fait jamais
  * passer un résumé pour une citation.
@@ -71,6 +85,7 @@ export type Dossier = {
   claim_title: string;
   verdict: VerdictStatus;
   verdict_summary: string;
+  category: DossierCategory;
   consensus_score: number;
   premises: Premise[];
   is_published: boolean;
