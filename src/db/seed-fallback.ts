@@ -1483,7 +1483,7 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
       exact_quote:
         "Le prononcé de la peine complémentaire d'inéligibilité mentionnée au 2° de l'article 131-26 et à l'article 131-26-1 est obligatoire à l'encontre de toute personne coupable d'un délit mentionné au II du présent article ou d'un crime.",
       context_explanation:
-        "Introduit par la loi n° 2017-1339 du 15 septembre 2017 (Sapin II) : pour les atteintes à la probité — dont le détournement de fonds publics — l'inéligibilité n'est plus une simple faculté mais la règle, la juridiction ne pouvant l'écarter que par une décision spécialement motivée (III du même article).",
+        "Introduit par la loi n° 2017-1339 du 15 septembre 2017 pour la confiance dans la vie politique : pour les atteintes à la probité — dont le détournement de fonds publics — l'inéligibilité n'est plus une simple faculté mais la règle, la juridiction ne pouvant l'écarter que par une décision spécialement motivée (III du même article).",
       original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526934",
       author_reference_url: null,
       archive_storage_path: null,
@@ -1634,6 +1634,310 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
 };
 
 /**
+ * Dossier politique : l'affaire des assistants parlementaires du FN/RN et son
+ * pourvoi en cassation — « annule la culpabilité et suspend l'inéligibilité »
+ * est faux : la Cour juge le droit sans réexaminer les faits, et l'effet
+ * suspensif du pourvoi cède devant l'exécution provisoire, appliquée dès le
+ * 31 mars 2025 dans cette affaire. Sources : codes de procédure pénale (569,
+ * 471) et pénal (131-26-2) ; saisine de l'OLAF par le Parlement européen
+ * (2015) ; communiqués de la cour d'appel de Paris (7 juillet 2026) et de la
+ * Cour de cassation (8 juillet 2026) ; Conseil d'État (10 novembre 2025) ;
+ * Conseil constitutionnel (2025-1175 QPC) ; analyse d'Anne Ponseille (Club
+ * des juristes, 2026) ; Le Figaro et L'Humanité (7 juillet 2026).
+ */
+export const ASSISTANTS_RN_DOSSIER: Dossier = {
+  id: "628dd9b6-1c47-4d51-b798-5337e43e3b92",
+  slug: "assistants-rn-pourvoi-cassation-ineligibilite",
+  claim_title:
+    "Affaire des assistants RN : le pourvoi en cassation annule la culpabilité et suspend l'inéligibilité",
+  verdict: "FAUX",
+  verdict_summary:
+    "La Cour de cassation n'est pas un troisième degré de juridiction : elle ne rejuge ni la matérialité des emplois fictifs ni la culpabilité, fixées souverainement par les juges du fond. De plus, si l'exécution provisoire est ordonnée (art. 471 du code de procédure pénale ; loi n° 2017-1339 du 15 septembre 2017), la peine d'inéligibilité s'applique immédiatement sans être suspendue par le pourvoi — comme au jugement du 31 mars 2025, où l'exécution provisoire a entraîné la démission d'office du mandat départemental. La suspension d'exécution qui court depuis le pourvoi tient seulement à l'absence d'exécution provisoire sur l'arrêt d'appel : elle n'efface rien, et la condamnation redeviendra exécutoire si le pourvoi est rejeté.",
+  category: "POLITIQUE",
+  protagonists: [
+    {
+      name: "Marine Le Pen",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Marine_Le_Pen",
+      note: "Condamnée pour détournement de fonds publics dans l'affaire des assistants parlementaires du FN ; son pourvoi en cassation est en cours d'examen (arrêt attendu au plus tard début avril 2027).",
+    },
+    {
+      name: "Rassemblement national",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Rassemblement_national",
+      note: "Condamné comme personne morale pour recel habituel de détournements de fonds publics, également redevable de l'indemnisation du Parlement européen.",
+    },
+    {
+      name: "Cour de cassation",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_de_cassation_(France)",
+      note: "Juge du droit, saisie des pourvois de l'affaire : elle ne réexamine pas les faits et sa chambre criminelle rendra son arrêt au plus tard début avril 2027.",
+    },
+    {
+      name: "Cour d'appel de Paris",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_d%27appel_de_Paris",
+      note: "A rendu le 7 juillet 2026 l'arrêt confirmant la culpabilité et réduisant les peines, sans assortir son arrêt d'exécution provisoire.",
+    },
+    {
+      name: "Parlement européen",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Parlement_europ%C3%A9en",
+      note: "Partie civile de l'affaire, née de sa saisine de l'OLAF en 2015 ; la cour a évalué à 2,8 millions d'euros les détournements commis à son détriment.",
+    },
+    {
+      name: "Office européen de lutte antifraude",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Office_europ%C3%A9en_de_lutte_antifraude",
+      note: "Saisi en mars 2015 par le Parlement européen ; son enquête a conduit aux poursuites en France.",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part:
+        "« La Cour de cassation peut innocenter les cadres du RN sur les faits reprochés »",
+      status: "FAUX",
+      detail:
+        "Elle est « le juge du droit » : elle ne réexamine pas les faits à l'origine de la poursuite, mais vérifie que la loi a été correctement appliquée (communiqué de la Cour de cassation du 8 juillet 2026) ; les constatations de fait — l'organisation mise en place, les emplois fictifs — ont été fixées souverainement par les juges du fond. Une cassation, si elle était prononcée, annulerait l'arrêt et renverrait l'affaire devant une autre cour d'appel : elle n'innocente personne.",
+    },
+    {
+      claim_part:
+        "« Former un pourvoi suspend automatiquement toute interdiction de se présenter à une élection »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "L'effet suspensif ordinaire de l'article 569 du code de procédure pénale est expressément écarté lorsque la juridiction ordonne l'exécution provisoire prévue par la loi (article 471) : c'est alors l'exécution immédiate qui prime. Dans cette affaire, le jugement du 31 mars 2025 était assorti de l'exécution provisoire et a été exécuté (arrêté préfectoral de démission d'office du 10 avril 2025, confirmé par le Conseil d'État) ; l'arrêt d'appel du 7 juillet 2026 n'est assorti d'aucune exécution provisoire, d'où la suspension d'exécution — temporaire — depuis le pourvoi.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "8f6420ad-c725-49a7-ab0f-d92a42144ce6",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Code de procédure pénale — article 569",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Pendant les délais du recours en cassation et, s'il y a eu recours, jusqu'au prononcé de l'arrêt de la Cour de cassation, il est sursis à l'exécution de l'arrêt de la cour d'appel, sauf en ce qui concerne les condamnations civiles, et à moins que la cour d'appel ne confirme le mandat décerné par le tribunal en application de l'article 464-1 ou de l'article 465, premier alinéa, ou ne décerne elle-même mandat sous les mêmes conditions et selon les mêmes règles.",
+      context_explanation:
+        "Règle effectivement appliquée dans l'affaire : la cour d'appel de Paris n'ayant ordonné aucune exécution provisoire, l'exécution de son arrêt est suspendue pendant le pourvoi (communiqué de la Cour de cassation du 8 juillet 2026). Deux nuances souvent oubliées : ce sursis ne couvre pas les condamnations civiles — l'indemnisation du Parlement européen reste due — et il ne suspend que l'exécution, jamais la culpabilité, qui demeure établie tant que la Cour de cassation n'a pas statué.",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038313666",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "54253637-7112-4a0c-a662-18b34e0fc64c",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Code de procédure pénale — article 471, alinéa 4",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les sanctions pénales prononcées en application des articles 131-4-1 à 131-11 et 132-25 à 132-70 du code pénal peuvent être déclarées exécutoires par provision.",
+      context_explanation:
+        "La dérogation qui dément le récit d'un pourvoi « suspendant » par nature : le juge peut déclarer la sanction exécutoire par provision, appel et pourvoi compris — l'inéligibilité en relève. Le tribunal correctionnel de Paris a usé de cette faculté le 31 mars 2025, et l'inéligibilité de cinq ans s'est appliquée immédiatement. Le Conseil constitutionnel a déclaré cet alinéa conforme le 5 décembre 2025, sous réserve d'une motivation spéciale sur la proportionnalité.",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041402532",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "486332ef-7f9e-46ee-a44c-a92b2683fa2a",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Code pénal — article 131-26-2",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le prononcé de la peine complémentaire d'inéligibilité mentionnée au 2° de l'article 131-26 et à l'article 131-26-1 est obligatoire à l'encontre de toute personne coupable d'un délit mentionné au II du présent article ou d'un crime.",
+      context_explanation:
+        "Créé par la loi n° 2017-1339 du 15 septembre 2017 pour la confiance dans la vie politique : pour les atteintes à la probité — dont le détournement de fonds publics, visé au 5° du II — l'inéligibilité est en principe obligatoire, la juridiction ne pouvant l'écarter que par une décision spécialement motivée (III du même article). C'est le fondement des peines d'inéligibilité prononcées dans l'affaire.",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526934",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "a613636b-5491-4078-960f-6a80d6491381",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Le PE saisit l'OLAF d'éventuelles irrégularités financières de la part du FN",
+      author_or_institution: "Parlement européen",
+      publication_date: "2015-03-09",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Agissant à la requête de l'administration du Parlement européen et conformément au règlement de l'institution, le Président Martin Schulz a saisi lundi l'Office européen de lutte antifraude (OLAF) d'éventuelles irrégularités financières commises par le parti français Front National. Les éventuelles irrégularités concernent des salaires issus du budget européen versés à des assistants de parlementaires européens.",
+      context_explanation:
+        "Point de départ de l'affaire, le 9 mars 2015 : la saisine de l'OLAF par le Parlement européen, après la constatation que vingt assistants d'eurodéputés FN figuraient à des postes officiels du parti. Les montants évoqués à l'époque par la presse n'ont jamais eu valeur de rapport public ; la justice a finalement chiffré le préjudice du Parlement européen à 2,8 millions d'euros (communiqué de la cour d'appel du 7 juillet 2026).",
+      original_url:
+        "https://www.europarl.europa.eu/news/fr/press-room/20150309IPR32603/le-pe-saisit-l-olaf-d-eventuelles-irregularites-financieres-de-la-part-du-fn",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Parlement_europ%C3%A9en",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "f9a75393-24b4-4a77-b94b-95b9d30628c0",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Arrêt du 7 juillet 2026 — communiqué de la cour d'appel de Paris (affaire dite « des assistants parlementaires du Front National »)",
+      author_or_institution: "Cour d'appel de Paris (première présidence, porte-parole)",
+      publication_date: "2026-07-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La cour a retenu qu'une organisation avait été mise en place pour permettre la prise en charge par le Parlement européen de la rémunération des assistants parlementaires de députés européens du Front National, devenu Rassemblement National, alors que leurs activités étaient sans lien avec le mandat de leur député européen et qu'ils travaillaient en réalité pour le parti politique national.",
+      context_explanation:
+        "L'arrêt confirme la culpabilité des douze prévenus (détournement de fonds publics, complicité, recel) et chiffre le préjudice du Parlement européen à 2,8 millions d'euros. C'est cette matérialité — l'organisation, les emplois fictifs — que le pourvoi ne remet pas en cause devant la Cour de cassation, juge du droit.",
+      original_url:
+        "https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20CP.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_d%27appel_de_Paris",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "18351747-2c10-4c76-a57d-9fcb5b535096",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Communiqué du 8 juillet 2026 — affaire dite « des assistants parlementaires du Front National »",
+      author_or_institution: "Cour de cassation (France)",
+      publication_date: "2026-07-08",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La Cour de cassation est le juge du droit. Elle ne réexamine pas les faits à l'origine de la poursuite, mais vérifie que la loi a été correctement appliquée.",
+      context_explanation:
+        "La Cour rappelle son office en précisant l'effet du pourvoi : « Sauf exécution provisoire, le pourvoi a un effet suspensif » et, la cour d'appel n'ayant prononcé l'exécution provisoire sur aucune partie de sa décision, « les dispositions pénales de cet arrêt (...) ne peuvent pas être mises à exécution ». Arrêt attendu au plus tard début avril 2027.",
+      original_url:
+        "https://www.courdecassation.fr/toutes-les-actualites/2026/07/08/affaire-dite-des-assistants-parlementaires-du-front-national",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_de_cassation_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "dbc87b93-8c0e-48b7-8834-ab361ee54856",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Que peut encore changer le pourvoi en cassation de Marine Le Pen ?",
+      author_or_institution:
+        "Anne Ponseille, maître de conférences en droit privé, Université de Montpellier (Le Club des juristes)",
+      publication_date: "2026-07-09",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Pendant les délais du recours en cassation et, si recours il y a, jusqu'à ce que la chambre criminelle de la Cour de cassation rende sa décision, il est sursis à l'exécution de l'arrêt de la cour d'appel. Cet effet suspensif concerne les peines prononcées qui n'ont donc pas à être exécutées immédiatement (art. 569 C. proc. pén.). On soulignera cependant que ce sursis à exécution ne concerne pas les condamnations civiles et, en l'espèce, Marine Le Pen a été condamnée solidairement avec d'autres prévenus, dont le Rassemblement national, au paiement de dommages et intérêts au Parlement européen.",
+      context_explanation:
+        "Analyse universitaire du pourvoi : le sursis à exécution et son périmètre (les peines, pas les condamnations civiles), puis les issues possibles — rejet ou cassation avec renvoi devant une autre cour d'appel. L'autrice rappelle que la Cour contrôle la qualification, la légalité des peines et la motivation, sans réexaminer les faits.",
+      original_url:
+        "https://www.leclubdesjuristes.com/justice/que-peut-encore-changer-le-pourvoi-en-cassation-de-marine-le-pen-16881/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Club_des_juristes",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "01d8d3d3-daff-4665-913d-c60e5e1fe3b7",
+      spectrum: "CENTRE",
+      source_name:
+        "Décision n° 2025-1175 QPC du 5 décembre 2025 — M. Bernard P. [exécution provisoire des peines alternatives, des peines complémentaires et des mesures de personnalisation de la peine en matière correctionnelle]",
+      author_or_institution: "Conseil constitutionnel (France)",
+      publication_date: "2025-12-05",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Dès lors que l'exécution provisoire prévue par ces dispositions s'attache à une sanction pénale prononcée par la juridiction répressive après que celle-ci a décidé que la culpabilité du prévenu est légalement établie, elle n'est pas incompatible avec le principe de la présomption d'innocence garanti par l'article 9 de la Déclaration de 1789.",
+      context_explanation:
+        "Réponse à l'argument « on exécute une peine avant toute condamnation définitive » : l'exécution provisoire s'attache à une culpabilité déjà établie par le juge, et elle est conforme à la Constitution. Le Conseil l'assortit d'une réserve : le juge doit motiver spécialement la proportionnalité — exigence déjà posée pour l'inéligibilité par la décision n° 2025-1129 QPC du 28 mars 2025.",
+      original_url: "https://www.conseil-constitutionnel.fr/decision/2025/20251175QPC.htm",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "61f9096f-13cb-4d13-b609-c6fabcd9869a",
+      spectrum: "CENTRE",
+      source_name:
+        "Exécution provisoire d'une peine d'inéligibilité : le Conseil d'État confirme la démission d'office de Mme Marine Le Pen de son mandat de conseillère départementale (actualité du 10 novembre 2025)",
+      author_or_institution: "Conseil d'État (France)",
+      publication_date: "2025-11-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le 31 mars 2025, Mme Marine Le Pen, députée et conseillère départementale du Pas-de-Calais, a été condamnée par le tribunal judiciaire de Paris à une peine d'inéligibilité de cinq ans avec exécution provisoire, c'est-à-dire avec application immédiate. Conformément au code électoral, le préfet du Pas-de-Calais a, par un arrêté du 10 avril 2025, déclaré Mme Le Pen démissionnaire d'office de son mandat de conseillère départementale.",
+      context_explanation:
+        "L'exécution provisoire n'est pas un mot théorique : elle a été appliquée dans cette affaire dès le printemps 2025, pendant la procédure. Le Conseil d'État rejette la QPC de Marine Le Pen et confirme la démission d'office, en rappelant que les élus locaux (démis d'office dès l'exécution provisoire) ne sont pas dans la même situation que les parlementaires (déchéance subordonnée à une condamnation définitive).",
+      original_url:
+        "https://www.conseil-etat.fr/actualites/execution-provisoire-d-une-peine-d-ineligibilite-le-conseil-d-etat-confirme-la-demission-d-office-de-mme-marine-le-pen-de-son-mandat-de-conseille",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "70f12651-a9b5-48ad-8202-a3339a4b245b",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Marine Le Pen, condamnée à 15 mois ferme d'inéligibilité, pourrait a priori se présenter à la présidentielle",
+      author_or_institution: "Le Figaro",
+      publication_date: "2026-07-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La cour a considéré qu'elle a déjà purgé une peine de quinze mois d'inéligibilité depuis le 31 mars 2025, date de sa condamnation en première instance.",
+      context_explanation:
+        "L'arrêt d'appel a ramené l'inéligibilité à 45 mois, dont 30 avec sursis, en imputant les quinze mois déjà courus sous l'exécution provisoire du jugement : illustration concrète de ce que produit l'exécution provisoire avant même que la condamnation ne soit définitive. La fraction ferme étant purgée, Marine Le Pen peut « a priori » se présenter.",
+      original_url:
+        "https://www.lefigaro.fr/politique/marine-le-pen-condamnee-a-15-mois-ferme-d-ineligibilite-pourrait-a-priori-se-presenter-a-la-presidentielle-20260707",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Le_Figaro",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+    {
+      id: "66f89e3f-fa06-4631-836f-8538ddd10139",
+      spectrum: "GAUCHE",
+      source_name:
+        "Marine Le Pen condamnée… Mais pas complètement écartée de la présidentielle de 2027",
+      author_or_institution: "L'Humanité (Florent Le Du)",
+      publication_date: "2026-07-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La cour considère que Marine Le Pen a déjà purgé 15 mois de peine d'inéligibilité depuis le 31 mars 2025. Elle est donc éligible et peut juridiquement choisir de se présenter à l'élection présidentielle.",
+      context_explanation:
+        "Récit de gauche de la décision : la réduction de peine et l'imputation du temps déjà purgé rendent l'élue de nouveau éligible, ce qui place la présidentielle 2027 et le pourvoi au centre du jeu — sans que cela change quoi que ce soit à la culpabilité établie ni au caractère non définitif de la condamnation.",
+      original_url:
+        "https://www.humanite.fr/politique/extreme-droite/marine-le-pen-condamnee-mais-pas-completement-ecartee-de-la-presidentielle-de-2027",
+      author_reference_url: "https://fr.wikipedia.org/wiki/L%27Humanit%C3%A9",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
+  ],
+};
+
+/**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
  * (`is_published = true`) et non par le code de l'interface.
@@ -1662,6 +1966,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   IMMIGRATION_BUDGET_DOSSIER,
   CRIME_IMMIGRATION_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
+  ASSISTANTS_RN_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

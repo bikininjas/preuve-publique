@@ -15,13 +15,14 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Huit dossiers en base :
-  sept **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Neuf dossiers en base :
+  huit **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
-  l'inéligibilité des élus (10, politique) — et un **brouillon de contrôle RLS** ; RLS
-  actif sur `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 51 sources portent leur empreinte de citation ; la RPC de recherche
+  l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique) —
+  et un **brouillon de contrôle RLS** ; RLS actif sur `dossiers`, `dossier_sources` et
+  `admin_users`.
+- **Intégrité** : les 62 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -36,6 +37,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   Le septième dossier publié (le pourvoi en cassation et l'inéligibilité des élus, 10
   sources) a été vérifié de la même manière (`2614c9ac…`) et ses dix fiches d'archive
   sont déposées et relues (cinq instantanés réseau, cinq URL indisponibles consignées).
+  Le huitième (l'affaire des assistants RN, 11 sources) l'a été de même (`fa877e43…`) :
+  onze fiches déposées et relues (huit instantanés réseau, trois URL indisponibles).
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
