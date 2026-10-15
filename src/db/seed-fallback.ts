@@ -2572,6 +2572,204 @@ export const ADA_DOSSIER: Dossier = {
   ],
 };
 
+export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
+  id: "98f17905-d0f3-40e4-b240-140d4462f89a",
+  slug: "sans-papiers-rsa-caf-apl-aides-sociales",
+  claim_title:
+    "Les étrangers sans-papiers touchent le RSA, la CAF et les aides au logement (APL)",
+  verdict: "FAUX",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Revenu de solidarité active",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Revenu_de_solidarit%C3%A9_active",
+      note: "Prestation dont les conditions d'accès aux étrangers sont fixées par le CASF.",
+    },
+    {
+      name: "Caisse nationale des allocations familiales",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Caisse_nationale_des_allocations_familiales",
+      note: "Verse les prestations familiales et contrôle la régularité du séjour des allocataires.",
+    },
+    {
+      name: "Aide médicale d'État",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Aide_m%C3%A9dicale_d%27%C3%89tat",
+      note: "Dispositif spécifique — avec l'hébergement d'urgence — accessible aux personnes en situation irrégulière.",
+    },
+    {
+      name: "Conseil constitutionnel (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      note: null,
+    },
+    {
+      name: "Sénat (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      note: "Commission des affaires sociales — rapport sur la condition de durée de résidence (2025).",
+    },
+  ],
+  verdict_summary:
+    "Les personnes en situation irrégulière sont exclues des prestations sociales de droit commun : « les étrangers dont le séjour est irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun » et ne bénéficient que de l'AME, de l'hébergement d'urgence et de l'aide au retour (Sénat). Le RSA exige un titre de séjour autorisant à travailler depuis cinq ans (CASF, art. L. 262-4 — critère validé par le Conseil constitutionnel en 2011) ; les prestations familiales sont réservées aux étrangers titulaires d'un titre exigé pour résider régulièrement en France (CSS, art. L. 512-2) et l'APL suppose « un titre de séjour en cours de validité » (service-public.fr) ; la CNAF rappelle que « le droit aux prestations servies par les CAF est conditionné à la régularité du séjour », contrôlée via le portail AGDREF.",
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« Un clandestin peut s'inscrire à la CAF et toucher des allocations »",
+      status: "FAUX",
+      detail:
+        "Le droit aux prestations de la branche Famille est conditionné à la régularité du séjour (instruction CNAF IT-2024-232) ; l'article L. 512-2 du code de la sécurité sociale réserve les prestations familiales aux étrangers « titulaires d'un titre exigé d'eux... pour résider régulièrement en France » ; l'APL suppose un titre de séjour en cours de validité. Au titre de l'article L. 111-1 du code de la sécurité sociale, les étrangers en séjour irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun : hors AME, hébergement d'urgence et aide au retour, il n'y a ni RSA, ni allocations familiales, ni APL.",
+    },
+    {
+      claim_part: "« Le RSA est accessible dès l'arrivée en France »",
+      status: "FAUX",
+      detail:
+        "L'article L. 262-4 du code de l'action sociale et des familles impose d'« être français ou titulaire, depuis au moins cinq ans, d'un titre de séjour autorisant à travailler » — avec des exceptions limitées (réfugiés, bénéficiaires de la protection subsidiaire, apatrides, titulaires de la carte de résident). Le Conseil constitutionnel a jugé ce critère conforme (décision n° 2011-137 QPC du 17 juin 2011) ; un étranger régularisé depuis moins de cinq ans n'y a pas droit.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "807f214f-6834-4aaf-9fdd-97c99de1622e",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Code de l'action sociale et des familles — article L. 262-4",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Etre français ou titulaire, depuis au moins cinq ans, d'un titre de séjour autorisant à travailler.",
+      context_explanation:
+        "Condition d'ouverture du RSA pour les étrangers non communautaires (2° de l'article L. 262-4), assortie d'exceptions limitées (réfugiés, protection subsidiaire, apatrides, carte de résident). Un étranger en situation irrégulière — ou régularisé depuis moins de cinq ans — ne peut donc pas bénéficier du RSA, contrairement à ce que suppose la rumeur.",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031087751",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "19297b7c-63b6-49eb-b853-85b791d2feb0",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Code de la sécurité sociale — article L. 512-2 (prestations familiales)",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Bénéficient également de plein droit des prestations familiales dans les conditions fixées par le présent livre les étrangers non ressortissants d'un Etat membre de la Communauté européenne, d'un autre Etat partie à l'accord sur l'Espace économique européen ou de la Confédération suisse, titulaires d'un titre exigé d'eux en vertu soit de dispositions législatives ou réglementaires, soit de traités ou accords internationaux pour résider régulièrement en France.",
+      context_explanation:
+        "Texte en vigueur : l'ouverture des prestations familiales (allocations familiales, etc.) est subordonnée à un titre de séjour régulier. Les alinéas suivants ajoutent des conditions pour les enfants à charge (naissance en France, entrée dans le cadre du regroupement familial, qualité de membre de famille de réfugié, etc.) et renvoient à un décret fixant « la liste des titres et justifications attestant de la régularité de l'entrée et du séjour ».",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042920150",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "9bd4ef6f-7ed4-4658-8528-523240359eb2",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Instruction CNAF IT-2024-232 — « Prise en compte des décisions de retrait ou de refus de titres de séjour et d'obligation de quitter le territoire français »",
+      author_or_institution: "CNAF (Caisse nationale des allocations familiales), direction des politiques familiale et sociale",
+      publication_date: "2024-11-28",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le droit aux prestations servies par les CAF est conditionné à la régularité du séjour.",
+      context_explanation:
+        "Instruction officielle de la CNAF à son réseau (28/11/2024) : le retrait ou le refus de titre de séjour entraîne la fin du droit aux prestations, et « en cas de décision préfectorale de retrait, de refus de délivrance ou de renouvellement d'un titre de séjour..., le portail Agdref doit en tenir compte via une mise à jour rapide ». Le document annonce la généralisation des échanges automatisés : « le développement des échanges entre le système d'information des Caf et AGDREF est en instruction pour prendre en compte les informations relatives aux titres de séjour dès la première demande et de façon sécurisée et automatisée ».",
+      original_url:
+        "https://www.caf.fr/sites/default/files/medias/cnaf/Nous_connaitre/qui%20sommes%20nous/Textes%20de%20r%C3%A9f%C3%A9rence/Circulaires/2024/IT%202024-232.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "82d36063-b20e-4f7f-9d34-434bd88894ee",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Aide personnalisée au logement (APL) — conditions pour les personnes étrangères (fiche F12006)",
+      author_or_institution: "DILA — service-public.fr (Premier ministre)",
+      publication_date: "2026-07-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Vous pouvez bénéficier de l'APL si vous êtes étranger, à condition d'avoir un titre de séjour en cours de validité.",
+      context_explanation:
+        "La fiche officielle conditionne l'APL — comme le maintien des droits — à un titre de séjour en cours de validité : le défaut de « titre de séjour valide justifiant la régularité de votre séjour en France » figure parmi les motifs de suspension. Depuis le 1er juillet 2026, les étudiants ressortissants d'un pays hors UE/EEE/Suisse ne peuvent bénéficier de l'APL que dans trois cas limitativement énumérés.",
+      original_url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F12006",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "24640875-0882-48e6-9769-300e2da5d7e1",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Rapport n° 426 (2024-2025) — proposition de loi créant une condition de durée de résidence pour le versement de certaines prestations sociales",
+      author_or_institution: "Florence Lassarade, rapporteure (Sénat, commission des affaires sociales)",
+      publication_date: "2025-03-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Au titre de l'article L.111-1 du code de sécurité sociale, les étrangers dont le séjour est irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun. Ils ne bénéficient donc que des aides spécifiques qui leur sont dédiées : l'aide médicale d'État, l'hébergement d'urgence et l'aide au retour et à la réinsertion.",
+      context_explanation:
+        "Le rapport parlementaire rappelle le droit en vigueur : exclusion des prestations de droit commun pour les personnes en séjour irrégulier, condition de cinq ans de titre de séjour autorisant à travailler pour le RSA (quinze ans à Mayotte) et de dix ans pour l'Aspa. Il retrace aussi la jurisprudence : le Conseil constitutionnel a validé la condition RSA en 2011 (n° 2011-137 QPC) mais censuré en 2024 (n° 2024-6 RIP) une extension de cinq ans aux prestations familiales, APL et APA.",
+      original_url: "https://www.senat.fr/rap/l24-426/l24-4265.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "9ca52d5a-5ee5-4ecc-aac1-cc8c2371af8a",
+      spectrum: "CENTRE",
+      source_name: "Décision n° 2011-137 QPC du 17 juin 2011 — M. Oussmane T.",
+      author_or_institution: "Conseil constitutionnel (République française)",
+      publication_date: "2011-06-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "le législateur a pu estimer que la stabilité de la présence sur le territoire national était une des conditions essentielles à l'insertion professionnelle ; qu'en réservant le bénéfice du revenu de solidarité active à ceux qui, parmi les étrangers, sont titulaires depuis au moins cinq ans d'un titre de séjour les autorisant à travailler, le législateur a institué entre les Français et les étrangers, d'une part, et entre les étrangers, d'autre part, selon qu'ils ont ou non une résidence stable en France, une différence de traitement en rapport direct avec l'objet de la loi",
+      context_explanation:
+        "Saisi par une question prioritaire de constitutionnalité, le Conseil constitutionnel valide la condition de cinq ans de titre de séjour pour le RSA : différence de traitement « en rapport direct avec l'objet de la loi », critère « pas manifestement inapproprié au but poursuivi ». C'est cette décision que cite le Sénat en 2025 pour rappeler que le verrou légal est conforme à la Constitution.",
+      original_url: "https://www.conseil-constitutionnel.fr/decision/2011/2011137QPC.htm",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "75bfa467-7eb5-4a89-8024-add25b693b95",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "La régularité du séjour des étrangers en France : frontière du projet d'universalisation de la protection sociale ?",
+      author_or_institution: "Caroline Izambert (Revue française des affaires sociales, 2018, n° 4, pp. 19-37)",
+      publication_date: "2018-12-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Ces restrictions, d'abord fondées sur la nationalité renvoient désormais à la régularité du séjour des personnes étrangères, condition généralisée par la loi de 1993, soumettant partiellement les objectifs des politiques de protection sociale à celles de contrôle des flux migratoires.",
+      context_explanation:
+        "Article de référence (résumé officiel consulté sur la base Prisme) : la chercheuse montre que la condition de régularité du séjour, généralisée en 1993, « exclut quasiment toutes les prestations de sécurité sociale » pour les personnes irrégulières, l'AME de 1999 constituant l'exception sanitaire — « l'impossible accès au droit commun pour les personnes étrangères résidentes en situation irrégulière ».",
+      original_url: "https://shs.cairn.info/revue-francaise-des-affaires-sociales-2018-4-page-17?lang=fr",
+      author_reference_url: "https://www.documentation-sociale.org/base-prisme/85384/",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -2602,6 +2800,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   CRIME_IMMIGRATION_DOSSIER,
   EXPULSION_JUGES_DOSSIER,
   ADA_DOSSIER,
+  SANS_PAPIERS_AIDES_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
   LAXISME_PEINES_PRISON_DOSSIER,

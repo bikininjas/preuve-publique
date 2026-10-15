@@ -15,15 +15,16 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Douze dossiers en base :
-  onze **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Treize dossiers en base :
+  douze **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
   l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
-  société) et l'allocation pour demandeur d'asile (7, société) — et un **brouillon de
-  contrôle RLS** ; RLS actif sur `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 83 sources portent leur empreinte de citation ; la RPC de recherche
+  société), l'allocation pour demandeur d'asile (7, société) et les aides sociales des
+  sans-papiers (7, société) — et un **brouillon de contrôle RLS** ; RLS actif sur
+  `dossiers`, `dossier_sources` et `admin_users`.
+- **Intégrité** : les 90 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -55,6 +56,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   relues (six instantanés réseau — DREES, Assemblée nationale, Cour des comptes, Sénat,
   Défenseur des droits, enquête Ducourant — et une URL indisponible, Légifrance répondant
   403 aux robots).
+  Le douzième (le RSA, la CAF et les APL des sans-papiers, 7 sources) a été vérifié de la
+  même manière (`5b894fab…`) : sept fiches déposées et relues (quatre instantanés réseau —
+  CNAF, service-public.fr, Sénat, Conseil constitutionnel — et trois URL indisponibles,
+  Légifrance et Cairn répondant 403 aux robots).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -71,7 +76,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   sept sources du dossier sur l'allocation pour demandeur d'asile (CESEDA L. 553-1, DREES,
   réponse ministérielle n° 27196, Cour des comptes, Sénat, Défenseur des droits, enquête
   Ducourant) ont été vérifiées de la même façon avant leur intégration ; le site de l'OFII
-  répond 403 aux robots et la réponse ministérielle documente le dispositif qu'il gère.
+  répond 403 aux robots et la réponse ministérielle documente le dispositif qu'il gère. Les
+  sept sources du dossier sur les aides sociales des sans-papiers (CASF L. 262-4, CSS
+  L. 512-2, CNAF IT-2024-232, service-public.fr, Sénat n° 426, Conseil constitutionnel
+  2011-137 QPC, RFAS/Izambert) ont été vérifiées de la même façon avant leur intégration
+  (Légifrance et Cairn répondent 403 : citations recoupées sur des reproductions
+  institutionnelles).
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -91,11 +101,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **83 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **90 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 63 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 17 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 66 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 21 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
@@ -104,8 +114,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   pour les dix dossiers réappliqués (68 fiches redéposées, racine des captures
   `e0a39749…`), puis à 13:02 UTC pour les douze dossiers réappliqués ; un second
   passage de capture lancé en parallèle ayant créé un doublon par pièce, la table a été
-  dédupliquée : **83 fiches exactes conservées**, une par pièce publiée (63
-  `URL_SNAPSHOT`, 17 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
+  dédupliquée : 83 fiches exactes conservées, une par pièce publiée. L'intégration du
+  dossier « aides sociales des sans-papiers » (13:30 UTC) a ensuite entraîné une ultime
+  réapplication du seed et une recapture : **90 fiches exactes**, une par pièce publiée
+  (66 `URL_SNAPSHOT`, 21 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
 
 ## Pile technique
 
@@ -332,7 +344,11 @@ puis réinséré toutes les sources ; le `archive:capture --fetch --yes` de 13:0
 toutes redéposées : 83 pièces, 83 fiches déposées et relues — 63 `URL_SNAPSHOT`, 17
 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `b54243b2d204b932…`. Un
 second passage de capture lancé en parallèle ayant créé un doublon par pièce, la table a
-été **dédupliquée** (83 fiches exactes conservées, une par pièce publiée). Le **miroir Storage** n'a pas eu lieu faute d'accès
+été **dédupliquée** (83 fiches exactes conservées, une par pièce publiée). Puis, à
+13:30 UTC, l'intégration du dossier « aides sociales des sans-papiers » (douzième publié)
+a entraîné une nouvelle réapplication complète du seed et une recapture : 90 pièces, 90
+fiches déposées et relues — 66 `URL_SNAPSHOT`, 21 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` —
+racine des captures `37ffd2f0338a6a26…`. Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
