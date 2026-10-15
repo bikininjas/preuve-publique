@@ -674,3 +674,80 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* --- Densité et onglets de piliers --------------------------------------- */
+
+.pp-btn[data-active="true"] {
+  background: var(--pp-ink);
+  color: var(--pp-canvas);
+  border-color: var(--pp-ink);
+}
+
+.pp-tabs {
+  display: flex;
+  gap: 0.3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 56px;
+  z-index: 20;
+  background: color-mix(in srgb, var(--pp-canvas) 94%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--pp-grid);
+  padding: 0.25rem;
+}
+
+.pp-tabs::-webkit-scrollbar { display: none; }
+
+.pp-tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0 0.7rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--pp-muted);
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background var(--pp-fast) var(--pp-ease), color var(--pp-fast) var(--pp-ease);
+}
+
+.pp-tab:hover { background: var(--pp-surface-2); color: var(--pp-ink); }
+.pp-tab[data-active="true"] { background: var(--pp-ink); color: var(--pp-canvas); }
+.pp-tab[data-empty="true"] { opacity: 0.5; }
+
+/* --- Cibles tactiles : plus rien d'important sous 44 px ------------------ */
+
+.pp-chip { min-height: 44px; }
+
+.pp-header button,
+.pp-header a {
+  min-height: var(--pp-tap);
+  min-width: var(--pp-tap);
+  justify-content: center;
+}
+
+.pp-card a {
+  min-height: var(--pp-tap);
+  display: inline-flex;
+  align-items: center;
+}
+
+.pp-toc a { min-height: 44px; }
+
+/* Les liens d'action isolés (en couleur de sceau) et les boutons du document
+   valent aussi 44 px : ce sont des commandes, pas du texte courant. */
+a[class*="text-seal"] {
+  min-height: var(--pp-tap);
+  display: inline-flex;
+  align-items: center;
+}
+
+.pp-doc button {
+  min-height: var(--pp-tap);
+}

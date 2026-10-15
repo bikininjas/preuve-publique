@@ -124,6 +124,14 @@ export function categoryFromSlug(slug: string): DossierCategory | null {
   return null;
 }
 
+export const PROTAGONIST_LABELS: Record<"PERSONNE" | "ORGANISATION" | "LIEU" | "TEXTE", string> =
+  {
+    PERSONNE: "personne",
+    ORGANISATION: "organisation",
+    LIEU: "lieu",
+    TEXTE: "texte ou événement",
+  };
+
 export const VERDICT_LABELS: Record<VerdictStatus, string> = {
   VRAI: "Vrai",
   FAUX: "Faux",

@@ -9,7 +9,7 @@ import { CATEGORY_LABELS, CATEGORY_ORDER, CATEGORY_SLUGS } from "@/lib/labels";
 export default function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-grid bg-surface">
-      <div className="mx-auto grid w-full max-w-[1180px] gap-6 px-4 py-8 sm:px-6 md:grid-cols-3">
+      <div className="mx-auto grid w-full max-w-[1180px] gap-6 px-4 py-8 sm:px-6 md:grid-cols-3 lg:w-[92%] lg:max-w-[1840px] xl:w-[90%]">
         <nav aria-label="Catégories" className="grid content-start gap-1">
           <p className="pp-meta text-muted">Registre</p>
           <Link className="pp-tap text-ink hover:underline" href="/dossiers">

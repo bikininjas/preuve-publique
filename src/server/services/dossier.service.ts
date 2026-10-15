@@ -5,6 +5,9 @@ import type {
   DataResult,
   Dossier,
   DossierCategory,
+  Protagonist,
+  ProtagonistKind,
+  ProtagonistRole,
   DossierSource,
   PoliticalSpectrum,
   Premise,
@@ -62,12 +65,12 @@ export function clearDossierCache(): void {
 }
 
 const SELECT_DOSSIER = `
-  id, slug, claim_title, verdict, verdict_summary, category, consensus_score, premises,
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score, premises,
   is_published, published_at,
   dossier_sources (
     id, spectrum, source_name, author_or_institution, publication_date,
     quote_kind, exact_quote, context_explanation, original_url,
-    archive_storage_path, archive_sha256, archive_binary_sha256, display_order
+    archive_storage_path, archive_sha256, archive_binary_sha256, display_order, author_reference_url
   )
 `;
 
@@ -96,6 +99,42 @@ const PREMISE_STATUSES: PremiseStatus[] = [
 ];
 
 const QUOTE_KINDS: QuoteKind[] = ["CITATION_EXACTE", "FAIT_DOCUMENTE"];
+
+const PROTAGONIST_KINDS: ProtagonistKind[] = ["PERSONNE", "ORGANISATION", "LIEU", "TEXTE"];
+const PROTAGONIST_ROLES: ProtagonistRole[] = ["SUJET", "AUTEUR"];
+
+/** Un protagoniste illisible est écarté, jamais deviné. */
+function parseProtagonists(value: unknown): Protagonist[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const protagonists: Protagonist[] = [];
+  for (const entry of value) {
+    if (!isRecord(entry)) {
+      continue;
+    }
+    const name = asString(entry.name);
+    const kind = asString(entry.kind);
+    const role = asString(entry.role);
+    if (
+      name === null ||
+      kind === null ||
+      role === null ||
+      !PROTAGONIST_KINDS.includes(kind as ProtagonistKind) ||
+      !PROTAGONIST_ROLES.includes(role as ProtagonistRole)
+    ) {
+      continue;
+    }
+    protagonists.push({
+      name,
+      kind: kind as ProtagonistKind,
+      role: role as ProtagonistRole,
+      reference_url: asString(entry.reference_url),
+      note: asString(entry.note),
+    });
+  }
+  return protagonists;
+}
 
 const CATEGORIES: DossierCategory[] = [
   "HISTOIRE",
@@ -171,6 +210,7 @@ function parseSource(value: unknown): DossierSource | null {
     exact_quote: quote,
     context_explanation: context,
     original_url: asString(value.original_url),
+    author_reference_url: asString(value.author_reference_url),
     archive_storage_path: asString(value.archive_storage_path),
     archive_sha256: hex(value.archive_sha256),
     archive_binary_sha256: hex(value.archive_binary_sha256),
@@ -213,6 +253,7 @@ function parseDossier(value: unknown): Dossier | null {
     verdict: verdict as VerdictStatus,
     verdict_summary: summary,
     category: category as DossierCategory,
+    protagonists: parseProtagonists(value.protagonists),
     consensus_score: typeof score === "number" && score >= 0 && score <= 100 ? score : 0,
     premises: parsePremises(value.premises),
     is_published: value.is_published === true,

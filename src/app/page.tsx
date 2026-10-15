@@ -88,8 +88,8 @@ export default async function HomePage() {
             Aucun dossier publié pour le moment.
           </p>
         ) : (
-          <div className="grid gap-3 md:grid-cols-2">
-            <Reveal className="md:col-span-2">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            <Reveal className="md:col-span-2 xl:col-span-3">
               <DossierCard dossier={latest} />
             </Reveal>
             {others.slice(0, 4).map((dossier, index) => (

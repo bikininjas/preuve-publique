@@ -150,6 +150,34 @@ tactiles de 44 px, navigation complète sans JavaScript (menus `<details>`), fic
 dossier réutilisables, sommaire collant et pièces repliées par pilier. Le mouvement est
 sobre et respecte `prefers-reduced-motion` ; sans JavaScript, tout reste lisible.
 
+Sur un dossier, deux densités de lecture : **dossier complet** (par défaut) et **vue
+synthèse**, qui ramène la page d'environ dix écrans mobiles à quatre — verdict, briques
+d'affirmation et une ligne par pièce. Les pièces se filtrent par pilier avec une barre
+d'onglets, qui suit aussi les liens du spectromètre (`#pieces-<PILIER>`).
+
+Sur desktop, la coquille occupe **90 % de la largeur** à partir de 1024 px (plafonnée à
+1840 px) ; les colonnes de lecture restent bornées par leurs propres grilles et les
+listes de fiches passent à trois colonnes en grand écran.
+
+### Protagonistes et références
+
+Chaque dossier peut lister ses **protagonistes** : ce que l'affirmation met en cause
+(personnes, organisations, lieux, textes) et ceux qui portent les preuves (auteurs,
+institutions). Chaque entrée porte une référence publique vérifiable — ou rien : une
+entrée sans référence confirmée s'affiche **sans lien**, jamais avec une URL devinée. Les
+références sont contrôlées contre l'API Wikipédia avant d'entrer dans le dossier de
+référence, et le titre retenu est celui que l'API renvoie, redirections comprises.
+
+### Relire une fiche d'archive
+
+```bash
+curl https://preuve-publique.fr/api/archives/<sha256>
+```
+
+La réponse est le contenu **octet pour octet** de la fiche déposée, avec son empreinte en
+en-tête (`x-archive-sha256`) et une mise en cache immuable : il suffit de rehacher le
+corps reçu pour retrouver l'empreinte annoncée.
+
 ## Direction artistique (brutalisme forensique)
 
 L'interface ne ressemble pas à un média d'opinion : grille suisse exposée (bordures 1px),

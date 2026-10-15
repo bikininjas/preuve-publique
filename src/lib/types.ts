@@ -55,6 +55,26 @@ export type Premise = {
   detail: string;
 };
 
+/**
+ * Protagoniste d'un dossier : une personne, une organisation, un lieu ou un
+ * texte cité. Deux rôles seulement, parce que c'est ce que le lecteur cherche :
+ * qui est mis en cause, et qui porte les preuves.
+ */
+export type ProtagonistKind = "PERSONNE" | "ORGANISATION" | "LIEU" | "TEXTE";
+export type ProtagonistRole = "SUJET" | "AUTEUR";
+
+export type Protagonist = {
+  name: string;
+  kind: ProtagonistKind;
+  role: ProtagonistRole;
+  /**
+   * Référence vérifiable (Wikipédia, Wikidata, notice d'autorité). Nul quand on
+   * n'en a pas : mieux vaut aucun lien qu'un lien inventé.
+   */
+  reference_url: string | null;
+  note: string | null;
+};
+
 export type DossierSource = {
   id: string;
   spectrum: PoliticalSpectrum;
@@ -67,6 +87,8 @@ export type DossierSource = {
   exact_quote: string;
   context_explanation: string;
   original_url: string | null;
+  /** Référence de l'auteur ou de l'institution (notice vérifiable), si connue. */
+  author_reference_url: string | null;
   /** Chemin de la capture dans le bucket `immutable-archives`, si capturée. */
   archive_storage_path: string | null;
   /**
@@ -86,6 +108,8 @@ export type Dossier = {
   verdict: VerdictStatus;
   verdict_summary: string;
   category: DossierCategory;
+  /** Personnes, organisations et textes cités par le dossier. */
+  protagonists: Protagonist[];
   consensus_score: number;
   premises: Premise[];
   is_published: boolean;

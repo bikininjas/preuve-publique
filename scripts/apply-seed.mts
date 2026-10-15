@@ -26,6 +26,7 @@ for (const candidate of SEED_DOSSIERS) {
     verdict: dossier.verdict,
     verdictSummary: dossier.verdict_summary,
     category: dossier.category,
+    protagonists: dossier.protagonists,
     consensusScore: dossier.consensus_score,
     premises: dossier.premises,
     isPublished: dossier.is_published,

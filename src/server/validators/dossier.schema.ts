@@ -83,6 +83,17 @@ export const premiseSchema = z.object({
   detail: z.string().trim().min(1, "explication vide"),
 });
 
+export const PROTAGONIST_KIND_VALUES = ["PERSONNE", "ORGANISATION", "LIEU", "TEXTE"] as const;
+export const PROTAGONIST_ROLE_VALUES = ["SUJET", "AUTEUR"] as const;
+
+export const protagonistSchema = z.object({
+  name: z.string().trim().min(1, "nom de protagoniste vide"),
+  kind: z.enum(PROTAGONIST_KIND_VALUES),
+  role: z.enum(PROTAGONIST_ROLE_VALUES),
+  reference_url: urlSchema.nullable(),
+  note: z.string().trim().min(1).nullable(),
+});
+
 export const dossierSourceSchema = z.object({
   id: z.string().trim().min(1),
   spectrum: z.enum(SPECTRUM_VALUES),
@@ -93,6 +104,7 @@ export const dossierSourceSchema = z.object({
   exact_quote: z.string().trim().min(1, "citation vide"),
   context_explanation: z.string().trim().min(1),
   original_url: urlSchema.nullable(),
+  author_reference_url: urlSchema.nullable(),
   archive_storage_path: z.string().trim().min(1).nullable(),
   archive_sha256: sha256Schema.nullable(),
   archive_binary_sha256: sha256Schema.nullable(),
@@ -109,6 +121,7 @@ export const dossierSchema = z
     verdict: z.enum(VERDICT_VALUES),
     verdict_summary: z.string().trim().min(1),
     category: z.enum(CATEGORY_VALUES),
+    protagonists: z.array(protagonistSchema),
     consensus_score: z.number().int().min(0).max(100),
     premises: z.array(premiseSchema),
     is_published: z.boolean(),

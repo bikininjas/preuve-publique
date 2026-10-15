@@ -42,6 +42,49 @@ function done(target: string, message: string): never {
   redirect(`${target}?ok=${encodeURIComponent(message)}`);
 }
 
+/**
+ * Protagonistes saisis une ligne par entrée :
+ *   Nom | TYPE | ROLE | URL | note facultative
+ * TYPE ∈ PERSONNE, ORGANISATION, LIEU, TEXTE ; ROLE ∈ SUJET, AUTEUR.
+ * Une ligne mal formée arrête l'enregistrement plutôt que d'entrer à moitié.
+ */
+function parseProtagonists(form: FormData, dossierId: string): unknown[] {
+  const brut = text(form, "protagonists");
+  if (brut.length === 0) {
+    return [];
+  }
+  const kinds = ["PERSONNE", "ORGANISATION", "LIEU", "TEXTE"];
+  const roles = ["SUJET", "AUTEUR"];
+  const entrees: unknown[] = [];
+  for (const ligne of brut.split("\n")) {
+    const propre = ligne.trim();
+    if (propre.length === 0 || propre.startsWith("#")) {
+      continue;
+    }
+    const [nom, kind, role, url, note] = propre.split("|").map((partie) => partie.trim());
+    if (nom === undefined || nom.length === 0) {
+      continue;
+    }
+    if (kind === undefined || !kinds.includes(kind.toUpperCase())) {
+      problem(`/admin/dossiers/${dossierId}`, `Type de protagoniste inconnu : ${kind ?? "(vide)"}.`);
+    }
+    if (role === undefined || !roles.includes(role.toUpperCase())) {
+      problem(`/admin/dossiers/${dossierId}`, `Rôle de protagoniste inconnu : ${role ?? "(vide)"}.`);
+    }
+    if (url !== undefined && url.length > 0 && !/^https?:\/\//.test(url)) {
+      problem(`/admin/dossiers/${dossierId}`, `Référence attendue en http(s) : ${url}.`);
+    }
+    entrees.push({
+      name: nom,
+      kind: kind.toUpperCase(),
+      role: role.toUpperCase(),
+      reference_url: url !== undefined && url.length > 0 ? url : null,
+      note: note !== undefined && note.length > 0 ? note : null,
+    });
+  }
+  return entrees;
+}
+
 function refresh() {
   clearDossierCache();
   revalidatePath("/");
@@ -162,6 +205,7 @@ export async function updateDossierAction(form: FormData) {
       category: text(form, "category"),
       verdict: text(form, "verdict"),
       verdict_summary: text(form, "verdict_summary"),
+      protagonists: parseProtagonists(form, id),
       consensus_score: whole(form, "consensus_score", 0),
       premises: checkedPremises.data,
       updated_at: new Date().toISOString(),
@@ -187,6 +231,7 @@ export async function addSourceAction(form: FormData) {
     exact_quote: text(form, "exact_quote"),
     context_explanation: text(form, "context_explanation"),
     original_url: nullable(form, "original_url"),
+    author_reference_url: nullable(form, "author_reference_url"),
     display_order: whole(form, "display_order", 1),
   });
   if (error !== null) {
@@ -211,6 +256,7 @@ export async function updateSourceAction(form: FormData) {
       exact_quote: text(form, "exact_quote"),
       context_explanation: text(form, "context_explanation"),
       original_url: nullable(form, "original_url"),
+      author_reference_url: nullable(form, "author_reference_url"),
       display_order: whole(form, "display_order", 1),
       // Toute modification de citation invalide l'empreinte publiée : elle est
       // recalculée, jamais conservée à l'identique.
@@ -255,7 +301,7 @@ export async function publishAction(form: FormData) {
   const { data: row, error } = await client
     .from("dossiers")
     .select(
-      "id, slug, claim_title, verdict, verdict_summary, category, consensus_score, premises, is_published, published_at, dossier_sources (id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, display_order)",
+      "id, slug, claim_title, verdict, verdict_summary, category, consensus_score, premises, protagonists, is_published, published_at, dossier_sources (id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, author_reference_url, archive_storage_path, archive_sha256, archive_binary_sha256, display_order)",
     )
     .eq("id", id)
     .maybeSingle();
@@ -269,6 +315,7 @@ export async function publishAction(form: FormData) {
     verdict: row.verdict,
     verdict_summary: row.verdict_summary,
     category: row.category,
+    protagonists: row.protagonists ?? [],
     consensus_score: row.consensus_score,
     premises: row.premises,
     is_published: true,

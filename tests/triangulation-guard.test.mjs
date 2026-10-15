@@ -86,6 +86,7 @@ test("un brouillon incomplet reste acceptable : la règle ne vise que la publica
     verdict: "FAUX",
     verdict_summary: "En cours d'instruction.",
     category: "SOCIETE",
+    protagonists: [],
     consensus_score: 0,
     premises: [],
     is_published: false,
