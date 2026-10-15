@@ -37,6 +37,7 @@ function sourceInsert(dossier: Dossier, source: DossierSource): string {
     "archive_storage_path",
     "archive_sha256",
     "archive_binary_sha256",
+    "author_reference_url",
     "display_order",
   ].join(", ");
   const values = [
@@ -53,6 +54,7 @@ function sourceInsert(dossier: Dossier, source: DossierSource): string {
     sqlNullable(source.archive_storage_path),
     sqlNullable(source.archive_sha256),
     sqlNullable(source.archive_binary_sha256),
+    sqlNullable(source.author_reference_url),
     String(source.display_order),
   ].join(",\n  ");
   return `insert into public.dossier_sources (${columns}) values (\n  ${values}\n);`;
@@ -61,7 +63,7 @@ function sourceInsert(dossier: Dossier, source: DossierSource): string {
 function dossierInsert(dossier: Dossier): string {
   return [
     "insert into public.dossiers (",
-    "  id, slug, claim_title, verdict, verdict_summary, category, consensus_score,",
+    "  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,",
     "  premises, is_published, published_at",
     ") values (",
     `  ${sqlText(dossier.id)},`,
@@ -70,6 +72,7 @@ function dossierInsert(dossier: Dossier): string {
     `  ${sqlText(dossier.verdict)}::verdict_status,`,
     `  ${sqlText(dossier.verdict_summary)},`,
     `  ${sqlText(dossier.category)}::dossier_category,`,
+    `  ${sqlText(JSON.stringify(dossier.protagonists))}::jsonb,`,
     `  ${String(dossier.consensus_score)},`,
     `  ${sqlText(JSON.stringify(dossier.premises))}::jsonb,`,
     `  ${dossier.is_published ? "true" : "false"},`,

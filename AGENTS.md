@@ -85,6 +85,14 @@ modifier le projet. Respecter les instructions de l'utilisateur en priorité.
   journaux. Sans elle, le script refuse d'écrire (code 2) plutôt que de simuler.
 - Ne jamais déposer de PDF volumineux dans Postgres, ni de capture sans fiche.
 
+## Protagonistes et références
+
+- Une référence (Wikipédia, Wikidata, notice) n'entre dans un dossier qu'après avoir été
+  **confirmée par l'API** ; le titre retenu est le titre canonique renvoyé. Jamais d'URL
+  devinée : une entrée sans référence s'affiche sans lien.
+- Ces liens servent à **situer** les personnes et les textes, pas à établir les faits.
+  Les faits reposent sur les pièces, leurs citations et leurs empreintes.
+
 ## Administration
 
 - L'espace de rédaction écrit avec **la session de l'utilisateur** (RLS), jamais avec une

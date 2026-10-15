@@ -70,7 +70,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         <SiteHeader />
-        <main className="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 sm:px-8">
+        <main className="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 sm:px-8 lg:w-[92%] lg:max-w-[1840px] xl:w-[90%]">
           {children}
         </main>
         <SiteFooter />

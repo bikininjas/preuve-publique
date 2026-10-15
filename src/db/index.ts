@@ -79,6 +79,28 @@ export function supabaseAdmin(): SupabaseClient | null {
   });
 }
 
+/**
+ * Client d'écriture Storage pour l'exploitation, hors conteneur web : soit une
+ * clé de service, soit le jeton de session d'un administrateur — celui que la
+ * RLS reconnaît par `is_admin()`. Le second évite de faire circuler une clé de
+ * service. Ni l'un ni l'autre n'est nécessaire au dépôt des fiches en base.
+ */
+export function supabaseStorageWriter(): SupabaseClient | null {
+  const fromServiceKey = supabaseAdmin();
+  if (fromServiceKey !== null) {
+    return fromServiceKey;
+  }
+  const env = supabaseEnv();
+  const token = process.env.SUPABASE_ADMIN_ACCESS_TOKEN ?? "";
+  if (env === null || token.length === 0) {
+    return null;
+  }
+  return createClient(env.url, env.key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { headers: { Authorization: `Bearer ${token}` } },
+  });
+}
+
 type Privileged = {
   db: PostgresJsDatabase<typeof schema>;
   client: ReturnType<typeof postgres>;

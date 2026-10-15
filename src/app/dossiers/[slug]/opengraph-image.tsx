@@ -2,9 +2,11 @@ import { ImageResponse } from "next/og";
 
 import { getPublishedDossier } from "@/server/services/dossier.service";
 import {
+  CATEGORY_LABELS,
   SPECTRUM_CODES,
   SPECTRUM_ORDER,
   VERDICT_STAMPS,
+  dossierCode,
 } from "@/lib/labels";
 
 export const alt = "Carte de partage d'un dossier vérifié — Preuve publique";
@@ -47,6 +49,9 @@ export default async function ShareImage({
       : 0,
   }));
   const pieceCount = dossier?.sources.length ?? 0;
+  const category = dossier ? CATEGORY_LABELS[dossier.category] : "SANS CATÉGORIE";
+  const code = dossier ? dossierCode(dossier.id) : "PP-—";
+  const filledPillars = counts.filter((column) => column.count > 0).length;
 
   return new ImageResponse(
     (
@@ -73,7 +78,21 @@ export default async function ShareImage({
           }}
         >
           <div style={{ display: "flex" }}>REGISTRE DES VÉRIFICATIONS</div>
-          <div style={{ display: "flex" }}>PREUVE-PUBLIQUE.FR</div>
+          <div
+              style={{
+                display: "flex",
+                border: `2px solid ${SEAL}`,
+                color: SEAL,
+                padding: "6px 16px",
+                fontSize: 20,
+                letterSpacing: 4,
+              }}
+            >
+              {category.toUpperCase()}
+            </div>
+            <div style={{ display: "flex", fontSize: 16, letterSpacing: 2 }}>
+              {`REGISTRE N° ${code}`}
+            </div>
         </div>
 
         <div style={{ display: "flex", flex: 1, flexDirection: "column", padding: "36px 40px", gap: 24 }}>
@@ -93,8 +112,33 @@ export default async function ShareImage({
           <div style={{ display: "flex", fontSize: 66, lineHeight: 1.08, color: INK }}>
             {title.length > 92 ? `${title.slice(0, 91)}…` : title}
           </div>
-          <div style={{ display: "flex", fontSize: 22, color: MUTED }}>
-            {`Consensus documentaire : ${score}% · ${pieceCount} pièces recoupées`}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <div style={{ display: "flex", fontSize: 22, color: MUTED }}>
+              {`Consensus du dossier : ${score}% · ${pieceCount} pièces · ${filledPillars}/6 piliers`}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <div
+                style={{
+                  display: "flex",
+                  flex: 1,
+                  height: 22,
+                  border: `2px solid ${GRID}`,
+                  backgroundColor: CANVAS,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    width: `${Math.max(0, Math.min(100, score))}%`,
+                    height: "100%",
+                    backgroundColor: INK,
+                  }}
+                />
+              </div>
+              <div style={{ display: "flex", fontSize: 20, color: INK, letterSpacing: 2 }}>
+                {`${score}%`}
+              </div>
+            </div>
           </div>
         </div>
 

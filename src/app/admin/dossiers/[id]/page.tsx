@@ -21,7 +21,8 @@ import {
   VERDICT_LABELS,
 } from "@/lib/labels";
 import { QUOTE_KIND_VALUES, VERDICT_VALUES } from "@/server/validators/dossier.schema.ts";
-import type { PoliticalSpectrum } from "@/lib/types";
+import type { PoliticalSpectrum, Premise } from "@/lib/types";
+import PremisesEditor from "@/components/PremisesEditor";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +54,7 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
   const { data } = await client
     .from("dossiers")
     .select(
-      "id, slug, claim_title, verdict, verdict_summary, category, consensus_score, premises, is_published, published_at, dossier_sources (id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_sha256, display_order)",
+      "id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score, premises, is_published, published_at, dossier_sources (id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, author_reference_url, archive_sha256, display_order)",
     )
     .eq("id", id)
     .maybeSingle();
@@ -161,16 +162,37 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
             defaultValue={data.verdict_summary}
           />
         </label>
+        <div className="sm:col-span-2">
+          <span className={FIELD}>Anatomie du sophisme</span>
+          <PremisesEditor initial={(data.premises ?? []) as Premise[]} />
+        </div>
         <label className="sm:col-span-2">
           <span className={FIELD}>
-            Anatomie du sophisme (JSON : claim_part, status, detail)
+            Protagonistes (une ligne par entrée : Nom | TYPE | ROLE | URL | note)
           </span>
           <textarea
             className={`${TEXTAREA} font-mono text-[13px]`}
-            name="premises"
-            rows={8}
-            defaultValue={JSON.stringify(data.premises ?? [], null, 2)}
+            name="protagonists"
+            rows={10}
+            defaultValue={(data.protagonists ?? [])
+              .map(
+                (entree: {
+                  name: string;
+                  kind: string;
+                  role: string;
+                  reference_url: string | null;
+                  note: string | null;
+                }) =>
+                  [entree.name, entree.kind, entree.role, entree.reference_url ?? "", entree.note ?? ""]
+                    .join(" | ")
+                    .replace(/ \| \| $/, " | | "),
+              )
+              .join("\n")}
           />
+          <span className={FIELD}>
+            TYPE : PERSONNE, ORGANISATION, LIEU, TEXTE — ROLE : SUJET (mis en cause) ou
+            AUTEUR (porte la preuve). Les lignes commençant par # sont ignorées.
+          </span>
         </label>
         <button className="pp-btn pp-btn--ink sm:col-span-2" type="submit">
           Enregistrer le dossier
@@ -279,6 +301,16 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
                   defaultValue={source.original_url ?? ""}
                 />
               </label>
+              <label className="sm:col-span-2">
+                <span className={FIELD}>Référence de l&apos;auteur ou de l&apos;institution</span>
+                <input
+                  className={`${INPUT} font-mono`}
+                  name="author_reference_url"
+                  type="url"
+                  placeholder="https://fr.wikipedia.org/wiki/…"
+                  defaultValue={source.author_reference_url ?? ""}
+                />
+              </label>
               <p className="pp-meta text-muted sm:col-span-2">
                 empreinte actuelle :{" "}
                 <span className="text-ink">
@@ -358,6 +390,15 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
             <label className="sm:col-span-2">
               <span className={FIELD}>URL d&apos;origine (https://…)</span>
               <input className={`${INPUT} font-mono`} name="original_url" type="url" />
+            </label>
+            <label className="sm:col-span-2">
+              <span className={FIELD}>Référence de l&apos;auteur ou de l&apos;institution</span>
+              <input
+                className={`${INPUT} font-mono`}
+                name="author_reference_url"
+                type="url"
+                placeholder="https://fr.wikipedia.org/wiki/…"
+              />
             </label>
             <button className="pp-btn pp-btn--ink sm:col-span-2" type="submit">
               Ajouter la pièce

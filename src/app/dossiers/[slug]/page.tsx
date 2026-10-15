@@ -4,19 +4,29 @@ import { notFound } from "next/navigation";
 
 import { BlindModeProvider, BlindModeSwitch } from "@/components/BlindModeSwitch";
 import ConvergenceSpectrometer from "@/components/ConvergenceSpectrometer";
+import DossierDensity from "@/components/DossierDensity";
 import DossierHero from "@/components/DossierHero";
 import EvidenceCard from "@/components/EvidenceCard";
 import FallacyAnatomy from "@/components/FallacyAnatomy";
 import OriginNotice from "@/components/OriginNotice";
+import PiecesTabs from "@/components/PiecesTabs";
+import Protagonists from "@/components/Protagonists";
 import Reveal from "@/components/Reveal";
 import { getPublishedDossier } from "@/server/services/dossier.service";
 import { computeIntegrityRoot } from "@/server/services/crypto.service";
 import {
   CATEGORY_LABELS,
   CATEGORY_SLUGS,
+  PREMISE_STATUS_LABELS,
+  SPECTRUM_CODES,
   SPECTRUM_COLUMN_LABELS,
+  SPECTRUM_LABELS,
   SPECTRUM_ORDER,
+  SPECTRUM_SHORT_LABELS,
+  VERDICT_STAMPS,
+  formatDate,
   formatLongDate,
+  pieceCode,
 } from "@/lib/labels";
 import type { PoliticalSpectrum } from "@/lib/types";
 
@@ -84,14 +94,111 @@ export default async function DossierPage({ params }: PageProps) {
 
   const filled = SPECTRUM_ORDER.filter((spectrum) => (bySpectrum.get(spectrum) ?? []).length > 0);
   const firstFilled = filled[0];
+  const captured = dossier.sources.filter((source) => source.archive_binary_sha256 !== null).length;
+  const snapped = dossier.sources.filter((source) => source.original_url !== null).length;
 
   const contents = [
     { href: "#verdict", label: "Verdict" },
     { href: "#anatomie", label: "Anatomie" },
+    { href: "#protagonistes", label: "Protagonistes" },
     { href: "#piliers", label: "Six piliers" },
     { href: "#pieces", label: "Pièces" },
     { href: "#integrite", label: "Intégrité" },
   ];
+
+  const sections = SPECTRUM_ORDER.map((spectrum) => {
+    const sources = bySpectrum.get(spectrum) ?? [];
+    return {
+      spectrum,
+      label: SPECTRUM_SHORT_LABELS[spectrum],
+      count: sources.length,
+      node: (
+        <details id={`pieces-${spectrum}`} className="pp-fold scroll-mt-32" open={spectrum === firstFilled}>
+          <summary>
+            <span className="pp-led pp-led--on" aria-hidden="true" />
+            {SPECTRUM_COLUMN_LABELS[spectrum]}
+            <span className="ml-2 text-muted">{String(sources.length).padStart(2, "0")}</span>
+          </summary>
+          <div className="space-y-3 p-3">
+            {sources.length === 0 ? (
+              <p className="pp-meta border border-dashed border-gridsoft px-3 py-3 text-muted">
+                Aucune pièce recoupée sur ce pilier — il reste éteint plutôt que
+                d&apos;être comblé par une approximation.
+              </p>
+            ) : (
+              sources.map((source) => (
+                <EvidenceCard key={source.id} source={source} order={source.display_order} />
+              ))
+            )}
+          </div>
+        </details>
+      ),
+    };
+  });
+
+  /** Vue « 30 secondes » : verdict, briques, pièces en une ligne chacune. */
+  const synthesis = (
+    <section className="space-y-4 border border-grid bg-surface p-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <span
+          className="border px-2 py-0.5 font-mono text-[13px] tracking-[0.14em]"
+          style={{
+            borderColor: "var(--pp-false-bd)",
+            color: "var(--pp-false-bd)",
+            background: "var(--pp-false-bg)",
+          }}
+        >
+          {VERDICT_STAMPS[dossier.verdict]}
+        </span>
+        <span className="pp-meta text-muted">
+          {CATEGORY_LABELS[dossier.category]} · {dossier.sources.length} pièces · consensus{" "}
+          {dossier.consensus_score}%
+        </span>
+      </div>
+
+      <p className="pp-lead text-ink">{dossier.verdict_summary}</p>
+
+      <div className="space-y-2">
+        <p className="pp-meta text-muted">Ce que dit l&apos;affirmation, brique par brique</p>
+        <ul className="space-y-1">
+          {dossier.premises.map((premise) => (
+            <li key={premise.claim_part} className="flex flex-wrap items-baseline gap-2 border-b border-gridsoft pb-1">
+              <span className="pp-meta text-ink">{PREMISE_STATUS_LABELS[premise.status]}</span>
+              <span className="pp-tight text-muted">{premise.claim_part}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="space-y-2">
+        <p className="pp-meta text-muted">
+          Les {dossier.sources.length} pièces, en une ligne chacune
+        </p>
+        <ul className="space-y-1">
+          {dossier.sources.map((source) => (
+            <li key={source.id} className="flex flex-wrap items-baseline gap-x-2 border-b border-gridsoft pb-1">
+              <span className="font-mono text-[12px] text-seal">{pieceCode(source.display_order)}</span>
+              <span className="pp-meta text-muted">{SPECTRUM_LABELS[source.spectrum]}</span>
+              <span className="pp-tight text-ink">{source.source_name}</span>
+              <span className="pp-meta text-muted">
+                {source.publication_date === null ? "sans date" : formatDate(source.publication_date)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="pp-tight text-muted">
+        {captured} pièce{captured > 1 ? "s" : ""} sur {dossier.sources.length} ont une fiche
+        d&apos;archive déposée ; {snapped} portent une URL d&apos;origine. Racine d&apos;intégrité :{" "}
+        <span className="font-mono break-all text-ink">{integrityRoot}</span>
+      </p>
+      <p className="pp-tight text-muted">
+        Pour les citations, leurs auteurs et l&apos;audit d&apos;empreinte pièce par pièce,
+        passez en <strong className="text-ink">dossier complet</strong>.
+      </p>
+    </section>
+  );
 
   return (
     <article className="pp-doc space-y-6">
@@ -103,102 +210,90 @@ export default async function DossierPage({ params }: PageProps) {
         <Link className="pp-chip" href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}>
           {CATEGORY_LABELS[dossier.category]}
         </Link>
-        <Link className="pp-meta text-seal hover:underline" href="/dossiers">
+        <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
           Registre →
         </Link>
       </div>
 
-      {/* Sommaire collant : le dossier fait plusieurs écrans, le lecteur ne
-          doit jamais chercher où il en est. */}
-      <nav className="pp-toc" aria-label="Sommaire du dossier">
-        {contents.map((entry) => (
-          <a key={entry.href} href={entry.href}>
-            {entry.label}
-          </a>
-        ))}
-      </nav>
+      <DossierDensity synthesis={synthesis} piecesTotal={dossier.sources.length}>
+        <>
+          {/* Sommaire collant : le dossier fait plusieurs écrans. */}
+          <nav className="pp-toc" aria-label="Sommaire du dossier">
+            {contents.map((entry) => (
+              <a key={entry.href} href={entry.href}>
+                {entry.label}
+              </a>
+            ))}
+          </nav>
 
-      <OriginNotice origin={result.origin} />
+          <OriginNotice origin={result.origin} />
 
-      <div id="piliers" className="scroll-mt-16">
-        <Reveal>
-          <ConvergenceSpectrometer dossier={dossier} />
-        </Reveal>
-      </div>
-
-      <div id="anatomie" className="scroll-mt-16">
-        <Reveal>
-          <FallacyAnatomy premises={dossier.premises} />
-        </Reveal>
-      </div>
-
-      <section id="pieces" className="scroll-mt-16 space-y-3">
-        <BlindModeProvider sources={dossier.sources.length}>
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="pp-h3 font-serif text-ink">
-              Pièces à conviction ({dossier.sources.length})
-            </h2>
-            <BlindModeSwitch />
+          <div id="piliers" className="scroll-mt-16">
+            <Reveal>
+              <ConvergenceSpectrometer dossier={dossier} />
+            </Reveal>
           </div>
 
-          {/* Un pilier = un dépliant : la preuve reste entière, mais le lecteur
-              n'a plus trois écrans de texte à traverser pour en changer. */}
-          {SPECTRUM_ORDER.map((spectrum) => {
-            const sources = bySpectrum.get(spectrum) ?? [];
-            return (
-              <details
-                key={spectrum}
-                id={`pieces-${spectrum}`}
-                className="pp-fold scroll-mt-16"
-                open={spectrum === firstFilled}
-              >
-                <summary>
-                  <span className="pp-led pp-led--on" aria-hidden="true" />
-                  {SPECTRUM_COLUMN_LABELS[spectrum]}
-                  <span className="ml-2 text-muted">
-                    {String(sources.length).padStart(2, "0")}
-                  </span>
-                </summary>
-                <div className="space-y-3 p-3">
-                  {sources.length === 0 ? (
-                    <p className="pp-meta border border-dashed border-gridsoft px-3 py-3 text-muted">
-                      Aucune pièce recoupée sur ce pilier — il reste éteint plutôt que
-                      d&apos;être comblé par une approximation.
-                    </p>
-                  ) : (
-                    sources.map((source) => (
-                      <EvidenceCard key={source.id} source={source} order={source.display_order} />
-                    ))
-                  )}
-                </div>
-              </details>
-            );
-          })}
-        </BlindModeProvider>
-      </section>
+          <div id="anatomie" className="scroll-mt-16">
+            <Reveal>
+              <FallacyAnatomy premises={dossier.premises} />
+            </Reveal>
+          </div>
 
-      <footer
-        id="integrite"
-        className="scroll-mt-16 space-y-2 border border-grid bg-surface px-4 py-4 sm:px-6"
-      >
-        <p className="pp-meta text-muted">Intégrité du dossier</p>
-        <p className="pp-tight text-muted">
-          Racine d&apos;intégrité :{" "}
-          <span className="font-mono text-ink break-all">{integrityRoot}</span> — hachage
-          de la liste triée des empreintes de ses pièces. Elle change à la moindre
-          modification de citation.
-        </p>
-        <p className="pp-tight text-muted">
-          Provenance :{" "}
-          {result.origin === "supabase"
-            ? "lecture Supabase sous RLS (dossiers publiés uniquement)"
-            : "dossiers de référence locaux (Supabase non configuré)"}{" "}
-          · publié le {formatLongDate(dossier.published_at)} ·{" "}
-          <Link className="text-seal hover:underline" href="/methode">
-            Méthode et limites
-          </Link>
-        </p>
-      </footer>
+          <div id="protagonistes" className="scroll-mt-16">
+            <Reveal>
+              <Protagonists protagonists={dossier.protagonists} />
+            </Reveal>
+          </div>
+
+          <section id="pieces" className="scroll-mt-16 space-y-3">
+            <BlindModeProvider sources={dossier.sources.length}>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h2 className="pp-h3 font-serif text-ink">
+                  Pièces à conviction ({dossier.sources.length})
+                </h2>
+                <BlindModeSwitch />
+              </div>
+
+              <PiecesTabs
+                total={dossier.sources.length}
+                tabs={sections.map((section) => ({
+                  spectrum: section.spectrum,
+                  label: section.label,
+                  count: section.count,
+                }))}
+                sections={sections.map((section) => ({
+                  spectrum: section.spectrum,
+                  node: section.node,
+                }))}
+              />
+            </BlindModeProvider>
+          </section>
+
+          <footer
+            id="integrite"
+            className="scroll-mt-16 space-y-2 border border-grid bg-surface px-4 py-4 sm:px-6"
+          >
+            <p className="pp-meta text-muted">Intégrité du dossier</p>
+            <p className="pp-tight text-muted">
+              Racine d&apos;intégrité :{" "}
+              <span className="font-mono break-all text-ink">{integrityRoot}</span> — hachage
+              de la liste triée des empreintes de ses pièces. Elle change à la moindre
+              modification de citation.
+            </p>
+            <p className="pp-tight text-muted">
+              Provenance :{" "}
+              {result.origin === "supabase"
+                ? "lecture Supabase sous RLS (dossiers publiés uniquement)"
+                : "dossiers de référence locaux (Supabase non configuré)"}{" "}
+              · publié le {formatLongDate(dossier.published_at)} ·{" "}
+              <Link className="pp-tap pp-meta text-seal hover:underline" href="/methode">
+                Méthode et limites
+              </Link>
+            </p>
+          </footer>
+        </>
+      </DossierDensity>
     </article>
   );
 }

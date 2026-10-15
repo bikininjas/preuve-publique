@@ -12,7 +12,7 @@ import { CATEGORY_LABELS, CATEGORY_ORDER, CATEGORY_SLUGS } from "@/lib/labels";
 export default function SiteHeader() {
   return (
     <header className="pp-header">
-      <div className="mx-auto flex w-full max-w-[1180px] items-center gap-2 px-3 sm:px-6">
+      <div className="mx-auto flex w-full max-w-[1180px] items-center gap-2 px-3 sm:px-6 lg:w-[92%] lg:max-w-[1840px] xl:w-[90%]">
         <Link
           href="/"
           className="pp-tap shrink-0 gap-2 pr-2"

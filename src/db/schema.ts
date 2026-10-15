@@ -4,6 +4,7 @@ import {
   customType,
   date,
   index,
+  integer,
   jsonb,
   pgEnum,
   pgTable,
@@ -70,6 +71,7 @@ export const dossiers = pgTable(
     verdict: verdictStatus("verdict").notNull(),
     verdictSummary: text("verdict_summary").notNull(),
     category: dossierCategory("category").notNull(),
+    protagonists: jsonb("protagonists").notNull().default(sql`'[]'::jsonb`),
     consensusScore: smallint("consensus_score").notNull(),
     premises: jsonb("premises").notNull().default(sql`'[]'::jsonb`),
     searchTsv: tsvector("search_tsv").generatedAlwaysAs(
@@ -88,6 +90,34 @@ export const dossiers = pgTable(
   ],
 );
 
+/**
+ * Fiches d'archive déposées. L'adresse d'une fiche est son empreinte SHA-256,
+ * et une contrainte en base vérifie que le contenu déposé la redonne : le
+ * contrôle n'est pas seulement fait par le script, il tient aussi côté serveur.
+ */
+export const dossierSourceArchives = pgTable(
+  "dossier_source_archives",
+  {
+    sha256: text("sha256").primaryKey(),
+    sourceId: uuid("source_id")
+      .notNull()
+      .references(() => dossierSources.id, { onDelete: "cascade" }),
+    dossierId: uuid("dossier_id")
+      .notNull()
+      .references(() => dossiers.id, { onDelete: "cascade" }),
+    schema: text("schema").notNull(),
+    content: text("content").notNull(),
+    bytes: integer("bytes").notNull(),
+    capturedAt: timestamp("captured_at", { withTimezone: true }).notNull(),
+    captureKind: text("capture_kind").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("idx_dossier_source_archives_source").on(table.sourceId),
+    index("idx_dossier_source_archives_dossier").on(table.dossierId),
+  ],
+);
+
 export const dossierSources = pgTable(
   "dossier_sources",
   {
@@ -103,6 +133,7 @@ export const dossierSources = pgTable(
     exactQuote: text("exact_quote").notNull(),
     contextExplanation: text("context_explanation").notNull(),
     originalUrl: text("original_url"),
+    authorReferenceUrl: text("author_reference_url"),
     archiveStoragePath: text("archive_storage_path"),
     archiveSha256: text("archive_sha256"),
     archiveBinarySha256: text("archive_binary_sha256"),
