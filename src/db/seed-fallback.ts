@@ -947,6 +947,154 @@ export const VICHY_DOSSIER: Dossier = {
   ],
 };
 
+export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
+  id: "bf081aa5-d711-4510-bb25-b426ae7ffa46",
+  slug: "cout-immigration-budget-france",
+  claim_title: "L'immigration coûte des dizaines de milliards d'euros par an à la France",
+  verdict: "FAUX",
+  category: "ECONOMIE",
+  protagonists: [
+    {
+      name: "Immigration en France",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Immigration_en_France",
+      note: "Le débat budgétaire porte sur la contribution nette des immigrés aux finances publiques françaises.",
+    },
+    {
+      name: "Organisation de coopération et de développement économiques",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Organisation_de_coop%C3%A9ration_et_de_d%C3%A9veloppement_%C3%A9conomiques",
+      note: null,
+    },
+    {
+      name: "Centre d'études prospectives et d'informations internationales",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Centre_d%27%C3%A9tudes_prospectives_et_d%27informations_internationales",
+      note: "Auteurs de l'évaluation comptable de la contribution des immigrés aux finances publiques (1979-2011).",
+    },
+    {
+      name: "Insee",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques",
+      note: "Source des statistiques d'activité et d'emploi de la population immigrée.",
+    },
+    {
+      name: "Terra Nova",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Terra_Nova_(think_tank)",
+      note: "Think tank progressiste ; note sur la place des étrangers non européens dans les métiers en tension.",
+    },
+  ],
+  verdict_summary:
+    "Les évaluations convergent vers un solde faible ou quasi nul : sur 1979-2011, la contribution nette des immigrés aux finances publiques françaises est restée bornée entre - 0,5 % et + 0,05 % du PIB et n'a jamais déterminé le solde budgétaire primaire (CEPII) ; dans les 25 pays de l'OCDE pour lesquels des données existent, les impôts et cotisations des immigrés ont en moyenne dépassé les dépenses publiques qui leur sont consacrées en 2006-2018 (OCDE, rapport 2021). La structure par âge — population surreprésentée dans les classes actives — compense une contribution plus faible à âge donné.",
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part: "« Les immigrés coûtent plus cher en aides qu'ils ne rapportent »",
+      status: "FAUX",
+      detail:
+        "Les évaluations convergent vers un solde faible : contribution nette bornée entre - 0,5 % et + 0,05 % du PIB sur 1979-2011 (CEPII) ; impôts et cotisations supérieurs aux dépenses consacrées aux immigrés (protection sociale, santé, éducation) en moyenne 2006-2018 dans les 25 pays OCDE étudiés. La population immigrée est surreprésentée dans les classes d'âge actives, où les cotisations versées dépassent les prestations reçues.",
+    },
+    {
+      claim_part: "« Le déficit de l'État est causé par l'immigration »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "Le CEPII conclut qu'« à aucun moment l'immigration n'a déterminé l'ampleur et l'évolution du solde budgétaire primaire » (1979-2011). Le déficit public s'explique d'abord par le vieillissement démographique (retraites, santé) et les cycles économiques : l'effet migratoire est marginal en comparaison.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "a16671de-0ef0-4a69-a745-2d285453a60a",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "L'essentiel sur… les immigrés et les étrangers — situation face à l'emploi",
+      author_or_institution: "Insee (France)",
+      publication_date: null,
+      quote_kind: "FAIT_DOCUMENTE",
+      exact_quote:
+        "En 2025, parmi les personnes de 15 à 64 ans, 80 % des hommes immigrés sont actifs, une proportion proche des 78 % des hommes non-immigrés ; les immigrés occupent plus fréquemment que l'ensemble de la population des postes d'ouvriers (26 % contre 18 %).",
+      context_explanation:
+        "Chiffres de l'Insee sur l'insertion professionnelle : taux d'activité et d'emploi masculins proches de ceux des non-immigrés et forte part d'ouvriers. Cette population insérée cotise aux régimes sociaux ; l'évaluation de la contribution nette relève des travaux du CEPII et de l'OCDE cités dans ce dossier.",
+      original_url: "https://www.insee.fr/fr/statistiques/3633212",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "0eb42382-12e6-4e63-a38d-e03106f5e1ee",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "La Lettre du CEPII n° 394 — L'impact sur les finances publiques de 30 ans d'immigration en France",
+      author_or_institution: "Xavier Chojnicki, Lionel Ragot et Ndeye-Penda Sokhna (CEPII)",
+      publication_date: "2018-12-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les estimations réalisées montrent que, sur l'ensemble de la période étudiée, la contribution des immigrés en pourcentage du PIB est relativement faible (entre - 0,5 % et + 0,05 %). À aucun moment l'immigration n'a déterminé l'ampleur et l'évolution du solde budgétaire primaire.",
+      context_explanation:
+        "Méthode comptable désagrégeant le solde budgétaire primaire français entre la population immigrée et les natifs, sur 1979-2011 ; la contribution nette reste faible et ne détermine jamais le solde.",
+      original_url: "https://www.cepii.fr/CEPII/fr/publications/lettre/abstract.asp?NoDoc=11997",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Centre_d%27%C3%A9tudes_prospectives_et_d%27informations_internationales",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "b8433f78-185c-40d5-aa73-57a2b5ab789d",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Perspectives des migrations internationales 2021 — incidence budgétaire de l'immigration",
+      author_or_institution: "OCDE",
+      publication_date: "2021-10-28",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Dans les 25 pays de l'OCDE pour lesquels des données sont disponibles, en moyenne au cours de la période 2006-18, la contribution des immigrés sous la forme d'impôts et de cotisations a été supérieure aux dépenses publiques consacrées à leur protection sociale, leur santé et leur éducation.",
+      context_explanation:
+        "Chapitre spécial de l'édition 2021 : contribution budgétaire nette des immigrés calculée pays par pays et année par année depuis le milieu des années 2000. Passage de synthèse relevé sur la page officielle de la publication.",
+      original_url:
+        "https://www.oecd.org/fr/publications/perspectives-des-migrations-internationales-2021_da2bbd99-fr.html",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Organisation_de_coop%C3%A9ration_et_de_d%C3%A9veloppement_%C3%A9conomiques",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "be25739e-eea9-43e3-92ea-92e06745b4da",
+      spectrum: "GAUCHE",
+      source_name: "Immigration et emploi en France : décodage d'une radiographie manipulée",
+      author_or_institution: "Paul-André Romain (Terra Nova)",
+      publication_date: "2026-10-15",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Si l'on tient compte de ces poids démographiques, les étrangers non européens apparaissent généralement surreprésentés dans de nombreux métiers en tension, tant en Île-de-France qu'en province (restauration, hôtellerie, bâtiment, agroalimentaire, etc.).",
+      context_explanation:
+        "Note du think tank progressiste Terra Nova répondant à une étude de l'Observatoire de l'immigration et de la démographie : rapportés aux poids démographiques, les étrangers non européens apparaissent surreprésentés dans de nombreux métiers en tension, en Île-de-France comme en province.",
+      original_url:
+        "https://tnova.fr/societe/immigration-integration-non-discrimination/immigration-et-emploi-en-france-decodage-dune-radiographie-manipulee/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Terra_Nova_(think_tank)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -973,6 +1121,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   AME_DOSSIER,
   RSA_DOSSIER,
   VICHY_DOSSIER,
+  IMMIGRATION_BUDGET_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 
