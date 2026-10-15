@@ -15,8 +15,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Seize dossiers en base :
-  quinze **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix-sept dossiers en base :
+  seize **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -24,10 +24,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   société), l'allocation pour demandeur d'asile (7, société), les aides sociales des
   sans-papiers (7, société), le minimum vieillesse (ASPA) versé aux étrangers (13,
   société), l'agression de Bordeaux attribuée à un « clandestin sous OQTF » (6, faits
-  divers) et l'incendie de l'église de Saint-Omer attribué à un « attentat islamiste »
-  (8, faits divers) — et un **brouillon de contrôle RLS** ; RLS actif sur
+  divers), l'incendie de l'église de Saint-Omer attribué à un « attentat islamiste »
+  (8, faits divers) et le revenu disponible d'un couple au RSA comparé à un couple au
+  SMIC (8, économie) — et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 117 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 125 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -77,6 +78,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   8 sources) a été vérifié de la même manière (`3e8df5b1…`) : huit fiches déposées et
   relues (sept instantanés réseau — franceinfo, Le Figaro, Sénat, OPR, code pénal
   art. 421-1 et 322-6, JAAAPL — et une URL indisponible, CNEWS répondant 403 aux robots).
+  Le seizième (le revenu disponible d'un couple au RSA comparé à un couple au SMIC,
+  8 sources) a été vérifié de la même manière (`db4ada31…`) : huit fiches déposées et
+  relues (CASF L. 262-2 et R. 262-9, barème CNAF, fiches service-public F19778 et A18815,
+  Cour des comptes, rapport sénatorial r25-728, étude OFCE), toutes capturées en
+  instantanés réseau.
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -104,6 +110,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   façon avant leur intégration. Les huit sources du dossier sur l'incendie de l'église de
   Saint-Omer (parquets via CNEWS, franceinfo, Le Figaro, Sénat ppl24-161, OPR, code pénal
   art. 421-1 et 322-6, JAAAPL) ont été vérifiées de la même façon avant leur intégration.
+  Les huit sources du dossier sur le revenu disponible RSA/SMIC (CASF L. 262-2 et
+  R. 262-9, barème CNAF, fiches service-public F19778 et A18815, Cour des comptes,
+  rapport sénatorial r25-728, étude OFCE) ont été vérifiées de la même façon avant leur
+  intégration.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -123,10 +133,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **117 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **125 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 91 fiches issues
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 99 fiches issues
   d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 23 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
@@ -139,9 +149,9 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   dédupliquée : 83 fiches exactes conservées, une par pièce publiée. L'intégration du
   dossier « aides sociales des sans-papiers » (13:30 UTC), puis celles du « minimum
   vieillesse (ASPA) » (13:42 et 14:05 UTC), de l'« agression de Bordeaux » (14:13 UTC) et
-  de l'« incendie de Saint-Omer » (14:22 UTC),
-  ont entraîné de nouvelles réapplications du seed et recaptures : **117 fiches exactes**,
-  une par pièce publiée (91 `URL_SNAPSHOT`, 23 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
+  de l'« incendie de Saint-Omer » (14:22 UTC) et du « RSA contre SMIC » (14:36 UTC),
+  ont entraîné de nouvelles réapplications du seed et recaptures : **125 fiches exactes**,
+  une par pièce publiée (99 `URL_SNAPSHOT`, 23 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
 
 ## Pile technique
 
@@ -389,7 +399,11 @@ par pièce. Puis, à 14:22 UTC, l'intégration du dossier « incendie de Saint-O
 (quinzième publié) a entraîné une ultime réapplication du seed et une recapture : 117
 pièces, 117 fiches déposées et relues — 91 `URL_SNAPSHOT`, 23 `URL_UNAVAILABLE`,
 3 `METADATA_ONLY` — racine des captures `34ac656206799454…` ; fiches dédupliquées, une
-par pièce. Le **miroir Storage** n'a pas eu lieu faute d'accès
+par pièce. Puis, à 14:36 UTC, l'intégration du dossier « RSA contre SMIC » (seizième
+publié) a entraîné une ultime réapplication du seed et une recapture : 125 pièces, 125
+fiches déposées et relues — 99 `URL_SNAPSHOT`, 23 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` —
+racine des captures `350fe197d8fad80b…` ; fiches dédupliquées, une par pièce. Le
+**miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 

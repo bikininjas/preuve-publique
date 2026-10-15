@@ -3161,6 +3161,223 @@ export const SAINT_OMER_DOSSIER: Dossier = {
   ],
 };
 
+export const RSA_SMIC_DOSSIER: Dossier = {
+  id: "3b38eeea-669e-4a45-8904-60084454bbd7",
+  slug: "aides-rsa-vs-smic-revenu-disponible",
+  claim_title: "Un couple au RSA gagne plus qu'un couple au SMIC en cumulant les aides",
+  verdict: "FAUX",
+  category: "ECONOMIE",
+  protagonists: [
+    {
+      name: "Revenu de solidarité active",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Revenu_de_solidarit%C3%A9_active",
+      note: "Allocation différentielle : elle porte les ressources du foyer au niveau d'un montant forfaitaire, sans s'y cumuler.",
+    },
+    {
+      name: "Prime d'activité",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Prime_d%27activit%C3%A9",
+      note: "Complément de revenu versé aux travailleurs modestes, revalorisé au 1er avril 2026.",
+    },
+    {
+      name: "Salaire minimum interprofessionnel de croissance",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Salaire_minimum_interprofessionnel_de_croissance",
+      note: "Salarié au SMIC : revenu d'activité complet + prime d'activité + aides au logement.",
+    },
+    {
+      name: "Caisse nationale des allocations familiales",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Caisse_nationale_des_allocations_familiales",
+      note: "Publie les barèmes du RSA et de la prime d'activité (montants et forfait logement).",
+    },
+    {
+      name: "Cour des comptes (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      note: "Communication sur la prime d'activité à la commission des finances du Sénat (juin 2026).",
+    },
+  ],
+  verdict_summary:
+    "Le RSA est une allocation différentielle : il « porte les ressources du foyer au niveau du montant forfaitaire » — 977,54 € pour un couple au 1er avril 2026 — et il est amputé d'un forfait logement (156,41 € pour deux en cas d'aide au logement), soit environ 821 € de RSA net pour un couple avec APL. À l'inverse, un couple dont un membre travaille au SMIC cumule son salaire complet, la prime d'activité (montant forfaitaire porté à 638,28 €, revalorisé de 0,8 % en avril 2026), les APL et, le cas échéant, les allocations familiales. Les études convergent : l'OFCE (20 cas-types) montre que « l'emploi est toujours plus rémunérateur que l'inactivité » (gain de 252 à 533 € par mois pour un mi-temps) et la Cour des comptes (2026) que la prime d'activité « a largement contribué à faire disparaître les situations de pauvreté pour les personnes qui travaillent à temps plein ». Le travail rapporte plus que le RSA, pas l'inverse.",
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« Le cumul des aides permet de dépasser 2 000 € au RSA sans travailler »",
+      status: "FAUX",
+      detail:
+        "Le RSA est plafonné par construction : « une allocation qui porte les ressources du foyer au niveau du montant forfaitaire » (CASF, art. L. 262-2), et le forfait logement — 12 à 16,5 % du forfait selon la taille du foyer (art. R. 262-9 du CASF), soit 156,41 € pour deux — est déduit lorsque le foyer perçoit une aide au logement. Un couple inactif perçoit au plus 977,54 € de RSA, réduits à environ 821 € avec APL : aucun cumul passif n'atteint 1 500 €, a fortiori 2 000 €.",
+    },
+    {
+      claim_part: "« Travailler au SMIC rapporte moins que l'inactivité complète »",
+      status: "FAUX",
+      detail:
+        "Dès la reprise d'emploi, le salaire s'ajoute aux aides qui subsistent : prime d'activité pour les revenus modestes (forfait maximal 638,28 €, revalorisé au 1er avril 2026), APL, allocations familiales. Les rapporteurs du Sénat relèvent que « la reprise d'une activité garantit un gain financier immédiat, et ce dès le premier euro gagné » ; l'étude OFCE sur 20 cas-types conclut que l'emploi est toujours plus rémunérateur que l'inactivité (gain mensuel de 252 à 533 € pour un mi-temps au SMIC).",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "b2b5047e-3939-4de9-accd-a6ea7cdc8d70",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Code de l'action sociale et des familles — article L. 262-2 (définition du RSA)",
+      author_or_institution:
+        "République française — Code de l'action sociale et des familles (texte reproduit par Justicelibre, Légifrance bloquant les robots)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Toute personne résidant en France de manière stable et effective, dont le foyer dispose de ressources inférieures à un montant forfaitaire, a droit au revenu de solidarité active dans les conditions définies au présent chapitre.",
+      context_explanation:
+        "Le même article précise : « Le revenu de solidarité active est une allocation qui porte les ressources du foyer au niveau du montant forfaitaire. » C'est le principe de l'allocation différentielle : le RSA complète les ressources jusqu'au forfait — il ne s'y ajoute jamais intégralement, ce qui interdit par construction les cumuls à quatre chiffres allégués.",
+      original_url: "https://justicelibre.org/loi/CASF/L262-2",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "60258a81-8328-431e-af90-a78bc8a0a45d",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Code de l'action sociale et des familles — article R. 262-9 (évaluation forfaitaire des avantages de logement)",
+      author_or_institution:
+        "République française — Code de l'action sociale et des familles (texte reproduit par Justicelibre, Légifrance bloquant les robots)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Sauf lorsqu'ils constituent un élément des revenus professionnels mentionnés à l'article R. 262-12, les avantages en nature procurés par un logement occupé soit par son propriétaire ne bénéficiant pas d'aide personnelle au logement, soit, à titre gratuit, par les membres du foyer, sont évalués mensuellement et de manière forfaitaire :",
+      context_explanation:
+        "Le texte fixe l'évaluation forfaitaire à « 12 % du montant forfaitaire » pour une personne, 16 % pour deux, 16,5 % pour trois et plus : c'est le « forfait logement » déduit du RSA (et des ressources prises en compte). Au 1er avril 2026, cela correspond à 78,20 € pour une personne, 156,41 € pour deux et 193,55 € pour trois et plus — les montants publiés par la CNAF et service-public.fr.",
+      original_url: "https://justicelibre.org/loi/CASF/R262-9",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "05feb5e6-1c45-4fc6-a720-6a5f5ec5f1fc",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "Barème du revenu de solidarité active (au 1er avril 2026)",
+      author_or_institution: "CNAF (Caisse nationale des allocations familiales)",
+      publication_date: "2026-04-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote: "Couple ou isolé 1 enfant 977.54 € 156.41 €",
+      context_explanation:
+        "Barème officiel de la branche Famille : « 1 personne : 651.69 €, forfait logement 78.20 € ; Couple ou isolé 1 enfant : 977.54 €, forfait logement 156.41 € ; Couple 2 enfants : 1 368.56 €… ». Le tableau fixe à la fois le montant forfaitaire du RSA et le forfait logement déduit en cas d'aide au logement : pour un couple sans enfant, le RSA ne peut donc pas dépasser 977,54 €, et tombe à 821,13 € avec APL.",
+      original_url:
+        "https://www.caf.fr/professionnels/offres-et-services/accompagnement-des-allocataires/bareme-revenu-de-solidarite-active",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "311c50f8-52e8-4af3-8372-1b2c3c633ef7",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "RSA : demandeur de 25 ans et plus — montants et forfait logement (fiche F19778)",
+      author_or_institution: "DILA — service-public.fr (Premier ministre)",
+      publication_date: "2026-07-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Si vous percevez une aide au logement ou si vous êtes hébergé gratuitement ou propriétaire de votre logement, un montant forfaitaire est ajouté à vos ressources. Ce forfait dépend du nombre de personnes au foyer.",
+      context_explanation:
+        "La fiche officielle fixe le RSA d'un couple à 977,54 € (0 enfant) et détaille le forfait logement (78,20 € pour 1 personne, 156,41 € pour 2). Exemple officiel : « Pour un couple avec 2 enfants à charge bénéficiaire d'une aide au logement et des allocations familiales, le montant du RSA est égal à 1 022,75 € (1 368,55 € - 152,25 € - 193,55 €) » — très loin de « plus de 2 000 € ».",
+      original_url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F19778",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "e36ffeef-01c6-4c53-a26e-ad8bb545623b",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "La prime d'activité revalorisée en 2026",
+      author_or_institution: "DILA — service-public.fr (Premier ministre)",
+      publication_date: "2026-03-05",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Son montant forfaitaire est passé à 638,28 € (auparavant 633,21 €) pour une personne seule sans enfant à charge. Sa revalorisation annuelle s'élève à 0,8 %.",
+      context_explanation:
+        "Au 1er avril 2026, la loi de finances pour 2026 a revalorisé la prime d'activité — complément de revenu pour les actifs modestes, créé en 2015 en remplacement du RSA activité et de la prime pour l'emploi. C'est ce dispositif qui assure « un gain financier immédiat » au salarié modeste : il n'existe aucun équivalent cumulable pour un foyer entièrement inactif.",
+      original_url: "https://www.service-public.gouv.fr/particuliers/actualites/A18815",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "a64152ee-1688-4e21-b2d0-27c186f8d285",
+      spectrum: "CENTRE",
+      source_name:
+        "La prime d'activité — « un soutien efficace au revenu des travailleurs, une trop faible incitation à l'activité » (communication à la commission des finances du Sénat)",
+      author_or_institution: "Cour des comptes (France)",
+      publication_date: "2026-06-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "la prime d'activité a largement contribué à faire disparaître les situations de pauvreté pour les personnes qui travaillent à temps plein, quelle que soit la configuration familiale, y compris pour les familles monoparentales.",
+      context_explanation:
+        "L'enquête de la Cour (juin 2026, 10,6 Md€ de dépense en 2024) confirme le soutien au revenu : « il existe bien un gain au travail dans la grande majorité des situations individuelles ». Elle critique en revanche la lisibilité du dispositif (près de 80 % des bénéficiaires sondés disent ne pas en tenir compte dans leurs choix d'emploi) et cite les travaux de l'Institut des politiques publiques : la réforme de 2019 n'a pas eu d'effet observable sur l'emploi — sans contester le gain financier lui-même.",
+      original_url:
+        "https://program-evaluation.ccomptes.fr/sites/default/files/2026-06/20260610-communique-Prime-d-activite.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "4e0a27d6-6361-4504-941c-028c7582f40a",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Pour suite à donner à l'enquête de la Cour des comptes sur la prime d'activité — rapport des rapporteurs spéciaux",
+      author_or_institution: "Arnaud Bazin et Pierre Barros, rapporteurs spéciaux (Sénat, commission des finances)",
+      publication_date: "2026-06-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les rapporteurs spéciaux s'associent au constat d'un dispositif peinant à transmettre un message clair selon lequel la reprise d'une activité garantit un gain financier immédiat, et ce dès le premier euro gagné.",
+      context_explanation:
+        "Le rapport sénatorial (juin 2026) prolonge l'enquête de la Cour : la reprise d'activité « garantit un gain financier immédiat », le problème étant la lisibilité du dispositif — et non l'inverse. Il documente aussi le complément réel à la rémunération des bénéficiaires et les options d'amélioration des incitations (seuil de bonus, solidarité à la source).",
+      original_url: "https://www.senat.fr/rap/r25-728/r25-7281.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "21557703-25fe-495c-8f9f-7b70ca5c041b",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name: "La reprise d'emploi est-elle toujours rémunératrice ?",
+      author_or_institution:
+        "Guillaume Allègre et Muriel Pucci (OFCE, Sciences Po Paris) — blog OFCE, document de travail 2025-24",
+      publication_date: "2025-12-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "nous montrons que l'emploi est toujours plus rémunérateur que l'inactivité. Les graphiques ci-dessous décrivent la variation de revenu disponible à la suite du passage de l'inactivité à un emploi à temps complet au smic pour 20 cas-types différenciés par le nombre d'enfants, la présence ou non d'un conjoint et les revenus du conjoint.",
+      context_explanation:
+        "Étude OFCE sur 20 cas-types : à temps plein au SMIC, le revenu disponible augmente dans tous les cas ; à mi-temps, le gain reste de « 252 à 533 euros selon les cas types ». Les revenus d'assistance, eux, « assurent un niveau de vie inférieur à 40 % du niveau de vie médian » pour une personne isolée ou un couple. Conclusion des auteurs, reprenant la formule de Jean-Pierre Farandou : « un foyer qui travaille gagne nettement plus qu'un foyer qui ne vit que d'aides sociales ».",
+      original_url: "https://www.ofce.fr/blog2024/fr/2025/20251219_GAMP/index.html",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -3532,6 +3749,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   SANS_PAPIERS_AIDES_DOSSIER,
   AGRESSION_BORDEAUX_DOSSIER,
   SAINT_OMER_DOSSIER,
+  RSA_SMIC_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
   LAXISME_PEINES_PRISON_DOSSIER,
