@@ -125,13 +125,18 @@ curl -s https://preuve-publique.fr/api/verify/<empreinte-affichée>
   `Referrer-Policy: strict-origin-when-cross-origin`, plus HSTS et une
   politique de permissions restrictive (`next.config.ts`).
 
-## Archivage (bucket `immutable-archives`)
+## Archivage (fiches en base, miroir `immutable-archives`)
 
 `scripts/archive-capture.mts` construit, par pièce publiée, une fiche canonique
 (`src/lib/archive-record.ts`) : schéma versionné, dossier, source, citation canonique,
 date de capture, résultat de capture (`METADATA_ONLY`, `URL_SNAPSHOT` avec statut/type/
 octets/empreinte, ou `URL_UNAVAILABLE` avec la raison), et la liste de ses propres
 limites. La fiche est normalisée en NFC et déterministe.
+
+Le dépôt écrit la fiche dans `public.dossier_source_archives` — une table
+content-addressed dont la contrainte revérifie l'empreinte du contenu ; le site la sert
+**octet pour octet** sur `/api/archives/<empreinte>`. Un miroir du bucket
+`immutable-archives` n'est tenté que si un accès Storage privilégié existe.
 
 Le script est **idempotent et prudent** : `--yes` est requis pour écrire ; une copie
 existante n'est jamais écrasée (une capture est immuable) ; après dépôt, la copie est
@@ -142,18 +147,15 @@ Le bucket est créé au premier passage (`public: true`, donc lecture par URL pu
 `storage.objects` garde son RLS **sans aucune politique** : autrement dit, personne ne
 peut écrire sans la clé de service, et le conteneur web ne la reçoit jamais.
 
-Limite connue : sans `SUPABASE_SERVICE_ROLE_KEY`, le script s'arrête avec un code 2 et un
-message explicite — il ne fabrique jamais de capture locale en la présentant comme
-déposée.
+Limite connue : sans accès Storage privilégié, le dépôt se limite à la base — le script
+le journalise explicitement et n'affirme jamais avoir miroiré au bucket.
 
 ## Ce qui n'existe pas encore
 
-- **Captures** : le bucket `immutable-archives` existe (lecture publique, écriture
-  par clé de service) mais aucun dépôt n'a encore eu lieu — la clé de service n'est
-  pas encore dans `.env.local`. Le site affiche « capture à venir » et n'annonce
-  jamais une archive qu'il n'a pas.
-- **Embeddings** : aucune colonne `embedding` n'est remplie. La branche
-  vectorielle de la recherche ne ramène donc rien : le classement est purement
-  lexical, sans similarité simulée.
-- **Publication depuis l'interface** : le seul chemin de publication est le
-  script (`npm run seed:apply`), qui applique le guard.
+- **Embeddings** : aucune colonne `embedding` n'est remplie (vérifié en base le
+  15/10/2026). La branche vectorielle de la recherche ne ramène donc rien : le
+  classement est purement lexical, sans similarité simulée.
+- **Miroir Storage des fiches** : le dépôt en base est en service, mais le miroir du
+  bucket `immutable-archives` n'a pas eu lieu (accès Storage privilégié absent).
+- **Instantanés du contenu** : les 8 fiches déposées sont `METADATA_ONLY` ; aucune URL
+  d'origine n'est encore documentée sur les pièces.

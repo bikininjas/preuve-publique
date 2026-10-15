@@ -9,19 +9,24 @@ droite libérale ou conservatrice, données officielles. Le lecteur constate le 
 autorité. Le mode « preuve à l'aveugle » va plus loin : les noms des médias et des auteurs
 sont floutés, seuls la citation, la date et l'état de l'archive restent lisibles.
 
-## État vérifié le 14/10/2026
+## État vérifié le 15/10/2026
 
-- **Base** : trois migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : six migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
-  (`20261014135315`), `0003_proof_integrity` (`20261014135316`). Deux dossiers en base :
-  un **publié** (8 sources, 4 piliers) et un **brouillon de contrôle RLS**.
+  (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
+  `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Deux dossiers en base :
+  un **publié** (8 sources, 4 piliers) et un **brouillon de contrôle RLS** ; RLS actif sur
+  `dossiers`, `dossier_sources` et `admin_users`.
 - **Intégrité** : les 8 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
-  appel REST réel) ; l'empreinte stockée de la source *Liberty Magazine* est identique à
-  celle recalculée localement (`8a3322902363d2d1a1e1c593b12496b8f6e78262fa3d747c5b5c15b13b642756`).
-  Racine d'intégrité du dossier publié :
+  appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
+  pour la source *Liberty Magazine*
+  (`8a3322902363d2d1a1e1c593b12496b8f6e78262fa3d747c5b5c15b13b642756`). `ETag` et
+  `X-Proof-Integrity-Root` du dossier publié, relevés en ligne, valent la racine
+  d'intégrité recalculée :
   `403002c79f79a52e3b540a4203f4fd57a6ab029f5bf7de22c654edb998f8737f`.
-- **Application** : `npm run typecheck`, `npm test` (**27 tests**) et `npm run build`
+- **Application** : `npm run typecheck`, `npm test` (**35 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
@@ -34,10 +39,17 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   - en-têtes `nosniff`, `DENY`, `strict-origin-when-cross-origin` présents ;
   - sans variables Supabase, le repli local sert les mêmes empreintes dérivées et l'audit
     répond 200 (deux tests de non-régression couvrent ce point).
-- **Déploiement** : aucun. Le service Cloud Run n'existe pas ; le mapping de domaine
-  `preuve-publique.fr` subsiste dans le projet Google sans service derrière (404).
-- **Chaîne d'archivage** : pas encore en service. Aucune source n'affiche de capture :
-  le site écrit « capture à venir » et n'annonce jamais une archive qui n'existe pas.
+- **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
+  `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 15/10/2026 —
+  `preuve-publique-git-00005-l49`, `/api/health` → `status: healthy`,
+  `database.reachable: true`. Déploiement manuel par
+  `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
+  déclencheur automatique).
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les 8 pièces du dossier
+  publié ont leur fiche déposée dans `dossier_source_archives` (15 792 octets,
+  `METADATA_ONLY` : instantané réseau non demandé, URL d'origine encore à documenter) ;
+  chaque fiche est relue et rehachée au dépôt, puis servie **octet pour octet** par
+  `/api/archives/<empreinte de fiche>` (rehachage vérifié en ligne).
 
 ## Pile technique
 
@@ -60,7 +72,7 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 27 tests : données, garde de triangulation, crypto, quotas
+npm test               # 35 tests : données, garde de triangulation, crypto, quotas, archivage
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité
@@ -205,27 +217,30 @@ Space Grotesk (interface), JetBrains Mono (cotes, dates, empreintes, scores).
 ## Archivage des preuves
 
 `npm run archive:capture` est le seul chemin qui dépose des captures. Il s'exécute **hors
-du conteneur web**, avec `DB_PG_URL` (écriture en base) et `SUPABASE_SERVICE_ROLE_KEY`
-(dépôt dans le bucket), et il est prudent par défaut : sans `--yes`, il calcule et affiche
-sans rien écrire.
+du conteneur web**, avec `DB_PG_URL` (écriture en base — aucune autre clé n'est requise) ;
+`SUPABASE_SERVICE_ROLE_KEY` ou `SUPABASE_ADMIN_ACCESS_TOKEN` n'ouvrent que le miroir
+Storage. Il est prudent par défaut : sans `--yes`, il calcule et affiche sans rien écrire.
 
 1. Une **fiche d'archive canonique** est construite par pièce (JSON normalisé NFC, clés
    ordonnées, déterministe : mêmes entrées, mêmes octets) ; elle porte la citation, ses
    métadonnées, la date de capture, et rappelle elle-même ce qu'elle ne prouve pas.
 2. Son empreinte SHA-256 est calculée sur les octets exacts (`node:crypto`).
-3. Elle est déposée dans le bucket public en lecture seule `immutable-archives` —
-   `upsert: false`, une capture n'est jamais écrasée : si une copie différente existe,
-   le script s'arrête en le disant.
-4. La base est mise à jour : `archive_storage_path` et `archive_binary_sha256`.
-5. La copie est **retéléchargée et rehachée** : le dépôt n'est déclaré réussi que si
+3. Elle est déposée dans `public.dossier_source_archives`, la table content-addressed
+   (la contrainte de la base revérifie l'empreinte du contenu) : une capture n'est jamais
+   écrasée — deux contenus différents pour la même adresse arrêtent le script (code 2).
+4. La pièce est mise à jour : `archive_storage_path` et `archive_binary_sha256`.
+5. La fiche déposée est **relue et rehachée** : le dépôt n'est déclaré réussi que si
    l'empreinte relue est identique.
+6. Un miroir du bucket public `immutable-archives` est tenté **si** un accès Storage
+   privilégié existe (clé de service ou jeton administrateur) ; il est retéléchargé et
+   rehaché. Sans cet accès, le script le dit — et n'affirme rien de plus.
 
 Deux empreintes, deux rôles — à ne pas confondre :
 
 | Colonne | Ce qu'elle atteste | Qui peut la vérifier |
 |---|---|---|
 | `archive_sha256` | la **citation publiée** n'a pas bougé | n'importe quel lecteur, depuis la page (WebCrypto) et via `/api/verify/<empreinte>` |
-| `archive_binary_sha256` | le **fichier de capture** déposé dans le bucket | quiconque retélécharge la fiche et la hache |
+| `archive_binary_sha256` | la **fiche de capture** déposée en base (content-addressed) | quiconque retélécharge la fiche et la hache |
 
 Une capture ne réécrit jamais `archive_sha256` : l'identité publique d'une preuve doit
 rester celle que le lecteur recalcule lui-même à partir de ce qu'il lit.
@@ -233,14 +248,15 @@ rester celle que le lecteur recalcule lui-même à partir de ce qu'il lit.
 ```bash
 npm run archive:capture              # contrôle : calcule les fiches, n'écrit rien
 npm run archive:capture -- --fetch   # tente en plus un instantané des URL documentées
-npm run archive:capture -- --yes     # dépose dans le bucket et met la base à jour
+npm run archive:capture -- --yes     # dépose les fiches en base et met les pièces à jour
 ```
 
-**État au 14/10/2026** : le bucket `immutable-archives` existe (public en lecture, RLS
-actif sans aucune politique d'écriture) et le calcul des fiches est vérifié sur les 8
-pièces du dossier publié. Le **dépôt** n'a pas encore eu lieu : `SUPABASE_SERVICE_ROLE_KEY`
-n'est pas présente dans `.env.local`, et c'est la seule clé qui autorise une écriture
-Storage. Rien n'est simulé en attendant : les pièces affichent « capture à venir ».
+**État au 15/10/2026** : les 8 fiches du dossier publié sont déposées (`captured_at` du
+15/10/2026 04:32 UTC, 15 792 octets au total), relues et rehachées ; `/api/archives/`
+les sert octet pour octet. Toutes sont `METADATA_ONLY` : aucun instantané du contenu des
+URL, qui restent à documenter. Le **miroir Storage** n'a pas eu lieu faute d'accès
+privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
+politique d'écriture) mais reste sans objet.
 
 ## Déploiement : le moins cher possible
 
@@ -279,8 +295,9 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Pas de captures : le bucket `immutable-archives` n'existe pas encore, donc aucune
-  empreinte binaire n'est publiée.
+- Captures limitées : les 8 fiches déposées sont `METADATA_ONLY` (pas d'instantané du
+  contenu des pages) et aucune n'a encore d'URL d'origine documentée ; le miroir Storage
+  du bucket `immutable-archives` n'a pas eu lieu.
 - Recherche : la branche vectorielle de la RPC ne ramène rien tant qu'aucun embedding
   n'est calculé — aucune similarité n'est simulée.
 - Le guard est appliqué par le pipeline de publication, pas par un déclencheur en base.
