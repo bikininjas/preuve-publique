@@ -15,8 +15,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix-huit dossiers en base :
-  dix-sept **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix-neuf dossiers en base :
+  dix-huit **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -26,10 +26,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   société), l'agression de Bordeaux attribuée à un « clandestin sous OQTF » (6, faits
   divers), l'incendie de l'église de Saint-Omer attribué à un « attentat islamiste »
   (8, faits divers), le revenu disponible d'un couple au RSA comparé à un couple au
-  SMIC (8, économie) et la comparaison entre fraude sociale et fraude fiscale (7,
-  économie) — et un **brouillon de contrôle RLS** ; RLS actif sur
+  SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
+  économie) et les discriminations à l'embauche liées à l'origine (7, société) — et un
+  **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 132 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 139 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -91,6 +92,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   et Observatoire de la justice fiscale) a été vérifié de la même manière (`d862948d…`) :
   sept fiches déposées et relues (six instantanés réseau et une URL indisponible — le
   dossier de presse Urssaf, dont l'adresse contient des « + » rejetés par la capture).
+  Le dix-huitième (les discriminations à l'embauche liées à l'origine, 7 sources) a été
+  vérifié de la même manière (`5bffdbc5…`) : sept fiches déposées et relues (l'article de
+  la DARES dans la revue *Travail et Emploi* n° 180, reproduit par la CFDT — le portail
+  OpenEdition bloque les robots —, le rapport annuel de la DGAFP, la note n° 76 de l'IPP,
+  deux testings TEPP-CNRS de l'université Gustave Eiffel, le rapport annuel 2024 du
+  Défenseur des droits et la page Institut Montaigne servie par l'instantané Wayback),
+  toutes capturées en instantanés réseau.
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -121,7 +129,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   Les huit sources du dossier sur le revenu disponible RSA/SMIC (CASF L. 262-2 et
   R. 262-9, barème CNAF, fiches service-public F19778 et A18815, Cour des comptes,
   rapport sénatorial r25-728, étude OFCE) ont été vérifiées de la même façon avant leur
-  intégration.
+  intégration. Les sept sources du dossier sur les discriminations à l'embauche liées à
+  l'origine (article DARES de *Travail et Emploi* n° 180, rapport DGAFP, note IPP n° 76,
+  testings DESPERADO V et TEPP-ESR de l'université Gustave Eiffel, rapport annuel 2024 du
+  Défenseur des droits, page Institut Montaigne via l'instantané Wayback) ont été
+  vérifiées de la même façon avant leur intégration — les citations ont été recoupées mot
+  à mot contre les PDF sources, et les chiffres du brief corrigés au réel (écart mesuré
+  de 26,7 % à 31,5 % selon les protocoles, plutôt que « 30 à 40 % »).
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -141,11 +155,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **125 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **139 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 99 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 23 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 111 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 25 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
@@ -163,7 +177,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   L'intégration du dossier « fraude sociale contre fraude fiscale » (14:41 UTC) a entraîné
   une dernière réapplication et recapture : **132 fiches exactes**, une par pièce publiée
   (104 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des captures
-  `d97280a587c104d6…`.
+  `d97280a587c104d6…`. L'intégration du dossier « discriminations à l'embauche » (15:00
+  UTC) a entraîné une ultime réapplication et recapture : **139 fiches exactes**, une par
+  pièce publiée (111 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des
+  captures `76a9fe09a97bf82f…`.
 
 ## Pile technique
 
@@ -414,7 +431,15 @@ pièces, 117 fiches déposées et relues — 91 `URL_SNAPSHOT`, 23 `URL_UNAVAILA
 par pièce. Puis, à 14:36 UTC, l'intégration du dossier « RSA contre SMIC » (seizième
 publié) a entraîné une ultime réapplication du seed et une recapture : 125 pièces, 125
 fiches déposées et relues — 99 `URL_SNAPSHOT`, 23 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` —
-racine des captures `350fe197d8fad80b…` ; fiches dédupliquées, une par pièce. Le
+racine des captures `350fe197d8fad80b…` ; fiches dédupliquées, une par pièce. Puis, à
+14:41 UTC, l'intégration du dossier « fraude sociale contre fraude fiscale » (dix-septième
+publié) a entraîné une réapplication du seed et une recapture : 132 pièces, 132 fiches
+déposées et relues — 104 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine
+des captures `d97280a587c104d6…`. Puis, à 15:00 UTC, l'intégration du dossier
+« discriminations à l'embauche » (dix-huitième publié) a entraîné une dernière
+réapplication et recapture : 139 pièces, 139 fiches déposées et relues — 111
+`URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
+`76a9fe09a97bf82f…` ; fiches dédupliquées, une par pièce. Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.

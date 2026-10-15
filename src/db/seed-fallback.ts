@@ -3378,6 +3378,219 @@ export const RSA_SMIC_DOSSIER: Dossier = {
   ],
 };
 
+export const DISCRIMINATIONS_EMBAUCHE_DOSSIER: Dossier = {
+  id: "e2640e72-740e-4e52-bdcb-3ac633453a08",
+  slug: "discriminations-embauche-origine-mythe",
+  claim_title: "Les discriminations à l'embauche liées à l'origine sont un mythe victimaire",
+  verdict: "FAUX",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Institut Montaigne",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Institut_Montaigne",
+      note: "Think tank libéral ; testing sur CV de 2019 sur les discriminations religieuses à l'embauche.",
+    },
+    {
+      name: "Défenseur des droits",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      note: "Autorité indépendante ; baromètre et rapport annuel sur les discriminations dans l'emploi.",
+    },
+    {
+      name: "Direction de l'animation de la recherche, des études et des statistiques",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Direction_de_l%27Animation_de_la_recherche,_des_%C3%89tudes_et_des_Statistiques",
+      note: "Service statistique du ministère du Travail, commanditaire des grandes campagnes de testing.",
+    },
+    {
+      name: "Institut des politiques publiques",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Institut_des_politiques_publiques",
+      note: "Centre de recherche (PSE/GENES) ; note n° 76 sur la grande étude par testing.",
+    },
+    {
+      name: "Université Gustave-Eiffel",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_Gustave-Eiffel",
+      note: "Laboratoire ERUDITE/TEPP-CNRS ; programme DESPERADO de testing répété depuis 2015.",
+    },
+  ],
+  verdict_summary:
+    "Des campagnes nationales de testing sur CV — candidatures strictement identiques ne variant que sur le prénom et le nom — documentent une pénalité persistante. La grande étude de l'Institut des politiques publiques et d'ISM Corum, menée sous l'égide de la Dares, conclut qu'« à qualité comparable, les candidatures dont l'identité suggère une origine maghrébine ont 31,5 % de chances de moins d'être contactées par les recruteurs que celles portant un prénom et nom d'origine française ». Le programme DESPERADO de l'université Gustave Eiffel (TEPP-CNRS) mesure des pénalités relatives de 26,7 % à 30,8 % selon les métiers — et la DGAFP confirme que le résultat « se maintient sur toute la période, dans le secteur privé comme dans la fonction publique ». Le Défenseur des droits constate que ces discriminations « restent vivaces », et l'Institut Montaigne rappelle qu'un testing en comptabilité avait déjà révélé « quatre fois moins de chances » pour un patronyme marocain. Le « mythe victimaire » est démenti par les données.",
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« Le marché du travail ne juge que les compétences individuelles »",
+      status: "FAUX",
+      detail:
+        "Le testing scientifique isole l'effet du seul patronyme à profil strictement identique : l'IPP mesure ainsi un écart de rappel de 31,5 % en défaveur des candidatures à consonance maghrébine, à CV égal. Le programme DESPERADO V (Université Gustave Eiffel/TEPP-CNRS) mesure des pénalités de 3 à 12,1 points de pourcentage selon les profils, soit 30,8 % en relatif — le même ordre de grandeur que la pénalité liée à l'âge. Un effet net, toutes choses égales par ailleurs, apparaît donc indépendamment des compétences affichées.",
+    },
+    {
+      claim_part:
+        "« Les écarts d'accès à l'emploi résultent uniquement de différences de formation »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "La disparité persiste aux niveaux de diplôme les plus élevés : dans l'enseignement supérieur et la recherche — secteur où « les principes d'égalité et d'intégrité structurent largement l'activité » — le testing TEPP-CNRS (2 748 candidatures, 2021-2022) met en évidence une exposition à la discrimination selon l'origine « d'une ampleur comparable à celle qui existe dans l'ensemble de la fonction publique ». L'IPP confirme que la discrimination, si elle est « plus faible, sans s'effacer, parmi les salariés les plus qualifiés », reste significative à tous les niveaux de formation.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "5a00776c-20c7-489c-add2-352a99ce3a42",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Discrimination à l'embauche : les caractéristiques du poste à pourvoir importent-elles ? (revue Travail et Emploi n° 180)",
+      author_or_institution:
+        "Émilie Arnoult et Véronique Rémy (DARES, ministère du Travail) — texte intégral reproduit par la CFDT, le portail OpenEdition de la revue bloquant les robots",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les résultats des testings mesurant les discriminations à l'embauche selon l'origine ethnique sont consensuels, en France comme ailleurs : les personnes issues des minorités ethniques sont moins souvent recontactées par les recruteurs que celles issues de la population majoritaire",
+      context_explanation:
+        "Article de la DARES publié dans Travail et Emploi n° 180 (2026, DOI 10.4000/1692l), à partir des données du testing couvrant « douze métiers dans l'ensemble de la France métropolitaine » (2 400 offres, 9 600 candidatures). Les autrices y établissent que « les écarts de traitement lors de l'embauche entre les candidatures d'origine supposée maghrébine et française varient selon les caractéristiques du poste à pourvoir » — le traitement préférentiel des candidatures à consonance française est plus fréquent en CDD court qu'en CDI, moindre en CDD long. La littérature citée (Neumark, 2018 ; Quillian et al., 2019) situe ce constat parmi les plus consensuels de l'économie du travail.",
+      original_url:
+        "https://f3c.cfdt.fr/upload/docs/application/pdf/2026-05/cfdt_f3c_discri_origine_discrimination_a_l_embauche.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Direction_de_l%27Animation_de_la_recherche,_des_%C3%89tudes_et_des_Statistiques",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "3b67e8f6-feae-44ef-8f21-38c52a688d38",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Le « testing » montre que des discriminations persistent dans l'accès à l'entretien d'embauche, y compris dans la fonction publique (Rapport annuel sur l'état de la fonction publique)",
+      author_or_institution:
+        "DGAFP — Direction générale de l'administration et de la fonction publique (Premier ministre)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les candidats dont le nom et le prénom indiquent qu'ils sont d'origine maghrébine ont moins de chances d'avoir une réponse positive à leur candidature. Ce résultat se maintient sur toute la période, dans le secteur privé comme dans la fonction publique.",
+      context_explanation:
+        "Synthèse du programme DESPERADO dans l'édition 2022 du rapport annuel : « Ce sont 2 594 offres d'emploi de cadre administratif ou d'aide-soignante publiées en Île-de-France qui ont été testées sur quatre périodes allant de 2015 à 2021. » Pour l'origine, les écarts sont « statistiquement significatifs à chacune des vagues de tests pour les aides-soignantes » et pour les cadres administratifs lors de plusieurs périodes — signe que la discrimination s'inscrit dans la durée, y compris dans les recrutements publics.",
+      original_url:
+        "https://www.fonction-publique.gouv.fr/files/files/publications/dossier-rapport-annuel/dossier_testing_discriminations.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "5078d971-ebf4-41d9-9f8a-2165b9b74854",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Discrimination à l'embauche des personnes d'origine supposée maghrébine : quels enseignements d'une grande étude par testing ? (note n° 76)",
+      author_or_institution:
+        "Institut des politiques publiques (IPP, PSE/GENES) — étude ISM Corum-IPP menée sous l'égide de la Dares",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En moyenne, à qualité comparable, les candidatures dont l'identité suggère une origine maghrébine ont 31,5 % de chances de moins d'être contactées par les recruteurs que celles portant un prénom et nom d'origine française.",
+      context_explanation:
+        "Grande étude par testing : 9 600 candidatures envoyées en réponse à 2 400 offres d'emploi publiées, sur 11 catégories de métiers, sexe et identité attribués aléatoirement. Les auteurs ajoutent : « Pour recevoir le même nombre de réponses positives, une personne dont le prénom et le nom sont à consonance maghrébine doit envoyer en moyenne 1,5 fois plus de candidatures qu'une personne ayant le même profil mais dont le prénom et le nom sont à consonance française. » La discrimination « reste élevée et un élément majeur du marché du travail en France », plus faible « sans s'effacer » chez les salariés les plus qualifiés, et sans variation notable entre femmes et hommes.",
+      original_url:
+        "https://www.ipp.eu/wp-content/uploads/2025/05/76_Note_IPP_n76_Discrimination-a-l_embauche-selon-l_origine.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Institut_des_politiques_publiques",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "37d43393-8cfb-4b3a-a947-0b97833a1ced",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Discriminations à l'embauche, âge et origine : une évaluation à l'aide d'un test multi-critères (programme DESPERADO V)",
+      author_or_institution:
+        "Laetitia Challe, Yannick L'Horty, Pascale Petit et François-Charles Wolff (Université Gustave Eiffel, ERUDITE, TEPP-CNRS ; Université de Nantes) — convention avec la DGAFP",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Pour un candidat dont l'origine maghrébine est suggérée par la consonance du nom et du prénom, la pénalité varie de 3 à 12,1 points selon les profils des candidats et les secteurs d'activité.",
+      context_explanation:
+        "Testing multi-critères de l'université Gustave Eiffel (TEPP-CNRS) : 3 375 candidatures fictives envoyées en réponse à 675 offres d'emploi d'Île-de-France entre novembre 2023 et mars 2024. « En termes relatifs, rapportés au taux de succès des candidats de références, les écarts sont respectivement de 30,8 % et de 26,7 % » pour les cadres administratifs et les aides-soignantes. La pénalité de l'origine maghrébine est « plus généralisée » que celle de l'âge (qui atteint 22,3 % en relatif pour les séniors cadres) et persiste dans le privé comme dans le public.",
+      original_url:
+        "https://www.tepp.eu/images/pdf/2025/discriminationembaucheageorigine.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_Gustave-Eiffel",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "d7560e60-3539-4d32-a472-4d702bf65aab",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Les discriminations à l'embauche dans l'enseignement supérieur et la recherche (revue Économie et Statistique n° 548)",
+      author_or_institution:
+        "Laetitia Challe, Yannick L'Horty, Pascale Petit et François-Charles Wolff (Université Gustave Eiffel, ERUDITE, TEPP-CNRS ; Université de Nantes), TEPP-CNRS",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "l'étude met en évidence une exposition aux discriminations selon l'origine Nord-Africaine d'une ampleur comparable à celle qui existe dans l'ensemble de la fonction publique",
+      context_explanation:
+        "Test par correspondance portant sur 2 748 candidatures envoyées en 2021 et 2022 à des établissements d'enseignement supérieur et de recherche, en réponse à des offres publiées et sous forme de candidatures spontanées. Le secteur est pourtant celui où « les principes d'égalité et d'intégrité structurent largement l'activité » : la pénalité liée à l'origine signalée par le patronyme y demeure du même ordre que dans l'ensemble du secteur public — la discrimination ne s'efface donc pas avec l'élévation du niveau de diplôme.",
+      original_url:
+        "https://www.tepp.eu/images/pdf/2024/discriminationembaucheenseignementsuperieur.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_Gustave-Eiffel",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "e5cec67d-e0bb-4a64-81f9-c5316ee64d69",
+      spectrum: "CENTRE",
+      source_name: "Rapport annuel d'activité 2024",
+      author_or_institution: "Défenseur des droits",
+      publication_date: "2025-03-05",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les discriminations fondées sur l'origine réelle ou supposée demeurent, en particulier, un sujet tabou, alors qu'elles restent vivaces selon les enquêtes, que certaines mesures expérimentées comme l'index diversité dans les entreprises n'ont pas été pérennisées et que la lutte contre les discriminations est éclipsée par les débats portant sur l'immigration et l'intégration.",
+      context_explanation:
+        "Bilan institutionnel annuel de l'autorité indépendante. Son baromètre sur la perception des discriminations dans l'emploi « montre, pour la première fois, l'entrecroisement des critères origine et religion, alors que le premier devance traditionnellement le second : 15 % de l'ensemble de la population active déclare avoir vécu une discrimination dans l'emploi en raison d'une pratique religieuse (contre 7 % en 2023), 15 % également le déclare sur le fondement de l'origine (contre 19 % en 2023) ». L'origine demeure donc l'un des tout premiers motifs de discrimination déclarée et de saisine.",
+      original_url:
+        "https://www.defenseurdesdroits.fr/sites/default/files/2025-03/ddd_rapport-annuel-2024_20250305.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "59c55ae7-314d-4998-938c-2820566485c9",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name: "Discriminations religieuses à l'embauche : une réalité (testing Valfort-Institut Montaigne)",
+      author_or_institution:
+        "Institut Montaigne — Marie-Anne Valfort (rapport de novembre 2019, page servie par l'instantané Wayback du 8 octobre 2026, le site étant protégé par un anti-robots)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En 2006, un testing sur CV mené dans le secteur de la comptabilité a permis de comparer les taux de convocation à un entretien d'embauche de deux Français dotés des mêmes CV à l'exception de leur origine nationale, signalée par le prénom et le nom. « Clément Meunier » suggérait une origine française, « Yassine Mokraoui » une origine marocaine. Ce testing a permis de révéler que le Français d'origine marocaine a quatre fois moins de chances que le Français d'origine française d'être contacté par le recruteur en vue d'un entretien d'embauche.",
+      context_explanation:
+        "Le think tank libéral documente lui-même la discrimination par le patronyme, puis prolonge l'analyse : son testing de 2019 (6 231 offres d'emploi en comptabilité, France métropolitaine) montre une forte discrimination religieuse — « la probabilité des catholiques d'être contactés par le recruteur pour un entretien d'embauche est supérieure de 30 % à celle des juifs ; elle est deux fois plus forte que celle des musulmans » — et pointe l'« amalgame entre Maghrébins et musulmans » relevé chez les recruteurs. Un instrument de mesure porté par des acteurs de tous bords, y compris les plus libéraux.",
+      original_url:
+        "https://web.archive.org/web/20261008000723/https://www.institutmontaigne.org/publications/discriminations-religieuses-lembauche-une-realite",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Institut_Montaigne",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -3964,6 +4177,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   AGRESSION_BORDEAUX_DOSSIER,
   SAINT_OMER_DOSSIER,
   RSA_SMIC_DOSSIER,
+  DISCRIMINATIONS_EMBAUCHE_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
   LAXISME_PEINES_PRISON_DOSSIER,
