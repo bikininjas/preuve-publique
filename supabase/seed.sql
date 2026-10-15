@@ -3171,6 +3171,280 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   7
 );
 
+delete from public.dossiers where slug = 'union-prophete-aicha-anachronisme-pedophilie';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at
+) values (
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'union-prophete-aicha-anachronisme-pedophilie',
+  'L''union du prophète de l''islam avec Aïcha constitue un acte de pédophilie',
+  'ANACHRONISME_HISTORIQUE'::verdict_status,
+  'Qualifier de « pédophilie » l''union du prophète de l''islam avec ʿĀʾiša applique à l''Arabie du VIIe siècle une catégorie nosologique forgée à la fin du XIXe siècle : le terme « paedophilia erotica » n''apparaît dans la Psychopathia Sexualis de Richard von Krafft-Ebing que dans une édition tardive, avec la nomenclature psychiatrique des préférences d''âge qui se met alors en place. Dans l''Antiquité et au Moyen Âge, les alliances nouées autour de la puberté constituaient la règle juridique et sociale — le droit romain fixait l''âge légal du mariage des filles à douze ans — et l''Europe médiévale pratiquait les mêmes mariages précoces d''alliance. Quant au récit des « neuf ans », la critique historico-critique des chaînes de transmission (thèse de Joshua J. Little, Oxford, 2022) établit que toutes les versions du hadith remontent à un archétype unique, diffusé par le transmetteur médinois Hišām b. ʿUrwa après son départ pour l''Irak à la fin de sa vie, probablement en réponse à des polémiques proto-chiites contre sa grand-tante : une mémoire de la fin du VIIIe siècle, non une donnée biographique contemporaine des faits. Le dossier démontre un vice de méthode — l''usage rétroactif d''un concept clinique moderne adossé à une tradition textuelle tardive ; il ne prétend pas trancher l''âge exact de ʿĀʾiša.',
+  'RELIGION'::dossier_category,
+  '[{"name":"Mahomet","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Mahomet","note":null},{"name":"Aïcha","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/A%C3%AFcha","note":"La tradition sunnite lui attribue le récit de son âge au mariage ; la chaîne de transmission passe par Hišām b. ʿUrwa."},{"name":"Richard von Krafft-Ebing","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Richard_von_Krafft-Ebing","note":"Psychiatre viennois ; le terme « paedophilia erotica » entre dans une édition tardive de sa Psychopathia Sexualis."},{"name":"Joshua J. Little","kind":"PERSONNE","role":"AUTEUR","reference_url":null,"note":"Historien, auteur d''une thèse de doctorat (Oxford, 2022) sur l''évolution du hadith de l''âge d''Aïcha."},{"name":"Jacqueline Chabbi","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Jacqueline_Chabbi","note":"Professeure honoraire, spécialiste de l''islam classique, interrogée par Le Monde sur les sources de la biographie de Mahomet."}]'::jsonb,
+  100,
+  '[{"claim_part":"« La notion clinique de pédophilie s''applique aux sociétés du VIIe siècle »","status":"CONFUSION_CONCEPTUELLE","detail":"La « pédophilie » n''est pas une catégorie transhistorique : elle naît de la psychiatrie et de la sexologie du XIXe siècle, quand la médecine légale classe les préférences d''âge comme perversion (D. F. Janssen, Medical History, 2015). Le terme « paedophilia erotica » est introduit par Richard von Krafft-Ebing dans une édition tardive de sa Psychopathia Sexualis, à la fin du XIXe siècle. Appliquer telle quelle cette nosographie à une union du VIIe siècle confond une classification clinique moderne avec des coutumes matrimoniales prémodernes."},{"claim_part":"« Le récit des 9 ans est une archive biométrique incontestable »","status":"FAUX","detail":"Les recueils de hadiths ont été compilés au IXe siècle, deux siècles après les faits. La version la plus connue (Sahih al-Bukhari, n° 5133) porte elle-même la chaîne de transmission — Hišām, d''après son père, d''après ʿĀʾiša — que l''analyse historico-critique (J. J. Little, Oxford, 2022) identifie comme l''archétype unique dont dérivent toutes les variantes, diffusé en Irak à la fin du VIIIe siècle. Rien là d''un enregistrement contemporain : c''est une reconstruction tardive, et l''âge de neuf ans ne peut donc pas être tenu pour un fait établi."}]'::jsonb,
+  true,
+  '2026-10-15T00:00:00.000Z'::timestamptz
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '5f7c7279-75b8-48e1-a381-909558e5885d',
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Sahih al-Bukhari, hadith n° 5133 — « Giving one''s young children in marriage » (Livre 67, hadith 69 ; Vol. 7, Livre 62, hadith 64)',
+  'Muhammad al-Bukhari (IXe siècle) — texte arabe et traduction anglaise servis par sunnah.com (instantané Wayback)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Narrated `Aisha: that the Prophet (ﷺ) married her when she was six years old and he consummated his marriage when she was nine years old, and then she remained with him for nine years (i.e., till his death).',
+  'Le recueil de référence de la tradition sunnite porte lui-même la chaîne de transmission (isnād) du récit : « d''après Hišām, d''après son père, d''après ʿĀʾiša » — le transmetteur médinois Hišām b. ʿUrwa rapportant de son père ʿUrwa b. al-Zubayr. Le texte a été fixé des décennies après la mort du prophète (632) : Sahih al-Bukhari est compilé au IXe siècle. Rien dans ce document n''est un enregistrement contemporain des faits ; il constitue le point de départ d''un récit transmis oralement pendant deux siècles.',
+  'https://web.archive.org/web/20240102181707/https://sunnah.com/bukhari:5133',
+  null,
+  '435972c40148a43f920cb3d2f80f693ec4d6f9cb30d345b33ca6b73e14802419',
+  null,
+  null,
+  0
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '59a7a449-57cc-40b7-8c54-1d2a7584bf53',
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'The Hadith of ʿĀʾišah''s Marital Age: A Study in the Evolution of Early Islamic Historical Memory — thèse de doctorat (DPhil)',
+  'Joshua J. Little, Pembroke College, université d''Oxford (sous la direction de Christopher Melchert), 2022',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'This ur-hadith appears to have been created and disseminated by the Madinan tradent Hišām b. ʿUrwah b. al-Zubayr (d. 146-147/763-765) after he moved to Iraq towards the end of his life, probably as a reaction to local proto-Šīʿī polemics against his great-aunt, ʿĀʾišah.',
+  'Résumé de la thèse, déposée dans l''Oxford University Research Archive. Après avoir collationné toutes les versions connues du hadith et reconstitué leurs « urtextes » par une analyse des chaînes et des textes, l''auteur conclut que toutes dérivent d''un archétype unique, diffusé par Hišām b. ʿUrwa après son installation en Irak vers la fin de sa vie — une mémoire de la seconde moitié du VIIIe siècle, non un témoignage contemporain des faits.',
+  'https://ora.ox.ac.uk/objects/uuid:1bdb0eea-3610-498b-9dfd-cffdb54b8b9b',
+  null,
+  '3447fb0066b835149c2ad62ecd84ad5cac2a758517f0297dce2485abe1918e85',
+  null,
+  null,
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '6ab3c587-8084-409f-b633-346d6c785664',
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« ''Chronophilia'': Entries of Erotic Age Preference into Descriptive Psychopathology » — Medical History (Cambridge University Press)',
+  'Diederik F. Janssen — Medical History, vol. 59 (2015)',
+  '2015-09-09',
+  'CITATION_EXACTE'::quote_kind,
+  'A scientific nomenclature of erotic age preferences informed the mid- through late nineteenth century joint appearance of homosexuality and sexual abuse of minors on the medico-legal scene.',
+  'Article d''histoire de la médecine : la nomenclature savante des préférences d''âge érotique est un produit du milieu et de la fin du XIXe siècle, élaborée en même temps que le classement psychiatrique de l''homosexualité et des abus sexuels. Le terme « paedophilia erotica » est introduit par Richard von Krafft-Ebing dans une édition tardive de sa Psychopathia Sexualis, à la fin du XIXe siècle : la « pédophilie » clinique n''existe pas comme catégorie à l''époque du VIIe siècle.',
+  'https://www.cambridge.org/core/journals/medical-history/article/chronophilia-entries-of-erotic-age-preference-into-descriptive-psychopathology/1896C08F07CB5F1A428CEEF3E1104586',
+  null,
+  'a2d26d2850f8ec76d2e2b688ec049d21e02b306e3025160de486c8bf79bc7c86',
+  null,
+  null,
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '6814e7c2-e4f1-4e1d-a644-e54948a18f18',
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'GAUCHE'::political_spectrum,
+  '« The truth about Muhammad and Aisha »',
+  'Myriam Francois-Cerrah — The Guardian (quotidien britannique de centre gauche)',
+  '2012-09-17',
+  'CITATION_EXACTE'::quote_kind,
+  'They point out that, in seventh-century Arabia, adulthood was defined as the onset of puberty. (This much is true, and was also the case in Europe: five centuries after Muhammad''s marriage to Aisha, 33-year-old King John of England married 12-year-old Isabella of Angoulême.)',
+  'Chronique publiée lors de la polémique du film Innocence of Muslims, qui dépeignait le prophète de l''islam en pédophile. Le texte rappelle que, dans l''Arabie du VIIe siècle, l''entrée dans l''âge adulte était définie par la puberté — et que l''Europe médiévale nouait les mêmes alliances précoces, comme le mariage du roi Jean d''Angleterre (33 ans) avec Isabelle d''Angoulême (12 ans). L''accusation de « pédophilie » circule dans un contexte polémique, non dans une littérature historique.',
+  'https://www.theguardian.com/commentisfree/belief/2012/sep/17/muhammad-aisha-truth',
+  null,
+  'b88cb0ee93f636ff507d2be0e74ad4c2b1a46b055f16985c075dddddc673ba0a',
+  null,
+  null,
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '38177e0c-3695-4688-90a3-345713653fab',
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'CENTRE'::political_spectrum,
+  '« A la recherche du Mahomet de l''histoire » (entretien avec Jacqueline Chabbi)',
+  'Propos recueillis par Virginie Larousse — Le Monde (Le Monde des religions), instantané Wayback',
+  '2020-06-07',
+  'CITATION_EXACTE'::quote_kind,
+  'Les sources concernant Mahomet ont été écrites des décennies après sa mort, et peuvent donc donner une image biaisée du prophète de l''islam.',
+  'Entretien avec Jacqueline Chabbi, professeure honoraire, spécialiste de l''islam classique, qui replace Mahomet dans son contexte tribal. Le chapeau de l''article pose le principe méthodologique du dossier : les sources biographiques sont postérieures de plusieurs décennies aux faits et donnent une image biaisée du prophète.',
+  'https://web.archive.org/web/20221025224552/https://www.lemonde.fr/le-monde-des-religions/article/2020/06/07/a-la-recherche-du-mahomet-de-l-histoire_6042044_6038514.html',
+  null,
+  '014023ecda940127ffe1aa0fb0b1cc18c6c9b25813c257bb45f01afe76a4f3c8',
+  null,
+  null,
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '3ffff39f-ac61-4319-b97b-3c954a45181f',
+  '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Yémen : les ultras s''opposent à l''augmentation de l''âge du mariage »',
+  'Delphine Minoui — Le Figaro (blog Iran)',
+  '2010-03-21',
+  'CITATION_EXACTE'::quote_kind,
+  'Mais pour les ultras - qui rappellent que le prophète épousa Aïcha lorsqu''elle avait neuf ans - on ne badine pas avec l''âge des noces.',
+  'Reportage du Figaro, quotidien classé à droite, sur le débat yéménite relatif à l''âge du mariage. Le journal constate que les milieux les plus conservateurs invoquent le récit des neuf ans pour s''opposer à une loi fixant un âge minimum. Le récit apparaît ici pour ce qu''il est dans le débat public contemporain : un argument d''autorité mobilisé contre une protection des mineures, non une donnée biographique neutre.',
+  'https://www.lefigaro.fr/blogs/iran/2010/03/yemen-les-ultras-sopposent-a-l.html',
+  null,
+  '118c16ac03c2f7fae38559f7fc8528367ef3abc6a63d0f3ed647248dbb81296d',
+  null,
+  null,
+  5
+);
+
+delete from public.dossiers where slug = 'islam-homosexualite-transidentite-droit-compare';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at
+) values (
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'islam-homosexualite-transidentite-droit-compare',
+  'L''islam est par essence la seule religion scripturairement homophobe et transphobe',
+  'GENERALISATION_ABUSIVE'::verdict_status,
+  'La réprobation scripturaire des rapports entre personnes de même sexe n''est pas propre à l''islam : elle est partagée par les corpus abrahamiques. Le Lévitique (18,22) qualifie l''acte d''« abomination », l''Épître aux Romains (1,26-27) parle de « passions infâmes » et de ce qui est « contre nature », et le Coran fait de l''acte du peuple de Loth une « turpitude » sans précédent (7,80-84 ; 26,165-166). Sur la transition de genre, le droit islamique classique ne la confond pas avec l''orientation sexuelle : il distingue le mukhannath (l''homme efféminé) et le khuntha (la personne au sexe ambigu), ce dernier traité jusque dans les règles d''héritage. L''Iran autorise et subventionne partiellement les chirurgies de réassignation depuis le milieu des années 1980, sur le fondement d''une position attribuée à Khomeini ; en Égypte, la fatwa du mufti Sayed Tantawi (1988) n''ouvre la chirurgie qu''aux personnes intersexes et interdit explicitement le changement de sexe motivé par une identité de genre. L''affirmation selon laquelle l''islam serait « par essence la seule religion scripturairement homophobe et transphobe » est donc une généralisation abusive : elle ignore les interdits bibliques, confond le texte sacré, l''histoire du droit et les politiques étatiques répressives, et passe sous silence les autorisations médicales de transition délivrées dans plusieurs pays musulmans.',
+  'RELIGION'::dossier_category,
+  '[{"name":"Afsaneh Najmabadi","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Afsaneh_Najmabadi","note":"Historienne, professeure à l''université Harvard, autrice de Professing Selves (Duke University Press, 2013)."},{"name":"Rouhollah Khomeini","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Rouhollah_Khomeini","note":"Une fatwa qui lui est attribuée sur le changement de sexe des personnes intersexes fonde la politique iranienne d''autorisation des chirurgies."},{"name":"Mohamed Sayed Tantawi","kind":"PERSONNE","role":"AUTEUR","reference_url":null,"note":"Mufti de la République arabe d''Égypte (1986-1996) ; sa fatwa de 1988 limite la chirurgie aux personnes intersexes."},{"name":"Lévitique","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/L%C3%A9vitique","note":"Livre de la Torah hébraïque qui range l''acte entre hommes parmi les « abominations » (18,22 ; 20,13)."},{"name":"Coran","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Coran","note":"Le récit de Loth (7,80-84 ; 26,165-166) y condamne l''acte des hommes de son peuple comme une « turpitude »."}]'::jsonb,
+  95,
+  '[{"claim_part":"« Le rejet scripturaire de l''homosexualité est propre à l''islam »","status":"FAUX","detail":"L''interdit textuel est partagé : « Tu ne coucheras point avec un homme comme on couche avec une femme. C''est une abomination » (Lévitique 18,22) ; « leurs femmes ont changé l''usage naturel en celui qui est contre nature » (Épître aux Romains 1,26-27) ; le Coran reprend le motif de Loth (7,80-84 ; 26,165-166). La condamnation religieuse des actes entre hommes est une constante monothéiste classique, non une spécificité musulmane."},{"claim_part":"« La tradition islamique interdit formellement toute transition de genre »","status":"FAUX","detail":"Le droit islamique classique distingue le mukhannath et le khuntha, ce dernier traité dans les traités juridiques (Saqer Almarri, Arcade, Stanford), et l''Iran autorise et subventionne partiellement la chirurgie de réassignation depuis le milieu des années 1980 (A. Najmabadi). La restriction est réelle mais autre : la fatwa égyptienne de 1988 n''ouvre la chirurgie qu''aux personnes intersexes et interdit la transition motivée par une identité de genre — un encadrement, non un interdit général de principe."}]'::jsonb,
+  true,
+  '2026-10-15T00:00:00.000Z'::timestamptz
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '80ced67f-e7b4-450d-b06d-7d6bc17693a0',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Bible — Lévitique 18,22 (traduction Louis Segond)',
+  'Ancien Testament, Lévitique — traduction Louis Segond (domaine public), servie par BibleGateway',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Tu ne coucheras point avec un homme comme on couche avec une femme. C''est une abomination.',
+  'Le code de sainteté du Lévitique range l''acte entre hommes parmi les « abominations » et, au verset 20,13, le punit de mort. L''interdit scripturaire des relations entre personnes de même sexe n''est donc pas propre au Coran : il figure d''abord dans la Torah hébraïque.',
+  'https://www.biblegateway.com/passage/?search=L%C3%A9vitique%2018%3A22&version=LSG',
+  null,
+  '18490289b5469eb3be55803842ada162f31a85a0470d1fcb42ac08df093351dd',
+  null,
+  null,
+  0
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '6b210b00-2dfc-40eb-a6c0-5335095090e9',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Bible — Épître aux Romains 1,26-27 (traduction Louis Segond)',
+  'Nouveau Testament, Épître aux Romains (apôtre Paul) — traduction Louis Segond (domaine public), servie par BibleGateway',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'C''est pourquoi Dieu les a livrés à des passions infâmes: car leurs femmes ont changé l''usage naturel en celui qui est contre nature; et de même les hommes, abandonnant l''usage naturel de la femme, se sont enflammés dans leurs désirs les uns pour les autres, commettant homme avec homme des choses infâmes, et recevant en eux-mêmes le salaire que méritait leur égarement.',
+  'Le Nouveau Testament reprend l''interdit : les rapports entre personnes de même sexe y sont dits « contre nature » et qualifiés de « passions infâmes ». La réprobation morale n''est donc pas l''apanage d''un seul monothéisme ; elle traverse l''Ancien et le Nouveau Testament comme le Coran.',
+  'https://www.biblegateway.com/passage/?search=Romains%201%3A26-27&version=LSG',
+  null,
+  '1b3dcfc4a2ccaf8eab88975a25b5b59600bdcde9cfafc7b801f8415af79a5404',
+  null,
+  null,
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'fd0731e2-9e70-4cdc-87e3-1ad7ec0813a5',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Coran — sourate 7 (Al-A''raf), versets 80-84, et sourate 26 (Ach-Chu''ara''), versets 165-166 (traduction Muhammad Hamidullah)',
+  'Le Coran — traduction française de Muhammad Hamidullah, servie par Quran.com',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Et Lot, quand il dit à son peuple : "Vous livrez vous à cette turpitude que nul, parmi les mondes, n''a commise avant vous ?"',
+  'Le Coran condamne l''acte du peuple de Loth comme une « turpitude » ; la sourate 26 (v. 165) interpelle les hommes : « Accomplissez-vous l''acte charnel avec les mâles de ce monde ? ». La réprobation est celle d''un texte sacré, comme dans les corpus bibliques : c''est une constante monothéiste, non un trait inventé par l''islam.',
+  'https://quran.com/fr/7/80-84',
+  null,
+  '3a7dd6c2f95edc871ae1b6ddb05b742c5801309b89017be3cd9716c195761880',
+  null,
+  null,
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '49415e80-95b8-4d9d-b8f0-e6da9f7ad821',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Fatwa de Mohamed Sayed Al Tantawi sur la chirurgie de réassignation (8 juin 1988) — base Cairo 52 (MENA Trans Archives)',
+  'Mohamed Sayed Al Tantawi, mufti de la République arabe d''Égypte — base Cairo 52 Legal Research Institute',
+  '1988-06-08',
+  'CITATION_EXACTE'::quote_kind,
+  'Surgeries are permitted for those with ambiguous sex (intersex) and its an obligation in this case, once confirmed by a trusted doctor. It is forbidden for just a desire to change sex from female to male or from male to female (gender identity disorder- transgender).',
+  'Cette fatwa, souvent citée comme une « autorisation » islamique de la transition, dit l''inverse d''une permission générale : elle ouvre la chirurgie aux personnes intersexes et interdit explicitement le changement motivé par une identité de genre. Elle illustre la distinction que le droit islamique opère entre intersexuation et identité : un encadrement, non une reconnaissance.',
+  'https://cairo52.com/map-posts/shiekh-mohamed-sayed-al-tantawi-egypt/',
+  null,
+  'c62a3fc87767e3c648de38a53e3a1b140fb691fc31fe98fa7c081e9836e88292',
+  null,
+  null,
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ead81ded-9d43-46bc-bba2-d921cea1d85f',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'Professing Selves: Transsexuality and Same-Sex Desire in Contemporary Iran — notice de l''éditeur',
+  'Afsaneh Najmabadi (université Harvard) — Duke University Press, notice de l''ouvrage',
+  '2013-12-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Since the mid-1980s, the Islamic Republic of Iran has permitted, and partially subsidized, sex reassignment surgery.',
+  'Ouvrage de l''historienne Afsaneh Najmabadi (Harvard) sur la transsexualité en Iran : la République islamique autorise et subventionne en partie la chirurgie de réassignation depuis le milieu des années 1980. La politique iranienne s''appuie sur une position attribuée à Khomeini ; l''ouvrage montre comment droit, psychiatrie et jurisprudence islamique ont produit une catégorie « trans » juridiquement tolérée — distincte de l''homosexualité, réprouvée.',
+  'https://www.dukeupress.edu/professing-selves',
+  null,
+  'bdb63f2ef7c10cd13b0692af77105c28a0681ac2250ef302406b64e924440e3b',
+  null,
+  null,
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '4d8795b2-a577-4751-ac27-e0ee9720a573',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Identities of a Single Root: The Triad of The Khuntha, Mukhannath, and Khanith » — Arcade (Stanford Humanities Center)',
+  'Saqer Almarri — Arcade, article évalué par les pairs',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'The mukhannath is the term most often invoked when scholars of Islamic studies discuss male homosexuality and male effeminacy. Another identity described in classical Arabic literature is the khuntha (plural: khunatha). This identity often arises in legal treatises addressing inheritance rules, because the question of the sex of the khuntha arises in order to calculate each heir''s inheritance.',
+  'Le droit islamique classique distingue des figures que le vocabulaire contemporain confond : le mukhannath (l''homme efféminé, associé dans les traités à l''homosexualité passive) et le khuntha (la personne au sexe ambigu), ce dernier traité jusque dans les règles de calcul des héritages. La tradition savante n''assimile donc pas l''orientation sexuelle à l''identité de genre.',
+  'https://shc.stanford.edu/arcade/interventions/identities-single-root-triad-khuntha-mukhannath-and-khanith-0',
+  null,
+  '7c6ebf0b249fb50e07ddaeee82eb15b589242b302b05330424e4097fd3a00493',
+  null,
+  null,
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '6a47188d-5db5-4dd1-8529-0c2c668d62f3',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'CENTRE'::political_spectrum,
+  '« Iran : changer de sexe ou mourir »',
+  'D. Bel. — Le Monde, instantané Wayback',
+  '2006-05-12',
+  'CITATION_EXACTE'::quote_kind,
+  'En Iran, les transsexuels sont considérés comme des "malades". Depuis 1979, ils bénéficient néanmoins d''une certaine forme de tolérance de la part du régime islamique. Ils ont ainsi le droit de changer de sexe pour trouver leur place dans la société.',
+  'Article du Monde accompagnant un reportage d''Envoyé spécial : il rappelle que, sous contrôle médical et religieux, la République islamique autorise le changement de sexe — tout en punissant l''homosexualité. Le traitement institutionnel de la transition y est donc distinct de celui de l''orientation, ce qui contredit l''idée d''un interdit islamique uniforme.',
+  'https://web.archive.org/web/20240619192404/https://www.lemonde.fr/vous/article/2006/05/12/iran-changer-de-sexe-ou-mourir_770938_3238.html',
+  null,
+  '36a5fef4bfa7c06fc5e4188e6b74ed521f6af6ccc8a6a97ede22346789ad4664',
+  null,
+  null,
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '56e2ec11-93d8-4100-b93c-112728b91030',
+  '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Avenir de l''Église : le rapport du Synode rejette la bénédiction des couples homosexuels et reporte la question du célibat des prêtres »',
+  'Jean-Marie Guénois — Le Figaro',
+  '2023-10-29',
+  'CITATION_EXACTE'::quote_kind,
+  'Rejet de la bénédiction de couples homosexuels, report à long terme d''une éventuelle abolition du célibat sacerdotal, remise en cause du pouvoir exclusif de l''évêque au profit d''une «coresponsabilité» du gouvernement ecclésial avec les laïcs, large ouverture pour donner des responsabilités aux femmes, mais dont le statut reste à définir, sont les quatre propositions majeures du «rapport de synthèse» de la première étape du synode sur l''avenir de l''Église, présentées samedi 28 octobre dans la soirée à Rome.',
+  'Le Figaro, quotidien classé à droite, rapporte que le synode catholique rejette la bénédiction des couples de même sexe. La réprobation morale des relations homosexuelles est donc portée aussi par l''institution catholique contemporaine, ce qui contredit la thèse d''une spécificité musulmane.',
+  'https://www.lefigaro.fr/actualite-france/avenir-de-l-eglise-le-rapport-du-synode-rejette-la-benediction-des-couples-homosexuels-et-reporte-une-abolition-du-celibat-des-pretres-20231029',
+  null,
+  'ef93fe870a0e3f6b293b851e5fe08c6abab3089946dac54942e4f9a940fb6fcc',
+  null,
+  null,
+  7
+);
+
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,

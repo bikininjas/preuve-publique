@@ -17,8 +17,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
   (`20261015043026`), `0006_protagonists` (`20261015044427`),
   `0007_religion_and_verdicts` (`20261015155510` — catégorie « Religion », verdicts
-  « anachronisme historique » et « généralisation abusive »). Vingt-deux dossiers en base :
-  vingt et un **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  « anachronisme historique » et « généralisation abusive »). Vingt-quatre dossiers en base :
+  vingt-trois **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -31,10 +31,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
   économie), les discriminations à l'embauche liées à l'origine (7, société) et la thèse
   de races biologiques humaines (8, société), l'homoparentalité et le développement des
-  enfants (7, société) et la « théorie du genre » à l'école (10, société) — et un
-  **brouillon de contrôle RLS** ; RLS actif sur
+  enfants (7, société), la « théorie du genre » à l'école (10, société) et les deux
+  dossiers Religion — l'union du prophète de l'islam avec Aïcha qualifiée de
+  « pédophilie » (6, Religion, anachronisme historique) et « l'islam, seule religion
+  scripturairement homophobe et transphobe » (8, Religion, généralisation abusive) —
+  et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 164 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 178 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -200,15 +203,17 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
     répond 200 (deux tests de non-régression couvrent ce point).
 - **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
   `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 15/10/2026 —
-  `preuve-publique-git-00005-l49`, `/api/health` → `status: healthy`,
-  `database.reachable: true`. Déploiement manuel par
+  `preuve-publique-git-00005-l49`, puis `preuve-publique-git-00006-pfj` après l'ajout des
+  deux dossiers Religion (`/api/health` → `status: healthy`, `database.reachable: true` ;
+  les deux dossiers répondent 200 et leur `X-Proof-Integrity-Root` égale la racine
+  recalculée par `npm run proofs`). Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **161 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **178 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 132 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 26 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 146 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 29 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
@@ -516,7 +521,18 @@ pièce. Puis, à 16:04 UTC, l'enrichissement du dossier « théorie du genre » 
 unième publié, dix sources) a entraîné une dernière réapplication et recapture : 164
 pièces, 164 fiches déposées et relues — 132 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE`, 3
 `METADATA_ONLY` — racine des captures `ceb48ce6e1a0f092…` ; fiches dédupliquées, une par
-pièce. Le
+pièce. Le 15/10/2026 (17:18 UTC), l'ajout des deux dossiers Religion a été **appliqué de
+façon ciblée** — sans réapplication complète du seed, qui aurait emporté en cascade les
+fiches d'archive des vingt-deux autres dossiers : les deux dossiers sont publiés et leurs
+**14 fiches** déposées et relues, toutes `URL_SNAPSHOT` (six pour l'âge d'Aïcha, racine
+des captures `4d88da3fee113838…` ; huit pour le droit comparé, racine
+`417bf2285aef617f…`). Le registre compte désormais 24 dossiers (23 publiés) et
+178 sources, avec leurs 178 fiches d'archive (146 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE`,
+3 `METADATA_ONLY`). Le build déployé alors en ligne, antérieur à la migration `0007`, ne
+connaissait ni la catégorie « Religion » ni les deux nouveaux verdicts : il refusait de
+lire les deux lignes ajoutées (le registre affichait une erreur de lecture). Un
+redéploiement (`gcloud builds submit --config cloudbuild.yaml`) a mis en ligne la
+révision `preuve-publique-git-00006-pfj`, qui les sert normalement. Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
