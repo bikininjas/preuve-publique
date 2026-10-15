@@ -1751,6 +1751,228 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   7
 );
 
+delete from public.dossiers where slug = 'aspa-minimum-vieillesse-etrangers-conditions-cotisation';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at
+) values (
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'aspa-minimum-vieillesse-etrangers-conditions-cotisation',
+  'Le minimum vieillesse (ASPA) de 1 000 € est versé à des étrangers arrivés en France sans cotiser',
+  'FAUX'::verdict_status,
+  'L''ASPA n''est versée à aucun étranger « sans condition » : le code de la sécurité sociale impose une condition de résidence stable de plus de 9 mois par an et, pour les ressortissants non couverts par une convention, un titre de séjour autorisant à travailler détenu sans interruption depuis au moins 10 ans — sauf statut de réfugié, d''apatride, de bénéficiaire de la protection subsidiaire ou ressortissant de l''Espace économique européen. Le montant maximum est de 1 043,59 € par mois pour une personne seule en 2026 (1 620,18 € pour un couple) et l''allocation est différentielle : elle complète les revenus jusqu''à ce plafond, sans lien avec une quelconque cotisation. Elle est supprimée si le bénéficiaire établit sa résidence hors de France et récupérable, au décès, sur la part de succession dépassant 108 586,14 €. Loin d''être un chèque automatique, la prestation souffre d''un non-recours massif : environ 300 000 retraités éligibles ne la demandent pas, en partie par crainte de la récupération sur succession — une proposition de loi créant un « forfait logement » a été adoptée à l''unanimité par l''Assemblée nationale le 11 juin 2026 et doit encore être examinée par le Sénat.',
+  'SOCIETE'::dossier_category,
+  '[{"name":"Allocation de solidarité aux personnes âgées","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Allocation_de_solidarit%C3%A9_aux_personnes_%C3%A2g%C3%A9es","note":"Appelée « minimum vieillesse », elle a remplacé en 2006-2007 les allocations constitutives de l''ancien dispositif ; versée sous conditions de résidence, d''âge et de ressources."},{"name":"Caisse nationale d''assurance vieillesse","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Caisse_nationale_d%27assurance_vieillesse","note":"Sert environ 80 % des allocations du minimum vieillesse au régime général et pilote les campagnes de lutte contre le non-recours à l''ASPA."},{"name":"Émeline K/Bidi","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/%C3%89meline_K/Bidi","note":"Députée de La Réunion (GDR), autrice de la proposition de loi « visant à renforcer la solidarité envers les retraités pauvres » adoptée par l''Assemblée nationale le 11 juin 2026."},{"name":"Cour des comptes","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)","note":"Dans son rapport « Le minimum vieillesse et l''allocation de rentrée scolaire » (octobre 2021), elle documente le coût de la prestation (3,95 Md€ pour 750 000 allocataires en 2020) et le poids du minimum vieillesse dans les fraudes de la branche vieillesse."},{"name":"Sénat","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)","note":"Doit examiner en première lecture le texte adopté par l''Assemblée nationale sur le « forfait logement » (dossier législatif ppl25-734)."}]'::jsonb,
+  98,
+  '[{"claim_part":"« N''importe quel étranger âgé peut venir en France toucher 1 000 € par mois sans condition »","status":"FAUX","detail":"Pour en bénéficier, un ressortissant étranger doit détenir « de façon continue depuis au moins 10 ans un titre de séjour autorisant à travailler », sauf s''il est réfugié, apatride, bénéficiaire de la protection subsidiaire, ancien combattant, ressortissant d''un État de l''Espace économique européen ou de Suisse, ou ressortissant d''un pays lié par une convention bilatérale (service-public.gouv.fr). S''y ajoutent la résidence stable en France (plus de 9 mois l''année de versement), la condition de subsidiarité (avoir fait valoir tous ses droits à pension), l''âge minimum (65 ans, abaissé dans certains cas) et un plafond de ressources. Le montant n''est pas un forfait : l''allocation est différentielle et le maximum est de 1 043,59 € par mois pour une personne seule en 2026 — soit à peine plus que les « 1 000 € » évoqués."},{"claim_part":"« L''ASPA est un droit gratuit conservé même si l''on repart vivre à l''étranger »","status":"FAUX","detail":"Le service de l''allocation « est supprimé aux personnes qui établissent leur résidence en dehors du territoire métropolitain » (article L. 815-12 du code de la sécurité sociale), et la condition de résidence — désormais portée à 9 mois par an pour le minimum vieillesse comme pour les prestations familiales par le décret du 19 avril 2024, applicable au 1er janvier 2025 — est contrôlée annuellement. Surtout, la prestation n''est pas « gratuite » : récupérable sur la succession au-delà d''un actif net de 108 586,14 € pour un décès en 2026 (art. L. 815-13), elle est au cœur d''un non-recours massif — environ 300 000 retraités éligibles y renoncent, et l''Assemblée nationale a voté le 11 juin 2026 un « forfait logement » qui supprime cette récupération pour les propriétaires, précisément pour y remédier."}]'::jsonb,
+  true,
+  '2026-10-15T00:00:00.000Z'::timestamptz
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '2063e9ae-3799-4e20-9846-4642b40ef280',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Allocation de solidarité aux personnes âgées (Aspa) — fiche d''information officielle F16871',
+  'Service-public.gouv.fr — Direction de l''information légale et administrative (Premier ministre)',
+  '2026-10-15',
+  'CITATION_EXACTE'::quote_kind,
+  'Vous devez également être dans l''une des situations suivantes : Avoir de façon continue depuis au moins 10 ans un titre de séjour autorisant à travailler',
+  'La fiche officielle oppose la condition des dix ans de titre de séjour à une liste limitative d''exceptions : être réfugié, apatride, bénéficiaire de la protection subsidiaire, avoir combattu pour la France, être ressortissant d''un État de l''Espace économique européen ou de Suisse, ou ressortissant d''un pays conventionné (Algérie, Andorre, Bénin, Cap-Vert, Congo, etc.). Elle fixe aussi la condition de résidence — « C''est le cas si vous séjournez en France pendant plus de 9 mois l''année de versement de l''Aspa » — et les montants 2026 : revenus du couple plafonnés à 1 620,18 € brut par mois, montant maximum de 1 043,59 € pour la personne seule. La récupération sur succession y est détaillée : pour un décès en 2026, elle ne s''applique que si l''actif net dépasse 108 586,14 €, dans la limite de 8 463,42 € par année de versement.',
+  'https://www.service-public.gouv.fr/particuliers/vosdroits/F16871',
+  null,
+  '52a12eadf099322e4c2ba7b4dfb45d770fc23d14a9ab0097ff8da2fbbf3af534',
+  null,
+  null,
+  0
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'f990791d-b475-408b-8f2e-027afbe0c791',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Prestations : 9 mois de résidence en France désormais exigés (actualité A17353)',
+  'Service-public.gouv.fr — Direction de l''information légale et administrative (Premier ministre)',
+  '2025-01-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Il faut désormais résider 9 mois par an en France, au lieu de 6 mois, pour percevoir des prestations familiales et bénéficier du minimum vieillesse et ce, depuis le 1er janvier 2025.',
+  'L''actualité officielle documente le durcissement de la condition de résidence appliqué au minimum vieillesse : un décret du 19 avril 2024, publié au Journal officiel du 21 avril 2024, a porté de 6 à 9 mois par an la durée de résidence exigée, « le décret concerne les prestations familiales et le minimum vieillesse ». La prémisse selon laquelle l''allocation serait conservée en cas de départ à l''étranger se heurte à ce contrôle annuel de présence effective.',
+  'https://www.service-public.gouv.fr/particuliers/actualites/A17353',
+  null,
+  'd6147c98bba2e6f7bdc6a4d92d2fa961ba18d15771623caeb99763027e3dc1df',
+  null,
+  null,
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '8bf87088-d02b-460d-8429-a873f1d27982',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code de la sécurité sociale — article L. 815-1 (conditions d''attribution de l''allocation de solidarité aux personnes âgées)',
+  'République française — code de la sécurité sociale',
+  '2026-01-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Un décret en Conseil d''Etat précise la condition de résidence mentionnée au présent article, sa durée ne pouvant être inférieure à neuf mois par année civile.',
+  'Le texte fondateur de l''ASPA pose une condition de « résidence stable et régulière sur le territoire métropolitain ou dans une collectivité mentionnée à l''article L. 111-2 » et inscrit le seuil plancher de neuf mois de présence par année civile ; l''article L. 815-1 prévoit aussi l''abaissement de l''âge minimum en cas d''inaptitude au travail. Le texte à jour est servi par le service public de diffusion du droit (Légifrance) ; il est reproduit ici depuis le miroir justiweb.fr, vérifié mot à mot.',
+  'https://www.justiweb.fr/articles/code-de-la-securite-sociale/L815-1',
+  null,
+  'c1306307d9c2b8281623a2936f0576c1ed769a915e516238d11b0cc8af641052',
+  null,
+  null,
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'adc0a243-1cae-447e-a6f6-6230894d5b60',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code de la sécurité sociale — article L. 815-12 (suppression du service en cas de résidence hors de France)',
+  'République française — code de la sécurité sociale',
+  '2026-01-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Le service de l''allocation de solidarité aux personnes âgées est supprimé aux personnes qui établissent leur résidence en dehors du territoire métropolitain et des collectivités mentionnées à l''article L. 111-2.',
+  'Cet article dément directement la prémisse d''un droit « conservé » en cas de départ à l''étranger : l''ASPA n''est pas portable, son service est supprimé dès que la résidence est établie hors du territoire (la circulation dans l''Espace économique européen ne la maintient pas non plus, contrairement à d''autres prestations). Texte à jour servi par Légifrance, reproduit depuis le miroir justiweb.fr, vérifié mot à mot.',
+  'https://www.justiweb.fr/articles/code-de-la-securite-sociale/L815-12',
+  null,
+  '540441527bb9c12bd330ceff80cb6d9224af90684d1bc43e84c2746f059507fa',
+  null,
+  null,
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '5c899db2-fe91-4d75-90e3-c9a17db61e87',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code de la sécurité sociale — article L. 815-13 (récupération sur succession et seuil de 100 000 euros)',
+  'République française — code de la sécurité sociale',
+  '2026-01-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Toutefois, la récupération n''est opérée que sur la fraction de l''actif net qui excède un seuil dont le montant est fixé à 100 000 euros au 1er septembre 2023 et revalorisé dans les mêmes conditions que celles prévues au même article L. 816-2. Dans les collectivités mentionnées à l''article L. 751-1, ce seuil est de 150 000 euros jusqu''au 31 décembre 2029.',
+  'La loi elle-même fixe le seuil de récupération « d''environ 100 000 € » évoqué dans la prémisse : 100 000 € au 1er septembre 2023 pour la métropole, porté à 108 586,14 € par la revalorisation annuelle pour un décès survenu en 2026, et 150 000 € dans les collectivités d''outre-mer visées. La récupération s''exerce « après le décès du bénéficiaire », sur la fraction de succession excédant le seuil, et les sommes recouvrables sont garanties par une hypothèque légale ; sont exclus notamment les capitaux d''exploitation agricole. Texte à jour servi par Légifrance, reproduit depuis le miroir justiweb.fr, vérifié mot à mot.',
+  'https://www.justiweb.fr/articles/code-de-la-securite-sociale/L815-13',
+  null,
+  '67db7505e7566a43c03aeebe8658541dfb8fb14370d58aac9ceae5594115ee6f',
+  null,
+  null,
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '6b0775f6-1afb-4048-8b68-87862e9e026b',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  'Augmentation des effectifs de l''Aspa au régime général : le rôle prépondérant de la démographie',
+  'Robin Demé — Direction statistique, prospective et recherche, Caisse nationale d''assurance vieillesse (Assurance retraite)',
+  '2025-10-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Entre 2012 et 2022, le nombre d''allocataires du minimum vieillesse au régime général est passé de 415 000 à 570 000, soit une hausse de 155 000 allocataires.',
+  'Les données de la CNAV montrent un dispositif en forte croissance démographique (+ 37 % d''allocataires en dix ans au régime général), alimenté par l''arrivée à l''âge d''éligibilité de générations nombreuses et non par un assouplissement des conditions : le nombre d''allocataires par tranche d''âge a lui aussi augmenté. L''étude de la CNAV documente donc un flux de bénéficiaires soumis aux conditions légales, pas un « chèque automatique » ouvert à n''importe quel arrivant.',
+  'https://www.statistiques-recherche.lassuranceretraite.fr/aspa-effet-demographique/',
+  null,
+  '4b8bdf2630a7bf742f4cfa6581a221ae69e92675f24cb783ea93d1e115073c90',
+  null,
+  'https://fr.wikipedia.org/wiki/Caisse_nationale_d%27assurance_vieillesse',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ae5d116f-7d1e-4c67-95be-ba0637e8b2c5',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  'Bilan de la campagne de lutte contre le non-recours à l''Aspa en 2024',
+  'François Baris, Marie Ménard — Direction statistique, prospective et recherche, Caisse nationale d''assurance vieillesse (Assurance retraite)',
+  '2025-06-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Au cours de l''année 2024, près de 11 500 assurés ont été contactés par les caisses régionales de l''Assurance retraite pour un potentiel non-recours à l''Allocation de solidarité aux personnes âgées (Aspa). En comptabilisant les relances, plus de 15 000 contacts ont été réalisés.',
+  'Le problème réel du dispositif est inverse de celui dénoncé par la prémisse : la CNAV doit traquer les retraités éligibles qui ne demandent pas l''allocation (855 nouvelles pensions de minimum vieillesse servies au 28 février 2025 grâce à ces contacts ; près de 80 % des assurés joints par téléphone seraient effectivement éligibles). Les campagnes de courriers postaux ont permis d''attribuer l''ASPA à 10 % des assurés contactés, celles de mailing à 8 %.',
+  'https://www.statistiques-recherche.lassuranceretraite.fr/non-recours-aspa-2024/',
+  null,
+  'ee80a18938e0cb34dcb6416cd4ad3bdecde6d72d47ab618b56decda93441aff4',
+  null,
+  'https://fr.wikipedia.org/wiki/Caisse_nationale_d%27assurance_vieillesse',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '80de041c-6760-41da-9977-222d28d9e214',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'CENTRE'::political_spectrum,
+  'Le minimum vieillesse et l''allocation de rentrée scolaire — contribution au rapport « Sécurité sociale 2021 »',
+  'Cour des comptes (France)',
+  '2021-10-05',
+  'CITATION_EXACTE'::quote_kind,
+  'L''Aspa est l''une des allocations sur lesquelles se concentrent les risques d''erreurs et de fraude les plus élevés.',
+  'La juridiction financière décrit le dispositif : en 2020, 3,95 Md€ ont été consacrés au minimum vieillesse au bénéfice de près de 750 000 allocataires ; l''ASPA (créée en 2006-2007) est soumise à une condition de résidence en France, à une condition de régularité du séjour pour les étrangers et à la subsidiarité. Elle pointe des « taux d''erreurs et des risques de fraude élevés », « près des trois quarts des fraudes détectées dans la branche vieillesse » concernant le minimum vieillesse, « principalement pour non-respect des conditions de résidence ou de ressources » — un contrôle renforcé qui confirme que les conditions sont sérieusement vérifiées, tout en soulignant la difficulté de ce contrôle.',
+  'https://www.ccomptes.fr/sites/default/files/2021-10/20211005-Ralfss-2021-10-Minimum-vieillesse-allocation-rentree-scolaire.pdf',
+  null,
+  'e45196386e16fe4381087be62e01a5e3dba9839c6236702b86eef1f63f43de33',
+  null,
+  'https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'aba31769-96b0-43ff-b319-3aa3f9a7102e',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  'Dossier législatif — proposition de loi visant à renforcer la solidarité envers les retraités pauvres (texte n° 734, 2025-2026)',
+  'Sénat (France)',
+  '2026-06-11',
+  'CITATION_EXACTE'::quote_kind,
+  'Première lecture - Sénat 11 juin 2026',
+  'Le dossier législatif du Sénat retrace le parcours du texte adopté par l''Assemblée nationale le 11 juin 2026 (texte n° 308) puis « Texte n° 734 (2025-2026) transmis au Sénat le 11 juin 2026 », en première lecture. Au 15 octobre 2026, la réforme du « forfait logement » — qui supprimerait la récupération sur succession pour les retraités propriétaires — est donc toujours en navette : les règles actuelles de récupération sur succession s''appliquent jusqu''à la promulgation éventuelle. Le Sénat, chambre à majorité de droite, doit encore se prononcer sur ce texte d''origine parlementaire.',
+  'https://www.senat.fr/dossier-legislatif/ppl25-734.html',
+  null,
+  '70e0ed554ff4e3d2fcf6ec5d5fcdb9b9c17415d412db610fd947728c09f5af10',
+  null,
+  'https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '44f39f73-e8e0-4917-b8ec-549587448521',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'GAUCHE'::political_spectrum,
+  'Retraités pauvres : les députés adoptent un texte pour favoriser le recours aux aides',
+  'LCP — Assemblée nationale (Maxence Kagni)',
+  '2026-06-11',
+  'CITATION_EXACTE'::quote_kind,
+  'L''Assemblée nationale a adopté, ce jeudi 11 juin, une proposition de loi du groupe Gauche démocrate et républicaine qui vise à améliorer le taux de recours à l''allocation de solidarité aux personnes âgées (Aspa). Aujourd''hui, cette aide est peu demandée, car elle peut entraîner le remboursement de sommes importantes au décès du bénéficiaire.',
+  'La chaîne parlementaire détaille la proposition de loi « visant à renforcer la solidarité envers les retraités pauvres » de la députée Émeline K/Bidi (GDR) : un « forfait logement » d''environ 40 euros pour une personne seule, en échange de la suppression de la récupération sur succession pour les propriétaires, et un non-recours « dû à 70 % au mécanisme de récupération de l''Aspa sur les successions » selon les enquêtes citées. Le texte a été transmis au Sénat.',
+  'https://lcp.fr/actualites/retraites-pauvres-les-deputes-adoptent-un-texte-pour-favoriser-le-recours-aux-aides',
+  null,
+  'be1088a6527cdc06b3a6febddd661ac43c9db913464fbd126dbbe3a4da86265e',
+  null,
+  null,
+  9
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'dc6e2d8e-aebb-4995-8fb4-fdf904d931d6',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'Actions de lutte contre le non-recours à l''Aspa : ciblage par datamining — revue Retraite et société n° 87',
+  'Macline Niyomwungere, Frédéric Broutin (CNAV), revue scientifique Retraite et société, n° 87, dossier « Le non-recours des personnes âgées aux droits et aux services »',
+  '2021-12-01',
+  'CITATION_EXACTE'::quote_kind,
+  'L''allocation de solidarité aux personnes âgées (Aspa), qui permet d''assurer un niveau minimum de ressources aux retraités, fait l''objet d''un taux de non-recours important.',
+  'La littérature scientifique (revue à comité de lecture éditée par la CNAV, coordination Arnaud Campéon, Mélina Ramos-Gorand et Philippe Warin, cofondateur de l''Observatoire des non-recours) documente que le principal dysfonctionnement de l''ASPA est le non-recours, et non une attribution laxiste : les freins identifiés sont la méconnaissance du dispositif, la complexité des démarches et la crainte de la récupération sur succession. Les modèles statistiques de ciblage développés depuis 2018 en découlent directement.',
+  'https://www.statistiques-recherche.lassuranceretraite.fr/actions-de-lutte-contre-le-non-recours-a-l-aspa-ciblage-par-datamining/',
+  null,
+  '70895ad5405b191cf0c48a01781aef6f0cdf72173cb62f5366920da615ccc040',
+  null,
+  'https://fr.wikipedia.org/wiki/Caisse_nationale_d%27assurance_vieillesse',
+  10
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '69e53375-4d9a-4e45-9ec1-0b18c20f818a',
+  '92fb6d88-053d-4435-8506-0f9e92a7db51',
+  'CENTRE'::political_spectrum,
+  'Aspa, successions et « forfait logement » : l''Assemblée revoit l''Allocation de solidarité aux personnes âgées',
+  'Boursorama avec Media Services (dépêche AFP)',
+  '2026-06-11',
+  'CITATION_EXACTE'::quote_kind,
+  'Les députés ont approuvé à l''unanimité en première lecture jeudi 11 juin une proposition de loi du groupe GDR (communistes et ultramarins) visant à diminuer le non-recours à l''Allocation de solidarité aux personnes âgées (Aspa).',
+  'La dépêche rapporte les éléments chiffrés du débat : l''ASPA « bénéficie aujourd''hui à près de 750.000 personnes » selon le ministre du Travail Jean-Pierre Farandou, dans la limite de 1 043 euros pour une personne seule et 1 620 euros pour un couple ; l''État récupère « environ 120 millions d''euros par an sur les allocations versées » au titre des successions. Le « forfait logement » résulte d''un amendement du gouvernement qui a réécrit la proposition de loi, avec un coût jugé « neutre » pour les finances publiques.',
+  'https://www.boursorama.com/actualite-economique/actualites/aspa-successions-et-forfait-logement-l-assemblee-revoit-l-allocation-de-solidarite-aux-personnes-agees-647fde1e1fc5dd9e50868d2ba8eedacf',
+  null,
+  '66bb4b876a0535f67d938cacb01b88a34d94cd5f34b7f74b3ebd8b0a3112335a',
+  null,
+  null,
+  11
+);
+
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,

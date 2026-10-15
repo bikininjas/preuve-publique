@@ -15,16 +15,17 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Treize dossiers en base :
-  douze **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Quatorze dossiers en base :
+  treize **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
   l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
-  société), l'allocation pour demandeur d'asile (7, société) et les aides sociales des
-  sans-papiers (7, société) — et un **brouillon de contrôle RLS** ; RLS actif sur
+  société), l'allocation pour demandeur d'asile (7, société), les aides sociales des
+  sans-papiers (7, société) et le minimum vieillesse (ASPA) versé aux étrangers (12,
+  société) — et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 90 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 102 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -60,6 +61,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   même manière (`5b894fab…`) : sept fiches déposées et relues (quatre instantanés réseau —
   CNAF, service-public.fr, Sénat, Conseil constitutionnel — et trois URL indisponibles,
   Légifrance et Cairn répondant 403 aux robots).
+  Le treizième (le minimum vieillesse et les conditions d'accès des étrangers, 12 sources —
+  fiche officielle service-public.fr, articles L. 815-1, L. 815-12 et L. 815-13 du code de
+  la sécurité sociale cités d'après les textes téléchargés, deux études de la CNAV, Cour des
+  comptes, dossier législatif du Sénat ppl25-734, LCP, revue *Retraite et société*, dépêche
+  AFP) a été vérifié de la même manière (`0e145a46…`) : douze fiches déposées et relues
+  (douze instantanés réseau — aucune URL indisponible).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -348,7 +355,12 @@ second passage de capture lancé en parallèle ayant créé un doublon par pièc
 13:30 UTC, l'intégration du dossier « aides sociales des sans-papiers » (douzième publié)
 a entraîné une nouvelle réapplication complète du seed et une recapture : 90 pièces, 90
 fiches déposées et relues — 66 `URL_SNAPSHOT`, 21 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` —
-racine des captures `37ffd2f0338a6a26…`. Le **miroir Storage** n'a pas eu lieu faute d'accès
+racine des captures `37ffd2f0338a6a26…`. Puis, à 13:42 UTC, l'intégration du dossier
+« minimum vieillesse (ASPA) versé aux étrangers » (treizième publié) a de nouveau
+réappliqué le seed et une recapture : 102 pièces, 102 fiches déposées et relues — 74
+`URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
+`3ecc80696b794f9f…` ; aucun doublon (une fiche exacte par pièce publiée, contrôle par
+empreinte). Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
