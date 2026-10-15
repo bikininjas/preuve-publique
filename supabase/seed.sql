@@ -1324,6 +1324,160 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   5
 );
 
+delete from public.dossiers where slug = 'incendie-eglise-saint-omer-attentat-islamiste';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at
+) values (
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'incendie-eglise-saint-omer-attentat-islamiste',
+  'L''incendie de l''église de Saint-Omer est un attentat islamiste',
+  'FAUX'::verdict_status,
+  'L''auteur de l''incendie de la nuit du 1er au 2 septembre 2024 à Saint-Omer est un homme né en 1985, de nationalité française, sans domicile fixe, tout juste sorti de prison : il a reconnu être entré par effraction dans l''église de l''Immaculée-Conception pour voler l''argent des troncs, avant d''y mettre le feu. Son casier porte 26 condamnations, dont deux pour destruction de biens par un moyen dangereux et une pour dégradation d''un lieu de culte (incendie volontaire de quatre églises du Boulonnais en 2021). Le dossier a été instruit au pôle criminel de Boulogne-sur-Mer sur les chefs de destruction par moyen dangereux et de vol : aucune qualification antiterroriste n''est apparue, aucune revendication n''a été relevée, et le Parquet national antiterroriste n''a jamais été saisi. Un incendie criminel de droit commun (art. 322-6 du code pénal), non un attentat.',
+  'FAITS_DIVERS'::dossier_category,
+  '[{"name":"Saint-Omer (Pas-de-Calais)","kind":"LIEU","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Saint-Omer_(Pas-de-Calais)","note":"Église de l''Immaculée-Conception, détruite par un incendie volontaire dans la nuit du 1er au 2 septembre 2024."},{"name":"Pyromanie","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Pyromanie","note":"Profil de l''auteur : incendiaire récidiviste, suivi psychiatrique, sans revendication religieuse."},{"name":"Parquet national antiterroriste","kind":"ORGANISATION","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Parquet_national_antiterroriste","note":"Jamais saisi : aucune qualification antiterroriste n''a été retenue dans ce dossier."},{"name":"Observatoire du patrimoine religieux","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://www.patrimoine-religieux.fr/","note":"Tient le décompte de référence des sinistres d''églises (source citée par le Sénat)."}]'::jsonb,
+  100,
+  '[{"claim_part":"« L''incendie est une attaque terroriste antichrétienne »","status":"FAUX","detail":"L''enquête établit un mobile crapuleux (vol de l''argent des troncs) suivi d''un incendie volontaire allumé par un récidiviste (« avant de quitter les lieux, il avait décidé d''y mettre le feu »), sans aucune entreprise terroriste au sens de l''article 421-1 du code pénal. Les sinistres d''églises relèvent de causes multiples : selon l''Observatoire du patrimoine religieux, sur les 27 départs de feu de 2023, 19 étaient accidentels et 8 criminels ; en 2024 (janvier-septembre), 14 sur 26. Aucune campagne terroriste antichrétienne n''est documentée dans l''Hexagone."},{"claim_part":"« L''auteur est un étranger islamiste »","status":"FAUX","detail":"Le parquet a précisé qu''il s''agit d''un homme « né en 1985 et de nationalité française », sans domicile fixe, hébergé en foyer, suivi sur le plan psychiatrique, défavorablement connu des services de police pour des vols et des dégradations depuis des années (26 condamnations de droit commun). Aucun élément de radicalisation ou d''attache étrangère n''apparaît dans la procédure, dont les chefs sont la destruction par moyen dangereux et le vol."}]'::jsonb,
+  true,
+  '2026-10-15T00:00:00.000Z'::timestamptz
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '4f8443a3-7409-45e9-9a9c-8aa38605091b',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  'Incendie de l''église de l''Immaculée-Conception de Saint-Omer : le suspect a reconnu les faits',
+  'Parquets de Saint-Omer et de Boulogne-sur-Mer — déclarations des procureurs Mehdi Benbouzid et Guirec Le Bras, relayées par CNEWS',
+  '2024-09-04',
+  'CITATION_EXACTE'::quote_kind,
+  'Cet homme, né en 1985 et de nationalité française, s''était ainsi introduit dans l''église vers 00h20, d''après le procureur de la République de Boulogne-sur-Mer Guirec Le Bras.',
+  'Déclarations officielles du parquet : le suspect « a avoué être entré par effraction dans l''église le 2 septembre, pour voler l''argent des troncs », puis « a mis le feu à la bâtisse » (procureur de Saint-Omer, Mehdi Benbouzid). Sorti de détention le 27 août 2024 après une peine de trois ans et six mois pour vols et dégradations, il était sans domicile fixe et sans profession, hébergé en foyer.',
+  'https://www.cnews.fr/faits-divers/2024-09-04/incendie-de-leglise-de-limmaculee-conception-de-saint-omer-le-suspect',
+  null,
+  'e649bee77e549ff4c570576f9e673d1256b6759866507b1fd0d54b4fe661a080',
+  null,
+  null,
+  0
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'c4589c7e-668b-4b1e-8f42-2d6c3a95e6ed',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'CENTRE'::political_spectrum,
+  'Incendie dans une église à Saint-Omer : le suspect, récidiviste, a été mis en examen',
+  'franceinfo (avec AFP)',
+  '2024-09-04',
+  'CITATION_EXACTE'::quote_kind,
+  'Le casier judiciaire du suspect, qui résidait dans un foyer au moment des faits, porte 26 condamnations, dont deux pour "destruction de biens par un moyen dangereux" et une pour "dégradation ou détérioration d''un lieu de culte", consécutive à l''incendie volontaire de quatre églises du Boulonnais en 2021.',
+  'Mise en examen le 4 septembre 2024 pour « destruction de bien par un moyen dangereux pour les personnes, commise en raison de la race, l''ethnie, la nation ou la religion en récidive légale et tentative de vol avec effraction en récidive » — une qualification criminelle de droit commun, aucune infraction terroriste. Le parquet annonce des « expertises psychiatriques et psychologiques » ; lors de son procès de 2022, le psychiatre avait relevé une « réelle souffrance psychique » et un homme qui « cherchait à être en prison car il s''y sent plus en sécurité qu''à l''extérieur ».',
+  'https://www.franceinfo.fr/faits-divers/justice-proces/incendie-dans-une-eglise-a-saint-omer-le-suspect-recidiviste-a-ete-mis-en-examen_6763111.html',
+  null,
+  '04a6ecbfce3ed1473e96fb023cf4fb5e839f2888d078e032a60c9c403bb98192',
+  null,
+  null,
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '257bb185-0620-4ad0-bf64-7c54fbb77753',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  'Incendie de l''église à Saint-Omer : le suspect mis en examen et écroué',
+  'Le Figaro',
+  '2024-09-05',
+  'CITATION_EXACTE'::quote_kind,
+  'Lors de sa garde à vue, l''individu de 39 ans, déjà condamné à 26 reprises, a reconnu les faits.',
+  'Le Figaro détaille le casier : 26 condamnations, dont deux pour destruction de biens par un moyen dangereux et une pour dégradation ou détérioration d''un lieu de culte (l''incendie volontaire de quatre églises du Boulonnais, en 2021) ; « ses autres condamnations portaient sur des vols par effraction, par ruse ou avec dégradation ». Le suspect, né en 1985, SDF, sortait de prison (27 août) et a été écroué le 4 septembre 2024.',
+  'https://www.lefigaro.fr/faits-divers/incendie-de-l-eglise-a-saint-omer-le-suspect-mis-en-examen-et-ecroue-20240905',
+  null,
+  '6b9d16c932814675db684bb6ad9cac4bea4a5bf45cecc305a8e30be5f4ce908b',
+  null,
+  null,
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '23738d7b-0d36-460f-bdd1-809da51d2a09',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Sanctionner les auteurs d''incendies volontaires du patrimoine » — exposé des motifs de la proposition de loi n° 161 (2024-2025)',
+  'Valérie Boyer (Sénat)',
+  '2024-11-22',
+  'CITATION_EXACTE'::quote_kind,
+  'Selon l''Observatoire du patrimoine religieux (OPR), 27 églises ont été incendiées en 2023 et 12 sur les six premiers mois de 2024. Sur ces 27 départs de feu dans des églises, 8 étaient d''origine criminelle, 19 accidentelle. Et pour les neuf premiers mois de 2024, sur les 26 incendies déclarés, 14 étaient d''origine criminelle.',
+  'Texte déposé au Sénat le 22 novembre 2024 : les chiffres parlementaires (d''origine OPR) montrent des sinistres de causes diverses — majoritairement accidentels en 2023 (19 sur 27) — et jamais l''existence d''une campagne terroriste ; les incendies criminels recensés relèvent d''actes isolés ou de malveillance, comme celui de Saint-Omer, le plus retentissant de 2024.',
+  'https://www.senat.fr/leg/exposes-des-motifs/ppl24-161-expose.html',
+  null,
+  '1072627176e3095235769123ecebdec983a75b53062c0f24e8e33d01ac220eec',
+  null,
+  'https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)',
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '65c98be3-d12a-429d-a025-685a957f9d76',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'CENTRE'::political_spectrum,
+  '« Ces églises malmenées en 2024 » — incendies, profanations, vandalisme (note de l''Observatoire du patrimoine religieux)',
+  'Observatoire du patrimoine religieux (OPR, association)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'L''origine criminelle de l''incendie a été officiellement établie. Déjà connu des services de police, l''auteur des faits avait été condamné à de nombreuses reprises pour des faits de destruction par incendie dans six églises du Boulonnais.',
+  'La note de l''OPR — association qui tient le décompte de référence des sinistres d''églises, citée par le Sénat — souligne que « les incendies sont la plupart du temps accidentels » et que, en 2024, « 14 incendies d''églises étaient volontaires sur 26 départs de feu » (janvier-septembre). Le cas de Saint-Omer y est celui d''un incendiaire récidiviste, non d''un attentat.',
+  'https://www.patrimoine-religieux.fr/wp-content/uploads/2025/06/Incendies.pdf',
+  null,
+  '600a2dd32220ce8224dc392c264ea3cd70b38f67155f655780b0af0abd4fe962',
+  null,
+  'https://www.patrimoine-religieux.fr/',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd3d93e12-40ea-4923-aabd-56be443a41fb',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code pénal — article 421-1 (définition des actes de terrorisme)',
+  'République française — Code pénal (texte reproduit par Justicelibre, Légifrance bloquant les robots)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Constituent des actes de terrorisme, lorsqu''elles sont intentionnellement en relation avec une entreprise individuelle ou collective ayant pour but de troubler gravement l''ordre public par l''intimidation ou la terreur, les infractions suivantes :',
+  'Texte de référence : un attentat suppose une « entreprise individuelle ou collective » et une intention de « troubler gravement l''ordre public par l''intimidation ou la terreur ». Dans le dossier de Saint-Omer, aucune qualification antiterroriste n''est apparue : l''affaire a été instruite au pôle criminel de Boulogne-sur-Mer, sur les seuls chefs de « destruction de bien par un moyen dangereux » (aggravée) et de « tentative de vol avec effraction ».',
+  'https://justicelibre.org/loi/CP/421-1',
+  null,
+  '5a40238a9d326f5d1663ef514f0af834dfb6f43e02e83fe0a3acc24ffe7f5061',
+  null,
+  null,
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '76864ffa-b81f-485f-9705-b06cf7f6f87e',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code pénal — article 322-6 (destructions, dégradations et détériorations dangereuses pour les personnes)',
+  'République française — Code pénal (texte reproduit par Justicelibre, Légifrance bloquant les robots)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'La destruction, la dégradation ou la détérioration d''un bien appartenant à autrui par l''effet d''une substance explosive, d''un incendie ou de tout autre moyen de nature à créer un danger pour les personnes est punie de dix ans d''emprisonnement et de 150 000 euros d''amende.',
+  'C''est l''incrimination de droit commun réellement applicable à l''incendie de Saint-Omer — un crime puni de dix ans d''emprisonnement (peines portées jusqu''à la réclusion en cas de dommages corporels). La procédure est celle de la criminalité ordinaire, y compris pour l''aggravation liée au caractère religieux de l''édifice incendié.',
+  'https://justicelibre.org/loi/CP/322-6',
+  null,
+  '1dac7a3ddbebd5d981310bb57ba39ed4b1801b5d36a01067560cf7a10dbbee74',
+  null,
+  null,
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd83db0b3-2767-40d4-9a25-d774220423c7',
+  '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'Firesetting, Arson, Pyromania, and the Forensic Mental Health Expert',
+  'Burton, McNiel et Binder — Journal of the American Academy of Psychiatry and the Law, 2012, vol. 40, n° 3',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'firesetting is a behavior, arson is a crime, and pyromania is a psychiatric diagnosis. Despite these distinctions, courts have erroneously applied these terms interchangeably.',
+  'Article de psychiatrie médico-légale de référence : il distingue le comportement d''allumage de feu, le crime (l''incendie volontaire) et le diagnostic (la pyromanie), et rappelle que l''incendiaire type est fréquemment atteint de troubles psychiatriques et de conduites addictives — un profil de criminalité ordinaire ou pathologique, sans lien avec une entreprise terroriste. Dans le dossier de Saint-Omer, les expertises psychiatriques et psychologiques ordonnées par la justice s''inscrivent dans ce cadre.',
+  'https://jaapl.org/content/40/3/355',
+  null,
+  'a384d0fe6724b04c852055165e7787d22f89227c09b9df1725f2987fdbee3dd5',
+  null,
+  null,
+  7
+);
+
 delete from public.dossiers where slug = 'pourvoi-cassation-culpabilite-ineligibilite-elus';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
