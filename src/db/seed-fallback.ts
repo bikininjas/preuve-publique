@@ -3737,6 +3737,220 @@ export const ASPA_MINIMUM_VIEILLESSE_DOSSIER: Dossier = {
   ],
 };
 
+export const FRAUDE_SOCIALE_FISCALE_DOSSIER: Dossier = {
+  id: "cf93d598-da1f-40b1-bf82-4eccbfa4cba1",
+  slug: "fraude-sociale-vs-fraude-fiscale-cout-france",
+  claim_title:
+    "La fraude sociale coûte plus cher à la France que la fraude fiscale",
+  verdict: "FAUX",
+  verdict_summary:
+    "L'ordre de grandeur est inverse : le HCFiPS évalue la fraude sociale (prestations et cotisations confondues) à 14 Md€ en 2025, quand la fraude fiscale est estimée entre 80 et 120 Md€ par an par les travaux disponibles — soit environ six à neuf fois plus. Le clivage « allocataires contre fraudeurs en col blanc » ne résiste pas aux chiffres : « l'essentiel de la fraude demeure concentré sur le recouvrement des cotisations (plus de 52 % de la fraude évaluée) », la fraude des assurés représentant 36 % et celle des professionnels de santé 12 %. Sur les 14 Md€ évalués, seuls 680 M€ ont été recouvrés en 2024. Il faut toutefois noter que la fraude fiscale n'a jamais fait l'objet d'une estimation publique officielle en France : la Cour des comptes la juge « mal cernée et non chiffrée », la DGFiP n'ayant engagé ses premiers travaux de chiffrage de l'écart fiscal qu'en 2022, sur la seule TVA.",
+  category: "ECONOMIE",
+  protagonists: [
+    {
+      name: "Fraude fiscale",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Fraude_fiscale",
+      note: "Déclaration ou manœuvre intentionnelle visant à échapper à l'impôt ; la Cour des comptes souligne qu'elle reste « mal cernée et non chiffrée » en France.",
+    },
+    {
+      name: "Haut Conseil du financement de la protection sociale",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Haut_Conseil_du_financement_de_la_protection_sociale",
+      note: "Observatoire du travail dissimulé depuis 2017 ; produit chaque année l'évaluation officielle de la fraude sociale (14 Md€ en 2025, 13 Md€ en 2024).",
+    },
+    {
+      name: "Urssaf",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Union_de_recouvrement_des_cotisations_de_s%C3%A9curit%C3%A9_sociale_et_d%27allocations_familiales",
+      note: "Branche recouvrement du régime général : près de 1,6 Md€ de redressements au titre du travail dissimulé en 2024 (+ 34 % en un an).",
+    },
+    {
+      name: "Cour des comptes",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      note: "Rapport public thématique « La lutte contre la fraude fiscale » (16 décembre 2025) : 20 Md€ de droits rappelés et pénalités en 2024, absence d'estimation de l'écart fiscal.",
+    },
+    {
+      name: "Sénat",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      note: "Rapport d'information n° 72 (2022-2023) de la commission des finances : fraude à la TVA estimée par l'Insee entre 20 et 25 Md€ par an, recommandation de produire une estimation de la fraude fiscale.",
+    },
+  ],
+  consensus_score: 98,
+  premises: [
+    {
+      claim_part:
+        "« Les allocataires sociaux causent l'essentiel du déficit public »",
+      status: "FAUX",
+      detail:
+        "La fraude sociale totale — prestations et cotisations confondues — est évaluée à 14 Md€ en 2025 par le HCFiPS (contre 13 Md€ en 2024), quand la fraude fiscale est estimée entre 80 et 120 Md€ par an ; la fraude des assurés (RSA, allocations, indemnités) ne représente que 36 % de l'ensemble, soit environ 5 Md€. Sur les 14 Md€ évalués, 2 Md€ ont été détectés et 680 M€ recouvrés en 2024. Les montants ne sont donc absolument pas de même échelle, et l'essentiel des sommes évaluées n'est pas imputable aux allocataires.",
+    },
+    {
+      claim_part: "« La fraude sociale est surtout le fait des ménages »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "La fraude sociale ne se confond pas avec la fraude aux prestations : « l'essentiel de la fraude demeure concentré sur le recouvrement des cotisations (plus de 52 % de la fraude évaluée) », c'est-à-dire des employeurs et des travailleurs indépendants — la fraude des assurés arrive en seconde position (36 %) et celle des professionnels s'élève à 12 % (HCFiPS). Les redressements de l'Urssaf au titre du travail dissimulé atteignent 1,6 Md€ en 2024 (+ 34 %), dont 69 % de cotisations non déclarées : le principal gisement de fraude sociale est bien patronal, et non ménager.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "ed439aeb-1382-488a-855b-f4abc23101bc",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Note annuelle de suivi et d'évaluation des fraudes sociales — 14 Md€ de fraudes évaluées",
+      author_or_institution:
+        "Haut Conseil du financement de la protection sociale (HCFiPS) — Secrétariat général, Direction de la sécurité sociale",
+      publication_date: "2026-01-13",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'évaluation financière correspondante est de 14 Md€ (contre 13 Md€ dans le rapport du HCFiPS de 2024).",
+      context_explanation:
+        "L'évaluation officielle de la fraude sociale : 14 Md€ en 2025, dont « plus de 52 % » concentrés sur le recouvrement des cotisations, 36 % sur la fraude des assurés et 12 % sur les professionnels. La note précise que l'accroissement (de 13 à 14 Md€) s'explique « pour l'essentiel par des effets de base et de périmètre » et que « le taux de fraude est globalement stable ». Elle rappelle aussi le décalage entre évaluation et recouvrement : 2 Md€ détectés, 680 M€ recouvrés en 2024, et que la fraude n'est pas « la cagnotte » budgétaire imaginée dans le débat public.",
+      original_url:
+        "https://www.strategie-plan.gouv.fr/files/files/Publications/2026/2026-01-13%20-%20HCFiPS%20-%20note%20annuelle%20fraude%20sociale/Note%20annuelle%20de%20suivi%20et%20d%27%C3%A9valuation%20des%20fraudes%20sociales%20VF.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Haut_Conseil_du_financement_de_la_protection_sociale",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "b6d3b1ce-0c91-4a82-b402-f06ef0992c75",
+      spectrum: "CENTRE",
+      source_name:
+        "La lutte contre la fraude aux prestations sociales à l'ère de son industrialisation — rapport 2026",
+      author_or_institution: "Défenseur des droits",
+      publication_date: "2026-04-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le HCFiPS estime la fraude sociale (incluant la fraude aux prestations sociales et la fraude aux cotisations sociales) à 14 milliards d'euros en 2025. À titre de comparaison, la fraude fiscale est évaluée quant à elle entre 80 et 120 milliards d'euros.",
+      context_explanation:
+        "Le rapport de l'autorité constitutionnelle indépendante pose la comparaison et la ventilation : en 2024, la répartition par organisme était « Urssaf : 6,91 Mds €, Cnaf : 3,87 Mds €, Cnam : 1,71 Mds, France Travail : 0,11 Mds €, CCMSA : 0,34 Mds €, Cnav : 0,04 Mds € » — soit une majorité de fraude patronale (Urssaf, cotisations) et non ménagère. Il donne aussi les définitions officielles : la fraude aux cotisations est « une irrégularité commise intentionnellement par l'employeur », distincte de la fraude fiscale (manœuvre contre l'impôt).",
+      original_url:
+        "https://www.defenseurdesdroits.fr/sites/default/files/2026-04/ddd_rapport_fraude-prestations-sociales-2026_20260410.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "731c8bf9-ed8b-4973-9bb9-f5c104b94ca1",
+      spectrum: "CENTRE",
+      source_name:
+        "La lutte contre la fraude fiscale — rapport public thématique, décembre 2025 (synthèse)",
+      author_or_institution: "Cour des comptes (France)",
+      publication_date: "2025-12-16",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Très présente dans le débat public, la fraude fiscale demeure pourtant mal cernée et non chiffrée.",
+      context_explanation:
+        "La juridiction financière établit le cadre de la comparaison : les résultats du contrôle fiscal « en droits rappelés et pénalités, à hauteur de 20 Md€ en 2024, peinent à retrouver leur niveau du milieu des années 2010 », et la France est « l'un des pays les plus en retard » de l'OCDE en matière d'estimation de la fraude : « les premiers travaux de chiffrage de l'écart fiscal n'ont été engagés par la DGFiP qu'en 2022 sur la TVA ». Autrement dit, les fourchettes de 80 à 120 Md€ sont des estimations de chercheurs et d'organisations, pas un chiffrage public officiel — la Cour appelant à « achever le chiffrage de l'écart fiscal ».",
+      original_url:
+        "https://www.ccomptes.fr/sites/default/files/2025-12/20251216-synthese-Lutte-contre-la-fraude-fiscale.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "37aae187-bf76-4149-ada5-fec666a48636",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Bilan 2024 de la lutte contre le travail dissimulé — dossier de presse",
+      author_or_institution: "Urssaf — réseau des Urssaf (branche recouvrement)",
+      publication_date: "2025-03-06",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le montant de ses redressements opérés au titre de la lutte contre le travail dissimulé a atteint près de 1,6 milliard d'euros (+ 34 % en un an). Ces résultats ont été multipliés par quatre en 10 ans.",
+      context_explanation:
+        "Le bilan des contrôles patronaux : 34 287 actions de lutte contre le travail dissimulé en 2024 (dont 4 121 ciblant des employeurs et 2 635 des travailleurs indépendants), un redressement moyen de 245 399 euros et 1 096 M€ de cotisations et contributions non déclarées, soit 69 % du montant global redressé. L'Urssaf vise 5,5 Md€ de redressements sur 2023-2027 : la fraude sociale « constatée » est d'abord le fait d'employeurs.",
+      original_url:
+        "https://www.urssaf.org/files/Espace+media/Dossier+de+presse/NAT-DP-Bilan+LCTI+2024_2025+03+06.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Union_de_recouvrement_des_cotisations_de_s%C3%A9curit%C3%A9_sociale_et_d%27allocations_familiales",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "d540fce1-fe96-49a2-8d02-57c25f948ea7",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Fraude et évasion fiscales : faire les comptes et intensifier la lutte — rapport d'information n° 72 (2022-2023) de la commission des finances (synthèse)",
+      author_or_institution: "Sénat (France) — commission des finances (Jean-François Husson, rapporteur)",
+      publication_date: "2022-10-25",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "les estimations de la fraude à la TVA qui, selon l'Insee, serait comprise entre 20 et 25 milliards d'euros par an",
+      context_explanation:
+        "Le rapport de la commission des finances chiffre le premier poste connu de la fraude fiscale — la TVA, 20 à 25 Md€ par an selon l'Insee — et constate que les montants recouvrés (904 M€ pour le contrôle TVA en 2021) « peuvent sembler modestes » en regard. Sa première recommandation est de « produire et publier, d'ici le projet de loi de finances initiale pour 2024, des estimations de la fraude fiscale, en détaillant la méthodologie utilisée » : preuve que la fourchette de 80 à 120 Md€ n'était, encore en 2022, adossée à aucune estimation publique.",
+      original_url: "https://www.senat.fr/rap/r22-072/r22-072-syn.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "5be1ea3e-a0df-4c2f-8775-b5e51b569fc5",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Évasion fiscale des ultrariches : le rôle des filiales offshore",
+      author_or_institution:
+        "Carmela D'Avino, professeure de finance, IÉSEG School of Management (The Conversation)",
+      publication_date: "2025-09-29",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En France, on estime que 30 à 40 % des biens détenus par les 0,01 % les plus riches se trouvent à l'étranger, causant une perte fiscale de 80 milliards à 100 milliards d'euros.",
+      context_explanation:
+        "Travaux académiques sur l'évasion des ménages les plus fortunés : la perte fiscale liée aux avoirs détenus à l'étranger est estimée entre 80 et 100 Md€, un ordre de grandeur cohérent avec la fourchette de 80 à 120 Md€ reprise pour la fraude fiscale globale — à comparer aux 14 Md€ de la fraude sociale évaluée.",
+      original_url:
+        "https://theconversation.com/evasion-fiscale-des-ultrariches-le-role-des-filiales-offshore-258090",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "1ccdee37-4410-4203-a831-c15b16551d59",
+      spectrum: "GAUCHE",
+      source_name:
+        "Fraude fiscale : ces dizaines de milliards (toujours) perdus…",
+      author_or_institution:
+        "Observatoire de la justice fiscale — Attac France",
+      publication_date: "2025-11-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "tous confortent l'estimation selon laquelle la fraude fiscale représente un manque à gagner compris entre 80 et 100 milliards d'euros",
+      context_explanation:
+        "La synthèse militante de l'Observatoire de la justice fiscale recense les estimations disponibles : étude sur l'impôt sur les sociétés (27,3 Md€), fraude à la TVA « estimée entre 20 et 25 milliards d'euros par l'Insee », et conclut à un manque à gagner compris entre 80 et 100 Md€ pour la fraude fiscale — l'estimation la plus couramment reprise, à laquelle répondent les 14 Md€ de la fraude sociale évaluée par le HCFiPS.",
+      original_url:
+        "https://obs-justice-fiscale.attac.org/actualites/article/fraude-fiscale-ces-dizaines-de-milliards-toujours-perdus",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -3754,6 +3968,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   ASSISTANTS_RN_DOSSIER,
   LAXISME_PEINES_PRISON_DOSSIER,
   ASPA_MINIMUM_VIEILLESSE_DOSSIER,
+  FRAUDE_SOCIALE_FISCALE_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

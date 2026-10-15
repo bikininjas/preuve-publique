@@ -15,8 +15,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix-sept dossiers en base :
-  seize **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix-huit dossiers en base :
+  dix-sept **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -25,10 +25,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   sans-papiers (7, société), le minimum vieillesse (ASPA) versé aux étrangers (13,
   société), l'agression de Bordeaux attribuée à un « clandestin sous OQTF » (6, faits
   divers), l'incendie de l'église de Saint-Omer attribué à un « attentat islamiste »
-  (8, faits divers) et le revenu disponible d'un couple au RSA comparé à un couple au
-  SMIC (8, économie) — et un **brouillon de contrôle RLS** ; RLS actif sur
+  (8, faits divers), le revenu disponible d'un couple au RSA comparé à un couple au
+  SMIC (8, économie) et la comparaison entre fraude sociale et fraude fiscale (7,
+  économie) — et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 125 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 132 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -83,6 +84,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   relues (CASF L. 262-2 et R. 262-9, barème CNAF, fiches service-public F19778 et A18815,
   Cour des comptes, rapport sénatorial r25-728, étude OFCE), toutes capturées en
   instantanés réseau.
+  Le dix-septième (la comparaison entre fraude sociale et fraude fiscale, 7 sources — note
+  annuelle du HCFiPS, rapport du Défenseur des droits, rapport public thématique de la Cour
+  des comptes sur la fraude fiscale, bilan Urssaf du travail dissimulé 2024, rapport n° 72
+  de la commission des finances du Sénat, article universitaire paru dans *The Conversation*
+  et Observatoire de la justice fiscale) a été vérifié de la même manière (`d862948d…`) :
+  sept fiches déposées et relues (six instantanés réseau et une URL indisponible — le
+  dossier de presse Urssaf, dont l'adresse contient des « + » rejetés par la capture).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -152,6 +160,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   de l'« incendie de Saint-Omer » (14:22 UTC) et du « RSA contre SMIC » (14:36 UTC),
   ont entraîné de nouvelles réapplications du seed et recaptures : **125 fiches exactes**,
   une par pièce publiée (99 `URL_SNAPSHOT`, 23 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
+  L'intégration du dossier « fraude sociale contre fraude fiscale » (14:41 UTC) a entraîné
+  une dernière réapplication et recapture : **132 fiches exactes**, une par pièce publiée
+  (104 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des captures
+  `d97280a587c104d6…`.
 
 ## Pile technique
 
