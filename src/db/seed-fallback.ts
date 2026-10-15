@@ -1940,6 +1940,182 @@ export const ASSISTANTS_RN_DOSSIER: Dossier = {
   ],
 };
 
+export const EXPULSION_JUGES_DOSSIER: Dossier = {
+  id: "054e7ed1-684a-4161-8092-55af18bf6613",
+  slug: "expulsion-etrangers-delinquants-juges-et-droit",
+  claim_title: "Les juges et l'État de droit empêchent l'expulsion des étrangers délinquants",
+  verdict: "FAUX",
+  category: "POLITIQUE",
+  protagonists: [
+    {
+      name: "Obligation de quitter le territoire français",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Obligation_de_quitter_le_territoire_fran%C3%A7ais",
+      note: "Mesure d'éloignement administrative au cœur du débat (prononcé, exécution, contentieux).",
+    },
+    {
+      name: "Cour des comptes (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      note: null,
+    },
+    {
+      name: "Sénat (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      note: "Avis budgétaire de la commission des lois, tome « Immigration, asile et intégration » (2024).",
+    },
+    {
+      name: "Conseil d'État (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      note: null,
+    },
+  ],
+  verdict_summary:
+    "Le droit français et européen prévoient explicitement l'éloignement pour menace à l'ordre public : l'expulsion est ouverte sur ce fondement (CESEDA, art. L. 631-1) et l'article 8 de la Convention européenne des droits de l'homme autorise les ingérences « nécessaires à la sûreté publique… à la défense de l'ordre et à la prévention des infractions pénales ». L'échec de l'exécution tient à d'autres causes : la Cour des comptes relève qu'« autour de 10 % » des OQTF sont exécutées, du fait de l'identification incertaine des personnes, du manque de places en rétention et de la réticence des pays d'origine à délivrer les laissez-passer consulaires (57,5 % de délivrance dans les délais en 2024, selon la commission des lois du Sénat). Le contentieux n'annule qu'une minorité des mesures (18 % des OQTF en 2022).",
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part: "« Les traités internationaux interdisent d'expulser un étranger dangereux »",
+      status: "FAUX",
+      detail:
+        "L'article 8 § 2 de la CEDH admet expressément les ingérences « nécessaires à la sécurité nationale, à la sûreté publique… à la défense de l'ordre et à la prévention des infractions pénales ». Le CESEDA permet à l'autorité administrative d'expulser un étranger dont la présence constitue une menace grave pour l'ordre public (art. L. 631-1), l'article L. 631-3 écartant même les protections de certaines catégories en cas de condamnation définitive à cinq ans ou plus d'emprisonnement.",
+    },
+    {
+      claim_part: "« L'échec des expulsions résulte d'annulations systématiques par les juges »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "En 2022, les tribunaux administratifs ont annulé 18 % des OQTF qui leur étaient présentées (Cour des comptes) : une minorité, pas une annulation systématique. La Cour identifie d'autres causes premières : identification incertaine (20 à 30 % des personnes non identifiées avec certitude), capacité de rétention limitée (1 717 places pour 447 257 OQTF prononcées entre 2019 et 2022) et surtout réticence des pays d'origine à délivrer les laissez-passer consulaires, indispensables en l'absence de passeport.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "77f00ed8-6c03-44a4-b60b-a6264b92bd84",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Code de l'entrée et du séjour des étrangers et du droit d'asile — articles L. 631-1 et L. 631-3",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'autorité administrative peut décider d'expulser un étranger lorsque sa présence en France constitue une menace grave pour l'ordre public, sous réserve des conditions propres aux étrangers mentionnés aux articles L. 631-2 et L. 631-3.",
+      context_explanation:
+        "Article L. 631-1 du CESEDA en vigueur : l'expulsion pour menace grave à l'ordre public est une faculté expresse de l'administration. L'article L. 631-3 énumère les protections résiduelles (résidence depuis l'âge de treize ans, vingt ans, dix ans avec mariage ou enfant français, état de santé) et les écarte notamment en cas de condamnation définitive pour des crimes ou délits punis de cinq ans ou plus d'emprisonnement, ou de trois ans en réitération.",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042775403",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "aaa8418c-e58e-4976-a7ca-4009715309c7",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Convention de sauvegarde des droits de l'homme et des libertés fondamentales — article 8, § 2",
+      author_or_institution: "Conseil de l'Europe (texte reproduit par la CNCDH)",
+      publication_date: "1950-11-04",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Il ne peut y avoir ingérence d'une autorité publique dans l'exercice de ce droit que pour autant que cette ingérence est prévue par la loi et qu'elle constitue une mesure qui, dans une société démocratique, est nécessaire à la sécurité nationale, à la sûreté publique, au bien-être économique du pays, à la défense de l'ordre et à la prévention des infractions pénales, à la protection de la santé ou de la morale, ou à la protection des droits et libertés d'autrui.",
+      context_explanation:
+        "L'article 8 protège la vie privée et familiale ; son § 2 énonce les motifs d'ingérence licite, dont la sûreté publique et la prévention des infractions pénales. Les traités n'interdisent donc pas l'éloignement d'un étranger dangereux : ils l'encadrent (licéité, nécessité, proportionnalité).",
+      original_url: "https://www.cncdh.fr/sites/default/files/2022-02/cedh_0_1.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Convention_europ%C3%A9enne_des_droits_de_l%27homme",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "647aff80-48e8-4fa5-bed6-511eccf0745a",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Rapport public thématique — La politique de lutte contre l'immigration irrégulière (janvier 2024)",
+      author_or_institution: "Cour des comptes (France)",
+      publication_date: "2024-01-04",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "De nombreux pays d'origine sont réticents à délivrer un laissez-passer consulaire à leurs ressortissants, pourtant indispensable à leur éloignement en l'absence de passeport.",
+      context_explanation:
+        "Diagnostic de la Cour : malgré 447 257 OQTF prononcées entre 2019 et 2022, « seule une petite minorité — autour de 10 % — des obligations de quitter le territoire français sont exécutées ». Obstacles identifiés : identification incertaine (20 à 30 %), surveillance des CRA limitée par le manque de policiers (1 717 places) et réticence des pays d'origine — la Cour recommande de centraliser les demandes de laissez-passer consulaires. Autre volet : 18 % des OQTF ont été annulées par les tribunaux administratifs en 2022.",
+      original_url:
+        "https://www.ccomptes.fr/sites/default/files/2024-01/20240104-Politique-lutte-contre-immigration-irreguliere.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "1ddb54d6-f791-4011-8157-1ed281d33112",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Sénat — Avis n° 150 (2024-2025), commission des lois, tome II « Immigration, asile et intégration » (PLF 2025)",
+      author_or_institution: "Muriel Jourda et Olivier Bitz, rapporteurs (Sénat)",
+      publication_date: "2024-11-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les explications avancées à cette stagnation des éloignements dans les documents budgétaires mentionnent notamment le manque de coopération de certains États d'origine, au premier rang desquels les trois États du Maghreb. Pour rappel, le taux de délivrance global des laissez-passer consulaires dans les délais s'établit à 57,5 % en 2024.",
+      context_explanation:
+        "Les rapporteurs de la commission des lois constatent la stagnation des éloignements forcés (11 722 en 2023, contre 18 906 en 2019) : le goulot d'étranglement est diplomatique — la coopération des pays d'origine, dont la délivrance des laissez-passer consulaires (57,5 % dans les délais en 2024) —, l'obstacle n'étant ni la loi ni les juges.",
+      original_url: "https://www.senat.fr/rap/a24-150-2/a24-150-21.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "218cc6b4-e430-4383-91fb-c78f89b44416",
+      spectrum: "CENTRE",
+      source_name:
+        "Étude — Simplifier le contentieux des étrangers dans l'intérêt de tous (20 propositions)",
+      author_or_institution: "Conseil d'État (France)",
+      publication_date: "2020-10-09",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Après des réformes successives ces vingt dernières années, le droit des étrangers est devenu d'une complexité excessive, avec une multiplicité de règles particulières, de procédures et de délais. Devenu peu lisible ou compréhensible pour l'ensemble des acteurs, il suscite de plus en plus de contentieux devant la justice administrative, allant jusqu'à représenter 40 % de l'activité des tribunaux administratifs et 50 % de l'activité des cours administratives d'appel.",
+      context_explanation:
+        "Étude demandée par le Premier ministre : le Conseil d'État décrit un contentieux de masse né de l'empilement des textes et écarte l'idée de transformer le juge en « juge de plein contentieux » de l'éloignement. La difficulté est organisationnelle et normative — dans un cadre où 24 000 mesures d'éloignement ont été exécutées en 2019, dont 19 000 éloignements forcés.",
+      original_url:
+        "https://conseil-etat.fr/actualites/simplifier-le-contentieux-des-etrangers-dans-l-interet-de-tous",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "0b7a5fda-7a68-4d81-904e-82aa7ca4c98d",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "L'éloignement des fauteurs de troubles : le retrait du droit de séjour (note de jurisprudence, Revue trimestrielle de droit européen)",
+      author_or_institution: "Vincent Réveillère (Revue trimestrielle de droit européen, Dalloz)",
+      publication_date: "2021-10-28",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "la Cour estime que les mesures d'exécution d'une décision d'éloignement d'un citoyen de l'Union prises pour des motifs d'ordre ou de sécurité publics peuvent être similaires à celle réservées aux étrangers mais qu'elles doivent respecter le principe de proportionnalité.",
+      context_explanation:
+        "Analyse de la jurisprudence de la Cour de justice de l'Union (22 juin 2021, Ordre des barreaux francophones et germanophone e.a.) : le droit européen admet l'éloignement pour des motifs d'ordre ou de sécurité publics, selon des modalités comparables à celles réservées aux étrangers, sous contrôle de proportionnalité. Le droit encadre l'éloignement, il ne l'empêche pas.",
+      original_url: "https://shs.hal.science/halshs-03369320",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Vincent_R%C3%A9veill%C3%A8re",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -1968,6 +2144,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   VICHY_DOSSIER,
   IMMIGRATION_BUDGET_DOSSIER,
   CRIME_IMMIGRATION_DOSSIER,
+  EXPULSION_JUGES_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
   DRAFT_CONTROL_DOSSIER,

@@ -15,14 +15,14 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Neuf dossiers en base :
-  huit **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix dossiers en base :
+  neuf **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
-  l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique) —
-  et un **brouillon de contrôle RLS** ; RLS actif sur `dossiers`, `dossier_sources` et
-  `admin_users`.
-- **Intégrité** : les 62 sources portent leur empreinte de citation ; la RPC de recherche
+  l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
+  l'expulsion des étrangers délinquants (6, politique) — et un **brouillon de contrôle
+  RLS** ; RLS actif sur `dossiers`, `dossier_sources` et `admin_users`.
+- **Intégrité** : les 68 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -40,6 +40,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   sont déposées et relues (six instantanés réseau, quatre URL indisponibles consignées).
   Le huitième (l'affaire des assistants RN, 11 sources) l'a été de même (`fa877e43…`) :
   onze fiches déposées et relues (huit instantanés réseau, trois URL indisponibles).
+  Le neuvième (l'expulsion des étrangers délinquants, 6 sources) a été vérifié de la même
+  manière (`a4ad5100…`) : six fiches déposées et relues (cinq instantanés réseau — CEDH,
+  Cour des comptes, Sénat, Conseil d'État, RTDEur — et une URL indisponible, Légifrance
+  répondant 403 aux robots).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -49,7 +53,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   (r24-841), rapport Évin-Stefanini, Insee, Bel (*Economic History Review*) et Liberty
   Magazine — et quatre sources documentaires du dossier sur le nazisme (discours de
   Düsseldorf, Ermächtigungsgesetz, journée du 2 mai 1933, interview de Liberty)
-  reçoivent une URL de transcription institutionnelle.
+  reçoivent une URL de transcription institutionnelle. Les six sources du dossier sur
+  l'expulsion des étrangers délinquants (CESEDA L. 631-1, CEDH art. 8, Cour des comptes
+  2024, Sénat — avis Jourda/Bitz, Conseil d'État 2020, note RTDEur de V. Réveillère) ont
+  été vérifiées au texte original de la même façon lors de leur intégration, le 15/10.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -69,16 +76,18 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **62 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **68 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 45 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 14 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 50 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 15 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
   supprime les sources en cascade puis les réinsère : elle emporte les fiches d'archive
-  du dossier, qu'il faut redéposer par `archive:capture`.
+  du dossier, qu'il faut redéposer par `archive:capture` — fait le 15/10 à 12:41 UTC
+  pour les dix dossiers réappliqués (68 fiches redéposées, racine des captures
+  `e0a39749…`).
 
 ## Pile technique
 
@@ -294,7 +303,12 @@ dossiers AME (7), RSA (7), Pétain-Vichy (9) et insécurité attribuée à l'imm
 ont été déposées avec `--fetch` : 25 `URL_SNAPSHOT` et 4 `URL_UNAVAILABLE` enregistrées
 telles quelles (Légifrance répond 403, la préface de Stanford 429 aux clients non
 navigateurs), toutes relues et rehachées (racines de capture `c8a4fb93…`, `47ef67c5…`,
-`0962ede7…`, `8f4ffa63…`). Le **miroir Storage** n'a pas eu lieu faute d'accès
+`0962ede7…`, `8f4ffa63…`). Puis, à 12:40 UTC, l'application du seed (dix dossiers, dix
+slug) a supprimé puis réinséré toutes les sources : les fiches d'archive ont été emportées
+en cascade, comme documenté plus haut. Un `archive:capture --fetch --yes` (12:41 UTC) les
+a toutes redéposées d'un coup : 68 pièces, 68 fiches déposées et relues — 50
+`URL_SNAPSHOT`, 15 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
+`e0a39749153a8ae3…`. Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
