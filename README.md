@@ -31,10 +31,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
   économie), les discriminations à l'embauche liées à l'origine (7, société) et la thèse
   de races biologiques humaines (8, société), l'homoparentalité et le développement des
-  enfants (7, société) et la « théorie du genre » à l'école (7, société) — et un
+  enfants (7, société) et la « théorie du genre » à l'école (10, société) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 161 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 164 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -125,10 +125,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   (BO n° 6 du 6 février 2025), programme du cycle 4 (BO n° 31 du 30 juillet 2020, PDF de
   l'annexe 3), communiqué du Conseil d'État du 27 juin 2025, rapport IGÉSR n° 2021-149,
   avis du CESE du 10 septembre 2024 et rapport sénatorial n° 814 (2024-2025)) a été
-  vérifié de la même manière (`aff5f367…`) : sept fiches déposées et relues, toutes
-  capturées en instantanés réseau — les sites de l'éducation nationale (éduscol,
-  education.gouv.fr) répondant 403 aux robots, quatre pièces sont servies par des
-  instantanés Wayback, vérifiés à la source avant leur intégration.
+  vérifié de la même manière (`aff5f367…`), puis enrichi le 15 octobre 2026 (dix
+  sources : ajout de la décision n° 508643 du Conseil d'État du 8 octobre 2026 — les
+  parents n'ont « ni à donner leur accord » ni un droit de regard sur les séances —,
+  d'un article de Libération du 6 février 2025 servi par un instantané Wayback et d'un
+  article du Figaro du 23 janvier 2025 décrivant le volet maternelle) : dix fiches
+  déposées et relues — les sites de l'éducation nationale (éduscol, education.gouv.fr)
+  répondant 403 aux robots, les pièces concernées sont servies par des instantanés
+  Wayback, vérifiés à la source avant leur intégration. La nouvelle racine d'intégrité
+  du dossier est `b0cc82fc…`.
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -233,7 +238,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   captures `a0d1901ac6ffab29…`. L'intégration du dossier « théorie du genre » (15:43 UTC)
   a entraîné une ultime réapplication et recapture : **161 fiches exactes**, une par pièce
   publiée (132 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des
-  captures `681a47e0…`.
+  captures `681a47e0…`. L'enrichissement du dossier « théorie du genre » (16:04 UTC,
+  dix sources) a entraîné une ultime réapplication et recapture : **164 fiches exactes**,
+  une par pièce publiée (132 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) —
+  racine des captures `ceb48ce6e1a0f092…`.
 
 ## Pile technique
 
@@ -504,6 +512,10 @@ dédupliquées, une par pièce. Puis, à 15:43 UTC, l'intégration du dossier «
 genre » (vingt et unième publié) a entraîné une dernière réapplication et recapture : 161
 pièces, 161 fiches déposées et relues — 132 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3
 `METADATA_ONLY` — racine des captures `681a47e0212ac2cb…` ; fiches dédupliquées, une par
+pièce. Puis, à 16:04 UTC, l'enrichissement du dossier « théorie du genre » (vingt et
+unième publié, dix sources) a entraîné une dernière réapplication et recapture : 164
+pièces, 164 fiches déposées et relues — 132 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE`, 3
+`METADATA_ONLY` — racine des captures `ceb48ce6e1a0f092…` ; fiches dédupliquées, une par
 pièce. Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans

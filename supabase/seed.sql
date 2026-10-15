@@ -2042,6 +2042,57 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   'https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)',
   6
 );
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ad7351c6-a305-40d3-af7e-137842c076af',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Conseil d''État, décision n° 508643 du 8 octobre 2026 (CNAFC) — pas de droit d''accord préalable des parents sur les séances',
+  'Conseil d''État — Confédération nationale des associations familiales catholiques (CNAFC)',
+  '2026-10-08',
+  'CITATION_EXACTE'::quote_kind,
+  'ni les dispositions citées au point 8, ni aucune autre n''ont pour portée d''imposer que les parents d''élèves soient informés à l''avance sur les séances d''éducation à la sexualité ni qu''ils participent à la définition des modalités de mise en œuvre de ces séances ou donnent leur accord sur ces modalités ni qu''ils soient associés au choix des intervenants extérieurs',
+  'Deuxième vague de contentieux, seize mois après le rejet du 27 juin 2025 : la CNAFC demandait des mesures complémentaires pour garantir le rôle des parents. Le Conseil d''État rejette : le programme « n''a ni pour objet ni pour effet de porter atteinte à l''exercice de l''autorité parentale ou à l''action éducative des familles », et la circulaire du 4 février 2025 prévoit l''information des familles et un dialogue ouvert dans chaque établissement. La jurisprudence confirme que l''enseignement est obligatoire et que le cadre du programme est stable.',
+  'https://www.conseil-etat.fr/fr/arianeweb/CE/decision/2026-10-08/508643',
+  null,
+  'eb250af5b973df6f27e3587e940d6fb2f15ca767160982ef951e07d77072d0d3',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '2f177ddc-92c0-4fbe-b280-453f48a2bb55',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'GAUCHE'::political_spectrum,
+  '« Education sexuelle à l''école : la notion de transphobie disparaît du programme officiel » — Libération',
+  'Cécile Bourgneuf, Libération',
+  '2025-02-06',
+  'CITATION_EXACTE'::quote_kind,
+  'Si le programme d''éducation à la vie affective, relationnelle et sexuelle (Evars), publié au Bulletin officiel ce jeudi 6 février, est une réelle avancée malgré les oppositions réactionnaires, la disparition de la notion de « transphobie » pose question.',
+  'Le décryptage documente le processus réel d''élaboration du programme — « voté à l''unanimité le 29 janvier au Conseil supérieur de l''éducation (CSE) et accepté par le cabinet de la ministre de l''Education Elisabeth Borne » — après de longs mois de débats publics et une polémique à laquelle le texte final a répondu. La gauche y exprime aussi ses propres critiques, signe d''un débat nourri, à mille lieues d''un dogme imposé sans contradiction.',
+  'https://www.liberation.fr/societe/education/education-sexuelle-a-lecole-la-notion-de-transphobie-disparait-du-programme-officiel-20250206_AY2YRFKXYJCBHAYYXWXCDK5FRA/',
+  null,
+  '4c05283bd0ea82bdba0afcac8f7d56ad2016cccf4b34b734edfe62d242193e0c',
+  null,
+  null,
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd3a5f978-1344-479b-afc5-c87a273ebf9d',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Ce que contient le très contesté programme d''éducation à la vie affective et sexuelle, publié ce jeudi » — Le Figaro',
+  'Le Figaro (avec AFP)',
+  '2025-01-23',
+  'CITATION_EXACTE'::quote_kind,
+  'En maternelle, il prévoit la prise en considération du corps, des sentiments, des émotions, du respect de l''intimité et de l''égalité entre filles et garçons.',
+  'Même un quotidien classé à droite, qui parle d''un programme « très contesté », décrit un contenu de maternelle centré sur le corps, les émotions, l''intimité et l''égalité — sans négation des identités sexuées. Le Figaro détaille le reste du programme : changements du corps, violences, stéréotypes et numérique à l''élémentaire ; adolescence et appréhension de la sexualité au collège ; connaissances plus complètes et questionnement au lycée.',
+  'https://www.lefigaro.fr/actualite-france/ce-que-contient-le-tres-conteste-programme-d-education-a-la-vie-affective-et-sexuelle-20250123',
+  null,
+  'caabac80ae9d9ba820f020353eb7986a170ad13671011be9f2868b196c94e463',
+  null,
+  null,
+  9
+);
 
 delete from public.dossiers where slug = 'pourvoi-cassation-culpabilite-ineligibilite-elus';
 insert into public.dossiers (
