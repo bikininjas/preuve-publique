@@ -15,23 +15,23 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Six dossiers en base :
-  cinq **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (6), les
-  sans-papiers et le RSA (6), Pétain et Vichy (7), le coût de l'immigration (4, économie)
-  — et un **brouillon de contrôle RLS** ; RLS actif sur `dossiers`, `dossier_sources` et
-  `admin_users`.
-- **Intégrité** : les 31 sources portent leur empreinte de citation ; la RPC de recherche
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Sept dossiers en base :
+  six **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
+  l'insécurité attribuée à l'immigration (6, société) — et un **brouillon de contrôle
+  RLS** ; RLS actif sur `dossiers`, `dossier_sources` et `admin_users`.
+- **Intégrité** : les 41 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
   (`8a3322902363d2d1a1e1c593b12496b8f6e78262fa3d747c5b5c15b13b642756`). `ETag` et
   `X-Proof-Integrity-Root` du dossier publié, relevés en ligne, valent la racine
   d'intégrité recalculée :
-  `403002c79f79a52e3b540a4203f4fd57a6ab029f5bf7de22c654edb998f8737f`. Les trois
-  dossiers ajoutés le 15/10 (AME, RSA, Pétain-Vichy) ont été vérifiés de la même manière :
-  `ETag` et `X-Proof-Integrity-Root` relevés en ligne égaux aux racines recalculées par
-  `npm run proofs`. Le dossier économie ajouté le 15/10 aussi
-  (`d944106c53f125ffd39be7d2487db7dc9cc6a53a2fb066bee93842d9656e42ba`).
+  `403002c79f79a52e3b540a4203f4fd57a6ab029f5bf7de22c654edb998f8737f`. Les cinq
+  autres dossiers publiés le 15/10 (AME, RSA, Pétain-Vichy, coût de l'immigration,
+  insécurité attribuée à l'immigration) ont été vérifiés de la même manière : `ETag` et
+  `X-Proof-Integrity-Root` relevés en ligne égaux aux racines recalculées par
+  `npm run proofs` (`5438daee…`, `22d08551…`, `288fa722…`, `d944106c…`, `14d2686e…`).
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -51,14 +51,14 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les 8 pièces du dossier
-  publié ont leur fiche déposée dans `dossier_source_archives` (15 792 octets,
-  `METADATA_ONLY` : instantané réseau non demandé, URL d'origine encore à documenter) ;
-  les 4 pièces du dossier économie ont été capturées avec instantané réseau (`--fetch`) :
-  trois `URL_SNAPSHOT` (Insee, CEPII, Terra Nova) et une `URL_UNAVAILABLE` enregistrée
-  telle quelle (OCDE, protection anti-robots). Chaque fiche est relue et rehachée au
-  dépôt, puis servie **octet pour octet** par `/api/archives/<empreinte de fiche>`
-  (rehachage vérifié en ligne).
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **41 pièces publiées**
+  ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
+  servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
+  en ligne). Le dossier de référence (8 pièces) est en `METADATA_ONLY` (instantané réseau
+  non demandé) ; les pièces des dossiers AME, RSA, Pétain-Vichy, coût de l'immigration et
+  insécurité ont été capturées avec instantané réseau (`--fetch`) : à l'exception de cinq
+  URL qui répondent 403/429 aux robots (Légifrance, préface de Stanford), chaque pièce a
+  un `URL_SNAPSHOT` portant l'empreinte des octets capturés.
 
 ## Pile technique
 
@@ -269,7 +269,12 @@ URL, qui restent à documenter. Le 15/10/2026 08:13 UTC, quatre fiches du dossie
 (OCDE). Le pipeline de capture reconstruit le dossier depuis la base pour le repasser au
 validateur : cette reconstruction omettait `protagonists` et `author_reference_url`
 (colonnes ajoutées par la migration `0006`) et faisait échouer **toute** capture — réparé
-dans `scripts/archive-capture.mts`. Le **miroir Storage** n'a pas eu lieu faute d'accès
+dans `scripts/archive-capture.mts`. Puis, à 08:53 UTC, les 29 fiches des pièces des
+dossiers AME (7), RSA (7), Pétain-Vichy (9) et insécurité attribuée à l'immigration (6)
+ont été déposées avec `--fetch` : 25 `URL_SNAPSHOT` et 4 `URL_UNAVAILABLE` enregistrées
+telles quelles (Légifrance répond 403, la préface de Stanford 429 aux clients non
+navigateurs), toutes relues et rehachées (racines de capture `c8a4fb93…`, `47ef67c5…`,
+`0962ede7…`, `8f4ffa63…`). Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 

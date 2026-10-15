@@ -361,7 +361,8 @@ export const REFERENCE_DOSSIER: Dossier = {
  * rapport de la commission des finances de l'Assemblée nationale (PLF 2025),
  * rapport d'information de la commission des finances du Sénat (2025),
  * réponse ministérielle (2023), rapport Évin-Stefanini (2023), avis et
- * communiqué de l'Académie nationale de médecine.
+ * communiqué de l'Académie nationale de médecine, étude de l'Irdes (2023)
+ * sur le recours aux soins des bénéficiaires.
  */
 export const AME_DOSSIER: Dossier = {
   id: "ec66bd00-fb41-4eaf-b5aa-47600ef03889",
@@ -544,6 +545,28 @@ export const AME_DOSSIER: Dossier = {
       archive_binary_sha256: null,
       display_order: 6,
     },
+    {
+      id: "e32d9172-3510-40b6-8e88-f793fe95623b",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Questions d'économie de la santé n° 280 — Accès aux soins et lieux de soins usuels des personnes sans titre de séjour couvertes par l'AME",
+      author_or_institution:
+        "Antoine Marsaudon, Florence Jusot, Jérôme Wittwer et Paul Dourgnon (Irdes)",
+      publication_date: "2023-07-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Quand la durée de la couverture par l'AME augmente, la probabilité de consulter en cabinet médical ou en centre de santé s'accroît, alors que celle de recourir aux urgences ou dans une association diminue.",
+      context_explanation:
+        "Étude sur données de l'enquête Premiers pas (Paris et agglomération de Bordeaux, 2019) : la couverture par l'AME est associée à un non-recours aux soins moins fréquent et à une réorientation du recours, des urgences et des associations vers la médecine de ville — l'effet direct sur les soins tardifs évités.",
+      original_url:
+        "https://www.irdes.fr/recherche/questions-d-economie-de-la-sante/280-acces-aux-soins-et-lieux-de-soins-usuels-des-personnes-sans-titre-de-sejour-couvertes-par-l-ame.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Institut_de_recherche_et_documentation_en_%C3%A9conomie_de_la_sant%C3%A9",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
   ],
 };
 
@@ -553,7 +576,8 @@ export const AME_DOSSIER: Dossier = {
  * l'action sociale et des familles, évaluation de la Cour des comptes (2022),
  * réponse ministérielle avec données CNAF/CCMSA (2023), rapport du Sénat
  * (2025), article du Figaro (2023), recherche sur l'accès des étrangers aux
- * prestations (The Conversation, projet MiTSoPro, Université de Liège).
+ * prestations (The Conversation, projet MiTSoPro, Université de Liège),
+ * décision du Conseil constitutionnel n° 2011-137 QPC (2011).
  */
 export const RSA_DOSSIER: Dossier = {
   id: "0fa4f772-df1e-4c20-bf04-b0023a6b2234",
@@ -723,6 +747,25 @@ export const RSA_DOSSIER: Dossier = {
       archive_binary_sha256: null,
       display_order: 6,
     },
+    {
+      id: "82f0e4ee-6912-4a74-9457-d62ea683922f",
+      spectrum: "CENTRE",
+      source_name:
+        "Décision n° 2011-137 QPC du 17 juin 2011 — M. Zeljko S. (attribution du revenu de solidarité active aux étrangers)",
+      author_or_institution: "Conseil constitutionnel (République française)",
+      publication_date: "2011-06-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "qu'en réservant le bénéfice du revenu de solidarité active à ceux qui, parmi les étrangers, sont titulaires depuis au moins cinq ans d'un titre de séjour les autorisant à travailler, le législateur a institué entre les Français et les étrangers, d'une part, et entre les étrangers, d'autre part, selon qu'ils ont ou non une résidence stable en France, une différence de traitement en rapport direct avec l'objet de la loi ; qu'il a fixé un critère qui n'est pas manifestement inapproprié au but poursuivi",
+      context_explanation:
+        "Saisi d'une question prioritaire de constitutionnalité, le Conseil constitutionnel valide l'article L. 262-4 : « Article 1er. — L'article L. 262-4 du code de l'action sociale et des familles est conforme à la Constitution. » La condition des cinq ans de titre de séjour pour les étrangers non couverts par un statut protégé est donc un choix légal assumé, contrôlé et confirmé.",
+      original_url: "https://www.conseil-constitutionnel.fr/decision/2011/2011137QPC.htm",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
   ],
 };
 
@@ -731,7 +774,9 @@ export const RSA_DOSSIER: Dossier = {
  * des Juifs français — sources vérifiées : loi du 3 octobre 1940 (Journal
  * officiel), discours de Jacques Chirac (1995), entretien avec Laurent Joly
  * (CNRS), page pédagogique du Mémorial de la Shoah, dossier de l'INA sur le
- * projet annoté par Pétain, article de L'Humanité sur la découverte de 2010.
+ * projet annoté par Pétain, article de L'Humanité sur la découverte de 2010,
+ * préface de la 2e édition de « Vichy France and the Jews » (Marrus & Paxton,
+ * 2019), loi du 4 octobre 1940 sur l'internement des Juifs étrangers.
  */
 export const VICHY_DOSSIER: Dossier = {
   id: "f185a0ee-094c-42bb-b75d-ef1517393fd4",
@@ -944,6 +989,45 @@ export const VICHY_DOSSIER: Dossier = {
       archive_binary_sha256: null,
       display_order: 7,
     },
+    {
+      id: "9dca84cd-d84c-49c2-a503-212d535bf6a8",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name: "Vichy France and the Jews — préface de la deuxième édition",
+      author_or_institution:
+        "Michael R. Marrus et Robert O. Paxton (Stanford University Press)",
+      publication_date: "2019-08-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Without prompting from the German occupation authorities (who wanted at first only to expel German Jews into the unoccupied parts of France), Vichy France launched its own anti-Jewish program.",
+      context_explanation:
+        "Préface de la deuxième édition (août 2019) de l'ouvrage de référence sur la France de Vichy et les Juifs. Traduction : « Sans y avoir été poussée par les autorités d'occupation allemandes (qui ne voulaient d'abord qu'expulser les Juifs allemands vers la zone non occupée), la France de Vichy lança son propre programme antijuif. » Les auteurs y confirment, archives françaises et allemandes à l'appui, leurs conclusions de 1981.",
+      original_url: "https://www.sup.org/books/history/vichy-france-and-jews/excerpt/preface",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Robert_Paxton",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "702297ab-2061-4e66-962a-97cb84710050",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Loi du 4 octobre 1940 relative aux ressortissants étrangers de race juive (internement dans des camps spéciaux)",
+      author_or_institution:
+        "Journal officiel de l'État français (régime de Vichy) — texte sur Légifrance",
+      publication_date: "1940-10-04",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les ressortissants étrangers de race juive pourront, à dater de la promulgation de la présente loi, être internés dans des camps spéciaux par décision du préfet du département de leur résidence.",
+      context_explanation:
+        "Votée le lendemain de la promulgation du premier statut des Juifs, cette loi autorise l'internement administratif des Juifs étrangers par simple décision préfectorale — dans les camps du sud de la France (Gurs, Rivesaltes, les Milles…). Loin de « protéger », le régime organisait lui-même l'enfermement.",
+      original_url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000571814",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
   ],
 };
 
@@ -1095,6 +1179,185 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
   ],
 };
 
+export const CRIME_IMMIGRATION_DOSSIER: Dossier = {
+  id: "0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1",
+  slug: "immigration-insecurite-criminalite-france",
+  claim_title: "L'immigration est la cause principale de la hausse des crimes et délits en France",
+  verdict: "FAUX",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Immigration en France",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Immigration_en_France",
+      note: "Le débat porte sur le lien allégué entre immigration et délinquance enregistrée.",
+    },
+    {
+      name: "Service statistique ministériel de la sécurité intérieure",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure",
+      note: "Source des statistiques officielles de la délinquance enregistrée (données des mis en cause).",
+    },
+    {
+      name: "Laurent Mucchielli",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Laurent_Mucchielli",
+      note: "Sociologue (CNRS), ancien directeur du CESDIP (2004-2009).",
+    },
+    {
+      name: "Ministère de la Justice (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_la_Justice_(France)",
+      note: "Publications statistiques sur la détention et la récidive (SDSE, administration pénitentiaire).",
+    },
+  ],
+  verdict_summary:
+    "Aucune donnée ne soutient un rôle causal de l'immigration : en 2024, la très large majorité des personnes mises en cause sont de nationalité française (84 à 85 % pour les violences physiques, 88 % pour l'usage de stupéfiants — SSMSI). La surreprésentation observée dans certaines statistiques s'explique par des mécanismes quasi mécaniques (délits spécifiques au séjour) et des facteurs sociologiques (âge, sexe, précarité) : à situation comparable, la nationalité n'est pas un facteur explicatif, et les sortants de prison étrangers récidivent moins que les Français.",
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part: "« Les étrangers commettent la majorité des crimes et délits »",
+      status: "FAUX",
+      detail:
+        "En 2024, les auteurs de violences physiques sont de nationalité française dans 84 % (intrafamiliales) et 85 % (hors cadre familial) des cas résolus ; 88 % des mis en cause pour usage de stupéfiants sont français (SSMSI, « Insécurité et délinquance en 2024 », fiches violences physiques et stupéfiants). Les mis en cause étrangers représentent 15 à 16 % des violences physiques, pour environ 8 % de la population.",
+    },
+    {
+      claim_part: "« La nationalité explique la délinquance »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "La délinquance de rue est d'abord le fait d'hommes jeunes et précaires, surreprésentés dans les statistiques des mis en cause : « l'examen rigoureux des statistiques policières ne permet pas de mesurer la délinquance des étrangers » (Mucchielli, CNRS-CESDIP). Le ministère de la Justice mesure même une récidive plus faible des sortants étrangers (- 3,9 points) et un effet du faible niveau d'étude (+ 3,3 points) : ce sont le décrochage scolaire et la précarité qui pèsent, pas la nationalité.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "05c12af9-831a-47e4-9391-946eb5c9ba05",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Insécurité et délinquance en 2024 : bilan statistique (fiches violences physiques et stupéfiants)",
+      author_or_institution:
+        "SSMSI — Service statistique ministériel de la sécurité intérieure (ministère de l'Intérieur)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les auteurs sont pour la plupart de nationalité française (respectivement 84 % et 85 %). La part des mis en cause de nationalités étrangères est de l'ordre de 15 à 16 % alors que les nationalités étrangères représentent 8 % de la population française.",
+      context_explanation:
+        "Bilan statistique annuel du SSMSI (9e édition, année 2024) : sur les violences physiques, 84 % des mis en cause (intrafamiliales) et 85 % (hors cadre familial) sont de nationalité française ; 88 % des mis en cause pour usage de stupéfiants le sont également. Les étrangers représentent environ 8 % de la population résidant en France.",
+      original_url:
+        "https://www.interieur.gouv.fr/fr/content/download/138329/1093108/file/SSMSI-BA2024.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "cbb05fa7-4845-4448-b027-1e2a29ed0825",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Délinquance et immigration en France : un regard sociologique — résumé de l'article (Criminologie, vol. 36, n° 2)",
+      author_or_institution: "Laurent Mucchielli (CNRS, CESDIP)",
+      publication_date: "2003-01-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'examen rigoureux des statistiques policières ne permet pas de mesurer la délinquance des étrangers. Il invite toutefois à distinguer une délinquance professionnelle des étrangers non résidents d'une délinquance d'étrangers résidents qui s'apparente aux vols et aux violences physiques classiquement observés dans les couches les plus pauvres de la population.",
+      context_explanation:
+        "Synthèse critique des connaissances (données administratives et travaux sociologiques quantitatifs et qualitatifs). Le résumé de l'article précise aussi que la sur-représentation locale des jeunes issus de l'immigration africaine n'est « pas uniforme sur le territoire national » et renvoie à des contextes locaux.",
+      original_url: "https://www.erudit.org/fr/revues/crimino/2003-v36-n2-crimino701/007865ar/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Laurent_Mucchielli",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "24db7b87-e9fb-4a81-a30d-596c8daf2517",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name: "Pourquoi le lien entre immigration et délinquance est une illusion",
+      author_or_institution:
+        "Arnaud Philippe (University of Bristol) et Jérôme Valette (CEPII), The Conversation",
+      publication_date: "2023-05-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Immigration et délinquance ne sont donc pas liées, une fois les raisonnements simplificateurs écartés. Au contraire, si la surreprésentation quasi mécanique des immigrés dans les statistiques peut créer l'illusion d'une relation entre immigration et délinquance, les études rigoureuses montrent qu'il n'en est rien.",
+      context_explanation:
+        "Analyse des mécanismes de la surreprésentation : délits que seuls des étrangers peuvent commettre (séjour irrégulier, travail sans titre), élucidations immédiates, effets de ciblage statistique. Repères : 7,4 % d'étrangers dans la population en 2019, mais 14 % des auteurs d'affaires traitées par la justice.",
+      original_url:
+        "https://theconversation.com/pourquoi-le-lien-entre-immigration-et-delinquance-est-une-illusion-205603",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "2fa64508-d93d-44f6-975e-9e344fb9237f",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Infostat Justice n° 183 — Mesurer et comprendre les déterminants de la récidive des sortants de prison",
+      author_or_institution: "Frédérique Cornuau et Marianne Juillard (SDSE, ministère de la Justice)",
+      publication_date: "2021-07-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Par ailleurs, le risque de récidive des sortants de prison étrangers est réduit de 3,9 points. La situation matrimoniale joue un rôle significatif : être marié réduit de 4,9 points le risque de récidive par rapport au fait d'être célibataire. Un faible niveau d'étude semble augmenter le risque (+ 3,3 points pour un niveau élémentaire ou pré-élémentaire par rapport à un niveau lycée).",
+      context_explanation:
+        "Étude statistique du service statistique ministériel de la justice sur une cohorte de sortants de prison : ce sont le niveau d'études, la situation familiale et l'âge qui pèsent sur la récidive ; la nationalité étrangère est associée à un risque plus faible (- 3,9 points).",
+      original_url:
+        "https://www.justice.gouv.fr/sites/default/files/migrations/portail/art_pix/stat_Infostat_183.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_la_Justice_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "07220d69-5c22-4986-8f83-b6c219bf1f43",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Cahiers d'études pénitentiaires et criminologiques n° 25 — Étrangers incarcérés",
+      author_or_institution:
+        "Angélique Hazard (direction de l'administration pénitentiaire, ministère de la Justice)",
+      publication_date: "2008-10-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En 2007, les ILE restent toutefois le premier poste d'incarcération des étrangers originaires d'Afrique (Maghreb 17 %, Afrique hors Maghreb 22 %) et des pays hors Union européenne (22 %).",
+      context_explanation:
+        "Les « infractions à la législation sur les étrangers » (ILE : entrée et séjour irréguliers, mesures d'expulsion, aide à l'entrée) sont des délits spécifiques au statut de séjour, concentrés sur les personnes étrangères : en 2007, 57 % concernaient l'entrée et le séjour et 33 % une mesure d'expulsion. Leur poids dans les statistiques ne dit rien d'une délinquance de droit commun.",
+      original_url: "https://www.justice.gouv.fr/sites/default/files/2023-05/CahEtudesPenitCrim25.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_la_Justice_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "16746a6a-a473-41a9-aec1-85e7dc7f2e17",
+      spectrum: "GAUCHE",
+      source_name: "Immigration : la voix des sciences sociales (dossier)",
+      author_or_institution: "La Vie des idées (La rédaction)",
+      publication_date: "2023-12-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La focalisation médiatique sur quelques faits divers fait écran : l'ordre public n'est pas menacé par l'immigration.",
+      context_explanation:
+        "Dossier publié au lendemain de l'adoption de la loi immigration du 19 décembre 2023 : il recense les travaux des sciences sociales sur les questions instrumentalisées, dont celle du lien entre immigration et délinquance — la section correspondante renvoie aux recherches sur les statistiques pénales et leur construction.",
+      original_url: "https://laviedesidees.fr/Immigration-la-voix-des-sciences-sociales",
+      author_reference_url: "https://fr.wikipedia.org/wiki/La_Vie_des_id%C3%A9es",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -1122,6 +1385,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   RSA_DOSSIER,
   VICHY_DOSSIER,
   IMMIGRATION_BUDGET_DOSSIER,
+  CRIME_IMMIGRATION_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 
