@@ -102,8 +102,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   supprime les sources en cascade puis les réinsère : elle emporte les fiches d'archive
   du dossier, qu'il faut redéposer par `archive:capture` — fait le 15/10 à 12:41 UTC
   pour les dix dossiers réappliqués (68 fiches redéposées, racine des captures
-  `e0a39749…`), puis à 13:02 UTC pour les douze dossiers réappliqués (83 fiches
-  redéposées, racine des captures `b54243b2…`).
+  `e0a39749…`), puis à 13:02 UTC pour les douze dossiers réappliqués ; un second
+  passage de capture lancé en parallèle ayant créé un doublon par pièce, la table a été
+  dédupliquée : **83 fiches exactes conservées**, une par pièce publiée (63
+  `URL_SNAPSHOT`, 17 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
 
 ## Pile technique
 
@@ -328,7 +330,9 @@ a toutes redéposées d'un coup : 68 pièces, 68 fiches déposées et relues —
 derniers ajouts, « laxisme des juges » et ADA, entre-temps intégrés) a de nouveau supprimé
 puis réinséré toutes les sources ; le `archive:capture --fetch --yes` de 13:02 UTC les a
 toutes redéposées : 83 pièces, 83 fiches déposées et relues — 63 `URL_SNAPSHOT`, 17
-`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `b54243b2d204b932…`. Le **miroir Storage** n'a pas eu lieu faute d'accès
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `b54243b2d204b932…`. Un
+second passage de capture lancé en parallèle ayant créé un doublon par pièce, la table a
+été **dédupliquée** (83 fiches exactes conservées, une par pièce publiée). Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
