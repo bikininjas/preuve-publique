@@ -15,24 +15,28 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Deux dossiers en base :
-  un **publié** (8 sources, 4 piliers) et un **brouillon de contrôle RLS** ; RLS actif sur
-  `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 8 sources portent leur empreinte de citation ; la RPC de recherche
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Cinq dossiers en base :
+  quatre **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (6), les
+  sans-papiers et le RSA (6), Pétain et Vichy (7) — et un **brouillon de contrôle RLS** ;
+  RLS actif sur `dossiers`, `dossier_sources` et `admin_users`.
+- **Intégrité** : les 27 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
   (`8a3322902363d2d1a1e1c593b12496b8f6e78262fa3d747c5b5c15b13b642756`). `ETag` et
   `X-Proof-Integrity-Root` du dossier publié, relevés en ligne, valent la racine
   d'intégrité recalculée :
-  `403002c79f79a52e3b540a4203f4fd57a6ab029f5bf7de22c654edb998f8737f`.
-- **Application** : `npm run typecheck`, `npm test` (**35 tests**) et `npm run build`
+  `403002c79f79a52e3b540a4203f4fd57a6ab029f5bf7de22c654edb998f8737f`. Les trois
+  dossiers ajoutés le 15/10 (AME, RSA, Pétain-Vichy) ont été vérifiés de la même manière :
+  `ETag` et `X-Proof-Integrity-Root` relevés en ligne égaux aux racines recalculées par
+  `npm run proofs`.
+- **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
     stale-while-revalidate=86400`, `ETag` et `X-Proof-Integrity-Root` égaux à la racine
     recalculée localement, 304 sur `If-None-Match`, 404 sur un slug inconnu ;
-  - `/api/search?q=nazis` → 200, un résultat ; `q` trop court → 400 ;
+  - `/api/search?q=nazis` → 200, deux résultats ; `q` trop court → 400 ;
   - `/api/verify/<empreinte>` → 200 avec la chaîne canonique ; empreinte inconnue → 404,
     empreinte malformée → 400 ;
   - 30 requêtes puis 429 avec `Retry-After` et `X-RateLimit-*` ;
@@ -72,7 +76,7 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 35 tests : données, garde de triangulation, crypto, quotas, archivage
+npm test               # 36 tests : données, garde de triangulation, crypto, quotas, archivage
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité

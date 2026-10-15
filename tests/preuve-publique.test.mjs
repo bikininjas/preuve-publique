@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   DRAFT_CONTROL_DOSSIER,
   REFERENCE_DOSSIER,
+  SEED_DOSSIERS,
   publishedSeedDossiers,
 } from "../src/db/seed-fallback.ts";
 import { SPECTRUM_ORDER } from "../src/lib/labels.ts";
@@ -24,7 +25,7 @@ test("le dossier de référence est publiable et complet", () => {
 });
 
 test("aucune source ne porte d'empreinte inventée", () => {
-  for (const dossier of [REFERENCE_DOSSIER, DRAFT_CONTROL_DOSSIER]) {
+  for (const dossier of SEED_DOSSIERS) {
     for (const source of dossier.sources) {
       if (source.archive_sha256 !== null) {
         assert.match(source.archive_sha256, HASH);
@@ -53,11 +54,23 @@ test("les piliers documentés se calculent sur les sources", () => {
 test("le brouillon de contrôle n'est jamais publié", () => {
   const published = publishedSeedDossiers().map((dossier) => dossier.slug);
   assert.ok(!published.includes(DRAFT_CONTROL_DOSSIER.slug));
-  assert.equal(published.length, 1);
+  assert.equal(published.length, 4);
+  assert.ok(published.includes("aide-medicale-detat-securite-sociale-soins-de-confort"));
+  assert.ok(published.includes("sans-papiers-et-rsa-des-leur-arrivee"));
+  assert.ok(published.includes("petain-vichy-ont-ils-protege-les-juifs-francais"));
 });
 
 test("la recherche locale trouve le dossier par son titre et par une citation", () => {
-  for (const query of ["nazis", "socialiste", "secteur privé 1934", "propriété privée"]) {
+  // « nazis » remonte le dossier de référence (titre et pièces) et le dossier
+  // Vichy (citation du discours de Jacques Chirac de 1995).
+  const nazis = searchSeedDossiers("nazis")
+    .map((dossier) => dossier.slug)
+    .sort();
+  assert.deepEqual(nazis, [
+    "hitler-et-les-nazis-etaient-de-gauche",
+    "petain-vichy-ont-ils-protege-les-juifs-francais",
+  ]);
+  for (const query of ["socialiste", "secteur privé 1934", "propriété privée"]) {
     const results = searchSeedDossiers(query);
     assert.equal(results.length, 1, `attendu un résultat pour « ${query} »`);
   }

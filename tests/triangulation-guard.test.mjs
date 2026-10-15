@@ -28,6 +28,16 @@ test("le dossier de référence passe le validateur (avec ses empreintes dériv�
   }
 });
 
+test("tous les dossiers publiés du seed passent le validateur", () => {
+  for (const seedDossier of publishedSeedDossiers()) {
+    const dossier = assertPublishableDossier(seedDossier);
+    assert.deepEqual(triangulationIssues(dossier), [], seedDossier.slug);
+    for (const source of dossier.sources) {
+      assert.match(source.archive_sha256, /^[0-9a-f]{64}$/, seedDossier.slug);
+    }
+  }
+});
+
 test("un dossier publié sans preuve primaire est refusé", () => {
   const codes = issuesOf((dossier) => {
     dossier.sources = dossier.sources.filter(

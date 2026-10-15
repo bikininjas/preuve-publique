@@ -36,7 +36,7 @@ test("le repli local sert des empreintes dérivées, identiques à celles de la 
   const list = await listPublishedDossiers();
   assert.equal(list.ok, true);
   assert.equal(list.origin, "seed");
-  assert.equal(list.value.length, 1);
+  assert.equal(list.value.length, 4);
 
   const dossier = await getPublishedDossier("hitler-et-les-nazis-etaient-de-gauche");
   assert.equal(dossier.ok, true);
@@ -60,6 +60,6 @@ test("le repli local ne publie jamais le brouillon et répond sur la recherche",
   const search = await searchPublishedDossiers("nazis");
   assert.equal(search.ok, true);
   assert.equal(search.origin, "seed");
-  assert.equal(search.value.length, 1);
+  assert.equal(search.value.length, 2);
   assert.match(search.value[0].sources[0].archive_sha256, /^[0-9a-f]{64}$/);
 });
