@@ -11,11 +11,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 15/10/2026
 
-- **Base** : six migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : sept migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Vingt-deux dossiers en base :
+  (`20261015043026`), `0006_protagonists` (`20261015044427`),
+  `0007_religion_and_verdicts` (`20261015155510` — catégorie « Religion », verdicts
+  « anachronisme historique » et « généralisation abusive »). Vingt-deux dossiers en base :
   vingt et un **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
@@ -317,10 +319,10 @@ empreinte valide sur chaque source. Un brouillon incomplet reste un brouillon.
 ## Parcourir et publier
 
 Le registre se parcourt par **catégorie** (`/categories/<slug>`) ou en entier (`/dossiers`).
-Les huit catégories — Histoire, Politique, Économie, Société, Faits divers, Santé,
-Environnement, International — sont une énumération en base, validée par le Triangulation
-Guard : un dossier publié porte toujours une catégorie, et une catégorie vide reste vide
-plutôt que d'être remplie d'un texte d'attente.
+Les neuf catégories — Histoire, Politique, Économie, Société, Religion, Faits divers,
+Santé, Environnement, International — sont une énumération en base, validée par le
+Triangulation Guard : un dossier publié porte toujours une catégorie, et une catégorie
+vide reste vide plutôt que d'être remplie d'un texte d'attente.
 
 L'écriture passe par **`/admin`**, qui n'est ni un back-office hors du site ni une
 connexion privilégiée :

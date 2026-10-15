@@ -36,6 +36,8 @@ export const VERDICT_VALUES = [
   "TROMPEUR",
   "INSTRUMENTALISATION_SEMANTIQUE",
   "HORS_CONTEXTE",
+  "ANACHRONISME_HISTORIQUE",
+  "GENERALISATION_ABUSIVE",
 ] as const;
 
 export const SPECTRUM_VALUES = [
@@ -65,6 +67,7 @@ export const CATEGORY_VALUES = [
   "SANTE",
   "ENVIRONNEMENT",
   "INTERNATIONAL",
+  "RELIGION",
 ] as const;
 
 const sha256Schema = z

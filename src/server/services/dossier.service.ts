@@ -80,6 +80,8 @@ const VERDICTS: VerdictStatus[] = [
   "TROMPEUR",
   "INSTRUMENTALISATION_SEMANTIQUE",
   "HORS_CONTEXTE",
+  "ANACHRONISME_HISTORIQUE",
+  "GENERALISATION_ABUSIVE",
 ];
 
 const SPECTRA: PoliticalSpectrum[] = [
@@ -145,6 +147,7 @@ const CATEGORIES: DossierCategory[] = [
   "SANTE",
   "ENVIRONNEMENT",
   "INTERNATIONAL",
+  "RELIGION",
 ];
 
 function isRecord(value: unknown): value is Record<string, unknown> {

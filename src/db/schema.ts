@@ -26,6 +26,8 @@ export const verdictStatus = pgEnum("verdict_status", [
   "TROMPEUR",
   "INSTRUMENTALISATION_SEMANTIQUE",
   "HORS_CONTEXTE",
+  "ANACHRONISME_HISTORIQUE",
+  "GENERALISATION_ABUSIVE",
 ]);
 
 export const politicalSpectrum = pgEnum("political_spectrum", [
@@ -48,6 +50,7 @@ export const dossierCategory = pgEnum("dossier_category", [
   "SANTE",
   "ENVIRONNEMENT",
   "INTERNATIONAL",
+  "RELIGION",
 ]);
 
 const tsvector = customType<{ data: string; driverData: string }>({

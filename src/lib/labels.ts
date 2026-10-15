@@ -73,6 +73,7 @@ export const CATEGORY_ORDER: DossierCategory[] = [
   "HISTOIRE",
   "ECONOMIE",
   "SOCIETE",
+  "RELIGION",
   "FAITS_DIVERS",
   "SANTE",
   "ENVIRONNEMENT",
@@ -84,6 +85,7 @@ export const CATEGORY_LABELS: Record<DossierCategory, string> = {
   POLITIQUE: "Politique",
   ECONOMIE: "Économie",
   SOCIETE: "Société",
+  RELIGION: "Religion",
   FAITS_DIVERS: "Faits divers",
   SANTE: "Santé",
   ENVIRONNEMENT: "Environnement",
@@ -96,6 +98,8 @@ export const CATEGORY_DESCRIPTIONS: Record<DossierCategory, string> = {
   POLITIQUE: "Propos, votes et programmes politiques passés au crible des textes.",
   ECONOMIE: "Chiffres, budgets et promesses économiques vérifiés à la source.",
   SOCIETE: "Faits de société, statistiques publiques et débats de fond.",
+  RELIGION:
+    "Croyances, institutions et textes religieux, confrontés aux sources et à l'histoire.",
   FAITS_DIVERS: "Rumeurs et récits d'affaires, jugés sur pièces et non sur l'émotion.",
   SANTE: "Santé, médicaments et allégations thérapeutiques face aux données.",
   ENVIRONNEMENT: "Climat, énergie et pollutions : ce que disent les séries officielles.",
@@ -108,6 +112,7 @@ export const CATEGORY_SLUGS: Record<DossierCategory, string> = {
   POLITIQUE: "politique",
   ECONOMIE: "economie",
   SOCIETE: "societe",
+  RELIGION: "religion",
   FAITS_DIVERS: "faits-divers",
   SANTE: "sante",
   ENVIRONNEMENT: "environnement",
@@ -138,6 +143,8 @@ export const VERDICT_LABELS: Record<VerdictStatus, string> = {
   TROMPEUR: "Trompeur",
   INSTRUMENTALISATION_SEMANTIQUE: "Instrumentalisation sémantique",
   HORS_CONTEXTE: "Hors contexte",
+  ANACHRONISME_HISTORIQUE: "Anachronisme historique",
+  GENERALISATION_ABUSIVE: "Généralisation abusive",
 };
 
 export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
@@ -146,6 +153,8 @@ export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
   TROMPEUR: "TROMPEUR",
   INSTRUMENTALISATION_SEMANTIQUE: "INSTRUMENTALISATION SÉMANTIQUE",
   HORS_CONTEXTE: "HORS CONTEXTE",
+  ANACHRONISME_HISTORIQUE: "ANACHRONISME HISTORIQUE",
+  GENERALISATION_ABUSIVE: "GÉNÉRALISATION ABUSIVE",
 };
 
 export const PREMISE_STATUS_LABELS: Record<PremiseStatus, string> = {
@@ -195,6 +204,8 @@ export const VERDICT_TONES: Record<VerdictStatus, "true" | "warn" | "false"> = {
   TROMPEUR: "warn",
   INSTRUMENTALISATION_SEMANTIQUE: "warn",
   HORS_CONTEXTE: "warn",
+  ANACHRONISME_HISTORIQUE: "warn",
+  GENERALISATION_ABUSIVE: "warn",
 };
 
 /** Cote technique du dossier : les 8 premiers caractères de son identifiant. */

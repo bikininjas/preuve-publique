@@ -22,6 +22,7 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
         <Link
           href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
           className="pp-chip relative z-10"
+          data-category={dossier.category}
         >
           {CATEGORY_LABELS[dossier.category]}
         </Link>

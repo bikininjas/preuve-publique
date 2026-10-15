@@ -207,7 +207,11 @@ export default async function DossierPage({ params }: PageProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <Link className="pp-chip" href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}>
+        <Link
+          className="pp-chip"
+          data-category={dossier.category}
+          href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
+        >
           {CATEGORY_LABELS[dossier.category]}
         </Link>
         <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">

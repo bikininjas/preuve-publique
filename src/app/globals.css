@@ -27,6 +27,10 @@
   --pp-caviard: #0d0e11;
   --pp-caviard-ink: #f4f1ea;
   --pp-shadow: rgba(13, 14, 17, 0.08);
+  /* Catégorie « Religion » : ambre neutre, teinte du papier d'ivoire. */
+  --pp-religion-ink: #451a03;
+  --pp-religion-bg: rgba(254, 243, 199, 0.8);
+  --pp-religion-bd: #fcd34d;
 }
 
 [data-theme="dark"] {
@@ -50,6 +54,10 @@
   --pp-caviard: #05060a;
   --pp-caviard-ink: #ece9e2;
   --pp-shadow: rgba(0, 0, 0, 0.5);
+  /* Catégorie « Religion » : ambre neutre, chambre noire. */
+  --pp-religion-ink: #fde68a;
+  --pp-religion-bg: rgba(69, 26, 3, 0.3);
+  --pp-religion-bd: #92400e;
 }
 
 @theme inline {
@@ -478,6 +486,14 @@ footer {
   color: var(--pp-ink);
   transition: border-color var(--pp-fast) var(--pp-ease), background var(--pp-fast) var(--pp-ease),
     transform var(--pp-fast) var(--pp-ease);
+}
+
+/* Catégorie « Religion » : ambre neutre du papier d'ivoire ; les états actif et
+   vide, définis plus bas, gardent la main. */
+.pp-chip[data-category="RELIGION"] {
+  border-color: var(--pp-religion-bd);
+  background: var(--pp-religion-bg);
+  color: var(--pp-religion-ink);
 }
 
 .pp-chip:hover { border-color: var(--pp-grid); transform: translateY(-1px); }

@@ -13,7 +13,9 @@ export type VerdictStatus =
   | "FAUX"
   | "TROMPEUR"
   | "INSTRUMENTALISATION_SEMANTIQUE"
-  | "HORS_CONTEXTE";
+  | "HORS_CONTEXTE"
+  | "ANACHRONISME_HISTORIQUE"
+  | "GENERALISATION_ABUSIVE";
 
 export type PoliticalSpectrum =
   | "ARCHIVE_PRIMAIRE"
@@ -38,7 +40,8 @@ export type DossierCategory =
   | "FAITS_DIVERS"
   | "SANTE"
   | "ENVIRONNEMENT"
-  | "INTERNATIONAL";
+  | "INTERNATIONAL"
+  | "RELIGION";
 
 /**
  * Nature du contenu d'une source. Une citation entre guillemets et un fait
