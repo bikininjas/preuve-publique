@@ -15,8 +15,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Vingt et un dossiers en base :
-  vingt **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Vingt-deux dossiers en base :
+  vingt et un **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -28,11 +28,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   (8, faits divers), le revenu disponible d'un couple au RSA comparé à un couple au
   SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
   économie), les discriminations à l'embauche liées à l'origine (7, société) et la thèse
-  de races biologiques humaines (8, société) et l'homoparentalité et le développement des
-  enfants (7, société) — et un
+  de races biologiques humaines (8, société), l'homoparentalité et le développement des
+  enfants (7, société) et la « théorie du genre » à l'école (7, société) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 154 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 161 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -118,6 +118,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   *X et autres c. Autriche* de la CEDH reproduit par Juricaf et rapport parlementaire
   n° 628 de la commission spéciale) a été vérifié de la même manière (`a13d0497…`) :
   sept fiches déposées et relues, toutes capturées en instantanés réseau.
+  Le vingt et unième (la « théorie du genre » à l'école, 7 sources — page Éduscol servant
+  de cadre à l'égalité filles-garçons, arrêté du 3 février 2025 fixant le programme EVARS
+  (BO n° 6 du 6 février 2025), programme du cycle 4 (BO n° 31 du 30 juillet 2020, PDF de
+  l'annexe 3), communiqué du Conseil d'État du 27 juin 2025, rapport IGÉSR n° 2021-149,
+  avis du CESE du 10 septembre 2024 et rapport sénatorial n° 814 (2024-2025)) a été
+  vérifié de la même manière (`aff5f367…`) : sept fiches déposées et relues, toutes
+  capturées en instantanés réseau — les sites de l'éducation nationale (éduscol,
+  education.gouv.fr) répondant 403 aux robots, quatre pièces sont servies par des
+  instantanés Wayback, vérifiés à la source avant leur intégration.
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -162,7 +171,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   DC du Conseil constitutionnel, arrêt de la CEDH *X et autres c. Autriche* reproduit par
   Juricaf, rapport n° 628 de l'Assemblée nationale) ont été vérifiées de la même façon
   avant leur intégration — les citations anglaises y sont reproduites dans la langue
-  d'origine, avec traduction française en contexte.
+  d'origine, avec traduction française en contexte. Les sept sources du dossier sur la
+  « théorie du genre » (page Éduscol, arrêté du 3 février 2025, programme du cycle 4,
+  communiqué du Conseil d'État, rapport IGÉSR n° 2021-149, avis du CESE, rapport
+  sénatorial n° 814) ont été vérifiées de la même façon avant leur intégration : les
+  textes réglementaires ont été lus au Bulletin officiel, et les pages bloquées (403)
+  recoupées via leurs instantanés Wayback — l'expression « théorie du genre » ne figure
+  dans aucun des textes produits par l'éducation nationale.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -182,10 +197,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **154 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **161 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 125 fiches issues
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 132 fiches issues
   d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 26 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
@@ -213,7 +228,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   des captures `f2236f468699f983…`. L'intégration du dossier « homoparentalité » (15:22
   UTC) a entraîné une ultime réapplication et recapture : **154 fiches exactes**, une par
   pièce publiée (125 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des
-  captures `a0d1901ac6ffab29…`.
+  captures `a0d1901ac6ffab29…`. L'intégration du dossier « théorie du genre » (15:43 UTC)
+  a entraîné une ultime réapplication et recapture : **161 fiches exactes**, une par pièce
+  publiée (132 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des
+  captures `681a47e0…`.
 
 ## Pile technique
 
@@ -480,7 +498,11 @@ réapplication et recapture : 147 pièces, 147 fiches déposées et relues — 1
 du dossier « homoparentalité » (vingtième publié) a entraîné une dernière réapplication
 et recapture : 154 pièces, 154 fiches déposées et relues — 125 `URL_SNAPSHOT`, 26
 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `a0d1901ac6ffab29…` ; fiches
-dédupliquées, une par pièce. Le
+dédupliquées, une par pièce. Puis, à 15:43 UTC, l'intégration du dossier « théorie du
+genre » (vingt et unième publié) a entraîné une dernière réapplication et recapture : 161
+pièces, 161 fiches déposées et relues — 132 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3
+`METADATA_ONLY` — racine des captures `681a47e0212ac2cb…` ; fiches dédupliquées, une par
+pièce. Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.

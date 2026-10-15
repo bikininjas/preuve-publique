@@ -1906,6 +1906,143 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   6
 );
 
+delete from public.dossiers where slug = 'theorie-du-genre-ecole-education-nationale';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at
+) values (
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'theorie-du-genre-ecole-education-nationale',
+  'L''Éducation nationale enseigne une « théorie du genre » pour endoctriner les élèves',
+  'FAUX'::verdict_status,
+  'La « théorie du genre » n''existe dans aucun texte réglementaire. Les textes officiels encadrent trois objets précis : l''égalité filles-garçons — « l''éducation contre les représentations stéréotypées », la mixité des parcours et « la prévention et la lutte contre les violences sexistes et sexuelles » (éduscol) —, une information sur la vie affective et relationnelle, et une éducation à la sexualité dont l''arrêté du 3 février 2025 a fixé le programme (EVARS, applicable depuis la rentrée 2025-2026). Le Conseil d''État, saisi par des associations opposées au texte, a jugé le 27 juin 2025 que ce programme « repose sur des notions résultant de l''état de la science ou de l''état du droit, qui doivent être enseignées de manière neutre et objective, sans inciter les élèves à adopter un comportement donné », et a rejeté les recours. Les programmes de SVT restent, eux, strictement biologiques : le programme du cycle 4 enseigne « l''explication des mécanismes de la reproduction, du fonctionnement des organes aux phénomènes régulateurs, de l''échelle de l''organisme à l''échelle moléculaire ». Quant aux institutions de tous bords (IGÉSR, CESE, Sénat), elles ne discutent pas l''existence d''une idéologie à l''école : elles regrettent que l''éducation à l''égalité soit trop peu mise en œuvre — un quart des établissements n''ayant jamais organisé les séances prévues par la loi de 2001.',
+  'SOCIETE'::dossier_category,
+  '[{"name":"Ministère de l''Éducation nationale (France)","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_l%27%C3%89ducation_nationale_(France)","note":"Éduscol, programmes scolaires et programme EVARS (arrêté du 3 février 2025)."},{"name":"Conseil d''État (France)","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)","note":"Contentieux : rejet des recours contre le programme EVARS (27 juin 2025)."},{"name":"Inspection générale de l''éducation, du sport et de la recherche","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Inspection_g%C3%A9n%C3%A9rale_de_l%27%C3%A9ducation,_du_sport_et_de_la_recherche","note":"Rapport n° 2021-149 sur la mise en œuvre de l''éducation à la sexualité."},{"name":"Conseil économique, social et environnemental","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Conseil_%C3%A9conomique,_social_et_environnemental","note":"Avis du 10 septembre 2024 sur l''éducation à la vie affective, relationnelle et sexuelle."},{"name":"Sénat (France)","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)","note":"Rapport d''information n° 814 (2024-2025) sur le financement de la lutte contre les violences faites aux femmes."}]'::jsonb,
+  100,
+  '[{"claim_part":"« L''école apprend aux enfants que le sexe biologique n''existe pas »","status":"FAUX","detail":"Le programme de sciences de la vie et de la Terre du cycle 4 (BO n° 31 du 30 juillet 2020) enseigne « l''explication des mécanismes de la reproduction [...] du fonctionnement des organes aux phénomènes régulateurs, de l''échelle de l''organisme à l''échelle moléculaire » et la « reproduction sexuée et asexuée des êtres vivants ». Le programme EVARS lui-même est structuré, selon le Conseil d''État, en trois champs dont un « champ biologique ». Aucun texte officiel ne présente le sexe biologique comme inexistant."},{"claim_part":"« Les modules égalité visent à nier les identités sexuées dès la maternelle »","status":"FAUX","detail":"L''objectif réglementaire est explicite : « l''éducation contre les représentations stéréotypées », la mixité des filières et la prévention des violences sexistes et sexuelles (éduscol, référents égalité dans chaque collège et lycée, label Égalité filles-garçons). Le rapport de l''IGÉSR n° 2021-149 (juillet 2021) évalue une politique publique de mise en œuvre, pas une doctrine : il « note les efforts de cadrage effectués » et formule trente-cinq recommandations pratiques. Le CESE (avis du 10 septembre 2024, 119 voix pour) et le rapport sénatorial n° 814 (juillet 2025) traitent le sujet comme une obligation légale de prévention insuffisamment appliquée — constat confirmé par le juge administratif."}]'::jsonb,
+  true,
+  '2026-10-15T00:00:00.000Z'::timestamptz
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '1ea4711a-dbf9-4181-88d1-615e8f6f113b',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Égalité filles-garçons et prévention des violences sexistes et sexuelles (page de cadrage Éduscol)',
+  'Ministère de l''Éducation nationale — Éduscol (page servie par l''instantané Wayback, le site répondant 403 aux robots)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Enjeu démocratique majeur, l''égalité entre les filles et les garçons à l''École se fonde sur l''éducation contre les représentations stéréotypées, l''accompagnement de parcours de réussite pour les filles et les garçons et de choix d''orientation favorisant la mixité, et enfin la prévention et la lutte contre les violences sexistes et sexuelles.',
+  'Page officielle de référence du ministère : chaque collège et lycée dispose depuis 2018 de « référentes et référents égalité filles-garçons », un label « Égalité filles-garçons » valorise les établissements engagés, et la page rappelle le cadre légal (articles L. 121-1 et L. 312-17-1 du code de l''éducation : « favoriser la mixité et l''égalité entre les hommes et les femmes [...] la prévention des préjugés sexistes et des violences faites aux femmes »). Aucune mention d''une « théorie du genre » ni d''un enseignement visant à nier le sexe biologique : l''objet est la lutte contre les stéréotypes et les violences.',
+  'http://web.archive.org/web/20260905124710/https://eduscol.education.gouv.fr/6141/egalite-filles-garcons-et-prevention-des-violences-sexistes-et-sexuelles',
+  null,
+  '2de31123f6d9d3c9ee7ecac8bf14dce280a7446d3b0b69a7a2fedf29bb9571c1',
+  null,
+  'https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_l%27%C3%89ducation_nationale_(France)',
+  0
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '773b79f1-3299-477e-9e0d-97b1e332ade3',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Arrêté du 3 février 2025 fixant le programme d''éducation à la sexualité — éduquer à la vie affective et relationnelle, et à la sexualité (BO n° 6 du 6 février 2025)',
+  'Ministère de l''Éducation nationale (page du Bulletin officiel servie par l''instantané Wayback, le site répondant 403 aux robots)',
+  '2025-02-03',
+  'CITATION_EXACTE'::quote_kind,
+  'Le programme d''éducation à la sexualité – éduquer à la vie affective et relationnelle à l''école maternelle et à l''école élémentaire, éduquer à la vie affective et relationnelle, et à la sexualité au collège et au lycée – est fixé conformément à l''annexe du présent arrêté.',
+  'Texte réglementaire intégral du programme dit EVARS, applicable « à la rentrée de l''année scolaire 2025-2026 » dans tous les établissements. Son annexe s''intitule « Un programme ambitieux : éduquer à la vie affective et relationnelle, et à la sexualité ». Selon le Conseil d''État, le programme comporte trois axes — « se connaître, vivre et grandir avec son corps » ; « rencontrer les autres et construire des relations, s''y épanouir » ; « trouver sa place dans la société, être libre et responsable » — « déclinés dans le champ biologique, le champ psycho-émotionnel et les champs juridique et social ». C''est cet objet — éducation, non endoctrinement — que les recours ont attaqué, et que le juge a validé.',
+  'http://web.archive.org/web/20261008131533/https://www.education.gouv.fr/bo/2025/Hebdo6/MENE2503064A',
+  null,
+  '7483761e5949907d042f4a6b5a325c69cc61a8bdc0ad6e4772989e7bdaaffe2f',
+  null,
+  'https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_l%27%C3%89ducation_nationale_(France)',
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '26a4a676-c64d-4429-900d-048ccd43bc16',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Programme du cycle 4 — sciences de la vie et de la Terre, partie « Le corps humain et la santé » (annexe 3 du BO n° 31 du 30 juillet 2020)',
+  'Ministère de l''Éducation nationale — programme d''enseignement du cycle des approfondissements (PDF servi par l''instantané Wayback)',
+  '2020-07-30',
+  'CITATION_EXACTE'::quote_kind,
+  'L''explication des mécanismes de la reproduction se construit au cours du cycle 4, du fonctionnement des organes aux phénomènes régulateurs, de l''échelle de l''organisme à l''échelle moléculaire. On veille à ce que les techniques de maîtrise de la procréation s''intègrent en cohérence avec les connaissances acquises.',
+  'Le programme officiel de SVT fixe les attendus : « Expliquer quelques processus biologiques impliqués dans le fonctionnement de l''organisme humain, jusqu''au niveau moléculaire : activités musculaire, nerveuse, cardio-vasculaire et respiratoire, activité cérébrale, alimentation et digestion, relations avec le monde microbien, reproduction et sexualité. » S''y ajoutent « la reproduction sexuée et asexuée des êtres vivants », la « rencontre des gamètes » et la puberté. L''enseignement de la biologie de la reproduction (organes, gamètes, hormones, maîtrise de la procréation) n''a donc pas été remplacé : il reste le socle du programme de sciences.',
+  'http://web.archive.org/web/20260611061152if_/https://cache.media.education.gouv.fr/file/31/89/1/ensel714_annexe3_1312891.pdf',
+  null,
+  'df582f30ac0e16ce56d9b91215b965abb207625cd32c75ed86c148868dd5f37d',
+  null,
+  'https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_l%27%C3%89ducation_nationale_(France)',
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '9acacebf-43ac-4c6a-8fd6-bca2a74d10db',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'CENTRE'::political_spectrum,
+  'Le programme scolaire d''éducation à la vie affective et relationnelle et à la sexualité est conforme à la loi (communiqué, décisions du 27 juin 2025)',
+  'Conseil d''État (France) — section du contentieux',
+  '2025-06-27',
+  'CITATION_EXACTE'::quote_kind,
+  'Le Conseil d''État relève également que ce programme est décliné pour chaque niveau scolaire et qu''il repose sur des notions résultant de l''état de la science ou de l''état du droit, qui doivent être enseignées de manière neutre et objective, sans inciter les élèves à adopter un comportement donné.',
+  'Saisi par des associations et des particuliers — dont le Syndicat de la famille et Juristes pour l''enfance, qui dénonçaient la diffusion d''une « idéologie du genre » —, le Conseil d''État rejette l''ensemble des recours contre l''arrêté du 3 février 2025 et la circulaire du 4 février 2025. Il relève aussi que les interventions d''associations ont lieu « en présence d''un personnel de l''éducation nationale », que les parents sont informés des objectifs et que « les élèves ne seront pas évalués sur ces enseignements ». La plus haute juridiction administrative valide donc le texte au fond : neutralité, objectivité, absence de tout dressage idéologique.',
+  'https://www.conseil-etat.fr/content/download/229720/document/Communiqu%C3%A9+de+presse+-+programme+EVARS+-+web.pdf',
+  null,
+  '3cfbec22e264eac2ce380a91ebe3174197fba3037ed7c8eb55f5c7a00056acdb',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)',
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'bf6dea52-1b1e-4e9c-aaef-b6df0f890663',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'Éducation à la sexualité en milieu scolaire — rapport n° 2021-149 (juillet 2021)',
+  'IGÉSR — Inspection générale de l''éducation, du sport et de la recherche (page servie par l''instantané Wayback, le site répondant 403 aux robots)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'La mission note les efforts de cadrage effectués, le souci de mieux former les personnels de l''éducation nationale, et l''accompagnement important des académies et des établissements scolaires.',
+  'Rapport d''évaluation de l''inspection générale (juillet 2021) sur la mise en œuvre de l''éducation à la sexualité : la mission relève des difficultés « liées certes aux difficultés concrètes, mais surtout peut-être aux interrogations sur le sens même de l''éducation à la sexualité », dégage des « idées-forces » et propose trente-cinq recommandations articulées autour de huit domaines. Son diagnostic porte sur l''effectivité (moins de 15 % des élèves bénéficient des trois séances annuelles prévues par la loi) — jamais sur la diffusion d''une idéologie : c''est une politique publique d''éducation à évaluer, pas une doctrine à combattre.',
+  'http://web.archive.org/web/20261008183242/https://www.education.gouv.fr/igesr/education-la-sexualite-en-milieu-scolaire-465339',
+  null,
+  '46c35d04a4fb99abcd0e0c03255be808ca9556427aa94da37d345340f40e665e',
+  null,
+  'https://fr.wikipedia.org/wiki/Inspection_g%C3%A9n%C3%A9rale_de_l%27%C3%A9ducation,_du_sport_et_de_la_recherche',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '796fa45a-b249-4e83-8dff-efecea2ac248',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'CENTRE'::political_spectrum,
+  'Le CESE lance l''alerte sur l''importance de rendre réellement effectif le droit à l''éducation à la vie affective, relationnelle et sexuelle des jeunes (avis du 10 septembre 2024)',
+  'Conseil économique, social et environnemental (CESE)',
+  '2024-09-10',
+  'CITATION_EXACTE'::quote_kind,
+  'Malgré une loi de 2001 imposant trois séances annuelles d''éducation sexuelle tout au long de la scolarité, on estime que moins de 15 % des élèves en bénéficient, et 25 % des établissements scolaires n''ont jamais mis en place ces cours.',
+  'Avis adopté en séance plénière par 119 voix pour, rapporté par Cécile Gondard-Lalann, qui « lance l''alerte sur l''importance du droit à l''éducation à la vie affective, relationnelle et sexuelle face à un manquement criant du respect de cette obligation ». Le CESE formule une vingtaine de préconisations pour une stratégie nationale. La troisième assemblée de la République traite donc le sujet comme un droit des enfants insuffisamment appliqué — et recommande d''aller plus loin, à rebours de la thèse d''un endoctrinement voulu par l''État.',
+  'https://www.lecese.fr/presse/communiques/le-cese-lance-lalerte-sur-limportance-de-rendre-reellement-effectif-le-droit-leducation-la-vie-affective',
+  null,
+  '2efa271197fb041d452ec7d70aefc2dce5e3260f765fc91b3acfffb1a40d3192',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_%C3%A9conomique,_social_et_environnemental',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '7a751f58-a86f-4cfd-ac45-ee0d9c708e95',
+  '9b8ed5b4-c813-4673-a368-7597e536b9fd',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  'Évolution du financement de la lutte contre les violences faites aux femmes — rapport d''information n° 814 (2024-2025), synthèse',
+  'Sénat — rapporteurs spéciaux de la mission « Solidarité, insertion et égalité des chances » (rapport déposé le 2 juillet 2025)',
+  '2025-07-02',
+  'CITATION_EXACTE'::quote_kind,
+  'Il en va de même pour les actions de prévention : la mise en œuvre des actions en faveur de la culture de l''égalité dans l''Éducation nationale laisse à désirer selon la Cour des comptes, et l''impact des politiques d''égalité professionnelle n''est guère évalué.',
+  'Le rapport sénatorial (juillet 2025) comporte une partie « La prévention : éduquer, former, émanciper » et une sous-section sur « l''éducation et les formations visant à promouvoir la culture de l''égalité ». La critique du Sénat — chambre à majorité de droite — ne porte pas sur l''existence supposée d''une idéologie scolaire : elle constate que l''éducation à l''égalité est mal mise en œuvre et propose de développer la prévention. Les recommandations visent le financement et l''organisation de cette politique publique, pas son contenu doctrinal.',
+  'https://www.senat.fr/rap/r24-814/r24-814-syn.pdf',
+  null,
+  '236fa6c257aa0ec5a9e39038ef622fd92d8fc55ebab6900a2159b24331d86455',
+  null,
+  'https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)',
+  6
+);
+
 delete from public.dossiers where slug = 'pourvoi-cassation-culpabilite-ineligibilite-elus';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
