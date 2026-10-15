@@ -810,6 +810,194 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   5
 );
 
+delete from public.dossiers where slug = 'pourvoi-cassation-culpabilite-ineligibilite-elus';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at
+) values (
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'pourvoi-cassation-culpabilite-ineligibilite-elus',
+  'Un pourvoi en cassation annule la culpabilité et empêche l''inéligibilité d''un élu',
+  'FAUX'::verdict_status,
+  'La Cour de cassation n''est pas un troisième degré de juridiction : elle ne rejuge ni les faits ni la culpabilité matérielle, souverainement fixés par les juges du fond. De plus, si l''exécution provisoire est ordonnée, l''inéligibilité s''applique immédiatement malgré le pourvoi.',
+  'POLITIQUE'::dossier_category,
+  '[{"name":"Cour de cassation","kind":"ORGANISATION","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Cour_de_cassation_(France)","note":"Juridiction suprême de l''ordre judiciaire : elle contrôle la conformité au droit des décisions, sans rejuger le fond des affaires."},{"name":"Conseil constitutionnel","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)","note":"A validé le 28 mars 2025 la démission d''office immédiate des élus locaux condamnés à une inéligibilité exécutoire par provision, sous réserve d''un contrôle de proportionnalité."},{"name":"Conseil d''État","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)","note":"A rendu le 19 juin 2025 l''avis sur les effets d''une peine d''inéligibilité exécutoire par provision ; confirme la démission d''office des élus locaux."},{"name":"Code de procédure pénale","kind":"TEXTE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Code_de_proc%C3%A9dure_p%C3%A9nale_(France)","note":"Fixe l''effet suspensif du pourvoi (article 569) et le régime de l''exécution provisoire des peines (article 471)."},{"name":"Marine Le Pen","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Marine_Le_Pen","note":"Élue condamnée en 2025 puis en appel en 2026 dans l''affaire des assistants parlementaires du FN ; le débat sur la portée du pourvoi porte sur sa situation."}]'::jsonb,
+  100,
+  '[{"claim_part":"« La Cour de cassation peut déclarer un prévenu innocent des faits reprochés »","status":"FAUX","detail":"Elle contrôle la conformité au droit et la régularité de la procédure et « ne connaît pas du fond des affaires » (article L. 411-2 du code de l''organisation judiciaire) : les moyens qui remettent en cause l''appréciation souveraine des faits par les juges du fond sont écartés. Une cassation annule une décision, elle ne constate pas l''innocence."},{"claim_part":"« Le pourvoi suspend automatiquement toute peine d''inéligibilité »","status":"CONFUSION_CONCEPTUELLE","detail":"L''effet suspensif de l''article 569 du code de procédure pénale cède lorsque le juge a ordonné l''exécution provisoire : « le caractère non suspensif du recours, lorsque l''exécution provisoire a été ordonnée, assure une juste conciliation » (chambre criminelle, 21 septembre 2022). Les élus locaux condamnés sont démis d''office avant même que la condamnation soit définitive (Conseil constitutionnel, 28 mars 2025)."}]'::jsonb,
+  true,
+  '2026-10-15T00:00:00.000Z'::timestamptz
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '66c272b9-bd35-47c2-872a-db5cc604e489',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code de procédure pénale — article 569',
+  'Légifrance (République française)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Pendant les délais du recours en cassation et, s''il y a eu recours, jusqu''au prononcé de l''arrêt de la Cour de cassation, il est sursis à l''exécution de l''arrêt de la cour d''appel, sauf en ce qui concerne les condamnations civiles, et à moins que la cour d''appel ne confirme le mandat décerné par le tribunal en application de l''article 464-1 ou de l''article 465, premier alinéa, ou ne décerne elle-même mandat sous les mêmes conditions et selon les mêmes règles.',
+  'Texte en vigueur (rédaction issue de la loi n° 2019-222 du 23 mars 2019) : le pourvoi suspend par principe l''exécution de l''arrêt de la cour d''appel, sauf exceptions limitées (condamnations civiles, mandats maintenus ou décernés). Ce sursis n''est pas absolu : les dispositions légales d''exécution provisoire, comme celles de l''article 471 du même code, y dérogent.',
+  'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038313666',
+  null,
+  '112254f7f22b8f4f63cb51646d3f66aaf4e41f0911409550e7df2f3301f31f23',
+  null,
+  null,
+  0
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '4b0d65e8-a253-4ae8-8da4-df6a97bbd75d',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code de procédure pénale — article 471, alinéa 4',
+  'Légifrance (République française)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Les sanctions pénales prononcées en application des articles 131-4-1 à 131-11 et 132-25 à 132-70 du code pénal peuvent être déclarées exécutoires par provision.',
+  'Cet alinéa permet au juge de déclarer la sanction exécutoire par provision, sans attendre une condamnation définitive : c''est la base légale de l''exécution immédiate malgré appel ou pourvoi. La peine complémentaire d''inéligibilité relève de ces sanctions ; le Conseil constitutionnel a déclaré l''alinéa conforme le 5 décembre 2025, en imposant une motivation spéciale sur la proportionnalité.',
+  'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041402532',
+  null,
+  'aa4847c5921b399ec2c63f3be9f191344a0f790a17a004a25daf964be124ceb4',
+  null,
+  null,
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '737a9b8a-7cde-4527-9d9f-705374967c65',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code pénal — article 131-26-2',
+  'Légifrance (République française)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Le prononcé de la peine complémentaire d''inéligibilité mentionnée au 2° de l''article 131-26 et à l''article 131-26-1 est obligatoire à l''encontre de toute personne coupable d''un délit mentionné au II du présent article ou d''un crime.',
+  'Introduit par la loi n° 2017-1339 du 15 septembre 2017 (Sapin II) : pour les atteintes à la probité — dont le détournement de fonds publics — l''inéligibilité n''est plus une simple faculté mais la règle, la juridiction ne pouvant l''écarter que par une décision spécialement motivée (III du même article).',
+  'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526934',
+  null,
+  '7284201c235081ba0599016b5d707797b5a5f6f60b5b5d27d98598c0e8ba26dd',
+  null,
+  null,
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '13429964-fded-4c04-a58a-eb308a4aa4f9',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  'Code de l''organisation judiciaire — article L. 411-2',
+  'Légifrance (République française)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'La Cour de cassation statue sur les pourvois en cassation formés contre les arrêts et jugements rendus en dernier ressort par les juridictions de l''ordre judiciaire. La Cour de cassation ne connaît pas du fond des affaires, sauf disposition législative contraire.',
+  'Définition légale de la mission de la Cour de cassation : statuer sur les pourvois formés contre les décisions rendues en dernier ressort, en contrôlant la conformité au droit — sans réexaminer le fond. La jurisprudence en tire que les moyens de fait, qui inviteraient la Cour à revenir sur l''appréciation souveraine des juges du fond, sont écartés.',
+  'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006572199',
+  null,
+  'c14d19c1a93ba27d65ea06170c5461b67fc39744cbb3724fc78c41b86c7a9ac3',
+  null,
+  null,
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '089ffd37-0b74-4fda-a67e-4fb811abfe23',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  'Arrêt n° 22-82.377 du 21 septembre 2022, chambre criminelle — non-renvoi d''une QPC sur l''exécution provisoire d''une peine complémentaire',
+  'Cour de cassation, chambre criminelle (France)',
+  '2022-09-21',
+  'CITATION_EXACTE'::quote_kind,
+  'Enfin, le caractère non suspensif du recours, lorsque l''exécution provisoire a été ordonnée, assure une juste conciliation entre, d''une part, les principes et droits invoqués par le demandeur, d''autre part, les objectifs à valeur constitutionnelle de sauvegarde de l''ordre public et de bonne administration de la justice.',
+  'Condamné notamment pour fraude fiscale, le demandeur soutenait qu''aucune voie n''était ouverte pour suspendre l''exécution provisoire d''une peine complémentaire. La chambre criminelle refuse de renvoyer sa question au Conseil constitutionnel : le recours n''est pas suspensif lorsque l''exécution provisoire a été ordonnée, et cette conciliation avec les objectifs de valeur constitutionnelle est conforme.',
+  'https://qpc360.conseil-constitutionnel.fr/2022-09-21/arret-21-septembre-2022-22-82377',
+  null,
+  '89efdc2adea40f8b6196ef42be11bc3011fb9030a9717ab6002e4e2f262ccff6',
+  null,
+  'https://fr.wikipedia.org/wiki/Cour_de_cassation_(France)',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '8c56cf78-3832-4846-8c70-21f25adfaa6f',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  'Arrêt n° 24-83.556 du 18 décembre 2024, chambre criminelle — non-renvoi d''une QPC sur l''exécution provisoire d''une peine d''inéligibilité',
+  'Cour de cassation, chambre criminelle (France)',
+  '2024-12-18',
+  'CITATION_EXACTE'::quote_kind,
+  'En premier lieu, d''une part, la faculté pour la juridiction d''ordonner l''exécution provisoire d''une peine d''inéligibilité répond à l''objectif d''intérêt général visant à favoriser, en cas de recours, l''exécution de la peine et à prévenir la récidive.',
+  'Condamné à cinq ans d''inéligibilité avec exécution provisoire « emportant cessation des mandats en cours », le demandeur reprochait à ce régime de faire exécuter la peine à une personne encore présumée innocente. La chambre criminelle juge que les dispositions ne méconnaissent ni la présomption d''innocence, ni le droit au recours effectif, ni le droit d''éligibilité — l''exécution provisoire n''étant ordonnée qu''après un débat contradictoire.',
+  'https://qpc360.conseil-constitutionnel.fr/2024-12-18/arret-18-decembre-2024-24-83556',
+  null,
+  '81072f943443ff0adb326ed495112c3ab4c202ae1baf4e8ac9d212b9efe0a9d9',
+  null,
+  'https://fr.wikipedia.org/wiki/Cour_de_cassation_(France)',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'b74dc216-c299-499f-acd0-512b4692e686',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'Justice : Marine Le Pen et le spectre de l''inéligibilité à la présidentielle',
+  'Camille Aynès, maître de conférences en droit public, Université Paris Nanterre (The Conversation France)',
+  '2025-03-28',
+  'CITATION_EXACTE'::quote_kind,
+  'Mais cela était sans compter sur l''exception qui offre la possibilité aux juges de décider d''assortir le prononcé de certaines sanctions pénales de l''« exécution provisoire », ce qui a pour effet de rendre leur application immédiate.',
+  'Analyse publiée la veille du jugement du tribunal correctionnel de Paris. L''autrice rappelle que, par principe, une condamnation ne s''applique qu''une fois définitive — après épuisement des recours — et que c''est l''exécution provisoire qui rend la sanction immédiate ; elle note aussi que l''inéligibilité est devenue obligatoire pour les atteintes à la probité.',
+  'https://theconversation.com/justice-marine-le-pen-et-le-spectre-de-lineligibilite-a-la-presidentielle-252893',
+  null,
+  '8180172c51e40d15ddaf5055a40b75dc575698c290980aae4449b18b49c6ac6f',
+  null,
+  'https://fr.wikipedia.org/wiki/The_Conversation_(m%C3%A9dia)',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'aa31113d-8513-430e-a6d1-c068d5e365fc',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'CENTRE'::political_spectrum,
+  'Décision n° 2025-1129 QPC du 28 mars 2025 — M. Rachadi S. [démission d''office d''un conseiller municipal condamné à une peine d''inéligibilité avec exécution provisoire]',
+  'Conseil constitutionnel (France)',
+  '2025-03-28',
+  'CITATION_EXACTE'::quote_kind,
+  'Il résulte de la jurisprudence constante du Conseil d''État, telle qu''elle ressort notamment de la décision de renvoi de la question prioritaire de constitutionnalité, que le préfet est tenu de déclarer immédiatement démissionnaire d''office le conseiller municipal non seulement en cas de condamnation à une peine d''inéligibilité devenue définitive, mais aussi lorsque la condamnation est assortie de l''exécution provisoire.',
+  'Le Conseil constitutionnel valide, sous réserve de proportionnalité, la démission d''office immédiate d''un élu local condamné à une inéligibilité assortie de l''exécution provisoire : la mesure met en œuvre l''objectif de valeur constitutionnelle de sauvegarde de l''ordre public et l''exigence de probité des élus. La démission n''exige donc pas une condamnation définitive ; seul le juge pénal doit motiver la proportionnalité de l''atteinte au mandat et à la liberté de l''électeur.',
+  'https://www.conseil-constitutionnel.fr/decision/2025/20251129QPC.htm',
+  null,
+  '48fc05085c63fb09f63adf467b674e551d831189af510c281a67266b4a389566',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ba4d1d53-eef0-4513-bc01-a06e3412e814',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'CENTRE'::political_spectrum,
+  'Avis du 19 juin 2025 — conséquences d''une peine d''inéligibilité assortie de l''exécution provisoire sur le mandat d''un représentant au Parlement européen',
+  'Conseil d''État (France)',
+  '2025-06-19',
+  'CITATION_EXACTE'::quote_kind,
+  'En cas de prononcé d''une peine assortie de l''exécution provisoire, celle-ci conduit à déroger à l''effet suspensif de l''appel (article 506 du code de procédure pénale) ou du pourvoi en cassation (articles 512 et 569 du même code).',
+  'Avis rendu à la demande du Gouvernement après la condamnation du 31 mars 2025. Le Conseil d''État énonce que l''exécution provisoire écarte l''effet suspensif de l''appel comme du pourvoi, puis distingue le régime des mandats : la déchéance d''un mandat de parlementaire — national ou européen — suppose une condamnation définitive, tandis que les élus locaux sont, eux, déclarés démissionnaires d''office dès l''exécution provisoire.',
+  'https://www.conseil-etat.fr/avis-consultatifs/derniers-avis-rendus/au-gouvernement/avis-relatif-aux-consequences-d-une-peine-d-ineligibilite-assortie-de-l-execution-provisoire-sur-le-mandat-d-un-representant-au-parlement-europeen',
+  null,
+  '978bde8e2699132efeb80e22ed28258c99f4f05d34d8853b19cccf1c863f3a46',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '29676e11-d633-4e37-88f6-713c29f02e8b',
+  'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  'Procès du FN : Marine Le Pen condamnée à cinq ans d''inéligibilité et quatre ans de prison',
+  'Le Figaro (avec AFP)',
+  '2025-03-31',
+  'CITATION_EXACTE'::quote_kind,
+  'Au terme de deux mois de procès (30 septembre-27 novembre) et à la surprise générale, l''accusation avait requis à l''encontre de la cheffe de file de l''extrême droite une peine de cinq ans d''inéligibilité avec exécution provisoire (s''appliquant immédiatement, même en cas d''appel) en plus de cinq ans de prison dont deux ferme (une peine aménageable), ainsi que 300.000 euros d''amende.',
+  'Récit du jugement : le Figaro y explicite le sens de l''exécution provisoire — la peine s''applique immédiatement, y compris en cas d''appel. C''est cette mécanique qui a nourri le débat public et les confusions sur la portée des recours, au cœur du dossier des assistants parlementaires du FN.',
+  'https://www.lefigaro.fr/actualite-france/proces-du-fn-marine-le-pen-condamnee-a-une-peine-d-ineligibilite-avec-execution-immediate-20250331',
+  null,
+  'b061d44d27029b4de23311b97b203ac65a814b89bd9174c54eaa91b1e1daa84d',
+  null,
+  'https://fr.wikipedia.org/wiki/Le_Figaro',
+  9
+);
+
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
