@@ -216,11 +216,11 @@ export const REFERENCE_DOSSIER: Dossier = {
       publication_date: "1932-07-09",
       quote_kind: "CITATION_EXACTE",
       exact_quote:
-        "Contrairement au marxisme, le socialisme [national-socialiste] ne répudie pas la propriété privée. Contrairement au marxisme, il n'implique aucune négation de la personnalité.",
+        "Contrairement au marxisme, le socialisme [national-socialiste] ne répudie pas la propriété privée ; contrairement au marxisme, il n'implique aucune négation de la personnalité et, contrairement au marxisme, il est patriotique.",
       context_explanation:
         "L'article paraît sous le titre « When I Take Charge of Germany — Hitler Shows His Hand » (Liberty, vol. 9 n° 28, 9 juillet 1932). Hitler y revendique explicitement une redéfinition du mot « socialisme » contre la gauche marxiste, en garantissant la propriété privée ; la citation française traduit l'anglais publié.",
       author_reference_url: "https://fr.wikipedia.org/wiki/George_Sylvester_Viereck",
-      original_url: null,
+      original_url: "https://alphahistory.com/nazigermany/hitler-nazi-form-of-socialism-1932/",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -238,7 +238,8 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "Le discours est le moment public où le parti nazi se présente au grand patronat comme le rempart contre la gauche : la contrepartie attendue est le financement de l'appareil de parti.",
       author_reference_url: "https://fr.wikipedia.org/wiki/Adolf_Hitler",
-      original_url: null,
+      original_url:
+        "https://archive.org/details/HitlerAdolfAddressToTheIndustryClubInDuesseldorfOn27thJanuary1932EN24S.Text",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -256,7 +257,8 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "Le vote sépare nettement le régime naissant de la gauche parlementaire : ce sont les conservateurs et le centre qui donnent à Hitler les pouvoirs qu'il utilise ensuite pour interdire la gauche.",
       author_reference_url: null,
-      original_url: null,
+      original_url:
+        "https://www.bundestag.de/dokumente/textarchiv/1933-03-23-ermaechtigungsgesetz-938540",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -274,7 +276,8 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "L'acte vise précisément le mouvement ouvrier organisé : un régime de gauche ne détruit pas en une journée ses propres syndicats.",
       author_reference_url: null,
-      original_url: null,
+      original_url:
+        "https://www.dhm.de/lemo/kapitel/ns-regime/etablierung-der-ns-herrschaft/zerschlagung-der-gewerkschaften.html",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -288,7 +291,7 @@ export const REFERENCE_DOSSIER: Dossier = {
       publication_date: "2009-12-14",
       quote_kind: "FAIT_DOCUMENTE",
       exact_quote:
-        "Entre 1934 et 1937, le gouvernement nazi transfère massivement des entreprises publiques au secteur privé (acier, mines, banque, transports maritimes, chemins de fer), à rebours des nationalisations menées ailleurs après 1929.",
+        "Entre 1934 et 1937, le gouvernement nazi transfère massivement des entreprises publiques au secteur privé (acier, mines, banque, transports maritimes, chemins de fer) — à rebours des tendances dominantes des pays capitalistes occidentaux, dont aucun ne reprivatise systématiquement d'entreprises dans les années 1930.",
       context_explanation:
         "Étude évaluée par les pairs qui documente le sens du transfert de propriété sous le IIIe Reich : de l'État vers les grands groupes privés, et non l'inverse.",
       author_reference_url: null,
@@ -462,7 +465,7 @@ export const AME_DOSSIER: Dossier = {
       publication_date: "2025-07-09",
       quote_kind: "CITATION_EXACTE",
       exact_quote:
-        "Pour l'année 2024, le coût total réel de l'AME, toutes AME incluses, est de 1 386,8 millions d'euros, soit une hausse de 15,5 % par rapport à 2023, et de 67,6 % en 10 ans.",
+        "Pour l'année 2024, le coût total réel de l'AME, toutes AME incluses, est de 1 386,8 millions d'euros, soit une hausse de 15,5 % par rapport à 2023, et de 67,6 % en 10 ans, représentant 543 millions d'euros.",
       context_explanation:
         "Le rapport plaide pour une réforme mais documente surtout les chiffres : dépense moyenne de 2 396,4 € par bénéficiaire en 2023 (inférieure à celle de l'ensemble de la population), sous-budgétisation par l'État (dette de 185,1 M€ envers l'Assurance maladie en 2024) et exclusions explicites (cures thermales, PMA, médicaments à faible service médical rendu).",
       original_url: "https://www.senat.fr/rap/r24-841/r24-841_mono.html",
@@ -498,7 +501,7 @@ export const AME_DOSSIER: Dossier = {
       publication_date: "2023-12-04",
       quote_kind: "CITATION_EXACTE",
       exact_quote:
-        "Il se dégage le constat d'un dispositif sanitaire utile, maîtrisé pour l'essentiel mais exposé à l'augmentation récente du nombre de ses bénéficiaires.",
+        "Il se dégage le constat d'un dispositif sanitaire utile, maîtrisé pour l'essentiel mais exposé à l'augmentation récente du nombre de ses bénéficiaires, en conséquence du nombre de personnes en situation irrégulière présentes sur le territoire, et qui mérite d'être adapté.",
       context_explanation:
         "Mission commandée par le gouvernement et confiée à Claude Évin (ancien ministre) et Patrick Stefanini (conseiller d'État) : elle conclut à l'utilité sanitaire du dispositif et propose un resserrement (vérifications renforcées, accord préalable étendu), jamais sa suppression. Ses conclusions sont invoquées dans le débat par les deux bords.",
       original_url: "https://www.vie-publique.fr/files/rapport/pdf/292122.pdf",
@@ -1105,7 +1108,7 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
       publication_date: null,
       quote_kind: "FAIT_DOCUMENTE",
       exact_quote:
-        "En 2025, parmi les personnes de 15 à 64 ans, 80 % des hommes immigrés sont actifs, une proportion proche des 78 % des hommes non-immigrés ; les immigrés occupent plus fréquemment que l'ensemble de la population des postes d'ouvriers (26 % contre 18 %).",
+        "En 2025, parmi les personnes de 15 à 64 ans, 80 % des hommes immigrés sont actifs, c'est-à-dire qu'ils occupent un emploi ou en cherchent un. Cette proportion est proche de celle observée parmi les hommes non-immigrés (78 %). (...) Les immigrés occupent plus fréquemment que l'ensemble de la population des postes d'ouvriers (26 % contre 18 %) et moins souvent ceux de professions intermédiaires (17 % contre 26 %).",
       context_explanation:
         "Chiffres de l'Insee sur l'insertion professionnelle : taux d'activité et d'emploi masculins proches de ceux des non-immigrés et forte part d'ouvriers. Cette population insérée cotise aux régimes sociaux ; l'évaluation de la contribution nette relève des travaux du CEPII et de l'OCDE cités dans ce dossier.",
       original_url: "https://www.insee.fr/fr/statistiques/3633212",

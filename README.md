@@ -26,19 +26,30 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
-  (`8a3322902363d2d1a1e1c593b12496b8f6e78262fa3d747c5b5c15b13b642756`). `ETag` et
+  (`9927a610cdc82b1265473a253c87125d2d93aa02a6bbbca5b32d04e221f1553a`). `ETag` et
   `X-Proof-Integrity-Root` du dossier publié, relevés en ligne, valent la racine
   d'intégrité recalculée :
-  `403002c79f79a52e3b540a4203f4fd57a6ab029f5bf7de22c654edb998f8737f`. Les cinq
+  `1e20bc8fd7063c3a7359dfdff327fe8f8f970064bbe6ecadf26f0c5bc1a7cb9f`. Les cinq
   autres dossiers publiés le 15/10 (AME, RSA, Pétain-Vichy, coût de l'immigration,
   insécurité attribuée à l'immigration) ont été vérifiés de la même manière : `ETag` et
   `X-Proof-Integrity-Root` relevés en ligne égaux aux racines recalculées par
-  `npm run proofs` (`5438daee…`, `22d08551…`, `288fa722…`, `d944106c…`, `14d2686e…`).
+  `npm run proofs` (`bf9d6e92…` et `ca57fa27…`, recalculées après l'audit des sources ;
+  `22d08551…`, `288fa722…`, `14d2686e…`).
   Le septième dossier publié (le pourvoi en cassation et l'inéligibilité des élus, 10
   sources) a été vérifié de la même manière (`2614c9ac…`) et ses dix fiches d'archive
-  sont déposées et relues (cinq instantanés réseau, cinq URL indisponibles consignées).
+  sont déposées et relues (six instantanés réseau, quatre URL indisponibles consignées).
   Le huitième (l'affaire des assistants RN, 11 sources) l'a été de même (`fa877e43…`) :
   onze fiches déposées et relues (huit instantanés réseau, trois URL indisponibles).
+- **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers publiés ont été
+  re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
+  documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
+  Légifrance, Wikisource pour les lois de 1940, DOAJ pour l'article d'Érudit, Wayback
+  pour le communiqué de la Cour de cassation, reproductions concordantes pour l'OCDE).
+  Cinq citations ont été corrigées au mot exact — rapport d'information du Sénat
+  (r24-841), rapport Évin-Stefanini, Insee, Bel (*Economic History Review*) et Liberty
+  Magazine — et quatre sources documentaires du dossier sur le nazisme (discours de
+  Düsseldorf, Ermächtigungsgesetz, journée du 2 mai 1933, interview de Liberty)
+  reçoivent une URL de transcription institutionnelle.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -58,14 +69,16 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **41 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **62 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Le dossier de référence (8 pièces) est en `METADATA_ONLY` (instantané réseau
-  non demandé) ; les pièces des dossiers AME, RSA, Pétain-Vichy, coût de l'immigration et
-  insécurité ont été capturées avec instantané réseau (`--fetch`) : à l'exception de cinq
-  URL qui répondent 403/429 aux robots (Légifrance, préface de Stanford), chaque pièce a
-  un `URL_SNAPSHOT` portant l'empreinte des octets capturés.
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 45 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 14 consignées
+  `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
+  Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
+  sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
+  supprime les sources en cascade puis les réinsère : elle emporte les fiches d'archive
+  du dossier, qu'il faut redéposer par `archive:capture`.
 
 ## Pile technique
 
