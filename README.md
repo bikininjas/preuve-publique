@@ -15,8 +15,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Vingt dossiers en base :
-  dix-neuf **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Vingt et un dossiers en base :
+  vingt **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -28,10 +28,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   (8, faits divers), le revenu disponible d'un couple au RSA comparé à un couple au
   SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
   économie), les discriminations à l'embauche liées à l'origine (7, société) et la thèse
-  de races biologiques humaines (8, société) — et un
+  de races biologiques humaines (8, société) et l'homoparentalité et le développement des
+  enfants (7, société) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 147 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 154 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -109,6 +110,14 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   (`0fba6db3…`) : huit fiches déposées et relues (sept instantanés réseau et une URL
   indisponible — l'article du Point, dont l'accès direct répond 403 aux robots et qui a
   été capturé via l'instantané Wayback).
+  Le vingtième (l'homoparentalité et le développement des enfants, 7 sources — méta-revue
+  du What We Know Project de l'université Cornell, résolution de 2020 de l'American
+  Psychological Association servie par l'instantané Wayback, prise de position de 2013 de
+  l'Académie américaine de pédiatrie reproduite par Youth Today, fiche de l'INED sur
+  l'enquête Erfi 2, décision du Conseil constitutionnel du 17 mai 2013, arrêt
+  *X et autres c. Autriche* de la CEDH reproduit par Juricaf et rapport parlementaire
+  n° 628 de la commission spéciale) a été vérifié de la même manière (`a13d0497…`) :
+  sept fiches déposées et relues, toutes capturées en instantanés réseau.
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -145,7 +154,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   Défenseur des droits, page Institut Montaigne via l'instantané Wayback) ont été
   vérifiées de la même façon avant leur intégration — les citations ont été recoupées mot
   à mot contre les PDF sources, et les chiffres du brief corrigés au réel (écart mesuré
-  de 26,7 % à 31,5 % selon les protocoles, plutôt que « 30 à 40 % »).
+  de 26,7 % à 31,5 % selon les protocoles, plutôt que « 30 à 40 % »). Les sept sources du
+  dossier sur l'homoparentalité (méta-revue du What We Know Project de l'université
+  Cornell, résolution de l'American Psychological Association de 2020 servie par
+  l'instantané Wayback, prise de position de l'Académie américaine de pédiatrie de 2013
+  reproduite par Youth Today, fiche de l'INED sur l'enquête Erfi 2, décision n° 2013-669
+  DC du Conseil constitutionnel, arrêt de la CEDH *X et autres c. Autriche* reproduit par
+  Juricaf, rapport n° 628 de l'Assemblée nationale) ont été vérifiées de la même façon
+  avant leur intégration — les citations anglaises y sont reproduites dans la langue
+  d'origine, avec traduction française en contexte.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -165,11 +182,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **139 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **154 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 111 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 25 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 125 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 26 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
@@ -193,7 +210,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   captures `76a9fe09a97bf82f…`. L'intégration du dossier « races biologiques humaines »
   (15:06 UTC) a entraîné une ultime réapplication et recapture : **147 fiches exactes**, une
   par pièce publiée (118 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine
-  des captures `f2236f468699f983…`.
+  des captures `f2236f468699f983…`. L'intégration du dossier « homoparentalité » (15:22
+  UTC) a entraîné une ultime réapplication et recapture : **154 fiches exactes**, une par
+  pièce publiée (125 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des
+  captures `a0d1901ac6ffab29…`.
 
 ## Pile technique
 
@@ -456,7 +476,11 @@ réapplication et recapture : 139 pièces, 139 fiches déposées et relues — 1
 du dossier « races biologiques humaines » (dix-neuvième publié) a entraîné une ultime
 réapplication et recapture : 147 pièces, 147 fiches déposées et relues — 118
 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
-`f2236f468699f983…` ; fiches dédupliquées, une par pièce. Le
+`f2236f468699f983…` ; fiches dédupliquées, une par pièce. Puis, à 15:22 UTC, l'intégration
+du dossier « homoparentalité » (vingtième publié) a entraîné une dernière réapplication
+et recapture : 154 pièces, 154 fiches déposées et relues — 125 `URL_SNAPSHOT`, 26
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `a0d1901ac6ffab29…` ; fiches
+dédupliquées, une par pièce. Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.

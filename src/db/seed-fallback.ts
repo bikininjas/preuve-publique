@@ -3591,6 +3591,214 @@ export const DISCRIMINATIONS_EMBAUCHE_DOSSIER: Dossier = {
   ],
 };
 
+export const HOMOPARENTALITE_DOSSIER: Dossier = {
+  id: "d50b5c99-ee02-49cf-b690-950efc6e2b2d",
+  slug: "homoparentalite-developpement-troubles-enfants",
+  claim_title:
+    "Les enfants élevés par des couples homosexuels développent des troubles psychologiques",
+  verdict: "FAUX",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Association américaine de psychologie",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Association_am%C3%A9ricaine_de_psychologie",
+      note: "APA ; résolution de 2020 sur les parents et leurs enfants (après celle de 2004).",
+    },
+    {
+      name: "Académie américaine de pédiatrie",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Acad%C3%A9mie_am%C3%A9ricaine_de_p%C3%A9diatrie",
+      note: "AAP ; prise de position de 2013 pour le bien-être des enfants de parents gays ou lesbiens.",
+    },
+    {
+      name: "Institut national d'études démographiques",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques",
+      note: "INED ; enquête Erfi 2 sur les configurations familiales, dont les familles homoparentales.",
+    },
+    {
+      name: "Conseil constitutionnel (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      note: "Décision n° 2013-669 DC du 17 mai 2013 sur le mariage et l'adoption pour les couples de même sexe.",
+    },
+    {
+      name: "Cour européenne des droits de l'homme",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme",
+      note: "CEDH ; arrêt de Grande Chambre X et autres c. Autriche (19 février 2013).",
+    },
+  ],
+  verdict_summary:
+    "Plus de trente ans de littérature scientifique convergent : la méta-revue du What We Know Project (université Cornell) recense 79 études, dont 75 concluent que les enfants de parents gays ou lesbiens « ne s'en sortent pas moins bien » que les autres — et les quatre études minoritaires portaient sur des enfants de familles brisées, un biais documenté. L'American Psychological Association (résolution de février 2020) constate qu'il existe « un consensus » dans la littérature : la qualité des relations familiales pèse davantage sur le devenir de l'enfant que la structure du foyer. L'Académie américaine de pédiatrie affirme que le bien-être d'un enfant dépend « bien plus » de ses relations avec ses parents et du soutien social « que du genre ou de l'orientation sexuelle de ses parents ». En France, l'INED dénombre 107 000 enfants de moins de 18 ans vivant dans un couple de même sexe (enquête Erfi 2), le rapport parlementaire de 2013 relevait qu'« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales », le Conseil constitutionnel a jugé que « l'identité de sexe des adoptants » n'est pas en soi un obstacle à la filiation adoptive, et la CEDH a jugé incompatible avec la Convention le refus d'adoption coparentale opposé à un couple homosexuel.",
+  consensus_score: 98,
+  premises: [
+    {
+      claim_part: "« L'absence d'un parent de chaque sexe perturbe la construction psychologique »",
+      status: "FAUX",
+      detail:
+        "Les méta-analyses et revues systématiques ne relèvent aucune justification empirique à cette crainte : l'American Psychological Association note que « la recherche a constamment échoué à mettre au jour une justification empirique à ces préoccupations » (résolution de 2020, citant les revues de 2015-2019) et que « les enfants de parents sexuels minoritaires semblent se développer de manière saine et typique » à tous les âges et domaines. Le rapport parlementaire français de 2013 : « Sur aucun de ces points, il n'est apparu de différence significative entre les enfants étudiés et les groupes témoins. »",
+    },
+    {
+      claim_part: "« Les enfants de couples homosexuels sont fragilisés socialement et scolairement »",
+      status: "FAUX",
+      detail:
+        "Les études sur données représentatives (recensement américain : 3 500 enfants de couples de même sexe, aucune différence de progression scolaire ; plus de 20 000 enfants des enquêtes nationales) ne mesurent pas de décrochage corrélé à la structure parentale. La fragilité observée, quand elle existe, relève du stigmate social : le rapport de l'Assemblée nationale le résume — « La seule fragilité particulière, lorsqu'il y en a une, relève du regard négatif que la société peut porter sur cette situation particulière. »",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "db6702ee-8253-489e-b369-4849ada6b224",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "What does the scholarly research say about the well-being of children with gay or lesbian parents? (revue de littérature en ligne)",
+      author_or_institution: "What We Know Project, université Cornell",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Taken together, this research forms an overwhelming scholarly consensus, based on over three decades of peer-reviewed research, that having a gay or lesbian parent does not harm children.",
+      context_explanation:
+        "Revue publiée en 2015 : « We identified 79 scholarly studies... Of those studies, 75 concluded that children of gay or lesbian parents fare no worse than other children. » Les quatre études minoritaires échantillonnaient des enfants issus de ruptures familiales (« a cohort known to face added risks ») et sont « criticized by many scholars as unreliable assessments of the well-being of LGB-headed households ». La page documente aussi les études sur données représentatives (Rosenfeld : 3 500 enfants, aucune différence scolaire ; enquête nationale sur plus de 20 000 enfants). En français : « cette recherche forme un consensus savant écrasant [...] que le fait d'avoir un parent gay ou lesbien ne nuit pas aux enfants ».",
+      original_url:
+        "https://whatweknow.inequality.cornell.edu/topics/lgbt-equality/what-does-the-scholarly-research-say-about-the-wellbeing-of-children-with-gay-or-lesbian-parents/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "851428be-7c25-4b86-bc00-598573a5f922",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "APA Resolution on Sexual Orientation, Gender Identity (SOGI), Parents and their Children",
+      author_or_institution:
+        "American Psychological Association — résolution adoptée en février 2020, remplaçant celle de 2004 ; PDF servi par l'instantané Wayback, apa.org bloquant les robots",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Overall, there is consensus in the existing literature that family processes, such as the quality of parenting and family relationships, are more important to child and family outcomes than is the specific structure of the family as related to parental sexual orientation",
+      context_explanation:
+        "Résolution officielle de la principale association de psychologues américaine (février 2020), qui conclut aussi : « research consistently shows that LGBQ adults are just as capable and efficient at parenting children as their cisgender heterosexual counterparts. » La résolution reconnaît en revanche l'effet documenté des « minority stressors » (préjugés, harcèlement, discrimination) sur les familles, et des climats sociaux et juridiques. En français : « il existe un consensus dans la littérature existante : les processus familiaux [...] comptent davantage que la structure spécifique de la famille liée à l'orientation sexuelle des parents ».",
+      original_url:
+        "http://web.archive.org/web/20260708214831id_/https://www.apa.org/about/policy/resolution-sexual-orientation-parents-children.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Association_am%C3%A9ricaine_de_psychologie",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "bcfc269f-4fa7-447a-be54-ec9af246a49b",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Promoting the Well-Being of Children Whose Parents Are Gay or Lesbian (Pediatrics, 20 mars 2013)",
+      author_or_institution:
+        "American Academy of Pediatrics — Committee on Psychosocial Aspects of Child and Family Health ; texte reproduit par Youth Today (publications.aap.org bloquant les robots)",
+      publication_date: "2013-03-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "children's well-being is affected much more by their relationships with their parents, their parents' sense of competence and security, and the presence of social and economic support for the family than by the gender or the sexual orientation of their parents",
+      context_explanation:
+        "Prise de position officielle de l'Académie américaine de pédiatrie, fondée sur « a review of extensive scientific literature » : elle soutient l'accès de tous les enfants aux droits du mariage civil pour leurs parents et à des parents adoptifs ou d'accueil « regardless of the parents' sexual orientation », et se déclare « opposed to any discrimination ». Le document indique une réaffirmation en septembre 2022 sur le site de l'AAP. En français : « le bien-être des enfants est bien plus affecté par leurs relations avec leurs parents [...] que par le genre ou l'orientation sexuelle de leurs parents ».",
+      original_url:
+        "http://youthtoday.org/wp-content/uploads/sites/13/hotdocs/Pediatrics-2013--peds.2013-03763.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Acad%C3%A9mie_am%C3%A9ricaine_de_p%C3%A9diatrie",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "bdcf7ba5-7ee4-4c6d-a673-43a7c424401f",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "De plus en plus d'enfants dans les couples de même sexe (Premiers résultats d'enquêtes n° 2-2026, enquête Erfi 2)",
+      author_or_institution: "INED — Institut national d'études démographiques",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "17 % des hommes et 45 % des femmes vivant en couple cohabitant de même sexe (CMS) ont, au moins, un enfant ou bel-enfant, cohabitant avec le couple ou non (Tab. 1). Cela correspond à 111 000 parents en CMS et à 107 000 enfants.",
+      context_explanation:
+        "Données françaises de l'enquête Erfi 2 (2024), publiées par l'INED en 2026 (DOI 10.48756/ined-1res-2.26). Elles distinguent l'« homoparentalité simple » — l'enfant est né dans ou adopté par le couple et grandit avec ses deux parents de même sexe — de l'« homoparentalité recomposée ». Cette population a plus que triplé depuis 2011, portée par les couples de femmes ; les projets d'enfant y sont « nombreux » et soutenus par l'entourage. La question de la « trajectoire » des enfants ne se pose donc plus comme une hypothèse théorique, mais sur une population réelle et documentée.",
+      original_url: "https://www.ined.fr/sites/default/files/inline-files/-ined-2602-fiche-15.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "12c3d019-bca6-4d39-9b77-fd1c59a79c30",
+      spectrum: "CENTRE",
+      source_name:
+        "Décision n° 2013-669 DC du 17 mai 2013 — Loi ouvrant le mariage aux couples de personnes de même sexe",
+      author_or_institution: "Conseil constitutionnel (France)",
+      publication_date: "2013-05-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "en permettant l'adoption par deux personnes de même sexe ou au sein d'un couple de personnes de même sexe, le législateur, compétent pour fixer les règles relatives à l'état et à la capacité des personnes en application de l'article 34 de la Constitution, a estimé que l'identité de sexe des adoptants ne constituait pas, en elle-même, un obstacle à l'établissement d'un lien de filiation adoptive",
+      context_explanation:
+        "Saisi par les parlementaires opposés à la loi, le Conseil constitutionnel valide l'ensemble du dispositif : la filiation adoptive n'exige pas que « les liens de parenté [...] imitent ceux de la filiation biologique » et les couples de même sexe « seront soumis, comme ceux qui sont formés d'un homme et d'une femme, à une procédure destinée à constater leur capacité à accueillir un enfant ». Aucun principe constitutionnel — ni « filiation bilinéaire » ni « altérité sexuelle » — ne fait obstacle à l'adoption par deux parents de même sexe.",
+      original_url: "https://www.conseil-constitutionnel.fr/decision/2013/2013669DC.htm",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "9e22c6af-6343-49d6-ab23-d28ba5654d0f",
+      spectrum: "CENTRE",
+      source_name:
+        "X et autres c. Autriche — arrêt de Grande Chambre du 19 février 2013 (texte français)",
+      author_or_institution:
+        "Cour européenne des droits de l'homme (texte français reproduit par Juricaf, association des cours suprêmes judiciaires francophones ; hudoc bloquant les robots)",
+      publication_date: "2013-02-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "la Cour estime que le Gouvernement n'a pas fourni de raisons particulièrement solides et convaincantes propres à établir que l'exclusion des couples homosexuels du champ de l'adoption coparentale ouverte aux couples hétérosexuels non mariés était nécessaire à la préservation de la famille traditionnelle ou à la protection des intérêts de l'enfant. Partant, la distinction opérée par le droit autrichien est incompatible avec la Convention.",
+      context_explanation:
+        "La Cour relève notamment « l'incapacité du Gouvernement à établir qu'il serait préjudiciable pour un enfant d'être élevé par un couple homosexuel ou d'avoir légalement deux mères ou deux pères » (§ 146) : aucun argument ni « études scientifiques » ne démontrent un tel préjudice (§ 142). Violation de l'article 14 combiné à l'article 8 prononcée « par onze voix contre six » (§ par ces motifs). L'arrêt s'inscrit dans une jurisprudence constante : dès lors qu'un État ouvre l'adoption coparentale aux couples hétérosexuels non mariés, il ne peut la refuser aux couples homosexuels sans justification « particulièrement solide ».",
+      original_url:
+        "https://juricaf.org/arret/CONSEILDELEUROPE-COUREUROPEENNEDESDROITSDELHOMME-20130219-001116998",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "3f09428a-0c47-47ae-9a3c-745daeb8dfad",
+      spectrum: "GAUCHE",
+      source_name:
+        "Rapport n° 628 tome I (commission spéciale, projet de loi ouvrant le mariage aux couples de même sexe) — section IV « Les enjeux de la reconnaissance légale de l'homoparentalité »",
+      author_or_institution:
+        "Assemblée nationale — Erwann Binet, rapporteur (commission spéciale de la majorité de gauche), rapport enregistré le 17 janvier 2013",
+      publication_date: "2013-01-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Sur aucun de ces points, il n'est apparu de différence significative entre les enfants étudiés et les groupes témoins. Aucune étude ne jette ainsi de suspicion sérieuse sur les familles homoparentales",
+      context_explanation:
+        "Le rapport, qui a organisé une table ronde de spécialistes, conclut au « faisceau de conclusions concordantes » de « plusieurs centaines » d'études : « les enfants issus des familles homoparentales sont des enfants comme les autres ; ils ne se portent ni mieux, ni moins bien que ceux élevés dans des familles hétérosexuelles. » Il note aussi les biais méthodologiques (petits échantillons, surreprésentation des couples de femmes) et l'audition du Pr Marie-Christine Mouren (hôpital Robert-Debré) : des résultats « rassurants, mais pondérés par le jeune âge des populations étudiées » — la fragilité venant de « l'hostilité ou l'incompréhension de leur environnement social ».",
+      original_url: "https://www.assemblee-nationale.fr/14/rapports/r0628-tI.asp",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -4417,6 +4625,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   SAINT_OMER_DOSSIER,
   RSA_SMIC_DOSSIER,
   DISCRIMINATIONS_EMBAUCHE_DOSSIER,
+  HOMOPARENTALITE_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
   LAXISME_PEINES_PRISON_DOSSIER,
