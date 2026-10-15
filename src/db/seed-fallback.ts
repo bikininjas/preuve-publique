@@ -2770,6 +2770,183 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
   ],
 };
 
+export const AGRESSION_BORDEAUX_DOSSIER: Dossier = {
+  id: "eb0118fd-17bb-49d6-b8f4-faa6eb3333fe",
+  slug: "agression-bordeaux-clandestin-oqtf",
+  claim_title: "L'agression de Bordeaux a été commise par un clandestin sous OQTF",
+  verdict: "FAUX",
+  category: "FAITS_DIVERS",
+  protagonists: [
+    {
+      name: "Obligation de quitter le territoire français",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Obligation_de_quitter_le_territoire_fran%C3%A7ais",
+      note: "Mesure d'éloignement qui ne peut viser qu'un étranger — inapplicable à un citoyen français.",
+    },
+    {
+      name: "Schizophrénie",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Schizophr%C3%A9nie",
+      note: "Pathologie retenue par les expertises pour l'auteur des faits.",
+    },
+    {
+      name: "Contrôleur général des lieux de privation de liberté",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Contr%C3%B4leur_g%C3%A9n%C3%A9ral_des_lieux_de_privation_de_libert%C3%A9",
+      note: null,
+    },
+    {
+      name: "Bordeaux",
+      kind: "LIEU",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Bordeaux",
+      note: "Lieu des faits (cours de la Martinique, quartier des Chartrons) et lieu de naissance de l'auteur.",
+    },
+  ],
+  verdict_summary:
+    "L'auteur de l'agression du 19 juin 2023 — un homme de 29 ans — est de nationalité française, né le 12 juillet 1993 à Bordeaux : il ne peut donc être ni un « clandestin », ni visé par une obligation de quitter le territoire français, mesure que le CESEDA réserve à « un étranger » (art. L. 611-1). Les expertises ont établi « des troubles du comportement majeurs en lien avec une pathologie psychotique et schizophrène », en rupture de traitement : sa garde à vue a été levée et il a été admis en soins psychiatriques sans consentement à l'hôpital Charles-Perrens, sur décision du représentant de l'État. Aucune procédure d'éloignement n'a jamais été en cause dans ce dossier.",
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« L'agresseur est un étranger sans-papiers »",
+      status: "FAUX",
+      detail:
+        "Le parquet de Bordeaux a communiqué l'identité et la situation précises du suspect : « un homme de 29 ans, né le 12 juillet 1993 à Bordeaux, de nationalité française, SDF » (communiqué relayé par France 3 Nouvelle-Aquitaine). Le Figaro rapporte de même : « Le mis en cause est de nationalité française. Né en 1993 à Bordeaux ». L'intéressé est défavorablement connu de la police et de la justice (quinze condamnations pour délits routiers et stupéfiants) — mais né et citoyen français.",
+    },
+    {
+      claim_part: "« L'acte illustre une OQTF non exécutée »",
+      status: "FAUX",
+      detail:
+        "L'obligation de quitter le territoire français est « un acte administratif par lequel les autorités préfectorales imposent à une personne étrangère de quitter le territoire français » (Revue Alyoda) ; l'article L. 611-1 du CESEDA dispose que « l'autorité administrative peut obliger un étranger à quitter le territoire français ». Une mesure d'éloignement était donc juridiquement impossible à l'encontre d'un citoyen français né à Bordeaux : aucune OQTF, exécutée ou non, n'est en cause dans cette affaire.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "a29a9afc-0391-443b-beec-03c19eb5d505",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Agression violente d'une grand-mère et sa petite-fille à Bordeaux : le suspect transféré dans un hôpital psychiatrique",
+      author_or_institution: "France 3 Nouvelle-Aquitaine (franceinfo) — d'après les communiqués du parquet de Bordeaux",
+      publication_date: "2023-06-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "un homme de 29 ans, né le 12 juillet 1993 à Bordeaux, de nationalité française, SDF",
+      context_explanation:
+        "Article reprenant les communiqués du parquet de Bordeaux : interpellation une heure après les faits, « L'homme était très agité et résistant à son interpellation », puis transfert à l'hôpital psychiatrique Charles-Perrens, la garde à vue ayant été levée « suite à expertise ayant préconisé des soins psychiatriques sur décision du représentant de l'État ». Selon le vice-procureur, « L'intéressé présente des troubles du comportement majeurs en lien avec une pathologie psychotique et schizophrène. »",
+      original_url:
+        "https://france3-regions.franceinfo.fr/nouvelle-aquitaine/gironde/bordeaux/agression-violente-filmee-a-bordeaux-ce-que-l-on-sait-2799218.html",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "25ccb728-8b56-4787-97e4-e00671277565",
+      spectrum: "CENTRE",
+      source_name:
+        "Ce que l'on sait de la violente agression d'une femme âgée et de sa petite-fille à Bordeaux",
+      author_or_institution: "franceinfo (avec AFP)",
+      publication_date: "2023-06-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Plusieurs responsables d'extrême droite ont au contraire mis en cause la politique gouvernementale et l'immigration, bien que le suspect soit français.",
+      context_explanation:
+        "Article de synthèse : « L'homme, né en 1993, de nationalité française, est défavorablement connu des services de police et de justice pour des délits routiers et liés aux stupéfiants. » La famille des victimes s'est dite « indignée par la récupération politique qui est faite de ce fait divers », estimant qu'« il est parfaitement indécent de se servir de ce fait divers pour évoquer une origine ethnique ou de justifier des réformes pénales ou migratoires ».",
+      original_url:
+        "https://www.franceinfo.fr/faits-divers/bordeaux-une-femme-agee-et-sa-petite-fille-violemment-agressees-a-bordeaux_5899490.html",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "65b40adf-f284-4c63-9dcc-d6e72435cb99",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Bordeaux : une retraitée et sa petite-fille violemment agressées, le suspect placé en soins psychiatriques",
+      author_or_institution: "Le Figaro (Marie-Hélène Hérouart, Jean Cittone)",
+      publication_date: "2023-06-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le mis en cause est de nationalité française. Né en 1993 à Bordeaux",
+      context_explanation:
+        "Le Figaro rapporte les communiqués du parquet : l'auteur « présente des troubles du comportement majeurs en lien avec une pathologie psychotique et schizophrène. Au moment des faits, il était selon des proches en rupture de soins » ; « Il sera pris en charge par l'hôpital Charles Perrens. » Le quotidien précise que le mis en cause (« Ce Français sous tutelle ») avait été condamné quinze fois pour des délits routiers et des infractions à la législation sur les stupéfiants.",
+      original_url:
+        "https://www.lefigaro.fr/actualite-france/une-femme-agee-et-sa-petite-fille-violemment-agressees-a-bordeaux-20230620",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "4b082365-9e4d-44d8-9310-c95b64590176",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Code de l'entrée et du séjour des étrangers et du droit d'asile — article L. 611-1 (obligation de quitter le territoire français)",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'autorité administrative peut obliger un étranger à quitter le territoire français lorsqu'il se trouve dans les cas suivants :",
+      context_explanation:
+        "Texte en vigueur : l'OQTF ne peut être prononcée qu'à l'encontre d'« un étranger » (séjour irrégulier, expiration de visa, rejet d'une demande d'asile, menace à l'ordre public, etc.). Un citoyen français — a fortiori né à Bordeaux — ne peut faire l'objet d'une telle mesure, quel que soit son casier judiciaire. Citation vérifiée sur le texte reproduit par des miroirs institutionnels (Justicelibre, Pappers Justice), Légifrance bloquant les robots.",
+      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042775578",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "57d407c8-784f-4145-bc8e-b91a55cc24c7",
+      spectrum: "CENTRE",
+      source_name: "Soins sans consentement et droits fondamentaux (rapport thématique)",
+      author_or_institution: "Contrôleur général des lieux de privation de liberté (CGLPL)",
+      publication_date: "2020-03-16",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La loi maintient les pouvoirs du préfet pour prendre une décision d'admission en soins sans consentement d'une personne dont les troubles « compromettent la sûreté des personnes ou portent atteinte, de façon grave, à l'ordre public »",
+      context_explanation:
+        "Le rapport de l'autorité indépendante décrit le cadre légal (loi du 5 juillet 2011) des soins psychiatriques sans consentement sur décision du représentant de l'État : c'est ce dispositif — et non une procédure d'éloignement — qui a conduit à l'hospitalisation sous contrainte du suspect de Bordeaux, la garde à vue ayant été levée pour permettre les soins.",
+      original_url:
+        "https://www.cglpl.fr/app/uploads/2020/06/Rapport-soins-sans-consentement-et-droits-fondamentaux_web.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Contr%C3%B4leur_g%C3%A9n%C3%A9ral_des_lieux_de_privation_de_libert%C3%A9",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "c713ee8f-e572-4e18-866d-c8c10f6f3e20",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Sur les fondements des mesures d'éloignement — note de jurisprudence (CAA Lyon, 13 octobre 2022, n° 21LY03282)",
+      author_or_institution: "Louanne Vendittelli (Revue Alyoda, 2023/1)",
+      publication_date: "2023-05-03",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La mesure d'éloignement en question est une obligation de quitter le territoire français, c'est-à-dire un acte administratif par lequel les autorités préfectorales imposent à une personne étrangère de quitter le territoire français.",
+      context_explanation:
+        "Note de jurisprudence publiée par la revue académique Alyoda (Pôle de Lyon) : créée par la loi n° 2006-911 du 24 juillet 2006, l'OQTF « vise à simplifier la procédure d'éloignement des étrangers en situation irrégulière » et son régime est codifié à l'article L. 611-1 du CESEDA (ex-L. 511-1). Elle ne vise donc par construction que des personnes étrangères.",
+      original_url: "https://alyoda.eu/index.php?id=8693",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+  ],
+};
+
 /**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
@@ -3139,6 +3316,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   EXPULSION_JUGES_DOSSIER,
   ADA_DOSSIER,
   SANS_PAPIERS_AIDES_DOSSIER,
+  AGRESSION_BORDEAUX_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
   LAXISME_PEINES_PRISON_DOSSIER,

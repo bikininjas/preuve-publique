@@ -15,17 +15,18 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Quatorze dossiers en base :
-  treize **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Quinze dossiers en base :
+  quatorze **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
   l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
   société), l'allocation pour demandeur d'asile (7, société), les aides sociales des
-  sans-papiers (7, société) et le minimum vieillesse (ASPA) versé aux étrangers (13,
-  société) — et un **brouillon de contrôle RLS** ; RLS actif sur
+  sans-papiers (7, société), le minimum vieillesse (ASPA) versé aux étrangers (13,
+  société) et l'agression de Bordeaux attribuée à un « clandestin sous OQTF » (6, faits
+  divers) — et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 103 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 109 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -67,6 +68,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   Cour des comptes, dossier législatif du Sénat ppl25-734, LCP, revue *Retraite et société*,
   dépêche AFP) a été vérifié de la même manière (`a1de390a…`) : treize fiches déposées et
   relues (treize instantanés réseau — aucune URL indisponible).
+  Le quatorzième (l'agression de Bordeaux attribuée à un « clandestin sous OQTF », 6
+  sources) a été vérifié de la même manière (`26b1fe75…`) : six fiches déposées et relues
+  (cinq instantanés réseau — France 3 Nouvelle-Aquitaine, franceinfo, Le Figaro, CGLPL,
+  Revue Alyoda — et une URL indisponible, Légifrance répondant 403 aux robots).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -88,7 +93,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   L. 512-2, CNAF IT-2024-232, service-public.fr, Sénat n° 426, Conseil constitutionnel
   2011-137 QPC, RFAS/Izambert) ont été vérifiées de la même façon avant leur intégration
   (Légifrance et Cairn répondent 403 : citations recoupées sur des reproductions
-  institutionnelles).
+  institutionnelles). Les six sources du dossier sur l'agression de Bordeaux (communiqués
+  du parquet de Bordeaux relayés par France 3 Nouvelle-Aquitaine, franceinfo, Le Figaro,
+  CESEDA L. 611-1, rapport du CGLPL, note de la Revue Alyoda) ont été vérifiées de la même
+  façon avant leur intégration.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -108,11 +116,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **90 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **109 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 66 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 21 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 84 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 22 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
@@ -122,9 +130,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `e0a39749…`), puis à 13:02 UTC pour les douze dossiers réappliqués ; un second
   passage de capture lancé en parallèle ayant créé un doublon par pièce, la table a été
   dédupliquée : 83 fiches exactes conservées, une par pièce publiée. L'intégration du
-  dossier « aides sociales des sans-papiers » (13:30 UTC) a ensuite entraîné une ultime
-  réapplication du seed et une recapture : **90 fiches exactes**, une par pièce publiée
-  (66 `URL_SNAPSHOT`, 21 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
+  dossier « aides sociales des sans-papiers » (13:30 UTC), puis celles du « minimum
+  vieillesse (ASPA) » (13:42 et 14:05 UTC) et de l'« agression de Bordeaux » (14:13 UTC),
+  ont entraîné de nouvelles réapplications du seed et recaptures : **109 fiches exactes**,
+  une par pièce publiée (84 `URL_SNAPSHOT`, 22 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`).
 
 ## Pile technique
 
@@ -364,7 +373,11 @@ empreinte). Enfin, à 14:05 UTC, l'ajout de l'article L. 816-1 (le « verrou des
 au dossier « minimum vieillesse » a entraîné une dernière réapplication du seed et une
 recapture : 103 pièces, 103 fiches déposées et relues — 79 `URL_SNAPSHOT`, 21
 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `6af5670a56cbff6d…` ; aucun
-doublon. Le **miroir Storage** n'a pas eu lieu faute d'accès
+doublon. Puis, à 14:13 UTC, l'intégration du dossier « agression de Bordeaux »
+(quatorzième publié) a entraîné une ultime réapplication du seed et une recapture :
+109 pièces, 109 fiches déposées et relues — 84 `URL_SNAPSHOT`, 22 `URL_UNAVAILABLE`,
+3 `METADATA_ONLY` — racine des captures `d6a51e8b4cf4e2c6…` ; fiches dédupliquées, une
+par pièce. Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
