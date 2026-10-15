@@ -2117,6 +2117,462 @@ export const EXPULSION_JUGES_DOSSIER: Dossier = {
 };
 
 /**
+ * Dossier société : le « laxisme » prêté aux juges et la prétendue baisse des
+ * peines de prison — démentis par les décomptes officiels : jamais autant de
+ * détenus (90 020 au 1er septembre 2026 pour 63 348 places, densité 142,1 %),
+ * quantums moyens des peines fermes en hausse continue (9,5 mois en 2020,
+ * 11,0 mois pour les condamnations de 2024), années de prison ferme
+ * prononcées + près de 70 % entre 2000 et 2019, et condamnation de la France
+ * par la CEDH (J.M.B. et autres c. France, 2020) pour conditions de détention
+ * contraires à l'article 3. Sources : statistique mensuelle de la DAP
+ * (data.gouv.fr), chiffres clés de la Justice 2025, Cahiers d'études
+ * pénitentiaires et criminologiques n° 65, arrêt J.M.B., Cour des comptes
+ * (2023), Sénat (rapport n° 2, 2025-2026) et Libération (2026) ; analyse
+ * académique d'Alexis Maitre-Millat (Université de Bordeaux).
+ */
+export const LAXISME_PEINES_PRISON_DOSSIER: Dossier = {
+  id: "fc1805d9-9070-4553-a055-d5e9e8d0da82",
+  slug: "laxisme-judiciaire-peines-prison-france",
+  claim_title:
+    "Les juges sont laxistes et les peines de prison diminuent en France",
+  verdict: "FAUX",
+  verdict_summary:
+    "Loin de se vider, les prisons françaises n'ont jamais été aussi pleines : au 1er septembre 2026, 90 020 personnes étaient détenues pour 63 348 places opérationnelles, soit une densité carcérale de 142,1 % (jusqu'à plus de 176 % en maison d'arrêt), un record en hausse de 6,8 % sur un an, avec 8 347 matelas posés au sol. Les peines d'emprisonnement ferme se sont allongées : le quantum moyen est passé de 9,5 mois en 2020 à 10,2 mois en 2023, et à 11,0 mois pour les condamnations de 2024 ; les années de prison ferme prononcées ont augmenté de près de 70 % entre 2000 et 2019. Cette surpopulation structurelle a valu à la France une condamnation de la Cour européenne des droits de l'homme (arrêt J.M.B. et autres c. France, 30 janvier 2020), qui juge ces conditions de détention contraires à l'article 3 et enjoint à l'État de prendre des mesures générales de résorption.",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Administration pénitentiaire",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Administration_p%C3%A9nitentiaire_en_France",
+      note: "Ses décomptes mensuels (direction de l'administration pénitentiaire) établissent les records successifs de population détenue depuis 2023.",
+    },
+    {
+      name: "Cour européenne des droits de l'homme",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme",
+      note: "A condamné la France le 30 janvier 2020 (J.M.B. et autres c. France) pour des conditions de détention contraires à l'article 3 de la Convention.",
+    },
+    {
+      name: "Sénat",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      note: "Rapport d'information n° 2 (2025-2026) de la commission des lois : la surpopulation « hors de contrôle » atteste d'une « sévérité croissante » des juridictions.",
+    },
+    {
+      name: "Cour des comptes",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      note: "Rapport public thématique d'octobre 2023 : la réponse pénale « s'est durcie », + près de 70 % d'années de prison ferme prononcées en vingt ans.",
+    },
+    {
+      name: "Libération",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Lib%C3%A9ration_(journal)",
+      note: "A documenté le record de 90 020 détenus au 1er septembre 2026 d'après les statistiques officielles du ministère de la Justice.",
+    },
+  ],
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part:
+        "« Les magistrats refusent d'incarcérer et vident les prisons »",
+      status: "FAUX",
+      detail:
+        "Jamais autant de personnes n'ont été détenues en France : 90 020 au 1er septembre 2026 pour 63 348 places opérationnelles — une densité carcérale de 142,1 % (176,1 % dans les maisons d'arrêt selon Libération), en hausse de 6,8 % sur un an, avec 8 347 matelas au sol faute de lits. Les prisons ne se vident pas : elles débordent.",
+    },
+    {
+      claim_part: "« Les peines prononcées sont de plus en plus courtes »",
+      status: "FAUX",
+      detail:
+        "Le quantum moyen des peines d'emprisonnement ferme prononcées est passé de 9,5 mois en 2020 à 10,2 mois en 2023 (Cahiers d'études pénitentiaires n° 65) puis 11,0 mois pour les condamnations de 2024 (chiffres clés de la Justice) ; le nombre d'années de prison ferme prononcées a augmenté de près de 70 % entre 2000 et 2019 (Cour des comptes). Les peines s'allongent, elles ne raccourcissent pas.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "f88be2af-ffa6-4d4a-af6f-ef2fb866dede",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Statistique mensuelle de la population écrouée et détenue — situation au 1er septembre 2026",
+      author_or_institution:
+        "Ministère de la Justice — direction de l'administration pénitentiaire (données GENESIS / DGAP-SSER)",
+      publication_date: "2026-09-01",
+      quote_kind: "FAIT_DOCUMENTE",
+      exact_quote:
+        "Au 1er septembre 2026 : 90 020 personnes écrouées détenues pour 63 348 places opérationnelles, soit une densité carcérale de 142,1 % (141,5 % en métropole, 150,2 % en outre-mer) et 8 347 matelas au sol ; 107 700 personnes écrouées au total, en hausse de 6,2 % sur un an.",
+      context_explanation:
+        "Le décompte officiel qui dément directement la thèse d'une justice vidant les prisons : les effectifs détenus battent un record historique et progressent de 6,8 % sur un an. Cette statistique mensuelle est publiée par la direction de l'administration pénitentiaire et diffusée sur data.gouv.fr (fichier « statistique des établissements et des personnes écrouées »).",
+      original_url:
+        "https://static.data.gouv.fr/resources/statistique-mensuelle-de-la-population-ecrouee-et-detenue-en-france/20261013-162028/statistique-etablissements-01092026.xlsx",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Administration_p%C3%A9nitentiaire_en_France",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "6405fc55-5d33-4751-a5ec-266b7ee04ba0",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Les chiffres clés de la Justice — édition 2025 (peines et mesures principales prononcées)",
+      author_or_institution:
+        "Ministère de la Justice (sous-direction de la statistique et des études)",
+      publication_date: "2025-10-28",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "dont 121 057 en tout ou partie ferme et pour lesquelles le quantum moyen ferme est de 11,0 mois.",
+      context_explanation:
+        "Données provisoires 2024 : les condamnations à de l'emprisonnement en tout ou partie ferme portent un quantum moyen de 11,0 mois, contre 9,5 mois en 2020 et 10,2 mois en 2023 — la sanction ferme s'allonge bien, à rebours de la prémisse d'un relâchement. Dans la même édition, le quantum moyen des réclusions criminelles atteint 15 ans.",
+      original_url:
+        "https://www.justice.gouv.fr/sites/default/files/2025-10/Chiffres_Cl%C3%A9s_2025.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "c7c00180-d775-4165-9b16-fc5223c27b9e",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Cahiers d'études pénitentiaires et criminologiques n° 65 — Inflation carcérale, durcir les peines, remplir les prisons",
+      author_or_institution:
+        "Florence de Bruyn (bureau de la donnée, de la recherche et de l'évaluation, direction de l'administration pénitentiaire) — Ministère de la Justice",
+      publication_date: "2024-08-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En 2023, non seulement, les condamnations à de l'emprisonnement ferme sont plus nombreuses qu'en 2022 (+3 %), mais les quantums de peines fermes sont également plus longs (+6 %). On s'attend donc à une augmentation des entrées et à un allongement de la durée de détention moyenne.",
+      context_explanation:
+        "L'étude retrace l'inflation carcérale depuis 1946 et la documente par les flux : dans le tableau 3, le quantum moyen ferme prononcé passe de 9,5 mois (2020) à 9,6 (2021), 9,9 (2022) puis 10,2 mois (2023) ; elle conclut que la croissance de la population détenue résulte du durcissement des peines plus que de la démographie ou de la délinquance.",
+      original_url:
+        "https://www.justice.gouv.fr/sites/default/files/2024-08/Cahiers_etudes_penitentiaires_et_criminologiques_n65.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Administration_p%C3%A9nitentiaire_en_France",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "b17666a2-26f6-40a4-a851-93802fbfd41d",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Arrêt J.M.B. et autres c. France (requête n° 9671/15 et 31 autres) — Cour européenne des droits de l'homme, 30 janvier 2020",
+      author_or_institution:
+        "Cour européenne des droits de l'homme (cinquième section)",
+      publication_date: "2020-01-30",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Dit qu'il y a eu violation de l'article 3 de la Convention du fait des conditions de détention des requérants et des requérantes et rejette l'objection du Gouvernement de non-épuisement des voies de recours internes",
+      context_explanation:
+        "Arrêt pilote sur la surpopulation carcérale française : parmi les établissements concernés, Fresnes, Nîmes, Nice, Ducos, Faa'a-Nuutania ou Baie-Mahault. Au sommaire, la Cour retient aussi la violation de l'article 13 (« recours préventif inefficace ») et précise, au titre de l'article 46, que l'État défendeur est « tenu de prendre des mesures générales pour résorber définitivement la surpopulation carcérale et établir un recours préventif effectif en pratique ».",
+      original_url: "https://hudoc.echr.coe.int/fre?i=001-200446",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "01120ba5-8226-4706-8404-2c344747a22d",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Surpopulation carcérale : souhaite-t-on encore réinsérer nos condamnés ?",
+      author_or_institution:
+        "Alexis Maitre-Millat, doctorant en droit privé et sciences criminelles, Université de Bordeaux (The Conversation)",
+      publication_date: "2023-05-11",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Il n'y a jamais eu autant de détenus écroués en France. 73 080 : il s'agit d'un record. Ce nombre comprend les détenus en attente de jugement et les condamnés.",
+      context_explanation:
+        "Analyse académique du système pénal : l'auteur montre que les aménagements de peine, conçus pour la réinsertion, sont « de plus en plus utilisés comme des outils de gestion de la surpopulation carcérale » — signe que le problème est un flux d'entrées qu'on cherche à réguler, non un refus d'incarcérer. Le record cité (73 080 détenus en mai 2023) a depuis été largement dépassé.",
+      original_url:
+        "https://theconversation.com/surpopulation-carcerale-souhaite-t-on-encore-reinserer-nos-condamnes-204650",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "3c59adf6-5ca1-4e23-b05f-f4f582d44051",
+      spectrum: "CENTRE",
+      source_name:
+        "Une surpopulation carcérale persistante, une politique d'exécution des peines en question — rapport public thématique, octobre 2023",
+      author_or_institution: "Cour des comptes (France)",
+      publication_date: "2023-10-05",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Plusieurs facteurs y contribuent : tout d'abord, la réponse pénale à la délinquance s'est durcie ces dernières années. Les incarcérations et leurs durées ont ainsi augmenté de façon significative - le nombre d'années de prison ferme prononcées a augmenté de près de 70 % en vingt ans.",
+      context_explanation:
+        "La juridiction financière, peu suspecte d'indulgence, documente le durcissement : fin 2022, 73 000 détenus (un « niveau inégalé », + 2 800 en un an), taux d'occupation des maisons d'arrêt de près de 143 %, coût global de l'incarcération évalué à environ 4 Md€. La synthèse précise : près de 90 000 années de prison ferme prononcées en 2019 contre 54 000 environ en 2000.",
+      original_url:
+        "https://www.ccomptes.fr/fr/publications/une-surpopulation-carcerale-persistante-une-politique-dexecution-des-peines-en",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "eaa7547c-b1aa-4e67-88f7-f2771da11776",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "L'exécution des peines — rapport d'information n° 2 (2025-2026) de la commission des lois (mission d'information sur l'exécution des peines)",
+      author_or_institution: "Sénat (commission des lois)",
+      publication_date: "2025-10-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Alors que la part des citoyens qui estiment que la justice est « laxiste » atteint des niveaux préoccupants, la surpopulation carcérale est désormais hors de contrôle et atteste à l'inverse d'une sévérité croissante des lois pénales comme des juridictions chargées de les appliquer.",
+      context_explanation:
+        "Le rapport donne les chiffres : « Au 5 juin 2025, les prisons françaises comptaient 84 363 détenus, en augmentation de plus de 6 000 détenus en une année, pour une capacité opérationnelle de seulement 62 566 places ; plus de 5 000 détenus dorment sur des matelas placés à même le sol. » Il constate aussi que les juges prononcent des peines fermes plus longues pour échapper aux aménagements automatiques des peines de moins d'un an.",
+      original_url: "https://www.senat.fr/rap/r25-002/r25-002-syn.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "c5708783-1981-4a3d-99db-0eed32dcfc62",
+      spectrum: "GAUCHE",
+      source_name:
+        "Surpopulation carcérale : 90 020 détenus en France au 1er septembre, un nouveau record",
+      author_or_institution: "Libération (avec AFP)",
+      publication_date: "2026-10-03",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Au 1er septembre, les prisons françaises comptaient 90 020 détenus selon les statistiques officielles du ministère de la Justice dévoilées ce samedi 3 octobre. Le nombre de détenus augmente de 6,8 % sur un an, alors que le nombre de places opérationnelles s'élève au 1er septembre de 63 348 (+ 1,2 % sur un an) et celui de matelas posés au sol, faute de lits, s'établit à 8 347, en hausse de 51,8 % par rapport au 1er septembre 2025.",
+      context_explanation:
+        "L'article rapporte aussi une densité de 176,1 % dans les maisons d'arrêt et le rang européen de la France, ex-aequo avec la Turquie (131 détenus pour 100 places) selon les chiffres 2025 du Conseil de l'Europe, devant la Croatie et l'Italie. C'est la confirmation journalistique des données officielles, un an après la publication de l'arrêt J.M.B.",
+      original_url:
+        "https://www.liberation.fr/societe/police-justice/surpopulation-carcerale-90-020-detenus-en-france-au-1er-septembre-un-nouveau-record-20261003_Z3OR4PFVRFG5BKLPRKJPP7BDBI/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Lib%C3%A9ration_(journal)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+  ],
+};
+
+export const ADA_DOSSIER: Dossier = {
+  id: "15c8d34e-83ed-494c-9cbb-637f41b4d056",
+  slug: "allocation-demandeur-asile-carte-bancaire-montant",
+  claim_title:
+    "Un demandeur d'asile touche entre 1 200 € et 2 000 € par mois avec une carte bancaire de l'État",
+  verdict: "FAUX",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Allocation pour demandeur d'asile",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Allocation_pour_demandeur_d%27asile",
+      note: "Prestation créée en 2015, versée pendant l'instruction de la demande d'asile.",
+    },
+    {
+      name: "Office français de l'immigration et de l'intégration",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Office_fran%C3%A7ais_de_l%27immigration_et_de_l%27int%C3%A9gration",
+      note: "Gère l'ADA et délivre la carte de paiement sur laquelle elle est versée.",
+    },
+    {
+      name: "Défenseur des droits",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      note: null,
+    },
+    {
+      name: "Cour des comptes (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      note: null,
+    },
+    {
+      name: "Sénat (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      note: "Commission des finances — rapport de contrôle sur les coûts de l'asile (2026).",
+    },
+  ],
+  verdict_summary:
+    "Le barème réglementaire est sans rapport avec les montants allégués : 6,80 € par jour pour une personne seule hébergée (206,83 € par mois) et 14,20 € par jour si aucun hébergement ne lui est proposé (431,92 €), soit, selon la recherche, « la plus faible des prestations sociales en France, très largement inférieure au RSA ». La carte délivrée par l'OFII n'est pas une carte de crédit : elle est alimentée par le seul versement mensuel de l'ADA, sans possibilité de retrait d'espèces ni de virements, sans paiement en ligne ni sans contact (Défenseur des droits). Le versement est temporaire et conditionnel : il cesse à la fin du mois suivant la notification de la décision pour les personnes qui obtiennent une protection, et 61 000 cessations ou retraits ont été opérés en 2025 (Sénat, commission des finances). Dépense totale d'ADA en 2025 : 353,4 M€ (Cour des comptes).",
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« L'État donne une carte de crédit créditée de 1 500 € par mois aux migrants »",
+      status: "FAUX",
+      detail:
+        "Le montant légal est un forfait journalier modique, indexé sur la composition du foyer : 6,80 €/jour pour une personne seule hébergée (206,83 €/mois) ; aucun hébergement proposé : + 7,40 €/jour, soit 431,92 €/mois au total ; + 3,40 € par personne supplémentaire. Aucun dispositif ne verse 1 200 à 2 000 € par mois à un demandeur d'asile isolé. La carte de l'OFII n'est pas une carte de crédit : elle est alimentée par le seul montant de l'allocation versée, sans possibilité de retrait d'espèces ni de virements depuis 2019 (fonctionnalités réduites documentées par le Défenseur des droits : pas de paiement en ligne, sans contact inactif).",
+    },
+    {
+      claim_part: "« Cette aide financière est accordée à vie et sans conditions »",
+      status: "FAUX",
+      detail:
+        "Versement temporaire : dû à compter de l'acceptation des conditions matérielles d'accueil et pendant la durée d'instruction de la demande ; il cesse à la fin du mois qui suit celui de la notification de la décision pour les personnes qui obtiennent la qualité de réfugié ou la protection subsidiaire, et il est suspendu en cas de défaut de validité de l'attestation de demande d'asile. Les fins de versement sont massives : 61 000 cessations ou retraits de l'ADA ont été opérés en 2025, contre 46 000 en 2022 (Sénat).",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "b6a9e2f8-a4c1-4a13-971d-0ff1589dcec4",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Code de l'entrée et du séjour des étrangers et du droit d'asile — article L. 553-1 (allocation pour demandeur d'asile)",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le demandeur d'asile qui a accepté les conditions matérielles d'accueil proposées en application de l'article L. 551-9 bénéficie d'une allocation pour demandeur d'asile s'il satisfait à des conditions d'âge et de ressources. Le versement de cette allocation est ordonné par l'Office français de l'immigration et de l'intégration.",
+      context_explanation:
+        "Texte en vigueur du chapitre III du titre V. L'article D. 553-8 décompose l'allocation en « un montant forfaitaire, dont le niveau varie en fonction du nombre de personnes composant le foyer, et, le cas échéant, un montant additionnel destiné à couvrir les frais d'hébergement » ; l'article D. 553-10 renvoie au barème de l'annexe 8 ; l'article D. 553-24 énumère les cas de fin de versement. Citation vérifiée sur le texte reproduit dans deux jugements du tribunal administratif de Nice (9 et 30 juillet 2025), Légifrance bloquant les robots d'indexation.",
+      original_url:
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042802110/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "4de27bb4-2ce7-4cdf-b53c-89adb7ce6580",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "L'allocation pour demandeur d'asile (ADA) — fiche 25 de « Minima sociaux et prestations sociales, édition 2024 »",
+      author_or_institution: "DREES (Direction de la recherche, des études, de l'évaluation et des statistiques)",
+      publication_date: "2024-10-22",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le montant forfaitaire varie selon la composition familiale et s'élève à un forfait de 6,80 euros par jour pour une personne seule sans enfant, soit 206,83 euros par mois (+3,40 euros par jour par personne supplémentaire dans la famille). Il est accru de 7,40 euros par jour par adulte (soit 431,92 euros par mois au total pour une personne seule sans enfant) lorsque le demandeur de l'ADA a accepté l'offre de prise en charge et exprimé un besoin d'hébergement mais n'a pas accès gratuitement à un hébergement ou à un logement à quelque titre que ce soit.",
+      context_explanation:
+        "Chiffrage officiel : 206,83 € par mois (6,80 €/jour) pour une personne seule hébergée, 431,92 € (14,20 €/jour) sans accès gratuit à un hébergement — sans rapport avec des versements de 1 200 à 2 000 €. La même fiche documente la fin du versement : « L'ADA est ainsi versée jusqu'à la fin du mois qui suit celui de la notification de la décision pour les personnes qui obtiennent la qualité de réfugié ou le bénéfice de la protection subsidiaire. Elles peuvent ensuite immédiatement demander à bénéficier du revenu de solidarité active (RSA). »",
+      original_url:
+        "https://drees.solidarites-sante.gouv.fr/sites/default/files/2024-10/MS24%20-%20Fiche%2025%20-%20L%E2%80%99allocation%20pour%20demandeur%20d%E2%80%99asile%20%28ADA%29.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "773864bb-21a8-43bb-a072-9a2b53d00b1f",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Réponse ministérielle à la question écrite n° 27196 — « Carte de paiement des demandeurs d'asile » (Assemblée nationale)",
+      author_or_institution: "Ministère de l'Intérieur (Journal officiel, réponse publiée le 15 septembre 2020)",
+      publication_date: "2020-09-15",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La mise en place d'une carte de paiement, sans possibilité de retrait, permet, en limitant la circulation d'argent liquide, d'éviter que l'allocation pour demandeur d'asile serve à d'autres fins que celles d'assurer la subsistance du demandeur d'asile, au moyen de dépenses courantes sur le territoire national.",
+      context_explanation:
+        "Le Gouvernement y décrit le dispositif géré par l'OFII : allocation versée par alimentation de la carte de paiement, sans possibilité de retrait d'espèces ; le nombre de transactions a été « déplafonné » et « 44 % des transactions ayant porté sur un montant inférieur à 10 € en novembre 2019 ». La question rappelait que « le montant de l'ADA est déjà très faible (6,80 euros par jour pour une personne seule) ». Site de l'OFII inaccessible aux robots (403) : la réponse ministérielle documente ce dispositif officiel.",
+      original_url: "https://questions.assemblee-nationale.fr/q15/15-27196QE.htm",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "e0f3d664-eb7c-40f6-9ddf-7692b2e906c4",
+      spectrum: "CENTRE",
+      source_name:
+        "Le budget de l'État en 2025 — résultats et gestion : mission « Immigration, asile et intégration » (note d'exécution budgétaire)",
+      author_or_institution: "Cour des comptes (France)",
+      publication_date: "2026-04-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les dépenses associées à l'allocation pour demandeur d'asile (ADA) représentent 353,4 M€, en complément desquels sont prévus 6,2 M€ de frais de gestion destinés à l'OFII, dans le cadre de la loi de finances initiale pour 2025. Elles représentent 25 % des AE et 21 % des CP associés au programme.",
+      context_explanation:
+        "Chiffrage officiel de la dépense : 353,4 M€ d'ADA en 2025 (+20 % par rapport à 2024) et 6,2 M€ de frais de gestion pour l'OFII, pour « 94 271 demandeurs d'asile et 54 880 bénéficiaires de la protection temporaire » allocataires en moyenne en 2024 — un ordre de grandeur de quelques centaines d'euros par personne et par mois, incomparable avec les versements à quatre chiffres allégués. Le versement de l'ADA relève d'une « logique de guichet » (77 % des CP du programme 303 en janvier).",
+      original_url:
+        "https://program-evaluation.ccomptes.fr/sites/default/files/2026-04/NEB-2026-Immigration.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "b1a4162d-4a05-456a-bd9f-f5375c9fbe31",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« Asile : faire la lumière sur les coûts, redéfinir les protections » — rapport de contrôle de la commission des finances (l'Essentiel)",
+      author_or_institution: "Marie-Carole Ciuntu, rapporteure spéciale (Sénat, commission des finances)",
+      publication_date: "2026-07-08",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le montant mensuel versé à un demandeur d'asile seul est de 206 euros s'il est hébergé et de 432 euros s'il ne l'est pas.",
+      context_explanation:
+        "Rapport de contrôle présenté le 8 juillet 2026 à la commission des finances du Sénat (près de 2 milliards d'euros de coûts identifiés en 2025). Il confirme les montants réglementés — 206 € / 432 € par mois, très loin de 1 200 à 2 000 € — et documente les fins de versement : « 61 000 cessations ou retraits de l'ADA ont été opérés en 2025, contre 46 000 en 2022 », pour un nombre d'allocataires « resté plutôt stable entre 2019 et 2024, de l'ordre de 150 000 personnes ».",
+      original_url:
+        "https://www.senat.fr/fileadmin/cru-1787580710/Commissions/Finances/2025-2026/Controles/Essentiel_post-commission_couts_de_l_asile.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "952d79a4-e7db-4232-bdca-c25bf0ef6c03",
+      spectrum: "CENTRE",
+      source_name:
+        "Décision n° 2020-147 du 10 juillet 2020 relative à la réforme de la carte sur laquelle est versée l'allocation pour demandeur d'asile",
+      author_or_institution: "Défenseur des droits",
+      publication_date: "2020-07-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "S'agissant des fonctionnalités de la carte de paiement, les courriers accompagnant sa remise indiquent expressément aux utilisateurs qu'elle « ne permet pas le paiement sur internet », que « l'option de paiement sans contact est inactive » et que « la demande de remboursement d'un achat sur cette carte est strictement interdite ».",
+      context_explanation:
+        "Le Défenseur des droits documente une carte aux fonctionnalités très réduites — « pas de retrait ni de virements » — et juge la réforme « très préjudiciable » aux demandeurs d'asile, dont la carte n'était plus, depuis novembre 2019, qu'une carte de paiement (la carte précédente autorisait « 3 puis 5 retraits d'espèces par mois »). Il recommande une carte mixte ou le versement sur compte bancaire.",
+      original_url: "https://juridique.defenseurdesdroits.fr/doc_num.php?explnum_id=19919",
+      author_reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "d75b58b0-4117-4a6a-87d9-00eae251522a",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Vivre sans cash aujourd'hui — l'expérience des demandeur·es d'asile en France : une enquête sur la carte ADA",
+      author_or_institution: "Hélène Ducourant (Université Gustave Eiffel — Latts)",
+      publication_date: "2026-01-05",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Concernant l'Ada, beaucoup estiment que la principale difficulté réside dans le montant de l'allocation — la plus faible des prestations sociales en France, très largement inférieure au RSA (voir encadré ci-dessous) — et dans l'absence de revalorisation depuis 2018, malgré une inflation soutenue.",
+      context_explanation:
+        "Enquête qualitative (26 entretiens auprès de 35 titulaires de la carte ADA) : « ces personnes disposent, pour 97,3 % d'entre elles, de cette prestation sociale comme unique ressource ». Elle chiffre 204 € par mois pour un adulte hébergé en centre (base 30 jours) et 426 € sans hébergement, « des montants si déconnectés du coût de la vie en France qu'ils semblent destinés à couvrir strictement les besoins essentiels ».",
+      original_url: "https://www.gisti.org/IMG/pdf/carte_ada_etude_ducourant.pdf",
+      author_reference_url: "https://hal.science/hal-05444401",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+  ],
+};
+
+/**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
  * (`is_published = true`) et non par le code de l'interface.
@@ -2145,8 +2601,10 @@ export const SEED_DOSSIERS: Dossier[] = [
   IMMIGRATION_BUDGET_DOSSIER,
   CRIME_IMMIGRATION_DOSSIER,
   EXPULSION_JUGES_DOSSIER,
+  ADA_DOSSIER,
   POURVOI_CASSATION_DOSSIER,
   ASSISTANTS_RN_DOSSIER,
+  LAXISME_PEINES_PRISON_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

@@ -15,14 +15,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix dossiers en base :
-  neuf **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Douze dossiers en base :
+  onze **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
-  l'expulsion des étrangers délinquants (6, politique) — et un **brouillon de contrôle
-  RLS** ; RLS actif sur `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 68 sources portent leur empreinte de citation ; la RPC de recherche
+  l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
+  société) et l'allocation pour demandeur d'asile (7, société) — et un **brouillon de
+  contrôle RLS** ; RLS actif sur `dossiers`, `dossier_sources` et `admin_users`.
+- **Intégrité** : les 83 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -44,7 +45,17 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   manière (`a4ad5100…`) : six fiches déposées et relues (cinq instantanés réseau — CEDH,
   Cour des comptes, Sénat, Conseil d'État, RTDEur — et une URL indisponible, Légifrance
   répondant 403 aux robots).
-- **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers publiés ont été
+  Le dixième (le « laxisme » des juges et les peines de prison, 8 sources, toutes citées
+  d'après les textes téléchargés — statistique mensuelle de la DAP, chiffres clés,
+  cahiers n° 65, CEDH, The Conversation, Cour des comptes, Sénat, Libération) a été
+  vérifié de la même manière (`0492b4cc…`) : huit fiches déposées et relues (sept
+  instantanés réseau et une URL indisponible consignée).
+  Le onzième (l'allocation pour demandeur d'asile et la carte de paiement de l'OFII,
+  7 sources) a été vérifié de la même manière (`d5e285d5…`) : sept fiches déposées et
+  relues (six instantanés réseau — DREES, Assemblée nationale, Cour des comptes, Sénat,
+  Défenseur des droits, enquête Ducourant — et une URL indisponible, Légifrance répondant
+  403 aux robots).
+- **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
   Légifrance, Wikisource pour les lois de 1940, DOAJ pour l'article d'Érudit, Wayback
@@ -56,7 +67,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   reçoivent une URL de transcription institutionnelle. Les six sources du dossier sur
   l'expulsion des étrangers délinquants (CESEDA L. 631-1, CEDH art. 8, Cour des comptes
   2024, Sénat — avis Jourda/Bitz, Conseil d'État 2020, note RTDEur de V. Réveillère) ont
-  été vérifiées au texte original de la même façon lors de leur intégration, le 15/10.
+  été vérifiées au texte original de la même façon lors de leur intégration, le 15/10. Les
+  sept sources du dossier sur l'allocation pour demandeur d'asile (CESEDA L. 553-1, DREES,
+  réponse ministérielle n° 27196, Cour des comptes, Sénat, Défenseur des droits, enquête
+  Ducourant) ont été vérifiées de la même façon avant leur intégration ; le site de l'OFII
+  répond 403 aux robots et la réponse ministérielle documente le dispositif qu'il gère.
 - **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
@@ -76,18 +91,19 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `database.reachable: true`. Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
-- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **68 pièces publiées**
+- **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **83 pièces publiées**
   ont leur fiche déposée dans `dossier_source_archives`, relue et rehachée au dépôt, et
   servie **octet pour octet** par `/api/archives/<empreinte de fiche>` (rehachage vérifié
-  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 50 fiches issues
-  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 15 consignées
+  en ligne). Chaque dossier porte désormais l'ensemble de ses pièces : 63 fiches issues
+  d'un instantané réseau (`URL_SNAPSHOT`, empreinte des octets capturés), 17 consignées
   `URL_UNAVAILABLE` (403/429 aux robots : Légifrance, préface de Stanford, OCDE,
   Érudit, Le Figaro, courdecassation.fr…) et 3 en `METADATA_ONLY` (les trois pièces
   sans URL du dossier de référence). Toute ré-application du seed (`seed:apply`)
   supprime les sources en cascade puis les réinsère : elle emporte les fiches d'archive
   du dossier, qu'il faut redéposer par `archive:capture` — fait le 15/10 à 12:41 UTC
   pour les dix dossiers réappliqués (68 fiches redéposées, racine des captures
-  `e0a39749…`).
+  `e0a39749…`), puis à 13:02 UTC pour les douze dossiers réappliqués (83 fiches
+  redéposées, racine des captures `b54243b2…`).
 
 ## Pile technique
 
@@ -308,7 +324,11 @@ slug) a supprimé puis réinséré toutes les sources : les fiches d'archive ont
 en cascade, comme documenté plus haut. Un `archive:capture --fetch --yes` (12:41 UTC) les
 a toutes redéposées d'un coup : 68 pièces, 68 fiches déposées et relues — 50
 `URL_SNAPSHOT`, 15 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
-`e0a39749153a8ae3…`. Le **miroir Storage** n'a pas eu lieu faute d'accès
+`e0a39749153a8ae3…`. Puis, à 13:01 UTC, l'application du seed (douze dossiers : les deux
+derniers ajouts, « laxisme des juges » et ADA, entre-temps intégrés) a de nouveau supprimé
+puis réinséré toutes les sources ; le `archive:capture --fetch --yes` de 13:02 UTC les a
+toutes redéposées : 83 pièces, 83 fiches déposées et relues — 63 `URL_SNAPSHOT`, 17
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `b54243b2d204b932…`. Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
