@@ -2846,7 +2846,7 @@ export const ASPA_MINIMUM_VIEILLESSE_DOSSIER: Dossier = {
         "« N'importe quel étranger âgé peut venir en France toucher 1 000 € par mois sans condition »",
       status: "FAUX",
       detail:
-        "Pour en bénéficier, un ressortissant étranger doit détenir « de façon continue depuis au moins 10 ans un titre de séjour autorisant à travailler », sauf s'il est réfugié, apatride, bénéficiaire de la protection subsidiaire, ancien combattant, ressortissant d'un État de l'Espace économique européen ou de Suisse, ou ressortissant d'un pays lié par une convention bilatérale (service-public.gouv.fr). S'y ajoutent la résidence stable en France (plus de 9 mois l'année de versement), la condition de subsidiarité (avoir fait valoir tous ses droits à pension), l'âge minimum (65 ans, abaissé dans certains cas) et un plafond de ressources. Le montant n'est pas un forfait : l'allocation est différentielle et le maximum est de 1 043,59 € par mois pour une personne seule en 2026 — soit à peine plus que les « 1 000 € » évoqués.",
+        "Pour en bénéficier, un ressortissant étranger doit détenir « depuis au moins dix ans un titre de séjour autorisant à travailler » (article L. 816-1 du code de la sécurité sociale, repris par la fiche service-public), sauf s'il est réfugié, apatride, bénéficiaire de la protection subsidiaire, ancien combattant, ressortissant d'un État de l'Espace économique européen ou de Suisse, ou ressortissant d'un pays lié par une convention bilatérale (service-public.gouv.fr). S'y ajoutent la résidence stable en France (plus de 9 mois l'année de versement), la condition de subsidiarité (avoir fait valoir tous ses droits à pension), l'âge minimum (65 ans, abaissé dans certains cas) et un plafond de ressources. Le montant n'est pas un forfait : l'allocation est différentielle et le maximum est de 1 043,59 € par mois pour une personne seule en 2026 — soit à peine plus que les « 1 000 € » évoqués.",
     },
     {
       claim_part:
@@ -2871,7 +2871,7 @@ export const ASPA_MINIMUM_VIEILLESSE_DOSSIER: Dossier = {
       exact_quote:
         "Vous devez également être dans l'une des situations suivantes : Avoir de façon continue depuis au moins 10 ans un titre de séjour autorisant à travailler",
       context_explanation:
-        "La fiche officielle oppose la condition des dix ans de titre de séjour à une liste limitative d'exceptions : être réfugié, apatride, bénéficiaire de la protection subsidiaire, avoir combattu pour la France, être ressortissant d'un État de l'Espace économique européen ou de Suisse, ou ressortissant d'un pays conventionné (Algérie, Andorre, Bénin, Cap-Vert, Congo, etc.). Elle fixe aussi la condition de résidence — « C'est le cas si vous séjournez en France pendant plus de 9 mois l'année de versement de l'Aspa » — et les montants 2026 : revenus du couple plafonnés à 1 620,18 € brut par mois, montant maximum de 1 043,59 € pour la personne seule. La récupération sur succession y est détaillée : pour un décès en 2026, elle ne s'applique que si l'actif net dépasse 108 586,14 €, dans la limite de 8 463,42 € par année de versement.",
+        "La fiche officielle oppose la condition des dix ans de titre de séjour — posée par l'article L. 816-1 du code de la sécurité sociale — à une liste limitative d'exceptions : être réfugié, apatride, bénéficiaire de la protection subsidiaire, avoir combattu pour la France, être ressortissant d'un État de l'Espace économique européen ou de Suisse, ou ressortissant d'un pays conventionné (Algérie, Andorre, Bénin, Cap-Vert, Congo, etc.). Elle fixe aussi la condition de résidence — « C'est le cas si vous séjournez en France pendant plus de 9 mois l'année de versement de l'Aspa » — et les montants 2026 : revenus du couple plafonnés à 1 620,18 € brut par mois, montant maximum de 1 043,59 € pour la personne seule. La récupération sur succession y est détaillée : pour un décès en 2026, elle ne s'applique que si l'actif net dépasse 108 586,14 €, dans la limite de 8 463,42 € par année de versement.",
       original_url:
         "https://www.service-public.gouv.fr/particuliers/vosdroits/F16871",
       author_reference_url: null,
@@ -3105,6 +3105,26 @@ export const ASPA_MINIMUM_VIEILLESSE_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 11,
+    },
+    {
+      id: "bb94d2f9-c119-4f08-82f5-a9479e308e1a",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Code de la sécurité sociale — article L. 816-1 (conditions applicables aux personnes de nationalité étrangère)",
+      author_or_institution: "République française — code de la sécurité sociale",
+      publication_date: "2026-01-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le présent titre est applicable aux personnes de nationalité étrangère qui répondent à l'une des conditions suivantes : 1° Etre titulaire depuis au moins dix ans d'un titre de séjour autorisant à travailler. Le respect de cette condition peut être attesté par les périodes d'assurance mentionnées à l'article L. 351-2 ;",
+      context_explanation:
+        "L'article qui fonde le « verrou des dix ans » : les 2° et 3° exemptent de cette durée les réfugiés, les apatrides, les personnes ayant combattu pour la France et celles bénéficiant de la protection subsidiaire, ainsi que les ressortissants d'un État membre de l'Union européenne, de l'Espace économique européen ou de la Confédération suisse. La condition est cumulative avec la résidence stable de l'article L. 815-1 et avec l'âge de 65 ans fixé à l'article R. 815-1 ; la fiche service-public F16871 en reprend le détail, y compris les pays liés à la France par une convention bilatérale. Texte à jour servi par Légifrance, reproduit depuis le miroir justiweb.fr, vérifié mot à mot.",
+      original_url:
+        "https://www.justiweb.fr/articles/code-de-la-securite-sociale/L816-1",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 12,
     },
   ],
 };

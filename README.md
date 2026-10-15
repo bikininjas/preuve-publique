@@ -22,10 +22,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
   l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
   société), l'allocation pour demandeur d'asile (7, société), les aides sociales des
-  sans-papiers (7, société) et le minimum vieillesse (ASPA) versé aux étrangers (12,
+  sans-papiers (7, société) et le minimum vieillesse (ASPA) versé aux étrangers (13,
   société) — et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 102 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 103 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -61,12 +61,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   même manière (`5b894fab…`) : sept fiches déposées et relues (quatre instantanés réseau —
   CNAF, service-public.fr, Sénat, Conseil constitutionnel — et trois URL indisponibles,
   Légifrance et Cairn répondant 403 aux robots).
-  Le treizième (le minimum vieillesse et les conditions d'accès des étrangers, 12 sources —
-  fiche officielle service-public.fr, articles L. 815-1, L. 815-12 et L. 815-13 du code de
-  la sécurité sociale cités d'après les textes téléchargés, deux études de la CNAV, Cour des
-  comptes, dossier législatif du Sénat ppl25-734, LCP, revue *Retraite et société*, dépêche
-  AFP) a été vérifié de la même manière (`0e145a46…`) : douze fiches déposées et relues
-  (douze instantanés réseau — aucune URL indisponible).
+  Le treizième (le minimum vieillesse et les conditions d'accès des étrangers, 13 sources —
+  fiche officielle service-public.fr, articles L. 815-1, L. 815-12, L. 815-13 et L. 816-1 du
+  code de la sécurité sociale cités d'après les textes téléchargés, deux études de la CNAV,
+  Cour des comptes, dossier législatif du Sénat ppl25-734, LCP, revue *Retraite et société*,
+  dépêche AFP) a été vérifié de la même manière (`a1de390a…`) : treize fiches déposées et
+  relues (treize instantanés réseau — aucune URL indisponible).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -360,7 +360,11 @@ racine des captures `37ffd2f0338a6a26…`. Puis, à 13:42 UTC, l'intégration du
 réappliqué le seed et une recapture : 102 pièces, 102 fiches déposées et relues — 74
 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
 `3ecc80696b794f9f…` ; aucun doublon (une fiche exacte par pièce publiée, contrôle par
-empreinte). Le **miroir Storage** n'a pas eu lieu faute d'accès
+empreinte). Enfin, à 14:05 UTC, l'ajout de l'article L. 816-1 (le « verrou des dix ans »)
+au dossier « minimum vieillesse » a entraîné une dernière réapplication du seed et une
+recapture : 103 pièces, 103 fiches déposées et relues — 79 `URL_SNAPSHOT`, 21
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `6af5670a56cbff6d…` ; aucun
+doublon. Le **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
