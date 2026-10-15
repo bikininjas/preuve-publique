@@ -423,6 +423,18 @@ footer {
   gap: 1px;
 }
 
+/* Variante ancrée au bord droit du bouton (menu mobile) : sans elle, le panneau
+   part du bord gauche du bouton et déborde du viewport — la page s'élargit
+   horizontalement. Les utilitaires Tailwind (right-0, left-auto) ne suffisent
+   pas ici : le CSS non-layeré gagne sur @layer utilities, donc l'ancrage se
+   règle ici, dans la feuille, pas dans le JSX. */
+.pp-drop-panel--end {
+  left: auto;
+  right: 0;
+  min-width: 0;
+  max-width: calc(100vw - 1.5rem);
+}
+
 .pp-drop-item {
   display: flex;
   align-items: center;

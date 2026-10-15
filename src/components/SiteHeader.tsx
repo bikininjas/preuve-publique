@@ -69,7 +69,7 @@ export default function SiteHeader() {
             <summary className="pp-nav-link" aria-label="Ouvrir le menu">
               Menu <span aria-hidden="true">≡</span>
             </summary>
-            <div className="pp-drop-panel right-0 left-auto max-h-[70vh] w-[16rem] overflow-y-auto">
+            <div className="pp-drop-panel pp-drop-panel--end max-h-[70vh] w-[16rem] overflow-y-auto">
               <Link className="pp-drop-item" href="/dossiers">
                 <span>Tous les dossiers</span>
                 <span aria-hidden="true">→</span>
