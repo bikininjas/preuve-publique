@@ -54,7 +54,7 @@ test("les piliers documentés se calculent sur les sources", () => {
 test("le brouillon de contrôle n'est jamais publié", () => {
   const published = publishedSeedDossiers().map((dossier) => dossier.slug);
   assert.ok(!published.includes(DRAFT_CONTROL_DOSSIER.slug));
-  assert.equal(published.length, 18);
+  assert.equal(published.length, 19);
   assert.ok(published.includes("aide-medicale-detat-securite-sociale-soins-de-confort"));
   assert.ok(published.includes("sans-papiers-et-rsa-des-leur-arrivee"));
   assert.ok(published.includes("petain-vichy-ont-ils-protege-les-juifs-francais"));
@@ -72,6 +72,7 @@ test("le brouillon de contrôle n'est jamais publié", () => {
   assert.ok(published.includes("laxisme-judiciaire-peines-prison-france"));
   assert.ok(published.includes("aspa-minimum-vieillesse-etrangers-conditions-cotisation"));
   assert.ok(published.includes("fraude-sociale-vs-fraude-fiscale-cout-france"));
+  assert.ok(published.includes("genetique-races-biologiques-humaines"));
 });
 
 test("la recherche locale trouve le dossier par son titre et par une citation", () => {

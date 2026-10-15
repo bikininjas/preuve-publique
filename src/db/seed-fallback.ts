@@ -4164,6 +4164,245 @@ export const FRAUDE_SOCIALE_FISCALE_DOSSIER: Dossier = {
   ],
 };
 
+export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
+  id: "8ddf3e0f-fb27-4188-808f-eae19b64ed2a",
+  slug: "genetique-races-biologiques-humaines",
+  claim_title:
+    "La génétique moderne prouve l'existence de races biologiques distinctes chez l'humain",
+  verdict: "FAUX",
+  verdict_summary:
+    "La génétique des populations établit exactement l'inverse : tous les êtres humains partagent environ 99,9 % de leur ADN, et l'immense majorité de la diversité génétique restante se trouve à l'intérieur des populations, non entre elles. Dès 1972, l'analyse de Richard Lewontin puis les travaux de Guido Barbujani et Luca Cavalli-Sforza (PNAS, 1997) établissent que 85 % de la diversité génétique humaine est portée par les individus d'une même population et que les différences entre continents n'en représentent qu'environ 10 % ; entre un Papou et un Breton, seuls environ 5 % des 6 millions de lettres d'ADN qui diffèrent s'expliquent par l'origine géographique. La variation humaine est continue et clinale, sans frontières biologiques : l'espèce Homo sapiens ne se divise pas en sous-espèces. L'UNESCO l'a proclamé dès la Déclaration sur la race et les préjugés raciaux de 1978 — « tous les êtres humains appartiennent à une même espèce et descendent d'une même souche » — et la science a abandonné le concept de race biologique, qui reste en revanche un construit social dont le racisme se nourrit.",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Homo sapiens",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Homo_sapiens",
+      note: "Espèce humaine, dont l'homogénéité génétique est exceptionnellement forte pour un mammifère à répartition mondiale.",
+    },
+    {
+      name: "UNESCO",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Organisation_des_Nations_unies_pour_l%27%C3%A9ducation,_la_science_et_la_culture",
+      note: "A adopté le 27 novembre 1978 la Déclaration sur la race et les préjugés raciaux, qui proclame l'unité de l'espèce humaine.",
+    },
+    {
+      name: "Évelyne Heyer",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/%C3%89velyne_Heyer",
+      note: "Professeure de génétique des populations, Muséum national d'histoire naturelle ; commissaire scientifique du Musée de l'Homme.",
+    },
+    {
+      name: "Centre national de la recherche scientifique",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Centre_national_de_la_recherche_scientifique",
+      note: "Définit la race comme une catégorie sans aucune base scientifique, au fondement des racismes.",
+    },
+    {
+      name: "National Human Genome Research Institute",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/National_Human_Genome_Research_Institute",
+      note: "Institut américain pionnier du Projet Génome Humain ; ses fiches documentent la variation génétique humaine (99,9 % d'identité).",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part:
+        "« Les groupes humains constituent des sous-espèces biologiques discontinues »",
+      status: "FAUX",
+      detail:
+        "La variation génétique humaine est graduelle et clinale : les travaux fondateurs (Lewontin 1972, puis Barbujani et al., PNAS 1997) montrent que 85 % de la diversité génétique se trouve à l'intérieur des populations et que la partition en groupes raciaux ne recouvre aucune discontinuité du génome — « l'existence de ces grands groupes n'est pas soutenue par la présente analyse de l'ADN ». Sur les quelque 6 millions de lettres d'ADN qui différencient deux individus, seules environ 5 % s'expliquent par une origine géographique différente ; le reste distingue les individus d'une même origine. Il n'existe donc pas de sous-espèces discrètes chez Homo sapiens.",
+    },
+    {
+      claim_part:
+        "« Les traits morphologiques extérieurs définissent des lignées génétiques distinctes »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "Les traits visibles (pigmentation de la peau, forme des cheveux) dépendent d'une poignée de gènes d'adaptation au climat et n'indexent pas le reste du génome : deux individus d'apparence très différente peuvent être génétiquement plus proches que deux individus de même apparence, et la diversité génétique est plus grande entre certaines populations africaines qu'entre un Européen et un Asiatique (marqueur de l'origine africaine de l'espèce). L'apparence extérieure ne définit aucune lignée génétique distincte — c'est la confusion conceptuelle dénoncée par les généticiens des populations.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-15T00:00:00.000Z",
+  sources: [
+    {
+      id: "9a54cecc-09b2-4063-b97a-65b82994cba4",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Déclaration sur la race et les préjugés raciaux — adoptée par la Conférence générale de l'UNESCO le 27 novembre 1978",
+      author_or_institution: "UNESCO (Organisation des Nations unies pour l'éducation, la science et la culture)",
+      publication_date: "1978-11-27",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "All human beings belong to a single species and are descended from a common stock. They are born equal in dignity and rights and all form an integral part of humanity.",
+      context_explanation:
+        "L'article premier de la déclaration adoptée à Paris le 27 novembre 1978 répond mot pour mot à la thèse des races biologiques : l'humanité forme une seule espèce issue d'une souche commune. Le préambule réaffirme « l'unité essentielle de la race humaine » et la déclaration condamne toute doctrine de supériorité fondée sur la différenciation raciale. Le texte intégral est publié par l'UNESCO (les déclarations d'experts de 1950 et 1964 en constituent les étapes préparatoires, celle de 1978 reste le texte de référence).",
+      original_url:
+        "https://www.unesco.org/en/legal-affairs/declaration-race-and-racial-prejudice",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Organisation_des_Nations_unies_pour_l%27%C3%A9ducation,_la_science_et_la_culture",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "e879506b-0b3f-4ada-884e-18191a6c5c4b",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Human Genomic Variation — fiche du National Human Genome Research Institute",
+      author_or_institution:
+        "National Human Genome Research Institute (NHGRI), National Institutes of Health — « 15 Ways Genomics Influences Our World »",
+      publication_date: "2019-03-13",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Did you know that at the base-pair level your genome is 99.9 percent the same as all of the humans around you - but in that 0.1 percent difference are many of the things that make you unique?",
+      context_explanation:
+        "L'institut qui a porté le Projet Génome Humain résume la donnée fondatrice : au niveau des paires de bases, le génome de tout être humain est identique à 99,9 % à celui de tous les autres ; le reliquat de 0,1 % porte aussi bien les traits physiques que les risques de maladies, ce qui prive l'idée de « races » de tout support génomique. La fiche complète : « les génomes humains diffèrent les uns des autres de toutes sortes de façons », sans regroupements discrets.",
+      original_url:
+        "https://www.genome.gov/dna-day/15-ways/human-genomic-variation",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/National_Human_Genome_Research_Institute",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "fc844436-d3d1-4817-8303-9afe32041ae3",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "An apportionment of human DNA diversity (PNAS, 29 avril 1997) — Guido Barbujani, Arianna Magagni, Eric Minch et L. Luca Cavalli-Sforza",
+      author_or_institution:
+        "Guido Barbujani (université de Ferrare), Arianna Magagni (université de Bologne), Eric Minch et L. Luca Cavalli-Sforza (université Stanford), Proceedings of the National Academy of Sciences",
+      publication_date: "1997-04-29",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "In 1972, Richard Lewontin analyzed allele frequencies at 15 protein loci and concluded that 85% of the overall human genetic diversity is represented by individual diversity within populations. Differences among seven racial groups accounted for less than 7% of the total.",
+      context_explanation:
+        "L'étude de référence sur la répartition de la diversité humaine : ses propres mesures sur 109 locus d'ADN confirment Lewontin, avec 84,4 % de la variance à l'intérieur des populations, 4,7 % entre populations d'un même continent et 10,8 % entre continents (Lewontin : 85,4 / 8,3 / 6,3). La conclusion : « l'existence de ces grands groupes — raciaux ou continentaux — n'est pas soutenue par la présente analyse de l'ADN ». Les auteurs y répondent aux objections de ceux pour qui l'espèce serait « profondément subdivisée en races ».",
+      original_url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC20754/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Centre_national_de_la_recherche_scientifique",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "f9b3d73a-bbda-49f9-85f1-09432c4fc211",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Race et génétique : comment la science a déconstruit le concept — Le Fil sciences",
+      author_or_institution:
+        "Évelyne Heyer (professeure de génétique des populations, Muséum national d'histoire naturelle), France Culture",
+      publication_date: "2026-05-27",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Si l'idée de race a été forgée par les scientifiques entre les 17e et 19e siècle, les recherches génétiques prouvent que les humains sont semblables à 99,9 % et que les catégorisations raciales n'ont aucun fondement scientifique et ce depuis les années 1960-70.",
+      context_explanation:
+        "La généticienne des populations du Muséum national d'histoire naturelle, commissaire scientifique du Musée de l'Homme, résume le consensus : « les races biologiques n'existent pas », la diversité biologique humaine « ne justifie aucune hiérarchie entre les groupes ni les stéréotypes racistes », et les différences d'apparence « ne correspondent à aucun » fondement génétique. Elle rappelle que la diversité génétique est plus grande entre certaines populations africaines qu'entre un Européen et un Asiatique — indice de l'origine africaine d'Homo sapiens.",
+      original_url:
+        "https://www.radiofrance.fr/franceculture/podcasts/le-fil-sciences/races-et-genetique-ce-que-la-science-a-tranche-1655393",
+      author_reference_url: "https://fr.wikipedia.org/wiki/%C3%89velyne_Heyer",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "7a26563e-453f-40e7-8599-f2f9f24e09f9",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Quand la biologie parlait de races humaines — CNRS Le journal n° 263",
+      author_or_institution:
+        "Charline Zeitoun, CNRS Le journal (Centre national de la recherche scientifique)",
+      publication_date: "2011-12-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Catégorie de classement de l'espèce humaine selon des critères morphologiques ou culturels, sans aucune base scientifique et dont l'emploi est au fondement des divers racismes et de leurs pratiques.",
+      context_explanation:
+        "La définition officielle que le CNRS donne du mot « race » : une catégorie sans aucune base scientifique, au fondement des racismes. L'article retrace comment la biologie a fabriqué le concept aux XVIIIe et XIXe siècles (théories de la dégénération, polygénisme) avant que la génétique du XXe siècle ne le démente : la vision monogéniste « exclut tout concept racial biologique », et le racisme scientifique est aujourd'hui une impasse historique.",
+      original_url:
+        "https://lejournal.cnrs.fr/articles/quand-la-biologie-parlait-de-races-humaines",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Centre_national_de_la_recherche_scientifique",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "89b43961-c0f5-47c6-ad4d-84101f59f9f7",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Pourquoi parler de « races humaines » est un non-sens biologique",
+      author_or_institution: "Joseph Le Corre, Le Point",
+      publication_date: "2025-03-26",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "D'un point de vue scientifique, l'idée de « races humaines » est une aberration, car l'humanité partage un code génétique d'une homogénéité saisissante.",
+      context_explanation:
+        "Même dans un hebdomadaire classé à droite, le constat est sans ambiguïté : « leur ADN est rigoureusement identique à 99,9 %, ce qui fait de Homo sapiens l'espèce de mammifère la plus homogène génétiquement à l'échelle du monde entier ». L'article cite le généticien Paul Verdu (Laboratoire d'éco-anthropologie, Muséum national d'histoire naturelle) : entre un Papou et un Breton, ~0,1 % des 6 milliards de lettres diffèrent, et « seules environ 5 % sont liées à leur origine géographique différente, tout le reste s'explique par des différences entre individus de la même origine géographique ».",
+      original_url:
+        "https://www.lepoint.fr/eureka/pourquoi-parler-de-races-humaines-est-un-non-sens-biologique-26-03-2025-2585739_4706.php",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "08aee1cd-7acb-4357-8907-012afe61e0b3",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Pourquoi les actuels travaux en génétique ne marquent pas le retour des « races »",
+      author_or_institution: "Thomas Mahler, L'Express",
+      publication_date: "2023-04-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Contrairement à ce qu'affirme l'extrême droite, les nouvelles études en génomique et sur les populations ne réhabilitent pas les catégories raciales, bien au contraire.",
+      context_explanation:
+        "Le décryptage répond à la crainte — nourrie aussi par les manifestes suprémacistes, comme celui de l'assaillant de Buffalo en 2022 qui citait des études génomiques — que la génomique rouvre la porte aux races : les travaux actuels la referment au contraire. La génétique des populations des années 2000-2020 confirme l'unité de l'espèce et la répartition majoritairement intrapopulationnelle de la diversité.",
+      original_url:
+        "https://www.lexpress.fr/sciences-sante/pourquoi-les-actuels-travaux-en-genetique-ne-marquent-pas-le-retour-des-races-HPB333WZCFHTFFZETAECYZYHQY/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "894c0bc8-0724-4cbd-b964-845380132eca",
+      spectrum: "CENTRE",
+      source_name:
+        "Michel Agier, anthropologue : « La race biologique n'existe pas, mais la race produite par le racisme, elle, existe socialement »",
+      author_or_institution: "Séverine Kodjo-Grandvaux (entretien), Le Monde",
+      publication_date: "2025-02-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La race biologique n'existe pas, mais la race produite par le racisme, elle, existe socialement",
+      context_explanation:
+        "L'anthropologue Michel Agier (EHESS, IRD) rappelle la double vérité du dossier : la démonstration scientifique de l'inexistence des races biologiques n'empêche pas le racisme, qui produit socialement la « race » comme catégorie d'assignation — un héritage de l'histoire coloniale et impériale de l'Europe qu'il appelle l'« infrapensée » raciste. La distinction entre fait biologique et construit social est le point d'atterrissage du consensus scientifique.",
+      original_url:
+        "https://www.lemonde.fr/idees/article/2025/02/10/michel-agier-anthropologue-la-race-biologique-n-existe-pas-mais-la-race-produite-par-le-racisme-elle-existe-socialement_6539488_3232.html",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -4183,6 +4422,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   LAXISME_PEINES_PRISON_DOSSIER,
   ASPA_MINIMUM_VIEILLESSE_DOSSIER,
   FRAUDE_SOCIALE_FISCALE_DOSSIER,
+  RACES_BIOLOGIQUES_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

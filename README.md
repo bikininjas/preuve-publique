@@ -15,8 +15,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
-  (`20261015043026`), `0006_protagonists` (`20261015044427`). Dix-neuf dossiers en base :
-  dix-huit **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  (`20261015043026`), `0006_protagonists` (`20261015044427`). Vingt dossiers en base :
+  dix-neuf **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -27,10 +27,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   divers), l'incendie de l'église de Saint-Omer attribué à un « attentat islamiste »
   (8, faits divers), le revenu disponible d'un couple au RSA comparé à un couple au
   SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
-  économie) et les discriminations à l'embauche liées à l'origine (7, société) — et un
+  économie), les discriminations à l'embauche liées à l'origine (7, société) et la thèse
+  de races biologiques humaines (8, société) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 139 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 147 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -99,6 +100,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   deux testings TEPP-CNRS de l'université Gustave Eiffel, le rapport annuel 2024 du
   Défenseur des droits et la page Institut Montaigne servie par l'instantané Wayback),
   toutes capturées en instantanés réseau.
+  Le dix-neuvième (la thèse de races biologiques humaines, 8 sources — Déclaration de
+  l'UNESCO sur la race et les préjugés raciaux de 1978 servie par le site officiel, fiche
+  du NHGRI sur la variation génomique, étude fondatrice de Barbujani, Magagni, Minch et
+  Cavalli-Sforza (PNAS 1997) reproduite par PubMed Central, chronique d'Évelyne Heyer
+  (France Culture), article du CNRS Le journal, articles du Point (entretiens du
+  généticien Paul Verdu), de L'Express et du Monde) a été vérifié de la même manière
+  (`0fba6db3…`) : huit fiches déposées et relues (sept instantanés réseau et une URL
+  indisponible — l'article du Point, dont l'accès direct répond 403 aux robots et qui a
+  été capturé via l'instantané Wayback).
 - **Audit des sources (15/10/2026)** : les 62 sources des huit dossiers alors publiés ont été
   re-vérifiées une à une contre leur texte original, ou contre un miroir institutionnel
   documenté quand la source primaire bloque les robots (doctrine.fr et justiweb.fr pour
@@ -180,7 +190,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `d97280a587c104d6…`. L'intégration du dossier « discriminations à l'embauche » (15:00
   UTC) a entraîné une ultime réapplication et recapture : **139 fiches exactes**, une par
   pièce publiée (111 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine des
-  captures `76a9fe09a97bf82f…`.
+  captures `76a9fe09a97bf82f…`. L'intégration du dossier « races biologiques humaines »
+  (15:06 UTC) a entraîné une ultime réapplication et recapture : **147 fiches exactes**, une
+  par pièce publiée (118 `URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) — racine
+  des captures `f2236f468699f983…`.
 
 ## Pile technique
 
@@ -439,7 +452,11 @@ des captures `d97280a587c104d6…`. Puis, à 15:00 UTC, l'intégration du dossie
 « discriminations à l'embauche » (dix-huitième publié) a entraîné une dernière
 réapplication et recapture : 139 pièces, 139 fiches déposées et relues — 111
 `URL_SNAPSHOT`, 25 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
-`76a9fe09a97bf82f…` ; fiches dédupliquées, une par pièce. Le
+`76a9fe09a97bf82f…` ; fiches dédupliquées, une par pièce. Puis, à 15:06 UTC, l'intégration
+du dossier « races biologiques humaines » (dix-neuvième publié) a entraîné une ultime
+réapplication et recapture : 147 pièces, 147 fiches déposées et relues — 118
+`URL_SNAPSHOT`, 26 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
+`f2236f468699f983…` ; fiches dédupliquées, une par pièce. Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
