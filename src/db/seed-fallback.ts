@@ -5991,6 +5991,225 @@ export const VOITURE_ELECTRIQUE_DOSSIER: Dossier = {
   ],
 };
 
+export const OTAN_RUSSIE_1990_DOSSIER: Dossier = {
+  id: "21397f5d-d6a1-440b-9b93-abe534b239d6",
+  slug: "otan-russie-traite-1990-non-elargissement-est",
+  claim_title:
+    "L'OTAN a violé un traité signé en 1990 promettant à la Russie de ne jamais s'élargir à l'Est",
+  verdict: "FAUX",
+  verdict_summary:
+    "Le « traité de 1990 » invoqué n'existe pas : les négociations dites « 2+4 » réglaient la réunification allemande, alors que le pacte de Varsovie existait encore, et le traité signé à Moscou le 12 septembre 1990 ne dit rien de l'Europe de l'Est — son article 5 limite le stationnement des forces étrangères à « cette partie de l'Allemagne » qu'est l'ex-RDA, et son article 6 réaffirme le droit de l'Allemagne unie d'appartenir à des alliances. Des assurances orales ont circulé en 1990, dont la formule de James Baker « pas un pouce vers l'Est » ; le National Security Archive, qui a publié les archives déclassifiées, établit qu'elles sont consignées « non dans des traités, mais dans des mémorandums de conversation » : rien n'a jamais été signé. Mikhaïl Gorbatchev l'a confirmé en 2014 : « le sujet de l'expansion de l'OTAN n'a pas du tout été discuté », et pour l'historienne M. E. Sarotte (Johns Hopkins), Vladimir Poutine se réfère à cette conversation « comme si c'était un engagement écrit dans un traité, alors que ça n'en était pas un ». La Russie a elle-même signé le Mémorandum de Budapest (1994), qui engage Moscou à « respecter l'indépendance et la souveraineté ainsi que les frontières existantes » de l'Ukraine : aucun texte ne lui donne un veto sur l'OTAN.",
+  category: "INTERNATIONAL",
+  protagonists: [
+    {
+      name: "Mikhaïl Gorbatchev",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Mikha%C3%AFl_Gorbatchev",
+      note: "Dernier dirigeant de l'URSS, signataire côté soviétique ; son entretien de 2014 avec Russia Beyond affirme que le sujet de l'expansion de l'OTAN n'a pas été discuté en 1990.",
+    },
+    {
+      name: "Organisation du traité de l'Atlantique nord",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Organisation_du_trait%C3%A9_de_l%27Atlantique_nord",
+      note: "Alliance atlantique, accusée d'avoir « violé » un engagement de non-élargissement qu'aucun texte ne formalise.",
+    },
+    {
+      name: "Traité sur le règlement définitif concernant l'Allemagne",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Trait%C3%A9_sur_le_r%C3%A8glement_d%C3%A9finitif_concernant_l%27Allemagne",
+      note: "Le traité « 2+4 » signé à Moscou le 12 septembre 1990 : son article 5 limite le stationnement des forces étrangères à l'ex-RDA et son article 6 réaffirme le droit d'alliance.",
+    },
+    {
+      name: "National Security Archive",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://en.wikipedia.org/wiki/National_Security_Archive",
+      note: "Centre de recherche de l'université George Washington ; sa publication de 2017 a déclassifié et analysé les mémorandums des conversations Baker-Gorbatchev de 1990.",
+    },
+    {
+      name: "Mary Elise Sarotte",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Mary_Elise_Sarotte",
+      note: "Historienne, professeure à la Johns Hopkins School of Advanced International Studies, autrice de « Not One Inch : America, Russia, and the Making of Post-Cold War Stalemate » (Yale, 2021).",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« Les Occidentaux ont signé en 1990 un engagement écrit de non-extension »",
+      status: "FAUX",
+      detail:
+        "Le traité sur le règlement définitif concernant l'Allemagne (« 2+4 », signé à Moscou le 12 septembre 1990 et ratifié par l'URSS) ne contient aucune clause sur l'élargissement de l'OTAN : son article 5 limite le stationnement de forces étrangères à « cette partie de l'Allemagne » qu'étaient la RDA et Berlin, et son article 6 affirme au contraire que « le droit de l'Allemagne unie d'appartenir à des alliances, avec tous les droits et obligations qui en découlent, n'est pas affecté par le présent Traité ». Les assurances du début 1990 — la formule que Baker répète le 9 février 1990, « pas un pouce vers l'Est » — sont documentées par le National Security Archive non dans un traité mais dans des comptes rendus de conversations entre dirigeants ; Baker les présentait comme une hypothèse de négociation, et l'historienne M. E. Sarotte montre que Washington les a écartées dès le retour de Baker auprès de George H. W. Bush. Aucun texte signé puis ratifié n'a jamais formalisé de non-élargissement.",
+    },
+    {
+      claim_part: "« L'Ukraine avait interdiction juridique de se rapprocher de l'OTAN »",
+      status: "FAUX",
+      detail:
+        "Aucun accord signé par la Russie n'interdit à un État de choisir ses alliances. Le Mémorandum de Budapest (5 décembre 1994), signé par la Fédération de Russie, le Royaume-Uni et les États-Unis, réaffirme « leur engagement envers l'Ukraine [...] de respecter son indépendance et sa souveraineté ainsi que ses frontières existantes » : c'est la Russie qui s'y engage sur les frontières ukrainiennes, pas l'inverse. En 1990, la question d'un élargissement aux pays de l'Est ne se posait même pas — l'URSS et le pacte de Varsovie (dissous en juillet 1991) existaient encore ; la candidature d'un État relève de l'article 10 du traité de Washington et d'une décision souveraine, et les négociations de 1997 (Acte fondateur OTAN-Russie) n'ont donné à Moscou aucun veto sur les adhésions.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-16T00:00:00.000Z",
+  illustration_url: "/illustrations/otan-russie-traite-1990-non-elargissement-est.jpg",
+  illustration_credit:
+    "Signatures des Alliés sur le traité « 2+4 » (Roland Dumas, Edouard Chevardnadze, Douglas Hurd, James Baker) — document officiel publié par le ministère allemand des Affaires étrangères, domaine public, Wikimedia Commons",
+  sources: [
+    {
+      id: "ae9c5951-e704-40f9-86c6-4111fa5c8bf2",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Traité sur le règlement définitif concernant l'Allemagne » (traité « 2+4 », signé à Moscou le 12 septembre 1990) — article 5 et article 6",
+      author_or_institution:
+        "République fédérale d'Allemagne, République démocratique allemande, États-Unis, France, Royaume-Uni et URSS — texte publié par le CVCE (Centre virtuel de la connaissance sur l'Europe)",
+      publication_date: "1990-09-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Des forces armées et des armes nucléaires ou des vecteurs d'armes nucléaires étrangers ne seront pas stationnés dans cette partie de l'Allemagne et n'y seront pas déployés.",
+      context_explanation:
+        "L'article 5 du traité signé à Moscou : « cette partie de l'Allemagne » désigne le territoire de la RDA et de Berlin — la seule zone où les forces étrangères ne stationneront pas après le retrait soviétique — et le paragraphe 3 y autorise le stationnement d'unités allemandes « bien que sans vecteurs d'armes nucléaires ». Aucune clause ne concerne l'Europe de l'Est ni un futur élargissement ; l'article 6 ajoute même que « le droit de l'Allemagne unie d'appartenir à des alliances, avec tous les droits et obligations qui en découlent, n'est pas affecté par le présent Traité ». C'est ce texte, ratifié par l'URSS, que le récit de la « promesse violée » présente comme un engagement de non-élargissement : il ne contient rien de tel.",
+      original_url:
+        "https://www.cvce.eu/content/publication/1999/1/1/5db0b251-c5bf-4f5a-b5d0-2047f829c19a/publishable_fr.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Trait%C3%A9_sur_le_r%C3%A8glement_d%C3%A9finitif_concernant_l%27Allemagne",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "3281ad49-e3d4-4de0-9983-f010195a3640",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Mémorandum de Budapest » (5 décembre 1994) — garanties de sécurité liées à l'adhésion de l'Ukraine au Traité sur la non-prolifération (ONU, Recueil des traités, vol. 3007, n° 52241)",
+      author_or_institution:
+        "Ukraine, Fédération de Russie, Royaume-Uni et États-Unis — enregistré au Secrétariat de l'Organisation des Nations Unies",
+      publication_date: "1994-12-05",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La Fédération de Russie, le Royaume-Uni de Grande-Bretagne et d'Irlande du Nord et les États-Unis d'Amérique réaffirment leur engagement envers l'Ukraine, conformément aux principes énoncés dans l'Acte final de la Conférence sur la sécurité et la coopération en Europe, de respecter son indépendance et sa souveraineté ainsi que ses frontières existantes.",
+      context_explanation:
+        "Le paragraphe 1 du Mémorandum, dans la traduction française publiée par l'ONU : en échange de la renonciation ukrainienne à l'arme nucléaire, Moscou — signataire — s'engage sur les frontières de l'Ukraine. Le texte ne comporte aucune restriction au droit de l'Ukraine de choisir ses alliances : l'« interdiction juridique » de se rapprocher de l'OTAN ne figure dans aucun accord signé par la Russie. L'enregistrement auprès de l'ONU date de 2014, à la demande de l'Ukraine ; trente ans après, ces engagements sont au cœur des débats sur la sécurité européenne.",
+      original_url:
+        "https://treaties.un.org/doc/Publication/UNTS/Volume%203007/Part/volume-3007-I-52241.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/M%C3%A9morandums_de_Budapest",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "c317deae-6d4d-4fc7-92e6-35b0b9c1cc1b",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Mikhail Gorbachev: I am against all walls » — entretien avec Russia Beyond the Headlines (16 octobre 2014)",
+      author_or_institution:
+        "Mikhaïl Gorbatchev, dernier dirigeant de l'URSS — entretien publié par Russia Beyond the Headlines",
+      publication_date: "2014-10-16",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The topic of « NATO expansion » was not discussed at all, and it wasn't brought up in those years. I say this with full responsibility.",
+      context_explanation:
+        "La réponse du signataire soviétique au journaliste qui lui demandait pourquoi il n'avait pas exigé que les « promesses » de 1990 — dont la formule de Baker citée en question — soient inscrites dans un texte juridique. Gorbatchev précise dans la suite de l'entretien ce qui, selon lui, a été discuté : l'engagement que les structures militaires de l'OTAN ne progresseraient pas sur le territoire de l'ex-RDA après la réunification. Gorbatchev a par ailleurs critiqué, à d'autres moments, l'élargissement de l'OTAN — mais sa déclaration de 2014 coupe court à l'idée d'un engagement de non-élargissement discuté puis trahi en 1990. En français : « Le sujet de l'expansion de l'OTAN n'a pas du tout été discuté, et il n'a pas été soulevé pendant ces années. Je l'affirme en pleine responsabilité. »",
+      original_url:
+        "https://www.rbth.com/international/2014/10/16/mikhail_gorbachev_i_am_against_all_walls_40673.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Mikha%C3%AFl_Gorbatchev",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "8f1690ee-a855-4f49-a453-01c198768ab3",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« NATO Expansion: What Gorbachev Heard » — National Security Archive, université George Washington (12 décembre 2017)",
+      author_or_institution:
+        "Svetlana Savranskaya et Tom Blanton, National Security Archive — documents déclassifiés américains, soviétiques, allemands, britanniques et français",
+      publication_date: "2017-12-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The former idea about « closer to the Soviet borders » is written down not in treaties but in multiple memoranda of conversation between the Soviets and the highest-level Western interlocutors (Genscher, Kohl, Baker, Gates, Bush, Mitterrand, Thatcher, Major, Woerner, and others) offering assurances throughout 1990 and into 1991 about protecting Soviet security interests and including the USSR in new European security structures.",
+      context_explanation:
+        "L'analyse de référence des archives déclassifiées : les assurances occidentales de 1990 — dont le « not one inch eastward » de Baker, répété trois fois lors de la rencontre du 9 février 1990 — existent bien, mais dans des comptes rendus de conversations, « non dans des traités » ; le statut spécial du territoire est-allemand, lui, a été codifié dans le traité du 12 septembre 1990. Ce dossier documentaire, qui reproduit les mémorandums soviétiques et américains, nourrit le débat d'historiens sur l'ampleur des propos tenus — il ne conclut pas à l'existence d'un engagement juridique : c'est précisément la distinction entre assurances politiques et traité que le claim confond. En français : « L'idée initiale (ne pas rapprocher l'OTAN des frontières soviétiques) est consignée non dans des traités, mais dans de nombreux mémorandums de conversation. »",
+      original_url:
+        "https://nsarchive.gwu.edu/briefing-book/russia-programs/2017-12-12/nato-expansion-what-gorbachev-heard-western-leaders-early",
+      author_reference_url: "https://en.wikipedia.org/wiki/National_Security_Archive",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "6b624bf9-f96e-4980-a44c-2884f945eaf6",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Russia's war in Ukraine has NATO on alert. Here's how we got to this point » — entretien avec M. E. Sarotte, NPR (17 mars 2022)",
+      author_or_institution:
+        "Mary Elise Sarotte, professeure d'histoire à la Johns Hopkins School of Advanced International Studies — entretien NPR",
+      publication_date: "2022-03-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "What Putin does is he keeps referring back to that moment as if that were a formal written treaty pledge, which it was not.",
+      context_explanation:
+        "L'historienne dont le livre « Not One Inch » (Yale University Press, 2021) a reconstitué les négociations à partir d'archives déclassifiées — dont des mémorandums soviétiques et américains qu'elle a fait déclassifier. Sa lecture : la conversation Baker-Gorbatchev de février 1990 était « hypothétique », portait sur le sort de l'Allemagne, et le traité finalement signé « permet explicitement à l'Article 5 de traverser la ligne de la guerre froide » — Moscou l'a signé. Sa conclusion situe exactement le claim : Poutine se réfère au début des négociations comme à un engagement écrit « alors que ça n'en était pas un ». En français : « Ce que fait Poutine, c'est qu'il ne cesse de se référer à ce moment comme s'il s'agissait d'un engagement écrit dans un traité, alors que ça n'en était pas un. »",
+      original_url:
+        "https://www.npr.org/2022/03/17/1086986950/russias-war-in-ukraine-has-nato-on-alert-heres-how-we-got-to-this-point",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Mary_Elise_Sarotte",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "c63861f5-19d4-40ab-914b-abb1a2a3475f",
+      spectrum: "GAUCHE",
+      source_name:
+        "« L'Otan avait-elle promis à la Russie de ne pas s'étendre aux anciens pays du pacte de Varsovie ? » — Libération, CheckNews (2 mars 2022)",
+      author_or_institution:
+        "Libération, rubrique CheckNews — avec Amélie Zima, chercheuse spécialiste de l'OTAN (université Paris 2 Panthéon-Assas), et Johanna Möhring (CASSIS, université de Bonn)",
+      publication_date: "2022-03-02",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Il n'y a pas eu de traité formel garantissant à l'URSS que l'OTAN ne s'élargira pas",
+      context_explanation:
+        "La vérification de Libération conclut comme les historiens : « il semble avéré qu'aucun engagement formel de la part ni de l'Otan, ni des Etats-Unis, ni du Royaume-Uni, ni de la France n'ait été formulé ». Amélie Zima rappelle que l'élargissement « est inconcevable dans le contexte de l'époque » — l'URSS existe encore et le pacte de Varsovie ne sera dissous qu'en juillet 1991 — et situe la citation de Baker (« pas d'un pouce ») dans son contexte : la question du statut de l'Allemagne réunifiée. L'article reproduit aussi la position officielle de l'OTAN : « un tel accord n'a jamais été conclu ».",
+      original_url:
+        "https://web.archive.org/web/20230101000923id_/https://www.liberation.fr/checknews/lotan-avait-elle-promis-a-la-russie-de-ne-pas-setendre-aux-anciens-pays-du-pacte-de-varsovie-20220302_IBKOWYOWCNB5LFKH7PV6T5PWME/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Lib%C3%A9ration_(journal)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "2c496937-ae69-4a32-a325-59d65d20e59a",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« L'Otan a-t-elle promis à la Russie de ne pas s'étendre à l'Est ? » — Le Figaro, rubrique « La vérification » (7 mars 2022)",
+      author_or_institution: "Le Figaro, rubrique La vérification, 7 mars 2022",
+      publication_date: "2022-03-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Ce n'est tout simplement pas vrai, une telle promesse n'a jamais été faite, il n'y a jamais eu un tel accord en coulisse",
+      context_explanation:
+        "Le Figaro confronte le récit de Vladimir Poutine — « « Pas un pouce vers l'Est », nous ont-ils dit dans les années 90. Et alors ? Ils ont triché, ils nous ont effrontément trompés ! » — à la position de l'Alliance : le secrétaire général de l'OTAN, Jens Stoltenberg, dément (« une telle promesse n'a jamais été faite, il n'y a jamais eu un tel accord en coulisse »), et l'OTAN « dément fermement l'existence d'une telle promesse ». Le quotidien relève que l'argument est repris en France, pendant la campagne présidentielle de 2022, par plusieurs candidats — signe qu'il circule bien au-delà de Moscou.",
+      original_url:
+        "https://www.lefigaro.fr/international/l-otan-a-t-elle-promis-a-la-russie-de-ne-pas-s-etendre-a-l-est-20220307",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Le_Figaro",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -6017,6 +6236,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   ISLAM_HOMOPHOBIE_TRANS_DOSSIER,
   CLIMAT_CYCLE_SOLAIRE_DOSSIER,
   VOITURE_ELECTRIQUE_DOSSIER,
+  OTAN_RUSSIE_1990_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

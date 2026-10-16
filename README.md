@@ -20,8 +20,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   « anachronisme historique » et « généralisation abusive »), `0008_dossier_illustration`
   (`20261015163000` — `illustration_url` et `illustration_credit` sur les dossiers, bucket
   public `illustrations` : lecture publique, dépôt réservé aux administrateurs).
-  Vingt-six dossiers en base :
-  vingt-cinq **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  Vingt-sept dossiers en base :
+  vingt-six **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -38,11 +38,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   dossiers Religion — l'union du prophète de l'islam avec Aïcha qualifiée de
   « pédophilie » (9, Religion, anachronisme historique) et « l'islam, seule religion
   scripturairement homophobe et transphobe » (12, Religion, généralisation abusive), le
-  réchauffement climatique attribué à un « cycle solaire » (9, environnement) et la voiture
-  électrique comparée au thermique en analyse de cycle de vie (7, environnement) —
+  réchauffement climatique attribué à un « cycle solaire » (9, environnement), la voiture
+  électrique comparée au thermique en analyse de cycle de vie (7, environnement) et
+  l'OTAN accusée d'avoir « violé » un traité de 1990 promettant de ne pas s'élargir à
+  l'Est (7, international) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 201 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 208 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -259,7 +261,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   (neuf sources) et du dossier « voiture électrique » a entraîné une réapplication du seed
   et la recapture des dossiers publiés : **201 fiches** déposées et relues — 166
   `URL_SNAPSHOT`, 32 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
-  `acd1a32ec934419d…` ; fiches dédupliquées, une par pièce.
+  `acd1a32ec934419d…` ; fiches dédupliquées, une par pièce. Puis, le 16/10/2026
+  (11:10 UTC), l'ajout du dossier « OTAN-Russie » (sept sources : traité 2+4, Mémorandum
+  de Budapest, entretien Gorbatchev de 2014, National Security Archive, M. E. Sarotte,
+  vérifications de Libération et du Figaro) a été **appliqué de façon ciblée**, sans
+  réapplication complète : ses sept fiches sont déposées et relues (six `URL_SNAPSHOT`,
+  une `URL_UNAVAILABLE` — NPR répond 403 aux robots) — racine des captures du dossier
+  `78da0277da73a4cf…`, racine d'intégrité `83112c910d50f193…` relevée en ligne égale à
+  l'`ETag` et au `X-Proof-Integrity-Root`. Le registre compte **208 fiches** — 172
+  `URL_SNAPSHOT`, 33 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`.
 
 ## Pile technique
 
@@ -623,7 +633,10 @@ dédupliquées, une par pièce. Puis, le 16/10/2026, l'ajout du dossier « cycle
 (neuf sources) et du dossier « voiture électrique » (sept sources) a entraîné une
 réapplication du seed et la recapture des dossiers publiés : **201 fiches** déposées et
 relues — 166 `URL_SNAPSHOT`, 32 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
-`acd1a32ec934419d…` ; fiches dédupliquées, une par pièce. Le build déployé alors en ligne, antérieur à la migration `0007`, ne
+`acd1a32ec934419d…` ; fiches dédupliquées, une par pièce. Puis l'ajout du dossier
+« OTAN-Russie » (sept sources, appliqué de façon ciblée) porte le registre à **208
+fiches** — 172 `URL_SNAPSHOT`, 33 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des
+captures du dossier `78da0277da73a4cf…`. Le build déployé alors en ligne, antérieur à la migration `0007`, ne
 connaissait ni la catégorie « Religion » ni les deux nouveaux verdicts : il refusait de
 lire les deux lignes ajoutées (le registre affichait une erreur de lecture). Un
 redéploiement (`gcloud builds submit --config cloudbuild.yaml`) a mis en ligne la
@@ -642,7 +655,7 @@ sans réapplication complète du seed : **12 fiches** déposées et relues — 1
 de la pièce est repris des métadonnées d'édition, OpenAlex et Crossref concordants) —
 racine des captures `e197be7289786f61…` ; fiches dédupliquées, une par pièce, zéro
 orpheline. Le dossier porte les **six piliers**. Le registre compte désormais
-**201 sources et 201 fiches** ; l'énumération des statuts de brique accueille
+**208 sources et 208 fiches** ; l'énumération des statuts de brique accueille
 `ANACHRONISME_CONCEPTUEL`, `DOUBLE_STANDARD`, `BIAIS_METHODOLOGIQUE` et
 `BIAIS_DE_SELECTION`, et le lecteur de la base connaît ces valeurs — sans quoi les
 prémisses concernées étaient écartées à la lecture. En ligne (révision
@@ -657,7 +670,7 @@ Le chantier des **illustrations** a rouvert la chaîne une dernière fois : la m
 maximum, nommés par l'empreinte de leurs octets) et chaque dossier publié s'ouvre
 désormais sur une **image libre de droits** — Wikimedia Commons ou domaine public —
 affichée en bandeau sous le titre, créditée en toutes lettres, et servie en vignette
-sur les cartes de l'accueil et du sommaire. Le seed typé rejoue les vingt-cinq
+sur les cartes de l'accueil et du sommaire. Le seed typé rejoue les vingt-six
 illustrations à l'identique, un test vérifie pour chacune le fichier et le crédit, et
 aucune image de presse protégée n'est employée. Le seed ayant été réappliqué, les
 **185 fiches** d'archive des vingt-trois dossiers publiés ont été recapturées d'une
@@ -706,9 +719,9 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 201 pièces publiées ont leur fiche déposée en base (une par pièce :
-  166 `URL_SNAPSHOT`, 32 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
-  PNAS et NOAA répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
+- Captures : les 208 pièces publiées ont leur fiche déposée en base (une par pièce :
+  172 `URL_SNAPSHOT`, 33 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
+  PNAS, NOAA et NPR répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
   rehachées. Le miroir Storage du bucket `immutable-archives` n'a pas eu lieu, faute
   d'accès privilégié.
 - Recherche : la branche vectorielle de la RPC ne ramène rien tant qu'aucun embedding
