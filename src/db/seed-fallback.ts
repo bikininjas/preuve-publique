@@ -5503,6 +5503,494 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
   ],
 };
 
+export const CLIMAT_CYCLE_SOLAIRE_DOSSIER: Dossier = {
+  id: "f8586520-d679-4a41-a9c0-09ed93cd94b5",
+  slug: "rechauffement-climatique-cycle-solaire-activite-humaine",
+  claim_title:
+    "Le réchauffement climatique actuel n'est qu'un cycle naturel lié au Soleil",
+  verdict: "FAUX",
+  verdict_summary:
+    "L'idée d'un réchauffement « cycle naturel du Soleil » se heurte à trois faits établis. D'abord, les radiomètres satellitaires mesurent l'irradiance solaire totale (TSI) sans interruption depuis 1978 : le cycle solaire de onze ans fait osciller l'énergie reçue d'environ 1 W/m² autour d'une moyenne qui n'a pas augmenté — elle a même légèrement baissé après le maximum des années 1980 — pendant que la température du globe a gagné environ 0,2 °C par décennie. La NASA conclut : « l'évidence montre que le réchauffement actuel ne peut pas être expliqué par le Soleil ». Ensuite, la structure verticale du réchauffement signe le mécanisme : la troposphère se réchauffe pendant que la stratosphère se refroidit (1,8 à 2,2 °C de refroidissement dans la moyenne et haute stratosphère entre 1986 et 2022, douze à quinze fois ce que les variations naturelles peuvent produire) — signature exclusive du piégeage infrarouge par les gaz à effet de serre, car un Soleil plus actif réchaufferait toutes les couches de l'atmosphère. Le GIEC (AR6, 2021) quantifie : sur 1850-1900 → 2010-2019, l'influence humaine explique +0,8 à +1,3 °C (meilleure estimation +1,07 °C), quand les facteurs naturels, solaire et volcanique, contribuent entre −0,1 et +0,1 °C ; l'Académie des sciences juge l'augmentation du CO2 « incontestablement due à l'activité humaine ». Enfin, ce réchauffement était anticipé — y compris par les industriels eux-mêmes : les projections internes d'ExxonMobil (1977-2003), analysées dans Science en 2023, prévoyaient +0,20 ± 0,04 °C par décennie (63 à 83 % exactes) et des « effets environnementaux spectaculaires avant 2050 » dès les années 1970. Les réassureurs mondiaux chiffrent la facture : US$ 320 milliards de pertes liées aux catastrophes naturelles en 2024 selon Munich Re, dont 93 % d'origine météorologique.",
+  category: "ENVIRONNEMENT",
+  protagonists: [
+    {
+      name: "NASA",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/National_Aeronautics_and_Space_Administration",
+      note: "Agence spatiale américaine ; ses mesures satellitaires de l'irradiance solaire totale (TSI) et ses synthèses climatiques documentent la divergence avec la courbe thermique.",
+    },
+    {
+      name: "National Oceanic and Atmospheric Administration",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/National_Oceanic_and_Atmospheric_Administration",
+      note: "Agence américaine d'observation océanique et atmosphérique ; tient le relevé mondial des températures (1850-2024) et les rapports climatiques annuels.",
+    },
+    {
+      name: "Groupe d'experts intergouvernemental sur l'évolution du climat",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Groupe_d%27experts_intergouvernemental_sur_l%27%C3%A9volution_du_climat",
+      note: "Organisme intergouvernemental ; son sixième rapport d'évaluation (AR6, 2021) quantifie la part humaine du réchauffement et l'apport négligeable des facteurs naturels.",
+    },
+    {
+      name: "Académie des sciences",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Acad%C3%A9mie_des_sciences_(France)",
+      note: "Académie scientifique française ; son rapport sur le changement climatique (2010) juge l'augmentation du CO2 « incontestablement due à l'activité humaine ».",
+    },
+    {
+      name: "ExxonMobil",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/ExxonMobil",
+      note: "Compagnie pétrolière ; ses propres scientifiques avaient modélisé dès 1977-1982 le réchauffement d'origine fossile, comme l'établit l'analyse publiée dans Science en 2023.",
+    },
+    {
+      name: "Swiss Re",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Swiss_Re",
+      note: "Réassureur mondial ; ses rapports sigma chiffrent chaque année la hausse des sinistres liés aux catastrophes naturelles et climatiques.",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« L'activité solaire explique la hausse actuelle des températures »",
+      status: "FAUX",
+      detail:
+        "Les mesures satellitaires de l'irradiance solaire totale (TSI), continues depuis 1978, montrent un cycle de onze ans d'une amplitude d'environ 1 W/m² sans aucune tendance à la hausse : la moyenne a même légèrement décliné après le maximum des années 1980. Pendant la même période, la température moyenne du globe a gagné environ 0,2 °C par décennie. Le GIEC (AR6, 2021) chiffre : sur 1850-1900 → 2010-2019, les facteurs naturels — solaire et volcanique — ont changé la température de −0,1 °C à +0,1 °C seulement, quand le total d'origine humaine est de +0,8 à +1,3 °C (meilleure estimation +1,07 °C). La NASA le formule sans détour : « l'évidence montre que le réchauffement actuel ne peut pas être expliqué par le Soleil » ; elle rappelle que les modèles qui n'incluent pas la hausse des gaz à effet de serre ne parviennent pas à reproduire la trajectoire observée.",
+    },
+    {
+      claim_part: "« Le réchauffement est uniforme comme lors d'un pic solaire »",
+      status: "FAUX",
+      detail:
+        "Un Soleil plus actif — dont le rayonnement ultraviolet est absorbé en altitude — réchaufferait toutes les couches de l'atmosphère. Or les observations montrent le contraire : entre 1986 et 2022, la moyenne et la haute stratosphère se sont refroidies de 1,8 à 2,2 °C, un refroidissement douze à quinze fois supérieur à ce que les variations naturelles peuvent produire (au plus 0,15 °C), pendant que la troposphère se réchauffait. Cette combinaison — troposphère chaude, stratosphère froide — est, selon Santer et al. (PNAS, 2023), « l'empreinte unique du forçage par les gaz à effet de serre » : « si le réchauffement de la troposphère était dû uniquement à l'activité solaire, on s'attendrait à un réchauffement — et non à un refroidissement — de la stratosphère supérieure ». C'est le piégeage infrarouge par les gaz à effet de serre, et non le Soleil, qui refroidit la haute atmosphère en réchauffant la basse.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-16T00:00:00.000Z",
+    illustration_url: "/illustrations/rechauffement-climatique-cycle-solaire-activite-humaine.jpg",
+    illustration_credit: "Photo : NASA — équipage d'Apollo 17 (« The Blue Marble », 1972), domaine public, Wikimedia Commons",
+  sources: [
+    {
+      id: "3a9dbcac-0f5e-446e-848b-d6b0403f849f",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« The Causes of Climate Change » — NASA Science (agence spatiale américaine)",
+      author_or_institution:
+        "NASA — Earth Science / Climate Change (relevés TSI satellitaires, séries GISTEMP de l'institut Goddard)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "While the Sun has played a role in past climate changes, the evidence shows the current warming cannot be explained by the Sun.",
+      context_explanation:
+        "La synthèse de référence de la NASA établit la divergence : « Scientists use a metric called Total Solar Irradiance (TSI) to measure the changes in energy the Earth receives from the Sun. TSI incorporates the 11-year solar cycle and solar flares/storms », or les études montrent que la variabilité solaire a joué un rôle dans les changements passés mais que la hausse actuelle ne vient pas d'elle. La NASA décrit aussi la signature verticale : les modèles solaires « would expect warmer temperatures in all layers of the atmosphere. Instead, they have observed a cooling in the upper atmosphere and a warming at the surface and lower parts of the atmosphere. That's because greenhouse gases are slowing heat loss from the lower atmosphere ».",
+      original_url: "https://science.nasa.gov/climate-change/causes/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/National_Aeronautics_and_Space_Administration",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "d6b07045-0312-462b-bdcb-1de22dcc788d",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« 2024 was the world's warmest year on record » — NOAA (National Centers for Environmental Information)",
+      author_or_institution:
+        "National Oceanic and Atmospheric Administration (NOAA) — rapport climatique annuel mondial, 10 janvier 2025",
+      publication_date: "2025-01-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Earth's average land and ocean surface temperature in 2024 was 2.32 degrees F (1.29 degrees C) above the 20th-century average — the highest global temperature among all years in NOAA's 1850-2024 climate record.",
+      context_explanation:
+        "Le relevé de l'agence américaine pour 2024 : année la plus chaude depuis 1850, +1,29 °C au-dessus de la moyenne du XXe siècle, 0,10 °C de plus que 2023 qui était déjà record. La tendance de fond — environ +0,2 °C par décennie depuis 1970 — est incompatible avec le cycle solaire de onze ans, dont la contribution mesurée est plate depuis 1978, et confirme l'accumulation de chaleur par les gaz à effet de serre.",
+      original_url: "https://www.noaa.gov/news/2024-was-worlds-warmest-year-on-record",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/National_Oceanic_and_Atmospheric_Administration",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "f75f3345-3de6-4865-86e1-b0f9f82b0228",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "GIEC — sixième rapport d'évaluation (AR6), groupe de travail I, résumé pour décideurs",
+      author_or_institution:
+        "Groupe d'experts intergouvernemental sur l'évolution du climat (GIEC/IPCC), contribution du groupe I « Les bases scientifiques physiques », 9 août 2021",
+      publication_date: "2021-08-09",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "It is likely that well-mixed GHGs contributed a warming of 1.0°C to 2.0°C, other human drivers (principally aerosols) contributed a cooling of 0.0°C to 0.8°C, natural drivers changed global surface temperature by –0.1°C to +0.1°C, and internal variability changed it by –0.2°C to +0.2°C.",
+      context_explanation:
+        "Le chiffrage de référence : sur 1850-1900 → 2010-2019, le réchauffement total attribué à l'humain est de +0,8 à +1,3 °C (meilleure estimation +1,07 °C), dont 1,0 à 2,0 °C dus aux gaz à effet de serre, partiellement compensés par les aérosols. Les facteurs naturels — Soleil et volcans — n'expliquent que −0,1 à +0,1 °C. Le SPM ouvre sur « It is unequivocal that human influence has warmed the atmosphere, ocean and land. » ; les simulations ne reproduisant pas la trajectoire observée sans l'influence humaine (figure SPM.1) sont au cœur de ce constat.",
+      original_url: "https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Groupe_d%27experts_intergouvernemental_sur_l%27%C3%A9volution_du_climat",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "e2908d9e-f907-4829-abe5-3b4ac93675b1",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Académie des sciences — rapport « Le changement climatique » (synthèse du débat de septembre 2010)",
+      author_or_institution:
+        "Académie des sciences (France) — comité Sciences de l'environnement, rapport du 26 octobre 2010",
+      publication_date: "2010-10-26",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'augmentation de CO2 et, à un moindre degré, des autres gaz à effet de serre, est incontestablement due à l'activité humaine.",
+      context_explanation:
+        "L'académie scientifique française écrit noir sur blanc l'attribution anthropique : « Plusieurs indicateurs indépendants montrent une augmentation du réchauffement climatique de 1975 à 2003. Cette augmentation est principalement due à l'augmentation de la concentration du CO2 dans l'atmosphère. [...] Elle constitue une menace pour le climat et, de surcroît, pour les océans en raison du processus d'acidification qu'elle provoque. » Le rapport traite explicitement des mécanismes du forçage solaire — qu'il distingue des forçages actuels — et fait le point sur les incertitudes scientifiques sans en tirer une relativisation de l'attribution.",
+      original_url: "https://www.academie-sciences.fr/pdf/rapport/rapport261010.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Acad%C3%A9mie_des_sciences_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "e2066986-dc50-4d0c-aaf0-101b9bbcaa66",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Exceptional stratospheric contribution to human fingerprints on atmospheric temperature » — PNAS (Santer et al., 2023)",
+      author_or_institution:
+        "Benjamin D. Santer, Stephen Po-Chedley, Lilong Zhao, Cheng-Zhi Zou, Qiang Fu, Susan Solomon, David W. J. Thompson, Carl Mears, Karl E. Taylor — Proceedings of the National Academy of Sciences (PNAS), vol. 120 n° 20",
+      publication_date: "2023-05-08",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "In summary, the warming of the troposphere and cooling of the stratosphere across all latitudes is a unique fingerprint of greenhouse gas forcing. If tropospheric warming were solely due to solar activity, warming rather than cooling of the upper stratosphere would be expected.",
+      context_explanation:
+        "L'étude de référence sur l'empreinte verticale : les mesures satellitaires de 1986 à 2022 montrent que la moyenne et la haute stratosphère se sont refroidies de 1,8 à 2,2 °C, alors que les variations naturelles ne peuvent produire que 0,15 °C au maximum — « douze à quinze fois moins », résume l'université UCLA, pour qui c'est « la preuve la plus claire d'une empreinte humaine sur le système climatique » selon le climatologue Benjamin Santer. L'étude établit aussi que ce refroidissement ne peut s'expliquer par la variabilité interne seule : il n'apparaît jamais dans les simulations longue durée. C'est la réfutation directe de la thèse solaire.",
+      original_url: "https://www.pnas.org/doi/10.1073/pnas.2300758120",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Acad%C3%A9mie_nationale_des_sciences_(%C3%89tats-Unis)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "982dfa34-da75-4378-baaa-5784ce36f4fc",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Assessing ExxonMobil's global warming projections » — Science (Supran, Rahmstorf, Oreskes, 2023)",
+      author_or_institution:
+        "G. Supran, S. Rahmstorf et N. Oreskes — revue Science, vol. 379, n° 6628 (analyse des mémos et modélisations internes d'Exxon/ExxonMobil, 1977-2003)",
+      publication_date: "2023-01-13",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "ExxonMobil's average projected warming was 0.20° ± 0.04°C per decade, which is, within uncertainty, the same as that of independent academic and government projections published between 1970 and 2007.",
+      context_explanation:
+        "L'analyse systématique — et non la polémique — de seize projections documentées par les scientifiques d'Exxon : 63 à 83 % d'entre elles se sont révélées exactes, avec une précision comparable aux modèles académiques et étatiques ; dix sur seize collent aux observations. Les documents internes des années 1970-1980 décrivaient déjà les effets d'un doublement du CO2, et un mémo de la fin des années 1970 évoque des « effets environnementaux spectaculaires avant 2050 ». La conclusion des auteurs : ExxonMobil « prévoyait correctement le réchauffement » tout en semant publiquement le doute. La connaissance du lien fossiles-climat est donc contemporaine du début du réchauffement mesuré.",
+      original_url: "https://www.science.org/doi/10.1126/science.abk0063",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Naomi_Oreskes",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "b80e23ff-b33d-47f0-8762-af29ac0a719e",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Swiss Re Institute — sigma 1/2024 : « Natural catastrophes in 2023 » (le coût assureur du climat)",
+      author_or_institution:
+        "Swiss Re Institute — rapport sigma (réassurance mondiale), 26 mars 2024",
+      publication_date: "2024-03-26",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Global annual insured losses from natural catastrophes of more than USD 100 billion have become the norm. Such was the case too in 2023, the hottest year on record.",
+      context_explanation:
+        "Le premier réassureur mondial — acteur du marché, non militant — constate la nouvelle norme : plus de 100 milliards de dollars de sinistres assurés par an, cinq années consécutives au-dessus du seuil. En 2023, année la plus chaude jamais mesurée, les catastrophes naturelles ont causé 280 milliards de dollars de pertes économiques (38 % assurées), avec un record de 142 événements générateurs de sinistres, porté par des périls climatiques (orages convectifs sévères notamment). Le signal actuariel converge avec la physique : la tendance des sinistres suit la trajectoire thermique, pas les cycles solaires.",
+      original_url:
+        "https://www.swissre.com/institute/research/sigma-research/sigma-2024-01/in-short.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Swiss_Re",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "e3a9037f-9de5-422b-acf8-ec019945cab0",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Munich Re — « Natural disasters 2024 : Climate change is showing its claws »",
+      author_or_institution:
+        "Munich Re — communiqué sur les catastrophes naturelles 2024 (Munich Reinsurance Company), 9 janvier 2025",
+      publication_date: "2025-01-09",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Worldwide, natural disasters caused losses of US$ 320bn in 2024 (2023, adjusted for inflation: US$ 268bn), of which around US$ 140bn were insured.",
+      context_explanation:
+        "Le second grand réassureur mondial chiffre l'année : 320 milliards de dollars de pertes totales en 2024 — bien au-dessus des moyennes décennales (236) et trentenaires (181) — dont 140 milliards assurés. « Les catastrophes météorologiques ont été responsables de 93 % des pertes totales et 97 % des pertes assurées. » Munich Re conjugue le constat : « Climate change is showing its claws: the world is getting hotter, resulting in severe hurricanes, thunderstorms and floods » et note que « 2024 remplacera 2023 comme année la plus chaude », à environ 1,5 °C au-dessus de l'ère préindustrielle. Des acteurs à la clientèle conservatrice classent donc la tendance comme structurelle, pas cyclique.",
+      original_url:
+        "https://www.munichre.com/en/company/media-relations/media-information-and-corporate-news/media-information/2025/natural-disaster-figures-2024.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Munich_Re",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "5cef3a88-d94e-4099-90c3-61be6bf416d3",
+      spectrum: "GAUCHE",
+      source_name:
+        "« Réchauffement climatique : les températures de 2024 vont encore battre les records, passant la barre des + 1,5 °C » — L'Humanité",
+      author_or_institution: "Théo Bourrieau, L'Humanité (rubrique Environnement), 7 novembre 2024",
+      publication_date: "2024-11-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'année 2024 sera l'année la plus chaude jamais enregistrée, battant, encore une fois, tous les records. Selon les données du service européen Copernicus, la barre des + 1,5 °C va être dépassée pour la première fois, accentuant encore plus les phénomènes climatiques extrêmes.",
+      context_explanation:
+        "La presse de gauche relaie les mesures : « l'observatoire européen [...] prévoit que 2024 sera quasi certainement l'année la plus chaude jamais enregistrée, mais aussi la première avec une hausse de la température moyenne du globe d'1,5°C au-dessus de la période préindustrielle ». L'article inscrit le record dans le contexte politique de la COP 29 et de l'élection américaine. Aucune trace, dans ce cadrage, d'une explication solaire : la communauté qui documente le climat attribue la série de records à l'accumulation de gaz à effet de serre.",
+      original_url:
+        "https://www.humanite.fr/environnement/accord-de-paris/rechauffement-climatique-les-temperatures-de-2024-vont-encore-battre-les-records-passant-la-barre-des-15-c",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+  ],
+};
+
+export const VOITURE_ELECTRIQUE_DOSSIER: Dossier = {
+  id: "7db67bc7-943f-460c-961e-f03736020958",
+  slug: "voiture-electrique-vs-thermique-bilan-carbone-acv",
+  claim_title:
+    "Une voiture électrique pollue autant ou plus qu'une thermique à cause de sa batterie",
+  verdict: "FAUX",
+  verdict_summary:
+    "La « dette carbone » de la batterie existe, mais elle ne renverse jamais le bilan : selon l'avis de l'ADEME publié le 7 octobre 2026, sur son cycle de vie complet, une voiture électrique rechargée en France a un bilan carbone « au moins divisé par deux » par rapport à son équivalente thermique ou hybride. La fabrication d'une électrique émet environ deux fois plus que celle d'une thermique — la batterie en représente environ la moitié — mais cet écart est amorti après environ 70 000 km pour une compacte (60 kWh) comparée à une hybride essence non rechargeable ; ensuite, chaque kilomètre consolide l'avantage. Le carburant d'une thermique, lui, est intégralement brûlé et ses émissions ne se compensent jamais, quand les métaux des batteries sont collectés et recyclés sous obligation légale (règlement (UE) 2023/1542 : dès 2027, 50 % du lithium et 90 % du cobalt et du nickel valorisés). Le constat traverse les institutions : GIEC (haute confiance pour une recharge décarbonée), ICCT (66 à 69 % d'émissions en moins en Europe sur le cycle de vie), Agence internationale de l'énergie (environ la moitié des émissions au niveau mondial).",
+  category: "ENVIRONNEMENT",
+  protagonists: [
+    {
+      name: "ADEME",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Agence_de_l%27environnement_et_de_la_ma%C3%AEtrise_de_l%27%C3%A9nergie",
+      note: "Agence de la transition écologique ; son avis du 7 octobre 2026 et son rapport sur l'empreinte carbone des batteries documentent le cycle de vie complet des véhicules.",
+    },
+    {
+      name: "Groupe d'experts intergouvernemental sur l'évolution du climat",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Groupe_d%27experts_intergouvernemental_sur_l%27%C3%A9volution_du_climat",
+      note: "Organisme intergouvernemental ; son sixième rapport d'évaluation (AR6, groupe III) établit en haute confiance l'avantage des véhicules électriques sur le cycle de vie, à recharge bas-carbone.",
+    },
+    {
+      name: "Conseil international pour des transports propres (ICCT)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://en.wikipedia.org/wiki/International_Council_on_Clean_Transportation",
+      note: "Organisation de recherche indépendante ; son étude mondiale de 2021 chiffre l'écart d'émissions sur le cycle de vie entre électriques et thermiques sur les quatre grands marchés.",
+    },
+    {
+      name: "Agence internationale de l'énergie",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Agence_internationale_de_l%27%C3%A9nergie",
+      note: "Agence intergouvernementale ; son rapport annuel Global EV Outlook chiffre les émissions cycle de vie des voitures électriques au niveau mondial.",
+    },
+    {
+      name: "Le Figaro",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Le_Figaro",
+      note: "Quotidien national français ; il relaie sans réserve, dès 2022, le résultat de l'ADEME sur le bilan carbone de l'électrique.",
+    },
+  ],
+  consensus_score: 98,
+  premises: [
+    {
+      claim_part: "« La fabrication de la batterie annule le gain écologique »",
+      status: "FAUX",
+      detail:
+        "L'empreinte de fabrication est réelle et documentée — environ le double d'une thermique équivalente, la batterie en représentant environ la moitié, avec de l'ordre de 140 kg CO2eq/kWh pour une production en Asie — mais elle est amortie : la « dette carbone » est remboursée après environ 70 000 km pour une compacte (exemple de l'avis ADEME : type 308/Mégane, batterie 60 kWh, comparée à une hybride essence non rechargeable), et « le reste de sa durée de vie consolide l'avantage de l'électrique ». À l'échelle des marchés, l'ICCT mesure 66 à 69 % d'émissions en moins en Europe sur le cycle de vie complet ; le GIEC en fait une conclusion de haute confiance dès lors que la recharge est bas-carbone, ce qui est le cas en France. La prémisse ne vaudrait que pour un véhicule qui ne roule pratiquement jamais, ou une batterie démesurée dans un réseau très carboné — des cas particuliers, pas la règle.",
+    },
+    {
+      claim_part: "« Les batteries finissent à la décharge en fin de vie »",
+      status: "FAUX",
+      detail:
+        "Le droit européen organise précisément l'inverse : le règlement (UE) 2023/1542 fixe des objectifs contraignants de contenu recyclé pour le cobalt, le plomb, le lithium et le nickel, et des objectifs de valorisation des matières (annexe XII : dès 2027, 50 % du lithium et 90 % du cobalt et du nickel ; 80 % et 95 % en 2031), avec les obligations de collecte associées. Le rapport ADEME de juin 2026 modélise la filière : les procédés de recyclage existent, la France et l'Europe disposent de capacités industrielles, et l'ADEME rappelle que les matières premières des batteries « ne sont pas perdues à l'usage, contrairement aux carburants fossiles lors de leur combustion ». Une batterie usagée est une mine urbaine ; un plein d'essence, un volume de CO2 définitivement dans l'atmosphère.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-16T00:00:00.000Z",
+  illustration_url: "/illustrations/voiture-electrique-vs-thermique-bilan-carbone-acv.jpg",
+  illustration_credit:
+    "Photo : Raphael Desrosiers (dérivé : Mariordo), Wikimedia Commons, CC BY 2.0",
+  sources: [
+    {
+      id: "181de36a-fa8c-4ee0-b3eb-8706e68b4741",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Avis : Le véhicule électrique et sa recharge » — ADEME (avis du 7 octobre 2026, 18 pages)",
+      author_or_institution:
+        "ADEME — Agence de la transition écologique, avis publié le 7 octobre 2026",
+      publication_date: "2026-10-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La « dette carbone » à 0 km du modèle électrique, due à sa fabrication, est amortie après environ 70 000 km.",
+      context_explanation:
+        "Le cœur de l'avis : la fabrication d'une voiture électrique pèse environ le double de celle d'une thermique — la batterie en représentant environ la moitié — mais la « dette carbone » du modèle électrique est amortie après environ 70 000 km dans l'exemple représentatif (une compacte type 308/Mégane, batterie 60 kWh, comparée à une hybride essence non rechargeable) ; ensuite « le reste de sa durée de vie consolide l'avantage de l'électrique ». Le « à retenir » de l'avis conclut : « Sur son cycle de vie complet, le bilan carbone d'une voiture électrique se rechargeant en France est au moins divisé par deux par rapport à son alternative thermique ou hybride », et rappelle que les matières premières des batteries « ne sont pas perdues à l'usage, contrairement aux carburants fossiles lors de leur combustion ».",
+      original_url:
+        "https://librairie.ademe.fr/mobilite-et-transports/9581-avis-de-l-ademe-sur-la-voiture-electrique-et-sa-recharge.html",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Agence_de_l%27environnement_et_de_la_ma%C3%AEtrise_de_l%27%C3%A9nergie",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "7ba15842-07d2-4301-bdba-ae82892ae025",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Empreinte carbone des batteries de véhicules électriques » — ADEME (rapport final, juin 2026)",
+      author_or_institution:
+        "Caroline Mir et Hamza El Jebbari, ADEME — rapport final, juin 2026 (62 pages), dans le cadre de l'article 7 du règlement (UE) 2023/1542",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les résultats montrent que les principaux contributeurs à l'empreinte carbone sont la production des matériaux actifs (plus de 50 % de l'impact total), la fabrication des cellules — incluant la consommation d'énergie et les rebuts de production — ainsi que l'aluminium utilisé dans les cellules, modules et packs.",
+      context_explanation:
+        "L'étude réalisée pour l'application du règlement européen (article 7 : déclaration d'empreinte carbone des batteries) modélise, sur plus de trente-cinq paramètres, ce qui pèse réellement : les matériaux actifs (lithium, cobalt, nickel…) comptent pour plus de la moitié de l'empreinte totale. Elle documente aussi les leviers : la relocalisation des cellules en France ne réduit l'empreinte que d'environ 15 % tant que les matières actives restent importées, mais une production française des matières actives apporte environ 35 % de baisse — et les procédés de recyclage existent, ce qui alimente la boucle des métaux.",
+      original_url:
+        "https://librairie.ademe.fr/mobilite-et-transports/9583-empreinte-carbone-des-batteries-de-vehicules-electriques.html",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Agence_de_l%27environnement_et_de_la_ma%C3%AEtrise_de_l%27%C3%A9nergie",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "f87d65cf-02ba-4908-a003-cb30a17933b2",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Sixième rapport d'évaluation (AR6) — groupe III « Mitigation of Climate Change », chapitre 10 « Transport » : les véhicules électriques sur le cycle de vie",
+      author_or_institution:
+        "GIEC — Groupe d'experts intergouvernemental sur l'évolution du climat, contribution du groupe III publiée le 4 avril 2022",
+      publication_date: "2022-04-04",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Battery electric vehicles (BEVs) have lower lifecycle greenhouse gas emissions than internal combustion engine vehicles (ICEVs) when BEVs are charged with low-carbon electricity (high confidence).",
+      context_explanation:
+        "Le constat du groupe III du GIEC, en haute confiance : à recharge décarbonée, l'électrique bat la thermique sur l'ensemble du cycle de vie, fabrication comprise. La France, avec son mix électrique, remplit la condition ; le rapport projette que la décarbonation des transports passe par l'électrification. C'est le niveau de preuve le plus élevé de la littérature mondiale : la thèse « pollue autant » contredit la synthèse intergouvernementale elle-même.",
+      original_url:
+        "https://www.ipcc.ch/report/ar6/wg3/downloads/report/IPCC_AR6_WGIII_Chapter10.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Groupe_d%27experts_intergouvernemental_sur_l%27%C3%A9volution_du_climat",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "0e62c471-ba11-40d2-b17f-c9861e3181eb",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« A global comparison of the life-cycle greenhouse gas emissions of combustion engine and electric passenger cars » — ICCT (juillet 2021)",
+      author_or_institution:
+        "Conseil international pour des transports propres (ICCT), étude publiée en juillet 2021",
+      publication_date: "2021-07-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "As shown for average new medium-size cars in Figure ES.1, the assessment finds that the life-cycle emissions over the lifetime of BEVs registered today in Europe, the United States, China, and India are already lower than a comparable gasoline car by 66%–69% in Europe, 60%–68% in the United States, 37%–45% in China, and 19%–34% in India.",
+      context_explanation:
+        "L'étude de référence compare, sur le cycle de vie complet, l'électrique et la thermique essence sur les quatre grands marchés : partout, l'électrique l'emporte déjà — y compris en Chine (−37 à −45 %) et en Inde (−19 à −34 %), où les réseaux restent très carbonés. En Europe, l'écart atteint 66 à 69 %, et il s'élargira mécaniquement avec la décarbonation (74 à 77 % pour des voitures immatriculées en 2030, selon la même étude). Le « autant ou plus » ne tient sur aucun des marchés étudiés.",
+      original_url:
+        "https://theicct.org/sites/default/files/publications/Global-LCA-passenger-cars-jul2021_0.pdf",
+      author_reference_url:
+        "https://en.wikipedia.org/wiki/International_Council_on_Clean_Transportation",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "b94e5c48-33d2-499b-84ad-d0671fdb40d9",
+      spectrum: "CENTRE",
+      source_name:
+        "« Global EV Outlook 2024 », section « Outlook for emissions reductions » — Agence internationale de l'énergie",
+      author_or_institution:
+        "Agence internationale de l'énergie (AIE), rapport annuel Global EV Outlook, publié le 23 avril 2024",
+      publication_date: "2024-04-23",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Globally, in the STEPS, the lifecycle emissions of a medium-size battery electric car are about half of those of an equivalent ICEV that is running on oil-based fuels, more than 40% lower than for an equivalent HEV, and about 30% lower than for a PHEV over 15 years of operation, or around 200 000 km.",
+      context_explanation:
+        "Le chiffrage mondial de l'agence intergouvernementale : environ la moitié des émissions d'une thermique sur environ 200 000 km — en moyenne mondiale, donc réseaux compris. La comparaison est aussi défavorable aux hybrides, rechargeables ou non, souvent présentés comme le compromis raisonnable. L'avantage se renforce à mesure que les réseaux se décarbonent.",
+      original_url:
+        "https://www.iea.org/reports/global-ev-outlook-2024/outlook-for-emissions-reductions",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Agence_internationale_de_l%27%C3%A9nergie",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "7e4e1f65-e181-4d2e-b9e3-c4f1664e144a",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Règlement (UE) 2023/1542 relatif aux batteries et aux déchets de batteries — objectifs contraignants de valorisation des matériaux critiques",
+      author_or_institution:
+        "Parlement européen et Conseil de l'Union européenne, règlement du 12 juillet 2023 (JO L 191 du 28 juillet 2023)",
+      publication_date: "2023-07-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Dans le cas des batteries, cela revêt une importance particulière pour le cobalt, le plomb, le lithium et le nickel. Il est donc nécessaire de promouvoir la valorisation de ces matières présentes dans les déchets, en établissant une exigence concernant le taux de contenu recyclé dans les batteries utilisant du cobalt, du plomb, du lithium et du nickel dans les matières actives. Le présent règlement devrait donc fixer des objectifs contraignants en ce qui concerne le contenu recyclé pour le cobalt, le plomb, le lithium et le nickel, qui devraient être atteints d'ici à 2031.",
+      context_explanation:
+        "L'obligation de droit communautaire : contenu recyclé contraignant à horizon 2031 et, à l'annexe XII, objectifs de valorisation des matières — dès 2027, 50 % du lithium et 90 % du cobalt et du nickel ; 80 % et 95 % en 2031 — avec les obligations de collecte qui les accompagnent. Là où le pétrole brûlé disparaît une fois pour toutes, le cadre légal organise la récupération des métaux stratégiques : le scénario « les batteries finissent à la décharge » est précisément ce que ce texte vise à éliminer.",
+      original_url: "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32023R1542",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "f40e2d8e-cc39-41cd-9403-9627c6c1c9f2",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« La voiture électrique est écologique si elle reste légère, souligne l'Ademe » — Le Figaro (flash éco)",
+      author_or_institution: "Le Figaro, 12 octobre 2022",
+      publication_date: "2022-10-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Sur l'ensemble de sa durée de vie, une voiture électrique roulant en France a un impact carbone 2 à 3 fois inférieur à celui d'un modèle similaire thermique, à condition que sa batterie fasse moins de 60 kWh, soit l'équivalent d'une Peugeot e208 ou une Renault Mégane au maximum, avec des autonomies de 400 kilomètres environ.",
+      context_explanation:
+        "Le résultat de l'ADEME relayé tel quel par un quotidien de droite, peu suspect de militantisme électrique : « 2 à 3 fois inférieur » dès l'édition 2022 de l'avis — l'édition 2026 resserre encore la formulation (« au moins divisé par deux »). La prémisse « pollue autant » n'a de relais, dans la presse, que du côté du doute intéressé : les constructeurs qui veulent réhabiliter le thermique.",
+      original_url:
+        "https://www.lefigaro.fr/flash-eco/la-voiture-electrique-est-ecologique-si-elle-reste-legere-souligne-l-ademe-20221012",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Le_Figaro",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -5527,6 +6015,8 @@ export const SEED_DOSSIERS: Dossier[] = [
   RACES_BIOLOGIQUES_DOSSIER,
   AICHA_ANACHRONISME_DOSSIER,
   ISLAM_HOMOPHOBIE_TRANS_DOSSIER,
+  CLIMAT_CYCLE_SOLAIRE_DOSSIER,
+  VOITURE_ELECTRIQUE_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 
