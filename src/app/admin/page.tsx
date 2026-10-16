@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-import { createDossierAction, signInAction, signOutAction } from "@/app/admin/actions";
+import {
+  createDossierAction,
+  signInAction,
+  signInWithGoogleAction,
+  signOutAction,
+} from "@/app/admin/actions";
 import { currentAdmin, supabaseSession } from "@/server/supabase/admin.ts";
 import { CATEGORY_LABELS, CATEGORY_ORDER, VERDICT_LABELS } from "@/lib/labels";
 import { VERDICT_VALUES } from "@/server/validators/dossier.schema.ts";
@@ -10,6 +15,30 @@ export const dynamic = "force-dynamic";
 type PageProps = {
   searchParams: Promise<{ ok?: string; probleme?: string }>;
 };
+
+/** Le « G » de Google, en SVG inline — un repère de fournisseur, pas un logo décoratif. */
+function GoogleMark() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+      <path
+        fill="#4285F4"
+        d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.67-3.88 2.67-6.62Z"
+      />
+      <path
+        fill="#34A853"
+        d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M3.97 10.72a5.4 5.4 0 0 1 0-3.44V4.95H.96a9 9 0 0 0 0 8.1l3.01-2.33Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58Z"
+      />
+    </svg>
+  );
+}
 
 function Banner({ ok, probleme }: { ok?: string; probleme?: string }) {
   if (probleme !== undefined) {
@@ -32,10 +61,27 @@ export default async function AdminPage({ searchParams }: PageProps) {
 
   if (admin === null || client === null) {
     return (
-      <div className="space-y-4">
+      <div className="max-w-md space-y-4">
         <Banner ok={ok} probleme={probleme} />
-        <form action={signInAction} className="max-w-md space-y-3 border border-grid bg-surface p-4">
+
+        <form
+          action={signInWithGoogleAction}
+          className="space-y-3 border border-grid bg-surface p-4"
+        >
           <h1 className="pp-h3 font-serif text-ink">Connexion</h1>
+          <button className="pp-btn pp-btn--ink w-full" type="submit">
+            <GoogleMark />
+            Continuer avec Google
+          </button>
+          <p className="pp-tight text-muted">
+            Les comptes sont ceux de Supabase Auth, Google compris. Un compte sans
+            ligne dans <span className="font-mono">admin_users</span> peut se
+            connecter mais n&apos;a aucun droit d&apos;écriture : la RLS refuse.
+          </p>
+        </form>
+
+        <form action={signInAction} className="space-y-3 border border-grid bg-surface p-4">
+          <p className="pp-meta text-muted">ou connexion par courriel</p>
           <label className="block">
             <span className="pp-meta text-muted">Courriel</span>
             <input
@@ -56,14 +102,9 @@ export default async function AdminPage({ searchParams }: PageProps) {
               required
             />
           </label>
-          <button className="pp-btn pp-btn--ink w-full" type="submit">
+          <button className="pp-btn w-full" type="submit">
             Se connecter
           </button>
-          <p className="pp-tight text-muted">
-            Les comptes sont ceux de Supabase Auth. Un compte sans ligne dans
-            <span className="font-mono"> admin_users</span> peut se connecter mais
-            n&apos;a aucun droit d&apos;écriture : la RLS refuse.
-          </p>
         </form>
       </div>
     );

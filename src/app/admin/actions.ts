@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { createHash } from "node:crypto";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -128,6 +129,32 @@ export async function signInAction(form: FormData) {
   }
   revalidatePath("/admin");
   redirect("/admin?ok=" + encodeURIComponent("Connecté."));
+}
+
+/**
+ * Connexion Google : la session est déléguée à Supabase Auth (fournisseur
+ * « google »). Le flow PKCE est celui de `@supabase/ssr` : le vérificateur
+ * part dans un cookie, le code revient sur `/auth/callback` où il est échangé
+ * contre une session — le compte doit ensuite exister dans `admin_users`,
+ * c'est la table qui décide des droits, pas le fournisseur d'identité.
+ */
+export async function signInWithGoogleAction() {
+  const client = await supabaseSession();
+  if (client === null) {
+    problem("/admin", "Supabase n'est pas configuré sur ce serveur.");
+  }
+  const origin = (await headers()).get("origin") ?? "https://preuve-publique.fr";
+  const { data, error } = await client.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${origin}/auth/callback?next=/admin` },
+  });
+  if (error !== null) {
+    problem("/admin", `Connexion Google refusée : ${error.message}`);
+  }
+  if (data.url === undefined || data.url.length === 0) {
+    problem("/admin", "Connexion Google impossible : aucune URL d'autorisation renvoyée.");
+  }
+  redirect(data.url);
 }
 
 export async function signOutAction() {

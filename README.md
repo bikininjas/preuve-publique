@@ -402,9 +402,11 @@ vide reste vide plutôt que d'être remplie d'un texte d'attente.
 L'écriture passe par **`/admin`**, qui n'est ni un back-office hors du site ni une
 connexion privilégiée :
 
-- les comptes sont ceux de Supabase Auth ; les droits sont une **ligne en base** dans
-  `admin_users`, vérifiée par la fonction `is_admin()` (security definer). Retirer la
-  ligne retire l'accès, sans redéploiement ;
+- les comptes sont ceux de Supabase Auth — connexion par **Google** (OAuth, flow PKCE de
+  `@supabase/ssr` : le code revient sur `/auth/callback`, y est échangé contre une session,
+  puis le navigateur repart vers `/admin`) ou par courriel et mot de passe ; les droits
+  sont une **ligne en base** dans `admin_users`, vérifiée par la fonction `is_admin()`
+  (security definer). Retirer la ligne retire l'accès, sans redéploiement ;
 - toutes les écritures passent par **la session de l'utilisateur**, donc par la RLS : le
   conteneur ne reçoit jamais de clé de service ;
 - la page de publication appelle le validateur de triangulation et **affiche ses refus**
