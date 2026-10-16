@@ -7,6 +7,7 @@ import {
   BlindModeSwitch,
   BlindProtocolBanner,
 } from "@/components/BlindModeSwitch";
+import ArchiveHashBadge from "@/components/ArchiveHashBadge";
 import ConvergenceSpectrometer from "@/components/ConvergenceSpectrometer";
 import CopyRefutation from "@/components/CopyRefutation";
 import DossierDensity from "@/components/DossierDensity";
@@ -310,6 +311,24 @@ export default async function DossierPage({ params }: PageProps) {
                     node: section.node,
                   }))}
                 />
+
+                {/* Scellés des pièces : la vérification se rejoue dans le
+                    navigateur du lecteur (octets de la capture d'abord, chaîne
+                    canonique de la citation sinon). Un état neutre et muet
+                    quand aucune empreinte n'est enregistrée. */}
+                <div className="space-y-2 border border-grid bg-surface px-3 py-3 sm:px-4">
+                  <p className="pp-meta text-muted">
+                    Scellés des pièces — le hachage se refait dans votre navigateur (octets de la
+                    capture, ou chaîne canonique de la citation)
+                  </p>
+                  <ul className="space-y-2">
+                    {dossier.sources.map((source) => (
+                      <li key={source.id}>
+                        <ArchiveHashBadge source={source} order={source.display_order} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </section>
 
               <footer

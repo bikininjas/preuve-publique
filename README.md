@@ -450,6 +450,16 @@ disparaîtrait sur le fond sombre.
   (citation et capture ; « non enregistrée » quand il n'y en a pas, jamais un chiffre
   inventé). Fermeture au bouton, à Échap ou par clic extérieur ; le focus entre dans la
   boîte à l'ouverture puis revient au bouton.
+- **Scellés des pièces** (`ArchiveHashBadge`, bas de la section « Pièces à conviction ») :
+  l'empreinte abrégée (`a3f8b9…2e1c`) et un bouton **« Vérifier l'intégrité »** qui rejoue
+  la vérification **dans le navigateur du lecteur** : octets de la capture téléchargés du
+  miroir `immutable-archives` et rehachés d'abord (`[✓ HASH SHA-256 VÉRIFIÉ — IMMUTABLE]`),
+  chaîne canonique de la citation sinon (`— CITATION CANONIQUE`). Pendant les ~400 ms de la
+  vérification, le terminal déroule l'empreinte en JetBrains Mono : les caractères partent
+  en désordre et se fixent de gauche à droite — la dernière image est toujours l'empreinte
+  réelle, jamais un hexadécimal de décor. Sans empreinte enregistrée, l'état est neutre et
+  le dit ; sans WebCrypto, la vérification s'arrête et l'écrit ; une capture qui ne redonne
+  pas son empreinte sort en divergence, avec l'empreinte recalculée.
 - **Mode preuve à l'aveugle** : noms, institutions et piliers recouverts de bandes de
   caviardage tracées de gauche à droite ; au survol, une infobulle rappelle de juger
   l'argument avant l'auteur. Le protocole teinte tout le dossier (bandeau noir et ambre
