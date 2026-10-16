@@ -19,7 +19,8 @@ export type VerdictStatus =
   | "CONSPIRATIONNISTE"
   | "ABSURDE"
   | "CONFUSION_CONCEPTUELLE"
-  | "CADRE_REGLEMENTAIRE_RESTREINT";
+  | "CADRE_REGLEMENTAIRE_RESTREINT"
+  | "CONTRAIRE_AU_DROIT_INTERNATIONAL";
 
 export type PoliticalSpectrum =
   | "ARCHIVE_PRIMAIRE"
@@ -40,7 +41,8 @@ export type PremiseStatus =
   | "BIAIS_DE_SELECTION"
   | "COMPLOTISME"
   | "BIAIS_ESSENTIALISTE"
-  | "FAUX";
+  | "FAUX"
+  | "VIOLATION_FORMELLE";
 
 /**
  * Catégorie éditoriale du dossier : c'est elle qui permet de parcourir le

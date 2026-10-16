@@ -7597,6 +7597,315 @@ export const RACISME_ANTIBLANC_DOSSIER: Dossier = {
   ],
 };
 
+/** Dossier ajouté le 16 octobre 2026 : les colonies israéliennes et le droit
+ * international — de la quatrième convention de Genève à l'avis de la CIJ. */
+export const COLONIES_ISRAELIENNES_DOSSIER: Dossier = {
+  id: "a1929cca-6f05-4428-9111-a111c0b004fc",
+  slug: "colonies-israeliennes-illegales-droit-international-icj",
+  claim_title:
+    "Les colonies israéliennes en Cisjordanie et à Jérusalem-Est ne sont pas illégales au regard du droit international",
+  verdict: "CONTRAIRE_AU_DROIT_INTERNATIONAL",
+  verdict_summary:
+    "Présentées parfois comme de simples faits accomplis ou des litiges négociables, les colonies israéliennes implantées dans les territoires occupés depuis 1967 relèvent d'une interdiction explicite du droit international humanitaire — et aucune autorité compétente ne soutient la thèse de leur licéité.\n\nLe texte de base est sans ambiguïté : « La Puissance occupante ne pourra procéder à la déportation ou au transfert d'une partie de sa propre population civile dans le territoire occupé par elle » (quatrième convention de Genève, article 49, sixième alinéa, 1949). Le Conseil de sécurité l'a réaffirmé le 23 décembre 2016 : « Réaffirme que la création par Israël de colonies de peuplement dans le Territoire palestinien occupé depuis 1967, y compris Jérusalem-Est, n'a aucun fondement en droit et constitue une violation flagrante du droit international » (résolution 2334) — et « Souligne qu'il ne reconnaîtra aucune modification aux frontières du 4 juin 1967 ».\n\nLe 19 juillet 2024, la Cour internationale de justice a scellé l'analyse : « À la lumière de ce qui précède, la Cour réaffirme que les colonies israéliennes en Cisjordanie et à Jérusalem-Est, et le régime qui leur est associé ont été établis et sont maintenus en violation du droit international » (par. 155). Son dispositif « Est d'avis que la présence continue de l'État d'Israël dans le Territoire palestinien occupé est illicite » (onze voix contre quatre) et que « l'État d'Israël est dans l'obligation de cesser immédiatement toute nouvelle activité de colonisation, et d'évacuer tous les colons du Territoire palestinien occupé ».\n\nAucune autorité ne soutient la thèse inverse. Le CICR rattache la colonisation à la violation de « l'article 49, paragraphe 6, de la quatrième Convention de Genève » ; le Haut-Commissariat de l'ONU aux droits de l'homme qualifie ces transferts de « war crime that may engage the individual criminal responsibility of those involved » ; l'Union européenne exige « to cease immediately all new settlement activities, and to evacuate all settlers » et réaffirme son « unwavering commitment to all ICJ decisions » ; la France, qui a voté la résolution endossant l'avis, parle d'une colonisation « en violation totale du droit international ». Le gouvernement israélien conteste — « Aucune décision mensongère à La Haye ne peut déformer la vérité historique » — mais politiquement : sur le terrain du droit, la controverse n'existe pas.",
+  category: "INTERNATIONAL",
+  protagonists: [
+    {
+      name: "Cour internationale de justice",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Cour_internationale_de_justice",
+      note: "Principal organe judiciaire de l'ONU, siégeant à La Haye : son avis consultatif du 19 juillet 2024 constate l'illicéité de la présence israélienne et l'obligation d'évacuer les colons.",
+    },
+    {
+      name: "Quatrième convention de Genève",
+      kind: "TEXTE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Quatri%C3%A8me_convention_de_Gen%C3%A8ve",
+      note: "Signée le 12 août 1949 : son article 49, sixième alinéa, interdit à la puissance occupante de transférer sa propre population civile dans le territoire occupé.",
+    },
+    {
+      name: "Résolution 2334 du Conseil de sécurité",
+      kind: "TEXTE",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/R%C3%A9solution_2334_du_Conseil_de_s%C3%A9curit%C3%A9_des_Nations_unies",
+      note: "Adoptée le 23 décembre 2016 : elle déclare les colonies sans fondement en droit et sert de base à la « différenciation » appliquée par l'Union européenne.",
+    },
+    {
+      name: "Benyamin Netanyahou",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Benyamin_Netanyahou",
+      note: "Premier ministre israélien : il conteste publiquement l'avis — « Les Juifs ne sont pas des occupants sur leur propre terre » — sans produire d'analyse juridique contraire.",
+    },
+    {
+      name: "Colonies israéliennes",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Colonies_isra%C3%A9liennes",
+      note: "Implantations civiles établies en Cisjordanie et à Jérusalem-Est depuis 1967 : environ 300 colonies et avant-postes, près de 500 000 résidents selon Peace Now.",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« Le statut de ces territoires n'est pas celui de zones occupées »",
+      status: "FAUX",
+      detail:
+        "Cisjordanie et Jérusalem-Est sont des territoires occupés au sens du droit : la résolution 2334 s'ouvre sur un « Réaffirmant qu'Israël, Puissance occupante, est tenu de respecter scrupuleusement ses obligations et responsabilités juridiques découlant de la quatrième Convention de Genève », et l'avis de 2024 constate que « la présence continue de l'État d'Israël dans le Territoire palestinien occupé est illicite » — un constat qui présuppose l'occupation. Le déni de statut contredit soixante ans de résolutions et deux avis consultatifs de la CIJ.",
+    },
+    {
+      claim_part: "« Le transfert de population civile est autorisé par le droit des conflits »",
+      status: "VIOLATION_FORMELLE",
+      detail:
+        "Le sixième alinéa de l'article 49 de la quatrième convention de Genève est la disposition exacte qui interdit à l'occupant d'installer sa propre population dans le territoire occupé ; la Cour y voit la norme violée par la colonisation, en 2004 comme en 2024. Le CICR — gardien des conventions — constate que « l'établissement par Israël de colonies civiles en Cisjordanie occupée et leur expansion sont incompatibles avec l'obligation faite à Israël par l'article 49, paragraphe 6 ». Présenter ce transfert comme autorisé, c'est contredire le texte exprès du droit des conflits : une violation formelle.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-16T00:00:00.000Z",
+  illustration_url:
+    "/illustrations/colonies-israeliennes-illegales-droit-international-icj.jpg",
+  illustration_credit:
+    "Photo : Palais de la Paix, siège de la Cour internationale de justice (La Haye) — Cour internationale de justice, Wikimedia Commons (domaine public)",
+  sources: [
+    {
+      id: "f1b5dfa3-696e-4eda-a129-8f7e3e808d6b",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Quatrième convention de Genève — article 49, sixième alinéa » — base de données des traités de DIH du CICR (12 août 1949)",
+      author_or_institution: "Comité international de la Croix-Rouge — base IHL/DIH",
+      publication_date: "1949-08-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La Puissance occupante ne pourra procéder à la déportation ou au transfert d'une partie de sa propre population civile dans le territoire occupé par elle.",
+      context_explanation:
+        "Le sixième alinéa de l'article 49 est la disposition sur laquelle repose tout le dossier : elle interdit à la puissance occupante d'installer sa propre population dans le territoire qu'elle occupe — distincte du premier alinéa, qui prohibe les transferts forcés de personnes protégées. La Cour internationale de justice l'a citée mot pour mot en 2004 puis en 2024 (par. 115). La base IHL du CICR bloquant les accès automatisés, la citation a été vérifiée sur la reproduction intégrale du texte dans l'avis consultatif de la CIJ du 19 juillet 2024.",
+      original_url: "https://ihl-databases.icrc.org/fr/ihl-treaties/gciv-1949/article-49",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Comit%C3%A9_international_de_la_Croix-Rouge",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "faebfc3b-5b7e-43e5-844c-2dd91301e582",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "« Résolution 2334 (2016) » — Conseil de sécurité des Nations unies (23 décembre 2016)",
+      author_or_institution: "Conseil de sécurité des Nations unies",
+      publication_date: "2016-12-23",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Réaffirme que la création par Israël de colonies de peuplement dans le Territoire palestinien occupé depuis 1967, y compris Jérusalem-Est, n'a aucun fondement en droit et constitue une violation flagrante du droit international et un obstacle majeur à la réalisation de la solution des deux États et à l'instauration d'une paix globale, juste et durable.",
+      context_explanation:
+        "Adoptée le 23 décembre 2016 — les États-Unis s'abstenant, sans veto — la résolution réaffirme le statut illicite du peuplement ; son paragraphe 3 souligne qu'aucune « modification aux frontières du 4 juin 1967 » ne sera reconnue. Sa version anglaise (« has no legal validity and constitutes a flagrant violation under international law ») fonde la politique de « différenciation » appliquée par l'Union européenne et la France. Citation vérifiée sur les reproductions du texte officiel.",
+      original_url: "https://www.un.org/unispal/document/unsc-resolution-2334-illegality-israeli-settlements/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_de_s%C3%A9curit%C3%A9_des_Nations_unies",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "349810a9-96c5-430b-9e04-d02da04359c7",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Conséquences juridiques découlant des politiques et pratiques d'Israël dans le Territoire palestinien occupé, y compris Jérusalem-Est » — avis consultatif du 19 juillet 2024, Cour internationale de justice",
+      author_or_institution: "Cour internationale de justice (Nations unies)",
+      publication_date: "2024-07-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "À la lumière de ce qui précède, la Cour réaffirme que les colonies israéliennes en Cisjordanie et à Jérusalem-Est, et le régime qui leur est associé ont été établis et sont maintenus en violation du droit international.",
+      context_explanation:
+        "Paragraphe 155 de l'avis, dont le dispositif est sans équivoque : « Est d'avis que la présence continue de l'État d'Israël dans le Territoire palestinien occupé est illicite » (onze voix contre quatre), obligation « de cesser immédiatement toute nouvelle activité de colonisation, et d'évacuer tous les colons », et « de mettre fin à sa présence illicite [...] dans les plus brefs délais ». La Cour y voit la violation du sixième alinéa de l'article 49 de la quatrième convention de Genève et écarte les objections de procédure. Vérifié sur le texte intégral français de l'avis (reproduction officielle).",
+      original_url: "https://www.icj-cij.org/case/186",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Cour_internationale_de_justice",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "ddba180e-38e5-4e42-872e-8ea6da051bfd",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Conséquences juridiques découlant des politiques et pratiques d'Israël dans le Territoire palestinien occupé — résumé de l'avis consultatif du 19 juillet 2024 » — Recueil des résumés, Nations unies (bureau des affaires juridiques)",
+      author_or_institution: "Organisation des Nations unies — bureau des affaires juridiques (codification)",
+      publication_date: "2024-07-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Par onze voix contre quatre, Est d'avis que la présence continue de l'État d'Israël dans le Territoire palestinien occupé est illicite.",
+      context_explanation:
+        "Le résumé officiel des Nations unies reprend le dispositif : présence illicite, obligation de « mettre fin [...] dans les plus brefs délais », évacuation des colons, réparation intégrale des dommages (par. 269). C'est la lecture consolidée de l'avis publiée sous l'autorité du bureau des affaires juridiques de l'ONU.",
+      original_url: "https://legal.un.org/icjsummaries/documents/french/271.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Organisation_des_Nations_unies",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "1e27841c-c2bf-44b0-aff2-5cad3d0cbfa8",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Israeli settlements in the Occupied Palestinian Territory, including East Jerusalem, and in the occupied Syrian Golan » — rapport du Haut-Commissaire aux droits de l'homme (mars 2024)",
+      author_or_institution: "Volker Türk, Haut-Commissariat des Nations unies aux droits de l'homme",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The establishment and continuing expansion of settlements in the Occupied Palestinian Territory and the occupied Syrian Golan amount to the transfer by Israel of its own civilian population into the territories that it occupies, which is strictly prohibited under international humanitarian law. Such transfers amount to a war crime that may engage the individual criminal responsibility of those involved.",
+      context_explanation:
+        "Le rapport présenté au Conseil des droits de l'homme documente environ 700 000 colons et 300 implantations et rappelle que le transfert de population civile est « strictly prohibited » par le droit international humanitaire — au point d'engager la responsabilité pénale individuelle. Citation en anglais, langue du document.",
+      original_url: "https://www.ohchr.org/sites/default/files/2024-03/Palestine-March2024.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Haut-Commissariat_des_Nations_unies_aux_droits_de_l%27homme",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "dafe9ac4-22c1-4153-92b6-4071c8fbff72",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Israël et le territoire palestinien occupé : le droit de l'occupation doit être respecté » — déclaration du CICR (19 juillet 2024)",
+      author_or_institution: "Comité international de la Croix-Rouge",
+      publication_date: "2024-07-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Selon la position juridique définie de longue date par le CICR, l'établissement par Israël de colonies civiles en Cisjordanie occupée et leur expansion sont incompatibles avec l'obligation faite à Israël par l'article 49, paragraphe 6, de la quatrième Convention de Genève de 1949, lequel interdit le transfert d'une partie de la population civile de la Puissance occupante dans le territoire qu'elle occupe.",
+      context_explanation:
+        "Gardien des conventions de Genève, le CICR rappelle sa position de longue date sur la colonisation et les conséquences humanitaires documentées : expropriation et destruction de biens, déplacement de Palestiniens, violences de colons. C'est l'une des rares institutions dont l'autorité en droit international humanitaire n'est contestée par personne.",
+      original_url:
+        "https://www.icrc.org/fr/statement/Israel-et-territoire-palestinien-occupe-droit-occupation-doit-etre-respecte",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Comit%C3%A9_international_de_la_Croix-Rouge",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "7c01ded8-5544-42b8-9498-36578c57616a",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "« La CIJ déclare que l'occupation des territoires palestiniens par Israël est illégale » — ONU Info (19 juillet 2024)",
+      author_or_institution: "ONU Info — Nations unies",
+      publication_date: "2024-07-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La Cour internationale de Justice (CIJ), le principal organe judiciaire des Nations Unies, a déclaré vendredi que l'occupation par Israël de la Cisjordanie, de Gaza, et de Jérusalem-Est, ainsi que ses colonies, violaient le droit international.",
+      context_explanation:
+        "Le service d'information de l'ONU résume l'avis qui, « bien que non contraignant, a une haute valeur juridique ainsi qu'une grande autorité morale », et rappelle la saisine de la Cour par l'Assemblée générale (résolution 77/247).",
+      original_url: "https://news.un.org/fr/story/2024/07/1147211",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Organisation_des_Nations_unies",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "0ac038f9-1617-4690-8e59-8d2e8e241e83",
+      spectrum: "CENTRE",
+      source_name:
+        "« Israel/Palestine: Statement by the High Representative on the Advisory Opinion of the International Court of Justice » — Service européen pour l'action extérieure (20 juillet 2024)",
+      author_or_institution: "Josep Borrell, haut représentant — Service européen pour l'action extérieure",
+      publication_date: "2024-07-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "the State of Israel is under an obligation to cease immediately all new settlement activities, and to evacuate all settlers from the Occupied Palestinian Territory",
+      context_explanation:
+        "L'Union européenne « takes good note » de l'avis, en retient les trois conclusions — présence illicite, fin de la colonisation, non-reconnaissance par les États — et réaffirme « our unwavering commitment to all ICJ decisions » : « These conclusions are largely consistent with EU positions. » Citation en anglais, langue du communiqué.",
+      original_url:
+        "https://www.eeas.europa.eu/eeas/israelpalestine-statement-high-representative-advisory-opinion-international-court-justice_en",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Service_europ%C3%A9en_pour_l%27action_ext%C3%A9rieure",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "ec536bee-d0d4-421f-a755-1a091d87799c",
+      spectrum: "CENTRE",
+      source_name:
+        "« Foreign Affairs Council: press remarks by High Representative Josep Borrell upon arrival » — Service européen pour l'action extérieure (22 juillet 2024)",
+      author_or_institution: "Josep Borrell, haut représentant — Service européen pour l'action extérieure",
+      publication_date: "2024-07-22",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "the occupation of the West Bank - the Palestinian territories in the West Bank - is fully illegal, and it has to stop",
+      context_explanation:
+        "À son arrivée au Conseil des affaires étrangères, le haut représentant durcit le ton — « This is illegal, it has to stop. Israel has to withdraw its settlements » — et constate que « The difference between what the law says [...] and what is happening in the ground, has never been as big as today ». Citation en anglais, langue du point presse.",
+      original_url:
+        "https://www.eeas.europa.eu/eeas/foreign-affairs-council-press-remarks-high-representative-josep-borrell-upon-arrival-20_en",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Service_europ%C3%A9en_pour_l%27action_ext%C3%A9rieure",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+    {
+      id: "d46547b6-5a89-4965-8040-57ae627384e4",
+      spectrum: "CENTRE",
+      source_name: "« Q&R — Point de presse live (19 février 2026) » — ministère de l'Europe et des Affaires étrangères",
+      author_or_institution: "Ministère de l'Europe et des Affaires étrangères (France)",
+      publication_date: "2026-02-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "la colonisation israélienne se poursuit en Cisjordanie, en violation totale du droit international",
+      context_explanation:
+        "Paris rappelle qu'il a « par conséquent voté la résolution [...] du 18 septembre 2024, endossant l'avis consultatif de la CIJ du 19 juillet 2024 » et qu'il met en œuvre la « politique de différenciation » prévue par la résolution 2334 — dont l'étiquetage des denrées issues des colonies. La position officielle française ne ménage aucune ambiguïté sur la qualification.",
+      original_url:
+        "https://www.diplomatie.gouv.fr/fr/presse-et-ressources/decouvrir-et-informer/actualites/qr-point-de-presse-live-19-fevrier-2026",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_l%27Europe_et_des_Affaires_%C3%A9trang%C3%A8res",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
+    {
+      id: "d284ed2f-b95f-471d-b59f-17b3ed433703",
+      spectrum: "CENTRE",
+      source_name:
+        "« L'occupation de territoires palestiniens par Israël est « illégale », tranche la Cour internationale de Justice » — franceinfo (19 juillet 2024)",
+      author_or_institution: "franceinfo — France Télévisions",
+      publication_date: "2024-07-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'occupation de territoires palestiniens par Israël depuis 1967 est « illégale », a estimé la Cour internationale de Justice (CIJ), vendredi 19 juillet.",
+      context_explanation:
+        "Le média public rappelle le décompte de terrain — « Près de 500 000 personnes vivent aujourd'hui en Cisjordanie [...] et se répartissent sur 300 colonies, selon l'ONG israélienne Peace Now » — et relaie la réaction de Benyamin Nétanyahou : « Les Juifs ne sont pas des occupants sur leur propre terre », « la légalité des colonies israéliennes » ne pouvant être « contestée ».",
+      original_url:
+        "https://www.franceinfo.fr/monde/israel/l-occupation-de-territoires-palestiniens-par-israel-est-illegale-tranche-la-cour-internationale-de-justice_6675540.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/France_Info",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 11,
+    },
+    {
+      id: "cd848c78-71f6-4636-8398-a7f48e6757c5",
+      spectrum: "GAUCHE",
+      source_name:
+        "« L'occupation des territoires palestiniens jugée « illégale » par la Cour internationale de justice » — L'Humanité (19 juillet 2024)",
+      author_or_institution: "L'Humanité",
+      publication_date: "2024-07-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Cette décision représente « une victoire », s'est félicitée la présidence palestinienne, demandant à Israël de « mettre fin à l'occupation » et aux « colonies ».",
+      context_explanation:
+        "La presse de gauche relaie les réactions des deux camps — du Hadash, qui y voit « un tournant », aux responsables israéliens qui contestent la décision — sans qu'aucune partie ne discute l'analyse juridique sur le fond : la controverse qui s'affiche est politique.",
+      original_url:
+        "https://www.humanite.fr/monde/cour-internationale-de-justice/loccupation-des-territoires-palestiniens-jugee-illegale-par-la-cour-internationale-de-justice",
+      author_reference_url: "https://fr.wikipedia.org/wiki/L%27Humanit%C3%A9",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 12,
+    },
+  ],
+};
+
 /** Dossier ajouté le 16 octobre 2026 : les notes de frais des parlementaires,
  * entre contrôle interne et droit d'accès. */
 export const NOTES_FRAIS_PARLEMENTAIRES_DOSSIER: Dossier = {
@@ -7864,6 +8173,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   GRAND_REMPLACEMENT_DOSSIER,
   MACRON_SOCIALISTE_DOSSIER,
   RACISME_ANTIBLANC_DOSSIER,
+  COLONIES_ISRAELIENNES_DOSSIER,
   NOTES_FRAIS_PARLEMENTAIRES_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
