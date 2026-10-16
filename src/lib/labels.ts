@@ -146,6 +146,7 @@ export const VERDICT_LABELS: Record<VerdictStatus, string> = {
   ANACHRONISME_HISTORIQUE: "Anachronisme historique",
   GENERALISATION_ABUSIVE: "Généralisation abusive",
   CONSPIRATIONNISTE: "Conspirationniste",
+  ABSURDE: "Absurde",
 };
 
 export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
@@ -157,6 +158,7 @@ export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
   ANACHRONISME_HISTORIQUE: "ANACHRONISME HISTORIQUE",
   GENERALISATION_ABUSIVE: "GÉNÉRALISATION ABUSIVE",
   CONSPIRATIONNISTE: "CONSPIRATIONNISTE",
+  ABSURDE: "ABSURDE",
 };
 
 export const PREMISE_STATUS_LABELS: Record<PremiseStatus, string> = {
@@ -233,6 +235,7 @@ export const VERDICT_TONES: Record<VerdictStatus, "true" | "warn" | "false"> = {
   ANACHRONISME_HISTORIQUE: "warn",
   GENERALISATION_ABUSIVE: "warn",
   CONSPIRATIONNISTE: "false",
+  ABSURDE: "false",
 };
 
 /** Cote technique du dossier : les 8 premiers caractères de son identifiant. */

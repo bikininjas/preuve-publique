@@ -58,7 +58,7 @@ test("les piliers documentés se calculent sur les sources", () => {
 test("le brouillon de contrôle n'est jamais publié", () => {
   const published = publishedSeedDossiers().map((dossier) => dossier.slug);
   assert.ok(!published.includes(DRAFT_CONTROL_DOSSIER.slug));
-  assert.equal(published.length, 28);
+  assert.equal(published.length, 29);
   assert.ok(published.includes("aide-medicale-detat-securite-sociale-soins-de-confort"));
   assert.ok(published.includes("sans-papiers-et-rsa-des-leur-arrivee"));
   assert.ok(published.includes("petain-vichy-ont-ils-protege-les-juifs-francais"));
@@ -86,6 +86,7 @@ test("le brouillon de contrôle n'est jamais publié", () => {
   assert.ok(published.includes("otan-russie-traite-1990-non-elargissement-est"));
   assert.ok(published.includes("carte-mondiale-qi-pays-afrique-fraude-lynn"));
   assert.ok(published.includes("grand-remplacement-theorie-complot-demographie"));
+  assert.ok(published.includes("politique-macron-socialiste-mythe-fiscalite-capital"));
 });
 
 test("la recherche locale trouve le dossier par son titre et par une citation", () => {
@@ -98,10 +99,19 @@ test("la recherche locale trouve le dossier par son titre et par une citation", 
     "hitler-et-les-nazis-etaient-de-gauche",
     "petain-vichy-ont-ils-protege-les-juifs-francais",
   ]);
-  for (const query of ["socialiste", "secteur privé 1934", "propriété privée"]) {
+  for (const query of ["secteur privé 1934", "propriété privée"]) {
     const results = searchSeedDossiers(query);
     assert.equal(results.length, 1, `attendu un résultat pour « ${query} »`);
   }
+  // « socialiste » est partagé par le dossier de référence et le dossier
+  // Macron (titre et pièces) : la requête ne renvoie plus un résultat unique.
+  const socialiste = searchSeedDossiers("socialiste")
+    .map((dossier) => dossier.slug)
+    .sort();
+  assert.deepEqual(socialiste, [
+    "hitler-et-les-nazis-etaient-de-gauche",
+    "politique-macron-socialiste-mythe-fiscalite-capital",
+  ]);
   assert.equal(searchSeedDossiers("zzzz").length, 0);
 });
 

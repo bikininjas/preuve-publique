@@ -4663,6 +4663,237 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   12
 );
 
+delete from public.dossiers where slug = 'politique-macron-socialiste-mythe-fiscalite-capital';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, timeline, is_published, published_at, illustration_url, illustration_credit
+) values (
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'politique-macron-socialiste-mythe-fiscalite-capital',
+  'La politique d''Emmanuel Macron et de ses gouvernements est socialiste depuis 2017',
+  'ABSURDE'::verdict_status,
+  'Qualifier de « socialiste » la politique menée depuis 2017 contredit l''ensemble des réformes fiscales et structurelles du double quinquennat : suppression de l''ISF remplacé par l''impôt sur la fortune immobilière (2018), prélèvement forfaitaire unique de 30 % sur les revenus du capital — la « flat tax » —, baisse du taux de l''impôt sur les sociétés de 33,3 % à 25 %, réformes de l''assurance chômage et flexibilisation du marché du travail. Le gouvernement revendique lui-même cette architecture devant la Commission européenne : une « réforme fiscale d''ampleur », avec des mesures « toutes votées dans les textes financiers de l''automne 2017 ».
+
+Les données officielles documentent le sens de ces choix : le rendement de l''impôt sur la fortune tombe de 5 067 millions d''euros en 2017 à 1 291 millions en 2018 — un différentiel de 2 935 millions — et le coût du remplacement de l''ISF par l''IFI s''élève, selon la commission des finances du Sénat, à 2,9 milliards d''euros pour le seul exercice 2018. Le taux global de prélèvements obligatoires recule de 45,3 % du PIB en 2017 à 43,2 % en 2023 — « une longue séquence de baisse », relève la Cour des comptes. Le niveau élevé des dépenses publiques reste, lui, le trait structurel de la France — retraites, santé, protection sociale —, pas une orientation collectiviste.
+
+Les évaluations convergent sur la nature de la politique, plus que sur son efficacité : l''IPP mesure une hausse de 15 % des dividendes distribués dès la mise en place du PFU ; France Stratégie conclut, après cinq ans d''évaluation, que « les travaux de recherche n''ont pas détecté d''impact du PFU sur l''investissement et les salaires » ; et l''OFCE, qui en fait le bilan de gauche, discute la répartition des gains d''un quinquennat d''allègements, pas une bascule doctrinale.
+
+Le contresens est total : une politique qui supprime son impôt sur la fortune, fixe un taux unique de 30 % sur les revenus du capital et ramène l''impôt sur les sociétés au niveau de ses voisins fait l''inverse d''un programme socialiste. Jusqu''aux libéraux qui la trouvent insuffisamment libérale, le débat porte sur l''efficacité d''une politique de l''offre : « socialiste » n''est pas un verdict documenté, c''est une étiquette polémique.',
+  'POLITIQUE'::dossier_category,
+  '[{"name":"Emmanuel Macron","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Emmanuel_Macron","note":"Président de la République depuis 2017 : les réformes fiscales de ses mandats — ISF transformé en IFI, PFU à 30 %, impôt sur les sociétés ramené à 25 % — sont précisément l''objet du dossier."},{"name":"Bruno Le Maire","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Bruno_Le_Maire","note":"Ministre de l''Économie et des Finances de 2017 à 2024, visage assumé de la « politique de l''offre » revendiquée par l''exécutif."},{"name":"Prélèvement forfaitaire unique","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Pr%C3%A9l%C3%A8vement_forfaitaire_unique","note":"La « flat tax » de 30 % sur les revenus du capital (12,8 % d''impôt sur le revenu et 17,2 % de prélèvements sociaux), créée par la loi de finances pour 2018 — la mesure emblématique invoquée des deux côtés du débat."},{"name":"Institut des politiques publiques","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://www.ipp.eu/","note":"Centre de recherche en économie (PSE, GENES) : ses évaluations d''impact des réformes de la fiscalité du capital nourrissent le dossier (note n° 46, rapport n° 47)."}]'::jsonb,
+  100,
+  '[{"claim_part":"« Le maintien d''un taux élevé de dépenses publiques prouve la nature socialiste du pouvoir »","status":"CONFUSION_CONCEPTUELLE","detail":"Un stock n''est pas une intention : le niveau élevé de la dépense publique — 56,6 % du PIB en 2025, parmi les plus élevés d''Europe — est l''héritage de décennies de construction du modèle social (retraites, santé, éducation, protection sociale), pas l''effet d''une bascule récente. Le taux de prélèvements obligatoires, lui, recule de 45,3 % du PIB en 2017 à 43,2 % en 2023 : si « dépenses publiques élevées » voulait dire « pouvoir socialiste », la France serait socialiste depuis les années 1980, quelles qu''aient été les majorités. Confondre la structure héritée avec l''orientation active des réformes est une confusion conceptuelle, pas un désaccord politique."},{"claim_part":"« La fiscalité du capital et des entreprises s''est alourdie »","status":"FAUX","detail":"Le contraire est documenté : le rendement de l''impôt sur la fortune passe de 5 067 M€ (2017) à 1 291 M€ (2018) avec l''IFI — différentiel de 2 935 M€ ; le taux d''impôt sur les sociétés descend de 33,3 % à 25 % (loi de finances pour 2018, trajectoire achevée en 2022) ; le PFU fixe à 30 % l''imposition des revenus du capital là où la France affichait l''un des taux les plus lourds d''Europe ; et la baisse nette se lit dans les comptes — 2,1 points de PIB de prélèvements obligatoires en moins entre 2017 et 2023. La prémisse est fausse au sens strict : c''est la fiscalité du capital et des entreprises qui a été allégée."}]'::jsonb,
+  '[]'::jsonb,
+  true,
+  '2026-10-16T00:00:00.000Z'::timestamptz,
+  '/illustrations/politique-macron-socialiste-mythe-fiscalite-capital.jpg',
+  'Portrait : Emmanuel Macron, 2025 — Nebojša Tejić / STA, Wikimedia Commons (domaine public)'
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '522269b0-66bd-433c-8555-aa02ebbdfebf',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  '« Programme national de réforme de la France — 2018 » — gouvernement français, Commission européenne (avril 2018)',
+  'Gouvernement français — Programme national de réforme présenté à la Commission européenne',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Nous avons engagé une réforme fiscale d''ampleur pour y remédier : réduction du taux de l''impôt sur les sociétés jusqu''à 25 %, transformation de l''Impôt sur la Fortune en Impôt sur la Fortune Immobilière, Prélèvement Forfaitaire Unique de 30 % sur les revenus du capital, transformation en 2019 du crédit d''impôt compétitivité emploi (CICE) en allègement pérenne de cotisations employeurs. Ces mesures ont toutes été votées dans les textes financiers de l''automne 2017 afin de donner la visibilité nécessaire aux acteurs économiques.',
+  'Le document officiel par lequel le gouvernement présente sa stratégie à la Commission européenne expose lui-même l''architecture des réformes : impôt sur les sociétés ramené « jusqu''à 25 % », ISF transformé en impôt sur la fortune immobilière, prélèvement forfaitaire unique de 30 % sur les revenus du capital, CICE converti en allègement pérenne de cotisations — le tout « voté dans les textes financiers de l''automne 2017 ». Le programme revendique aussi « stimuler l''investissement et la montée en gamme en allégeant la fiscalité » et une réforme du marché du travail. L''orientation favorable au capital est documentée par son auteur même : ce n''est pas une étiquette plaquée par ses adversaires.',
+  'https://commission.europa.eu/system/files/2018-04/2018-european-semester-national-reform-programme-france-fr.pdf',
+  null,
+  '6a83d5cdb80800f557e0e3588f9a1c5691b532155bcacc8bc76e789d1988b0ca',
+  null,
+  null,
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'a0fb2356-46d2-4b26-8c71-dd0019a0ec60',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Relation entre ISF et IFI » — question écrite n° 15255, réponse du ministère de l''Action et des comptes publics publiée au Journal officiel le 2 avril 2019 (Assemblée nationale)',
+  'Ministère de l''Action et des comptes publics — question de M. Jean-Pierre Pont, Assemblée nationale',
+  '2019-04-02',
+  'CITATION_EXACTE'::quote_kind,
+  'Le produit de l''impôt de solidarité sur la fortune (ISF) comptabilisé en 2017 s''est élèvé à 5 067 M€ (4 226 M€ au titre des déclarations déposées spontanément et 841 M€ issus du contrôle fiscal et de l''action du service de traitement des déclarations rectificatives).',
+  'La réponse du ministère établit les ordres de grandeur officiels du remplacement de l''ISF par l''IFI : « le différentiel de rendement, calculé sur les seules recettes déclarées spontanément, s''élève donc à 2 935 M€, ce qui représente 1 % des recettes fiscales nettes ». Une politique qui divise par quatre le rendement de son impôt sur la fortune — 5 067 M€ en 2017 contre 1 291 M€ en 2018 — n''est pas une politique de prélèvement sur le capital : c''est l''inverse exact.',
+  'https://questions.assemblee-nationale.fr/q15/15-15255QE.htm',
+  null,
+  '7e934a5d92d78db51a7c6b98e587760799bc45034396403e535cdfeeb9baafda',
+  null,
+  'https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)',
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '70c796cd-308d-4d34-b765-1b7f490c14da',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Taux de prélèvements obligatoires rapportés au produit intérieur brut » — Insee, comptes nationaux annuels (base 2020), série 1959-2025',
+  'Insee — comptes nationaux annuels',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Lecture : en 2025, le taux de prélèvements obligatoires s''établit à 43,6 % du produit intérieur brut (PIB)',
+  'La série longue des comptes nationaux permet de juger les faits, pas les étiquettes : le taux de prélèvements obligatoires — 45,3 % du PIB en 2017 — recule à 43,2 % en 2023, avant de remonter à 43,6 % en 2025 sous l''effet des hausses d''impôts de sortie de crise (contribution exceptionnelle des grandes entreprises, taxe sur les rachats d''actions). Le niveau français reste élevé — autour de 44 % du PIB depuis le début des années 2010, quelles que soient les majorités : un trait structurel (périmètre des administrations publiques, assurances maladie et retraite), pas une doctrine « socialiste » installée en 2017.',
+  'https://www.insee.fr/fr/statistiques/2381412',
+  null,
+  '77d312907b644418ef19e31b749de9719c0595218a3660d6daf3fc26187391fe',
+  null,
+  'https://www.insee.fr/',
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '19f6391b-e142-4923-a40e-b098168765bd',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Impacts of the 2018 Household Capital Tax Reforms on Inequalities in France: A Microsimulation Evaluation » — Félix Paquier et Michaël Sicsic, Insee, Économie et Statistique (prépublication, 2021)',
+  'Félix Paquier et Michaël Sicsic — Insee (modèle Ines)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Concernant l''IFI en 2018, la masse totale issue des simulations d''Ines est de 1.1 milliard d''euros, soit une très légère sous-estimation (de l''ordre de 2 %) par rapport aux données de la DGFiP sur le même champ.',
+  'La microsimulation Ines de l''Insee chiffre les effets redistributifs des réformes de 2018 : la transformation de l''ISF en IFI a apporté +3 440 millions d''euros de revenu disponible aux ménages — 340 000 foyers gagnants, 10 000 perdants, soit un gain moyen de 9 770 euros par foyer concerné — et la mise en place du PFU +1 760 millions d''euros au titre de l''impôt sur le revenu. Un « socialisme » qui organise un transfert net de plusieurs milliards vers les détenteurs de patrimoine et de capitaux serait une première historique.',
+  'https://www.insee.fr/fr/statistiques/fichier/5426454/ESpreprint_Paquier-Sicsic_FR.pdf',
+  null,
+  'dfcd7f6307ac59fd34276fbc23723328831842f96519752e5fb7db2baa8f2604',
+  null,
+  'https://www.insee.fr/',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'b21903f0-d3f6-42ff-9495-a8f743407139',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Quelles leçons tirer des réformes de la fiscalité des revenus du capital ? » — Note IPP n° 46 (octobre 2019)',
+  'Laurent Bach, Antoine Bozio, Brice Fabre, Arthur Guillouzouic, Claire Leroy, Clément Malgouyres — Institut des politiques publiques',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'L''introduction du PFU en 2018 a conduit à une hausse de 15 % des dividendes versés.',
+  'L''évaluation d''impact — menée sur données fiscales de la DGFiP, dans le cadre d''une étude commanditée par la commission des finances du Sénat — mesure la réaction à la « flat tax » : une hausse de 15 % des dividendes distribués dès 2018, un coût contenu pour les finances publiques (400 millions d''euros après effets comportementaux, contre 900 en estimation statique) et une conclusion nette : « la réforme du PFU est peu susceptible de conduire à une hausse de l''investissement privé ». Un allègement d''impôt assumé sur les revenus du capital, dont les économistes discutent l''efficacité — la négation exacte d''un tournant socialiste.',
+  'https://www.ipp.eu/wp-content/uploads/2019/10/n46-notesIPP-octobre2019.pdf',
+  null,
+  '3dae867db055e58538c06b80cfd0f3be8e59c2caf7faf59d76fb28fa39d1e2ea',
+  null,
+  'https://www.ipp.eu/',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '1aef133b-8fa2-4140-b92e-e9da29cf0e6c',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Évaluation des réformes de la fiscalité du capital — Effets sur la création d''entreprises, l''expatriation et la circulation de l''épargne » — Rapport IPP n° 47 (octobre 2023)',
+  'Laurent Bach, Antoine Bozio, Étienne Fize, Arthur Guillouzouic, Clément Malgouyres — Institut des politiques publiques',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Pour un point de baisse de taux d''imposition, la réforme du PFU conduit à une hausse de 1,25 point du taux de création d''entreprises entre 2016 et 2022, la réforme IS de 1,0 point, et la réforme de l''IFI de 0,3 point.',
+  'Dernier volet de l''évaluation du comité logé à France Stratégie : les réformes de la fiscalité du capital (PFU, IFI, IS) ont modifié les incitations — la création d''entreprises progresse dans les secteurs les plus exposés, « l''effet positif de la réforme est visible dès 2019 » — même si les auteurs documentent des effets réels limités (expatriations marginales, impacts agrégés faibles). Que l''on juge ces réformes efficaces ou non, leur nature est documentée : des baisses d''impôt sur le capital, décidées et assumées, loin de toute « socialisation ».',
+  'https://www.ipp.eu/wp-content/uploads/2025/06/47_Rapport_IPP_47_ISFcrea_compressed.pdf',
+  null,
+  'acb0402ddfb7cd6f658847fa205616cf668e2bb5ece913af30d8fe1bd5fd060a',
+  null,
+  'https://www.ipp.eu/',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'a244396c-1b81-42b7-bb17-261fa180f70e',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'CENTRE'::political_spectrum,
+  '« La situation et les perspectives des finances publiques » — Cour des comptes (juin 2026)',
+  'Cour des comptes — rapport annuel destiné au débat public',
+  '2026-06-25',
+  'CITATION_EXACTE'::quote_kind,
+  'Après une longue séquence de baisse des prélèvements obligatoires entre 2015 et 2023, le retournement engagé en 2024 s''accentue donc nettement en 2025.',
+  'La juridiction financière établit la chronologie nue des prélèvements : « une longue séquence de baisse […] entre 2015 et 2023 », puis un « retournement » en 2024-2025 dû à des hausses d''impôts (23,0 Md€ de mesures nouvelles en 2025, portées surtout par les grandes entreprises). La France se distingue par le niveau de ses dépenses publiques — 56,6 % du PIB en 2025 —, un trait structurel ancien, pas une bascule récente. Si « socialisme » signifie hausse de la pression fiscale au service d''un projet collectiviste, la chronologie officielle dit l''inverse pour la période 2017-2023.',
+  'https://www.ccomptes.fr/sites/default/files/2026-06/20260625-synthese-RSPFP-2026.pdf',
+  null,
+  'f019d1a672d7212d3c94acf82d3edf0d2bf74ba33b77c11a10fa91c46adff219',
+  null,
+  'https://www.ccomptes.fr/',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd8276c5d-ae65-4ee3-b7e0-f7d0f36b65af',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'CENTRE'::political_spectrum,
+  '« Transformation de l''ISF en IFI et création du PFU : un premier bilan » — Sénat, commission des finances (rapport d''information n° 42, déposé le 9 octobre 2019)',
+  'Vincent Éblé et Albéric de Montgolfier, rapporteurs — commission des finances du Sénat',
+  '2019-10-09',
+  'CITATION_EXACTE'::quote_kind,
+  'En retenant la même méthode, le coût de la réforme pour les finances publiques atteint finalement 2,9 milliards d''euros à l''issue de l''exercice 2018',
+  'Le premier bilan parlementaire chiffre le coût du remplacement de l''ISF par l''IFI et de la création du PFU : « 2,9 milliards d''euros à l''issue de l''exercice 2018 », le coût du seul volet « impôt sur le revenu » du PFU étant estimé « à 1,3 milliard d''euros en 2018 et à 1,9 milliard d''euros à compter de 2019 ». Les rapporteurs documentent aussi le caractère « anti-redistributif » de la réforme, dont le gain fiscal profite d''abord aux patrimoines les plus élevés. Une politique « socialiste » qui allège l''impôt sur la fortune et celui du capital, avec un bilan parlementaire soulignant son effet anti-redistributif, relève de la contradiction dans les termes.',
+  'https://www.senat.fr/rap/r19-042-1/r19-042-1.html',
+  null,
+  '6d516bd499c8e72240aaed60d5fb0ae28fe8605a58cc35519d0bc2382e25ef90',
+  null,
+  'https://www.senat.fr/',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '57bacf2d-d470-4184-b0e1-a782023a4aec',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'CENTRE'::political_spectrum,
+  '« Évaluation des réformes de la fiscalité du capital — Rapport final » — Comité d''évaluation des réformes de la fiscalité du capital, France Stratégie (16 octobre 2023)',
+  'Comité d''évaluation des réformes de la fiscalité du capital — France Stratégie',
+  '2023-10-16',
+  'CITATION_EXACTE'::quote_kind,
+  'Les travaux de recherche n''ont pas détecté d''impact du PFU sur l''investissement et les salaires, dans les entreprises les plus exposées au PFU',
+  'Le rapport final du comité (cinq ans de travaux, universitaires et administrations réunis) est la synthèse la plus récente : créations d''entreprises stimulées dans les secteurs exposés, effets réels limités par ailleurs — et ce constat central : « les travaux de recherche n''ont pas détecté d''impact du PFU sur l''investissement et les salaires ». Le débat public qui s''en saisit oppose alors « politique de l''offre » et efficacité — jamais « socialisme » : le champ même de la dispute suppose l''existence d''allègements fiscaux massifs sur le capital.',
+  'https://www.vie-publique.fr/files/rapport/pdf/292639.pdf',
+  null,
+  '3fbcbb8e5191c2b12547870473d24e099d67bee4396711a1c96832127b35d4c3',
+  null,
+  'https://www.strategie-plan.gouv.fr/',
+  9
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '238ca0f6-32d3-4a02-ab57-3f342aaefc19',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Le prétendu échec de l''économie de l''offre » — Contrepoints, opinion de Jean-Yves Naudet (3 février 2025)',
+  'Jean-Yves Naudet — Contrepoints',
+  '2025-02-03',
+  'CITATION_EXACTE'::quote_kind,
+  'C''est une petite musique qui monte : la politique économique des gouvernements successifs d''Emmanuel Macron est un échec (c''est vrai), car c''est une politique de l''offre (c''est faux).',
+  'Un point de vue libéral sur le même objet : pour Jean-Yves Naudet (professeur émérite d''économie, chroniqueur à Contrepoints), le procès instruit contre les gouvernements Macron est doublement à côté — la critique standard (« l''échec d''une politique de l''offre ») ne résiste pas, car ces gouvernements auraient « tous continué la tradition interventionniste et keynésienne française », pas mené la politique libérale qu''on leur prête. De la gauche anti-libérale à la droite libérale, les lectures opposées s''accordent sur ce point minimal : ni les réformes ni le bilan ne sont « socialistes ».',
+  'https://www.contrepoints.org/economie-offre-echec/',
+  null,
+  '4af4dd896a50324c19a4ed242f54d2a2c565394bfed72723ae6cf975529c6ef2',
+  null,
+  'https://fr.wikipedia.org/wiki/Contrepoints',
+  10
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '2d75d1e9-29f8-426d-bd1c-e47107bd12a6',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« ISF, « flat tax » : les réformes d''Emmanuel Macron ont dynamisé les créations d''entreprises » — Les Échos (17 octobre 2023)',
+  'Sébastien Dumoulin — Les Échos',
+  '2023-10-17',
+  'CITATION_EXACTE'::quote_kind,
+  'Réforme de l''ISF, mise en place de la « flat tax », baisse du taux d''impôt sur les sociétés : les réformes polémiques du premier quinquennat du chef de l''Etat ont eu un effet sur les créations d''entreprises dans les secteurs les plus exposés, selon un rapport de France Stratégie publié ce mardi.',
+  'Le quotidien économique de droite rend compte du bilan France Stratégie — les réformes du capital « ont eu un effet sur les créations d''entreprises dans les secteurs les plus exposés » — et rappelle, légende à l''appui, que « la transformation de l''ISF en IFI a généré un manque à gagner de plus de 4 milliards d''euros à l''Etat ». Un allègement fiscal durable de la fiscalité du capital, célébré comme tel dans la presse économique : lecture libérale et lecture critique du quinquennat partagent le constat, pas la conclusion.',
+  'https://web.archive.org/web/20240110071126/https://www.lesechos.fr/economie-france/budget-fiscalite/impots-les-reformes-demmanuel-macron-ont-dynamise-les-creations-dentreprises-1987657',
+  null,
+  'e2df3af3901ca4c09ac2da6d17144b6ac4e82cfbf5a90394ef364f356e235b21',
+  null,
+  'https://fr.wikipedia.org/wiki/Les_%C3%89chos',
+  11
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'cc3350a4-0dec-4646-be49-9becc55a8bef',
+  '208d6d44-b378-4309-b166-c5c401638d34',
+  'GAUCHE'::political_spectrum,
+  '« Une analyse macro et microéconomique du pouvoir d''achat des ménages en France — Bilan du quinquennat mis en perspective » — OFCE Policy brief n° 104 (17 mars 2022)',
+  'Pierre Madec, Mathieu Plane, Raul Sampognaro — OFCE (Sciences Po)',
+  '2022-03-17',
+  'CITATION_EXACTE'::quote_kind,
+  'La période du quinquennat d''E. Macron se caractérise par des gains positifs (+ 0,9 % par an en moyenne), un rythme comparable à celui observé au cours des trente dernières années.',
+  'Le bilan de gauche du quinquennat, par les économistes de l''OFCE : des gains de pouvoir d''achat « + 0,9 % par an en moyenne », comparables à ceux des trois décennies précédentes, et une discussion méticuleuse de leur répartition — hausse de la CSG, réformes socio-fiscales, parts respectives des ménages. Critiquer la répartition d''une politique fiscale, c''est acter sa nature : l''OFCE n''analyse pas une rupture socialiste mais une politique d''allègements dont il discute les gagnants — précisément le débat qu''un prétendu tournant collectiviste aurait rendu impossible.',
+  'https://www.ofce.fr/pdf/pbrief/2022/OFCEpbrief104.pdf',
+  null,
+  'a86f069c71932ff1452b2ce64f107492eb8dc54c4b17cd71134ea9c40e983a37',
+  null,
+  'https://fr.wikipedia.org/wiki/Observatoire_fran%C3%A7ais_des_conjonctures_%C3%A9conomiques',
+  12
+);
+
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,

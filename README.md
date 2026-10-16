@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 16/10/2026
 
-- **Base** : dix migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : onze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -26,9 +26,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0010_conspirationniste_verdict` (`20261016130619`, appliquée le 16/10 — `verdict_status`
   accueille « conspirationniste », le verdict du dossier « grand remplacement » ; les deux
   statuts de brique « complotisme » et « biais essentialiste » sont validés côté
-  application, sans migration).
-  Vingt-neuf dossiers en base :
-  vingt-huit **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  application, sans migration),
+  `0011_absurde_verdict` (`20261016143500`, appliquée le 16/10 — `verdict_status`
+  accueille « absurde », le verdict du dossier sur la politique d'Emmanuel Macron).
+  Trente dossiers en base :
+  vingt-neuf **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -51,10 +53,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   l'Est (7, international), la carte mondiale du QI censée prouver une
   « infériorité cognitive biologique » des populations africaines (12, société) et la
   théorie du « Grand Remplacement » présentée comme la preuve d'un plan ourdi par des
-  élites (12, société, conspirationniste) —
+  élites (12, société, conspirationniste), la thèse d'une politique « socialiste »
+  d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 232 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 244 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -324,6 +327,22 @@ sort de la colonne étroite (où un titre bibliographique s'étirait sur 578 px 
 rejoint sa citation ; la colonne de droite ne porte que scellements et actions. Hauteur de
 carte mesurée au navigateur : 905 px avant, 503 px après ; débordement mobile contrôlé à
 390 px.
+
+Puis, le 16/10/2026 (14:35 UTC), le dossier sur la politique d'Emmanuel Macron (douze
+sources, verdict inédit `ABSURDE` porté par la migration `0011`, validée sur un Postgres
+jetable avant la base) a rouvert la chaîne : réapplication complète du seed et recapture
+des vingt-neuf dossiers publiés — **244 fiches** (206 `URL_SNAPSHOT`, 35 `URL_UNAVAILABLE`,
+3 `METADATA_ONLY` ; racine du passage `e870a09b060f05dc…`, recalculée depuis la base —
+aucune déduplication nécessaire, une fiche par pièce, zéro orpheline). Sources relues au
+texte : le programme national de réforme 2018 remis à la Commission européenne, la réponse
+ministérielle sur le rendement ISF/IFI, la série Insee des prélèvements obligatoires, la
+microsimulation Ines, les notes et rapports IPP n° 46 et n° 47, le rapport annuel de la
+Cour des comptes, le premier bilan du Sénat, le rapport final du comité d'évaluation de
+France Stratégie, l'opinion libérale de Contrepoints, le compte rendu des Échos et le
+bilan de gauche de l'OFCE. Les douze pièces du dossier sont capturées en instantané
+réseau ; sa racine d'intégrité `7e933b74b2ee3e93…` est recalculée par `npm run proofs`,
+et son égalité avec l'`ETag` et le `X-Proof-Integrity-Root` est vérifiée après le
+déploiement.
 
 ## Pile technique
 
@@ -852,8 +871,8 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 232 pièces publiées ont leur fiche déposée en base (une par pièce :
-  194 `URL_SNAPSHOT`, 35 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
+- Captures : les 244 pièces publiées ont leur fiche déposée en base (une par pièce :
+  206 `URL_SNAPSHOT`, 35 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
   PNAS, NOAA, NPR ou Le Vent Se Lève répondant 403 ou 429 aux clients non navigateurs — et
   3 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket `immutable-archives`
   n'a pas eu lieu, faute d'accès privilégié.

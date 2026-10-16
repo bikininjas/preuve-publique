@@ -16,7 +16,8 @@ export type VerdictStatus =
   | "HORS_CONTEXTE"
   | "ANACHRONISME_HISTORIQUE"
   | "GENERALISATION_ABUSIVE"
-  | "CONSPIRATIONNISTE";
+  | "CONSPIRATIONNISTE"
+  | "ABSURDE";
 
 export type PoliticalSpectrum =
   | "ARCHIVE_PRIMAIRE"
