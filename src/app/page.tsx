@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import CategoryChips from "@/components/CategoryChips";
@@ -7,8 +8,13 @@ import SearchForm from "@/components/SearchForm";
 import StatBand from "@/components/StatBand";
 import { categoryCounts, listPublishedDossiers } from "@/server/services/dossier.service";
 import { formatAverageConsensus, registryFigures } from "@/lib/figures";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 /** Les quatre conditions du validateur, dites en une ligne chacune. */
 const RULES: { code: string; text: string }[] = [
@@ -29,6 +35,15 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-12">
+      {/* Données structurées : le site et son éditeur, rien de plus. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+      />
       <section className="crop-marks space-y-5">
         <p className="pp-meta text-muted">Registre des vérifications · triangulation documentaire</p>
         <h1 className="pp-h1 max-w-[20ch] font-serif text-ink">

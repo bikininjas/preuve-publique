@@ -4,6 +4,11 @@ import { currentAdmin } from "@/server/supabase/admin.ts";
 
 export const dynamic = "force-dynamic";
 
+/* L'espace de rédaction ne s'indexe pas : il n'est pas public. */
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 /**
  * Coquille de l'espace de rédaction : sobre, sans la navigation publique, mais
  * avec la même règle affichée — rien ne se publie sans les quatre conditions.

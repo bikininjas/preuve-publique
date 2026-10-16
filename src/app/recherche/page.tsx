@@ -9,6 +9,9 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Recherche",
+  /* Une page de résultats de recherche interne n'a rien à faire dans un
+     index : elle reste hors des moteurs, le formulaire reste suivi. */
+  robots: { index: false, follow: true },
 };
 
 export default async function SearchPage({

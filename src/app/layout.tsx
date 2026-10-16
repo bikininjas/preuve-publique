@@ -25,19 +25,29 @@ const mono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+const SITE_DESCRIPTION =
+  "Chaque dossier croise archives primaires, consensus académique et sources de tout le spectre politique : la preuve ne dépend d'aucune autorité.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://preuve-publique.fr"),
   title: {
     default: "Preuve publique — la preuve par le recoupement",
     template: "%s — Preuve publique",
   },
-  description:
-    "Chaque dossier croise archives primaires, consensus académique et sources de tout le spectre politique : la preuve ne dépend d'aucune autorité.",
+  description: SITE_DESCRIPTION,
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "Preuve publique",
     url: "https://preuve-publique.fr",
+  },
+  /* Les cartes sont générées par `opengraph-image.tsx` (racine et dossiers) :
+     Twitter pointe la même route, en grand format. */
+  twitter: {
+    card: "summary_large_image",
+    title: "Preuve publique — la preuve par le recoupement",
+    description: SITE_DESCRIPTION,
+    images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
 };
@@ -67,6 +77,14 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        {/* Découverte du flux : posée ici plutôt qu'en métadonnées de page,
+            pour survivre aux fusions de `alternates` des pages enfants. */}
+        <link
+          href="/feed.xml"
+          rel="alternate"
+          title="Preuve publique — dossiers publiés (RSS)"
+          type="application/rss+xml"
+        />
       </head>
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
         {/* Règle graduée de la marge gauche : un repère de lecture, pas une donnée. */}

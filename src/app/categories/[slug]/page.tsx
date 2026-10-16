@@ -25,6 +25,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${CATEGORY_LABELS[category]} — dossiers de vérification`,
     description: CATEGORY_DESCRIPTIONS[category],
+    alternates: { canonical: `/categories/${CATEGORY_SLUGS[category]}` },
+    openGraph: {
+      url: `https://preuve-publique.fr/categories/${CATEGORY_SLUGS[category]}`,
+    },
   };
 }
 

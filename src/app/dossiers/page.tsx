@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: "Tous les dossiers",
   description:
     "Le registre complet des vérifications publiées, classées par catégorie, avec le nombre de pièces et les empreintes de chaque dossier.",
+  alternates: { canonical: "/dossiers" },
+  openGraph: {
+    url: "https://preuve-publique.fr/dossiers",
+  },
 };
 
 export default async function DossiersPage() {

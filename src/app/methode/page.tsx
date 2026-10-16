@@ -12,6 +12,10 @@ import type { PremiseStatus } from "@/lib/types";
 
 export const metadata = {
   title: "Méthode et limites",
+  description:
+    "Les quatre conditions d'un dossier vérifié — preuve primaire, consensus académique, deux bords politiques, empreintes SHA-256 — et les limites du dispositif.",
+  alternates: { canonical: "/methode" },
+  openGraph: { url: "https://preuve-publique.fr/methode" },
 };
 
 const GUARD_RULES = [

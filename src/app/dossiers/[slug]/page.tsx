@@ -38,6 +38,7 @@ import {
   formatLongDate,
   pieceCode,
 } from "@/lib/labels";
+import { dossierJsonLd } from "@/lib/structured-data";
 import type { PoliticalSpectrum } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -62,6 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: "fr_FR",
       siteName: "Preuve publique",
     },
+    alternates: { canonical: `/dossiers/${dossier.slug}` },
     /* La carte générée par `opengraph-image.tsx` sert les deux réseaux :
        Twitter retombe sur og:image, mais on pointe explicitement la route
        générée — même titre, même résumé. */
@@ -226,6 +228,12 @@ export default async function DossierPage({ params }: PageProps) {
 
   return (
     <BlindModeProvider sources={dossier.sources.length}>
+      {/* Données structurées du dossier : titre, résumé, dates et éditeur —
+          tout vient du dossier publié, rien n'est ajouté. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dossierJsonLd(dossier)) }}
+      />
       <article className="pp-doc space-y-6">
         <div id="verdict" className="pp-marks scroll-mt-16">
           <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
