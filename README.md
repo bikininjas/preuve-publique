@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 16/10/2026
 
-- **Base** : douze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : treize migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -31,9 +31,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   accueille « absurde », le verdict du dossier sur la politique d'Emmanuel Macron),
   `0012_confusion_conceptuelle_verdict` (`20261016153000`, appliquée le 16/10 —
   `verdict_status` accueille « confusion conceptuelle » ; la valeur existait déjà comme
-  statut de brique côté application, les deux échelles sont des types distincts).
-  Trente et un dossiers en base :
-  trente **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  statut de brique côté application, les deux échelles sont des types distincts),
+  `0013_cadre_reglementaire_restreint` (`20261016154754`, appliquée le 16/10 —
+  `verdict_status` accueille « cadre réglementaire restreint », le verdict du dossier sur
+  les notes de frais des parlementaires ; le fichier a été renuméroté en 0013 après
+  collision avec une migration voisine).
+  Trente-deux dossiers en base :
+  trente et un **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -57,10 +61,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   « infériorité cognitive biologique » des populations africaines (12, société) et la
   théorie du « Grand Remplacement » présentée comme la preuve d'un plan ourdi par des
   élites (12, société, conspirationniste), la thèse d'une politique « socialiste »
-  d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde), la thèse d'un racisme « anti-blanc systémique » (10, société, confusion conceptuelle) —
+  d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde), la thèse d'un racisme « anti-blanc systémique » (10, société, confusion conceptuelle),
+  et la revendication d'un « droit légal absolu de publier le détail nominatif des notes
+  de frais des parlementaires » (8, politique, cadre réglementaire restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 254 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 262 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -226,8 +232,9 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
     répond 200 (deux tests de non-régression couvrent ce point).
 - **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
   `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 16/10/2026 —
-  `preuve-publique-git-00024-bqz` (dossiers « politique d'Emmanuel Macron » — `ABSURDE` —
-  et « racisme anti-blanc systémique » — `CONFUSION_CONCEPTUELLE` —, après les livraisons
+  `preuve-publique-git-00025-n8t` (dossiers « politique d'Emmanuel Macron » — `ABSURDE` —,
+  « racisme anti-blanc systémique » — `CONFUSION_CONCEPTUELLE` — et « notes de frais des
+  parlementaires » — `CADRE_REGLEMENTAIRE_RESTREINT` —, après les livraisons
   OpenGraph, chaîne de custode et « grand remplacement » ; `/api/health` → `status: healthy`, `database.reachable: true` ; le
   dossier répond 200, son `ETag` et son `X-Proof-Integrity-Root` égalent la racine
   recalculée par `npm run proofs`, et son image de partage répond 200). Déploiement manuel par
@@ -360,6 +367,24 @@ dossier de la DGAFP. Sa racine d'intégrité `559ae661719f4081…` est égale à
 `X-Proof-Integrity-Root` relevés en ligne sous la révision `preuve-publique-git-00024-bqz` ;
 `/api/verify` et `/api/archives` vérifiés sur les pièces du dossier, et la recherche
 « racisme » renvoie deux résultats.
+
+Puis, le 16/10/2026 (15:52 UTC), le dossier sur les notes de frais des parlementaires (huit
+sources, verdict inédit `CADRE_REGLEMENTAIRE_RESTREINT` porté par la migration `0013`,
+validée sur un Postgres jetable) : le déploiement a de nouveau précédé l'application du
+seed (révision `00025-n8t`), et la recapture complète des trente et un dossiers publiés a
+produit **262 fiches** (222 `URL_SNAPSHOT`, 37 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` ;
+racine des captures `34cf0683cd3502ea…`, égale à celle annoncée par le passage — une fiche
+par pièce, zéro doublon, zéro orpheline). Sources relues au texte : l'article 4 sexies de
+l'ordonnance du 17 novembre 1958 dans sa version consolidée (Légifrance bloquant les
+robots → `URL_UNAVAILABLE` consignée), l'avis CADA n° 20173715 (21 septembre 2017), les
+décisions du Conseil d'État n° 493051 (7 mars 2025) et n° 495393 (23 juillet 2025), le
+rapport public du déontologue de l'Assemblée nationale remis le 13 mai 2026, le rapport
+d'activité 2024-2025 du comité de déontologie du Sénat, la thèse de Baptiste Javary
+(Nanterre, 2019 — résumé officiel via l'API HAL) et l'article de Mediapart du
+30 novembre 2017. Chaque citation a été vérifiée par sous-chaîne sur le document
+téléchargé. Sa racine d'intégrité `5931bbbe768b4a804a…` égale l'`ETag` et le
+`X-Proof-Integrity-Root` relevés en ligne sous la révision `preuve-publique-git-00025-n8t` ;
+`/api/archives` sert une fiche du dossier octet pour octet (rehachage vérifié).
 
 ## Pile technique
 
@@ -888,8 +913,8 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 254 pièces publiées ont leur fiche déposée en base (une par pièce :
-  215 `URL_SNAPSHOT`, 36 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
+- Captures : les 262 pièces publiées ont leur fiche déposée en base (une par pièce :
+  222 `URL_SNAPSHOT`, 37 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
   PNAS, NOAA, NPR ou Le Vent Se Lève répondant 403 ou 429 aux clients non navigateurs — et
   3 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket `immutable-archives`
   n'a pas eu lieu, faute d'accès privilégié.
