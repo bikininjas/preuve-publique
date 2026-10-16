@@ -219,11 +219,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   - sans variables Supabase, le repli local sert les mêmes empreintes dérivées et l'audit
     répond 200 (deux tests de non-régression couvrent ce point).
 - **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
-  `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 15/10/2026 —
-  `preuve-publique-git-00005-l49`, puis `preuve-publique-git-00006-pfj` après l'ajout des
-  deux dossiers Religion (`/api/health` → `status: healthy`, `database.reachable: true` ;
-  les deux dossiers répondent 200 et leur `X-Proof-Integrity-Root` égale la racine
-  recalculée par `npm run proofs`). Déploiement manuel par
+  `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 16/10/2026 —
+  `preuve-publique-git-00020-ns2` (carte OpenGraph, chaîne de custode, dossier « grand
+  remplacement » et ses verdicts inédits ; `/api/health` → `status: healthy`,
+  `database.reachable: true` ; le dossier répond 200, son `ETag` et son
+  `X-Proof-Integrity-Root` égalent la racine recalculée par `npm run proofs`, et son
+  image de partage répond 200). Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
 - **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **178 pièces publiées**
@@ -307,7 +308,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `3d8a3359552e4be0…` ; une fiche par pièce, zéro orpheline. Le dossier inaugure le verdict
   `CONSPIRATIONNISTE` (migration `0010`, appliquée sur un Postgres jetable avant la base) et
   deux statuts de brique, `COMPLOTISME` et `BIAIS_ESSENTIALISTE` ; sa racine d'intégrité est
-  `5121bcbe8bbae307…`.
+  `5121bcbe8bbae307…`, égale à l'`ETag` et au `X-Proof-Integrity-Root` relevés en ligne.
 
 ## Pile technique
 
@@ -775,8 +776,9 @@ inédit `CONSPIRATIONNISTE` porté par la migration `0010`, deux statuts de briq
 et recapture des vingt-huit dossiers publiés — **232 fiches** (194 `URL_SNAPSHOT`, 35
 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` ; racine du passage `326a026867d57ea4…`, état consolidé
 `3d8a3359552e4be0…`). Sa racine d'intégrité `5121bcbe8bbae307…` est recalculée par
-`npm run proofs` ; l'égalité avec l'`ETag` et le `X-Proof-Integrity-Root` en ligne est
-vérifiée après le déploiement.
+`npm run proofs` ; l'égalité avec l'`ETag` et le
+`X-Proof-Integrity-Root` en ligne a été vérifiée après le déploiement, sous la révision
+`preuve-publique-git-00020-ns2`.
 
 Le
 **miroir Storage** n'a pas eu lieu faute d'accès
