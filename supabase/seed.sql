@@ -4312,6 +4312,231 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   12
 );
 
+delete from public.dossiers where slug = 'grand-remplacement-theorie-complot-demographie';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, timeline, is_published, published_at, illustration_url, illustration_credit
+) values (
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'grand-remplacement-theorie-complot-demographie',
+  'La théorie du « Grand Remplacement » démontre un plan ourdi par des élites',
+  'CONSPIRATIONNISTE'::verdict_status,
+  'La thèse du « Grand Remplacement » postule un projet concerté d''élites visant à substituer la population européenne — un « plan » dont aucun document n''atteste l''existence. Popularisée en 2011 par l''écrivain Renaud Camus et portée au premier plan de la campagne présidentielle de 2022 par Eric Zemmour, elle réactive la peur de l''envahisseur et s''appuie sur des chiffres approximatifs : « elle s''est fabriquée comme un slogan », résume le démographe Hervé Le Bras. Rien, dans les données officielles, ne correspond à une submersion : le solde migratoire de la France est estimé provisoirement à +176 000 personnes pour 2025, année où le solde naturel devient négatif pour la première fois depuis la fin de la Seconde Guerre mondiale (-6 000), et les projections de François Héran situent à l''horizon 2050 la part de la population d''origine subsaharienne autour de 3 % — même en doublant — et celle d''origine nord-africaine à 5,3 %. Le rapport onusien sur la « migration de remplacement », parfois brandi comme la « preuve » d''un programme, est un exercice de projection sur le vieillissement démographique, jamais un plan appliqué. Démographes de l''Ined et du Collège de France, politologues, économistes du CAE : les spécialistes convergent — des flux ordinaires (travail, famille, études, exil), des facteurs structurels, aucune machination. Une théorie fausse, documentée comme dangereuse : elle a inspiré des actes terroristes.',
+  'SOCIETE'::dossier_category,
+  '[{"name":"Renaud Camus","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Renaud_Camus","note":"Écrivain, figure des milieux identitaires : il popularise l''expression « grand remplacement » dans l''essai éponyme de 2011, réédité en 2012."},{"name":"Grand remplacement","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Grand_remplacement","note":"Théorie conspirationniste d''un remplacement de la population française par une immigration extra-européenne — la peur d''un envahisseur « qui n''a pas d''âge », documentée et réfutée par les démographes."},{"name":"Éric Zemmour","kind":"PERSONNE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/%C3%89ric_Zemmour","note":"Polémiste et candidat à l''élection présidentielle de 2022 : principal relais de la théorie dans le débat électoral, dont il fait un argument de campagne."},{"name":"Institut national d''études démographiques","kind":"ORGANISATION","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques","note":"Institut de recherche dont les démographes (Héran, Pison, Le Bras) documentent les flux réels — et l''écart avec la fiction du « remplacement »."}]'::jsonb,
+  100,
+  '[{"claim_part":"« Les flux migratoires obéissent à un plan secret d''élites »","status":"COMPLOTISME","detail":"Attribution de dynamiques macro-sociales à une volonté cachée : aucun document, aucune archive ne documente un « plan » de substitution. Le texte que les milieux complotistes citent comme preuve — le rapport de l''ONU sur la « migration de remplacement » — définit celle-ci comme « la migration internationale qu''il faudrait » pour compenser un déclin de population : un exercice de projection en six scénarios sur huit pays, qui conclut au contraire qu''un « niveau d''immigration bien plus élevé que celui connu dans un passé récent » serait nécessaire pour l''enrayer. Les entrées que l''Insee mesure (+176 000 personnes en 2025) relèvent de motifs documentés — travail, famille, études, asile — et de facteurs structurels : vieillissement, besoins de main-d''œuvre, conflits. Attribuer ces flux à une volonté d''élites est la définition même du complotisme."},{"claim_part":"« La démographie subit une substitution biologique programmée »","status":"BIAIS_ESSENTIALISTE","detail":"Des mobilités mises en récit comme une substitution : en 2025, la population française n''augmente que par le solde migratoire (+176 000) puisque le solde naturel est négatif (-6 000) — sans aucune « substitution » : les personnes immigrées ou descendantes d''immigrés représentent près de 22 % de la population, une naissance sur six naît d''un couple mixte, et la fécondité converge dès la deuxième génération (apport des femmes immigrées au taux de fécondité national : +0,1 enfant). D''ici 2050, la part de la population d''origine subsaharienne atteindrait environ 3 % — même en doublant, selon les projections de François Héran — et celle d''origine nord-africaine 5,3 %. La « substitution biologique » convertit ces mobilités en destin racial : un biais essentialiste, pas une mesure."}]'::jsonb,
+  '[]'::jsonb,
+  true,
+  '2026-10-16T00:00:00.000Z'::timestamptz,
+  '/illustrations/grand-remplacement-theorie-complot-demographie.jpg',
+  'Portrait : Renaud Camus, 2013 — CC BY 2.0, Wikimedia Commons'
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '29049c7f-977f-4613-9469-93e24145dd9b',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  '« Replacement Migration: Is It a Solution to Declining and Ageing Populations? » — rapport ST/ESA/SER.A/206, Nations unies, Division de la population (2000)',
+  'Organisation des Nations unies — Division de la population (Département des affaires économiques et sociales)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Replacement migration refers to the international migration that would be needed to offset declines in the size of population and declines in the population of working age, as well as to offset the overall ageing of a population.',
+  'La définition officielle qui ouvre le rapport : la « migration de remplacement » est « la migration internationale qu''il faudrait » pour compenser des déclins de population — un conditionnel, jamais un plan. Le document, publié par la Division de la population, calcule six scénarios prospectifs pour huit pays (France, Allemagne, Italie, Japon, Corée du Sud, Russie, Royaume-Uni, États-Unis) et conclut que, pour l''Italie, le Japon, la Corée du Sud et l''Europe, « a level of immigration much higher than that experienced in the recent past would be needed to offset population decline » — un niveau d''immigration bien plus élevé que celui connu récemment serait nécessaire pour enrayer le déclin, preuve que rien de tel n''est en cours. En français : la migration de remplacement désigne la migration internationale qui serait nécessaire pour compenser les déclins de la taille de la population et de la population en âge de travailler, ainsi que le vieillissement global d''une population.',
+  'https://www.un.org/development/desa/pd/content/replacement-migration',
+  null,
+  '556f9d88d98ab2d28ac1d45423ee44b904cb02a032da6c80e154f75c3f56b272',
+  null,
+  'https://fr.wikipedia.org/wiki/Organisation_des_Nations_unies',
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ee604881-be97-4460-b0bd-8c47020c3570',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Le mythe du « grand remplacement » » — fiche Désinfox n° 2 de l''Institut Convergences Migrations (CNRS, 2022)',
+  'Désinfox-Migrations — Institut Convergences Migrations (CNRS)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'La théorie du « grand remplacement » est fausse car il n''y a pas de submersion migratoire, ni en Europe, ni en France.',
+  'La fiche de décryptage co-signée par des spécialistes — parmi lesquels François Héran (Collège de France), Jean-Yves Camus (IRIS), Patrick Simon (Ined), Karen Akoka, Ségolène Barbou des Places et Catherine Wihtol de Wenden (CNRS) — tranche : « ni en Europe, ni en France ». Elle documente qu''en 2021 la population a augmenté de 0,3 % grâce à un solde naturel estimé à +81 000 et un solde migratoire estimé à +140 000 (Insee) ; que l''apport des femmes immigrées au taux de fécondité national est de +0,1 enfant seulement (1,8 à 1,9 en 2017), les filles d''immigrés alignant leur fécondité sur celle des natives dès la deuxième génération ; que près de 22 % des personnes en France sont immigrées ou descendantes d''immigrés et qu''une naissance sur six vient d''un couple mixte — ce n''est pas un remplacement parce que cette diversité incorpore de nombreux mélanges d''une génération à l''autre. Elle rappelle enfin qu''en inspirant des actes terroristes « contre les populations perçues comme étrangères », cette théorie « s''est révélée extrêmement dangereuse à travers le monde ».',
+  'https://www.icmigrations.cnrs.fr/wp-content/uploads/2025/01/DM-Fiche-2-Mythe-grand-remplacement.pdf',
+  null,
+  'c63b42a8b82b55330fa13d46e67e2185c1b871dde25d0987b10fb56c3095cec5',
+  null,
+  'https://www.icmigrations.cnrs.fr/',
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '1197e5e9-ff75-4b39-9b5e-6157d5f44a87',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« « Grand remplacement ? » D''ici 2050, la part des immigrés d''origine subsaharienne dans la population française pourrait doubler et s''établir à… 3%, et celle des immigrés d''Afrique du Nord à 5,3% » — Institut Convergences Migrations (5 avril 2022)',
+  'Institut Convergences Migrations (CNRS) — projections de François Héran (d''après Le Monde)',
+  '2022-04-05',
+  'CITATION_EXACTE'::quote_kind,
+  'D''ici 2050, la part des immigrés d''origine subsaharienne dans la population française pourrait doubler et s''établir à… 3%, et celle des immigrés d''Afrique du Nord à 5,3%',
+  'Les projections du démographe François Héran (professeur au Collège de France, directeur de l''Institut Convergences Migrations) relayées par l''institut : même en doublant d''ici 2050, la part de la population d''origine subsaharienne atteindrait environ 3 %, et celle d''origine nord-africaine 5,3 %. Le post renvoie à la vidéo du Monde « Immigration : y a-t-il de plus en plus d''immigrés en France ? » et à l''étude de Héran sur les migrations subsahariennes en Europe — des ordres de grandeur sans rapport avec la « submersion » annoncée.',
+  'https://www.icmigrations.cnrs.fr/2022/04/05/grand-remplacement-dici-2050-la-part-des-immigres-dorigine-subsaharienne-dans-la-population-francaise-pourrait-doubler-et-setablir-a-3-et-celle-des-immigres-dafrique-du-nord-a-53/',
+  null,
+  'fa37a5060c590fe5350164c38e2779240ed13b1fa03f601cc5259d19d45d4c9a',
+  null,
+  'https://fr.wikipedia.org/wiki/Fran%C3%A7ois_H%C3%A9ran',
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ce72edc7-f606-4d3e-821e-357452a2cedf',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Bilan démographique 2025 » — Insee Première n° 2087 (13 janvier 2026)',
+  'Insee — Institut national de la statistique et des études économiques',
+  '2026-01-13',
+  'CITATION_EXACTE'::quote_kind,
+  'Le solde migratoire est quant à lui estimé provisoirement à +176 000 personnes pour 2025.',
+  'Le bilan annuel officiel : au 1er janvier 2026, la population en France est estimée à 69,1 millions d''habitants, soit 0,25 % de plus qu''un an auparavant, et le solde naturel devient négatif pour la première fois depuis la fin de la Seconde Guerre mondiale (-6 000) — la croissance ne tient qu''à la migration. Le document explicite sa méthode : jusqu''au dernier recensement disponible, le solde migratoire est mesuré par différence ; au-delà, il est « conventionnellement fixé à la moyenne des trois derniers soldes migratoires connus », le choc ukrainien de 2022 étant exclu du calcul. Des entrées et des sorties comptabilisées, +0,25 % de population par an : aucune trace d''un « plan ».',
+  'https://www.insee.fr/fr/statistiques/8719824',
+  null,
+  '391e76f0511550f5b663afe599cf97ecad54f9466c99b93846cea0fb6f2fec34',
+  null,
+  'https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '03b5c398-ae73-4460-9a50-14a89a59056e',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« EU population diversity by citizenship and country of birth » — Eurostat, Statistics Explained (données extraites le 2 février 2026)',
+  'Eurostat — office statistique de l''Union européenne',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'On 1 January 2025, an estimated 46.7 million people born outside the EU were residing in an EU country, accounting for 10.4% of the EU population.',
+  'La photographie officielle de l''Union : au 1er janvier 2025, environ 450,6 millions de personnes vivaient dans l''UE, dont 46,7 millions nées hors de l''UE (10,4 %) et 30,6 millions de citoyens de pays tiers (6,8 %), « une augmentation de 1,9 million » sur un an — des ordres de grandeur progressifs, sans submersion. S''y ajoutent 18,0 millions de personnes nées dans un autre État membre et 14,1 millions de citoyens d''un autre pays de l''UE. En français : au 1er janvier 2025, environ 46,7 millions de personnes nées hors de l''UE résidaient dans un pays de l''UE, soit 10,4 % de la population de l''Union.',
+  'https://ec.europa.eu/eurostat/statistics-explained/index.php?title=EU_population_diversity_by_citizenship_and_country_of_birth',
+  null,
+  '457e51be16cb397ad78c32620cc8c5c946d44cddd0b83ae23d71f0159d618a55',
+  null,
+  'https://fr.wikipedia.org/wiki/Eurostat',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '182333ae-48d3-4ffb-8925-4d03d333d5d0',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'CENTRE'::political_spectrum,
+  '« L''immigration qualifiée : un visa pour la croissance » — Note du Conseil d''analyse économique n° 67 (9 novembre 2021)',
+  'Emmanuelle Auriol et Hillel Rapoport — Conseil d''analyse économique (CAE)',
+  '2021-11-09',
+  'CITATION_EXACTE'::quote_kind,
+  'Au total, les études sur les effets de l''immigration sur le marché du travail, notamment français, concluent à des effets faibles, tantôt positifs, tantôt négatifs, mais très localisés et de court terme.',
+  'La note institutionnelle sur le rôle macroéconomique du travail immigré : les effets sur le marché du travail « sont généralement modestes à court terme, en France y compris » — entre 1990 et 2010, « l''immigration n''a eu aucun effet sur les salaires des natifs français » — et la contribution nette des immigrés aux finances publiques « se situe dans une fourchette comprise entre + 0,5 % et - 0,5 % du PIB », suivant les pays et les années. Les auteurs notent que les immigrés sont « auto-sélectionnés positivement » et recommandent, pour la croissance, une immigration de travail plus qualifiée — à rebours de tout « plan » de substitution, qu''aucun modèle économique n''étaye.',
+  'https://cae-eco.fr/static/pdf/cae-note067.pdf',
+  null,
+  '1d604be3e11655698892b194a32dd5a3f3160b624a4ce1c8ae8fd7374b4913c1',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_d%27analyse_%C3%A9conomique',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'c94f655f-8b45-4ba6-a4fc-c4acd6a2d14c',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'CENTRE'::political_spectrum,
+  '« Le « grand remplacement », généalogie d''un complotisme caméléon » — Le Monde (28 janvier 2022)',
+  'Marc-Olivier Bherer — Le Monde',
+  '2022-01-28',
+  'CITATION_EXACTE'::quote_kind,
+  'La pensée du « grand remplacement », propagée principalement par l''écrivain Renaud Camus, figure des milieux identitaires, et le candidat d''extrême droite à l''élection présidentielle Eric Zemmour, ne repose pas simplement sur un délire démographique.',
+  'L''enquête sur la généalogie de la théorie : trouvant ses racines dans la chrétienté médiévale, la peur de l''envahisseur se réinvente à chaque époque — chez Camus, dont l''essai de 2021 (La Nouvelle Librairie) décrit « le remplacement d''un peuple, le peuple français indigène, par un ou plusieurs autres », comme chez Zemmour, dont les chiffres approximatifs sont démontés : « les démographes ont démontré que l''actuelle progression de l''immigration est loin de représenter une explosion démographique ». L''historien Reza Zia-Ebrahimi (King''s College) rappelle que juifs et musulmans étaient déjà dépeints au Moyen Âge comme « une menace existentielle » ; sans tangible, la théorie en appelle à la « guerre ethnique » et au « génocide ».',
+  'https://web.archive.org/web/20220131212741/https://www.lemonde.fr/idees/article/2022/01/28/le-grand-remplacement-genealogie-d-un-complotisme-cameleon_6111330_3232.html',
+  null,
+  '0df1b025bb8abf06a4db48cdbcae055dd9c0d126f29bdced0e1b3d7f8d36cc40',
+  null,
+  'https://www.lemonde.fr/signataires/marc-olivier-bherer/',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'f86cdc9e-0832-4ade-90b8-b0df982e18f2',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'CENTRE'::political_spectrum,
+  '« Le « grand remplacement » : la trajectoire politique d''une thèse complotiste » — Public Sénat (14 février 2022)',
+  'Romain David — Public Sénat, entretien avec Jean-Yves Camus',
+  '2022-02-14',
+  'CITATION_EXACTE'::quote_kind,
+  'L''expression vient effectivement de l''écrivain Renaud Camus, qui l''utilise pour la première fois dans un ouvrage publié en 2011, précisément intitulé Le Grand Remplacement, et qui a été réédité en 2012.',
+  'Le politologue Jean-Yves Camus (spécialiste de l''extrême droite) déroule l''histoire de la formule : une « thèse xénophobe, progressivement apparue au tournant des XIXe et XXe siècle » — les romans L''Invasion noire et L''Invasion jaune d''Émile Driant (1894 et 1905) —, reprise par Renaud Camus, dont l''ouvrage « est davantage une collection de textes qu''un essai », puis convertie en arme électorale. « L''utilisation de la thèse complotiste et xénophobe d''un prétendu « grand remplacement » » fait réagir toute la classe politique au lendemain du meeting de Valérie Pécresse.',
+  'https://www.publicsenat.fr/actualites/politique/le-grand-remplacement-la-trajectoire-politique-d-une-these-complotiste-192676',
+  null,
+  '085b23e1611ac67a2717e1b1f41b6626943374904564038e7b95f32a282a6b57',
+  null,
+  'https://fr.wikipedia.org/wiki/Jean-Yves_Camus',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'eb72e3cf-cf90-4027-96cc-7a1fe2f68c73',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Le mythe falsificateur du grand remplacement » — Les Échos (25 février 2022)',
+  'Pierre de Gasquet — Les Échos',
+  '2022-02-25',
+  'CITATION_EXACTE'::quote_kind,
+  'Non, la théorie du grand remplacement ne résiste pas à l''épreuve de la réalité de l''évolution démographique.',
+  'Le quotidien économique de droite rend compte de « Il n''y a pas de grand remplacement », d''Hervé Le Bras (Grasset, 140 pages) : « chiffres à l''appui », le démographe démontre que la « fable » ne résiste pas à l''analyse concrète des données — une « fable basée sur un fatras idéologique dont les leaders populistes font toujours leur miel, quarante ans plus tard… ». La recension souligne l''originalité du travail : il fallait « la voix de l''un de nos meilleurs démographes et historiens pour débusquer le mythe ».',
+  'https://web.archive.org/web/20220225072426/https://www.lesechos.fr/idees-debats/livres/le-mythe-falsificateur-du-grand-remplacement-1389607',
+  null,
+  'ccff80dd92fa7eedccf03a142e7bc46474a6b686f6fba295f71701eefe90a2e4',
+  null,
+  'https://fr.wikipedia.org/wiki/Les_%C3%89chos',
+  9
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '6c534485-c4c8-4e1f-9e23-a95fa14495fc',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'GAUCHE'::political_spectrum,
+  '« Aux origines du mythe du « grand remplacement » — entretien avec Hervé Le Bras » — Le Vent Se Lève (30 mai 2022)',
+  'Guillemette Magnin — Le Vent Se Lève, entretien avec Hervé Le Bras',
+  '2022-05-30',
+  'CITATION_EXACTE'::quote_kind,
+  'Entre les entrées, les sorties et les décès, la moyenne annuelle est de 120 000 migrants entre 2006 et 2020.',
+  'Le démographe (directeur d''études à l''EHESS) démonte la fabrique du slogan : « Pour moi, elle s''est fabriquée comme un slogan » — une « contagion de l''évidence » qui rend les chiffres inutiles. Il rétablit les ordres de grandeur : « Nous sommes bien loin des 400 000 annoncés ». Et rappelle que le rapport onusien sur la « migration de remplacement » — un exercice prospectif sur le vieillissement — a été détourné par le Front national en 2015. Le vrai juge de paix, dit-il, c''est le bilan des entrées, des sorties et des décès : 120 000 par an en moyenne, pas une submersion.',
+  'https://lvsl.fr/aux-origines-du-mythe-du-grand-remplacement-entretien-avec-herve-le-bras/',
+  null,
+  'ef29e8a97108cbcb4f5aa475d5f31da9ec99ccf7903f7bb8cbf98bdf675323aa',
+  null,
+  'https://fr.wikipedia.org/wiki/Herv%C3%A9_Le_Bras',
+  10
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '5ce7f04f-148a-4aa9-95a7-184b9c1dac67',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'GAUCHE'::political_spectrum,
+  '« François Héran : « Le grand remplacement est une chimère » » — L''Obs, n° 3000 (23 avril 2022)',
+  'Natacha Tatu — L''Obs, propos recueillis auprès de François Héran',
+  '2022-04-23',
+  'CITATION_EXACTE'::quote_kind,
+  'Le grand remplacement est une chimère',
+  'À l''occasion du dossier immigration de son numéro 3000, l''hebdomadaire interroge François Héran, professeur au Collège de France : « Il n''y a pas eu d''explosion récente », et la migration, « régulière depuis plus d''un siècle, participe au dynamisme de la société ». Le démographe rappelle aussi que « le niveau d''éducation des populations immigrées ne cesse de monter » — loin du « remplacement » fantasmé par ses promoteurs.',
+  'https://www.nouvelobs.com/idees/20220423.OBS57545/francois-heran-le-grand-remplacement-est-une-chimere.html',
+  null,
+  '2dca8dba4a19f7ac28f79ada6822c97f50fb3898fc77230934c462ab844a7d6c',
+  null,
+  'https://fr.wikipedia.org/wiki/Fran%C3%A7ois_H%C3%A9ran',
+  11
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '7e79bbdf-be60-4eb4-b909-4d207696e489',
+  'de732433-25fc-487c-8c42-1838d8c0e110',
+  'CENTRE'::political_spectrum,
+  '« Attention à ces affirmations trompeuses sur la fécondité des immigrés en France » — AFP Factuel (19 janvier 2024)',
+  'AFP Factuel — Agence France-Presse',
+  '2024-01-19',
+  'CITATION_EXACTE'::quote_kind,
+  'il faut regarder la descendance finale des femmes, c''est la mesure qui a le plus de sens car elle prend en compte l''ensemble de leur vie féconde, avant et après la migration, pour une génération de femmes qui ont atteint 50 ans.',
+  'La vérification, au lendemain du bilan démographique 2023, des chiffres brandis sur la fécondité des immigrées : l''indice conjoncturel des femmes nées à l''étranger est stable (autour de 2,3 enfants par femme entre 2006 et 2013, puis de 2,4 de 2014 à 2020) et la descendance finale des immigrées de 45 à 60 ans s''établit à 2,3 enfants, en baisse continue selon les générations (2,9 pour celles nées entre 1950 et 1954, 2,3 pour 1970-1974). Gilles Pison (Ined) indique la bonne mesure ; Sylvie Le Minez (Insee) rappelle que « le vrai juge de paix c''est ce qu''on appelle la descendance finale » ; et l''idée que « 50 % des naissances en 2050 » seraient d''origine immigrée est « très peu probable vu les tendances ».',
+  'https://web.archive.org/web/20240128185515/https://factuel.afp.com/doc.afp.com.34FN3D6',
+  null,
+  'a036eacd26195597f0bb239d6e72f4706d6f0c387aa4b3160f785c67460b86ec',
+  null,
+  'https://fr.wikipedia.org/wiki/Agence_France-Presse',
+  12
+);
+
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,

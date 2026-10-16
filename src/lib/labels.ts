@@ -145,6 +145,7 @@ export const VERDICT_LABELS: Record<VerdictStatus, string> = {
   HORS_CONTEXTE: "Hors contexte",
   ANACHRONISME_HISTORIQUE: "Anachronisme historique",
   GENERALISATION_ABUSIVE: "Généralisation abusive",
+  CONSPIRATIONNISTE: "Conspirationniste",
 };
 
 export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
@@ -155,6 +156,7 @@ export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
   HORS_CONTEXTE: "HORS CONTEXTE",
   ANACHRONISME_HISTORIQUE: "ANACHRONISME HISTORIQUE",
   GENERALISATION_ABUSIVE: "GÉNÉRALISATION ABUSIVE",
+  CONSPIRATIONNISTE: "CONSPIRATIONNISTE",
 };
 
 export const PREMISE_STATUS_LABELS: Record<PremiseStatus, string> = {
@@ -165,6 +167,8 @@ export const PREMISE_STATUS_LABELS: Record<PremiseStatus, string> = {
   DOUBLE_STANDARD: "Double standard",
   BIAIS_METHODOLOGIQUE: "Biais méthodologique",
   BIAIS_DE_SELECTION: "Biais de sélection",
+  COMPLOTISME: "Complotisme",
+  BIAIS_ESSENTIALISTE: "Biais essentialiste",
   FAUX: "Faux",
 };
 
@@ -177,6 +181,8 @@ export const PREMISE_STAMP_LABELS: Record<PremiseStatus, string> = {
   DOUBLE_STANDARD: "DOUBLE STANDARD",
   BIAIS_METHODOLOGIQUE: "BIAIS MÉTHODOLOGIQUE",
   BIAIS_DE_SELECTION: "BIAIS DE SÉLECTION",
+  COMPLOTISME: "COMPLOTISME",
+  BIAIS_ESSENTIALISTE: "BIAIS ESSENTIALISTE",
   FAUX: "FAUX MATÉRIEL",
 };
 
@@ -195,6 +201,8 @@ export const PREMISE_DISTORTION_LEVELS: Record<PremiseStatus, number> = {
   DOUBLE_STANDARD: 70,
   BIAIS_METHODOLOGIQUE: 80,
   BIAIS_DE_SELECTION: 80,
+  BIAIS_ESSENTIALISTE: 80,
+  COMPLOTISME: 100,
   FAUX: 100,
 };
 
@@ -206,6 +214,8 @@ export const PREMISE_STATUS_TONES: Record<PremiseStatus, "true" | "warn" | "fals
   DOUBLE_STANDARD: "warn",
   BIAIS_METHODOLOGIQUE: "false",
   BIAIS_DE_SELECTION: "false",
+  BIAIS_ESSENTIALISTE: "false",
+  COMPLOTISME: "false",
   FAUX: "false",
 };
 
@@ -222,6 +232,7 @@ export const VERDICT_TONES: Record<VerdictStatus, "true" | "warn" | "false"> = {
   HORS_CONTEXTE: "warn",
   ANACHRONISME_HISTORIQUE: "warn",
   GENERALISATION_ABUSIVE: "warn",
+  CONSPIRATIONNISTE: "false",
 };
 
 /** Cote technique du dossier : les 8 premiers caractères de son identifiant. */

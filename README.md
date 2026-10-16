@@ -9,9 +9,9 @@ droite libérale ou conservatrice, données officielles. Le lecteur constate le 
 autorité. Le mode « preuve à l'aveugle » va plus loin : les noms des médias et des auteurs
 sont floutés, seuls la citation, la date et l'état de l'archive restent lisibles.
 
-## État vérifié le 15/10/2026
+## État vérifié le 16/10/2026
 
-- **Base** : neuf migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : dix migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -22,9 +22,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   public `illustrations` : lecture publique, dépôt réservé aux administrateurs),
   `0009_dossier_timeline` (`20261016124442`, appliquée le 16/10 — `timeline` sur les
   dossiers : la chaîne de custode, un tableau JSONB d'étapes datées, rattachables à une
-  pièce ; `[]` par défaut, aucun dossier existant modifié).
-  Vingt-huit dossiers en base :
-  vingt-sept **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  pièce ; `[]` par défaut, aucun dossier existant modifié),
+  `0010_conspirationniste_verdict` (`20261016130619`, appliquée le 16/10 — `verdict_status`
+  accueille « conspirationniste », le verdict du dossier « grand remplacement » ; les deux
+  statuts de brique « complotisme » et « biais essentialiste » sont validés côté
+  application, sans migration).
+  Vingt-neuf dossiers en base :
+  vingt-huit **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -44,11 +48,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   réchauffement climatique attribué à un « cycle solaire » (9, environnement), la voiture
   électrique comparée au thermique en analyse de cycle de vie (7, environnement) et
   l'OTAN accusée d'avoir « violé » un traité de 1990 promettant de ne pas s'élargir à
-  l'Est (7, international) et la carte mondiale du QI censée prouver une
-  « infériorité cognitive biologique » des populations africaines (12, société) —
+  l'Est (7, international), la carte mondiale du QI censée prouver une
+  « infériorité cognitive biologique » des populations africaines (12, société) et la
+  théorie du « Grand Remplacement » présentée comme la preuve d'un plan ourdi par des
+  élites (12, société, conspirationniste) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 220 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 232 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -287,7 +293,21 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   rapport de l'APA et articles d'*Intelligence* relus au texte, notice de la Royal
   Society lue sur l'instantané Wayback (son URL répond 403 aux robots et est consignée
   `URL_UNAVAILABLE`) — et la racine d'intégrité du dossier `9144f48b72ea1ee6…` est égale
-  à l'`ETag` et au `X-Proof-Integrity-Root` relevés en ligne.
+  à l'`ETag` et au `X-Proof-Integrity-Root` relevés en ligne. Puis, le 16/10/2026 (13:10 UTC), l'ajout du dossier
+  « grand remplacement » (douze sources : le rapport onusien de 2000 relu au texte, la fiche
+  Désinfox n° 2 de l'Institut Convergences Migrations, les projections 2050 de François Héran,
+  le bilan démographique Insee 2025, « EU population diversity » d'Eurostat, la note n° 67 du
+  CAE, l'enquête du Monde sur la généalogie du complotisme, l'entretien Public Sénat de
+  Jean-Yves Camus, la recension des Échos du livre d'Hervé Le Bras, deux entretiens de
+  démographes — Le Vent Se Lève, L'Obs — et la vérification AFP Factuel sur la fécondité) a
+  entraîné une réapplication complète du seed et la recapture des vingt-huit dossiers publiés :
+  **232 fiches** déposées et relues — 194 `URL_SNAPSHOT`, 35 `URL_UNAVAILABLE` (l'entretien du
+  Vent Se Lève, 403 aux robots, relancé une fois — échec consigné) et 3 `METADATA_ONLY` —
+  racine du passage complet `326a026867d57ea4…`, état consolidé après déduplication
+  `3d8a3359552e4be0…` ; une fiche par pièce, zéro orpheline. Le dossier inaugure le verdict
+  `CONSPIRATIONNISTE` (migration `0010`, appliquée sur un Postgres jetable avant la base) et
+  deux statuts de brique, `COMPLOTISME` et `BIAIS_ESSENTIALISTE` ; sa racine d'intégrité est
+  `5121bcbe8bbae307…`.
 
 ## Pile technique
 
@@ -749,6 +769,15 @@ vérifiée au navigateur (axe pointillé `stone-400`, cartes `#FFFDF9`, horodata
 renvois de pièces, rail `04 / CHAÎNE DE CUSTODE`). Aucun dossier ne porte encore d'étapes :
 la frise restera discrète tant qu'elles ne seront pas documentées — rien n'a été inventé.
 
+Le même jour (13:10 UTC), l'ajout du dossier « grand remplacement » (douze sources, verdict
+inédit `CONSPIRATIONNISTE` porté par la migration `0010`, deux statuts de brique —
+`COMPLOTISME` et `BIAIS_ESSENTIALISTE`) a rouvert la chaîne : réapplication complète du seed
+et recapture des vingt-huit dossiers publiés — **232 fiches** (194 `URL_SNAPSHOT`, 35
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` ; racine du passage `326a026867d57ea4…`, état consolidé
+`3d8a3359552e4be0…`). Sa racine d'intégrité `5121bcbe8bbae307…` est recalculée par
+`npm run proofs` ; l'égalité avec l'`ETag` et le `X-Proof-Integrity-Root` en ligne est
+vérifiée après le déploiement.
+
 Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
@@ -791,11 +820,11 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 208 pièces publiées ont leur fiche déposée en base (une par pièce :
-  172 `URL_SNAPSHOT`, 33 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
-  PNAS, NOAA et NPR répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
-  rehachées. Le miroir Storage du bucket `immutable-archives` n'a pas eu lieu, faute
-  d'accès privilégié.
+- Captures : les 232 pièces publiées ont leur fiche déposée en base (une par pièce :
+  194 `URL_SNAPSHOT`, 35 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
+  PNAS, NOAA, NPR ou Le Vent Se Lève répondant 403 ou 429 aux clients non navigateurs — et
+  3 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket `immutable-archives`
+  n'a pas eu lieu, faute d'accès privilégié.
 - Recherche : la branche vectorielle de la RPC ne ramène rien tant qu'aucun embedding
   n'est calculé — aucune similarité n'est simulée.
 - Le guard est appliqué par le pipeline de publication, pas par un déclencheur en base.
