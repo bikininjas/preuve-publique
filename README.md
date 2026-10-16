@@ -613,7 +613,7 @@ sans réapplication complète du seed : **12 fiches** déposées et relues — 1
 de la pièce est repris des métadonnées d'édition, OpenAlex et Crossref concordants) —
 racine des captures `e197be7289786f61…` ; fiches dédupliquées, une par pièce, zéro
 orpheline. Le dossier porte les **six piliers**. Le registre compte désormais
-**185 sources et 185 fiches** ; l'énumération des statuts de brique accueille
+**201 sources et 201 fiches** ; l'énumération des statuts de brique accueille
 `ANACHRONISME_CONCEPTUEL`, `DOUBLE_STANDARD`, `BIAIS_METHODOLOGIQUE` et
 `BIAIS_DE_SELECTION`, et le lecteur de la base connaît ces valeurs — sans quoi les
 prémisses concernées étaient écartées à la lecture. En ligne (révision
@@ -628,7 +628,7 @@ Le chantier des **illustrations** a rouvert la chaîne une dernière fois : la m
 maximum, nommés par l'empreinte de leurs octets) et chaque dossier publié s'ouvre
 désormais sur une **image libre de droits** — Wikimedia Commons ou domaine public —
 affichée en bandeau sous le titre, créditée en toutes lettres, et servie en vignette
-sur les cartes de l'accueil et du sommaire. Le seed typé rejoue les vingt-trois
+sur les cartes de l'accueil et du sommaire. Le seed typé rejoue les vingt-cinq
 illustrations à l'identique, un test vérifie pour chacune le fichier et le crédit, et
 aucune image de presse protégée n'est employée. Le seed ayant été réappliqué, les
 **185 fiches** d'archive des vingt-trois dossiers publiés ont été recapturées d'une
@@ -677,9 +677,9 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 185 pièces publiées ont leur fiche déposée en base (une par pièce :
-  154 `URL_SNAPSHOT`, 28 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford
-  répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
+- Captures : les 201 pièces publiées ont leur fiche déposée en base (une par pièce :
+  166 `URL_SNAPSHOT`, 32 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
+  PNAS et NOAA répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
   rehachées. Le miroir Storage du bucket `immutable-archives` n'a pas eu lieu, faute
   d'accès privilégié.
 - Recherche : la branche vectorielle de la RPC ne ramène rien tant qu'aucun embedding
