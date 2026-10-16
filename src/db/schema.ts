@@ -30,6 +30,7 @@ export const verdictStatus = pgEnum("verdict_status", [
   "GENERALISATION_ABUSIVE",
   "CONSPIRATIONNISTE",
   "ABSURDE",
+  "CONFUSION_CONCEPTUELLE",
 ]);
 
 export const politicalSpectrum = pgEnum("political_spectrum", [

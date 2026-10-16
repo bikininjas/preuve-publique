@@ -7330,6 +7330,273 @@ export const MACRON_SOCIALISTE_DOSSIER: Dossier = {
   ],
 };
 
+export const RACISME_ANTIBLANC_DOSSIER: Dossier = {
+  id: "cb5d613d-7885-48a4-8d55-c127cd795d61",
+  slug: "racisme-anti-blanc-systemique-confusion-conceptuelle",
+  claim_title:
+    "Il existe un racisme anti-blanc systémique en France",
+  verdict: "CONFUSION_CONCEPTUELLE",
+  verdict_summary:
+    "Qualifier de « systémique » un racisme anti-blancs confond deux ordres de faits. Le racisme « systémique » — forgé par les militants des droits civiques américains, précisé par la sociologie — désigne des structures historiques d'inégalité et d'exclusion institutionnelle pesant sur des minorités : ce que les tests de discrimination documentent en France (embauche, logement). Des actes de racisme interpersonnel visant des personnes blanches existent, et le droit français les réprime sans distinction de couleur — la protection de l'article 225-1 du code pénal ne dépend pas de la victime. Mais d'actes individuels on ne déduit pas un système.\n\nLes données pointent dans un seul sens. Sur 2 594 offres d'emploi testées entre 2015 et 2022, « les candidats dont le nom et le prénom indiquent qu'ils sont d'origine maghrébine ont moins de chances d'avoir une réponse positive à leur candidature » — résultat stable dans le temps, dans le privé comme dans le public (DGAFP). Le Défenseur des droits classe l'origine au deuxième rang de ses saisines en discrimination (18 %, derrière le handicap à 27 %) et relaie des pénalités de « 30 à 40 % » liées à l'origine maghrébine dans les testings récents. Aucune série, aucune campagne ne mesure de pénalité systémique visant la population majoritaire.\n\nLes chercheurs eux-mêmes butent sur l'extension du concept. Pour Daniel Sabbagh (CNRS-CERI), « avoir recours à l'idée très large de système reflète surtout un aveu d'échec analytique » ; même en adoptant une définition pluraliste du racisme, l'existence d'un racisme anti-Blancs — « vraisemblablement marginal » — n'est qu'une question empirique, pas une structure. Pour Éric Fassin, « le racisme anti-Blancs n'existe pas pour les sciences sociales ». De la droite critique à la gauche universitaire, les lectures s'opposent sur tout sauf sur un point : le « système » n'a pas basculé contre la majorité.\n\nReste le débat public, où la formule sert d'abord d'argument politique : « une vision réductrice et idéologique » pour la critique conservatrice, une inversion des faits pour l'analyse universitaire. La thèse d'un racisme anti-blancs « systémique » ne résiste pas à l'examen — non parce que des actes racistes visant des Blancs n'existent pas (ils existent, et sont punis), mais parce qu'ils ne constituent pas un système d'inégalité : c'est une confusion conceptuelle, pas un constat.",
+  category: "SOCIETE",
+  protagonists: [
+    {
+      name: "Racisme systémique",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Racisme_syst%C3%A9mique",
+      note: "Concept sociologique décrivant les mécanismes institutionnalisés et structurels produisant des inégalités entre groupes racisés — l'objet du dossier, détourné pour qualifier des actes isolés.",
+    },
+    {
+      name: "Racisme anti-Blancs",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Racisme_antiblanc",
+      note: "Expression désignant des actes d'hostilité raciste visant des personnes blanches — réalité jugée marginale par la recherche, devenue argument politique identifié.",
+    },
+    {
+      name: "Daniel Sabbagh",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: null,
+      note: "Directeur de recherche au CNRS (CERI, Sciences Po) : l'un des rares chercheurs à contester le monopole de la conception « systémique » du racisme.",
+    },
+    {
+      name: "Défenseur des droits",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      note: "Institution indépendante chargée de défendre les droits : ses rapports annuels documentent la répartition des discriminations par critère.",
+    },
+  ],
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part: "« Tout acte de racisme individuel constitue par définition un racisme systémique »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "Les deux notions ne sont pas de même nature. Le racisme interpersonnel est un fait que le code pénal réprime comme infraction — y compris quand la victime est blanche : la protection ne dépend pas de la couleur. Le racisme « systémique » est un concept sociologique décrivant un ordre institutionnel qui produit et reproduit des inégalités durables entre groupes racisés, constatable par des séries statistiques et des tests de discrimination. Additionner des incidents individuels ne produit pas une structure : passer de l'un à l'autre est exactement la confusion que la recherche identifie — pour Daniel Sabbagh, « avoir recours à l'idée très large de système reflète surtout un aveu d'échec analytique » ; pour Éric Fassin, il y a « un écart entre ce que racontent les disciplines scientifiques et ce dont on parle dans le débat public ».",
+    },
+    {
+      claim_part: "« Les populations blanches subissent des discriminations systémiques comparables dans l'accès à l'emploi ou au logement »",
+      status: "FAUX",
+      detail:
+        "Les tests de discrimination documentent l'inverse d'une pénalité anti-majoritaire : sur 2 594 offres d'emploi testées entre 2015 et 2022, les candidatures à consonance maghrébine reçoivent systématiquement moins de réponses positives que le profil de référence, un résultat qui « se maintient sur toute la période, dans le secteur privé comme dans la fonction publique » (DGAFP). Les inégalités de logement analysées par l'enquête Trajectoires et origines (Ined/Insee) frappent les immigrés et leurs descendants, surexposés aux zones les plus tendues. Aucun testing national, aucune série institutionnelle ne mesure une pénalité structurelle liée à l'appartenance blanche : la prémisse est fausse, et dans le sens exactement contraire.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-16T00:00:00.000Z",
+  illustration_url:
+    "/illustrations/racisme-anti-blanc-systemique-confusion-conceptuelle.jpg",
+  illustration_credit:
+    "Portrait : Éric Fassin, 2019 — JacLavi, Wikimedia Commons (CC BY-SA 4.0)",
+  sources: [
+    {
+      id: "70c181f7-ae25-4291-9bc8-4aa54ef919ef",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Article 225-1 du code pénal » — Légifrance, texte en vigueur (version du 1er septembre 2022)",
+      author_or_institution: "République française — Code pénal (partie législative)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Constitue une discrimination toute distinction opérée entre les personnes physiques sur le fondement de leur origine, de leur sexe, de leur situation de famille, de leur grossesse, de leur apparence physique, de la particulière vulnérabilité résultant de leur situation économique, apparente ou connue de son auteur, de leur patronyme, de leur lieu de résidence, de leur état de santé, de leur perte d'autonomie, de leur handicap, de leurs caractéristiques génétiques, de leurs mœurs, de leur orientation sexuelle, de leur identité de genre, de leur âge, de leurs opinions politiques, de leurs activités syndicales, de leur capacité à s'exprimer dans une langue autre que le français, de leur appartenance ou de leur non-appartenance, vraie ou supposée, à une ethnie, une nation, une prétendue race ou une religion déterminée.",
+      context_explanation:
+        "Le droit français ne connaît pas de distinction selon la couleur de la victime : l'article 225-1 proscrit « toute distinction » fondée sur l'un des nombreux critères qu'il énumère, dont « l'appartenance ou la non-appartenance, vraie ou supposée, à une ethnie, une nation, une prétendue race ou une religion déterminée ». Les injures et violences visant des personnes blanches sont donc réprimées comme toute autre infraction raciste — c'est le droit commun de l'universalité de la répression (vérification faite sur la reproduction intégrale du texte publiée dans le dossier de la DGAFP ci-après). Aucune « pénalité de couleur » n'existe dans la loi.",
+      original_url:
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Code_p%C3%A9nal_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "a29af640-94d3-47b0-b9f4-3f9ce3ef7e17",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Le « testing » montre que des discriminations persistent dans l'accès à l'entretien d'embauche, y compris dans la fonction publique » — Dossier « Faits et chiffres », Rapport annuel sur l'état de la fonction publique, édition 2022 (DGAFP)",
+      author_or_institution:
+        "Laetitia Challe, Yannick L'Horty, Pascale Petit (université Gustave-Eiffel, TEPP-CNRS) — Direction générale de l'administration et de la fonction publique",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les candidats dont le nom et le prénom indiquent qu'ils sont d'origine maghrébine ont moins de chances d'avoir une réponse positive à leur candidature. Ce résultat se maintient sur toute la période, dans le secteur privé comme dans la fonction publique.",
+      context_explanation:
+        "Le « testing » soumet des candidatures fictives comparables, une variable exceptée. Sur les 2 594 offres de cadre administratif et d'aide-soignante testées en Île-de-France entre 2015 et 2022, la conclusion est univoque : les candidatures à consonance maghrébine reçoivent moins de réponses positives — et l'écart ne se referme ni dans le temps ni entre privé et public. C'est cette direction — contre les minorités visibles — que documentent les campagnes nationales de testings, jamais l'inverse. La discrimination mesurée est un désavantage pour les personnes perçues comme non-blanches ; aucune pénalité envers la population majoritaire n'y apparaît.",
+      original_url:
+        "https://www.fonction-publique.gouv.fr/files/files/publications/dossier-rapport-annuel/dossier_testing_discriminations.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Direction_g%C3%A9n%C3%A9rale_de_l%27administration_et_de_la_fonction_publique",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "0a5c3581-c76b-4a22-a35c-659d5106d8fd",
+      spectrum: "CENTRE",
+      source_name: "« Rapport annuel d'activité 2025 » — Défenseur des droits (7 avril 2026)",
+      author_or_institution: "Défenseur des droits — institution indépendante",
+      publication_date: "2026-04-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Une discrimination significative et forte en fonction de l'origine maghrébine : de l'ordre de 30 à 40 % de pénalités relatives.",
+      context_explanation:
+        "Le rapport annuel classe les réclamations reçues en matière de discrimination par critère : en 2025, le handicap (27 %) précède l'origine (18 %), loin devant les autres motifs — et l'institution relaie les résultats des testings récents, dont cette pénalité de « 30 à 40 % » liée à l'origine maghrébine. L'organisme qui recueille les réclamations de toute la population documente un paysage où le poids des discriminations retombe sur les minorités racisées ; nulle part n'apparaît de pénalité systémique subie par la population majoritaire.",
+      original_url:
+        "https://www.defenseurdesdroits.fr/sites/default/files/2026-04/ddd_rapport-annuel-2025_20260407.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "282919c2-ff1b-43a7-a6ff-8515d10fef9c",
+      spectrum: "CENTRE",
+      source_name:
+        "« « Racisme systémique » : mais de quel « système » parle-t-on ? » — Philosophie Magazine (16 avril 2021)",
+      author_or_institution: "Ariane Nicolas — Philosophie Magazine",
+      publication_date: "2021-04-16",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Parler de racisme systémique de façon globale noie le poisson.",
+      context_explanation:
+        "L'enquête retrace l'histoire du syntagme (des Black Panthers à Bonilla-Silva) et donne la parole au scepticisme académique : pour Daniel Sabbagh (CERI), « avoir recours à l'idée très large de système reflète surtout un aveu d'échec analytique » et les différentes manifestations du racisme « sont pourtant identifiables isolément les unes des autres ». La définition « systémique » suppose une structure d'inégalité durable entre groupes : elle ne se transpose pas à des actes individuels, quelle que soit la couleur de leur victime — et les chercheurs qui la défendent en conviennent aussi.",
+      original_url:
+        "https://www.philomag.com/articles/racisme-systemique-mais-de-quel-systeme-parle-t",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Philosophie_magazine",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "02e78970-422f-4ed0-b45d-030c21462e37",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Un racisme anti-Blancs ? » — Pouvoirs, revue française d'études constitutionnelles et politiques, n° 181 (2022)",
+      author_or_institution:
+        "Daniel Sabbagh — CNRS, Centre de recherches internationales (CERI, Sciences Po)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Mieux vaudrait, sur la base d'une conception pluraliste du racisme, considérer l'existence d'un « racisme anti-Blancs » – vraisemblablement marginal – comme une question empirique, y compris afin de contrecarrer l'instrumentalisation de ce thème par des forces hostiles à l'antiracisme.",
+      context_explanation:
+        "L'article assume l'hérésie : sur la base d'une conception pluraliste du racisme, le racisme anti-Blancs — « vraisemblablement marginal » — serait à traiter comme une question empirique, pas comme un oxymore a priori. C'est précisément l'argument qui interdit de le qualifier de « systémique » sans données : en admettant même la notion, l'auteur documente qu'aux États-Unis « la proportion d'infractions de ce type visant des individus noirs est trois fois supérieure (48 %) » à celle visant des Blancs (16 %). Aucune symétrie structurelle ; une marge, au mieux.",
+      original_url:
+        "https://revue-pouvoirs.fr/wp-content/uploads/pdfs_articles/pouvoirs181_p97-108_antiblancs_rac.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "43a9de97-9d1c-48bf-9d26-4a434f25f404",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« La loi condamne-t-elle le racisme systémique en France ? » — The Conversation (28 juin 2020)",
+      author_or_institution: "Lionel Zevounou — Université Paris Nanterre",
+      publication_date: "2020-06-28",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le racisme systémique ne constitue pas, en droit français, une catégorie juridique.",
+      context_explanation:
+        "Analyse juridique : le racisme « systémique » n'est pas une catégorie du droit français. Ce que le droit réprime, ce sont des discriminations et des actes identifiables — que l'auteur retrouve jusque dans des formes collectives (traitement des chibanis à la SNCF, pensions des tirailleurs dits sénégalais). Loin de soutenir la thèse « anti-blancs », ce texte pose la borne lexicographique : parler de « système », c'est quitter le terrain du droit pour celui de la sociologie — et aucun des deux champs n'établit de pénalité structurelle contre la population majoritaire.",
+      original_url:
+        "https://theconversation.com/la-loi-condamne-t-elle-le-racisme-systemique-en-france-141237",
+      author_reference_url: "https://fr.wikipedia.org/wiki/The_Conversation",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "db688f63-2638-4ba4-9a35-79a93206edfa",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Où se logent les inégalités de logement liées à l'origine ? » — Ined, document de travail issu de l'enquête Trajectoires et origines (TeO2)",
+      author_or_institution: "Ined — enquête Trajectoires et origines (Ined/Insee)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les immigrés et leurs descendants habitent les zones géographiques les plus tendues et sont de ce fait surexposées à la crise du logement.",
+      context_explanation:
+        "L'enquête Trajectoires et origines (Ined/Insee) documente les inégalités de logement : les immigrés et leurs descendants « habitent les zones géographiques les plus tendues », subissent la sélection des quartiers disqualifiés, la suroccupation et des conditions dégradées. La littérature officielle sur les inégalités liées à l'origine décrit un désavantage des minorités visibles ; la population majoritaire n'y figure jamais côté perdant, faute de matière statistique.",
+      original_url:
+        "https://www.ined.fr/fr/publications/editions/document-travail/ou-se-logent-les-inegalites-de-logement-liees-a-origine",
+      author_reference_url: "https://www.ined.fr/",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "b911580d-862d-46a1-8d25-ac45e42eca74",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« Le mythe de la France raciste (2). De l'échec du racialisme à la naissance du mythe » — Fondapol, note n° 254 (avril 2025)",
+      author_or_institution:
+        "Vincent Tournier — Fondation pour l'innovation politique (Fondapol)",
+      publication_date: "2025-04-22",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Situer le racisme systémique sur le terrain du mythe permet d'en comprendre les ressors intellectuels et de saisir les risques que recèle cette théorie en cette période de tensions autour de l'immigration et de la place des minorités.",
+      context_explanation:
+        "Le think tank libéral fait du « racisme systémique » un mythe contemporain et documente un pays « à l'hostilité structurelle envers le racisme » : selon les séries de la CNCDH, « la part de la population qui se déclare raciste est faible » — même en incluant les « un peu » racistes — et la part des Français croyant à des « races supérieures » se limite à 10 %. Le second volume compare les trajectoires françaises et américaines : difficile d'y lire, comme le voudrait la thèse « anti-blancs », un système anti-majoritaire.",
+      original_url:
+        "https://www.fondapol.org/app/uploads/2025/04/254_tournier_fr_tome-2_2025-04-22_w.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Fondation_pour_l%27innovation_politique",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "70f1a470-0aa4-469a-b80c-ed89066277f1",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« L'accusation de racisme systémique, un outil de domination au service d'émanations politiques du Sud global en Occident » — Causeur (13 avril 2026)",
+      author_or_institution: "David Duquesne — Causeur",
+      publication_date: "2026-04-13",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Les lectures actuelles du racisme en France imposent une vision réductrice et idéologique, qui remplace l'universalisme républicain et la responsabilité individuelle par une logique de groupes, de culpabilité collective et de confrontations identitaires.",
+      context_explanation:
+        "Tribune conservatrice sur le moment politique : l'accusation de racisme systémique « ne vient pas éclairer le réel : elle le reconfigure, elle le redéfinit, elle l'enferme dans une interprétation unique » — jusqu'à présenter la société française comme « fondamentalement structurée par le racisme », non par des tensions ou des injustices mais « une essence ». La critique porte sur l'usage politique du concept et son instrumentalisation réciproque ; elle rejoint, depuis l'autre bord, le constat universitaire : la catégorie ne décrit pas un système objectivable.",
+      original_url:
+        "https://www.causeur.fr/l-accusation-de-racisme-systemique-un-outil-de-domination-au-service-demanations-politiques-du-sud-global-en-occident-325398",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Causeur",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+    {
+      id: "8c978a5e-4ec2-49a8-a52f-61d36cd55f27",
+      spectrum: "GAUCHE",
+      source_name:
+        "« Le « racisme anti-Blancs » n'existe pas » — Presse-toi à gauche (15 avril 2025)",
+      author_or_institution: "Pierre Jacquemain — Presse-toi à gauche",
+      publication_date: "2025-04-15",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le racisme anti-Blancs n'existe pas pour les sciences sociales, ça n'a pas de sens. En revanche, c'est très présent dans le discours public, on en parle beaucoup : il y a un écart entre ce que racontent les disciplines scientifiques et ce dont on parle dans le débat public.",
+      context_explanation:
+        "Le sociologue Éric Fassin, cité par la tribune de gauche : le racisme anti-Blancs « n'existe pas pour les sciences sociales, ça n'a pas de sens » — tout en constatant l'écart entre les disciplines scientifiques et le débat public, où l'expression prospère. Le texte rappelle les asymétries concrètes (contrôles, emploi, discriminations) qui expliquent ce refus. De la droite critique à la gauche universitaire, les lectures s'opposent sur presque tout, mais convergent : la prémisse « anti-blancs systémique » ne décrit rien de structurel.",
+      original_url: "https://www.pressegauche.org/Le-racisme-anti-Blancs-n-existe-pas",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -7360,6 +7627,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   CARTE_MONDIALE_QI_DOSSIER,
   GRAND_REMPLACEMENT_DOSSIER,
   MACRON_SOCIALISTE_DOSSIER,
+  RACISME_ANTIBLANC_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 
