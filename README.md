@@ -20,8 +20,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   « anachronisme historique » et « généralisation abusive »), `0008_dossier_illustration`
   (`20261015163000` — `illustration_url` et `illustration_credit` sur les dossiers, bucket
   public `illustrations` : lecture publique, dépôt réservé aux administrateurs).
-  Vingt-quatre dossiers en base :
-  vingt-trois **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  Vingt-six dossiers en base :
+  vingt-cinq **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -37,10 +37,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   enfants (7, société), la « théorie du genre » à l'école (10, société) et les deux
   dossiers Religion — l'union du prophète de l'islam avec Aïcha qualifiée de
   « pédophilie » (9, Religion, anachronisme historique) et « l'islam, seule religion
-  scripturairement homophobe et transphobe » (12, Religion, généralisation abusive) —
+  scripturairement homophobe et transphobe » (12, Religion, généralisation abusive), le
+  réchauffement climatique attribué à un « cycle solaire » (9, environnement) et la voiture
+  électrique comparée au thermique en analyse de cycle de vie (7, environnement) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 185 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 201 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -253,7 +255,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   178 sources) puis l'enrichissement du dossier « union du prophète avec Aïcha »
   (neuf sources ; 16/10/2026, 07:45 UTC) portent le registre à 181 sources et **181 fiches
   d'archive** — 151 `URL_SNAPSHOT`, 27 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des
-  captures `f841ad6ce14a4a19…`.
+  captures `f841ad6ce14a4a19…`. Puis, le 16/10/2026, l'ajout du dossier « cycle solaire »
+  (neuf sources) et du dossier « voiture électrique » a entraîné une réapplication du seed
+  et la recapture des dossiers publiés : **201 fiches** déposées et relues — 166
+  `URL_SNAPSHOT`, 32 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
+  `acd1a32ec934419d…` ; fiches dédupliquées, une par pièce.
 
 ## Pile technique
 
@@ -584,7 +590,11 @@ prophète avec Aïcha » (neuf sources — trois prémisses et trois sources doc
 ajoutées) a entraîné une réapplication complète du seed et la recapture des vingt-trois
 dossiers publiés : **181 fiches** déposées et relues — 151 `URL_SNAPSHOT`, 27
 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `f841ad6ce14a4a19…` ; fiches
-dédupliquées, une par pièce. Le build déployé alors en ligne, antérieur à la migration `0007`, ne
+dédupliquées, une par pièce. Puis, le 16/10/2026, l'ajout du dossier « cycle solaire »
+(neuf sources) et du dossier « voiture électrique » (sept sources) a entraîné une
+réapplication du seed et la recapture des dossiers publiés : **201 fiches** déposées et
+relues — 166 `URL_SNAPSHOT`, 32 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures
+`acd1a32ec934419d…` ; fiches dédupliquées, une par pièce. Le build déployé alors en ligne, antérieur à la migration `0007`, ne
 connaissait ni la catégorie « Religion » ni les deux nouveaux verdicts : il refusait de
 lire les deux lignes ajoutées (le registre affichait une erreur de lecture). Un
 redéploiement (`gcloud builds submit --config cloudbuild.yaml`) a mis en ligne la
