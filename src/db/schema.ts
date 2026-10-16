@@ -83,6 +83,8 @@ export const dossiers = pgTable(
     embedding: vector("embedding"),
     isPublished: boolean("is_published").notNull().default(false),
     publishedAt: timestamp("published_at", { withTimezone: true }),
+    illustrationUrl: text("illustration_url"),
+    illustrationCredit: text("illustration_credit"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },

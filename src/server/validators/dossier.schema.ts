@@ -133,6 +133,18 @@ export const dossierSchema = z
     premises: z.array(premiseSchema),
     is_published: z.boolean(),
     published_at: z.string().min(1).nullable(),
+    /*
+     * Illustration : chemin local (/illustrations/…) ou URL http(s), déposée
+     * depuis /admin ou versionnée avec le site. Facultative — un dossier sans
+     * image reste valide.
+     */
+    illustration_url: z
+      .string()
+      .trim()
+      .regex(/^(https?:\/\/|\/)/, "URL http(s) ou chemin commençant par /")
+      .nullable()
+      .optional(),
+    illustration_credit: z.string().trim().min(1).nullable().optional(),
     sources: z.array(dossierSourceSchema),
   })
   .superRefine(validateTriangulationRules);

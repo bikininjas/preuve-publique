@@ -62,6 +62,16 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
           <span className="pp-meta ml-auto text-muted">{formatLongDate(dossier.published_at)}</span>
         </div>
 
+        {dossier.illustration_url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="h-28 w-full border border-gridsoft object-cover"
+            src={dossier.illustration_url}
+            alt=""
+            loading="lazy"
+          />
+        ) : null}
+
         <h3 className="pp-card-title">
           <Link href={`/dossiers/${dossier.slug}`}>{dossier.claim_title}</Link>
         </h3>

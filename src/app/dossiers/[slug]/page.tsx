@@ -18,6 +18,7 @@ import PiecesTabs from "@/components/PiecesTabs";
 import ProcedureRail from "@/components/ProcedureRail";
 import Protagonists from "@/components/Protagonists";
 import Reveal from "@/components/Reveal";
+import ShareDebateButton from "@/components/ShareDebateButton";
 import VerdictStamp from "@/components/VerdictStamp";
 import { getPublishedDossier } from "@/server/services/dossier.service";
 import { computeIntegrityRoot } from "@/server/services/crypto.service";
@@ -205,6 +206,25 @@ export default async function DossierPage({ params }: PageProps) {
           <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
         </div>
 
+        {/* Illustration du dossier : bandeau sous le titre, crédit en légende. */}
+        {dossier.illustration_url !== undefined &&
+        dossier.illustration_url !== null &&
+        dossier.illustration_url !== "" ? (
+          <figure className="space-y-1">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="mx-auto max-h-[420px] w-auto max-w-full border border-grid bg-surface"
+              src={dossier.illustration_url}
+              alt={`Illustration — ${dossier.claim_title}`}
+            />
+            {dossier.illustration_credit !== undefined &&
+            dossier.illustration_credit !== null &&
+            dossier.illustration_credit !== "" ? (
+              <figcaption className="pp-meta text-muted">{dossier.illustration_credit}</figcaption>
+            ) : null}
+          </figure>
+        ) : null}
+
         {/* Le protocole à l'aveugle se voit depuis le haut du dossier. */}
         <BlindProtocolBanner />
 
@@ -221,7 +241,12 @@ export default async function DossierPage({ params }: PageProps) {
           </Link>
         </div>
 
-        <CopyRefutation dossier={dossier} />
+        {/* Les deux partages du dossier, côte à côte : l'argumentaire social en
+            un clic et la réfutation complète, format débat. */}
+        <div className="flex flex-wrap items-start gap-x-4 gap-y-3">
+          <ShareDebateButton dossier={dossier} />
+          <CopyRefutation dossier={dossier} />
+        </div>
 
         <DossierDensity synthesis={synthesis} piecesTotal={dossier.sources.length}>
           <div className="grid gap-6 xl:grid-cols-[210px_minmax(0,1fr)]">

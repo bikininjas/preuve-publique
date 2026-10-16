@@ -31,6 +31,8 @@ for (const candidate of SEED_DOSSIERS) {
     premises: dossier.premises,
     isPublished: dossier.is_published,
     publishedAt: dossier.published_at === null ? null : new Date(dossier.published_at),
+    illustrationUrl: dossier.illustration_url ?? null,
+    illustrationCredit: dossier.illustration_credit ?? null,
   });
 
   if (dossier.sources.length > 0) {

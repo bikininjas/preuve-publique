@@ -11,13 +11,16 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 15/10/2026
 
-- **Base** : sept migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : huit migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
   (`20261015043026`), `0006_protagonists` (`20261015044427`),
   `0007_religion_and_verdicts` (`20261015155510` — catégorie « Religion », verdicts
-  « anachronisme historique » et « généralisation abusive »). Vingt-quatre dossiers en base :
+  « anachronisme historique » et « généralisation abusive »), `0008_dossier_illustration`
+  (`20261015163000` — `illustration_url` et `illustration_credit` sur les dossiers, bucket
+  public `illustrations` : lecture publique, dépôt réservé aux administrateurs).
+  Vingt-quatre dossiers en base :
   vingt-trois **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
@@ -600,6 +603,19 @@ servies, `ETag` = `X-Proof-Integrity-Root` = `99e7169f0cc0610748…` relevés en
 égaux à la racine recalculée par `npm run proofs`, une fiche rehachée octet pour
 octet, `/api/verify` confirme la pièce Human Rights Watch.
 
+Le chantier des **illustrations** a rouvert la chaîne une dernière fois : la migration
+`0008` ajoute `illustration_url` et `illustration_credit` aux dossiers, le bucket public
+`illustrations` reçoit les fichiers déposés depuis `/admin` (JPEG, PNG ou WebP, 4 Mo
+maximum, nommés par l'empreinte de leurs octets) et chaque dossier publié s'ouvre
+désormais sur une **image libre de droits** — Wikimedia Commons ou domaine public —
+affichée en bandeau sous le titre, créditée en toutes lettres, et servie en vignette
+sur les cartes de l'accueil et du sommaire. Le seed typé rejoue les vingt-trois
+illustrations à l'identique, un test vérifie pour chacune le fichier et le crédit, et
+aucune image de presse protégée n'est employée. Le seed ayant été réappliqué, les
+**185 fiches** d'archive des vingt-trois dossiers publiés ont été recapturées d'une
+traite — 154 `URL_SNAPSHOT`, 28 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des
+captures `d1f72d02854525dc…` ; dédoublonnées, une par pièce, zéro orpheline.
+
 Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
@@ -642,8 +658,8 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 178 pièces publiées ont leur fiche déposée en base (une par pièce :
-  146 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford
+- Captures : les 185 pièces publiées ont leur fiche déposée en base (une par pièce :
+  154 `URL_SNAPSHOT`, 28 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford
   répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
   rehachées. Le miroir Storage du bucket `immutable-archives` n'a pas eu lieu, faute
   d'accès privilégié.

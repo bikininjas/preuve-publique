@@ -207,6 +207,8 @@ export const REFERENCE_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-14T00:00:00.000Z",
+    illustration_url: "/illustrations/hitler-et-les-nazis-etaient-de-gauche.jpg",
+    illustration_credit: "Photo : Bundesarchiv (Bild 183-1987-0410-501), Wikimedia Commons, CC BY-SA 3.0 de",
   sources: [
     {
       id: "0f2f4a11-6c5b-4c6e-8f24-9c0f1a2b3c41",
@@ -436,6 +438,8 @@ export const AME_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/aide-medicale-detat-securite-sociale-soins-de-confort.jpg",
+    illustration_credit: "Photo : MHM55, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "80a4a44a-9ee4-4f26-9aae-d841728333cd",
@@ -636,6 +640,8 @@ export const RSA_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/sans-papiers-et-rsa-des-leur-arrivee.jpg",
+    illustration_credit: "Affiche de la préfecture de police (musée Carnavalet, Paris Musées), CC0, Wikimedia Commons",
   sources: [
     {
       id: "7afdc994-b104-403c-93b9-068f1ba97063",
@@ -863,6 +869,8 @@ export const VICHY_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/petain-vichy-ont-ils-protege-les-juifs-francais.jpg",
+    illustration_credit: "Portrait : Marcel Baschet, mai 1940 — domaine public, Wikimedia Commons",
   sources: [
     {
       id: "616b0cfe-595d-4a5f-af69-03518d8520c4",
@@ -1099,6 +1107,8 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/cout-immigration-budget-france.jpg",
+    illustration_credit: "Photo : DXR, domaine public, Wikimedia Commons",
   sources: [
     {
       id: "a16671de-0ef0-4a69-a745-2d285453a60a",
@@ -1238,6 +1248,8 @@ export const CRIME_IMMIGRATION_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/immigration-insecurite-criminalite-france.jpg",
+    illustration_credit: "Photo : Eryand, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "05c12af9-831a-47e4-9391-946eb5c9ba05",
@@ -1439,6 +1451,8 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/pourvoi-cassation-culpabilite-ineligibilite-elus.jpg",
+    illustration_credit: "Photo : DXR, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "66c272b9-bd35-47c2-872a-db5cc604e489",
@@ -1721,6 +1735,8 @@ export const ASSISTANTS_RN_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/assistants-rn-pourvoi-cassation-ineligibilite.jpg",
+    illustration_credit: "Photo : NonOmnisMoriar, Wikimedia Commons, CC BY-SA 3.0",
   sources: [
     {
       id: "8f6420ad-c725-49a7-ab0f-d92a42144ce6",
@@ -1995,6 +2011,8 @@ export const EXPULSION_JUGES_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/expulsion-etrangers-delinquants-juges-et-droit.jpg",
+    illustration_credit: "Photo : Sukkoria, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "77f00ed8-6c03-44a4-b60b-a6264b92bd84",
@@ -2195,6 +2213,8 @@ export const LAXISME_PEINES_PRISON_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/laxisme-judiciaire-peines-prison-france.jpg",
+    illustration_credit: "Photo : Thomon, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "f88be2af-ffa6-4d4a-af6f-ef2fb866dede",
@@ -2431,6 +2451,8 @@ export const ADA_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/allocation-demandeur-asile-carte-bancaire-montant.jpg",
+    illustration_credit: "Photo : NicolasPamart2610, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "b6a9e2f8-a4c1-4a13-971d-0ff1589dcec4",
@@ -2635,6 +2657,8 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/sans-papiers-rsa-caf-apl-aides-sociales.jpg",
+    illustration_credit: "Photo : Fabio Gargano, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "807f214f-6834-4aaf-9fdd-97c99de1622e",
@@ -2825,6 +2849,8 @@ export const AGRESSION_BORDEAUX_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/agression-bordeaux-clandestin-oqtf.jpg",
+    illustration_credit: "Photo : Javier Perez Montes, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "a29a9afc-0391-443b-beec-03c19eb5d505",
@@ -3002,6 +3028,8 @@ export const SAINT_OMER_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/incendie-eglise-saint-omer-attentat-islamiste.jpg",
+    illustration_credit: "Photo : Jean Marc Gfp, Wikimedia Commons, CC BY 3.0",
   sources: [
     {
       id: "4f8443a3-7409-45e9-9a9c-8aa38605091b",
@@ -3223,6 +3251,8 @@ export const RSA_SMIC_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/aides-rsa-vs-smic-revenu-disponible.jpg",
+    illustration_credit: "Photo : Avij, domaine public, Wikimedia Commons",
   sources: [
     {
       id: "b2b5047e-3939-4de9-accd-a6ea7cdc8d70",
@@ -3442,6 +3472,8 @@ export const DISCRIMINATIONS_EMBAUCHE_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/discriminations-embauche-origine-mythe.jpg",
+    illustration_credit: "Photo : HeatherKatz001, Wikimedia Commons, CC BY-SA 4.0",
   sources: [
     {
       id: "5a00776c-20c7-489c-add2-352a99ce3a42",
@@ -3654,6 +3686,8 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/homoparentalite-developpement-troubles-enfants.jpg",
+    illustration_credit: "Photo : Claude Truong-Ngoc, Wikimedia Commons, CC BY-SA 3.0",
   sources: [
     {
       id: "db6702ee-8253-489e-b369-4849ada6b224",
@@ -3863,6 +3897,8 @@ export const THEORIE_DU_GENRE_ECOLE_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/theorie-du-genre-ecole-education-nationale.jpg",
+    illustration_credit: "Photo : Benoît Prieur, CC0, Wikimedia Commons",
   sources: [
     {
       id: "1ea4711a-dbf9-4181-88d1-615e8f6f113b",
@@ -4141,6 +4177,8 @@ export const AICHA_ANACHRONISME_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/union-prophete-aicha-anachronisme-pedophilie.jpg",
+    illustration_credit: "Manuscrit du Coran (BnF, Gallica), domaine public, Wikimedia Commons",
   sources: [
     {
       id: "5f7c7279-75b8-48e1-a381-909558e5885d",
@@ -4400,6 +4438,8 @@ export const ISLAM_HOMOPHOBIE_TRANS_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/islam-homosexualite-transidentite-droit-compare.jpg",
+    illustration_credit: "Photo : Groov3, CC0, Wikimedia Commons",
   sources: [
     {
       id: "80ced67f-e7b4-450d-b06d-7d6bc17693a0",
@@ -4733,6 +4773,8 @@ export const ASPA_MINIMUM_VIEILLESSE_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/aspa-minimum-vieillesse-etrangers-conditions-cotisation.jpg",
+    illustration_credit: "Photo : Moreau.henri, Wikimedia Commons, CC BY-SA 3.0",
   sources: [
     {
       id: "2063e9ae-3799-4e20-9846-4642b40ef280",
@@ -5070,6 +5112,8 @@ export const FRAUDE_SOCIALE_FISCALE_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/fraude-sociale-vs-fraude-fiscale-cout-france.jpg",
+    illustration_credit: "Photo : TouN, Wikimedia Commons, CC BY-SA 3.0",
   sources: [
     {
       id: "ed439aeb-1382-488a-855b-f4abc23101bc",
@@ -5286,6 +5330,8 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
   ],
   is_published: true,
   published_at: "2026-10-15T00:00:00.000Z",
+    illustration_url: "/illustrations/genetique-races-biologiques-humaines.jpg",
+    illustration_credit: "Illustration : National Human Genome Research Institute, domaine public, Wikimedia Commons",
   sources: [
     {
       id: "9a54cecc-09b2-4063-b97a-65b82994cba4",

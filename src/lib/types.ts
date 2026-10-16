@@ -125,6 +125,10 @@ export type Dossier = {
   premises: Premise[];
   is_published: boolean;
   published_at: string | null;
+  /** Illustration du dossier : chemin local (/illustrations/…) ou URL http(s). */
+  illustration_url?: string | null;
+  /** Crédit affiché sous l'illustration (auteur, licence, source). */
+  illustration_credit?: string | null;
   sources: DossierSource[];
 };
 

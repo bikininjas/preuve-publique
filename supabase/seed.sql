@@ -8,7 +8,7 @@
 delete from public.dossiers where slug = 'hitler-et-les-nazis-etaient-de-gauche';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '7f1c9a54-2b1e-4c8a-9d3f-1a5e6b7c8d90',
   'hitler-et-les-nazis-etaient-de-gauche',
@@ -20,7 +20,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"Le sigle NSDAP contient le mot « socialiste »","status":"VRAI_DETOURNE","detail":"Terme retenu en 1920 pour capter l''électorat ouvrier, mais redéfini par Hitler hors de la lutte des classes et contre le marxisme, avec garantie explicite de la propriété privée."},{"claim_part":"L''État nazi intervenait dans l''économie, donc il était de gauche","status":"CONFUSION_CONCEPTUELLE","detail":"Économie de guerre dirigiste appuyée sur des cartels privés (Krupp, IG Farben, Siemens) et sur des privatisations massives entre 1934 et 1937 : l''inverse d''une collectivisation ou d''une abolition de la propriété privée."},{"claim_part":"Le NSDAP avait des alliances et une politique de gauche","status":"FAUX","detail":"Accession à la chancellerie par une coalition avec la droite conservatrice (von Papen, DNVP), ouverture de Dachau en mars 1933 pour interner communistes et sociaux-démocrates, dissolution des syndicats le 2 mai 1933, assassinat de l''aile strasseriste en juin 1934."}]'::jsonb,
   true,
-  '2026-10-14T00:00:00.000Z'::timestamptz
+  '2026-10-14T00:00:00.000Z'::timestamptz,
+  '/illustrations/hitler-et-les-nazis-etaient-de-gauche.jpg',
+  'Photo : Bundesarchiv (Bild 183-1987-0410-501), Wikimedia Commons, CC BY-SA 3.0 de'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '0f2f4a11-6c5b-4c6e-8f24-9c0f1a2b3c41',
@@ -162,7 +164,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'aide-medicale-detat-securite-sociale-soins-de-confort';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'ec66bd00-fb41-4eaf-b5aa-47600ef03889',
   'aide-medicale-detat-securite-sociale-soins-de-confort',
@@ -174,7 +176,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« L''AME ruine la Sécurité sociale »","status":"FAUX","detail":"En 2024, le coût total réel s''élève à 1 386,8 millions d''euros, soit environ 0,5 % des dépenses de santé ; la dépense moyenne par bénéficiaire (2 396,4 € en 2023) est inférieure à celle de l''ensemble de la population. Le dispositif est porté par le budget de l''État (mission Santé), pas par les cotisations sociales."},{"claim_part":"« Elle finance des soins de confort gratuits (cures, esthétique) »","status":"FAUX","detail":"Les cures thermales, l''aide médicale à la procréation et les médicaments à faible service médical rendu sont explicitement exclus de l''AME (article R. 251-1 du code de l''action sociale et des familles) ; le Gouvernement écrit que « l''AME ne finance pas de soins non essentiels » (réponse ministérielle du 12 décembre 2023)."},{"claim_part":"« À l''arrivée, la prise en charge est immédiate et sans contrôle »","status":"FAUX","detail":"La résidence stable en France de plus de trois mois est exigée, la première demande se dépose physiquement en CPAM, et depuis le 1er janvier 2021 les bénéficiaires de moins de neuf mois ne reçoivent certains soins qu''après accord préalable du médecin-conseil : un délai de carence sur les soins non urgents, pas un accès immédiat à tout."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/aide-medicale-detat-securite-sociale-soins-de-confort.jpg',
+  'Photo : MHM55, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '80a4a44a-9ee4-4f26-9aae-d841728333cd',
@@ -299,7 +303,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'sans-papiers-et-rsa-des-leur-arrivee';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '0fa4f772-df1e-4c20-bf04-b0023a6b2234',
   'sans-papiers-et-rsa-des-leur-arrivee',
@@ -311,7 +315,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« Les sans-papiers touchent le RSA »","status":"FAUX","detail":"La condition légale est un titre de séjour autorisant à travailler depuis au moins cinq ans ; « les immigrés irréguliers (« sans-papiers ») ne peuvent y prétendre en aucun cas » (Le Figaro, 2023). Les exceptions prévues (réfugiés, protection subsidiaire, apatrides, carte de résident) ne couvrent jamais l''irrégularité du séjour."},{"claim_part":"« … dès leur arrivée en France »","status":"FAUX","detail":"Il faut un titre autorisant à travailler depuis cinq ans, une résidence stable (moins de trois mois d''absence par an, article L. 262-2) et une demande examinée par la CAF : rien de tout cela n''est ouvert à une personne sans papiers. Le délai de cinq ans est levé pour quelques statuts protégés, pas pour l''absence de titre."},{"claim_part":"« Les étrangers pèsent lourd dans les bénéficiaires »","status":"VRAI_DETOURNE","detail":"Chiffre réel mais déformé : 15,6 % des foyers allocataires au 30 juin 2022 (moins de 300 000 foyers) avaient un responsable de dossier hors UE/EEE, tous titulaires du titre de séjour requis depuis cinq ans. La condition de nationalité protège précisément contre une attribution « dès l''arrivée »."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/sans-papiers-et-rsa-des-leur-arrivee.jpg',
+  'Affiche de la préfecture de police (musée Carnavalet, Paris Musées), CC0, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '7afdc994-b104-403c-93b9-068f1ba97063',
@@ -436,7 +442,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'petain-vichy-ont-ils-protege-les-juifs-francais';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'f185a0ee-094c-42bb-b75d-ef1517393fd4',
   'petain-vichy-ont-ils-protege-les-juifs-francais',
@@ -448,7 +454,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« Le statut des Juifs a été imposé par les Allemands »","status":"FAUX","detail":"Le statut du 3 octobre 1940 est adopté par l''État français « de sa propre initiative, et sans pression nazie » (Mémorial de la Shoah) ; il s''applique aux deux zones, y compris la zone libre où aucun occupant n''est présent."},{"claim_part":"« Vichy a protégé les Juifs français »","status":"FAUX","detail":"Pétain a annoté et durci le projet : suppression de l''exception des descendants de Juifs nés ou naturalisés avant 1860, extension des exclusions professionnelles — « tous les juifs sont stigmatisés » (INA). Environ 25 000 Juifs de nationalité française figurent parmi les victimes de la Shoah en France."},{"claim_part":"« Vichy a sacrifié les étrangers pour sauver les Français »","status":"FAUX","detail":"La collaboration policière de l''État français « a grandement aggravé le sort des Juifs » (Laurent Joly, CNRS) : la rafle du Vél'' d''Hiv'' (16-17 juillet 1942) est exécutée par la police française et la déportation frappe les Juifs français comme étrangers, dans les mêmes convois."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/petain-vichy-ont-ils-protege-les-juifs-francais.jpg',
+  'Portrait : Marcel Baschet, mai 1940 — domaine public, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '616b0cfe-595d-4a5f-af69-03518d8520c4',
@@ -607,7 +615,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'cout-immigration-budget-france';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'bf081aa5-d711-4510-bb25-b426ae7ffa46',
   'cout-immigration-budget-france',
@@ -619,7 +627,9 @@ insert into public.dossiers (
   95,
   '[{"claim_part":"« Les immigrés coûtent plus cher en aides qu''ils ne rapportent »","status":"FAUX","detail":"Les évaluations convergent vers un solde faible : contribution nette bornée entre - 0,5 % et + 0,05 % du PIB sur 1979-2011 (CEPII) ; impôts et cotisations supérieurs aux dépenses consacrées aux immigrés (protection sociale, santé, éducation) en moyenne 2006-2018 dans les 25 pays OCDE étudiés. La population immigrée est surreprésentée dans les classes d''âge actives, où les cotisations versées dépassent les prestations reçues."},{"claim_part":"« Le déficit de l''État est causé par l''immigration »","status":"CONFUSION_CONCEPTUELLE","detail":"Le CEPII conclut qu''« à aucun moment l''immigration n''a déterminé l''ampleur et l''évolution du solde budgétaire primaire » (1979-2011). Le déficit public s''explique d''abord par le vieillissement démographique (retraites, santé) et les cycles économiques : l''effet migratoire est marginal en comparaison."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/cout-immigration-budget-france.jpg',
+  'Photo : DXR, domaine public, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'a16671de-0ef0-4a69-a745-2d285453a60a',
@@ -693,7 +703,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'immigration-insecurite-criminalite-france';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
   'immigration-insecurite-criminalite-france',
@@ -705,7 +715,9 @@ insert into public.dossiers (
   95,
   '[{"claim_part":"« Les étrangers commettent la majorité des crimes et délits »","status":"FAUX","detail":"En 2024, les auteurs de violences physiques sont de nationalité française dans 84 % (intrafamiliales) et 85 % (hors cadre familial) des cas résolus ; 88 % des mis en cause pour usage de stupéfiants sont français (SSMSI, « Insécurité et délinquance en 2024 », fiches violences physiques et stupéfiants). Les mis en cause étrangers représentent 15 à 16 % des violences physiques, pour environ 8 % de la population."},{"claim_part":"« La nationalité explique la délinquance »","status":"CONFUSION_CONCEPTUELLE","detail":"La délinquance de rue est d''abord le fait d''hommes jeunes et précaires, surreprésentés dans les statistiques des mis en cause : « l''examen rigoureux des statistiques policières ne permet pas de mesurer la délinquance des étrangers » (Mucchielli, CNRS-CESDIP). Le ministère de la Justice mesure même une récidive plus faible des sortants étrangers (- 3,9 points) et un effet du faible niveau d''étude (+ 3,3 points) : ce sont le décrochage scolaire et la précarité qui pèsent, pas la nationalité."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/immigration-insecurite-criminalite-france.jpg',
+  'Photo : Eryand, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '05c12af9-831a-47e4-9391-946eb5c9ba05',
@@ -813,7 +825,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'expulsion-etrangers-delinquants-juges-et-droit';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '054e7ed1-684a-4161-8092-55af18bf6613',
   'expulsion-etrangers-delinquants-juges-et-droit',
@@ -825,7 +837,9 @@ insert into public.dossiers (
   95,
   '[{"claim_part":"« Les traités internationaux interdisent d''expulser un étranger dangereux »","status":"FAUX","detail":"L''article 8 § 2 de la CEDH admet expressément les ingérences « nécessaires à la sécurité nationale, à la sûreté publique… à la défense de l''ordre et à la prévention des infractions pénales ». Le CESEDA permet à l''autorité administrative d''expulser un étranger dont la présence constitue une menace grave pour l''ordre public (art. L. 631-1), l''article L. 631-3 écartant même les protections de certaines catégories en cas de condamnation définitive à cinq ans ou plus d''emprisonnement."},{"claim_part":"« L''échec des expulsions résulte d''annulations systématiques par les juges »","status":"CONFUSION_CONCEPTUELLE","detail":"En 2022, les tribunaux administratifs ont annulé 18 % des OQTF qui leur étaient présentées (Cour des comptes) : une minorité, pas une annulation systématique. La Cour identifie d''autres causes premières : identification incertaine (20 à 30 % des personnes non identifiées avec certitude), capacité de rétention limitée (1 717 places pour 447 257 OQTF prononcées entre 2019 et 2022) et surtout réticence des pays d''origine à délivrer les laissez-passer consulaires, indispensables en l''absence de passeport."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/expulsion-etrangers-delinquants-juges-et-droit.jpg',
+  'Photo : Sukkoria, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '77f00ed8-6c03-44a4-b60b-a6264b92bd84',
@@ -933,7 +947,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'allocation-demandeur-asile-carte-bancaire-montant';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '15c8d34e-83ed-494c-9cbb-637f41b4d056',
   'allocation-demandeur-asile-carte-bancaire-montant',
@@ -945,7 +959,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« L''État donne une carte de crédit créditée de 1 500 € par mois aux migrants »","status":"FAUX","detail":"Le montant légal est un forfait journalier modique, indexé sur la composition du foyer : 6,80 €/jour pour une personne seule hébergée (206,83 €/mois) ; aucun hébergement proposé : + 7,40 €/jour, soit 431,92 €/mois au total ; + 3,40 € par personne supplémentaire. Aucun dispositif ne verse 1 200 à 2 000 € par mois à un demandeur d''asile isolé. La carte de l''OFII n''est pas une carte de crédit : elle est alimentée par le seul montant de l''allocation versée, sans possibilité de retrait d''espèces ni de virements depuis 2019 (fonctionnalités réduites documentées par le Défenseur des droits : pas de paiement en ligne, sans contact inactif)."},{"claim_part":"« Cette aide financière est accordée à vie et sans conditions »","status":"FAUX","detail":"Versement temporaire : dû à compter de l''acceptation des conditions matérielles d''accueil et pendant la durée d''instruction de la demande ; il cesse à la fin du mois qui suit celui de la notification de la décision pour les personnes qui obtiennent la qualité de réfugié ou la protection subsidiaire, et il est suspendu en cas de défaut de validité de l''attestation de demande d''asile. Les fins de versement sont massives : 61 000 cessations ou retraits de l''ADA ont été opérés en 2025, contre 46 000 en 2022 (Sénat)."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/allocation-demandeur-asile-carte-bancaire-montant.jpg',
+  'Photo : NicolasPamart2610, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'b6a9e2f8-a4c1-4a13-971d-0ff1589dcec4',
@@ -1070,7 +1086,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'sans-papiers-rsa-caf-apl-aides-sociales';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '98f17905-d0f3-40e4-b240-140d4462f89a',
   'sans-papiers-rsa-caf-apl-aides-sociales',
@@ -1082,7 +1098,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« Un clandestin peut s''inscrire à la CAF et toucher des allocations »","status":"FAUX","detail":"Le droit aux prestations de la branche Famille est conditionné à la régularité du séjour (instruction CNAF IT-2024-232) ; l''article L. 512-2 du code de la sécurité sociale réserve les prestations familiales aux étrangers « titulaires d''un titre exigé d''eux... pour résider régulièrement en France » ; l''APL suppose un titre de séjour en cours de validité. Au titre de l''article L. 111-1 du code de la sécurité sociale, les étrangers en séjour irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun : hors AME, hébergement d''urgence et aide au retour, il n''y a ni RSA, ni allocations familiales, ni APL."},{"claim_part":"« Le RSA est accessible dès l''arrivée en France »","status":"FAUX","detail":"L''article L. 262-4 du code de l''action sociale et des familles impose d''« être français ou titulaire, depuis au moins cinq ans, d''un titre de séjour autorisant à travailler » — avec des exceptions limitées (réfugiés, bénéficiaires de la protection subsidiaire, apatrides, titulaires de la carte de résident). Le Conseil constitutionnel a jugé ce critère conforme (décision n° 2011-137 QPC du 17 juin 2011) ; un étranger régularisé depuis moins de cinq ans n''y a pas droit."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/sans-papiers-rsa-caf-apl-aides-sociales.jpg',
+  'Photo : Fabio Gargano, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '807f214f-6834-4aaf-9fdd-97c99de1622e',
@@ -1207,7 +1225,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'agression-bordeaux-clandestin-oqtf';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'eb0118fd-17bb-49d6-b8f4-faa6eb3333fe',
   'agression-bordeaux-clandestin-oqtf',
@@ -1219,7 +1237,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« L''agresseur est un étranger sans-papiers »","status":"FAUX","detail":"Le parquet de Bordeaux a communiqué l''identité et la situation précises du suspect : « un homme de 29 ans, né le 12 juillet 1993 à Bordeaux, de nationalité française, SDF » (communiqué relayé par France 3 Nouvelle-Aquitaine). Le Figaro rapporte de même : « Le mis en cause est de nationalité française. Né en 1993 à Bordeaux ». L''intéressé est défavorablement connu de la police et de la justice (quinze condamnations pour délits routiers et stupéfiants) — mais né et citoyen français."},{"claim_part":"« L''acte illustre une OQTF non exécutée »","status":"FAUX","detail":"L''obligation de quitter le territoire français est « un acte administratif par lequel les autorités préfectorales imposent à une personne étrangère de quitter le territoire français » (Revue Alyoda) ; l''article L. 611-1 du CESEDA dispose que « l''autorité administrative peut obliger un étranger à quitter le territoire français ». Une mesure d''éloignement était donc juridiquement impossible à l''encontre d''un citoyen français né à Bordeaux : aucune OQTF, exécutée ou non, n''est en cause dans cette affaire."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/agression-bordeaux-clandestin-oqtf.jpg',
+  'Photo : Javier Perez Montes, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'a29a9afc-0391-443b-beec-03c19eb5d505',
@@ -1327,7 +1347,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'incendie-eglise-saint-omer-attentat-islamiste';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '24704ff5-d2a1-4f35-a5e6-1edfa50ba493',
   'incendie-eglise-saint-omer-attentat-islamiste',
@@ -1339,7 +1359,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« L''incendie est une attaque terroriste antichrétienne »","status":"FAUX","detail":"L''enquête établit un mobile crapuleux (vol de l''argent des troncs) suivi d''un incendie volontaire allumé par un récidiviste (« avant de quitter les lieux, il avait décidé d''y mettre le feu »), sans aucune entreprise terroriste au sens de l''article 421-1 du code pénal. Les sinistres d''églises relèvent de causes multiples : selon l''Observatoire du patrimoine religieux, sur les 27 départs de feu de 2023, 19 étaient accidentels et 8 criminels ; en 2024 (janvier-septembre), 14 sur 26. Aucune campagne terroriste antichrétienne n''est documentée dans l''Hexagone."},{"claim_part":"« L''auteur est un étranger islamiste »","status":"FAUX","detail":"Le parquet a précisé qu''il s''agit d''un homme « né en 1985 et de nationalité française », sans domicile fixe, hébergé en foyer, suivi sur le plan psychiatrique, défavorablement connu des services de police pour des vols et des dégradations depuis des années (26 condamnations de droit commun). Aucun élément de radicalisation ou d''attache étrangère n''apparaît dans la procédure, dont les chefs sont la destruction par moyen dangereux et le vol."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/incendie-eglise-saint-omer-attentat-islamiste.jpg',
+  'Photo : Jean Marc Gfp, Wikimedia Commons, CC BY 3.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '4f8443a3-7409-45e9-9a9c-8aa38605091b',
@@ -1481,7 +1503,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'aides-rsa-vs-smic-revenu-disponible';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '3b38eeea-669e-4a45-8904-60084454bbd7',
   'aides-rsa-vs-smic-revenu-disponible',
@@ -1493,7 +1515,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« Le cumul des aides permet de dépasser 2 000 € au RSA sans travailler »","status":"FAUX","detail":"Le RSA est plafonné par construction : « une allocation qui porte les ressources du foyer au niveau du montant forfaitaire » (CASF, art. L. 262-2), et le forfait logement — 12 à 16,5 % du forfait selon la taille du foyer (art. R. 262-9 du CASF), soit 156,41 € pour deux — est déduit lorsque le foyer perçoit une aide au logement. Un couple inactif perçoit au plus 977,54 € de RSA, réduits à environ 821 € avec APL : aucun cumul passif n''atteint 1 500 €, a fortiori 2 000 €."},{"claim_part":"« Travailler au SMIC rapporte moins que l''inactivité complète »","status":"FAUX","detail":"Dès la reprise d''emploi, le salaire s''ajoute aux aides qui subsistent : prime d''activité pour les revenus modestes (forfait maximal 638,28 €, revalorisé au 1er avril 2026), APL, allocations familiales. Les rapporteurs du Sénat relèvent que « la reprise d''une activité garantit un gain financier immédiat, et ce dès le premier euro gagné » ; l''étude OFCE sur 20 cas-types conclut que l''emploi est toujours plus rémunérateur que l''inactivité (gain mensuel de 252 à 533 € pour un mi-temps au SMIC)."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/aides-rsa-vs-smic-revenu-disponible.jpg',
+  'Photo : Avij, domaine public, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'b2b5047e-3939-4de9-accd-a6ea7cdc8d70',
@@ -1635,7 +1659,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'discriminations-embauche-origine-mythe';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'e2640e72-740e-4e52-bdcb-3ac633453a08',
   'discriminations-embauche-origine-mythe',
@@ -1647,7 +1671,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« Le marché du travail ne juge que les compétences individuelles »","status":"FAUX","detail":"Le testing scientifique isole l''effet du seul patronyme à profil strictement identique : l''IPP mesure ainsi un écart de rappel de 31,5 % en défaveur des candidatures à consonance maghrébine, à CV égal. Le programme DESPERADO V (Université Gustave Eiffel/TEPP-CNRS) mesure des pénalités de 3 à 12,1 points de pourcentage selon les profils, soit 30,8 % en relatif — le même ordre de grandeur que la pénalité liée à l''âge. Un effet net, toutes choses égales par ailleurs, apparaît donc indépendamment des compétences affichées."},{"claim_part":"« Les écarts d''accès à l''emploi résultent uniquement de différences de formation »","status":"CONFUSION_CONCEPTUELLE","detail":"La disparité persiste aux niveaux de diplôme les plus élevés : dans l''enseignement supérieur et la recherche — secteur où « les principes d''égalité et d''intégrité structurent largement l''activité » — le testing TEPP-CNRS (2 748 candidatures, 2021-2022) met en évidence une exposition à la discrimination selon l''origine « d''une ampleur comparable à celle qui existe dans l''ensemble de la fonction publique ». L''IPP confirme que la discrimination, si elle est « plus faible, sans s''effacer, parmi les salariés les plus qualifiés », reste significative à tous les niveaux de formation."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/discriminations-embauche-origine-mythe.jpg',
+  'Photo : HeatherKatz001, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '5a00776c-20c7-489c-add2-352a99ce3a42',
@@ -1772,7 +1798,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'homoparentalite-developpement-troubles-enfants';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'd50b5c99-ee02-49cf-b690-950efc6e2b2d',
   'homoparentalite-developpement-troubles-enfants',
@@ -1784,7 +1810,9 @@ insert into public.dossiers (
   98,
   '[{"claim_part":"« L''absence d''un parent de chaque sexe perturbe la construction psychologique »","status":"FAUX","detail":"Les méta-analyses et revues systématiques ne relèvent aucune justification empirique à cette crainte : l''American Psychological Association note que « la recherche a constamment échoué à mettre au jour une justification empirique à ces préoccupations » (résolution de 2020, citant les revues de 2015-2019) et que « les enfants de parents sexuels minoritaires semblent se développer de manière saine et typique » à tous les âges et domaines. Le rapport parlementaire français de 2013 : « Sur aucun de ces points, il n''est apparu de différence significative entre les enfants étudiés et les groupes témoins. »"},{"claim_part":"« Les enfants de couples homosexuels sont fragilisés socialement et scolairement »","status":"FAUX","detail":"Les études sur données représentatives (recensement américain : 3 500 enfants de couples de même sexe, aucune différence de progression scolaire ; plus de 20 000 enfants des enquêtes nationales) ne mesurent pas de décrochage corrélé à la structure parentale. La fragilité observée, quand elle existe, relève du stigmate social : le rapport de l''Assemblée nationale le résume — « La seule fragilité particulière, lorsqu''il y en a une, relève du regard négatif que la société peut porter sur cette situation particulière. »"}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/homoparentalite-developpement-troubles-enfants.jpg',
+  'Photo : Claude Truong-Ngoc, Wikimedia Commons, CC BY-SA 3.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'db6702ee-8253-489e-b369-4849ada6b224',
@@ -1909,7 +1937,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'theorie-du-genre-ecole-education-nationale';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '9b8ed5b4-c813-4673-a368-7597e536b9fd',
   'theorie-du-genre-ecole-education-nationale',
@@ -1921,7 +1949,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« L''école apprend aux enfants que le sexe biologique n''existe pas »","status":"FAUX","detail":"Le programme de sciences de la vie et de la Terre du cycle 4 (BO n° 31 du 30 juillet 2020) enseigne « l''explication des mécanismes de la reproduction [...] du fonctionnement des organes aux phénomènes régulateurs, de l''échelle de l''organisme à l''échelle moléculaire » et la « reproduction sexuée et asexuée des êtres vivants ». Le programme EVARS lui-même est structuré, selon le Conseil d''État, en trois champs dont un « champ biologique ». Aucun texte officiel ne présente le sexe biologique comme inexistant."},{"claim_part":"« Les modules égalité visent à nier les identités sexuées dès la maternelle »","status":"FAUX","detail":"L''objectif réglementaire est explicite : « l''éducation contre les représentations stéréotypées », la mixité des filières et la prévention des violences sexistes et sexuelles (éduscol, référents égalité dans chaque collège et lycée, label Égalité filles-garçons). Le rapport de l''IGÉSR n° 2021-149 (juillet 2021) évalue une politique publique de mise en œuvre, pas une doctrine : il « note les efforts de cadrage effectués » et formule trente-cinq recommandations pratiques. Le CESE (avis du 10 septembre 2024, 119 voix pour) et le rapport sénatorial n° 814 (juillet 2025) traitent le sujet comme une obligation légale de prévention insuffisamment appliquée — constat confirmé par le juge administratif."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/theorie-du-genre-ecole-education-nationale.jpg',
+  'Photo : Benoît Prieur, CC0, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '1ea4711a-dbf9-4181-88d1-615e8f6f113b',
@@ -2097,7 +2127,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'pourvoi-cassation-culpabilite-ineligibilite-elus';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'a12eabe7-0adf-4320-8c3a-82f1c0da1a62',
   'pourvoi-cassation-culpabilite-ineligibilite-elus',
@@ -2109,7 +2139,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« La Cour de cassation peut déclarer un prévenu innocent des faits reprochés »","status":"FAUX","detail":"Elle contrôle la conformité au droit et la régularité de la procédure et « ne connaît pas du fond des affaires » (article L. 411-2 du code de l''organisation judiciaire) : les moyens qui remettent en cause l''appréciation souveraine des faits par les juges du fond sont écartés. Une cassation annule une décision, elle ne constate pas l''innocence."},{"claim_part":"« Le pourvoi suspend automatiquement toute peine d''inéligibilité »","status":"CONFUSION_CONCEPTUELLE","detail":"L''effet suspensif de l''article 569 du code de procédure pénale cède lorsque le juge a ordonné l''exécution provisoire : « le caractère non suspensif du recours, lorsque l''exécution provisoire a été ordonnée, assure une juste conciliation » (chambre criminelle, 21 septembre 2022). Les élus locaux condamnés sont démis d''office avant même que la condamnation soit définitive (Conseil constitutionnel, 28 mars 2025)."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/pourvoi-cassation-culpabilite-ineligibilite-elus.jpg',
+  'Photo : DXR, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '66c272b9-bd35-47c2-872a-db5cc604e489',
@@ -2285,7 +2317,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'assistants-rn-pourvoi-cassation-ineligibilite';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '628dd9b6-1c47-4d51-b798-5337e43e3b92',
   'assistants-rn-pourvoi-cassation-ineligibilite',
@@ -2297,7 +2329,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« La Cour de cassation peut innocenter les cadres du RN sur les faits reprochés »","status":"FAUX","detail":"Elle est « le juge du droit » : elle ne réexamine pas les faits à l''origine de la poursuite, mais vérifie que la loi a été correctement appliquée (communiqué de la Cour de cassation du 8 juillet 2026) ; les constatations de fait — l''organisation mise en place, les emplois fictifs — ont été fixées souverainement par les juges du fond. Une cassation, si elle était prononcée, annulerait l''arrêt et renverrait l''affaire devant une autre cour d''appel : elle n''innocente personne."},{"claim_part":"« Former un pourvoi suspend automatiquement toute interdiction de se présenter à une élection »","status":"CONFUSION_CONCEPTUELLE","detail":"L''effet suspensif ordinaire de l''article 569 du code de procédure pénale est expressément écarté lorsque la juridiction ordonne l''exécution provisoire prévue par la loi (article 471) : c''est alors l''exécution immédiate qui prime. Dans cette affaire, le jugement du 31 mars 2025 était assorti de l''exécution provisoire et a été exécuté (arrêté préfectoral de démission d''office du 10 avril 2025, confirmé par le Conseil d''État) ; l''arrêt d''appel du 7 juillet 2026 n''est assorti d''aucune exécution provisoire, d''où la suspension d''exécution — temporaire — depuis le pourvoi."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/assistants-rn-pourvoi-cassation-ineligibilite.jpg',
+  'Photo : NonOmnisMoriar, Wikimedia Commons, CC BY-SA 3.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '8f6420ad-c725-49a7-ab0f-d92a42144ce6',
@@ -2490,7 +2524,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'laxisme-judiciaire-peines-prison-france';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'fc1805d9-9070-4553-a055-d5e9e8d0da82',
   'laxisme-judiciaire-peines-prison-france',
@@ -2502,7 +2536,9 @@ insert into public.dossiers (
   95,
   '[{"claim_part":"« Les magistrats refusent d''incarcérer et vident les prisons »","status":"FAUX","detail":"Jamais autant de personnes n''ont été détenues en France : 90 020 au 1er septembre 2026 pour 63 348 places opérationnelles — une densité carcérale de 142,1 % (176,1 % dans les maisons d''arrêt selon Libération), en hausse de 6,8 % sur un an, avec 8 347 matelas au sol faute de lits. Les prisons ne se vident pas : elles débordent."},{"claim_part":"« Les peines prononcées sont de plus en plus courtes »","status":"FAUX","detail":"Le quantum moyen des peines d''emprisonnement ferme prononcées est passé de 9,5 mois en 2020 à 10,2 mois en 2023 (Cahiers d''études pénitentiaires n° 65) puis 11,0 mois pour les condamnations de 2024 (chiffres clés de la Justice) ; le nombre d''années de prison ferme prononcées a augmenté de près de 70 % entre 2000 et 2019 (Cour des comptes). Les peines s''allongent, elles ne raccourcissent pas."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/laxisme-judiciaire-peines-prison-france.jpg',
+  'Photo : Thomon, Wikimedia Commons, CC BY-SA 4.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'f88be2af-ffa6-4d4a-af6f-ef2fb866dede',
@@ -2644,7 +2680,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'aspa-minimum-vieillesse-etrangers-conditions-cotisation';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '92fb6d88-053d-4435-8506-0f9e92a7db51',
   'aspa-minimum-vieillesse-etrangers-conditions-cotisation',
@@ -2656,7 +2692,9 @@ insert into public.dossiers (
   98,
   '[{"claim_part":"« N''importe quel étranger âgé peut venir en France toucher 1 000 € par mois sans condition »","status":"FAUX","detail":"Pour en bénéficier, un ressortissant étranger doit détenir « depuis au moins dix ans un titre de séjour autorisant à travailler » (article L. 816-1 du code de la sécurité sociale, repris par la fiche service-public), sauf s''il est réfugié, apatride, bénéficiaire de la protection subsidiaire, ancien combattant, ressortissant d''un État de l''Espace économique européen ou de Suisse, ou ressortissant d''un pays lié par une convention bilatérale (service-public.gouv.fr). S''y ajoutent la résidence stable en France (plus de 9 mois l''année de versement), la condition de subsidiarité (avoir fait valoir tous ses droits à pension), l''âge minimum (65 ans, abaissé dans certains cas) et un plafond de ressources. Le montant n''est pas un forfait : l''allocation est différentielle et le maximum est de 1 043,59 € par mois pour une personne seule en 2026 — soit à peine plus que les « 1 000 € » évoqués."},{"claim_part":"« L''ASPA est un droit gratuit conservé même si l''on repart vivre à l''étranger »","status":"FAUX","detail":"Le service de l''allocation « est supprimé aux personnes qui établissent leur résidence en dehors du territoire métropolitain » (article L. 815-12 du code de la sécurité sociale), et la condition de résidence — désormais portée à 9 mois par an pour le minimum vieillesse comme pour les prestations familiales par le décret du 19 avril 2024, applicable au 1er janvier 2025 — est contrôlée annuellement. Surtout, la prestation n''est pas « gratuite » : récupérable sur la succession au-delà d''un actif net de 108 586,14 € pour un décès en 2026 (art. L. 815-13), elle est au cœur d''un non-recours massif — environ 300 000 retraités éligibles y renoncent, et l''Assemblée nationale a voté le 11 juin 2026 un « forfait logement » qui supprime cette récupération pour les propriétaires, précisément pour y remédier."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/aspa-minimum-vieillesse-etrangers-conditions-cotisation.jpg',
+  'Photo : Moreau.henri, Wikimedia Commons, CC BY-SA 3.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '2063e9ae-3799-4e20-9846-4642b40ef280',
@@ -2883,7 +2921,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'fraude-sociale-vs-fraude-fiscale-cout-france';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   'cf93d598-da1f-40b1-bf82-4eccbfa4cba1',
   'fraude-sociale-vs-fraude-fiscale-cout-france',
@@ -2895,7 +2933,9 @@ insert into public.dossiers (
   98,
   '[{"claim_part":"« Les allocataires sociaux causent l''essentiel du déficit public »","status":"FAUX","detail":"La fraude sociale totale — prestations et cotisations confondues — est évaluée à 14 Md€ en 2025 par le HCFiPS (contre 13 Md€ en 2024), quand la fraude fiscale est estimée entre 80 et 120 Md€ par an ; la fraude des assurés (RSA, allocations, indemnités) ne représente que 36 % de l''ensemble, soit environ 5 Md€. Sur les 14 Md€ évalués, 2 Md€ ont été détectés et 680 M€ recouvrés en 2024. Les montants ne sont donc absolument pas de même échelle, et l''essentiel des sommes évaluées n''est pas imputable aux allocataires."},{"claim_part":"« La fraude sociale est surtout le fait des ménages »","status":"CONFUSION_CONCEPTUELLE","detail":"La fraude sociale ne se confond pas avec la fraude aux prestations : « l''essentiel de la fraude demeure concentré sur le recouvrement des cotisations (plus de 52 % de la fraude évaluée) », c''est-à-dire des employeurs et des travailleurs indépendants — la fraude des assurés arrive en seconde position (36 %) et celle des professionnels s''élève à 12 % (HCFiPS). Les redressements de l''Urssaf au titre du travail dissimulé atteignent 1,6 Md€ en 2024 (+ 34 %), dont 69 % de cotisations non déclarées : le principal gisement de fraude sociale est bien patronal, et non ménager."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/fraude-sociale-vs-fraude-fiscale-cout-france.jpg',
+  'Photo : TouN, Wikimedia Commons, CC BY-SA 3.0'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   'ed439aeb-1382-488a-855b-f4abc23101bc',
@@ -3020,7 +3060,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'genetique-races-biologiques-humaines';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '8ddf3e0f-fb27-4188-808f-eae19b64ed2a',
   'genetique-races-biologiques-humaines',
@@ -3032,7 +3072,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« Les groupes humains constituent des sous-espèces biologiques discontinues »","status":"FAUX","detail":"La variation génétique humaine est graduelle et clinale : les travaux fondateurs (Lewontin 1972, puis Barbujani et al., PNAS 1997) montrent que 85 % de la diversité génétique se trouve à l''intérieur des populations et que la partition en groupes raciaux ne recouvre aucune discontinuité du génome — « l''existence de ces grands groupes n''est pas soutenue par la présente analyse de l''ADN ». Sur les quelque 6 millions de lettres d''ADN qui différencient deux individus, seules environ 5 % s''expliquent par une origine géographique différente ; le reste distingue les individus d''une même origine. Il n''existe donc pas de sous-espèces discrètes chez Homo sapiens."},{"claim_part":"« Les traits morphologiques extérieurs définissent des lignées génétiques distinctes »","status":"CONFUSION_CONCEPTUELLE","detail":"Les traits visibles (pigmentation de la peau, forme des cheveux) dépendent d''une poignée de gènes d''adaptation au climat et n''indexent pas le reste du génome : deux individus d''apparence très différente peuvent être génétiquement plus proches que deux individus de même apparence, et la diversité génétique est plus grande entre certaines populations africaines qu''entre un Européen et un Asiatique (marqueur de l''origine africaine de l''espèce). L''apparence extérieure ne définit aucune lignée génétique distincte — c''est la confusion conceptuelle dénoncée par les généticiens des populations."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/genetique-races-biologiques-humaines.jpg',
+  'Illustration : National Human Genome Research Institute, domaine public, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '9a54cecc-09b2-4063-b97a-65b82994cba4',
@@ -3174,7 +3216,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'union-prophete-aicha-anachronisme-pedophilie';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '5c139b2a-e7a7-4992-89ce-7f82253d8cc3',
   'union-prophete-aicha-anachronisme-pedophilie',
@@ -3186,7 +3228,9 @@ insert into public.dossiers (
   100,
   '[{"claim_part":"« La notion clinique de pédophilie s''applique au VIIe siècle »","status":"ANACHRONISME_CONCEPTUEL","detail":"La « pédophilie » n''est pas une catégorie transhistorique : c''est un diagnostic clinique construit par la psychiatrie et la sexologie de la fin du XIXe siècle, codifié aujourd''hui par le DSM-5 (APA, 2013) et la CIM-11 (OMS, 2019, code 6D32), qui décrivent une attirance sexuelle envers des enfants prépubères. Le terme « paedophilia erotica » est forgé par Richard von Krafft-Ebing dans un article de 1896 — après sa Psychopathia Sexualis de 1886 — et n''entre dans l''ouvrage qu''à sa dixième édition allemande (1898 ; traduction anglaise 1899, française 1900, D. F. Janssen, Medical History, 2015). Appliquer rétroactivement ce diagnostic à une union du VIIe siècle revient à projeter une nosographie moderne sur des structures matrimoniales prémodernes obéissant à d''autres logiques — nubilité légale, alliances dynastiques, stratégies familiales — que le droit romain comme l''Europe chrétienne organisaient autour de la puberté."},{"claim_part":"« Le récit des 9 ans est un fait biographique certifié »","status":"BIAIS_METHODOLOGIQUE","detail":"Les recueils de hadiths ont été compilés au IXe siècle, deux siècles après la mort du prophète (632). La version la plus connue (Sahih al-Bukhari, n° 5133) porte elle-même sa chaîne de transmission — Hišām, d''après son père, d''après ʿĀʾiša — et l''analyse isnad-cum-matn (J. J. Little, Oxford, 2022), qui confronte toutes les chaînes et tous les contenus, identifie un archétype unique créé et diffusé par Hišām b. ʿUrwa après son départ de Médine pour l''Irak, à la fin de sa vie : une élaboration de la fin du VIIIe siècle, et non un enregistrement contemporain des faits. Traiter ce récit comme une « archive » biographique sans appliquer les précautions de la critique historique — celles-là mêmes que la philologie du texte coranique met en œuvre à partir des manuscrits des VIIe-VIIIe siècles (F. Déroche, Collège de France) — relève d''un biais de méthode."},{"claim_part":"« Ces mariages précoces étaient propres à l''Arabie »","status":"DOUBLE_STANDARD","detail":"Le mariage précoce d''alliance n''était ni arabe ni islamique : toute la norme matrimoniale prémoderne l''organisait. La compilation justinienne fixe la nubilité des filles à douze ans et la tradition canonique médiévale conserve cette borne ; les cours chrétiennes descendaient souvent en dessous : Isabelle de Hainaut, âgée de dix ans, épouse le futur Philippe Auguste en 1180, et les fiançailles d''enfants scandent l''histoire dynastique européenne. Juger la seule Arabie du VIIe siècle à l''aune d''une catégorie moderne, en épargnant Rome, Byzance et les royautés chrétiennes — qui pratiquaient les mêmes unions précoces pour des raisons de succession et d''alliance — applique deux mesures à un même fait."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/union-prophete-aicha-anachronisme-pedophilie.jpg',
+  'Manuscrit du Coran (BnF, Gallica), domaine public, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '5f7c7279-75b8-48e1-a381-909558e5885d',
@@ -3345,7 +3389,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'islam-homosexualite-transidentite-droit-compare';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '0be0aa6c-3c4e-4724-b4cc-36ab16252fa8',
   'islam-homosexualite-transidentite-droit-compare',
@@ -3357,7 +3401,9 @@ insert into public.dossiers (
   95,
   '[{"claim_part":"« Le rejet scripturaire de l''homosexualité est propre à l''islam »","status":"BIAIS_DE_SELECTION","detail":"L''interdit textuel est partagé : « Tu ne coucheras point avec un homme comme on couche avec une femme. C''est une abomination » (Lévitique 18,22) ; « leurs femmes ont changé l''usage naturel en celui qui est contre nature » (Épître aux Romains 1,26-27) ; le Coran reprend le motif de Loth (7,80-84 ; 26,165-166). Ne citer que le texte musulman en passant sous silence les interdits bibliques — antérieurs et fondateurs pour les deux autres monothéismes — est un biais de sélection : la spécificité alléguée ne survit pas à l''inventaire complet des textes."},{"claim_part":"« La tradition islamique interdit formellement toute transition de genre »","status":"CONFUSION_CONCEPTUELLE","detail":"Le droit islamique classique distingue le mukhannath (l''homme efféminé) et le khuntha (la personne au sexe ambigu), ce dernier traité jusque dans les règles d''héritage (Saqer Almarri, Arcade, Stanford ; E. K. Rowson, 1991) : l''affirmation confond l''interdit de l''homosexualité — une question d''orientation — avec un encadrement normé de la transition — une question d''identité et de médecine. L''Iran autorise et subventionne partiellement la chirurgie de réassignation depuis le milieu des années 1980, sur le fondement d''une fatwa attribuée à Khomeini (1967, étendue en 1985 selon la recherche) ; l''Égypte ouvre la chirurgie aux personnes intersexes (fatwa Tantawi, 1988) tout en interdisant la transition motivée par une identité de genre. Un encadrement, donc, non un interdit général de principe."},{"claim_part":"« La répression pénale actuelle découle uniquement du dogme »","status":"ANACHRONISME_CONCEPTUEL","detail":"Les codes qui répriment aujourd''hui les rapports entre personnes de même sexe doivent plus à l''histoire coloniale qu''au seul dogme : la « section 377 » du code pénal indien de 1860 — copiée du Buggery Act anglais — a été exportée dans l''Empire britannique, et plus de la moitié des États qui criminalisent encore ces rapports sont d''anciennes possessions britanniques (Human Rights Watch, 2008). L''exemple ottoman souvent avancé montre l''inverse d''une causalité religieuse simple : le code de 1858, calqué sur le français de 1810, ne punissait plus la conduite privée mais aggravait le traitement pénal de l''acte public (Özsoy, 2020, Journal of Homosexuality) — la « dépénalisation » de 1858 est une lecture rétrospective contestée, pas un acquis. Attribuer la répression contemporaine au seul dogme islamique projette sur l''histoire juridique une causalité unique et anachronique."}]'::jsonb,
   true,
-  '2026-10-15T00:00:00.000Z'::timestamptz
+  '2026-10-15T00:00:00.000Z'::timestamptz,
+  '/illustrations/islam-homosexualite-transidentite-droit-compare.jpg',
+  'Photo : Groov3, CC0, Wikimedia Commons'
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '80ced67f-e7b4-450d-b06d-7d6bc17693a0',
@@ -3567,7 +3613,7 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
-  premises, is_published, published_at
+  premises, is_published, published_at, illustration_url, illustration_credit
 ) values (
   '8adc1cd9-e4d3-44e6-01ac-7e8f9a0b1c29',
   'brouillon-de-controle-rls',
@@ -3579,5 +3625,7 @@ insert into public.dossiers (
   0,
   '[]'::jsonb,
   false,
+  null,
+  null,
   null
 );

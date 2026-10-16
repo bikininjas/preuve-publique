@@ -9,6 +9,7 @@ import {
   unpublishAction,
   updateDossierAction,
   updateSourceAction,
+  uploadIllustrationAction,
 } from "@/app/admin/actions";
 import { currentAdmin, supabaseSession } from "@/server/supabase/admin.ts";
 import {
@@ -54,7 +55,7 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
   const { data } = await client
     .from("dossiers")
     .select(
-      "id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score, premises, is_published, published_at, dossier_sources (id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, author_reference_url, archive_sha256, display_order)",
+      "id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score, premises, is_published, published_at, illustration_url, illustration_credit, dossier_sources (id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, author_reference_url, archive_sha256, display_order)",
     )
     .eq("id", id)
     .maybeSingle();
@@ -112,6 +113,46 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
         </form>
       </section>
 
+      {/* Illustration : dépôt direct dans le bucket public, crédit affiché sous l'image. */}
+      <section className="space-y-3 border border-grid bg-surface p-4">
+        <h2 className="pp-h3 font-serif text-ink">Image d&apos;illustration</h2>
+        <p className="pp-tight text-muted">
+          Un fichier JPEG, PNG ou WebP (4 Mo max) : il est déposé dans le bucket public
+          <span className="font-mono"> illustrations</span> et s&apos;affiche en tête du dossier
+          public, sous le titre. Pensez au <span className="text-ink">crédit</span> (auteur,
+          licence, source) : il est affiché sous l&apos;image, et il est obligatoire pour les
+          images sous licence libre — Wikimedia Commons, Unsplash, etc.
+        </p>
+        {data.illustration_url !== null && data.illustration_url !== "" ? (
+          <figure className="space-y-1">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="max-h-56 w-auto border border-grid object-cover"
+              src={data.illustration_url}
+              alt=""
+            />
+            <figcaption className="pp-meta text-muted">
+              {data.illustration_credit ?? "crédit non renseigné"}
+            </figcaption>
+          </figure>
+        ) : (
+          <p className="pp-meta text-muted">Aucune image pour ce dossier.</p>
+        )}
+        <form action={uploadIllustrationAction} className="flex flex-wrap items-center gap-3">
+          <input type="hidden" name="id" value={data.id} />
+          <input
+            className="pp-tap"
+            type="file"
+            name="file"
+            accept="image/jpeg,image/png,image/webp"
+            required
+          />
+          <button className="pp-btn pp-btn--ink" type="submit">
+            Téléverser l&apos;image
+          </button>
+        </form>
+      </section>
+
       <form action={updateDossierAction} className="grid gap-3 border border-grid bg-surface p-4 sm:grid-cols-2">
         <input type="hidden" name="id" value={data.id} />
         <label className="sm:col-span-2">
@@ -160,6 +201,26 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
             name="verdict_summary"
             rows={3}
             defaultValue={data.verdict_summary}
+          />
+        </label>
+        <label>
+          <span className={FIELD}>
+            Illustration — URL http(s) ou chemin local (facultatif)
+          </span>
+          <input
+            className={`${INPUT} font-mono`}
+            name="illustration_url"
+            defaultValue={data.illustration_url ?? ""}
+            placeholder="/illustrations/… ou https://…"
+          />
+        </label>
+        <label>
+          <span className={FIELD}>Crédit de l&apos;illustration (auteur, licence, source)</span>
+          <input
+            className={INPUT}
+            name="illustration_credit"
+            defaultValue={data.illustration_credit ?? ""}
+            placeholder="Photo : Auteur, Wikimedia Commons, CC BY-SA 4.0"
           />
         </label>
         <div className="sm:col-span-2">

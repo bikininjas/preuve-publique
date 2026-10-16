@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import {
   DRAFT_CONTROL_DOSSIER,
@@ -12,6 +15,7 @@ import { searchSeedDossiers } from "../src/lib/search.ts";
 import { documentedSpectra } from "../src/lib/types.ts";
 
 const HASH = /^[0-9a-f]{64}$/;
+const ROOT = fileURLToPath(new URL("..", import.meta.url));
 
 test("le dossier de référence est publiable et complet", () => {
   assert.equal(REFERENCE_DOSSIER.is_published, true);
@@ -99,4 +103,20 @@ test("la recherche locale trouve le dossier par son titre et par une citation", 
 test("la recherche ignore casse et accents", () => {
   assert.equal(searchSeedDossiers("ETAiENT de GAUCHE").length, 1);
   assert.equal(searchSeedDossiers("propriete privee").length, 1);
+});
+
+test("chaque dossier publié porte une illustration libre avec son crédit", () => {
+  for (const dossier of publishedSeedDossiers()) {
+    assert.ok(dossier.illustration_url, `${dossier.slug} : illustration manquante`);
+    assert.match(dossier.illustration_url, /^\/illustrations\/[a-z0-9-]+\.jpg$/, dossier.slug);
+    assert.ok(
+      existsSync(resolve(ROOT, "public", dossier.illustration_url.slice(1))),
+      `${dossier.slug} : fichier d'illustration absent de public/`,
+    );
+    assert.ok(
+      typeof dossier.illustration_credit === "string" &&
+        dossier.illustration_credit.trim().length > 10,
+      `${dossier.slug} : crédit d'illustration manquant`,
+    );
+  }
 });

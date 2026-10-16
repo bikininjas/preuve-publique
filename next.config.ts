@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
   reactStrictMode: true,
+  experimental: {
+    // Les illustrations déposées depuis /admin passent par une action serveur :
+    // la limite par défaut (1 Mo) est trop basse pour une photo d'enquête.
+    serverActions: { bodySizeLimit: "4mb" },
+  },
   async headers() {
     return [
       { source: "/:path*", headers: SECURITY_HEADERS },

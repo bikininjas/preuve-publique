@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { createHash } from "node:crypto";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -178,6 +179,18 @@ export async function createDossierAction(form: FormData) {
   done(`/admin/dossiers/${data.id}`, "Brouillon créé. Ajoutez des pièces, puis publiez.");
 }
 
+/** Illustration : URL http(s) ou chemin local (/illustrations/…), sinon refus explicite. */
+function illustrationUrl(form: FormData, dossierId: string): string | null {
+  const value = nullable(form, "illustration_url");
+  if (value !== null && !/^(https?:\/\/|\/)/.test(value)) {
+    problem(
+      `/admin/dossiers/${dossierId}`,
+      "Illustration refusée : URL http(s) ou chemin commençant par / attendu.",
+    );
+  }
+  return value;
+}
+
 export async function updateDossierAction(form: FormData) {
   const { client } = await requireAdmin();
   const id = text(form, "id");
@@ -208,6 +221,8 @@ export async function updateDossierAction(form: FormData) {
       protagonists: parseProtagonists(form, id),
       consensus_score: whole(form, "consensus_score", 0),
       premises: checkedPremises.data,
+      illustration_url: illustrationUrl(form, id),
+      illustration_credit: nullable(form, "illustration_credit"),
       updated_at: new Date().toISOString(),
     })
     .eq("id", id);
@@ -359,4 +374,59 @@ export async function unpublishAction(form: FormData) {
   }
   refresh();
   done(`/admin/dossiers/${id}`, "Dossier repassé en brouillon.");
+}
+
+/**
+ * Illustration : le fichier est déposé dans le bucket public `illustrations`
+ * avec la session de l'administrateur (RLS : is_admin()), puis l'URL publique
+ * est inscrite sur le dossier. Le nom du fichier est l'empreinte de ses octets :
+ * un remplacement produit une nouvelle URL, jamais un cache douteux.
+ */
+export async function uploadIllustrationAction(form: FormData) {
+  const { client } = await requireAdmin();
+  const id = text(form, "id");
+  const file = form.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    problem(`/admin/dossiers/${id}`, "Illustration refusée : choisissez un fichier image.");
+  }
+  const extensions: Record<string, string> = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+  };
+  const extension = extensions[file.type];
+  if (extension === undefined) {
+    problem(
+      `/admin/dossiers/${id}`,
+      "Illustration refusée : formats acceptés JPEG, PNG ou WebP.",
+    );
+  }
+  if (file.size > 4 * 1024 * 1024) {
+    problem(`/admin/dossiers/${id}`, "Illustration refusée : 4 Mo maximum.");
+  }
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const hash = createHash("sha256").update(bytes).digest("hex");
+  const path = `${id}/${hash.slice(0, 20)}.${extension}`;
+  const { error: uploadError } = await client.storage
+    .from("illustrations")
+    .upload(path, bytes, { contentType: file.type, upsert: true });
+  if (uploadError !== null) {
+    problem(`/admin/dossiers/${id}`, `Dépôt refusé : ${uploadError.message}`);
+  }
+  const { data: publicUrl } = client.storage.from("illustrations").getPublicUrl(path);
+  const { error } = await client
+    .from("dossiers")
+    .update({
+      illustration_url: publicUrl.publicUrl,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id);
+  if (error !== null) {
+    problem(`/admin/dossiers/${id}`, `Enregistrement refusé : ${error.message}`);
+  }
+  refresh();
+  done(
+    `/admin/dossiers/${id}`,
+    "Illustration déposée : elle s'affiche en tête du dossier. Vérifiez le crédit.",
+  );
 }
