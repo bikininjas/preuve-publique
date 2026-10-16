@@ -108,11 +108,11 @@ export default async function DossierPage({ params }: PageProps) {
   /* Index de procédure : les sections dans l'ordre du document — c'est un plan,
      pas une décoration. */
   const contents = [
-    { href: "#verdict", label: "Verdict" },
-    { href: "#piliers", label: "Triangulation" },
-    { href: "#anatomie", label: "Sophismes" },
+    { href: "#verdict", label: "Synthèse" },
+    { href: "#piliers", label: "Spectromètre" },
+    { href: "#anatomie", label: "Anatomie du sophisme" },
     { href: "#protagonistes", label: "Protagonistes" },
-    { href: "#pieces", label: "Pièces" },
+    { href: "#pieces", label: "Pièces & SHA-256" },
     { href: "#integrite", label: "Intégrité" },
   ];
 

@@ -28,6 +28,7 @@ export default function PillarStrip({
       {SPECTRUM_ORDER.map((spectrum) => (
         <span
           key={spectrum}
+          data-spectrum={spectrum}
           title={`${SPECTRUM_SHORT_LABELS[spectrum]} — ${
             spectra.includes(spectrum) ? "documenté" : "aucune pièce"
           }`}

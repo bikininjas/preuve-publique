@@ -16,9 +16,10 @@ const TONE_TEXT: Record<"true" | "warn" | "false", string> = {
  * Table de dissection du sophisme : chaque segment de l'affirmation est
  * présenté sur deux colonnes reliées par le diagnostic.
  *
- * À gauche, l'illusion rhétorique — la brique telle qu'elle circule, soulignée
- * au pointillé rouge. Au centre, le connecteur de diagnostic. À droite, ce que
- * disent les pièces : le détail du dossier et le niveau de l'échelle de statut.
+ * À gauche, l'affirmation virale — la brique telle qu'elle circule, soulignée
+ * au pointillé rouge. Au centre, le connecteur fléché de diagnostic. À droite,
+ * la réalité matérielle : le détail des pièces et le niveau de l'échelle de
+ * statut.
  *
  * Le niveau (0, 40, 60, 100) traduit le statut éditorial, il ne le mesure pas —
  * c'est écrit sous la frise, et cette mention ne doit pas disparaître.
@@ -56,7 +57,7 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
                 {/* Colonne gauche : l'illusion rhétorique. */}
                 <div className="pp-dissect__claim px-4 py-5 sm:px-6">
                   <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-muted">
-                    SEGMENT {String(index + 1).padStart(2, "0")} — illusion rhétorique
+                    SEGMENT {String(index + 1).padStart(2, "0")} — l&apos;affirmation virale
                   </p>
                   <p className="mt-3 font-serif text-xl leading-snug text-ink italic">
                     <span className="pp-sophism">
@@ -75,7 +76,7 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
                 {/* Colonne droite : ce que disent les pièces. */}
                 <div className="pp-dissect__fact px-4 py-5 sm:px-6">
                   <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-muted">
-                    Ce que disent les pièces
+                    La réalité matérielle
                   </p>
                   <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink">
                     <CaviardFigures text={premise.detail} />

@@ -29,7 +29,7 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-12">
-      <section className="space-y-5">
+      <section className="crop-marks space-y-5">
         <p className="pp-meta text-muted">Registre des vérifications · triangulation documentaire</p>
         <h1 className="pp-h1 max-w-[20ch] font-serif text-ink">
           La preuve ne doit pas dépendre de celui qui la porte.
@@ -49,6 +49,27 @@ export default async function HomePage() {
             Comment on vérifie
           </Link>
         </div>
+        {/* Registre technique du hero : une ligne de mono sous l'en-tête —
+            des valeurs comptées sur les dossiers publiés, jamais estimées. */}
+        <p className="pp-register">
+          <span>[SYSTÈME : ACTIF]</span>
+          <span className="pp-register__sep" aria-hidden="true">
+            •
+          </span>
+          <span>
+            [DOSSIERS SCELLÉS : <span className="pp-register__value">{dossiers.length}</span>]
+          </span>
+          <span className="pp-register__sep" aria-hidden="true">
+            •
+          </span>
+          <span>
+            [SOURCES CROISÉES : <span className="pp-register__value">{pieces}</span>]
+          </span>
+          <span className="pp-register__sep" aria-hidden="true">
+            •
+          </span>
+          <span>[INTÉGRITÉ : SHA-256 WEBCRYPTO]</span>
+        </p>
         <StatBand
           stats={[
             { label: "Dossiers publiés", value: dossiers.length },
@@ -79,7 +100,7 @@ export default async function HomePage() {
         <CategoryChips counts={counts.ok ? counts.value : undefined} />
       </Reveal>
 
-      <section className="space-y-4">
+      <section className="crop-marks space-y-4">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="pp-h2 font-serif text-ink">Le registre</h2>
           <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">

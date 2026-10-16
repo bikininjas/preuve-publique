@@ -93,8 +93,9 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
                 key={column.spectrum}
                 className={isActive ? "pp-beam pp-beam--live" : "pp-beam"}
                 d={`M ${column.x} 0 L 500 104`}
-                stroke={isActive ? "var(--pp-seal)" : "var(--pp-grid)"}
+                stroke={isActive ? "var(--pp-seal)" : "var(--pp-stone)"}
                 strokeWidth={isActive ? 3 : 1}
+                strokeDasharray="2 4"
                 fill="none"
                 opacity={dimmed ? 0.22 : 1}
               />

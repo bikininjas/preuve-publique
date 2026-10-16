@@ -62,7 +62,7 @@ export default function ProcedureRail({
           <li key={entry.href}>
             <a href={entry.href} data-active={active === entry.href ? "true" : "false"}>
               <span className="pp-rail__num" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
+                {String(index + 1).padStart(2, "0")} /
               </span>
               <span>{entry.label}</span>
             </a>

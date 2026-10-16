@@ -117,6 +117,12 @@ export default function EvidenceCard({
             <Caviard label="[PILIER MASQUÉ]">{SPECTRUM_LABELS[source.spectrum]}</Caviard>
           </p>
 
+          {/* En-tête de la pièce : « certifiée » veut dire scellée par une
+              empreinte publiée — sans empreinte, on ne le dit pas. */}
+          <p className="pp-piece-head">
+            {source.archive_sha256 ? "📎 Pièce certifiée" : "📎 Pièce — empreinte à venir"}
+          </p>
+
           <blockquote
             className={`mt-2 border-l-4 pl-3 font-serif text-lg leading-snug text-ink ${
               isQuote ? "border-warn" : "border-gridsoft"

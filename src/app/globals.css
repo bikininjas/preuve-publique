@@ -95,15 +95,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Grain de papier : une turbulence SVG en surimpression, presque invisible. */
-body::before {
-  content: "";
+/* Grain de papier : une turbulence SVG en surimpression fixe, montée par le
+   layout (`.pp-grain`). `mix-blend-multiply` : la texture assombrit le papier
+   au lieu de flotter dessus — un grain dans la fibre, pas un calque. Presque
+   invisible et purement décoratif : aucun clic ne s'y arrête. */
+.pp-grain {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 50;
   pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
 main,
@@ -219,13 +222,13 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 2px solid currentColor;
+  border: 3px solid currentColor;
   padding: 0.35rem 0.75rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  transform: rotate(-1.2deg);
+  transform: rotate(-2deg);
 }
 
 .pp-seal {
@@ -277,11 +280,26 @@ footer {
 
 .pp-extrait--citation {
   background-color: color-mix(in srgb, var(--pp-warn-bg) 65%, transparent);
+  /* Le trait du stabilo d'archive : réservé au verbatim (voir
+     piece-excerpt.ts) — un fait documenté garde le papier, jamais le trait. */
+  border-left: 2px solid var(--pp-warn);
+  padding-left: 0.55rem;
 }
 
 .pp-extrait--fait {
   background-color: color-mix(in srgb, var(--pp-surface-2) 60%, transparent);
   background-image: none;
+}
+
+/* L'en-tête d'une pièce certifiée : la mention porte sur l'extrait qui suit —
+   « certifiée » veut dire scellée par une empreinte publiée, pas décorée. */
+.pp-piece-head {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pp-warn-bd);
 }
 
 /* --- Table lumineuse (inspection d'une pièce) ------------------------------ */
@@ -804,10 +822,12 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* L'impact du tampon : il arrive au-dessus du papier (110 % de son format,
+   encore invisible), puis retombe à sa taille — l'encre apparaît pendant la
+   chute, en 200 ms, sortie rapide. */
 @keyframes pp-stamp {
-  0% { opacity: 0; transform: scale(1.6) rotate(-7deg); }
-  60% { opacity: 1; transform: scale(0.97) rotate(-2deg); }
-  100% { opacity: 1; transform: scale(1) rotate(-2deg); }
+  from { opacity: 0; transform: scale(1.1) rotate(-2deg); }
+  to { opacity: 1; transform: scale(1) rotate(-2deg); }
 }
 
 @keyframes pp-sweep {
@@ -818,7 +838,7 @@ footer {
 .pp-reveal { opacity: 0; }
 .pp-reveal.pp-in { animation: pp-rise 620ms var(--pp-ease) both; }
 
-.pp-stamp-in { animation: pp-stamp 480ms var(--pp-ease) both; }
+.pp-stamp-in { animation: pp-stamp 200ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 
 .pp-gauge-fill {
   transform-origin: left center;
@@ -930,18 +950,24 @@ a[class*="text-seal"] {
    graduée, tampon encré) et la mise en scène (table lumineuse, chambre
    d'isolement, faisceau de triangulation). Aucune de ces couches ne porte de
    donnée : ce sont des ornements, tous en pseudo-éléments ou marqués
-   `aria-hidden`. Le grain de papier, lui, existe déjà plus haut (body::before).
+   `aria-hidden`. Le grain de papier vit dans `.pp-grain`, monté par le layout.
    =========================================================================== */
 
 :root {
   /* Le blanc chaud d'un calque posé sur le néon d'une table lumineuse. */
   --pp-lit: #fffdf9;
   --pp-lit-halo: rgba(255, 253, 249, 0.75);
+  /* Le halo ambre d'une fiche posée sous la lumière de la table : une
+     respiration chaude, jamais une ombre dure. */
+  --pp-lit-glow: rgba(251, 191, 36, 0.15);
   --pp-amber: #f59e0b;
   /* Encre des repères (croix d'imprimerie, graduations, pastilles). Elle doit
      tenir sur le papier comme dans la chambre noire : le gris de grille du
      thème sombre disparaîtrait sur le fond. */
   --pp-mark: #1a1917;
+  /* Gris pierre (façon stone-400) : les faisceaux de convergence et les
+     repères de coupe clairs, sur le papier comme dans la chambre noire. */
+  --pp-stone: #a8a29e;
   /* Manque d'encre : de petites éclipses clairsemées percent le tampon. */
   --pp-ink-wear: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='64'%3E%3Cg fill='%23fff'%3E%3Cellipse cx='13' cy='9' rx='4.6' ry='2.1'/%3E%3Cellipse cx='41' cy='26' rx='2.4' ry='3.6'/%3E%3Cellipse cx='68' cy='13' rx='3.4' ry='1.4'/%3E%3Cellipse cx='96' cy='33' rx='5.1' ry='2.3'/%3E%3Cellipse cx='121' cy='11' rx='1.9' ry='2.9'/%3E%3Cellipse cx='149' cy='41' rx='3.8' ry='1.7'/%3E%3Cellipse cx='174' cy='19' rx='2.7' ry='3.2'/%3E%3Cellipse cx='30' cy='47' rx='3.1' ry='1.6'/%3E%3Cellipse cx='84' cy='53' rx='2.2' ry='2.5'/%3E%3Cellipse cx='133' cy='57' rx='4.3' ry='1.9'/%3E%3Cellipse cx='163' cy='51' rx='1.7' ry='2.6'/%3E%3Cellipse cx='7' cy='34' rx='2.9' ry='1.5'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -949,7 +975,9 @@ a[class*="text-seal"] {
 [data-theme="dark"] {
   --pp-lit: #1c2129;
   --pp-lit-halo: rgba(28, 33, 41, 0.85);
+  --pp-lit-glow: rgba(251, 191, 36, 0.09);
   --pp-mark: #8a8f99;
+  --pp-stone: #6f7680;
 }
 
 /* --- Repères de coupe (croix d'imprimerie) -------------------------------- */
@@ -965,6 +993,32 @@ a[class*="text-seal"] {
   pointer-events: none;
   opacity: 0.5;
   --c: var(--pp-mark);
+  background-image: linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
+    linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
+    linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
+    linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0);
+  background-size: 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px,
+    1px 11px;
+  background-position: 0 5px, 5px 0, calc(100% - 11px) 5px, calc(100% - 6px) 0,
+    0 calc(100% - 6px), 5px calc(100% - 11px), calc(100% - 11px) calc(100% - 6px),
+    calc(100% - 6px) calc(100% - 11px);
+  background-repeat: no-repeat;
+}
+
+/* Repères de coupe des grands blocs (`.crop-marks`) : les mêmes croix
+   d'imprimerie aux quatre coins, mais à l'encre pierre — discrètes. Purement
+   décoratives, en pseudo-élément. */
+.crop-marks {
+  position: relative;
+}
+
+.crop-marks::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  pointer-events: none;
+  opacity: 0.75;
+  --c: var(--pp-stone);
   background-image: linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
     linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
     linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
@@ -1013,15 +1067,18 @@ a[class*="text-seal"] {
 .pp-stamp {
   position: relative;
   padding: 0.5rem 0.95rem;
-  border-width: 2px;
-  transform: rotate(-1.5deg);
+  border-width: 3px;
+  transform: rotate(-2deg);
+  /* L'ombre interne : la pression du tampon — le pourtour du cadre est
+     saturé, le cœur de l'empreinte respire. */
+  box-shadow: inset 0 0 7px color-mix(in srgb, currentColor 22%, transparent);
 }
 
-/* Le second cadre, à 3 px du premier. */
+/* Le second cadre, à 5 px du premier. */
 .pp-stamp::before {
   content: "";
   position: absolute;
-  inset: 3px;
+  inset: 5px;
   border: 1px solid currentColor;
   pointer-events: none;
 }
@@ -1127,11 +1184,13 @@ a[class*="text-seal"] {
 
   .pp-lighttable .pp-folder:hover .pp-card {
     background-color: var(--pp-lit);
-    /* La lueur du néon sous le calque : diffuse, jamais une ombre dure. */
+    /* La lueur du néon sous le calque : diffuse, jamais une ombre dure —
+       halo blanc chaud, doublé d'une respiration ambre. */
     box-shadow:
       0 0 0 1px var(--pp-grid),
       0 12px 30px -20px rgba(13, 14, 17, 0.35),
-      0 0 56px -4px var(--pp-lit-halo);
+      0 0 56px -4px var(--pp-lit-halo),
+      0 0 25px var(--pp-lit-glow);
   }
 }
 
@@ -1154,6 +1213,28 @@ a[class*="text-seal"] {
   height: 12px;
   border-color: var(--pp-mark);
 }
+
+/* Chaque pilier garde sa teinte de légende sur la pastille de la fiche : les
+   six pôles se distinguent d'un regard. Une pastille éteinte reste vide — la
+   couleur ne s'invente pas. */
+.pp-pillars .pp-led--on[data-spectrum] {
+  background-color: var(--pp-pole);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pp-pole) 22%, transparent);
+}
+
+.pp-pillars .pp-led--on[data-spectrum="ARCHIVE_PRIMAIRE"] { --pp-pole: #8a6a3b; }
+.pp-pillars .pp-led--on[data-spectrum="CONSENSUS_ACADEMIQUE"] { --pp-pole: #2f6b5f; }
+.pp-pillars .pp-led--on[data-spectrum="GAUCHE"] { --pp-pole: #a13d5a; }
+.pp-pillars .pp-led--on[data-spectrum="CENTRE"] { --pp-pole: #6f5a9e; }
+.pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"] { --pp-pole: #34558b; }
+.pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"] { --pp-pole: #55524a; }
+
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="ARCHIVE_PRIMAIRE"] { --pp-pole: #c9a26a; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="CONSENSUS_ACADEMIQUE"] { --pp-pole: #5eb39c; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="GAUCHE"] { --pp-pole: #e08ca4; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="CENTRE"] { --pp-pole: #b3a1dd; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"] { --pp-pole: #8fb3e6; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"] { --pp-pole: #b9bdc6; }
 
 /* --- Chambre d'isolement (mode preuve à l'aveugle) ----------------------- */
 
@@ -1381,6 +1462,35 @@ a[class*="text-seal"] {
   padding: 0 0.35rem;
 }
 
+/* --- Ligne de registre technique (accueil) ------------------------------- */
+
+/* Le registre du hero : une ligne de mono sous l'en-tête, entre deux filets.
+   Des valeurs comptées sur les dossiers publiés, jamais estimées. */
+.pp-register {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.6rem;
+  border-top: 1px solid var(--pp-grid-soft);
+  border-bottom: 1px solid var(--pp-grid-soft);
+  background: color-mix(in srgb, var(--pp-surface-2) 40%, transparent);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pp-muted);
+}
+
+.pp-register__value {
+  color: var(--pp-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-register__sep {
+  color: var(--pp-grid-soft);
+}
+
 /* --- Table de dissection (anatomie du sophisme) ------------------------- */
 
 .pp-dissect__claim {
@@ -1411,8 +1521,28 @@ a[class*="text-seal"] {
   z-index: 1;
 }
 
+/* Le connecteur porte une flèche : l'illusion (à gauche) est reconduite vers
+   ce que disent les pièces (à droite). Sur grand écran seulement — en pile,
+   la flèche n'aurait pas de direction à montrer. */
+@media (min-width: 1024px) {
+  .pp-dissect__connector::after {
+    content: "\2192";
+    position: absolute;
+    right: 0.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--pp-mark);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1;
+  }
+}
+
 .pp-dissect__fact {
   background: var(--pp-lit);
+  /* La réalité matérielle : bordure gauche accentuée, comme l'onglet d'un
+     dossier qu'on ouvre sur les pièces. */
+  border-left: 3px solid var(--pp-warn);
 }
 
 /* Un sophisme se souligne au pointillé rouge, pas au surlignage. */

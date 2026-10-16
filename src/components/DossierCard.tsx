@@ -83,10 +83,15 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
             {String(pieces).padStart(2, "0")} pièces · {spectra.length}/6 piliers
           </span>
           <span className="pp-meta text-muted">{piecesWithHash} empreintes</span>
-          <span className="pp-meta ml-auto text-ink">Consensus {dossier.consensus_score}%</span>
         </div>
 
-        <PillarStrip spectra={spectra} />
+        {/* Mini-spectromètre : les six pôles en pastilles colorées, et le
+            score de convergence à côté. Le score est éditorial, la couverture
+            se compte — la fiche dit les deux. */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <PillarStrip spectra={spectra} />
+          <span className="pp-meta text-ink">Convergence {dossier.consensus_score}%</span>
+        </div>
 
         {/* Jauge millimétrée : une graduation tous les 10 points. */}
         <div

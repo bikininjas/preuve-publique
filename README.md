@@ -418,41 +418,55 @@ papier d'archive ivoire (`#F4F1EA`) et encre carbone (`#0D0E11`) par défaut, th
 Trois polices auto-hébergées via `next/font` : Newsreader (affirmations et titres),
 Space Grotesk (interface), JetBrains Mono (cotes, dates, empreintes, scores).
 
-**Matérialité.** Le papier a un grain (turbulence SVG fixe, `opacity: 0.03`), les blocs de
-chiffres portent des repères de coupe (croix d'imprimerie aux quatre angles) et une règle
-graduée millimétrée habite la marge gauche au-delà de 1024 px. Ce sont des ornements :
-pseudo-éléments ou `aria-hidden`, jamais des données. Leur encre passe par `--pp-mark`,
-seule variable qui bascule entre le papier et la chambre noire — un gris de grille
+**Matérialité.** Le papier a un grain : une turbulence SVG fixe en surimpression
+(`.pp-grain`, monté par le layout, `mix-blend-multiply`, `opacity: 0.035`), les grands
+blocs portent des repères de coupe (croix d'imprimerie aux quatre angles — `.pp-marks`,
+`.crop-marks`) et une règle graduée millimétrée habite la marge gauche au-delà de 1024 px.
+Ce sont des ornements : pseudo-éléments ou `aria-hidden`, jamais des données. Leur encre
+passe par `--pp-mark` (repères encrés) et `--pp-stone` (repères clairs et faisceaux), les
+deux variables qui basculent entre le papier et la chambre noire — un gris de grille
 disparaîtrait sur le fond sombre.
 
 - **Cartouche de dossier** : cote technique **réelle** (`PP-` + 8 caractères de
   l'identifiant du dossier), nombre de pièces, empreintes présentes, piliers documentés,
   racine d'intégrité. Aucun numéro de registre n'est inventé.
-- **Tampon de verdict** : double cadre, rotation de -1,5°, manque d'encre (masque SVG
-  d'éclats) et impact à l'ouverture. Il est **teinté par son ton** au même endroit que le
-  verdict : un dossier « vrai » n'est pas tamponné en rouge (`VERDICT_TONES`).
+- **Tampon de verdict** : double cadre épais (3 px, second cadre à 5 px d'inset),
+  rotation de -2°, typographie Space Grotesk en capitales à large approche, ombre interne
+  d'encrage, manque d'encre (masque SVG d'éclats) et **impact à l'apparition** (110 % →
+  100 %, opacité 0 → 1, 200 ms). Il est **teinté par son ton** au même endroit que le
+  verdict : un dossier « vrai » n'est pas tamponné en rouge (`VERDICT_TONES`), l'encre
+  carmin `#991B1B` est réservée au faux et l'ambre brun `#92400E` aux verdicts
+  d'instrumentalisation, d'anachronisme et de généralisation.
 - **Fiches du registre** : chemise à onglet biseauté portant la cote réelle, la catégorie
-  et l'état des empreintes ; mini-spectromètre des six piliers (allumés seulement quand
-  une pièce les documente) ; jauge de consensus. Au survol d'une fiche, le fond s'assombrit
-  et la fiche s'allume (« table lumineuse ») — sur pointeur fin uniquement
-  (`@media (hover: hover)`).
-- **Spectromètre** : six colonnes reliées au verdict par un tracé SVG ; une colonne sans
-  pièce reste éteinte et ne tire aucune ligne. Survoler ou atteindre une colonne au clavier
+  et l'état des empreintes ; **mini-spectromètre des six piliers en pastilles colorées**
+  par pôle (allumées seulement quand une pièce les documente — `data-spectrum`, teinte de
+  légende, la pastille éteinte reste vide) avec le **score de convergence** à côté ; jauge
+  de consensus. Au survol d'une fiche, le fond s'assombrit et la fiche s'allume (« table
+  lumineuse ») : fond blanc chaud `#FFFDF9`, élévation, halo blanc chaud doublé d'une
+  respiration ambre — sur pointeur fin uniquement (`@media (hover: hover)`).
+- **Spectromètre** : six colonnes reliées au bloc central par un faisceau SVG pointillé
+  fin (encre `--pp-stone`, `dasharray 2 4`) ; une colonne sans pièce reste éteinte et ne
+  tire aucune ligne. Survoler ou atteindre une colonne au clavier
   allume son faisceau (dasharray animé) et déplie ses pièces — noms et institutions restant
   caviardés si le mode aveugle est actif. Cliquer la colonne ouvre le pilier dans la liste.
-- **Anatomie du sophisme** : table de dissection à deux colonnes reliées par le diagnostic
-  — à gauche la brique telle qu'elle circule (soulignée au pointillé rouge), au centre le
-  tampon du statut, à droite ce que disent les pièces et le niveau de l'**échelle de
-  statut** (0, 40, 60, 100) annoncée comme telle, jamais comme une mesure.
-- **Pièces à conviction** : cote `PIÈCE #01`, citation surlignée quand elle est exacte
+- **Anatomie du sophisme** : table de dissection à deux colonnes reliées par le
+  diagnostic fléché — à gauche « l'affirmation virale », la brique telle qu'elle circule
+  (fond grisé, soulignement pointillé rouge), au centre le tampon du statut, à droite
+  « la réalité matérielle » (fond ivoire `#FFFDF9`, bordure gauche accentuée) : le détail
+  des pièces et le niveau de l'**échelle de statut** (0, 40, 60, 100) annoncée comme
+  telle, jamais comme une mesure.
+- **Pièces à conviction** : cote `PIÈCE #01`, en-tête « 📎 Pièce certifiée » (seulement
+  quand la pièce porte une empreinte publiée — sinon « empreinte à venir » : le site
+  n'annonce jamais un scellé qui n'existe pas), citation surlignée quand elle est exacte
   (jamais pour un fait documenté), pied cryptographique, et bouton **« Auditer l'empreinte »**
   qui recalcule l'empreinte **dans le navigateur du lecteur** (`crypto.subtle.digest`), sans
   appel réseau. Pendant le calcul, le terminal déroule la **chaîne canonique réelle**,
   caractère par caractère — pas des octets hexadécimaux de décor.
 - **Extraits officiels mis en valeur** : chaque extrait de pièce repose sur un papier
-  d'archive (ambre discret, texture de papier ancien) ; le trait de surligneur reste réservé
-  au verbatim — un fait documenté reçoit le papier mais jamais le trait
-  (`src/lib/piece-excerpt.ts`, testé sur toutes les pièces du seed).
+  d'archive (ambre discret, texture de papier ancien) ; le trait de surligneur (bordure
+  ambre « stabilo d'archive ») reste réservé au verbatim — un fait documenté reçoit le
+  papier mais jamais le trait (`src/lib/piece-excerpt.ts`, testé sur toutes les pièces du
+  seed).
 - **Table lumineuse d'une pièce** (« Inspecter la pièce ») : boîte de dialogue — fond
   assombri et légèrement flouté, apparition en fondu + très léger zoom, halo ambre de
   lumière rasante — qui agrandit l'extrait complet, dit sa nature (citation exacte ou fait
@@ -486,6 +500,10 @@ disparaîtrait sur le fond sombre.
   (`aria-pressed` sur les deux boutons).
 - **Index de procédure** : plan numéroté du dossier, collant, qui suit le défilement et
   marque la section courante ; il remplace le sommaire horizontal à partir de 1280 px.
+- **Registre technique du hero** (accueil) : une ligne de JetBrains Mono sous l'en-tête —
+  `[SYSTÈME : ACTIF] • [DOSSIERS SCELLÉS : N] • [SOURCES CROISÉES : N] • [INTÉGRITÉ :
+  SHA-256 WEBCRYPTO]`. Les compteurs viennent des dossiers publiés lus à la requête
+  (mêmes valeurs que `registryFigures`), jamais d'un chiffre de décor.
 - **Bandeau de télémétrie** (page du registre) : dossiers, pièces, empreintes (n/n), piliers
   documentés et **moyenne des scores éditoriaux**. La moyenne est calculée, pas inventée, et
   l'intitulé comme l'infobulle disent qu'elle reste un indicateur éditorial. Tous les
