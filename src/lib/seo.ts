@@ -32,6 +32,7 @@ export function buildSitemapEntries(
     { url: `${baseUrl}/`, changeFrequency: "daily", priority: 1 },
     { url: `${baseUrl}/dossiers`, changeFrequency: "daily", priority: 0.9 },
     { url: `${baseUrl}/methode`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/mentions-legales`, changeFrequency: "monthly", priority: 0.3 },
   ];
   for (const category of CATEGORY_ORDER) {
     entries.push({

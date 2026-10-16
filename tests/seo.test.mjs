@@ -28,7 +28,7 @@ test("le plan de site couvre les pages fixes et les neuf catégories", () => {
   const entries = buildSitemapEntries([]);
   const urls = entries.map((entry) => entry.url);
   assert.equal(new Set(urls).size, urls.length, "URL dupliquée dans le plan de site");
-  for (const path of ["/", "/dossiers", "/methode"]) {
+  for (const path of ["/", "/dossiers", "/methode", "/mentions-legales"]) {
     assert.ok(urls.includes(`${SITE_URL}${path}`), `entrée manquante : ${path}`);
   }
   const categories = urls.filter((url) => url.includes("/categories/"));

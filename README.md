@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 16/10/2026
 
-- **Base** : treize migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : quatorze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -35,9 +35,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0013_cadre_reglementaire_restreint` (`20261016154754`, appliquée le 16/10 —
   `verdict_status` accueille « cadre réglementaire restreint », le verdict du dossier sur
   les notes de frais des parlementaires ; le fichier a été renuméroté en 0013 après
-  collision avec une migration voisine).
-  Trente-deux dossiers en base :
-  trente et un **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  collision avec une migration voisine),
+  `0014_contraire_droit_international_verdict` (`20261016171500`, appliquée le 16/10 —
+  `verdict_status` accueille « contraire au droit international », le verdict du dossier
+  sur les colonies israéliennes ; le statut de brique « violation formelle » est validé
+  côté application, sans migration).
+  Trente-trois dossiers en base :
+  trente-deux **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -62,11 +66,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   théorie du « Grand Remplacement » présentée comme la preuve d'un plan ourdi par des
   élites (12, société, conspirationniste), la thèse d'une politique « socialiste »
   d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde), la thèse d'un racisme « anti-blanc systémique » (10, société, confusion conceptuelle),
-  et la revendication d'un « droit légal absolu de publier le détail nominatif des notes
-  de frais des parlementaires » (8, politique, cadre réglementaire restreint) —
+  la revendication de la licéité des colonies israéliennes (12, international, contraire
+  au droit international) et la demande d'un « droit légal absolu de publier le détail
+  nominatif des notes de frais des parlementaires » (8, politique, cadre réglementaire
+  restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 262 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 274 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -386,6 +392,29 @@ téléchargé. Sa racine d'intégrité `5931bbbe768b4a804a…` égale l'`ETag` e
 `X-Proof-Integrity-Root` relevés en ligne sous la révision `preuve-publique-git-00025-n8t` ;
 `/api/archives` sert une fiche du dossier octet pour octet (rehachage vérifié).
 
+Puis, le 16/10/2026 (17:16 UTC), le dossier sur les colonies israéliennes (douze sources,
+verdict inédit `CONTRAIRE_AU_DROIT_INTERNATIONAL` porté par la migration `0014`, validée
+sur un Postgres jetable) : le déploiement a de nouveau précédé l'application du seed
+(révision `00029-45d`), et la recapture complète des trente-deux dossiers publiés a
+produit **274 fiches** (234 `URL_SNAPSHOT`, 37 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` ;
+racine des captures `b1b283f9721f7e6d…`, recalculée depuis la base — égale, une fiche par
+pièce, zéro doublon, zéro orpheline). Les douze pièces du dossier — quatrième convention
+de Genève (article 49, sixième alinéa), résolution 2334 du Conseil de sécurité, avis
+consultatif de la CIJ du 19 juillet 2024 et son résumé officiel des Nations unies,
+rapport du Haut-Commissaire aux droits de l'homme, déclaration du CICR, article d'ONU
+Info, deux prises de position du SEAE, point presse du Quai d'Orsay, franceinfo et
+L'Humanité — sont toutes en instantané réseau. Chaque citation a été vérifiée par
+sous-chaîne sur le document téléchargé (y compris la phrase de l'article 49 dans le texte
+français de l'avis, citée avec son crochet). Sa racine d'intégrité `0781bfb28e1a35a5…`
+égale l'`ETag` et le `X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` et
+`/api/archives` vérifiés sur les pièces du dossier, et la recherche « colonies » renvoie
+un résultat.
+
+Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
+professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi
+n° 2004-575), hébergeur Google Ireland Limited, contact `contact@preuve-publique.fr` —
+liée depuis le pied de page de chaque page et inscrite au plan de site.
+
 ## Pile technique
 
 | Brique | Choix |
@@ -644,6 +673,15 @@ disparaîtrait sur le fond sombre.
   résultat borné) — puis route immédiate vers `/dossiers/<slug>` ; pendant la redirection,
   le libellé cède la place à `[... TIRS DE SCELLÉ ...]` et le bouton est neutralisé
   (double clic impossible). Cible tactile 44 px et encres héritées de `.pp-btn`.
+- **Mentions légales** (`/mentions-legales`, liée depuis le pied de page de toutes les
+  pages) : éditeur personne physique à titre non professionnel — conformément à
+  l'article 6-III de la loi n° 2004-575, aucun nom civil publié : renvoi à l'hébergeur
+  (Google Ireland Limited, Cloud Run `europe-west1`) et contact direct
+  (`contact@preuve-publique.fr`) — direction de la publication, base de données (Supabase,
+  sous-traitant), données personnelles et cookies documentés tels qu'ils sont (aucun
+  cookie public, journaux techniques, session de rédaction), propriété intellectuelle et
+  crédits d'images, signalement d'erreur, accessibilité, droit applicable. Inscrite au
+  plan de site.
 - **Bandeau de télémétrie** (page du registre) : dossiers, pièces, empreintes (n/n), piliers
   documentés et **moyenne des scores éditoriaux**. La moyenne est calculée, pas inventée, et
   l'intitulé comme l'infobulle disent qu'elle reste un indicateur éditorial. Tous les

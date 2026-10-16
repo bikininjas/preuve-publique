@@ -57,6 +57,28 @@ export default function SiteFooter() {
           </a>
         </div>
       </div>
+
+      {/* Bande inférieure : l'accès aux mentions légales ne dépend d'aucune
+          colonne — il est posé sur toutes les pages, à la même hauteur. */}
+      <div className="border-t border-gridsoft">
+        <div className="mx-auto flex w-full max-w-[1180px] flex-wrap items-center gap-x-5 gap-y-1 px-4 py-3 sm:px-6 lg:w-[92%] lg:max-w-[1840px] xl:w-[90%]">
+          <Link
+            className="pp-tap font-mono text-[12px] uppercase tracking-[0.12em] text-ink hover:underline"
+            href="/mentions-legales"
+          >
+            Mentions légales
+          </Link>
+          <a
+            className="pp-tap font-mono text-[12px] uppercase tracking-[0.12em] text-ink hover:underline"
+            href="mailto:contact@preuve-publique.fr"
+          >
+            Contact
+          </a>
+          <span className="pp-meta ml-auto text-muted">
+            Édition non professionnelle — hébergement : Google Ireland Limited
+          </span>
+        </div>
+      </div>
     </footer>
   );
 }
