@@ -73,7 +73,7 @@ export default async function CategoryPage({ params }: PageProps) {
           </p>
         </div>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="pp-lighttable grid gap-3 md:grid-cols-2">
           {dossiers.map((dossier) => (
             <DossierCard key={dossier.id} dossier={dossier} />
           ))}

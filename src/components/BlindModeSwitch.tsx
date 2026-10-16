@@ -22,6 +22,10 @@ const BlindModeContext = createContext<BlindModeValue>({
  *
  * Le caviardage est visuel : les données restent dans la page. Il sert à juger
  * la preuve avant de savoir qui la porte, pas à cacher quoi que ce soit.
+ *
+ * Le fournisseur enveloppe tout le dossier, pas seulement la liste des pièces :
+ * le protocole teinte alors la page entière (bandeau, liseré) et pas un seul
+ * bloc au milieu.
  */
 export function BlindModeProvider({
   children,
@@ -52,10 +56,12 @@ export function useBlindMode(): BlindModeValue {
 /** Valeur recouverte d'une bande de caviardage tant que le mode est actif. */
 export function Caviard({
   children,
-  label = "[SOURCE MASQUÉE — ÉVALUEZ LE FAIT BRUT]",
+  label = "[SOURCE MASQUÉE]",
+  tip = "Source masquée — jugez l'argument avant l'auteur",
 }: {
   children: React.ReactNode;
   label?: string;
+  tip?: string;
 }) {
   return (
     <span className="pp-caviard">
@@ -63,7 +69,33 @@ export function Caviard({
       <span className="pp-caviard__bar" aria-hidden="true">
         <span className="pp-caviard__label">{label}</span>
       </span>
+      <span className="pp-caviard__tip" aria-hidden="true">
+        {tip}
+      </span>
     </span>
+  );
+}
+
+/**
+ * Bandeau de la chambre d'isolement : affiché tant que le protocole à l'aveugle
+ * est actif. Il ne dit qu'une chose — l'origine des sources est recouverte — et
+ * il le dit là où le lecteur regarde, en haut du dossier.
+ */
+export function BlindProtocolBanner() {
+  const { blind, sources } = useBlindMode();
+  if (!blind) {
+    return null;
+  }
+
+  return (
+    <p className="pp-blind-band" role="status">
+      <span className="pp-blind-band__led" aria-hidden="true" />
+      Protocole à l&apos;aveugle actif — origine de {sources} source
+      {sources > 1 ? "s" : ""} recouverte
+      <span className="ml-auto text-[12px] opacity-80">
+        Le caviardage est visuel : les données restent dans la page
+      </span>
+    </p>
   );
 }
 
@@ -72,7 +104,7 @@ export function BlindModeSwitch() {
   const Icon = blind ? Eye : EyeOff;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 border border-grid bg-surface px-4 py-3">
+    <div className="pp-blind-skin flex flex-wrap items-center justify-between gap-4 border border-grid bg-surface px-4 py-3">
       <div className="flex items-center gap-3">
         <Sliders size={15} aria-hidden="true" className="text-muted" />
         <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-ink">

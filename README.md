@@ -395,21 +395,56 @@ papier d'archive ivoire (`#F4F1EA`) et encre carbone (`#0D0E11`) par défaut, th
 Trois polices auto-hébergées via `next/font` : Newsreader (affirmations et titres),
 Space Grotesk (interface), JetBrains Mono (cotes, dates, empreintes, scores).
 
+**Matérialité.** Le papier a un grain (turbulence SVG fixe, `opacity: 0.03`), les blocs de
+chiffres portent des repères de coupe (croix d'imprimerie aux quatre angles) et une règle
+graduée millimétrée habite la marge gauche au-delà de 1024 px. Ce sont des ornements :
+pseudo-éléments ou `aria-hidden`, jamais des données. Leur encre passe par `--pp-mark`,
+seule variable qui bascule entre le papier et la chambre noire — un gris de grille
+disparaîtrait sur le fond sombre.
+
 - **Cartouche de dossier** : cote technique **réelle** (`PP-` + 8 caractères de
   l'identifiant du dossier), nombre de pièces, empreintes présentes, piliers documentés,
   racine d'intégrité. Aucun numéro de registre n'est inventé.
+- **Tampon de verdict** : double cadre, rotation de -1,5°, manque d'encre (masque SVG
+  d'éclats) et impact à l'ouverture. Il est **teinté par son ton** au même endroit que le
+  verdict : un dossier « vrai » n'est pas tamponné en rouge (`VERDICT_TONES`).
+- **Fiches du registre** : chemise à onglet biseauté portant la cote réelle, la catégorie
+  et l'état des empreintes ; mini-spectromètre des six piliers (allumés seulement quand
+  une pièce les documente) ; jauge de consensus. Au survol d'une fiche, le fond s'assombrit
+  et la fiche s'allume (« table lumineuse ») — sur pointeur fin uniquement
+  (`@media (hover: hover)`).
 - **Spectromètre** : six colonnes reliées au verdict par un tracé SVG ; une colonne sans
-  pièce reste éteinte et ne tire aucune ligne. Cliquer une colonne mène à ses pièces.
-- **Radiographie du sophisme** : segments, tampons et jauge de distorsion — une **échelle
-  de statut** (0, 40, 60, 100) annoncée comme telle, jamais une mesure.
+  pièce reste éteinte et ne tire aucune ligne. Survoler ou atteindre une colonne au clavier
+  allume son faisceau (dasharray animé) et déplie ses pièces — noms et institutions restant
+  caviardés si le mode aveugle est actif. Cliquer la colonne ouvre le pilier dans la liste.
+- **Anatomie du sophisme** : table de dissection à deux colonnes reliées par le diagnostic
+  — à gauche la brique telle qu'elle circule (soulignée au pointillé rouge), au centre le
+  tampon du statut, à droite ce que disent les pièces et le niveau de l'**échelle de
+  statut** (0, 40, 60, 100) annoncée comme telle, jamais comme une mesure.
 - **Pièces à conviction** : cote `PIÈCE #01`, citation surlignée quand elle est exacte
-  (jamais pour un fait documenté), pied cryptographique, et bouton **« Auditer la preuve
-  (WebCrypto) »** qui recalcule l'empreinte **dans le navigateur du lecteur**
-  (`crypto.subtle.digest`), sans appel réseau, puis la compare à celle publiée.
+  (jamais pour un fait documenté), pied cryptographique, et bouton **« Auditer l'empreinte »**
+  qui recalcule l'empreinte **dans le navigateur du lecteur** (`crypto.subtle.digest`), sans
+  appel réseau. Pendant le calcul, le terminal déroule la **chaîne canonique réelle**,
+  caractère par caractère — pas des octets hexadécimaux de décor.
 - **Mode preuve à l'aveugle** : noms, institutions et piliers recouverts de bandes de
-  caviardage ; le bouton les retire d'un mouvement mécanique. Le masquage est visuel
+  caviardage tracées de gauche à droite ; au survol, une infobulle rappelle de juger
+  l'argument avant l'auteur. Le protocole teinte tout le dossier (bandeau noir et ambre
+  « chambre d'isolement » en tête, liseré sur la barre de commande). Le masquage est visuel
   (les données restent dans la page) : il sert à juger la preuve avant de savoir qui la
   porte, pas à cacher quoi que ce soit.
+- **Index de procédure** : plan numéroté du dossier, collant, qui suit le défilement et
+  marque la section courante ; il remplace le sommaire horizontal à partir de 1280 px.
+- **Bandeau de télémétrie** (page du registre) : dossiers, pièces, empreintes (n/n), piliers
+  documentés et **moyenne des scores éditoriaux**. La moyenne est calculée, pas inventée, et
+  l'intitulé comme l'infobulle disent qu'elle reste un indicateur éditorial. Tous les
+  chiffres viennent de `registryFigures`, couvert par un test.
+- **« Copier la réfutation (format débat) »** : assemble un résumé court et sourcé (verdict,
+  pièces des piliers documentés, citation coupée quand elle est trop longue) prêt à coller
+  dans un fil, avec le lien du dossier. Si le navigateur refuse le presse-papiers, le site
+  le dit et affiche le texte ; il n'annonce jamais une copie qui n'a pas eu lieu.
+- **Carte de partage** (`opengraph-image.tsx`, `next/og`) : grille suisse, affirmation,
+  tampon teinté par le verdict, bande des six piliers. Le bandeau d'empreinte annonce
+  « SHA-256 sur les N pièces » seulement quand c'est vrai, sinon « empreintes à venir ».
 
 ## Archivage des preuves
 
@@ -574,9 +609,11 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures limitées : les 8 fiches déposées sont `METADATA_ONLY` (pas d'instantané du
-  contenu des pages) et aucune n'a encore d'URL d'origine documentée ; le miroir Storage
-  du bucket `immutable-archives` n'a pas eu lieu.
+- Captures : les 178 pièces publiées ont leur fiche déposée en base (une par pièce :
+  146 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford
+  répondant 403 ou 429 aux clients non navigateurs — et 3 `METADATA_ONLY`), relues et
+  rehachées. Le miroir Storage du bucket `immutable-archives` n'a pas eu lieu, faute
+  d'accès privilégié.
 - Recherche : la branche vectorielle de la RPC ne ramène rien tant qu'aucun embedding
   n'est calculé — aucune similarité n'est simulée.
 - Le guard est appliqué par le pipeline de publication, pas par un déclencheur en base.

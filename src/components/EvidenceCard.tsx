@@ -1,7 +1,7 @@
 "use client";
 
 import { Fingerprint, ShieldCheck, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Caviard } from "@/components/BlindModeSwitch";
 import {
@@ -34,8 +34,40 @@ export default function EvidenceCard({
   const [audit, setAudit] = useState<AuditState>("idle");
   const [localHash, setLocalHash] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
+  const [typed, setTyped] = useState(0);
 
   const canonical = canonicalProofText(source);
+
+  /**
+   * Effet « décryptage » : pendant le calcul, le terminal déroule la chaîne
+   * canonique caractère par caractère. C'est la vraie chaîne qui est hachée —
+   * pas des caractères hexadécimaux de décor : le site n'affiche jamais un
+   * chiffre qui ne vient pas des données.
+   */
+  useEffect(() => {
+    if (audit !== "running") {
+      return;
+    }
+    const reduce =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setTyped(canonical.length);
+      return;
+    }
+    setTyped(0);
+    const step = Math.max(1, Math.ceil(canonical.length / 20));
+    const timer = setInterval(() => {
+      setTyped((current) => {
+        if (current + step >= canonical.length) {
+          clearInterval(timer);
+          return canonical.length;
+        }
+        return current + step;
+      });
+    }, 18);
+    return () => clearInterval(timer);
+  }, [audit, canonical]);
 
   async function runAudit() {
     setAudit("running");
@@ -198,8 +230,14 @@ export default function EvidenceCard({
                   audit === "running" ? "pp-scan border-gridsoft" : "border-gridsoft"
                 }`}
               >
-                <p className="text-muted">chaîne canonique soumise au hachage</p>
-                <p className="mt-1 break-all text-ink">{canonical}</p>
+                <p className="text-muted">
+                  {audit === "running"
+                    ? "décryptage — chaîne canonique soumise au hachage"
+                    : "chaîne canonique soumise au hachage"}
+                </p>
+                <p className={`mt-1 break-all text-ink ${audit === "running" ? "pp-caret" : ""}`}>
+                  {audit === "running" ? canonical.slice(0, typed) : canonical}
+                </p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -222,7 +260,8 @@ export default function EvidenceCard({
               </div>
 
               {audit === "match" ? (
-                <p className="border-2 border-truebd bg-truebg px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-truebd">
+                <p className="pp-stamp-in flex items-center gap-2 border-2 border-truebd bg-truebg px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-truebd">
+                  <ShieldCheck size={14} aria-hidden="true" />
                   Intégrité confirmée localement par votre navigateur
                 </p>
               ) : null}

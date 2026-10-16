@@ -6,8 +6,10 @@ import {
   SPECTRUM_CODES,
   SPECTRUM_ORDER,
   VERDICT_STAMPS,
+  VERDICT_TONES,
   dossierCode,
 } from "@/lib/labels";
+import type { VerdictStatus } from "@/lib/types";
 
 export const alt = "Carte de partage d'un dossier vérifié — Preuve publique";
 export const size = { width: 1200, height: 630 };
@@ -20,7 +22,17 @@ const MUTED = "#4a4843";
 const GRID = "#1a1917";
 const FAUX = "#c81e1e";
 const TRUE = "#047857";
+const AMBER = "#b45309";
 const SEAL = "#1d4ed8";
+
+/** Teinte du tampon : la même règle que sur le site, un « vrai » n'est pas rouge. */
+function verdictColor(verdict: VerdictStatus | undefined): string {
+  if (verdict === undefined) {
+    return MUTED;
+  }
+  const tone = VERDICT_TONES[verdict];
+  return tone === "true" ? TRUE : tone === "warn" ? AMBER : FAUX;
+}
 
 /**
  * Carte de partage « papier d'archive » : grille suisse, affirmation en grand,
@@ -49,9 +61,19 @@ export default async function ShareImage({
       : 0,
   }));
   const pieceCount = dossier?.sources.length ?? 0;
+  const withHash = dossier?.sources.filter((source) => source.archive_sha256 !== null).length ?? 0;
   const category = dossier ? CATEGORY_LABELS[dossier.category] : "SANS CATÉGORIE";
   const code = dossier ? dossierCode(dossier.id) : "PP-—";
   const filledPillars = counts.filter((column) => column.count > 0).length;
+  const stampColor = verdictColor(dossier?.verdict);
+  /* L'empreinte n'est annoncée que si elle existe : une carte de partage ne
+     promet pas une archive que le dossier n'a pas. */
+  const hashLabel =
+    withHash === 0
+      ? "EMPREINTES À VENIR"
+      : withHash === pieceCount
+        ? `SHA-256 SUR LES ${pieceCount} PIÈCES`
+        : `${withHash}/${pieceCount} PIÈCES AVEC EMPREINTE`;
 
   return new ImageResponse(
     (
@@ -99,12 +121,14 @@ export default async function ShareImage({
           <div
             style={{
               display: "flex",
-              border: `2px solid ${FAUX}`,
-              color: FAUX,
+              border: `2px solid ${stampColor}`,
+              boxShadow: `inset 0 0 0 2px ${CANVAS}, inset 0 0 0 4px ${stampColor}`,
+              color: stampColor,
               padding: "8px 20px",
               fontSize: 30,
               letterSpacing: 4,
               alignSelf: "flex-start",
+              transform: "rotate(-1.5deg)",
             }}
           >
             {stamp}
@@ -169,14 +193,14 @@ export default async function ShareImage({
             <div
               style={{
                 display: "flex",
-                border: `2px solid ${SEAL}`,
-                color: SEAL,
+                border: `2px solid ${withHash > 0 ? SEAL : MUTED}`,
+                color: withHash > 0 ? SEAL : MUTED,
                 padding: "6px 14px",
                 fontSize: 16,
                 letterSpacing: 3,
               }}
             >
-              EMPREINTE SHA-256 PUBLIÉE
+              {hashLabel}
             </div>
             <div style={{ display: "flex", fontSize: 18, color: MUTED, letterSpacing: 1 }}>
               {`/dossiers/${slug}`}

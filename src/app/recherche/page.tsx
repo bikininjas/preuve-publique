@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import OriginNotice from "@/components/OriginNotice";
 import SearchForm from "@/components/SearchForm";
+import VerdictStamp from "@/components/VerdictStamp";
 import { searchPublishedDossiers } from "@/server/services/dossier.service";
-import { VERDICT_STAMPS, VERDICT_TONES } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
 
@@ -49,9 +49,6 @@ export default async function SearchPage({
       ) : (
         <ul className="border border-grid bg-surface">
           {results.value.map((dossier) => {
-            const tone = VERDICT_TONES[dossier.verdict];
-            const toneClass =
-              tone === "true" ? "text-true" : tone === "warn" ? "text-warn" : "text-false";
             return (
               <li key={dossier.slug} className="border-b border-gridsoft last:border-b-0">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gridsoft px-4 py-2 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
@@ -71,9 +68,7 @@ export default async function SearchPage({
                     {dossier.verdict_summary}
                   </p>
                   <p className="mt-4">
-                    <span className={`pp-stamp ${toneClass}`}>
-                      {VERDICT_STAMPS[dossier.verdict]}
-                    </span>
+                    <VerdictStamp verdict={dossier.verdict} />
                   </p>
                 </div>
               </li>

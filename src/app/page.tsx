@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import SearchForm from "@/components/SearchForm";
 import StatBand from "@/components/StatBand";
 import { categoryCounts, listPublishedDossiers } from "@/server/services/dossier.service";
-import { documentedSpectra } from "@/lib/types";
+import { formatAverageConsensus, registryFigures } from "@/lib/figures";
 
 export const dynamic = "force-dynamic";
 
@@ -21,16 +21,10 @@ const RULES: { code: string; text: string }[] = [
 export default async function HomePage() {
   const [listed, counts] = await Promise.all([listPublishedDossiers(), categoryCounts()]);
   const dossiers = listed.ok ? listed.value : [];
-  const pieces = dossiers.reduce((total, dossier) => total + dossier.sources.length, 0);
-  const fingerprints = dossiers.reduce(
-    (total, dossier) =>
-      total + dossier.sources.filter((source) => source.archive_sha256 !== null).length,
-    0,
-  );
-  const pillars = dossiers.reduce(
-    (total, dossier) => total + documentedSpectra(dossier.sources).length,
-    0,
-  );
+  /* Tous les chiffres du hero sont comptés sur les dossiers publiés : voir
+     `registryFigures`. Aucun n'est estimé, et la moyenne des scores éditoriaux
+     est annoncée pour ce qu'elle est — un indicateur éditorial. */
+  const { pieces, fingerprints, pillars, averageConsensus } = registryFigures(dossiers);
   const [latest, ...others] = dossiers;
 
   return (
@@ -60,7 +54,16 @@ export default async function HomePage() {
             { label: "Dossiers publiés", value: dossiers.length },
             { label: "Pièces recoupées", value: pieces },
             { label: "Empreintes vérifiables", value: fingerprints },
-            { label: "Piliers documentés", value: pillars, suffix: "/6" },
+            {
+              label: "Piliers documentés",
+              value: pillars,
+              hint: "Somme des piliers documentés de chaque dossier publié — six piliers au maximum par dossier. Ce chiffre se compte dans les sources, il ne s'estime pas.",
+            },
+            {
+              label: "Moyenne des scores éditoriaux",
+              display: formatAverageConsensus(averageConsensus),
+              hint: "Moyenne des scores éditoriaux des dossiers publiés : un indicateur éditorial, pas une mesure de vérité. Ce qui se compte, et se vérifie, c'est la couverture en piliers.",
+            },
           ]}
         />
       </section>
@@ -88,7 +91,7 @@ export default async function HomePage() {
             Aucun dossier publié pour le moment.
           </p>
         ) : (
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <div className="pp-lighttable grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             <Reveal className="md:col-span-2 xl:col-span-3">
               <DossierCard dossier={latest} />
             </Reveal>

@@ -69,6 +69,8 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body className="min-h-screen bg-canvas font-sans text-ink antialiased">
+        {/* Règle graduée de la marge gauche : un repère de lecture, pas une donnée. */}
+        <div className="pp-ruler" aria-hidden="true" />
         <SiteHeader />
         <main className="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 sm:px-8 lg:w-[92%] lg:max-w-[1840px] xl:w-[90%]">
           {children}

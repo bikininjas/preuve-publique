@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Quatre chiffres du registre, comptés à l'affichage. Les valeurs sont passées
- * par le serveur : rien n'est calculé côté navigateur, seulement animé.
+ * Chiffres du registre, comptés à l'affichage. Les valeurs sont passées par le
+ * serveur : rien n'est calculé côté navigateur, seulement animé. Un chiffre qui
+ * ne s'anime pas (une moyenne, par exemple) passe par `display` : il s'affiche
+ * tel qu'il a été calculé, sans défilement.
  */
 function CountUp({ value }: { value: number }) {
   const [shown, setShown] = useState(0);
@@ -53,15 +55,21 @@ function CountUp({ value }: { value: number }) {
 export default function StatBand({
   stats,
 }: {
-  stats: { label: string; value: number; suffix?: string }[];
+  stats: { label: string; value?: number; suffix?: string; display?: string; hint?: string }[];
 }) {
   return (
-    <div className="pp-stats">
+    <div className="pp-stats pp-marks">
       {stats.map((stat) => (
         <div key={stat.label} className="pp-stat">
-          <p className="pp-stat-value text-ink">
-            <CountUp value={stat.value} />
-            {stat.suffix ?? ""}
+          <p className="pp-stat-value text-ink" title={stat.hint}>
+            {stat.display !== undefined ? (
+              stat.display
+            ) : (
+              <>
+                <CountUp value={stat.value ?? 0} />
+                {stat.suffix ?? ""}
+              </>
+            )}
           </p>
           <p className="pp-stat-label mt-1">{stat.label}</p>
         </div>

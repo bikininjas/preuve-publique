@@ -2,28 +2,33 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { BlindModeProvider, BlindModeSwitch } from "@/components/BlindModeSwitch";
+import {
+  BlindModeProvider,
+  BlindModeSwitch,
+  BlindProtocolBanner,
+} from "@/components/BlindModeSwitch";
 import ConvergenceSpectrometer from "@/components/ConvergenceSpectrometer";
+import CopyRefutation from "@/components/CopyRefutation";
 import DossierDensity from "@/components/DossierDensity";
 import DossierHero from "@/components/DossierHero";
 import EvidenceCard from "@/components/EvidenceCard";
 import FallacyAnatomy from "@/components/FallacyAnatomy";
 import OriginNotice from "@/components/OriginNotice";
 import PiecesTabs from "@/components/PiecesTabs";
+import ProcedureRail from "@/components/ProcedureRail";
 import Protagonists from "@/components/Protagonists";
 import Reveal from "@/components/Reveal";
+import VerdictStamp from "@/components/VerdictStamp";
 import { getPublishedDossier } from "@/server/services/dossier.service";
 import { computeIntegrityRoot } from "@/server/services/crypto.service";
 import {
   CATEGORY_LABELS,
   CATEGORY_SLUGS,
   PREMISE_STATUS_LABELS,
-  SPECTRUM_CODES,
   SPECTRUM_COLUMN_LABELS,
   SPECTRUM_LABELS,
   SPECTRUM_ORDER,
   SPECTRUM_SHORT_LABELS,
-  VERDICT_STAMPS,
   formatDate,
   formatLongDate,
   pieceCode,
@@ -97,11 +102,13 @@ export default async function DossierPage({ params }: PageProps) {
   const captured = dossier.sources.filter((source) => source.archive_binary_sha256 !== null).length;
   const snapped = dossier.sources.filter((source) => source.original_url !== null).length;
 
+  /* Index de procédure : les sections dans l'ordre du document — c'est un plan,
+     pas une décoration. */
   const contents = [
     { href: "#verdict", label: "Verdict" },
-    { href: "#anatomie", label: "Anatomie" },
+    { href: "#piliers", label: "Triangulation" },
+    { href: "#anatomie", label: "Sophismes" },
     { href: "#protagonistes", label: "Protagonistes" },
-    { href: "#piliers", label: "Six piliers" },
     { href: "#pieces", label: "Pièces" },
     { href: "#integrite", label: "Intégrité" },
   ];
@@ -140,16 +147,7 @@ export default async function DossierPage({ params }: PageProps) {
   const synthesis = (
     <section className="space-y-4 border border-grid bg-surface p-4">
       <div className="flex flex-wrap items-center gap-2">
-        <span
-          className="border px-2 py-0.5 font-mono text-[13px] tracking-[0.14em]"
-          style={{
-            borderColor: "var(--pp-false-bd)",
-            color: "var(--pp-false-bd)",
-            background: "var(--pp-false-bg)",
-          }}
-        >
-          {VERDICT_STAMPS[dossier.verdict]}
-        </span>
+        <VerdictStamp verdict={dossier.verdict} animate={false} />
         <span className="pp-meta text-muted">
           {CATEGORY_LABELS[dossier.category]} · {dossier.sources.length} pièces · consensus{" "}
           {dossier.consensus_score}%
@@ -201,103 +199,118 @@ export default async function DossierPage({ params }: PageProps) {
   );
 
   return (
-    <article className="pp-doc space-y-6">
-      <div id="verdict" className="scroll-mt-16">
-        <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
-      </div>
+    <BlindModeProvider sources={dossier.sources.length}>
+      <article className="pp-doc space-y-6">
+        <div id="verdict" className="pp-marks scroll-mt-16">
+          <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
+        </div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        <Link
-          className="pp-chip"
-          data-category={dossier.category}
-          href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
-        >
-          {CATEGORY_LABELS[dossier.category]}
-        </Link>
-        <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
-          Registre →
-        </Link>
-      </div>
+        {/* Le protocole à l'aveugle se voit depuis le haut du dossier. */}
+        <BlindProtocolBanner />
 
-      <DossierDensity synthesis={synthesis} piecesTotal={dossier.sources.length}>
-        <>
-          {/* Sommaire collant : le dossier fait plusieurs écrans. */}
-          <nav className="pp-toc" aria-label="Sommaire du dossier">
-            {contents.map((entry) => (
-              <a key={entry.href} href={entry.href}>
-                {entry.label}
-              </a>
-            ))}
-          </nav>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            className="pp-chip"
+            data-category={dossier.category}
+            href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
+          >
+            {CATEGORY_LABELS[dossier.category]}
+          </Link>
+          <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
+            Registre →
+          </Link>
+        </div>
 
-          <OriginNotice origin={result.origin} />
+        <CopyRefutation dossier={dossier} />
 
-          <div id="piliers" className="scroll-mt-16">
-            <Reveal>
-              <ConvergenceSpectrometer dossier={dossier} />
-            </Reveal>
-          </div>
+        <DossierDensity synthesis={synthesis} piecesTotal={dossier.sources.length}>
+          <div className="grid gap-6 xl:grid-cols-[210px_minmax(0,1fr)]">
+            <ProcedureRail entries={contents} />
 
-          <div id="anatomie" className="scroll-mt-16">
-            <Reveal>
-              <FallacyAnatomy premises={dossier.premises} />
-            </Reveal>
-          </div>
+            {/* `min-w-0` : sans lui, la colonne prend la largeur de contenu
+                minimale de ses enfants (le SVG du spectromètre, dont le rapport
+                1000:120 à hauteur fixe impose 800 px) et déborde sur téléphone. */}
+            <div className="min-w-0 space-y-6">
+              {/* Sommaire collant : le dossier fait plusieurs écrans. Le rail
+                  vertical prend le relais à partir de 1280 px — c'est la
+                  feuille de style qui masque ce sommaire (voir .pp-toc dans le
+                  bloc DA), pas une classe d'utilitaire. */}
+              <nav className="pp-toc" aria-label="Sommaire du dossier">
+                {contents.map((entry) => (
+                  <a key={entry.href} href={entry.href}>
+                    {entry.label}
+                  </a>
+                ))}
+              </nav>
 
-          <div id="protagonistes" className="scroll-mt-16">
-            <Reveal>
-              <Protagonists protagonists={dossier.protagonists} />
-            </Reveal>
-          </div>
+              <OriginNotice origin={result.origin} />
 
-          <section id="pieces" className="scroll-mt-16 space-y-3">
-            <BlindModeProvider sources={dossier.sources.length}>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h2 className="pp-h3 font-serif text-ink">
-                  Pièces à conviction ({dossier.sources.length})
-                </h2>
-                <BlindModeSwitch />
+              <div id="piliers" className="scroll-mt-16">
+                <Reveal>
+                  <ConvergenceSpectrometer dossier={dossier} />
+                </Reveal>
               </div>
 
-              <PiecesTabs
-                total={dossier.sources.length}
-                tabs={sections.map((section) => ({
-                  spectrum: section.spectrum,
-                  label: section.label,
-                  count: section.count,
-                }))}
-                sections={sections.map((section) => ({
-                  spectrum: section.spectrum,
-                  node: section.node,
-                }))}
-              />
-            </BlindModeProvider>
-          </section>
+              <div id="anatomie" className="scroll-mt-16">
+                <Reveal>
+                  <FallacyAnatomy premises={dossier.premises} />
+                </Reveal>
+              </div>
 
-          <footer
-            id="integrite"
-            className="scroll-mt-16 space-y-2 border border-grid bg-surface px-4 py-4 sm:px-6"
-          >
-            <p className="pp-meta text-muted">Intégrité du dossier</p>
-            <p className="pp-tight text-muted">
-              Racine d&apos;intégrité :{" "}
-              <span className="font-mono break-all text-ink">{integrityRoot}</span> — hachage
-              de la liste triée des empreintes de ses pièces. Elle change à la moindre
-              modification de citation.
-            </p>
-            <p className="pp-tight text-muted">
-              Provenance :{" "}
-              {result.origin === "supabase"
-                ? "lecture Supabase sous RLS (dossiers publiés uniquement)"
-                : "dossiers de référence locaux (Supabase non configuré)"}{" "}
-              · publié le {formatLongDate(dossier.published_at)} ·{" "}
-              <Link className="pp-tap pp-meta text-seal hover:underline" href="/methode">
-                Méthode et limites
-              </Link>
-            </p>
-          </footer>
-        </>
-      </DossierDensity>
-    </article>
+              <div id="protagonistes" className="scroll-mt-16">
+                <Reveal>
+                  <Protagonists protagonists={dossier.protagonists} />
+                </Reveal>
+              </div>
+
+              <section id="pieces" className="scroll-mt-16 space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h2 className="pp-h3 font-serif text-ink">
+                    Pièces à conviction ({dossier.sources.length})
+                  </h2>
+                  <BlindModeSwitch />
+                </div>
+
+                <PiecesTabs
+                  total={dossier.sources.length}
+                  tabs={sections.map((section) => ({
+                    spectrum: section.spectrum,
+                    label: section.label,
+                    count: section.count,
+                  }))}
+                  sections={sections.map((section) => ({
+                    spectrum: section.spectrum,
+                    node: section.node,
+                  }))}
+                />
+              </section>
+
+              <footer
+                id="integrite"
+                className="scroll-mt-16 space-y-2 border border-grid bg-surface px-4 py-4 sm:px-6"
+              >
+                <p className="pp-meta text-muted">Intégrité du dossier</p>
+                <p className="pp-tight text-muted">
+                  Racine d&apos;intégrité :{" "}
+                  <span className="font-mono break-all text-ink">{integrityRoot}</span> — hachage
+                  de la liste triée des empreintes de ses pièces. Elle change à la moindre
+                  modification de citation.
+                </p>
+                <p className="pp-tight text-muted">
+                  Provenance :{" "}
+                  {result.origin === "supabase"
+                    ? "lecture Supabase sous RLS (dossiers publiés uniquement)"
+                    : "dossiers de référence locaux (Supabase non configuré)"}{" "}
+                  · publié le {formatLongDate(dossier.published_at)} ·{" "}
+                  <Link className="pp-tap pp-meta text-seal hover:underline" href="/methode">
+                    Méthode et limites
+                  </Link>
+                </p>
+              </footer>
+            </div>
+          </div>
+        </DossierDensity>
+      </article>
+    </BlindModeProvider>
   );
 }

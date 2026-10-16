@@ -187,6 +187,11 @@ footer {
   font-size: 11px;
   letter-spacing: 0.08em;
   white-space: nowrap;
+  /* Une bande plus étroite que son libellé doit couper court, pas couper net :
+     le libellé s'abrège au lieu d'être tranché par le bord. */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   opacity: 0;
   transition: opacity 260ms ease 160ms;
 }
@@ -550,30 +555,29 @@ footer {
 
 /* --- Bandeau de chiffres -------------------------------------------------- */
 
+/* Bandeau de chiffres : les filets viennent de l'écart d'1 px entre les
+   cellules, pas d'une bordure par cellule — le nombre de colonnes peut donc
+   changer (quatre chiffres, cinq avec la moyenne) sans laisser de filet
+   orphelin en fin de rangée. */
 .pp-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
   border: 1px solid var(--pp-grid);
-  background: var(--pp-surface);
+  background: var(--pp-grid-soft);
 }
 
 @media (min-width: 768px) {
-  .pp-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pp-stats { grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); }
 }
 
 .pp-stat {
   padding: 0.85rem 0.9rem;
-  border-bottom: 1px solid var(--pp-grid-soft);
-  border-right: 1px solid var(--pp-grid-soft);
+  border: 0;
+  background: var(--pp-surface);
 }
 
-.pp-stat:nth-child(2n) { border-right: none; }
-
-@media (min-width: 768px) {
-  .pp-stat { border-bottom: none; }
-  .pp-stat:nth-child(2n) { border-right: 1px solid var(--pp-grid-soft); }
-  .pp-stat:last-child { border-right: none; }
-}
+.pp-stat:nth-child(2n) { border: 0; }
 
 .pp-stat-value {
   font-family: var(--font-mono);
@@ -779,3 +783,547 @@ a[class*="text-seal"] {
 .pp-doc button {
   min-height: var(--pp-tap);
 }
+
+/* ===========================================================================
+   Direction artistique « brutalisme forensique & table lumineuse »
+   (octobre 2026)
+   ---------------------------------------------------------------------------
+   Ce bloc n'enlève rien : il ajoute la matérialité (repères de coupe, règle
+   graduée, tampon encré) et la mise en scène (table lumineuse, chambre
+   d'isolement, faisceau de triangulation). Aucune de ces couches ne porte de
+   donnée : ce sont des ornements, tous en pseudo-éléments ou marqués
+   `aria-hidden`. Le grain de papier, lui, existe déjà plus haut (body::before).
+   =========================================================================== */
+
+:root {
+  /* Le blanc chaud d'un calque posé sur le néon d'une table lumineuse. */
+  --pp-lit: #fffdf9;
+  --pp-lit-halo: rgba(255, 253, 249, 0.75);
+  --pp-amber: #f59e0b;
+  /* Encre des repères (croix d'imprimerie, graduations, pastilles). Elle doit
+     tenir sur le papier comme dans la chambre noire : le gris de grille du
+     thème sombre disparaîtrait sur le fond. */
+  --pp-mark: #1a1917;
+  /* Manque d'encre : de petites éclipses clairsemées percent le tampon. */
+  --pp-ink-wear: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='64'%3E%3Cg fill='%23fff'%3E%3Cellipse cx='13' cy='9' rx='4.6' ry='2.1'/%3E%3Cellipse cx='41' cy='26' rx='2.4' ry='3.6'/%3E%3Cellipse cx='68' cy='13' rx='3.4' ry='1.4'/%3E%3Cellipse cx='96' cy='33' rx='5.1' ry='2.3'/%3E%3Cellipse cx='121' cy='11' rx='1.9' ry='2.9'/%3E%3Cellipse cx='149' cy='41' rx='3.8' ry='1.7'/%3E%3Cellipse cx='174' cy='19' rx='2.7' ry='3.2'/%3E%3Cellipse cx='30' cy='47' rx='3.1' ry='1.6'/%3E%3Cellipse cx='84' cy='53' rx='2.2' ry='2.5'/%3E%3Cellipse cx='133' cy='57' rx='4.3' ry='1.9'/%3E%3Cellipse cx='163' cy='51' rx='1.7' ry='2.6'/%3E%3Cellipse cx='7' cy='34' rx='2.9' ry='1.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] {
+  --pp-lit: #1c2129;
+  --pp-lit-halo: rgba(28, 33, 41, 0.85);
+  --pp-mark: #8a8f99;
+}
+
+/* --- Repères de coupe (croix d'imprimerie) -------------------------------- */
+
+.pp-marks {
+  position: relative;
+}
+
+.pp-marks::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  pointer-events: none;
+  opacity: 0.5;
+  --c: var(--pp-mark);
+  background-image: linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
+    linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
+    linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0),
+    linear-gradient(var(--c) 0 0), linear-gradient(var(--c) 0 0);
+  background-size: 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px, 1px 11px, 11px 1px,
+    1px 11px;
+  background-position: 0 5px, 5px 0, calc(100% - 11px) 5px, calc(100% - 6px) 0,
+    0 calc(100% - 6px), 5px calc(100% - 11px), calc(100% - 11px) calc(100% - 6px),
+    calc(100% - 6px) calc(100% - 11px);
+  background-repeat: no-repeat;
+}
+
+/* --- Règle graduée de la marge gauche ------------------------------------ */
+
+.pp-ruler {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .pp-ruler {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    width: 26px;
+    pointer-events: none;
+    opacity: 0.6;
+    border-right: 1px solid color-mix(in srgb, var(--pp-mark) 45%, transparent);
+    /* Un cran tous les 8 px, un grand trait tous les 40 px : une graduation. */
+    background-image: repeating-linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--pp-mark) 72%, transparent) 0 1px,
+        transparent 1px 8px
+      ),
+      repeating-linear-gradient(to bottom, var(--pp-mark) 0 1px, transparent 1px 40px);
+    background-size: 6px 100%, 13px 100%;
+    background-repeat: repeat-y, repeat-y;
+    background-position: 0 0, 0 0;
+  }
+}
+
+/* --- Tampon de verdict : double cadre, encre irrégulière ----------------- */
+
+.pp-stamp {
+  position: relative;
+  padding: 0.5rem 0.95rem;
+  border-width: 2px;
+  transform: rotate(-1.5deg);
+}
+
+/* Le second cadre, à 3 px du premier. */
+.pp-stamp::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid currentColor;
+  pointer-events: none;
+}
+
+/* Le manque d'encre : des éclats de papier dans la surface encrée. */
+.pp-stamp::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--pp-canvas);
+  -webkit-mask-image: var(--pp-ink-wear);
+  mask-image: var(--pp-ink-wear);
+  -webkit-mask-size: 190px 64px;
+  mask-size: 190px 64px;
+  opacity: 0.85;
+}
+
+.pp-stamp--flat {
+  transform: none;
+}
+
+/* --- Fiche-chemise à onglet --------------------------------------------- */
+
+.pp-folder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pp-folder .pp-card {
+  width: 100%;
+}
+
+.pp-folder__tab {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  margin-bottom: -1px;
+  padding: 0.4rem 1rem 0.35rem 0.7rem;
+  border: 1px solid var(--pp-grid);
+  border-bottom: 0;
+  background: var(--pp-surface-2);
+  color: var(--pp-muted);
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  /* L'onglet d'une chemise : le coin supérieur droit coupé en biseau. */
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
+  transition: background var(--pp-fast) var(--pp-ease), color var(--pp-fast) var(--pp-ease);
+}
+
+.pp-folder:hover .pp-folder__tab {
+  background: var(--pp-ink);
+  color: var(--pp-canvas);
+}
+
+.pp-folder:hover .pp-folder__tab .pp-led {
+  border-color: var(--pp-canvas);
+}
+
+/* --- Table lumineuse : le survol allume une fiche, éteint les autres ----- */
+
+@media (hover: hover) and (min-width: 900px) {
+  body {
+    transition: background-color 320ms var(--pp-ease);
+  }
+
+  /* Le fond s'assombrit d'un cran, comme un néon qu'on baisse. La règle porte
+     sur `body` : c'est lui qui peint le papier, l'arrière-plan de `html` ne se
+     verrait pas. */
+  body:has(.pp-lighttable .pp-folder:hover) {
+    background-color: color-mix(in srgb, var(--pp-canvas) 90%, var(--pp-grid));
+  }
+
+  .pp-lighttable .pp-folder,
+  .pp-lighttable .pp-folder .pp-card,
+  .pp-lighttable .pp-folder .pp-folder__tab {
+    transition:
+      opacity 240ms var(--pp-ease),
+      filter 240ms var(--pp-ease),
+      background-color 240ms var(--pp-ease),
+      box-shadow 240ms var(--pp-ease),
+      transform 240ms var(--pp-ease);
+  }
+
+  .pp-lighttable:hover .pp-folder {
+    opacity: 0.58;
+    filter: saturate(0.72) contrast(0.96);
+  }
+
+  .pp-lighttable .pp-folder:hover {
+    opacity: 1;
+    filter: none;
+    z-index: 3;
+    transform: translateY(-3px);
+  }
+
+  .pp-lighttable .pp-folder:hover .pp-card {
+    background-color: var(--pp-lit);
+    /* La lueur du néon sous le calque : diffuse, jamais une ombre dure. */
+    box-shadow:
+      0 0 0 1px var(--pp-grid),
+      0 12px 30px -20px rgba(13, 14, 17, 0.35),
+      0 0 56px -4px var(--pp-lit-halo);
+  }
+}
+
+/* --- Mini-spectromètre des fiches --------------------------------------- */
+
+/* Les diodes gardent une enveloppe visible dans les deux thèmes : le gris de
+   grille du thème sombre se confondait avec la chambre noire. */
+.pp-led {
+  border-color: var(--pp-mark);
+}
+
+.pp-pillars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.pp-pillars .pp-led {
+  width: 12px;
+  height: 12px;
+  border-color: var(--pp-mark);
+}
+
+/* --- Chambre d'isolement (mode preuve à l'aveugle) ----------------------- */
+
+.pp-blind-band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--pp-amber);
+  background-color: var(--pp-ink);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--pp-amber) 16%, transparent) 0 7px,
+    transparent 7px 15px
+  );
+  color: var(--pp-amber);
+  padding: 0.6rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-sm);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  animation: pp-hazard 2.2s linear infinite;
+}
+
+@keyframes pp-hazard {
+  to {
+    background-position: 30px 0;
+  }
+}
+
+.pp-blind-band__led {
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--pp-amber);
+  background: var(--pp-amber);
+  animation: pp-blink 1.4s steps(1, end) infinite;
+}
+
+/* Le protocole teinte la page : plus rien n'a l'air d'un document ordinaire. */
+[data-blind="true"] .pp-blind-skin {
+  box-shadow: inset 0 3px 0 var(--pp-amber);
+}
+
+/* --- Caviardage : infobulle et trait de marqueur ------------------------- */
+
+.pp-caviard__tip {
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 0;
+  z-index: 4;
+  max-width: min(78vw, 34rem);
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--pp-amber);
+  background: var(--pp-ink);
+  color: var(--pp-caviard-ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: normal;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 160ms var(--pp-ease), transform 160ms var(--pp-ease);
+  pointer-events: none;
+}
+
+.pp-caviard:hover .pp-caviard__tip,
+.pp-caviard:focus-within .pp-caviard__tip {
+  opacity: 1;
+  transform: none;
+}
+
+/* Le bord du caviardage garde la trace du passage du marqueur. */
+.pp-caviard__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--pp-caviard-ink) 55%, transparent),
+    transparent
+  );
+}
+
+/* --- Décryptage : curseur du terminal ----------------------------------- */
+
+.pp-caret::after {
+  content: "▌";
+  margin-left: 1px;
+  animation: pp-blink 900ms steps(1, end) infinite;
+}
+
+@keyframes pp-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* --- Index de procédure flottant (rail vertical) ------------------------- */
+
+.pp-rail {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .pp-rail {
+    display: block;
+    position: sticky;
+    top: 68px;
+    align-self: start;
+  }
+
+  /* Le sommaire horizontal s'efface quand le rail prend le relais. La règle
+     vit ici et pas dans le JSX : le CSS non-layeré gagne sur @layer utilities,
+     donc `xl:hidden` sur le <nav> ne suffirait pas. */
+  .pp-toc {
+    display: none;
+  }
+}
+
+.pp-rail__title {
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pp-muted);
+  padding: 0 0 0.5rem;
+  border-bottom: 1px solid var(--pp-grid);
+}
+
+.pp-rail ol {
+  border-left: 1px solid var(--pp-grid);
+  margin-top: 0.6rem;
+}
+
+.pp-rail a {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  min-height: 40px;
+  padding: 0.35rem 0.6rem 0.35rem 0.75rem;
+  color: var(--pp-muted);
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color var(--pp-fast) var(--pp-ease), background var(--pp-fast) var(--pp-ease);
+}
+
+.pp-rail a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 3px;
+  background: transparent;
+  transition: background var(--pp-fast) var(--pp-ease);
+}
+
+.pp-rail a:hover {
+  color: var(--pp-ink);
+  background: var(--pp-surface-2);
+}
+
+.pp-rail a[data-active="true"] {
+  color: var(--pp-ink);
+}
+
+.pp-rail a[data-active="true"]::before {
+  background: var(--pp-warn);
+}
+
+.pp-rail__num {
+  color: var(--pp-seal);
+}
+
+/* --- Bandeau de télémétrie ---------------------------------------------- */
+
+.pp-telemetry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  border-top: 1px solid var(--pp-grid);
+  border-bottom: 1px solid var(--pp-grid);
+  padding: 0.5rem 0;
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pp-muted);
+}
+
+.pp-telemetry dt {
+  display: inline;
+}
+
+.pp-telemetry__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.pp-telemetry__item + .pp-telemetry__item::before {
+  content: "|";
+  color: var(--pp-grid-soft);
+  margin-right: 0.6rem;
+}
+
+.pp-telemetry dd {
+  color: var(--pp-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-telemetry__flag {
+  border: 1px solid var(--pp-grid);
+  padding: 0 0.35rem;
+}
+
+/* --- Table de dissection (anatomie du sophisme) ------------------------- */
+
+.pp-dissect__claim {
+  background: color-mix(in srgb, var(--pp-surface-2) 72%, transparent);
+}
+
+.pp-dissect__connector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background: var(--pp-canvas);
+}
+
+.pp-dissect__connector::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--pp-grid-soft);
+}
+
+.pp-dissect__connector > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pp-dissect__fact {
+  background: var(--pp-lit);
+}
+
+/* Un sophisme se souligne au pointillé rouge, pas au surlignage. */
+.pp-sophism {
+  text-decoration: underline dotted var(--pp-false);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* --- Faisceau de triangulation ------------------------------------------ */
+
+.pp-beam {
+  transition: stroke-width 180ms var(--pp-ease), opacity 180ms var(--pp-ease),
+    stroke 180ms var(--pp-ease);
+}
+
+/* Le faisceau allumé : un courant qui remonte du verdict vers le pilier. */
+.pp-beam--live {
+  stroke-dasharray: 8 5;
+  animation: pp-flow 900ms linear infinite;
+}
+
+@keyframes pp-flow {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
+
+
+/* --- Mouvement : rien de tout cela si le lecteur préfère l'immobilité ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-blind-band,
+  .pp-blind-band__led,
+  .pp-caret::after,
+  .pp-beam--live {
+    animation: none;
+  }
+
+  .pp-lighttable:hover .pp-folder,
+  .pp-lighttable .pp-folder:hover,
+  .pp-lighttable .pp-folder:hover .pp-card {
+    transform: none;
+    opacity: 1;
+    filter: none;
+  }
+
+  .pp-caviard__tip {
+    transition: none;
+  }
+
+  .pp-card:hover {
+    transform: none;
+  }
+}
+

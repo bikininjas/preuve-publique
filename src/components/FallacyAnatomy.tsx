@@ -7,15 +7,20 @@ import type { Premise } from "@/lib/types";
 
 const TONE_TEXT: Record<"true" | "warn" | "false", string> = {
   true: "text-true border-truebd bg-truebg",
-  warn: "text-warnbd border-warnbd bg-warnbg",
-  false: "text-falsebd border-falsebd bg-falsebg",
+  warn: "text-warn border-warnbd bg-warnbg",
+  false: "text-false border-falsebd bg-falsebg",
 };
 
 /**
- * Radiographie du sophisme : l'affirmation découpée en segments, chacun avec son
- * tampon et sa jauge de distorsion. La jauge est une **échelle de statut**
- * (0, 40, 60, 100) : elle traduit le statut éditorial, elle ne prétend pas
- * mesurer quoi que ce soit — c'est écrit sous la frise.
+ * Table de dissection du sophisme : chaque segment de l'affirmation est
+ * présenté sur deux colonnes reliées par le diagnostic.
+ *
+ * À gauche, l'illusion rhétorique — la brique telle qu'elle circule, soulignée
+ * au pointillé rouge. Au centre, le connecteur de diagnostic. À droite, ce que
+ * disent les pièces : le détail du dossier et le niveau de l'échelle de statut.
+ *
+ * Le niveau (0, 40, 60, 100) traduit le statut éditorial, il ne le mesure pas —
+ * c'est écrit sous la frise, et cette mention ne doit pas disparaître.
  */
 export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
   if (premises.length === 0) {
@@ -46,27 +51,43 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
           const level = PREMISE_DISTORTION_LEVELS[premise.status];
           return (
             <li key={premise.claim_part} className="border-b border-gridsoft last:border-b-0">
-              <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(240px,300px)]">
-                <div className="border-gridsoft px-4 py-5 sm:px-6 lg:border-r">
+              <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(150px,190px)_minmax(0,1.05fr)]">
+                {/* Colonne gauche : l'illusion rhétorique. */}
+                <div className="pp-dissect__claim px-4 py-5 sm:px-6">
                   <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-muted">
-                    SEGMENT {String(index + 1).padStart(2, "0")}
+                    SEGMENT {String(index + 1).padStart(2, "0")} — illusion rhétorique
                   </p>
-                  <p className="mt-2 font-serif text-xl leading-snug text-ink italic">
-                    {premise.claim_part}
-                  </p>
-                  <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
-                    {premise.detail}
+                  <p className="mt-3 font-serif text-xl leading-snug text-ink italic">
+                    <span className="pp-sophism">{premise.claim_part}</span>
                   </p>
                 </div>
-                <div className="flex flex-col justify-center gap-3 bg-surface2 px-4 py-5 sm:px-6">
-                  <span className={`pp-stamp w-fit ${TONE_TEXT[tone]}`}>
+
+                {/* Connecteur : le diagnostic technique, sur le trait de jonction. */}
+                <div className="pp-dissect__connector lg:border-x lg:border-gridsoft">
+                  <span className={`pp-stamp pp-stamp--flat w-fit text-[12px] ${TONE_TEXT[tone]}`}>
                     {PREMISE_STAMP_LABELS[premise.status]}
                   </span>
-                  <div>
-                    <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
-                      Distorsion {level}%
-                    </p>
-                    <div className="mt-2 flex items-end gap-[2px]" aria-hidden="true">
+                </div>
+
+                {/* Colonne droite : ce que disent les pièces. */}
+                <div className="pp-dissect__fact px-4 py-5 sm:px-6">
+                  <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-muted">
+                    Ce que disent les pièces
+                  </p>
+                  <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink">
+                    {premise.detail}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap items-end gap-x-5 gap-y-3">
+                    <div>
+                      <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+                        Niveau de distorsion
+                      </p>
+                      <p className="text-4xl leading-none font-medium tracking-tight text-ink">
+                        {String(level).padStart(3, "0")}
+                      </p>
+                    </div>
+                    <div className="flex items-end gap-[2px]" aria-hidden="true">
                       {Array.from({ length: 10 }, (_, tick) => {
                         const active = level >= (tick + 1) * 10;
                         return (
@@ -74,14 +95,14 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
                             key={tick}
                             className={
                               active
-                                ? `h-5 w-full ${
+                                ? `h-6 w-3 ${
                                     tone === "false"
                                       ? "bg-false"
                                       : tone === "warn"
                                         ? "bg-warn"
                                         : "bg-true"
                                   }`
-                                : "h-2 w-full bg-gridsoft"
+                                : "h-2 w-3 bg-gridsoft"
                             }
                           />
                         );
