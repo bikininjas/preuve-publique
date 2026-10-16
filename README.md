@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 16/10/2026
 
-- **Base** : onze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : douze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -28,9 +28,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   statuts de brique « complotisme » et « biais essentialiste » sont validés côté
   application, sans migration),
   `0011_absurde_verdict` (`20261016143500`, appliquée le 16/10 — `verdict_status`
-  accueille « absurde », le verdict du dossier sur la politique d'Emmanuel Macron).
-  Trente dossiers en base :
-  vingt-neuf **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  accueille « absurde », le verdict du dossier sur la politique d'Emmanuel Macron),
+  `0012_confusion_conceptuelle_verdict` (`20261016153000`, appliquée le 16/10 —
+  `verdict_status` accueille « confusion conceptuelle » ; la valeur existait déjà comme
+  statut de brique côté application, les deux échelles sont des types distincts).
+  Trente et un dossiers en base :
+  trente **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -54,10 +57,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   « infériorité cognitive biologique » des populations africaines (12, société) et la
   théorie du « Grand Remplacement » présentée comme la preuve d'un plan ourdi par des
   élites (12, société, conspirationniste), la thèse d'une politique « socialiste »
-  d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde) —
+  d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde), la thèse d'un racisme « anti-blanc systémique » (10, société, confusion conceptuelle) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 244 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 254 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -223,9 +226,9 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
     répond 200 (deux tests de non-régression couvrent ce point).
 - **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
   `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 16/10/2026 —
-  `preuve-publique-git-00023-sbs` (dossier « politique d'Emmanuel Macron » et son verdict
-  inédit `ABSURDE`, après les livraisons OpenGraph, chaîne de custode et « grand
-  remplacement » ; `/api/health` → `status: healthy`, `database.reachable: true` ; le
+  `preuve-publique-git-00024-bqz` (dossiers « politique d'Emmanuel Macron » — `ABSURDE` —
+  et « racisme anti-blanc systémique » — `CONFUSION_CONCEPTUELLE` —, après les livraisons
+  OpenGraph, chaîne de custode et « grand remplacement » ; `/api/health` → `status: healthy`, `database.reachable: true` ; le
   dossier répond 200, son `ETag` et son `X-Proof-Integrity-Root` égalent la racine
   recalculée par `npm run proofs`, et son image de partage répond 200). Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
@@ -344,6 +347,19 @@ réseau ; sa racine d'intégrité `7e933b74b2ee3e93…` est recalculée par `npm
 et son égalité avec l'`ETag` et le `X-Proof-Integrity-Root` a été vérifiée en ligne
 sous la révision `preuve-publique-git-00023-sbs` (`ETag` = `X-Proof-Integrity-Root` =
 `7e933b74b2ee3e93…`).
+
+Puis, le 16/10/2026 (15:27 UTC), le dossier sur le racisme « anti-blanc systémique » (dix
+sources, verdict inédit `CONFUSION_CONCEPTUELLE` porté par la migration `0012`, validée sur
+un Postgres jetable) : cette fois, **le déploiement a précédé l'application du seed** —
+l'ordre corrigé après la fenêtre de coupure du dossier précédent. Recapture complète des
+trente dossiers publiés : **254 fiches** (215 `URL_SNAPSHOT`, 36 `URL_UNAVAILABLE`, 3
+`METADATA_ONLY` ; racine du passage `c8736e3009f3345c…`, recalculée depuis la base — égale,
+aucune déduplication nécessaire). Pièce Légifrance (`URL_UNAVAILABLE`, 403 aux robots) : le
+chapeau de l'article 225-1 a été vérifié sur sa reproduction intégrale publiée dans le
+dossier de la DGAFP. Sa racine d'intégrité `559ae661719f4081…` est égale à l'`ETag` et au
+`X-Proof-Integrity-Root` relevés en ligne sous la révision `preuve-publique-git-00024-bqz` ;
+`/api/verify` et `/api/archives` vérifiés sur les pièces du dossier, et la recherche
+« racisme » renvoie deux résultats.
 
 ## Pile technique
 
@@ -872,8 +888,8 @@ depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 
 ## Limites assumées
 
-- Captures : les 244 pièces publiées ont leur fiche déposée en base (une par pièce :
-  206 `URL_SNAPSHOT`, 35 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
+- Captures : les 254 pièces publiées ont leur fiche déposée en base (une par pièce :
+  215 `URL_SNAPSHOT`, 36 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
   PNAS, NOAA, NPR ou Le Vent Se Lève répondant 403 ou 429 aux clients non navigateurs — et
   3 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket `immutable-archives`
   n'a pas eu lieu, faute d'accès privilégié.
