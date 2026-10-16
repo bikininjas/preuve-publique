@@ -161,28 +161,41 @@ footer {
   display: flex;
   align-items: center;
   padding: 0 4px;
+  color: var(--pp-caviard-ink);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* La bande elle-même : un remplissage noir tracé au feutre de gauche à droite
+   (`scaleX(0)` → `scaleX(1)`, origine à gauche). Séparé du libellé pour que la
+   transformation n'étire pas le texte du libellé. */
+.pp-caviard__fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-color: var(--pp-caviard);
   background-image: repeating-linear-gradient(
     45deg,
     rgba(255, 255, 255, 0.12) 0 3px,
     transparent 3px 7px
   );
-  color: var(--pp-caviard-ink);
-  overflow: hidden;
-  clip-path: inset(0 0 0 100%);
-  transition: clip-path 520ms cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-blind="true"] .pp-caviard__text {
-  clip-path: inset(0 100% 0 0);
+  /* Le texte s'efface de gauche à droite, sous la bande qui avance. */
+  clip-path: inset(0 0 0 100%);
 }
 
-[data-blind="true"] .pp-caviard__bar {
-  clip-path: inset(0 0 0 0);
+[data-blind="true"] .pp-caviard__fill {
+  transform: scaleX(1);
 }
 
 .pp-caviard__label {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -379,6 +392,7 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .pp-caviard__text,
   .pp-caviard__bar,
+  .pp-caviard__fill,
   .pp-pulse,
   .pp-scan::after {
     transition: none;
@@ -1185,12 +1199,18 @@ a[class*="text-seal"] {
 
 /* --- Caviardage : infobulle et trait de marqueur ------------------------- */
 
+/* Une infobulle en `opacity: 0` garde sa boîte : ancrée près du bord droit,
+   elle élargissait la page même invisible (mesuré : sw=802 pour iw=768). Elle
+   n'est donc pas affichée tant qu'on ne la survole pas, et son apparition est
+   une animation — pas une transition d'opacité. Le positionnement à l'écran est
+   recalé au survol par `Caviard` (clampTooltipLeft). */
 .pp-caviard__tip {
+  display: none;
   position: absolute;
   bottom: calc(100% + 7px);
   left: 0;
   z-index: 4;
-  max-width: min(78vw, 34rem);
+  max-width: min(86vw, 34rem);
   padding: 0.3rem 0.5rem;
   border: 1px solid var(--pp-amber);
   background: var(--pp-ink);
@@ -1200,20 +1220,18 @@ a[class*="text-seal"] {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: normal;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 160ms var(--pp-ease), transform 160ms var(--pp-ease);
   pointer-events: none;
 }
 
 .pp-caviard:hover .pp-caviard__tip,
 .pp-caviard:focus-within .pp-caviard__tip {
-  opacity: 1;
-  transform: none;
+  display: block;
+  animation: pp-fade 160ms var(--pp-ease) both;
 }
 
-/* Le bord du caviardage garde la trace du passage du marqueur. */
-.pp-caviard__bar::after {
+/* Le bord du caviardage garde la trace du passage du marqueur — posée sur le
+   remplissage, elle avance avec la bande. */
+.pp-caviard__fill::after {
   content: "";
   position: absolute;
   inset: 0 0 0 auto;
@@ -1443,7 +1461,7 @@ a[class*="text-seal"] {
   }
 
   .pp-caviard__tip {
-    transition: none;
+    animation: none;
   }
 
   .pp-card:hover {

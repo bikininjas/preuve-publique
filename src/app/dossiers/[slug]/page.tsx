@@ -6,6 +6,7 @@ import {
   BlindModeProvider,
   BlindModeSwitch,
   BlindProtocolBanner,
+  CaviardFigures,
 } from "@/components/BlindModeSwitch";
 import ArchiveHashBadge from "@/components/ArchiveHashBadge";
 import ConvergenceSpectrometer from "@/components/ConvergenceSpectrometer";
@@ -156,7 +157,9 @@ export default async function DossierPage({ params }: PageProps) {
         </span>
       </div>
 
-      <p className="pp-lead text-ink">{dossier.verdict_summary}</p>
+      <p className="pp-lead text-ink">
+        <CaviardFigures text={dossier.verdict_summary} />
+      </p>
 
       <div className="space-y-2">
         <p className="pp-meta text-muted">Ce que dit l&apos;affirmation, brique par brique</p>
@@ -164,7 +167,9 @@ export default async function DossierPage({ params }: PageProps) {
           {dossier.premises.map((premise) => (
             <li key={premise.claim_part} className="flex flex-wrap items-baseline gap-2 border-b border-gridsoft pb-1">
               <span className="pp-meta text-ink">{PREMISE_STATUS_LABELS[premise.status]}</span>
-              <span className="pp-tight text-muted">{premise.claim_part}</span>
+              <span className="pp-tight text-muted">
+                <CaviardFigures text={premise.claim_part} />
+              </span>
             </li>
           ))}
         </ul>

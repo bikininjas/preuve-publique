@@ -29,8 +29,10 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        {/* Navigation large écran */}
-        <nav className="ml-auto hidden items-center gap-1 md:flex" aria-label="Navigation principale">
+        {/* Navigation large écran : à partir de 1024 px seulement — à 768 px les
+            quatre entrées ne tiennent pas dans la barre et poussaient le groupe
+            de droite hors de l'écran (mesuré : 802 px de large pour 768). */}
+        <nav className="ml-auto hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
           <details className="pp-drop">
             <summary className="pp-nav-link">
               Catégories <span aria-hidden="true">▾</span>
@@ -59,13 +61,13 @@ export default function SiteHeader() {
           </Link>
         </nav>
 
-        <div className="ml-auto flex items-center gap-1 md:ml-2">
-          <Link className="pp-nav-link md:hidden" href="/recherche" aria-label="Rechercher">
+        <div className="ml-auto flex items-center gap-1 lg:ml-2">
+          <Link className="pp-nav-link lg:hidden" href="/recherche" aria-label="Rechercher">
             <span aria-hidden="true">⌕</span>
           </Link>
           <ThemeToggle />
           {/* Menu mobile : même contenu, empilé */}
-          <details className="pp-drop md:hidden">
+          <details className="pp-drop lg:hidden">
             <summary className="pp-nav-link" aria-label="Ouvrir le menu">
               Menu <span aria-hidden="true">≡</span>
             </summary>

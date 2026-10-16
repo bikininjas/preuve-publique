@@ -3,6 +3,7 @@ import {
   PREMISE_STAMP_LABELS,
   PREMISE_STATUS_TONES,
 } from "@/lib/labels";
+import { CaviardFigures } from "@/components/BlindModeSwitch";
 import type { Premise } from "@/lib/types";
 
 const TONE_TEXT: Record<"true" | "warn" | "false", string> = {
@@ -58,7 +59,9 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
                     SEGMENT {String(index + 1).padStart(2, "0")} — illusion rhétorique
                   </p>
                   <p className="mt-3 font-serif text-xl leading-snug text-ink italic">
-                    <span className="pp-sophism">{premise.claim_part}</span>
+                    <span className="pp-sophism">
+                      <CaviardFigures text={premise.claim_part} />
+                    </span>
                   </p>
                 </div>
 
@@ -75,7 +78,7 @@ export default function FallacyAnatomy({ premises }: { premises: Premise[] }) {
                     Ce que disent les pièces
                   </p>
                   <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink">
-                    {premise.detail}
+                    <CaviardFigures text={premise.detail} />
                   </p>
 
                   <div className="mt-5 flex flex-wrap items-end gap-x-5 gap-y-3">

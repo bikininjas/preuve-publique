@@ -461,11 +461,19 @@ disparaîtrait sur le fond sombre.
   le dit ; sans WebCrypto, la vérification s'arrête et l'écrit ; une capture qui ne redonne
   pas son empreinte sort en divergence, avec l'empreinte recalculée.
 - **Mode preuve à l'aveugle** : noms, institutions et piliers recouverts de bandes de
-  caviardage tracées de gauche à droite ; au survol, une infobulle rappelle de juger
-  l'argument avant l'auteur. Le protocole teinte tout le dossier (bandeau noir et ambre
-  « chambre d'isolement » en tête, liseré sur la barre de commande). Le masquage est visuel
-  (les données restent dans la page) : il sert à juger la preuve avant de savoir qui la
-  porte, pas à cacher quoi que ce soit.
+  caviardage tracées de gauche à droite (remplissage noir `scaleX(0)` → `scaleX(1)`, origine
+  à gauche — le libellé, posé au-dessus, n'est jamais étiré) ; les **chiffres clés du corps
+  du texte** (montants, pourcentages, dates) reçoivent la même bande, avec leur propre
+  libellé. Au survol, une infobulle rappelle de juger l'argument avant l'auteur
+  (`[SOURCE MASQUÉE — JUGEZ L'ARGUMENT AVANT L'AUTEUR]`, `[CHIFFRE MASQUÉ — JUGEZ L'ARGUMENT
+  AVANT LA SOURCE]`). Le protocole teinte tout le dossier (bandeau noir et ambre
+  « chambre d'isolement » en tête — ⚡ protocole actif, nombre de sources recouvertes,
+  liseré sur la barre de commande). Le masquage est visuel (les données restent dans la
+  page) : il sert à juger la preuve avant de savoir qui la porte, pas à cacher quoi que ce
+  soit. La découpe des chiffres est pure et testée sur toute la prose publiée du seed :
+  la concaténation des segments rend le texte d'origine, caractère pour caractère
+  (`src/lib/figures-mask.ts`), et le switch expose son état aux lecteurs d'écran
+  (`aria-pressed` sur les deux boutons).
 - **Index de procédure** : plan numéroté du dossier, collant, qui suit le défilement et
   marque la section courante ; il remplace le sommaire horizontal à partir de 1280 px.
 - **Bandeau de télémétrie** (page du registre) : dossiers, pièces, empreintes (n/n), piliers

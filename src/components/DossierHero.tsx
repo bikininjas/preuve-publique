@@ -5,6 +5,7 @@ import {
   dossierCode,
   formatDate,
 } from "@/lib/labels";
+import { CaviardFigures } from "@/components/BlindModeSwitch";
 import type { Dossier } from "@/lib/types";
 
 /**
@@ -60,7 +61,7 @@ export default function DossierHero({
             <span className="text-muted">&nbsp;»</span>
           </h1>
           <p className="mt-5 max-w-3xl font-sans text-base leading-relaxed text-muted">
-            {dossier.verdict_summary}
+            <CaviardFigures text={dossier.verdict_summary} />
           </p>
         </div>
 
