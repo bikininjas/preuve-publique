@@ -209,6 +209,71 @@ export const REFERENCE_DOSSIER: Dossier = {
   published_at: "2026-10-14T00:00:00.000Z",
     illustration_url: "/illustrations/hitler-et-les-nazis-etaient-de-gauche.jpg",
     illustration_credit: "Photo : Bundesarchiv (Bild 183-1987-0410-501), Wikimedia Commons, CC BY-SA 3.0 de",
+  timeline: [
+    {
+      date: "1920",
+      title: "Le mot « socialiste » entre dans le sigle",
+      description:
+        "Le terme est retenu en 1920 pour capter l'électorat ouvrier — puis redéfini par Hitler hors de la lutte des classes et contre le marxisme, garantie explicite de la propriété privée à l'appui.",
+      evidence_ref: null,
+    },
+    {
+      date: "1932-01-27",
+      title: "Hitler devant le Club de l'Industrie de Düsseldorf",
+      description:
+        "Devant les grands patrons, Hitler défend la propriété privée, attaque le marxisme et les syndicats, et sollicite leur soutien financier : le parti nazi se présente au patronat comme le rempart contre la gauche.",
+      evidence_ref: "Pièce #02",
+    },
+    {
+      date: "1932-07-09",
+      title: "« Le socialisme national-socialiste ne répudie pas la propriété privée »",
+      description:
+        "Dans Liberty Magazine, Hitler oppose son « socialisme » au marxisme : propriété privée, patriotisme, rejet de la négation de la personnalité et de la lutte des classes — sa propre définition du mot, un an avant le pouvoir.",
+      evidence_ref: "Pièce #01",
+    },
+    {
+      date: "1933-01-30",
+      title: "Accession à la chancellerie avec la droite conservatrice",
+      description:
+        "Hitler devient chancelier par une coalition avec la droite nationaliste (von Papen, DNVP), destinée à barrer la route aux partis de gauche : ses alliés du jour sont conservateurs, pas socialistes.",
+      evidence_ref: "Pièce #07",
+    },
+    {
+      date: "1933-03",
+      title: "Répression de masse et ouverture de Dachau",
+      description:
+        "Dès février-mars 1933, les organisations ouvrières documentent les arrestations en masse, l'interdiction de leurs journaux et l'internement des députés communistes ; Dachau ouvre pour interner communistes et sociaux-démocrates.",
+      evidence_ref: "Pièce #08",
+    },
+    {
+      date: "1933-03-23",
+      title: "Loi des pleins pouvoirs (Ermächtigungsgesetz)",
+      description:
+        "Le Reichstag vote les pleins pouvoirs : le SPD est le seul parti encore représenté à voter contre, les députés communistes sont déjà arrêtés ou contraints à la clandestinité, la droite et le centre votent pour.",
+      evidence_ref: "Pièce #03",
+    },
+    {
+      date: "1933-05-02",
+      title: "Destruction des syndicats libres",
+      description:
+        "Les maisons des syndicats sont occupées, leurs dirigeants arrêtés, leurs fonds saisis ; les organisations ouvrières sont dissoutes et remplacées par le Front allemand du travail. Un régime de gauche ne détruit pas ses propres syndicats.",
+      evidence_ref: "Pièce #04",
+    },
+    {
+      date: "1934-06",
+      title: "Nuit des Longs Couteaux",
+      description:
+        "L'aile anticapitaliste du parti — les strasseristes — est assassinée sur ordre d'Hitler, et le régime se dote de son propre pouvoir militaire : la gauche interne du NSDAP est éliminée par le régime lui-même.",
+      evidence_ref: null,
+    },
+    {
+      date: "1934-1937",
+      title: "Privatisations massives au profit des cartels",
+      description:
+        "Acier, mines, banque, transports maritimes, chemins de fer : le régime transfère massivement des entreprises publiques au secteur privé — l'inverse d'une collectivisation, documenté par l'Economic History Review.",
+      evidence_ref: "Pièce #05",
+    },
+  ],
   sources: [
     {
       id: "0f2f4a11-6c5b-4c6e-8f24-9c0f1a2b3c41",
@@ -6059,6 +6124,57 @@ export const OTAN_RUSSIE_1990_DOSSIER: Dossier = {
   illustration_url: "/illustrations/otan-russie-traite-1990-non-elargissement-est.jpg",
   illustration_credit:
     "Signatures des Alliés sur le traité « 2+4 » (Roland Dumas, Edouard Chevardnadze, Douglas Hurd, James Baker) — document officiel publié par le ministère allemand des Affaires étrangères, domaine public, Wikimedia Commons",
+  timeline: [
+    {
+      date: "1990-02-09",
+      title: "« Pas un pouce vers l'Est » — l'assurance orale de Baker",
+      description:
+        "À Moscou, James Baker répète trois fois la formule « not one inch eastward » : une assurance politique sur le statut de l'Allemagne réunifiée, présentée comme une hypothèse de négociation — consignée dans des comptes rendus de conversation, pas dans un texte signé.",
+      evidence_ref: "Pièce #04",
+    },
+    {
+      date: "1990-09-12",
+      title: "Signature du traité « 2+4 » à Moscou",
+      description:
+        "Le traité sur le règlement définitif concernant l'Allemagne est signé à Moscou : l'article 5 limite le stationnement des forces étrangères à l'ex-RDA, l'article 6 réaffirme le droit d'alliance de l'Allemagne unie. Aucune clause sur l'élargissement de l'OTAN ; le texte sera ratifié par l'URSS.",
+      evidence_ref: "Pièce #01",
+    },
+    {
+      date: "1991-07",
+      title: "Dissolution du pacte de Varsovie",
+      description:
+        "L'alliance militaire de l'Est se dissout : l'élargissement de l'OTAN, censé avoir été promis en 1990, ne pouvait donc pas figurer dans un accord de réunification négocié tandis que le pacte existait encore.",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "1994-12-05",
+      title: "Mémorandum de Budapest",
+      description:
+        "La Russie signe avec le Royaume-Uni et les États-Unis un mémorandum qui l'engage à « respecter l'indépendance et la souveraineté ainsi que les frontières existantes » de l'Ukraine, en échange de la renonciation ukrainienne à l'arme nucléaire. Aucune restriction au droit de l'Ukraine de choisir ses alliances.",
+      evidence_ref: "Pièce #02",
+    },
+    {
+      date: "2014-10-16",
+      title: "Gorbatchev : « le sujet de l'expansion de l'OTAN n'a pas du tout été discuté »",
+      description:
+        "Le signataire soviétique du traité, interrogé par Russia Beyond, affirme en pleine responsabilité que l'expansion de l'OTAN n'a pas été discutée en 1990 — coupant court à l'idée d'un engagement de non-élargissement discuté puis trahi.",
+      evidence_ref: "Pièce #03",
+    },
+    {
+      date: "2017-12-12",
+      title: "National Security Archive : « non dans des traités, mais dans des mémorandums »",
+      description:
+        "La publication des documents déclassifiés (« NATO Expansion: What Gorbachev Heard ») établit où vivent les assurances de 1990 : des comptes rendus de conversations entre dirigeants, tout au long de 1990 et 1991 — jamais un texte signé de non-élargissement.",
+      evidence_ref: "Pièce #04",
+    },
+    {
+      date: "2022-03",
+      title: "Trois vérifications, une même conclusion",
+      description:
+        "CheckNews (2 mars), Le Figaro (7 mars) et l'historienne M. E. Sarotte sur NPR (17 mars) confrontent l'argument au dossier documentaire : « il n'y a pas eu de traité formel », « une telle promesse n'a jamais été faite » — l'OTAN elle-même le dément.",
+      evidence_ref: "Pièces #05-07",
+    },
+  ],
   sources: [
     {
       id: "ae9c5951-e704-40f9-86c6-4111fa5c8bf2",
@@ -6282,6 +6398,78 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
   illustration_url: "/illustrations/carte-mondiale-qi-pays-afrique-fraude-lynn.jpg",
   illustration_credit:
     "Portrait : Gothick, 2008 — CC BY-SA 3.0, Wikimedia Commons",
+  timeline: [
+    {
+      date: "2002",
+      title: "« IQ and the Wealth of Nations »",
+      description:
+        "Richard Lynn et Tatu Vanhanen publient les ouvrages dont la carte virale reprendra les données : dès l'origine, 104 des 185 pays couverts n'ont aucun score mesuré, seulement des valeurs extrapolées.",
+      evidence_ref: null,
+    },
+    {
+      date: "2009-12",
+      title: "Les audits de l'université d'Amsterdam",
+      description:
+        "Deux revues systématiques examinent les échantillons africains de la base : moyenne d'environ 82 face aux normes britanniques, 48 enfants de Guinée équatoriale en réalité testés en Espagne, et les échantillons dépassant 75 écartés parce que jugés non représentatifs — « méthodes douteuses, résultats non fiables ».",
+      evidence_ref: "Pièces #04-05",
+    },
+    {
+      date: "2012",
+      title: "Lynn prend la présidence du Pioneer Fund",
+      description:
+        "Après des centaines de milliers de dollars de subventions reçues directement et via l'Ulster Institute, Richard Lynn prend la tête du Pioneer Fund, fonds créé en 1937 pour financer la recherche eugéniste.",
+      evidence_ref: "Pièce #12",
+    },
+    {
+      date: "2018-04-14",
+      title: "L'université d'Ulster retire son titre de professeur émérite",
+      description:
+        "Première sanction institutionnelle visant Lynn, rapportée par la BBC : le titre d'emeritus, normalement accordé à vie, lui est retiré après une motion du syndicat étudiant dénonçant des prises de position « racistes et sexistes ».",
+      evidence_ref: "Pièce #01",
+    },
+    {
+      date: "2019-11-14",
+      title: "La carte devient virale — et passée au crible",
+      description:
+        "Après un raid de comptes d'extrême droite, la carte explose sur Twitter ; le jour même, CheckNews et Franck Ramus (CNRS) en documentent la fabrique : tests non comparables, péréquations discutables, extrapolations à partir des pays voisins.",
+      evidence_ref: "Pièces #09-10",
+    },
+    {
+      date: "2020-07-27",
+      title: "EHBEA : « scientifically unsound, systematically biased, and ethically problematic »",
+      description:
+        "La société savante européenne de biologie et d'écologie évolutives humaines examine le jeu de données et demande aux chercheurs de ne plus l'utiliser : seuls les échantillons aux scores les plus bas étaient retenus, « introduisant un biais racial à la base même du jeu de données ».",
+      evidence_ref: "Pièce #02",
+    },
+    {
+      date: "2022",
+      title: "Le jeu de données cité dans le manifeste de Buffalo",
+      description:
+        "La base de « QI nationaux » est citée dans le manifeste de l'auteur de l'attentat raciste de Buffalo : la chercheuse qui documente ces usages rappelle « the potential harms created by using a dataset » qui dépeint des populations entières comme inférieures à la normale.",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "2023-11-24",
+      title: "« Bad science » : vingt ans de critiques documentées",
+      description:
+        "Rebecca Sear (LSE) montre la fabrique du « 70 » africain : Érythrée « entièrement estimée à partir d'enfants vivant en orphelinat », Angola « à partir de 19 personnes » — un jeu de données toujours utilisé malgré vingt ans de critiques.",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "2024-03-06",
+      title: "Rétractation par la Royal Society",
+      description:
+        "Le Proceedings B rétracte un article de 2010 bâti sur ces données : les problèmes manifestes du jeu de données et les dommages de son usage justifient la rétractation, pour maintenir les standards de la revue.",
+      evidence_ref: "Pièce #03",
+    },
+    {
+      date: "2024-09-20",
+      title: "Les Surligneurs : 104 pays sans mesure, la carte refait surface",
+      description:
+        "La version 2024 de la carte est remise en circulation jusqu'à un député : le coauteur du jeu de données reconnaît que la majorité des pays n'ont jamais eu de score mesuré, tandis que les scientifiques rappellent qu'un QI « dépendant du contexte culturel n'est pas transportable d'un endroit à l'autre de la planète ».",
+      evidence_ref: "Pièce #11",
+    },
+  ],
   sources: [
     {
       id: "efa9a88d-5b04-415c-9357-c78798d43c89",

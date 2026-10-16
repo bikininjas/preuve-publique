@@ -767,8 +767,13 @@ carmin `#991B1B` sur un dossier FAUX, ambre `#92400E` sur un anachronisme, repè
 coupe présents) et la **chaîne de custode** — migration `0009` (`timeline` JSONB, `[]`
 par défaut, 28 dossiers intacts, appliquée sur un Postgres jetable avant la base), frise
 vérifiée au navigateur (axe pointillé `stone-400`, cartes `#FFFDF9`, horodatages mono,
-renvois de pièces, rail `04 / CHAÎNE DE CUSTODE`). Aucun dossier ne porte encore d'étapes :
-la frise restera discrète tant qu'elles ne seront pas documentées — rien n'a été inventé.
+renvois de pièces, rail `04 / CHAÎNE DE CUSTODE`). Les premières frises documentées sont
+arrivées dans la foulée : **OTAN-Russie** (7 étapes, 1990-02-09 → 2022-03), **Hitler « de
+gauche »** (9 étapes, 1920 → 1934-1937) et **carte mondiale du QI** (10 étapes, 2002 →
+2024-09-20) — chaque étape datée sur les pièces du dossier lui-même, avec son renvoi
+(« Pièce #04 ») quand elle s'y adosse ; appliquées en base par un script ciblé passant par
+le validateur (sans réappliquer le seed — les fiches d'archive des autres dossiers restent
+intactes), servies en ligne à la requête.
 
 Le même jour (13:10 UTC), l'ajout du dossier « grand remplacement » (douze sources, verdict
 inédit `CONSPIRATIONNISTE` porté par la migration `0010`, deux statuts de brique —
