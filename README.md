@@ -223,11 +223,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
     répond 200 (deux tests de non-régression couvrent ce point).
 - **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
   `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 16/10/2026 —
-  `preuve-publique-git-00020-ns2` (carte OpenGraph, chaîne de custode, dossier « grand
-  remplacement » et ses verdicts inédits ; `/api/health` → `status: healthy`,
-  `database.reachable: true` ; le dossier répond 200, son `ETag` et son
-  `X-Proof-Integrity-Root` égalent la racine recalculée par `npm run proofs`, et son
-  image de partage répond 200). Déploiement manuel par
+  `preuve-publique-git-00023-sbs` (dossier « politique d'Emmanuel Macron » et son verdict
+  inédit `ABSURDE`, après les livraisons OpenGraph, chaîne de custode et « grand
+  remplacement » ; `/api/health` → `status: healthy`, `database.reachable: true` ; le
+  dossier répond 200, son `ETag` et son `X-Proof-Integrity-Root` égalent la racine
+  recalculée par `npm run proofs`, et son image de partage répond 200). Déploiement manuel par
   `gcloud builds submit --config cloudbuild.yaml --project preuve-publique` (aucun
   déclencheur automatique).
 - **Chaîne d'archivage** : en service depuis le 15/10/2026 — les **178 pièces publiées**
@@ -341,8 +341,9 @@ Cour des comptes, le premier bilan du Sénat, le rapport final du comité d'éva
 France Stratégie, l'opinion libérale de Contrepoints, le compte rendu des Échos et le
 bilan de gauche de l'OFCE. Les douze pièces du dossier sont capturées en instantané
 réseau ; sa racine d'intégrité `7e933b74b2ee3e93…` est recalculée par `npm run proofs`,
-et son égalité avec l'`ETag` et le `X-Proof-Integrity-Root` est vérifiée après le
-déploiement.
+et son égalité avec l'`ETag` et le `X-Proof-Integrity-Root` a été vérifiée en ligne
+sous la révision `preuve-publique-git-00023-sbs` (`ETag` = `X-Proof-Integrity-Root` =
+`7e933b74b2ee3e93…`).
 
 ## Pile technique
 
