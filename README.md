@@ -205,7 +205,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   textes réglementaires ont été lus au Bulletin officiel, et les pages bloquées (403)
   recoupées via leurs instantanés Wayback — l'expression « théorie du genre » ne figure
   dans aucun des textes produits par l'éducation nationale.
-- **Application** : `npm run typecheck`, `npm test` (**78 tests**) et `npm run build`
+- **Application** : `npm run typecheck`, `npm test` (**82 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
@@ -310,6 +310,21 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   deux statuts de brique, `COMPLOTISME` et `BIAIS_ESSENTIALISTE` ; sa racine d'intégrité est
   `5121bcbe8bbae307…`, égale à l'`ETag` et au `X-Proof-Integrity-Root` relevés en ligne.
 
+Puis, le 16/10/2026 (14:00 UTC), les **résumés de verdict** des vingt-huit dossiers publiés
+ont été aérés en paragraphes distincts : soixante-trois césures posées une à une dans
+`seed-fallback.ts` (ligne vide à l'articulation logique du texte, deux à quatre paragraphes
+par dossier), rendues en `<p>` séparés sur le cartouche (« Affirmation examinée ») et dans
+la vue « 30 secondes », aplaties en une ligne pour les balises meta. En base, un script
+ciblé n'a réécrit que le champ `verdict_summary` — dossier par dossier, chacun passant par
+le validateur, sans réappliquer le seed : les **232 fiches d'archive restent intactes**
+(aucune recapture), et le texte aéré était servi en ligne sans déploiement. Un test de
+contenu vérifie désormais que tout dossier publié du seed rend au moins deux paragraphes.
+Au même moment, la **fiche de pièce** a été rééquilibrée : l'identification de la source
+sort de la colonne étroite (où un titre bibliographique s'étirait sur 578 px de haut) et
+rejoint sa citation ; la colonne de droite ne porte que scellements et actions. Hauteur de
+carte mesurée au navigateur : 905 px avant, 503 px après ; débordement mobile contrôlé à
+390 px.
+
 ## Pile technique
 
 | Brique | Choix |
@@ -331,7 +346,8 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 78 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie
+npm test               # 82 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
+                       #            résumés en paragraphes
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité
@@ -470,7 +486,10 @@ disparaîtrait sur le fond sombre.
 
 - **Cartouche de dossier** : cote technique **réelle** (`PP-` + 8 caractères de
   l'identifiant du dossier), nombre de pièces, empreintes présentes, piliers documentés,
-  racine d'intégrité. Aucun numéro de registre n'est inventé.
+  racine d'intégrité. Aucun numéro de registre n'est inventé. Sous l'affirmation, le
+  **résumé du verdict est aéré en paragraphes distincts** — les césures sont marquées par
+  une ligne vide dans le seed et rendues en `<p>` séparés (`verdictParagraphs`), jamais
+  fabriquées au rendu ; les balises meta, elles, aplatissent les césures en une ligne.
 - **Tampon de verdict** : double cadre épais (3 px, second cadre à 5 px d'inset),
   rotation de -2°, typographie Space Grotesk en capitales à large approche, ombre interne
   d'encrage, manque d'encre (masque SVG d'éclats) et **impact à l'apparition** (110 % →
@@ -506,10 +525,14 @@ disparaîtrait sur le fond sombre.
 - **Pièces à conviction** : cote `PIÈCE #01`, en-tête « 📎 Pièce certifiée » (seulement
   quand la pièce porte une empreinte publiée — sinon « empreinte à venir » : le site
   n'annonce jamais un scellé qui n'existe pas), citation surlignée quand elle est exacte
-  (jamais pour un fait documenté), pied cryptographique, et bouton **« Auditer l'empreinte »**
-  qui recalcule l'empreinte **dans le navigateur du lecteur** (`crypto.subtle.digest`), sans
-  appel réseau. Pendant le calcul, le terminal déroule la **chaîne canonique réelle**,
-  caractère par caractère — pas des octets hexadécimaux de décor.
+  (jamais pour un fait documenté), **attribution sous la citation** (nom de la source puis
+  institution, caviardables) — la colonne de droite ne porte plus que les scellements et
+  les actions : empreinte abrégée, bouton **« Auditer l'empreinte »** qui recalcule
+  l'empreinte **dans le navigateur du lecteur** (`crypto.subtle.digest`), sans appel réseau,
+  table lumineuse, liens de capture et de document. Pendant le calcul, le terminal déroule
+  la **chaîne canonique réelle**, caractère par caractère — pas des octets hexadécimaux de
+  décor. Une colonne de 240 px ne peut pas porter un titre bibliographique sans étirer la
+  carte : mesurée au navigateur, la fiche passe de 905 px à 503 px de haut.
 - **Extraits officiels mis en valeur** : chaque extrait de pièce repose sur un papier
   d'archive (ambre discret, texture de papier ancien) ; le trait de surligneur (bordure
   ambre « stabilo d'archive ») reste réservé au verbatim — un fait documenté reçoit le

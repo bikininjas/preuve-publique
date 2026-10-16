@@ -25,6 +25,7 @@ import ShareDebateButton from "@/components/ShareDebateButton";
 import VerdictStamp from "@/components/VerdictStamp";
 import { getPublishedDossier } from "@/server/services/dossier.service";
 import { computeIntegrityRoot } from "@/server/services/crypto.service";
+import { singleLineSummary, verdictParagraphs } from "@/lib/summary";
 import {
   CATEGORY_LABELS,
   CATEGORY_SLUGS,
@@ -52,11 +53,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const dossier = result.value;
   return {
     title: dossier.claim_title,
-    description: dossier.verdict_summary,
+    description: singleLineSummary(dossier.verdict_summary),
     openGraph: {
       type: "article",
       title: dossier.claim_title,
-      description: dossier.verdict_summary,
+      description: singleLineSummary(dossier.verdict_summary),
       url: `https://preuve-publique.fr/dossiers/${dossier.slug}`,
       locale: "fr_FR",
       siteName: "Preuve publique",
@@ -67,7 +68,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: "summary_large_image",
       title: dossier.claim_title,
-      description: dossier.verdict_summary,
+      description: singleLineSummary(dossier.verdict_summary),
       images: [`/dossiers/${dossier.slug}/opengraph-image`],
     },
   };
@@ -171,9 +172,13 @@ export default async function DossierPage({ params }: PageProps) {
         </span>
       </div>
 
-      <p className="pp-lead text-ink">
-        <CaviardFigures text={dossier.verdict_summary} />
-      </p>
+      <div className="space-y-4">
+        {verdictParagraphs(dossier.verdict_summary).map((paragraph, index) => (
+          <p key={index} className="pp-lead text-ink">
+            <CaviardFigures text={paragraph} />
+          </p>
+        ))}
+      </div>
 
       <div className="space-y-2">
         <p className="pp-meta text-muted">Ce que dit l&apos;affirmation, brique par brique</p>

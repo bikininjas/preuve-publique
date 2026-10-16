@@ -6,6 +6,7 @@ import {
   formatDate,
 } from "@/lib/labels";
 import { CaviardFigures } from "@/components/BlindModeSwitch";
+import { verdictParagraphs } from "@/lib/summary";
 import type { Dossier } from "@/lib/types";
 
 /**
@@ -60,9 +61,13 @@ export default function DossierHero({
             <em className="not-italic">{dossier.claim_title}</em>
             <span className="text-muted">&nbsp;»</span>
           </h1>
-          <p className="mt-5 max-w-3xl font-sans text-base leading-relaxed text-muted">
-            <CaviardFigures text={dossier.verdict_summary} />
-          </p>
+          <div className="mt-6 max-w-3xl space-y-4 font-sans text-base leading-relaxed text-muted">
+            {verdictParagraphs(dossier.verdict_summary).map((paragraph, index) => (
+              <p key={index}>
+                <CaviardFigures text={paragraph} />
+              </p>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col justify-between gap-6 bg-surface2 px-5 py-8 sm:px-8">

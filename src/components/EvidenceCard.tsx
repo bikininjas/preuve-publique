@@ -137,16 +137,9 @@ export default function EvidenceCard({
             </span>
           </blockquote>
 
-          {/* Le commentaire est utile mais long : il ne mange plus trois
-              lignes de lecture avant la pièce suivante. */}
-          <details className="pp-fold mt-3">
-            <summary>Pourquoi cette pièce compte</summary>
-            <p className="pp-tight px-3 py-3 text-muted">{source.context_explanation}</p>
-          </details>
-        </div>
-
-        <div className="flex flex-col gap-3 bg-surface2 px-3 py-3 sm:px-5 sm:py-4">
-          <div className="space-y-0.5 font-mono text-[13px] leading-snug text-muted">
+          {/* L'attribution appartient à la citation : nom de la source puis
+              institution, sous l'extrait, sur la largeur du texte. */}
+          <div className="mt-3 space-y-0.5 font-mono text-[13px] leading-snug text-muted">
             <p className="text-ink">
               <Caviard>{source.source_name}</Caviard>
             </p>
@@ -157,6 +150,18 @@ export default function EvidenceCard({
             </p>
           </div>
 
+          {/* Le commentaire est utile mais long : il ne mange plus trois
+              lignes de lecture avant la pièce suivante. */}
+          <details className="pp-fold mt-3">
+            <summary>Pourquoi cette pièce compte</summary>
+            <p className="pp-tight px-3 py-3 text-muted">{source.context_explanation}</p>
+          </details>
+        </div>
+
+        {/* Scellements et actions seulement : l'identification de la source
+            vit sous sa citation — une colonne de 240 px ne peut pas porter un
+            titre bibliographique sans étirer la carte sur 900 px. */}
+        <div className="flex flex-col gap-3 bg-surface2 px-3 py-3 sm:px-5 sm:py-4">
           <div className="space-y-1.5">
             {source.archive_sha256 ? (
               <>
