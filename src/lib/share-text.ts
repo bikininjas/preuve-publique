@@ -34,6 +34,13 @@ const INSTITUTIONAL_PILLARS: PoliticalSpectrum[] = [
 const NAME_LIMIT = 80;
 
 /**
+ * Au-delà de cette longueur, le nom ressemble à une notice bibliographique
+ * (« Agence internationale de l'énergie, rapport annuel Global EV Outlook,
+ * publié le… ») : préféré seulement faute de candidat plus court.
+ */
+const SHORT_NAME_LIMIT = 60;
+
+/**
  * Une pièce portée par un entretien se cite par son média ou son auteur, pas
  * par la formule de l'entretien : « Propos recueillis par… » n'est pas une
  * institution qui démentit.
@@ -90,30 +97,57 @@ export function institutionName(raw: string): string {
 /**
  * Les institutions citées par le démenti : les deux pièces les plus
  * institutionnelles du dossier, à institutions distinctes quand c'est
- * possible — deux pièces du même auteur ne feraient pas deux démentis.
+ * possible — deux pièces du même auteur ne feraient pas deux démentis. Les
+ * noms courts passent d'abord : une institution se cite par son nom, pas par
+ * sa notice bibliographique.
  */
 export function headlineInstitutions(sources: DossierSource[]): string[] {
-  const ranked = sources
+  const candidates = sources
     .filter((source) => INSTITUTIONAL_PILLARS.includes(source.spectrum))
     .sort(
       (left, right) =>
         INSTITUTIONAL_PILLARS.indexOf(left.spectrum) - INSTITUTIONAL_PILLARS.indexOf(right.spectrum) ||
         left.display_order - right.display_order,
-    );
-  const names: string[] = [];
-  for (const source of ranked) {
-    if (BYLINE.test(source.author_or_institution)) {
-      continue;
+    )
+    .filter((source) => !BYLINE.test(source.author_or_institution))
+    .map((source) => institutionName(source.author_or_institution))
+    .filter((name) => name !== "");
+
+  /* Un nom déjà cité, ou qui contient une institution déjà citée (« Caroline
+     Mir et Hamza El Jebbari, ADEME » après « ADEME »), ne compte pas pour un
+     second démenti : c'est la même institution. */
+  const collect = (accept: (name: string) => boolean): string[] => {
+    const kept: string[] = [];
+    for (const name of candidates) {
+      if (!accept(name)) {
+        continue;
+      }
+      if (
+        kept.some(
+          (one) =>
+            name === one ||
+            (one.length >= 4 && name.includes(one)) ||
+            (name.length >= 4 && one.includes(name)),
+        )
+      ) {
+        continue;
+      }
+      kept.push(name);
+      if (kept.length === 2) {
+        break;
+      }
     }
-    const name = institutionName(source.author_or_institution);
-    if (name !== "" && !names.includes(name)) {
-      names.push(name);
-    }
-    if (names.length === 2) {
-      break;
-    }
+    return kept;
+  };
+
+  const short = collect((name) => name.length <= SHORT_NAME_LIMIT);
+  if (short.length === 2) {
+    return short;
   }
-  return names;
+  /* Pas deux noms courts : on reprend la sélection complète (les noms longs ne
+     sont qu'un repli), sans dupliquer ce qui est déjà retenu. */
+  const full = collect(() => true);
+  return full.length > short.length ? full : short;
 }
 
 /** Énumération française : « A », « A et B », « A, B et C ». */

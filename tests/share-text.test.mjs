@@ -116,6 +116,17 @@ test("deux pièces de la même institution ne font pas deux démentis", () => {
   assert.deepEqual(headlineInstitutions(sources), ["Insee", "INED"]);
 });
 
+test("une pièce signée par des auteurs de l'institution déjà citée ne compte pas deux fois", () => {
+  const sources = [
+    makeSource({ spectrum: "DONNEES_BRUTES_OFFICIELLES", author_or_institution: "ADEME", display_order: 1 }),
+    makeSource({ spectrum: "DONNEES_BRUTES_OFFICIELLES", author_or_institution: "Caroline Mir et Hamza El Jebbari, ADEME", display_order: 2 }),
+    makeSource({ spectrum: "CONSENSUS_ACADEMIQUE", author_or_institution: "GIEC", display_order: 3 }),
+    makeSource({ spectrum: "CENTRE", author_or_institution: "Agence internationale de l'énergie, rapport annuel Global EV Outlook, publié le 24 avril 2024", display_order: 4 }),
+  ];
+  /* Noms courts d'abord : « ADEME » et « GIEC » plutôt que la notice de l'AIE. */
+  assert.deepEqual(headlineInstitutions(sources), ["ADEME", "GIEC"]);
+});
+
 test("un entretien n'est pas une institution : la pièce est écartée du démenti nommé", () => {
   const sources = [
     makeSource({ spectrum: "CENTRE", author_or_institution: "Propos recueillis par Virginie Larousse", display_order: 1 }),
