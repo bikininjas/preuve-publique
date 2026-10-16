@@ -238,9 +238,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
     répond 200 (deux tests de non-régression couvrent ce point).
 - **Déploiement** : le service Cloud Run `preuve-publique-git` (projet `preuve-publique`,
   `europe-west1`) sert `preuve-publique.fr` ; révision en ligne vérifiée le 16/10/2026 —
-  `preuve-publique-git-00025-n8t` (dossiers « politique d'Emmanuel Macron » — `ABSURDE` —,
-  « racisme anti-blanc systémique » — `CONFUSION_CONCEPTUELLE` — et « notes de frais des
-  parlementaires » — `CADRE_REGLEMENTAIRE_RESTREINT` —, après les livraisons
+  `preuve-publique-git-00031-ktr` (dossiers « politique d'Emmanuel Macron » — `ABSURDE` —,
+  « racisme anti-blanc systémique » — `CONFUSION_CONCEPTUELLE` —, « notes de frais des
+  parlementaires » — `CADRE_REGLEMENTAIRE_RESTREINT` — et « colonies israéliennes » —
+  `CONTRAIRE_AU_DROIT_INTERNATIONAL` —, ainsi que la page de mentions légales, après les
+  livraisons
   OpenGraph, chaîne de custode et « grand remplacement » ; `/api/health` → `status: healthy`, `database.reachable: true` ; le
   dossier répond 200, son `ETag` et son `X-Proof-Integrity-Root` égalent la racine
   recalculée par `npm run proofs`, et son image de partage répond 200). Déploiement manuel par
