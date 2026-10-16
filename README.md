@@ -34,10 +34,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   enfants (7, société), la « théorie du genre » à l'école (10, société) et les deux
   dossiers Religion — l'union du prophète de l'islam avec Aïcha qualifiée de
   « pédophilie » (9, Religion, anachronisme historique) et « l'islam, seule religion
-  scripturairement homophobe et transphobe » (8, Religion, généralisation abusive) —
+  scripturairement homophobe et transphobe » (12, Religion, généralisation abusive) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 181 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 185 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -576,7 +576,31 @@ dédupliquées, une par pièce. Le build déployé alors en ligne, antérieur à
 connaissait ni la catégorie « Religion » ni les deux nouveaux verdicts : il refusait de
 lire les deux lignes ajoutées (le registre affichait une erreur de lecture). Un
 redéploiement (`gcloud builds submit --config cloudbuild.yaml`) a mis en ligne la
-révision `preuve-publique-git-00006-pfj`, qui les sert normalement. Le
+révision `preuve-publique-git-00006-pfj`, qui les sert normalement.
+
+Puis, le 16/10/2026 (08:01 UTC), l'enrichissement du dossier « l'islam, seule religion
+scripturairement homophobe et transphobe » (huit → douze sources : le rapport de Human
+Rights Watch sur l'exportation coloniale de la « section 377 » — pièce de gauche —,
+l'étude d'Elif Ceylan Özsoy sur la « dépénalisation » ottomane de 1858 (*Journal of
+Homosexuality*, 2020), l'article de Farrah Jafari sur la fatwa de Khomeini (*JMEWS*,
+2014) et « The Effeminates of Early Medina » d'Everett K. Rowson (*JAOS*, 1991) ; une
+troisième prémisse — « La répression pénale actuelle découle uniquement du dogme » — et
+le statut **biais de sélection** pour la première) a été **appliqué de façon ciblée** —
+sans réapplication complète du seed : **12 fiches** déposées et relues — 11
+`URL_SNAPSHOT`, 1 `URL_UNAVAILABLE` (l'éditeur Duke répond 403 aux robots ; le résumé
+de la pièce est repris des métadonnées d'édition, OpenAlex et Crossref concordants) —
+racine des captures `e197be7289786f61…` ; fiches dédupliquées, une par pièce, zéro
+orpheline. Le dossier porte les **six piliers**. Le registre compte désormais
+**185 sources et 185 fiches** ; l'énumération des statuts de brique accueille
+`ANACHRONISME_CONCEPTUEL`, `DOUBLE_STANDARD`, `BIAIS_METHODOLOGIQUE` et
+`BIAIS_DE_SELECTION`, et le lecteur de la base connaît ces valeurs — sans quoi les
+prémisses concernées étaient écartées à la lecture. En ligne (révision
+`preuve-publique-git-00007-p2n`) : les trois prémisses et les douze sources sont
+servies, `ETag` = `X-Proof-Integrity-Root` = `99e7169f0cc0610748…` relevés en ligne
+égaux à la racine recalculée par `npm run proofs`, une fiche rehachée octet pour
+octet, `/api/verify` confirme la pièce Human Rights Watch.
+
+Le
 **miroir Storage** n'a pas eu lieu faute d'accès
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
