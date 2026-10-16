@@ -5,7 +5,16 @@ import { useState } from "react";
 import { PREMISE_STATUS_LABELS } from "@/lib/labels";
 import type { Premise, PremiseStatus } from "@/lib/types";
 
-const STATUSES: PremiseStatus[] = ["VRAI", "VRAI_DETOURNE", "CONFUSION_CONCEPTUELLE", "FAUX"];
+const STATUSES: PremiseStatus[] = [
+  "VRAI",
+  "VRAI_DETOURNE",
+  "CONFUSION_CONCEPTUELLE",
+  "ANACHRONISME_CONCEPTUEL",
+  "DOUBLE_STANDARD",
+  "BIAIS_METHODOLOGIQUE",
+  "BIAIS_DE_SELECTION",
+  "FAUX",
+];
 
 const INPUT = "mt-1 min-h-[44px] w-full border border-grid bg-canvas px-3 text-ink";
 const TEXTAREA = "mt-1 w-full border border-grid bg-canvas px-3 py-2 text-ink";

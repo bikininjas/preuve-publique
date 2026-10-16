@@ -33,11 +33,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   de races biologiques humaines (8, société), l'homoparentalité et le développement des
   enfants (7, société), la « théorie du genre » à l'école (10, société) et les deux
   dossiers Religion — l'union du prophète de l'islam avec Aïcha qualifiée de
-  « pédophilie » (6, Religion, anachronisme historique) et « l'islam, seule religion
+  « pédophilie » (9, Religion, anachronisme historique) et « l'islam, seule religion
   scripturairement homophobe et transphobe » (8, Religion, généralisation abusive) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 178 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 181 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -246,7 +246,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   captures `681a47e0…`. L'enrichissement du dossier « théorie du genre » (16:04 UTC,
   dix sources) a entraîné une ultime réapplication et recapture : **164 fiches exactes**,
   une par pièce publiée (132 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`) —
-  racine des captures `ceb48ce6e1a0f092…`.
+  racine des captures `ceb48ce6e1a0f092…`. Les deux dossiers Religion (23 dossiers publiés,
+  178 sources) puis l'enrichissement du dossier « union du prophète avec Aïcha »
+  (neuf sources ; 16/10/2026, 07:45 UTC) portent le registre à 181 sources et **181 fiches
+  d'archive** — 151 `URL_SNAPSHOT`, 27 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des
+  captures `f841ad6ce14a4a19…`.
 
 ## Pile technique
 
@@ -563,7 +567,12 @@ fiches d'archive des vingt-deux autres dossiers : les deux dossiers sont publié
 des captures `4d88da3fee113838…` ; huit pour le droit comparé, racine
 `417bf2285aef617f…`). Le registre compte désormais 24 dossiers (23 publiés) et
 178 sources, avec leurs 178 fiches d'archive (146 `URL_SNAPSHOT`, 29 `URL_UNAVAILABLE`,
-3 `METADATA_ONLY`). Le build déployé alors en ligne, antérieur à la migration `0007`, ne
+3 `METADATA_ONLY`). Puis, le 16/10/2026 (07:45 UTC), l'enrichissement du dossier « union du
+prophète avec Aïcha » (neuf sources — trois prémisses et trois sources documentaires
+ajoutées) a entraîné une réapplication complète du seed et la recapture des vingt-trois
+dossiers publiés : **181 fiches** déposées et relues — 151 `URL_SNAPSHOT`, 27
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `f841ad6ce14a4a19…` ; fiches
+dédupliquées, une par pièce. Le build déployé alors en ligne, antérieur à la migration `0007`, ne
 connaissait ni la catégorie « Religion » ni les deux nouveaux verdicts : il refusait de
 lire les deux lignes ajoutées (le registre affichait une erreur de lecture). Un
 redéploiement (`gcloud builds submit --config cloudbuild.yaml`) a mis en ligne la

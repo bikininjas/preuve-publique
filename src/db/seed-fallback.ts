@@ -4117,20 +4117,26 @@ export const AICHA_ANACHRONISME_DOSSIER: Dossier = {
     },
   ],
   verdict_summary:
-    "Qualifier de « pédophilie » l'union du prophète de l'islam avec ʿĀʾiša applique à l'Arabie du VIIe siècle une catégorie nosologique forgée à la fin du XIXe siècle : le terme « paedophilia erotica » n'apparaît dans la Psychopathia Sexualis de Richard von Krafft-Ebing que dans une édition tardive, avec la nomenclature psychiatrique des préférences d'âge qui se met alors en place. Dans l'Antiquité et au Moyen Âge, les alliances nouées autour de la puberté constituaient la règle juridique et sociale — le droit romain fixait l'âge légal du mariage des filles à douze ans — et l'Europe médiévale pratiquait les mêmes mariages précoces d'alliance. Quant au récit des « neuf ans », la critique historico-critique des chaînes de transmission (thèse de Joshua J. Little, Oxford, 2022) établit que toutes les versions du hadith remontent à un archétype unique, diffusé par le transmetteur médinois Hišām b. ʿUrwa après son départ pour l'Irak à la fin de sa vie, probablement en réponse à des polémiques proto-chiites contre sa grand-tante : une mémoire de la fin du VIIIe siècle, non une donnée biographique contemporaine des faits. Le dossier démontre un vice de méthode — l'usage rétroactif d'un concept clinique moderne adossé à une tradition textuelle tardive ; il ne prétend pas trancher l'âge exact de ʿĀʾiša.",
+    "Qualifier de « pédophilie » l'union du prophète de l'islam avec ʿĀʾiša applique à l'Arabie du VIIe siècle une catégorie nosologique forgée à la fin du XIXe siècle. Le diagnostic clinique moderne — la paraphilie envers les prépubères, décrite par le DSM-5 (APA, 2013) et par la CIM-11 (OMS, 2019, code 6D32) — prolonge une nomenclature savante dont les termes datent de la sexologie viennoise : « paedophilia erotica » est forgé par Richard von Krafft-Ebing dans un article de 1896, après sa Psychopathia Sexualis de 1886, et n'entre dans l'ouvrage qu'à sa dixième édition allemande (1898). Dans l'Antiquité et au Moyen Âge, les alliances nouées autour de la puberté constituaient la règle juridique et sociale — le droit romain fixait la nubilité des filles à douze ans — et l'Europe des cours chrétiennes pratiquait les mêmes mariages précoces d'alliance (Isabelle de Hainaut, épousée à dix ans par Philippe Auguste en 1180) : rien d'une singularité arabe. Quant au récit des « neuf ans », la critique historico-critique appliquée aux traditions musulmanes — la méthode isnad-cum-matn, qui confronte les chaînes de transmission (isnād) et le contenu (matn) — établit (Joshua J. Little, Oxford, 2022) que toutes les versions du hadith remontent à un archétype unique, créé et diffusé par le transmetteur médinois Hišām b. ʿUrwa après son installation en Irak à la fin de sa vie, probablement en réponse à des polémiques irakiennes contre sa grand-tante : une mémoire de la fin du VIIIe siècle, deux siècles après les faits, non une donnée biographique contemporaine. Le dossier démontre un vice de méthode — l'usage rétroactif d'un concept clinique moderne adossé à une tradition textuelle tardive ; il ne prétend pas trancher l'âge exact de ʿĀʾiša.",
   consensus_score: 100,
   premises: [
     {
-      claim_part: "« La notion clinique de pédophilie s'applique aux sociétés du VIIe siècle »",
-      status: "CONFUSION_CONCEPTUELLE",
+      claim_part: "« La notion clinique de pédophilie s'applique au VIIe siècle »",
+      status: "ANACHRONISME_CONCEPTUEL",
       detail:
-        "La « pédophilie » n'est pas une catégorie transhistorique : elle naît de la psychiatrie et de la sexologie du XIXe siècle, quand la médecine légale classe les préférences d'âge comme perversion (D. F. Janssen, Medical History, 2015). Le terme « paedophilia erotica » est introduit par Richard von Krafft-Ebing dans une édition tardive de sa Psychopathia Sexualis, à la fin du XIXe siècle. Appliquer telle quelle cette nosographie à une union du VIIe siècle confond une classification clinique moderne avec des coutumes matrimoniales prémodernes.",
+        "La « pédophilie » n'est pas une catégorie transhistorique : c'est un diagnostic clinique construit par la psychiatrie et la sexologie de la fin du XIXe siècle, codifié aujourd'hui par le DSM-5 (APA, 2013) et la CIM-11 (OMS, 2019, code 6D32), qui décrivent une attirance sexuelle envers des enfants prépubères. Le terme « paedophilia erotica » est forgé par Richard von Krafft-Ebing dans un article de 1896 — après sa Psychopathia Sexualis de 1886 — et n'entre dans l'ouvrage qu'à sa dixième édition allemande (1898 ; traduction anglaise 1899, française 1900, D. F. Janssen, Medical History, 2015). Appliquer rétroactivement ce diagnostic à une union du VIIe siècle revient à projeter une nosographie moderne sur des structures matrimoniales prémodernes obéissant à d'autres logiques — nubilité légale, alliances dynastiques, stratégies familiales — que le droit romain comme l'Europe chrétienne organisaient autour de la puberté.",
     },
     {
-      claim_part: "« Le récit des 9 ans est une archive biométrique incontestable »",
-      status: "FAUX",
+      claim_part: "« Le récit des 9 ans est un fait biographique certifié »",
+      status: "BIAIS_METHODOLOGIQUE",
       detail:
-        "Les recueils de hadiths ont été compilés au IXe siècle, deux siècles après les faits. La version la plus connue (Sahih al-Bukhari, n° 5133) porte elle-même la chaîne de transmission — Hišām, d'après son père, d'après ʿĀʾiša — que l'analyse historico-critique (J. J. Little, Oxford, 2022) identifie comme l'archétype unique dont dérivent toutes les variantes, diffusé en Irak à la fin du VIIIe siècle. Rien là d'un enregistrement contemporain : c'est une reconstruction tardive, et l'âge de neuf ans ne peut donc pas être tenu pour un fait établi.",
+        "Les recueils de hadiths ont été compilés au IXe siècle, deux siècles après la mort du prophète (632). La version la plus connue (Sahih al-Bukhari, n° 5133) porte elle-même sa chaîne de transmission — Hišām, d'après son père, d'après ʿĀʾiša — et l'analyse isnad-cum-matn (J. J. Little, Oxford, 2022), qui confronte toutes les chaînes et tous les contenus, identifie un archétype unique créé et diffusé par Hišām b. ʿUrwa après son départ de Médine pour l'Irak, à la fin de sa vie : une élaboration de la fin du VIIIe siècle, et non un enregistrement contemporain des faits. Traiter ce récit comme une « archive » biographique sans appliquer les précautions de la critique historique — celles-là mêmes que la philologie du texte coranique met en œuvre à partir des manuscrits des VIIe-VIIIe siècles (F. Déroche, Collège de France) — relève d'un biais de méthode.",
+    },
+    {
+      claim_part: "« Ces mariages précoces étaient propres à l'Arabie »",
+      status: "DOUBLE_STANDARD",
+      detail:
+        "Le mariage précoce d'alliance n'était ni arabe ni islamique : toute la norme matrimoniale prémoderne l'organisait. La compilation justinienne fixe la nubilité des filles à douze ans et la tradition canonique médiévale conserve cette borne ; les cours chrétiennes descendaient souvent en dessous : Isabelle de Hainaut, âgée de dix ans, épouse le futur Philippe Auguste en 1180, et les fiançailles d'enfants scandent l'histoire dynastique européenne. Juger la seule Arabie du VIIe siècle à l'aune d'une catégorie moderne, en épargnant Rome, Byzance et les royautés chrétiennes — qui pratiquaient les mêmes unions précoces pour des raisons de succession et d'alliance — applique deux mesures à un même fait.",
     },
   ],
   is_published: true,
@@ -4258,6 +4264,70 @@ export const AICHA_ANACHRONISME_DOSSIER: Dossier = {
       archive_binary_sha256: null,
       display_order: 5,
     },
+    {
+      id: "4f039731-ad46-4dd5-b0bc-08165178f4ad",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Institutes de Justinien, livre I — « De nuptiis » et la nubilité des filles fixée à douze ans (texte latin)",
+      author_or_institution:
+        "Justinien Ier (compilation du droit romain, 533 apr. J.-C.) — texte latin servi par The Latin Library",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "pubertatem in masculis post quartum decimum annum completum illico initium accipere disposuimus, antiquitatis normam in femininis personis bene positam suo ordine relinquentes, ut post duodecimum annum completum viripotentes esse credantur.",
+      context_explanation:
+        "Le droit romain, matrice juridique de l'Europe, fixe la nubilité : quatorze ans révolus pour les garçons, douze ans révolus pour les filles, « la norme ancienne bien établie pour les personnes féminines » étant expressément conservée par Justinien. La tradition canonique médiévale reprend ces bornes, et les cours chrétiennes les franchissent souvent vers le bas : Isabelle de Hainaut, née en 1170, est mariée en 1180, à dix ans, au futur Philippe Auguste. Le mariage précoce d'alliance est donc la norme structurelle de tout l'Occident prémoderne — Rome, Byzance, royautés chrétiennes — et nullement une singularité arabe.",
+      original_url:
+        "https://www.thelatinlibrary.com/justinian/institutes1.shtml",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "c5a5f738-17b6-4e32-b0e1-2325e71fbea2",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "DSM-5 (APA) et CIM-11 (OMS) — la pédophilie comme trouble clinique moderne ; les précédents nosologiques de Krafft-Ebing (Psychopathia Sexualis, 1886)",
+      author_or_institution:
+        "American Psychiatric Association — notice « Paraphilic Disorders » du DSM-5 (2013) ; Organisation mondiale de la santé, CIM-11 (code 6D32, 2019) ; Richard von Krafft-Ebing (1886/1896)",
+      publication_date: "2013-05-18",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "To be diagnosed with a paraphilic disorder, DSM-5 requires that people with these interests: feel personal distress about their interest, not merely distress resulting from society's disapproval; or have a sexual desire or behavior that involves another person's psychological distress, injury, or death, or a desire for sexual behaviors involving unwilling persons or persons unable to give legal consent.",
+      context_explanation:
+        "Le « trouble pédophilique » (pedophilic disorder) est une catégorie clinique contemporaine : le DSM-5 (APA, 2013) le définit comme un trouble paraphilique impliquant une attirance sexuelle envers des enfants prépubères, et la CIM-11 (OMS, 2019, code 6D32) décrit « un schéma soutenu, focalisé et intense d'excitation sexuelle » envers des enfants prépubères. Ces catégories prolongent une nomenclature forgée par la sexologie du XIXe siècle : Psychopathia Sexualis de Krafft-Ebing en 1886, terme « paedophilia erotica » forgé dans un article de 1896, entrée dans l'ouvrage seulement à sa dixième édition allemande (1898). Le concept clinique est daté — il n'existait ni au VIIe siècle ni dans aucune société prémoderne.",
+      original_url:
+        "https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Paraphilic-Disorders.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "cc36c372-2671-46b6-a453-33acb65e198f",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Collège de France — chaire « Histoire du Coran. Texte et transmission » (François Déroche) : l'approche historienne et philologique",
+      author_or_institution:
+        "François Déroche, professeur du Collège de France (chaire créée en 2015), membre de l'Institut",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Comme l'indique l'intitulé de la chaire, l'enseignement de François Déroche se place dans une approche historienne du texte coranique. Celle-ci envisage aussi bien des questions relatives à la constitution du Coran dans l'environnement de l'Antiquité tardive que d'autres qui sont liées à la façon dont s'est déroulée sa transmission et qui font appel aux témoins privilégiés que sont les manuscrits qui nous permettent de suivre cette transmission dès le milieu du VIIe siècle, quelques décennies à peine après la mort de Muḥammad.",
+      context_explanation:
+        "La plus haute institution scientifique française pour l'étude du texte coranique revendique une approche historienne et philologique fondée sur les témoins matériels — les manuscrits contemporains des faits — et « le point sur les débats en cours ». C'est cette même exigence méthodologique que la critique historique applique aux récits biographiques tardifs : le hadith des neuf ans, compilé au IXe siècle, est très éloigné des manuscrits du VIIe siècle dont l'histoire du texte peut être retracée. Confondre les deux registres de sources est précisément le biais de méthode que le dossier documente.",
+      original_url:
+        "https://www.college-de-france.fr/fr/chaire/francois-deroche-histoire-du-coran-texte-et-transmission-chaire-statutaire",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Fran%C3%A7ois_D%C3%A9roche",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
   ],
 };
 
@@ -4281,7 +4351,7 @@ export const ISLAM_HOMOPHOBIE_TRANS_DOSSIER: Dossier = {
       kind: "PERSONNE",
       role: "SUJET",
       reference_url: "https://fr.wikipedia.org/wiki/Rouhollah_Khomeini",
-      note: "Une fatwa qui lui est attribuée sur le changement de sexe des personnes intersexes fonde la politique iranienne d'autorisation des chirurgies.",
+      note: "Sa fatwa sur le changement de sexe des personnes intersexes (1967), étendue en 1985 aux personnes trans selon la recherche (F. Jafari), fonde la politique iranienne d'autorisation des chirurgies.",
     },
     {
       name: "Mohamed Sayed Tantawi",
@@ -4306,20 +4376,26 @@ export const ISLAM_HOMOPHOBIE_TRANS_DOSSIER: Dossier = {
     },
   ],
   verdict_summary:
-    "La réprobation scripturaire des rapports entre personnes de même sexe n'est pas propre à l'islam : elle est partagée par les corpus abrahamiques. Le Lévitique (18,22) qualifie l'acte d'« abomination », l'Épître aux Romains (1,26-27) parle de « passions infâmes » et de ce qui est « contre nature », et le Coran fait de l'acte du peuple de Loth une « turpitude » sans précédent (7,80-84 ; 26,165-166). Sur la transition de genre, le droit islamique classique ne la confond pas avec l'orientation sexuelle : il distingue le mukhannath (l'homme efféminé) et le khuntha (la personne au sexe ambigu), ce dernier traité jusque dans les règles d'héritage. L'Iran autorise et subventionne partiellement les chirurgies de réassignation depuis le milieu des années 1980, sur le fondement d'une position attribuée à Khomeini ; en Égypte, la fatwa du mufti Sayed Tantawi (1988) n'ouvre la chirurgie qu'aux personnes intersexes et interdit explicitement le changement de sexe motivé par une identité de genre. L'affirmation selon laquelle l'islam serait « par essence la seule religion scripturairement homophobe et transphobe » est donc une généralisation abusive : elle ignore les interdits bibliques, confond le texte sacré, l'histoire du droit et les politiques étatiques répressives, et passe sous silence les autorisations médicales de transition délivrées dans plusieurs pays musulmans.",
+    "Trois confusions portent cette affirmation. D'abord, la réprobation scripturaire des rapports entre personnes de même sexe n'est pas propre à l'islam : elle est partagée par les corpus abrahamiques — le Lévitique (18,22) qualifie l'acte d'« abomination », l'Épître aux Romains (1,26-27) parle de « passions infâmes » et de ce qui est « contre nature », et le Coran fait de l'acte du peuple de Loth une « turpitude » sans précédent (7,80-84 ; 26,165-166). Ensuite, le droit islamique classique ne confond pas la transition de genre avec l'orientation sexuelle : il distingue le mukhannath (l'homme efféminé) et le khuntha (la personne au sexe ambigu), ce dernier traité jusque dans les règles d'héritage, et plusieurs États musulmans encadrent légalement la réassignation — l'Iran l'autorise et la subventionne partiellement depuis le milieu des années 1980, sur le fondement d'une fatwa attribuée à Khomeini, tandis que la fatwa égyptienne de 1988 (Tantawi) l'ouvre aux personnes intersexes tout en la restreignant pour les motifs identitaires. Enfin, la répression pénale actuelle des rapports homosexuels doit moins au dogme qu'au legs des codes européens du XIXe siècle : la « section 377 » du code pénal indien de 1860 — premier modèle de loi anti-sodomie intégré à un code — a essaimé dans l'Empire britannique, et plus de la moitié des États qui criminalisent encore ces rapports sont d'anciennes possessions britanniques ; quant à l'Empire ottoman, sa réforme pénale de 1858, souvent réduite à une « dépénalisation », a surtout substitué au régime antérieur un code calqué sur le français de 1810 — une lecture rétrospective que la recherche récente conteste. « Par essence la seule religion scripturairement homophobe et transphobe » : la généralisation abusive est donc triple — elle ignore les interdits bibliques, confond le texte sacré, l'histoire du droit et les politiques étatiques, et passe sous silence les autorisations médicales de transition délivrées dans plusieurs pays musulmans.",
   consensus_score: 95,
   premises: [
     {
       claim_part: "« Le rejet scripturaire de l'homosexualité est propre à l'islam »",
-      status: "FAUX",
+      status: "BIAIS_DE_SELECTION",
       detail:
-        "L'interdit textuel est partagé : « Tu ne coucheras point avec un homme comme on couche avec une femme. C'est une abomination » (Lévitique 18,22) ; « leurs femmes ont changé l'usage naturel en celui qui est contre nature » (Épître aux Romains 1,26-27) ; le Coran reprend le motif de Loth (7,80-84 ; 26,165-166). La condamnation religieuse des actes entre hommes est une constante monothéiste classique, non une spécificité musulmane.",
+        "L'interdit textuel est partagé : « Tu ne coucheras point avec un homme comme on couche avec une femme. C'est une abomination » (Lévitique 18,22) ; « leurs femmes ont changé l'usage naturel en celui qui est contre nature » (Épître aux Romains 1,26-27) ; le Coran reprend le motif de Loth (7,80-84 ; 26,165-166). Ne citer que le texte musulman en passant sous silence les interdits bibliques — antérieurs et fondateurs pour les deux autres monothéismes — est un biais de sélection : la spécificité alléguée ne survit pas à l'inventaire complet des textes.",
     },
     {
       claim_part: "« La tradition islamique interdit formellement toute transition de genre »",
-      status: "FAUX",
+      status: "CONFUSION_CONCEPTUELLE",
       detail:
-        "Le droit islamique classique distingue le mukhannath et le khuntha, ce dernier traité dans les traités juridiques (Saqer Almarri, Arcade, Stanford), et l'Iran autorise et subventionne partiellement la chirurgie de réassignation depuis le milieu des années 1980 (A. Najmabadi). La restriction est réelle mais autre : la fatwa égyptienne de 1988 n'ouvre la chirurgie qu'aux personnes intersexes et interdit la transition motivée par une identité de genre — un encadrement, non un interdit général de principe.",
+        "Le droit islamique classique distingue le mukhannath (l'homme efféminé) et le khuntha (la personne au sexe ambigu), ce dernier traité jusque dans les règles d'héritage (Saqer Almarri, Arcade, Stanford ; E. K. Rowson, 1991) : l'affirmation confond l'interdit de l'homosexualité — une question d'orientation — avec un encadrement normé de la transition — une question d'identité et de médecine. L'Iran autorise et subventionne partiellement la chirurgie de réassignation depuis le milieu des années 1980, sur le fondement d'une fatwa attribuée à Khomeini (1967, étendue en 1985 selon la recherche) ; l'Égypte ouvre la chirurgie aux personnes intersexes (fatwa Tantawi, 1988) tout en interdisant la transition motivée par une identité de genre. Un encadrement, donc, non un interdit général de principe.",
+    },
+    {
+      claim_part: "« La répression pénale actuelle découle uniquement du dogme »",
+      status: "ANACHRONISME_CONCEPTUEL",
+      detail:
+        "Les codes qui répriment aujourd'hui les rapports entre personnes de même sexe doivent plus à l'histoire coloniale qu'au seul dogme : la « section 377 » du code pénal indien de 1860 — copiée du Buggery Act anglais — a été exportée dans l'Empire britannique, et plus de la moitié des États qui criminalisent encore ces rapports sont d'anciennes possessions britanniques (Human Rights Watch, 2008). L'exemple ottoman souvent avancé montre l'inverse d'une causalité religieuse simple : le code de 1858, calqué sur le français de 1810, ne punissait plus la conduite privée mais aggravait le traitement pénal de l'acte public (Özsoy, 2020, Journal of Homosexuality) — la « dépénalisation » de 1858 est une lecture rétrospective contestée, pas un acquis. Attribuer la répression contemporaine au seul dogme islamique projette sur l'histoire juridique une causalité unique et anachronique.",
     },
   ],
   is_published: true,
@@ -4387,7 +4463,7 @@ export const ISLAM_HOMOPHOBIE_TRANS_DOSSIER: Dossier = {
     },
     {
       id: "49415e80-95b8-4d9d-b8f0-e6da9f7ad821",
-      spectrum: "ARCHIVE_PRIMAIRE",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
       source_name:
         "Fatwa de Mohamed Sayed Al Tantawi sur la chirurgie de réassignation (8 juin 1988) — base Cairo 52 (MENA Trans Archives)",
       author_or_institution:
@@ -4484,6 +4560,87 @@ export const ISLAM_HOMOPHOBIE_TRANS_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 7,
+    },
+    {
+      id: "9aa1c62d-4dce-41fa-84cf-0bb0cd1ea238",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Transsexuality under Surveillance in Iran: Clerical Control of Khomeini's Fatwas » — Journal of Middle East Women's Studies, vol. 10, n° 2, p. 31-51",
+      author_or_institution: "Farrah Jafari — Duke University Press",
+      publication_date: "2014-07-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "In 1967, the exiled Ayatollah Ruhollah Khomeini published a fatwa declaring that there is no religious restriction on sex reassignment surgery for hermaphrodites. In 1985, he issued an appendage to this fatwa to include transsexuals suffering from gender dysphoria.",
+      context_explanation:
+        "Résumé officiel de l'article (reconstruit depuis les métadonnées d'édition, OpenAlex et Crossref concordants — l'éditeur vend le texte intégral) : la fatwa de Khomeini, d'abord émise en 1967 pour les personnes hermaphrodites puis étendue en 1985 aux personnes trans, est le fondement textuel du dispositif iranien d'autorisation des chirurgies — que l'article décrit comme ensuite instrumenté par le clergé comme outil de police des sexualités. La date de 1986 parfois citée n'est pas celle des textes documentés.",
+      original_url:
+        "https://read.dukeupress.edu/jmews/article/10/2/31/15524/Transsexuality-under-Surveillance-in-IranClerical",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "17e1951b-755b-48e8-a11e-fbc8bd1929bf",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Decolonizing Decriminalization Analyses: Did the Ottomans Decriminalize Homosexuality in 1858? » — Journal of Homosexuality, vol. 68, n° 12, p. 1979-2002",
+      author_or_institution: "Elif Ceylan Özsoy (School of Law, University of Exeter)",
+      publication_date: "2020-02-18",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The contentious article of the 1858 Ottoman Penal Code is as follows: Art. 202—The person who dares to commit the abominable act publicly contrary to modesty and sense of shame is to be imprisoned for from three months to one year and a fine of from one Mejidieh gold piece to ten Mejidieh gold pieces is to be levied (Penal Code of the Ottoman Empire, 1858).",
+      context_explanation:
+        "Étude de référence (revue à comité de lecture) sur la « dépénalisation » ottomane de 1858 : le code, copie de l'article 330 du code pénal français de 1810, ne punissait plus que l'acte public — la sphère privée échappant aux peines — mais l'article démontre que la lecture rétrospective en « décriminalisation de l'homosexualité » procède d'une grille occidentale anachronique : l'auteure conclut que le code de 1858 a en réalité aggravé le statut pénal de la conduite visée. Texte intégral servi par un instantané (l'éditeur vend l'article).",
+      original_url:
+        "https://web.archive.org/web/20230814130646id_/https://teyit.fra1.cdn.digitaloceanspaces.com/wp-content/uploads/2020/07/Decolonizing-Decriminalization-Analyses-Did-the-Ottomans-Decriminalize-Homosexuality-in-1858.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+    {
+      id: "0bf41e0d-732c-4f27-b361-23f0d93a631a",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« The Effeminates of Early Medina » — Journal of the American Oriental Society, vol. 111, n° 4, p. 671-693",
+      author_or_institution:
+        "Everett K. Rowson (université de Pennsylvanie à la publication ; New York University depuis)",
+      publication_date: "1991-10-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "There is considerable evidence for the existence of a form of publicly recognized and institutionalized effeminacy or transvestism among males in pre-Islamic and early Islamic Arabian society.",
+      context_explanation:
+        "Article fondateur sur les mukhannathūn de Médine : l'efféminence masculine y était une catégorie socialement reconnue et institutionnalisée dans l'Arabie pré-islamique et des premiers siècles de l'islam — les mukhannathūn circulaient librement auprès des femmes et tenaient un rôle de premier plan dans la musique à La Mecque et Médine — et les persécutions dont ils furent l'objet visaient leurs activités, non un statut sexuel : ils n'étaient pas considérés comme homosexuels. C'est sur ces travaux que s'appuient les lectures historiennes des identités de genre en terre d'islam. Texte servi par un instantané (JSTOR bloque les robots).",
+      original_url:
+        "https://web.archive.org/web/20201112000740id_/http://www.williamapercy.com/wiki/images/The_effeminates_of_early_medina.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
+    {
+      id: "3b1a9376-6646-4b11-84d2-e558ab1f6617",
+      spectrum: "GAUCHE",
+      source_name:
+        "This Alien Legacy: The Origins of « Sodomy » Laws in British Colonialism — rapport de recherche",
+      author_or_institution: "Human Rights Watch — rapport rédigé par Alok Gupta",
+      publication_date: "2008-12-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Section 377 was, and is, a model law in more ways than one. It was a colonial attempt to set standards of behavior, both to reform the colonized and to protect the colonizers against moral lapses. It was also the first colonial « sodomy law » integrated into a penal code—and it became a model anti-sodomy law for countries far beyond India, Malaysia, and Uganda.",
+      context_explanation:
+        "Rapport de référence sur l'exportation du modèle britannique : la « section 377 » du code pénal indien de 1860 — copiée du Buggery Act anglais de 1533 — s'est répandue dans l'Empire britannique, en Asie, dans le Pacifique et en Afrique, et sert encore de matrice à de nombreuses lois anti-sodomie ; le rapport établit que plus de la moitié des États qui criminalisent les rapports entre personnes de même sexe sont d'anciens territoires britanniques. La répression pénale contemporaine doit donc à l'héritage colonial plus qu'aux seuls textes religieux. Classé à gauche : rapport d'une organisation internationale de défense des droits humains.",
+      original_url:
+        "https://www.hrw.org/report/2008/12/17/alien-legacy/origins-sodomy-laws-british-colonialism",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 11,
     },
   ],
 };

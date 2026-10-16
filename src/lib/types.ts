@@ -26,7 +26,15 @@ export type PoliticalSpectrum =
   | "DONNEES_BRUTES_OFFICIELLES";
 
 /** Statut d'une brique de l'affirmation, dans l'« anatomie du sophisme ». */
-export type PremiseStatus = "VRAI" | "VRAI_DETOURNE" | "CONFUSION_CONCEPTUELLE" | "FAUX";
+export type PremiseStatus =
+  | "VRAI"
+  | "VRAI_DETOURNE"
+  | "CONFUSION_CONCEPTUELLE"
+  | "ANACHRONISME_CONCEPTUEL"
+  | "DOUBLE_STANDARD"
+  | "BIAIS_METHODOLOGIQUE"
+  | "BIAIS_DE_SELECTION"
+  | "FAUX";
 
 /**
  * Catégorie éditoriale du dossier : c'est elle qui permet de parcourir le

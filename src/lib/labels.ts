@@ -161,6 +161,10 @@ export const PREMISE_STATUS_LABELS: Record<PremiseStatus, string> = {
   VRAI: "Vrai",
   VRAI_DETOURNE: "Vrai, détourné",
   CONFUSION_CONCEPTUELLE: "Confusion conceptuelle",
+  ANACHRONISME_CONCEPTUEL: "Anachronisme conceptuel",
+  DOUBLE_STANDARD: "Double standard",
+  BIAIS_METHODOLOGIQUE: "Biais méthodologique",
+  BIAIS_DE_SELECTION: "Biais de sélection",
   FAUX: "Faux",
 };
 
@@ -169,6 +173,10 @@ export const PREMISE_STAMP_LABELS: Record<PremiseStatus, string> = {
   VRAI: "VRAI SUR LE FOND",
   VRAI_DETOURNE: "VRAI SUR LE MOT / DÉTOURNÉ SUR LE FOND",
   CONFUSION_CONCEPTUELLE: "CONFUSION CONCEPTUELLE",
+  ANACHRONISME_CONCEPTUEL: "ANACHRONISME CONCEPTUEL",
+  DOUBLE_STANDARD: "DOUBLE STANDARD",
+  BIAIS_METHODOLOGIQUE: "BIAIS MÉTHODOLOGIQUE",
+  BIAIS_DE_SELECTION: "BIAIS DE SÉLECTION",
   FAUX: "FAUX MATÉRIEL",
 };
 
@@ -183,6 +191,10 @@ export const PREMISE_DISTORTION_LEVELS: Record<PremiseStatus, number> = {
   VRAI: 0,
   VRAI_DETOURNE: 40,
   CONFUSION_CONCEPTUELLE: 60,
+  ANACHRONISME_CONCEPTUEL: 60,
+  DOUBLE_STANDARD: 70,
+  BIAIS_METHODOLOGIQUE: 80,
+  BIAIS_DE_SELECTION: 80,
   FAUX: 100,
 };
 
@@ -190,6 +202,10 @@ export const PREMISE_STATUS_TONES: Record<PremiseStatus, "true" | "warn" | "fals
   VRAI: "true",
   VRAI_DETOURNE: "warn",
   CONFUSION_CONCEPTUELLE: "warn",
+  ANACHRONISME_CONCEPTUEL: "warn",
+  DOUBLE_STANDARD: "warn",
+  BIAIS_METHODOLOGIQUE: "false",
+  BIAIS_DE_SELECTION: "false",
   FAUX: "false",
 };
 
