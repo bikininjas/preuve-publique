@@ -16,6 +16,7 @@ const STATUSES: PremiseStatus[] = [
   "COMPLOTISME",
   "BIAIS_ESSENTIALISTE",
   "FAUX",
+  "VIOLATION_FORMELLE",
 ];
 
 const INPUT = "mt-1 min-h-[44px] w-full border border-grid bg-canvas px-3 text-ink";

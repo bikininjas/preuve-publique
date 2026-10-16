@@ -51,6 +51,7 @@ const DISTORTION_ORDER: PremiseStatus[] = [
   "COMPLOTISME",
   "BIAIS_ESSENTIALISTE",
   "FAUX",
+  "VIOLATION_FORMELLE",
 ];
 
 export default function MethodPage() {
