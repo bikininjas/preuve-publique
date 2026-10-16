@@ -15,6 +15,7 @@ export function organizationJsonLd(baseUrl: string = SITE_URL) {
     name: "Preuve publique",
     url: `${baseUrl}/`,
     description: SITE_DESCRIPTION,
+    sameAs: ["https://x.com/vigiecitoyenn3"],
   };
 }
 

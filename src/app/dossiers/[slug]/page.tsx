@@ -69,6 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
        générée — même titre, même résumé. */
     twitter: {
       card: "summary_large_image",
+      site: "@vigiecitoyenn3",
       title: dossier.claim_title,
       description: singleLineSummary(dossier.verdict_summary),
       images: [`/dossiers/${dossier.slug}/opengraph-image`],

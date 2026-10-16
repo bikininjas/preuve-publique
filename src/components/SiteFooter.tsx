@@ -47,6 +47,14 @@ export default function SiteFooter() {
             similarité n&apos;est simulée.
           </p>
           <p className="pp-meta text-muted">Preuve publique — preuve-publique.fr</p>
+          <a
+            className="pp-tap text-ink hover:underline"
+            href="https://x.com/vigiecitoyenn3"
+            rel="me noreferrer"
+            target="_blank"
+          >
+            Nous suivre sur X — @vigiecitoyenn3
+          </a>
         </div>
       </div>
     </footer>

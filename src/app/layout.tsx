@@ -45,6 +45,7 @@ export const metadata: Metadata = {
      Twitter pointe la même route, en grand format. */
   twitter: {
     card: "summary_large_image",
+    site: "@vigiecitoyenn3",
     title: "Preuve publique — la preuve par le recoupement",
     description: SITE_DESCRIPTION,
     images: ["/opengraph-image"],

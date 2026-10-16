@@ -102,6 +102,7 @@ test("les données structurées restent fidèles au dossier publié", () => {
   const org = organizationJsonLd();
   assert.equal(org["@type"], "Organization");
   assert.equal(org.url, `${SITE_URL}/`);
+  assert.deepEqual(org.sameAs, ["https://x.com/vigiecitoyenn3"]);
 
   const site = websiteJsonLd();
   assert.equal(site["@type"], "WebSite");

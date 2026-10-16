@@ -413,6 +413,7 @@ npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallba
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité
 npm run archive:capture  # fiches d'archive réelles (--yes pour déposer) : voir « Archivage »
+npm run indexnow       # soumet le plan de site à IndexNow (Bing, Yandex…) : voir « Interface »
 ```
 
 `DB_PG_URL` (ou `DATABASE_POOLER_URL`) reste **hors du conteneur web** : le site ne lit
@@ -467,6 +468,8 @@ empreinte valide sur chaque source. Un brouillon incomplet reste un brouillon.
 | `/dossiers/<slug>/opengraph-image` | carte de partage brutaliste générée à la volée (`next/og`) : papier ivoire, cadre double, repères de coupe, tampon encré, bandeau de convergence |
 | `/recherche?q=` | recherche plein texte ; un brouillon ne remonte jamais |
 | `/methode` | méthode, règles forcées par le code, limites assumées |
+| `/robots.txt`, `/sitemap.xml`, `/feed.xml` | surfaces publiques pour les moteurs et les lecteurs de flux : `/recherche` et `/admin` restent hors index, le plan de site ne liste que les dossiers publiés, le flux suit le même tri |
+| `/opengraph-image` | carte de partage par défaut (accueil et pages sans carte propre) |
 
 ## Parcourir et publier
 
