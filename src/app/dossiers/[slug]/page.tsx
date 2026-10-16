@@ -242,8 +242,10 @@ export default async function DossierPage({ params }: PageProps) {
         </div>
 
         {/* Les deux partages du dossier, côte à côte : l'argumentaire social en
-            un clic et la réfutation complète, format débat. */}
-        <div className="flex flex-wrap items-start gap-x-4 gap-y-3">
+            un clic et la réfutation complète, format débat. `relative` : les
+            panneaux « voir le texte » s'ancrent aux bords de ce rang sur écran
+            large (voir .pp-drop--page), pas au bouton qui les ouvre. */}
+        <div className="relative flex flex-wrap items-start gap-x-4 gap-y-3">
           <ShareDebateButton dossier={dossier} />
           <CopyRefutation dossier={dossier} />
         </div>

@@ -124,7 +124,7 @@ export default function CopyRefutation({ dossier }: { dossier: Dossier }) {
         </button>
         <details className="pp-drop">
           <summary className="pp-tap pp-meta text-seal">Voir le texte copié</summary>
-          <div className="pp-drop-panel pp-drop-panel--end w-[min(92vw,42rem)] max-h-[70vh] overflow-y-auto">
+          <div className="pp-drop-panel pp-drop-panel--end pp-drop-panel--text w-[min(92vw,30rem)] max-h-[70vh] overflow-y-auto">
             <p className="pp-tight px-2 py-2 text-muted">
               Le même texte, à recopier à la main si le navigateur refuse le
               presse-papiers. Il ne contient que les données du dossier ; le lien y

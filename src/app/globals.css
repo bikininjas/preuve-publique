@@ -448,6 +448,35 @@ footer {
   max-width: calc(100vw - 1.5rem);
 }
 
+/* Panneau de lecture d'un texte à recopier (partage social, réfutation) : il
+   s'ancre au bouton déclencheur, or le bouton « partager » est large — le
+   panneau sortirait par la droite (mesuré : 508..988 sur un écran de 900 px).
+   Sur écran large il s'ancre donc aux bords de la page (le rang qui porte les
+   boutons est `relative`) ; sous 40 rem il devient une feuille ancrée au
+   viewport, plutôt qu'un panneau hors écran (mesuré : left −141 px à 390 px). */
+@media (min-width: 40.0625rem) {
+  .pp-drop--page {
+    position: static;
+  }
+
+  .pp-drop--page .pp-drop-panel {
+    left: 0;
+    right: auto;
+  }
+}
+
+@media (max-width: 40rem) {
+  .pp-drop-panel--text {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    top: auto;
+    bottom: 0.75rem;
+    width: auto;
+    max-width: none;
+  }
+}
+
 .pp-drop-item {
   display: flex;
   align-items: center;

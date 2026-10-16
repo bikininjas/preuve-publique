@@ -449,6 +449,15 @@ disparaîtrait sur le fond sombre.
   pièces des piliers documentés, citation coupée quand elle est trop longue) prêt à coller
   dans un fil, avec le lien du dossier. Si le navigateur refuse le presse-papiers, le site
   le dit et affiche le texte ; il n'annonce jamais une copie qui n'a pas eu lieu.
+- **« Copier l'argumentaire (réseaux sociaux) »** (`ShareDebateButton`) : copie en un clic
+  un paragraphe prêt à poster — verdict en capitales, puis les institutions des deux pièces
+  les plus institutionnelles (données d'administration, puis institutions, puis recherche
+  évaluée par les pairs) et le lien canonique. Les archives primaires et les piliers
+  d'opinion ne sont jamais présentés comme un « démenti » nommé : une archive signée du
+  sujet de l'affirmation ne dément rien, et le paragraphe s'arrête alors au verdict. Le
+  texte est assemblé par `src/lib/share-text.ts` (testé sur tous les dossiers du seed) ;
+  refus du presse-papiers, absence d'API et copie en cours ont chacun leur état affiché, et
+  la confirmation « Copié ! » retombe après deux secondes.
 - **Carte de partage** (`opengraph-image.tsx`, `next/og`) : grille suisse, affirmation,
   tampon teinté par le verdict, bande des six piliers. Le bandeau d'empreinte annonce
   « SHA-256 sur les N pièces » seulement quand c'est vrai, sinon « empreintes à venir ».

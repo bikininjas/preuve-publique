@@ -7,14 +7,15 @@ import {
   SITE_URL,
   buildShareText,
   canonicalDossierUrl,
-  pickHeadlineSources,
+  headlineInstitutions,
+  institutionName,
 } from "../src/lib/share-text.ts";
 
 /**
  * Le texte de partage est le seul endroit du site où le verdict part sans son
  * dossier : il doit rester fidèle aux données publiées — titre réel, verdict en
  * capitales, institutions réelles des pièces, lien canonique — et ne rien
- * promettre quand le dossier n'a pas de quoi sourcer la phrase.
+ * promettre quand le dossier n'offre aucune institution habilitée à démentir.
  */
 
 function makeSource(overrides) {
@@ -51,20 +52,22 @@ const BASE_DOSSIER = {
   sources: [],
 };
 
+const URL_TEST = "https://preuve-publique.fr/dossiers/dossier-de-test";
+
 test("le gabarit suit le format attendu sur un dossier réel", () => {
   const dossier = publishedSeedDossiers()[0];
   assert.ok(dossier !== undefined, "le seed doit contenir au moins un dossier publié");
   const text = buildShareText(dossier);
   assert.ok(
-    text.startsWith(`${VERDICT_STAMPS[dossier.verdict]} : ${dossier.claim_title}`),
-    `préfixe attendu « ${VERDICT_STAMPS[dossier.verdict]} : ${dossier.claim_title} », texte : ${text}`,
+    text.startsWith(`${VERDICT_STAMPS[dossier.verdict]} : ${dossier.claim_title}. `),
+    `préfixe attendu « ${VERDICT_STAMPS[dossier.verdict]} : ${dossier.claim_title}. », texte : ${text}`,
   );
-  assert.match(text, /\. Démenti par .+\. Preuve et sources : /);
+  assert.match(text, /\. (Démenti|Confirmé) par .+\. Preuve et sources : /);
   assert.ok(text.endsWith(canonicalDossierUrl(dossier.slug)), text);
   assert.ok(text.includes(SITE_URL), "le lien copié doit porter l'adresse canonique");
 });
 
-test("chaque dossier publié produit un texte sourcé et vérifiable", () => {
+test("chaque dossier publié produit un texte déterministe et vérifiable", () => {
   const dossiers = publishedSeedDossiers();
   assert.ok(dossiers.length > 0, "le seed doit publier des dossiers");
   for (const dossier of dossiers) {
@@ -75,61 +78,62 @@ test("chaque dossier publié produit un texte sourcé et vérifiable", () => {
     );
     assert.ok(!text.includes("undefined"), `valeur indéfinie dans le texte de ${dossier.slug}`);
     assert.ok(!/\s{2,}/.test(text), `espaces doubles dans le texte de ${dossier.slug}`);
+    assert.ok(!/\.\./.test(text), `point double dans le texte de ${dossier.slug} : ${text}`);
     assert.equal(
       text,
       buildShareText(dossier),
       `le texte doit être déterministe pour ${dossier.slug}`,
     );
-    // Le guard impose au moins une pièce : la phrase cite donc au moins une institution.
-    assert.match(text, /Démenti par |Confirmé par /, `aucune institution citée pour ${dossier.slug}`);
+    // Le guard impose une preuve primaire, une validation académique et deux
+    // spectres : la phrase peut donc toujours nommer au moins une institution.
+    assert.match(text, /(Démenti|Confirmé) par .+\. Preuve et sources : /, `démenti nommé manquant pour ${dossier.slug}`);
   }
 });
 
-test("les deux pièces retenues sont les plus institutionnelles, à institutions distinctes", () => {
+test("seuls les piliers institutionnels sont cités, administrations puis institutions puis recherche", () => {
   const sources = [
-    makeSource({ spectrum: "GAUCHE", author_or_institution: "Fondation Jean-Jaurès", display_order: 1 }),
     makeSource({ spectrum: "DONNEES_BRUTES_OFFICIELLES", author_or_institution: "Insee", display_order: 4 }),
+    makeSource({ spectrum: "GAUCHE", author_or_institution: "Fondation Jean-Jaurès", display_order: 1 }),
+    makeSource({ spectrum: "CONSENSUS_ACADEMIQUE", author_or_institution: "INED", display_order: 3 }),
     makeSource({ spectrum: "DROITE_LIBERALE_CONSERVATRICE", author_or_institution: "Institut Montaigne", display_order: 2 }),
-    makeSource({ spectrum: "ARCHIVE_PRIMAIRE", author_or_institution: "Journal officiel", display_order: 3 }),
+    makeSource({ spectrum: "CENTRE", author_or_institution: "Cour des comptes", display_order: 5 }),
   ];
-  const picked = pickHeadlineSources(sources);
-  assert.deepEqual(
-    picked.map((source) => source.author_or_institution),
-    ["Insee", "Journal officiel"],
-  );
+  assert.deepEqual(headlineInstitutions(sources), ["Insee", "Cour des comptes"]);
 
   const dossier = { ...BASE_DOSSIER, sources };
   assert.equal(
     buildShareText(dossier),
-    "FAUX : Une affirmation de test circule. Démenti par Insee et Journal officiel. " +
-      "Preuve et sources : https://preuve-publique.fr/dossiers/dossier-de-test",
+    `FAUX : Une affirmation de test circule. Démenti par Insee et Cour des comptes. Preuve et sources : ${URL_TEST}`,
   );
 });
 
-test("deux pièces du même auteur ne font pas deux démentis", () => {
+test("deux pièces de la même institution ne font pas deux démentis", () => {
   const sources = [
     makeSource({ spectrum: "DONNEES_BRUTES_OFFICIELLES", author_or_institution: "Insee", display_order: 1 }),
     makeSource({ spectrum: "DONNEES_BRUTES_OFFICIELLES", author_or_institution: "Insee", display_order: 2 }),
     makeSource({ spectrum: "CONSENSUS_ACADEMIQUE", author_or_institution: "INED", display_order: 3 }),
   ];
-  const picked = pickHeadlineSources(sources);
-  assert.deepEqual(
-    picked.map((source) => source.author_or_institution),
-    ["Insee", "INED"],
-  );
+  assert.deepEqual(headlineInstitutions(sources), ["Insee", "INED"]);
+});
+
+test("un entretien n'est pas une institution : la pièce est écartée du démenti nommé", () => {
+  const sources = [
+    makeSource({ spectrum: "CENTRE", author_or_institution: "Propos recueillis par Virginie Larousse", display_order: 1 }),
+    makeSource({ spectrum: "CONSENSUS_ACADEMIQUE", author_or_institution: "Joshua J. Little, Pembroke College, université d'Oxford, 2022", display_order: 2 }),
+  ];
+  assert.deepEqual(headlineInstitutions(sources), ["Joshua J. Little, Pembroke College, université d'Oxford"]);
 });
 
 test("une seule institution se cite sans conjonction", () => {
   const dossier = {
     ...BASE_DOSSIER,
     sources: [
-      makeSource({ spectrum: "ARCHIVE_PRIMAIRE", author_or_institution: "Conseil d'État", display_order: 1 }),
+      makeSource({ spectrum: "CENTRE", author_or_institution: "Conseil d'État (France)", display_order: 1 }),
     ],
   };
   assert.equal(
     buildShareText(dossier),
-    "FAUX : Une affirmation de test circule. Démenti par Conseil d'État. " +
-      "Preuve et sources : https://preuve-publique.fr/dossiers/dossier-de-test",
+    `FAUX : Une affirmation de test circule. Démenti par Conseil d'État (France). Preuve et sources : ${URL_TEST}`,
   );
 });
 
@@ -148,12 +152,52 @@ test("un dossier confirmé ne dit pas « démenti »", () => {
   assert.ok(!text.includes("Démenti"), text);
 });
 
-test("sans pièce, la phrase s'arrête au verdict et au lien", () => {
-  const text = buildShareText({ ...BASE_DOSSIER, sources: [] });
+test("sans institution habilitée, la phrase s'arrête au verdict et au lien", () => {
+  /* L'archive primaire peut être signée du sujet de l'affirmation : la citer
+     comme « démenti » serait faux, donc elle n'est jamais retenue. */
+  const dossier = {
+    ...BASE_DOSSIER,
+    sources: [
+      makeSource({ spectrum: "ARCHIVE_PRIMAIRE", author_or_institution: "Adolf Hitler, interviewé par George Sylvester Viereck", display_order: 1 }),
+      makeSource({ spectrum: "GAUCHE", author_or_institution: "L'Humanité", display_order: 2 }),
+    ],
+  };
+  assert.deepEqual(headlineInstitutions(dossier.sources), []);
   assert.equal(
-    text,
-    "FAUX : Une affirmation de test circule. Preuve et sources : https://preuve-publique.fr/dossiers/dossier-de-test",
+    buildShareText(dossier),
+    `FAUX : Une affirmation de test circule. Preuve et sources : ${URL_TEST}`,
   );
+});
+
+test("le nom cité perd sa glose et sa parenthèse longue, jamais son début", () => {
+  assert.equal(
+    institutionName("SSMSI — Service statistique ministériel de la sécurité intérieure (ministère de l'Intérieur)"),
+    "SSMSI",
+  );
+  assert.equal(
+    institutionName("DREES (Direction de la recherche, des études, de l'évaluation et des statistiques)"),
+    "DREES",
+  );
+  assert.equal(institutionName("Cour des comptes (France)"), "Cour des comptes (France)");
+  assert.equal(institutionName("Ian Kershaw (Oxford), Richard J. Evans (Cambridge), Johann Chapoutot (Sorbonne)"), "Ian Kershaw (Oxford), Richard J. Evans (Cambridge), Johann Chapoutot (Sorbonne)");
+  assert.equal(
+    institutionName("Guido Barbujani, Arianna Magagni, Eric Minch et L. Luca Cavalli-Sforza, PNAS, 1997"),
+    "Guido Barbujani, Arianna Magagni, Eric Minch et L. Luca Cavalli-Sforza, PNAS…",
+  );
+});
+
+test("une coupe au-delà de la limite se voit et tombe sur un mot entier", () => {
+  const long = "Ministère des Solidarités, de l'Autonomie et des Personnes handicapées / Assemblée nationale";
+  const name = institutionName(long);
+  assert.equal(name, "Ministère des Solidarités, de l'Autonomie et des Personnes handicapées…");
+  assert.ok(long.startsWith(name.slice(0, -1)), name);
+
+  const dossier = {
+    ...BASE_DOSSIER,
+    sources: [makeSource({ spectrum: "DONNEES_BRUTES_OFFICIELLES", author_or_institution: long, display_order: 1 })],
+  };
+  const text = buildShareText(dossier);
+  assert.ok(text.includes("handicapées… Preuve et sources : "), text);
 });
 
 test("l'URL canonique ne double pas les slashes", () => {
@@ -165,5 +209,6 @@ test("l'URL canonique ne double pas les slashes", () => {
 
 test("un titre déjà ponctué ne reçoit pas de point en trop", () => {
   const dossier = { ...BASE_DOSSIER, claim_title: "Le vaccin est-il dangereux ?" };
-  assert.ok(buildShareText(dossier).startsWith("FAUX : Le vaccin est-il dangereux ? Preuve"), buildShareText(dossier));
+  const text = buildShareText(dossier);
+  assert.ok(text.startsWith("FAUX : Le vaccin est-il dangereux ? Preuve"), text);
 });

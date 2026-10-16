@@ -3,7 +3,7 @@
 import { Check, LoaderCircle, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { buildShareText, pickHeadlineSources } from "@/lib/share-text";
+import { buildShareText, headlineInstitutions } from "@/lib/share-text";
 import type { Dossier } from "@/lib/types";
 
 /** Durée du retour « Copié ! » avant retour au repos, en millisecondes. */
@@ -55,7 +55,7 @@ export default function ShareDebateButton({ dossier }: { dossier: Dossier }) {
     }
   }
 
-  const institutions = pickHeadlineSources(dossier.sources).length;
+  const institutions = headlineInstitutions(dossier.sources).length;
   const text = buildShareText(dossier);
   const label =
     state === "copied"
@@ -83,9 +83,9 @@ export default function ShareDebateButton({ dossier }: { dossier: Dossier }) {
           )}
           {label}
         </button>
-        <details className="pp-drop">
+        <details className="pp-drop pp-drop--page">
           <summary className="pp-tap pp-meta text-seal">Voir le texte du partage</summary>
-          <div className="pp-drop-panel pp-drop-panel--end w-[min(92vw,42rem)] max-h-[70vh] overflow-y-auto">
+          <div className="pp-drop-panel pp-drop-panel--text w-[min(92vw,30rem)] max-h-[70vh] overflow-y-auto">
             <p className="pp-tight px-2 py-2 text-muted">
               Le texte exact copié par le bouton, à recopier à la main si le
               navigateur refuse le presse-papiers.
@@ -109,7 +109,7 @@ export default function ShareDebateButton({ dossier }: { dossier: Dossier }) {
             : state === "refused"
               ? "Presse-papiers refusé ou indisponible (permission, contexte non sécurisé) : recopiez le texte depuis « Voir le texte du partage »."
               : institutions === 0
-                ? "Le paragraphe s'arrête au verdict et au lien : ce dossier ne porte aucune pièce à citer."
+                ? "Le paragraphe s'arrête au verdict et au lien : aucune pièce de ce dossier ne porte d'institution habilitée à démentir."
                 : `Le paragraphe cite le verdict, ${institutions} institution${institutions > 1 ? "s" : ""} (les pièces les plus officielles) et le lien canonique.`}
       </p>
     </div>
