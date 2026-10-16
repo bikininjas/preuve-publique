@@ -2,8 +2,10 @@
 
 import { Fingerprint, ShieldCheck, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { Caviard } from "@/components/BlindModeSwitch";
+import PieceInspector from "@/components/PieceInspector";
 import {
   QUOTE_KIND_LABELS,
   SPECTRUM_CODES,
@@ -12,6 +14,7 @@ import {
   pieceCode,
 } from "@/lib/labels";
 import { browserSha256, canonicalProofText } from "@/lib/canonical";
+import { VERBATIM_MARKER, excerptClasses, excerptText } from "@/lib/piece-excerpt";
 import type { DossierSource } from "@/lib/types";
 
 type AuditState = "idle" | "running" | "match" | "mismatch" | "unavailable";
@@ -119,8 +122,12 @@ export default function EvidenceCard({
               isQuote ? "border-warn" : "border-gridsoft"
             }`}
           >
-            <span className={isQuote ? "pp-surlignage" : undefined}>
-              {isQuote ? `« ${source.exact_quote} »` : source.exact_quote}
+            {/* Papier d'archive pour tout extrait ; trait de surligneur réservé
+                au verbatim (voir piece-excerpt.ts, testé). */}
+            <span className={excerptClasses(source.quote_kind)}>
+              <span className={isQuote ? VERBATIM_MARKER : undefined}>
+                {excerptText(source.quote_kind, source.exact_quote)}
+              </span>
             </span>
           </blockquote>
 
@@ -168,6 +175,8 @@ export default function EvidenceCard({
               </p>
             )}
 
+            <PieceInspector source={source} order={order} />
+
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               {source.archive_storage_path ? (
                 <p className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-true">
@@ -203,6 +212,7 @@ export default function EvidenceCard({
       </div>
 
       {open ? (
+        createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -290,7 +300,9 @@ export default function EvidenceCard({
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+          document.body,
+        )
       ) : null}
     </article>
   );

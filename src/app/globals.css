@@ -245,6 +245,101 @@ footer {
   box-shadow: inset 0 -0.05em 0 color-mix(in srgb, var(--pp-warn) 55%, transparent);
 }
 
+/* --- Extrait de pièce, façon surligneur d'archive -------------------------- */
+
+/* Le papier d'archive (ambre discret, texture de papier ancien) marque tous les
+   extraits officiels — carte de source comme table lumineuse. Le trait de
+   surligneur (`pp-surlignage`, ci-dessus) reste réservé aux citations exactes :
+   un fait documenté reçoit le papier mais jamais le trait, pour qu'un résumé ne
+   passe pas pour du verbatim. */
+.pp-extrait {
+  display: block;
+  padding: 0.45rem 0.65rem;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--pp-warn) 7%, transparent) 0 3px,
+    transparent 3px 7px
+  );
+}
+
+.pp-extrait--citation {
+  background-color: color-mix(in srgb, var(--pp-warn-bg) 65%, transparent);
+}
+
+.pp-extrait--fait {
+  background-color: color-mix(in srgb, var(--pp-surface-2) 60%, transparent);
+  background-image: none;
+}
+
+/* --- Table lumineuse (inspection d'une pièce) ------------------------------ */
+
+/* Fond assombri et légèrement flouté, boîte qui apparaît en fondu + très léger
+   zoom. Le halo ambre du haut imite la lumière rasante d'une table lumineuse
+   d'archives. Fermeture : bouton, Échap, clic sur le fond (le gestionnaire vit
+   dans PieceInspector). */
+.pp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--pp-ink) 55%, transparent);
+  backdrop-filter: blur(3px);
+  animation: pp-fade 200ms var(--pp-ease) both;
+}
+
+.pp-lightbox__panel {
+  width: 100%;
+  max-width: 46rem;
+  max-height: min(88vh, 46rem);
+  overflow-y: auto;
+  border: 2px solid var(--pp-grid);
+  background:
+    radial-gradient(
+      120% 55% at 50% 0%,
+      color-mix(in srgb, var(--pp-warn-bg) 60%, transparent),
+      transparent 72%
+    ),
+    var(--pp-surface);
+  box-shadow: 12px 12px 0 var(--pp-shadow);
+  animation: pp-lightbox-in 240ms var(--pp-ease) both;
+}
+
+@keyframes pp-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pp-lightbox-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 40rem) {
+  .pp-lightbox {
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-lightbox,
+  .pp-lightbox__panel {
+    animation: none;
+  }
+}
+
 @keyframes pp-pulse {
   0%,
   100% {

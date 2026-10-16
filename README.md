@@ -439,6 +439,17 @@ disparaîtrait sur le fond sombre.
   qui recalcule l'empreinte **dans le navigateur du lecteur** (`crypto.subtle.digest`), sans
   appel réseau. Pendant le calcul, le terminal déroule la **chaîne canonique réelle**,
   caractère par caractère — pas des octets hexadécimaux de décor.
+- **Extraits officiels mis en valeur** : chaque extrait de pièce repose sur un papier
+  d'archive (ambre discret, texture de papier ancien) ; le trait de surligneur reste réservé
+  au verbatim — un fait documenté reçoit le papier mais jamais le trait
+  (`src/lib/piece-excerpt.ts`, testé sur toutes les pièces du seed).
+- **Table lumineuse d'une pièce** (« Inspecter la pièce ») : boîte de dialogue — fond
+  assombri et légèrement flouté, apparition en fondu + très léger zoom, halo ambre de
+  lumière rasante — qui agrandit l'extrait complet, dit sa nature (citation exacte ou fait
+  documenté), son pilier et sa date, son origine, et affiche les empreintes publiées
+  (citation et capture ; « non enregistrée » quand il n'y en a pas, jamais un chiffre
+  inventé). Fermeture au bouton, à Échap ou par clic extérieur ; le focus entre dans la
+  boîte à l'ouverture puis revient au bouton.
 - **Mode preuve à l'aveugle** : noms, institutions et piliers recouverts de bandes de
   caviardage tracées de gauche à droite ; au survol, une infobulle rappelle de juger
   l'argument avant l'auteur. Le protocole teinte tout le dossier (bandeau noir et ambre
