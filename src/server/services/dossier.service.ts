@@ -15,6 +15,7 @@ import type {
   QuoteKind,
   VerdictStatus,
 } from "../../lib/types.ts";
+import { parseTimelineEvents } from "../../lib/timeline.ts";
 import { log } from "../middleware/logger.ts";
 import { withDerivedProofHashes } from "../validators/dossier.schema.ts";
 
@@ -66,7 +67,7 @@ export function clearDossierCache(): void {
 
 const SELECT_DOSSIER = `
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score, premises,
-  is_published, published_at, illustration_url, illustration_credit,
+  timeline, is_published, published_at, illustration_url, illustration_credit,
   dossier_sources (
     id, spectrum, source_name, author_or_institution, publication_date,
     quote_kind, exact_quote, context_explanation, original_url,
@@ -263,6 +264,7 @@ function parseDossier(value: unknown): Dossier | null {
     protagonists: parseProtagonists(value.protagonists),
     consensus_score: typeof score === "number" && score >= 0 && score <= 100 ? score : 0,
     premises: parsePremises(value.premises),
+    timeline: parseTimelineEvents(value.timeline),
     is_published: value.is_published === true,
     published_at: asString(value.published_at),
     illustration_url: asString(value.illustration_url),

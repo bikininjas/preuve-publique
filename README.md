@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 15/10/2026
 
-- **Base** : huit migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : neuf migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -19,7 +19,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0007_religion_and_verdicts` (`20261015155510` — catégorie « Religion », verdicts
   « anachronisme historique » et « généralisation abusive »), `0008_dossier_illustration`
   (`20261015163000` — `illustration_url` et `illustration_credit` sur les dossiers, bucket
-  public `illustrations` : lecture publique, dépôt réservé aux administrateurs).
+  public `illustrations` : lecture publique, dépôt réservé aux administrateurs),
+  `0009_dossier_timeline` (`20261016124442`, appliquée le 16/10 — `timeline` sur les
+  dossiers : la chaîne de custode, un tableau JSONB d'étapes datées, rattachables à une
+  pièce ; `[]` par défaut, aucun dossier existant modifié).
   Vingt-huit dossiers en base :
   vingt-sept **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
@@ -196,7 +199,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   textes réglementaires ont été lus au Bulletin officiel, et les pages bloquées (403)
   recoupées via leurs instantanés Wayback — l'expression « théorie du genre » ne figure
   dans aucun des textes produits par l'éducation nationale.
-- **Application** : `npm run typecheck`, `npm test` (**74 tests**) et `npm run build`
+- **Application** : `npm run typecheck`, `npm test` (**78 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
@@ -307,7 +310,7 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 36 tests : données, garde de triangulation, crypto, quotas, archivage
+npm test               # 78 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité
@@ -363,7 +366,7 @@ empreinte valide sur chaque source. Un brouillon incomplet reste un brouillon.
 |---|---|
 | `/` | accueil : promesse de méthode, recherche, dossier publié mis en avant, les six piliers |
 | `/dossiers/<slug>` | dossier complet : spectromètre, anatomie de l'affirmation, sources par pilier, mode preuve à l'aveugle, empreintes cliquables |
-| `/dossiers/<slug>/opengraph-image` | carte de partage générée à la volée (`next/og`) |
+| `/dossiers/<slug>/opengraph-image` | carte de partage brutaliste générée à la volée (`next/og`) : papier ivoire, cadre double, repères de coupe, tampon encré, bandeau de convergence |
 | `/recherche?q=` | recherche plein texte ; un brouillon ne remonte jamais |
 | `/methode` | méthode, règles forcées par le code, limites assumées |
 
@@ -470,6 +473,13 @@ disparaîtrait sur le fond sombre.
   « la réalité matérielle » (fond ivoire `#FFFDF9`, bordure gauche accentuée) : le détail
   des pièces et le niveau de l'**échelle de statut** (0, 40, 60, 100) annoncée comme
   telle, jamais comme une mesure.
+- **Chaîne de custode** (`ChainOfCustodyTimeline`) : la chronologie de l'instruction en
+  frise d'archive judiciaire — axe vertical en pointillé (encre pierre, fil ambre dans la
+  chambre noire), pastilles encerclées, horodatages en JetBrains Mono (`[1990-09-12]`),
+  cartes d'étape sur fond ivoire `#FFFDF9` avec renvoi à la pièce qui documente l'étape.
+  La frise ne s'affiche que pour les dossiers qui portent des étapes (`timeline`, JSONB
+  optionnel validé par le garde) : un dossier sans chronologie ne reçoit aucun cadre vide,
+  et l'index de procédure ne liste que les sections réellement présentes.
 - **Pièces à conviction** : cote `PIÈCE #01`, en-tête « 📎 Pièce certifiée » (seulement
   quand la pièce porte une empreinte publiée — sinon « empreinte à venir » : le site
   n'annonce jamais un scellé qui n'existe pas), citation surlignée quand elle est exacte
@@ -536,9 +546,15 @@ disparaîtrait sur le fond sombre.
   texte est assemblé par `src/lib/share-text.ts` (testé sur tous les dossiers du seed) ;
   refus du presse-papiers, absence d'API et copie en cours ont chacun leur état affiché, et
   la confirmation « Copié ! » retombe après deux secondes.
-- **Carte de partage** (`opengraph-image.tsx`, `next/og`) : grille suisse, affirmation,
-  tampon teinté par le verdict, bande des six piliers. Le bandeau d'empreinte annonce
-  « SHA-256 sur les N pièces » seulement quand c'est vrai, sinon « empreintes à venir ».
+- **Carte de partage** (`opengraph-image.tsx`, `next/og`) : 1200 × 630 « brutalisme
+  forensique » — papier ivoire `#F4F1EA`, cadre intérieur double `#1C1917`, repères de
+  coupe aux quatre coins, en-tête `PREUVE-PUBLIQUE.FR // DOSSIER D'INSTRUCTION SCELLÉ`
+  avec badge de catégorie, titre limité à trois lignes (46 px), tampon de verdict incliné
+  à −3° (carmin `#991B1B` pour FAUX, ambre `#92400E` pour les verdicts nuancés et les
+  anachronismes — un « vrai » n'est jamais rouge) et bandeau noir « CONVERGENCE DES
+  PREUVES : N % » + compte de pièces. Les pièces ne sont dites « certifiées » que si
+  chaque empreinte est publiée ; sinon la bande affiche le compte exact. `twitter`
+  (`summary_large_image`, titre, résumé, image générée) est servi à côté de `openGraph`.
 
 ## Archivage des preuves
 
@@ -719,6 +735,19 @@ cascade par la réapplication, ont été redéposées d'un seul passage). Le dos
 porte onze instantanés et une `URL_UNAVAILABLE` (la notice de rétractation de la Royal
 Society, 403 aux robots — lue, elle, sur l'instantané Wayback) ; sa racine d'intégrité
 `9144f48b72ea1ee6…` égale l'`ETag` et le `X-Proof-Integrity-Root` relevés en ligne.
+
+Toujours le 16/10/2026, la **matérialité** du site a été complétée — grain de papier en
+surimpression (`mix-blend-multiply`, 3,5 %, clics jamais interceptés), repères de coupe
+`.crop-marks`, tampon de verdict encré (cadre 3 px, rotation −2°, impact 200 ms), registre
+technique de l'accueil (compteurs croisés avec la page du registre), pastilles de pôle
+colorées avec le score de convergence, survol « table lumineuse » mesuré au navigateur —
+puis deux fonctions sont arrivées : la **carte OpenGraph brutaliste** (vérifiée au pixel :
+carmin `#991B1B` sur un dossier FAUX, ambre `#92400E` sur un anachronisme, repères de
+coupe présents) et la **chaîne de custode** — migration `0009` (`timeline` JSONB, `[]`
+par défaut, 28 dossiers intacts, appliquée sur un Postgres jetable avant la base), frise
+vérifiée au navigateur (axe pointillé `stone-400`, cartes `#FFFDF9`, horodatages mono,
+renvois de pièces, rail `04 / CHAÎNE DE CUSTODE`). Aucun dossier ne porte encore d'étapes :
+la frise restera discrète tant qu'elles ne seront pas documentées — rien n'a été inventé.
 
 Le
 **miroir Storage** n'a pas eu lieu faute d'accès

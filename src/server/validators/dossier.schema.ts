@@ -90,6 +90,19 @@ export const premiseSchema = z.object({
   detail: z.string().trim().min(1, "explication vide"),
 });
 
+/*
+ * Une étape de la chaîne de custode : la date est affichée telle quelle (un
+ * repère éditorial peut n'avoir que l'année), titre et description sont
+ * obligatoires, le renvoi de pièce est facultatif. Le tableau entier est
+ * facultatif : un dossier sans chronologie reste valide.
+ */
+export const timelineEventSchema = z.object({
+  date: z.string().trim().min(1, "date d'étape vide"),
+  title: z.string().trim().min(1, "titre d'étape vide"),
+  description: z.string().trim().min(1, "description d'étape vide"),
+  evidence_ref: z.string().trim().min(1).nullable().default(null),
+});
+
 export const PROTAGONIST_KIND_VALUES = ["PERSONNE", "ORGANISATION", "LIEU", "TEXTE"] as const;
 export const PROTAGONIST_ROLE_VALUES = ["SUJET", "AUTEUR"] as const;
 
@@ -131,6 +144,7 @@ export const dossierSchema = z
     protagonists: z.array(protagonistSchema),
     consensus_score: z.number().int().min(0).max(100),
     premises: z.array(premiseSchema),
+    timeline: z.array(timelineEventSchema).optional(),
     is_published: z.boolean(),
     published_at: z.string().min(1).nullable(),
     /*

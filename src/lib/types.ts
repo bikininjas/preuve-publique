@@ -67,6 +67,18 @@ export type Premise = {
 };
 
 /**
+ * Étape de la chaîne de custode : un fait daté de l'instruction du dossier.
+ * `evidence_ref` renvoie à une pièce publiée du dossier (« Pièce #04 ») quand
+ * l'étape s'appuie dessus — jamais un renvoi inventé.
+ */
+export type DossierTimelineEvent = {
+  date: string;
+  title: string;
+  description: string;
+  evidence_ref: string | null;
+};
+
+/**
  * Protagoniste d'un dossier : une personne, une organisation, un lieu ou un
  * texte cité. Deux rôles seulement, parce que c'est ce que le lecteur cherche :
  * qui est mis en cause, et qui porte les preuves.
@@ -123,6 +135,8 @@ export type Dossier = {
   protagonists: Protagonist[];
   consensus_score: number;
   premises: Premise[];
+  /** Chronologie de l'instruction (chaîne de custode), si elle est documentée. */
+  timeline?: DossierTimelineEvent[];
   is_published: boolean;
   published_at: string | null;
   /** Illustration du dossier : chemin local (/illustrations/…) ou URL http(s). */

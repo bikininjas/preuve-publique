@@ -9,6 +9,7 @@ import {
   CaviardFigures,
 } from "@/components/BlindModeSwitch";
 import ArchiveHashBadge from "@/components/ArchiveHashBadge";
+import ChainOfCustodyTimeline from "@/components/ChainOfCustodyTimeline";
 import ConvergenceSpectrometer from "@/components/ConvergenceSpectrometer";
 import CopyRefutation from "@/components/CopyRefutation";
 import DossierDensity from "@/components/DossierDensity";
@@ -60,6 +61,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: "fr_FR",
       siteName: "Preuve publique",
     },
+    /* La carte générée par `opengraph-image.tsx` sert les deux réseaux :
+       Twitter retombe sur og:image, mais on pointe explicitement la route
+       générée — même titre, même résumé. */
+    twitter: {
+      card: "summary_large_image",
+      title: dossier.claim_title,
+      description: dossier.verdict_summary,
+      images: [`/dossiers/${dossier.slug}/opengraph-image`],
+    },
   };
 }
 
@@ -107,10 +117,14 @@ export default async function DossierPage({ params }: PageProps) {
 
   /* Index de procédure : les sections dans l'ordre du document — c'est un plan,
      pas une décoration. */
+  const timelineEvents = dossier.timeline ?? [];
   const contents = [
     { href: "#verdict", label: "Synthèse" },
     { href: "#piliers", label: "Spectromètre" },
     { href: "#anatomie", label: "Anatomie du sophisme" },
+    ...(timelineEvents.length > 0
+      ? [{ href: "#chronologie", label: "Chaîne de custode" }]
+      : []),
     { href: "#protagonistes", label: "Protagonistes" },
     { href: "#pieces", label: "Pièces & SHA-256" },
     { href: "#integrite", label: "Intégrité" },
@@ -289,6 +303,14 @@ export default async function DossierPage({ params }: PageProps) {
                   <FallacyAnatomy premises={dossier.premises} />
                 </Reveal>
               </div>
+
+              {timelineEvents.length > 0 ? (
+                <div id="chronologie" className="scroll-mt-16">
+                  <Reveal>
+                    <ChainOfCustodyTimeline events={timelineEvents} />
+                  </Reveal>
+                </div>
+              ) : null}
 
               <div id="protagonistes" className="scroll-mt-16">
                 <Reveal>

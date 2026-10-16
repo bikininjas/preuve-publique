@@ -77,6 +77,7 @@ export const dossiers = pgTable(
     protagonists: jsonb("protagonists").notNull().default(sql`'[]'::jsonb`),
     consensusScore: smallint("consensus_score").notNull(),
     premises: jsonb("premises").notNull().default(sql`'[]'::jsonb`),
+    timeline: jsonb("timeline").notNull().default(sql`'[]'::jsonb`),
     searchTsv: tsvector("search_tsv").generatedAlwaysAs(
       sql`setweight(to_tsvector('french', coalesce(claim_title, '')), 'A') || setweight(to_tsvector('french', coalesce(verdict_summary, '')), 'B')`,
     ),

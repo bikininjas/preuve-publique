@@ -29,6 +29,7 @@ for (const candidate of SEED_DOSSIERS) {
     protagonists: dossier.protagonists,
     consensusScore: dossier.consensus_score,
     premises: dossier.premises,
+    timeline: dossier.timeline ?? [],
     isPublished: dossier.is_published,
     publishedAt: dossier.published_at === null ? null : new Date(dossier.published_at),
     illustrationUrl: dossier.illustration_url ?? null,

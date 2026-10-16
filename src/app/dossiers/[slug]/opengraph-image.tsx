@@ -1,14 +1,7 @@
 import { ImageResponse } from "next/og";
 
 import { getPublishedDossier } from "@/server/services/dossier.service";
-import {
-  CATEGORY_LABELS,
-  SPECTRUM_CODES,
-  SPECTRUM_ORDER,
-  VERDICT_STAMPS,
-  VERDICT_TONES,
-  dossierCode,
-} from "@/lib/labels";
+import { CATEGORY_LABELS, VERDICT_STAMPS, VERDICT_TONES } from "@/lib/labels";
 import type { VerdictStatus } from "@/lib/types";
 
 export const alt = "Carte de partage d'un dossier vérifié — Preuve publique";
@@ -16,32 +9,48 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const dynamic = "force-dynamic";
 
-const CANVAS = "#f4f1ea";
-const INK = "#0d0e11";
-const MUTED = "#4a4843";
-const GRID = "#1a1917";
-const FAUX = "#c81e1e";
-const TRUE = "#047857";
-const AMBER = "#b45309";
-const SEAL = "#1d4ed8";
+/**
+ * Carte de partage « brutalisme forensique » : papier ivoire, cadre intérieur
+ * double, repères de coupe, en-tête technique, tampon encré et bandeau noir.
+ *
+ * Toutes les valeurs sont celles du dossier lu à la requête — jamais un
+ * chiffre de décor : la bande ne dit « certifiées » que si chaque pièce porte
+ * réellement une empreinte ; sinon elle affiche le compte exact.
+ *
+ * Typographie : limitée au jeu de polices embarqué par `next/og` (satori) —
+ * la serif du site n'est pas reproduite ici, l'embarquer demanderait de
+ * versionner un fichier de police.
+ */
 
-/** Teinte du tampon : la même règle que sur le site, un « vrai » n'est pas rouge. */
-function verdictColor(verdict: VerdictStatus | undefined): string {
+const CANVAS = "#f4f1ea";
+const INK = "#1c1917";
+const MUTED = "#4a4843";
+const FALSE_BD = "#991b1b";
+const WARN_BD = "#92400e";
+const TRUE_BD = "#065f46";
+
+/** Encre du tampon : la règle du site — un « vrai » n'est pas tamponné en
+ * rouge, l'ambre brun appartient aux verdicts nuancés et aux anachronismes. */
+function verdictInk(verdict: VerdictStatus | undefined): string {
   if (verdict === undefined) {
     return MUTED;
   }
   const tone = VERDICT_TONES[verdict];
-  return tone === "true" ? TRUE : tone === "warn" ? AMBER : FAUX;
+  return tone === "true" ? TRUE_BD : tone === "warn" ? WARN_BD : FALSE_BD;
 }
 
-/**
- * Carte de partage « papier d'archive » : grille suisse, affirmation en grand,
- * tampon de verdict, barre des six piliers.
- *
- * Limitée au jeu de polices embarqué par `next/og` (satori) : la typographie
- * serif du site n'est pas reproduite ici — l'embarquer demanderait de versionner
- * un fichier de police pour l'image.
- */
+/** Trois lignes au plus, coupe au mot : 46 px sur ~1010 px utiles ≈ 38-42
+ * caractères par ligne. Un titre coupé garde ses points de suspension. */
+function clampThreeLines(title: string): string {
+  const budget = 122;
+  if (title.length <= budget) {
+    return title;
+  }
+  const cut = title.slice(0, budget);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > 70 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+}
+
 export default async function ShareImage({
   params,
 }: {
@@ -51,29 +60,29 @@ export default async function ShareImage({
   const result = await getPublishedDossier(slug);
   const dossier = result.ok ? result.value : null;
 
-  const title = dossier?.claim_title ?? "Dossier introuvable";
+  const title = clampThreeLines(dossier?.claim_title ?? "Dossier introuvable");
   const stamp = dossier ? VERDICT_STAMPS[dossier.verdict] : "—";
   const score = dossier?.consensus_score ?? 0;
-  const counts = SPECTRUM_ORDER.map((spectrum) => ({
-    code: SPECTRUM_CODES[spectrum],
-    count: dossier
-      ? dossier.sources.filter((source) => source.spectrum === spectrum).length
-      : 0,
-  }));
   const pieceCount = dossier?.sources.length ?? 0;
   const withHash = dossier?.sources.filter((source) => source.archive_sha256 !== null).length ?? 0;
   const category = dossier ? CATEGORY_LABELS[dossier.category] : "SANS CATÉGORIE";
-  const code = dossier ? dossierCode(dossier.id) : "PP-—";
-  const filledPillars = counts.filter((column) => column.count > 0).length;
-  const stampColor = verdictColor(dossier?.verdict);
-  /* L'empreinte n'est annoncée que si elle existe : une carte de partage ne
-     promet pas une archive que le dossier n'a pas. */
-  const hashLabel =
-    withHash === 0
-      ? "EMPREINTES À VENIR"
+  const ink = verdictInk(dossier?.verdict);
+  /* « Certifiées » ne se dit que quand chaque pièce porte une empreinte. */
+  const piecesLabel =
+    pieceCount === 0
+      ? "AUCUNE PIÈCE PUBLIÉE"
       : withHash === pieceCount
-        ? `SHA-256 SUR LES ${pieceCount} PIÈCES`
+        ? `${pieceCount} PIÈCE${pieceCount > 1 ? "S" : ""} CERTIFIÉE${pieceCount > 1 ? "S" : ""}`
         : `${withHash}/${pieceCount} PIÈCES AVEC EMPREINTE`;
+
+  const cropMark = {
+    position: "absolute" as const,
+    display: "flex",
+    fontSize: 26,
+    lineHeight: 1,
+    fontFamily: "monospace",
+    color: INK,
+  };
 
   return new ImageResponse(
     (
@@ -82,131 +91,129 @@ export default async function ShareImage({
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
+          position: "relative",
           backgroundColor: CANVAS,
           color: INK,
           fontFamily: "sans-serif",
+          padding: 22,
         }}
       >
+        {/* Le cadre intérieur double : 4 px d'encre, puis un filet à 6 px. */}
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            borderBottom: `2px solid ${GRID}`,
-            padding: "18px 40px",
-            fontSize: 18,
-            letterSpacing: 3,
-            color: MUTED,
+            flexDirection: "column",
+            flex: 1,
+            border: `4px solid ${INK}`,
           }}
         >
-          <div style={{ display: "flex" }}>REGISTRE DES VÉRIFICATIONS</div>
-          <div
-              style={{
-                display: "flex",
-                border: `2px solid ${SEAL}`,
-                color: SEAL,
-                padding: "6px 16px",
-                fontSize: 20,
-                letterSpacing: 4,
-              }}
-            >
-              {category.toUpperCase()}
-            </div>
-            <div style={{ display: "flex", fontSize: 16, letterSpacing: 2 }}>
-              {`REGISTRE N° ${code}`}
-            </div>
-        </div>
-
-        <div style={{ display: "flex", flex: 1, flexDirection: "column", padding: "36px 40px", gap: 24 }}>
           <div
             style={{
               display: "flex",
-              border: `2px solid ${stampColor}`,
-              boxShadow: `inset 0 0 0 2px ${CANVAS}, inset 0 0 0 4px ${stampColor}`,
-              color: stampColor,
-              padding: "8px 20px",
-              fontSize: 30,
-              letterSpacing: 4,
-              alignSelf: "flex-start",
-              transform: "rotate(-1.5deg)",
+              flexDirection: "column",
+              flex: 1,
+              border: `2px solid ${INK}`,
+              margin: 6,
             }}
           >
-            {stamp}
-          </div>
-          <div style={{ display: "flex", fontSize: 66, lineHeight: 1.08, color: INK }}>
-            {title.length > 92 ? `${title.slice(0, 91)}…` : title}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <div style={{ display: "flex", fontSize: 22, color: MUTED }}>
-              {`Consensus du dossier : ${score}% · ${pieceCount} pièces · ${filledPillars}/6 piliers`}
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            {/* En-tête technique : domaine // mention, badge de catégorie. */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                borderBottom: `2px solid ${INK}`,
+                padding: "14px 26px",
+              }}
+            >
               <div
                 style={{
                   display: "flex",
-                  flex: 1,
-                  height: 22,
-                  border: `2px solid ${GRID}`,
-                  backgroundColor: CANVAS,
+                  fontFamily: "monospace",
+                  fontSize: 19,
+                  letterSpacing: 2,
+                  color: INK,
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    width: `${Math.max(0, Math.min(100, score))}%`,
-                    height: "100%",
-                    backgroundColor: INK,
-                  }}
-                />
+                {"PREUVE-PUBLIQUE.FR // DOSSIER D\u2019INSTRUCTION SCELLÉ"}
               </div>
-              <div style={{ display: "flex", fontSize: 20, color: INK, letterSpacing: 2 }}>
-                {`${score}%`}
+              <div
+                style={{
+                  display: "flex",
+                  border: `2px solid ${INK}`,
+                  padding: "5px 16px",
+                  fontSize: 20,
+                  letterSpacing: 4,
+                  color: INK,
+                }}
+              >
+                {category.toUpperCase()}
               </div>
+            </div>
+
+            {/* Corps : le mythe en grand, puis le tampon de verdict. */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+                padding: "30px 34px",
+                gap: 28,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  fontSize: 46,
+                  lineHeight: 1.16,
+                  color: INK,
+                }}
+              >
+                {title}
+              </div>
+
+              {/* Le coup de tampon : cadre épais coloré, incliné, encré. */}
+              <div
+                style={{
+                  display: "flex",
+                  alignSelf: "flex-start",
+                  transform: "rotate(-3deg)",
+                  border: `6px solid ${ink}`,
+                  boxShadow: `inset 0 0 0 3px ${CANVAS}, inset 0 0 0 5px ${ink}`,
+                  color: ink,
+                  padding: "12px 28px",
+                  fontSize: 40,
+                  letterSpacing: 5,
+                }}
+              >
+                {stamp}
+              </div>
+            </div>
+
+            {/* Bandeau inférieur : convergence et pièces, sur encre pleine. */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: INK,
+                color: CANVAS,
+                padding: "16px 26px",
+                fontSize: 24,
+                letterSpacing: 3,
+              }}
+            >
+              <div style={{ display: "flex" }}>{`CONVERGENCE DES PREUVES : ${score}%`}</div>
+              <div style={{ display: "flex" }}>{piecesLabel}</div>
             </div>
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, padding: "0 40px 34px" }}>
-          <div style={{ display: "flex", height: 2, backgroundColor: GRID }} />
-          <div style={{ display: "flex", gap: 10 }}>
-            {counts.map((column) => (
-              <div
-                key={column.code}
-                style={{
-                  display: "flex",
-                  flex: 1,
-                  height: 26,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: column.count > 0 ? TRUE : CANVAS,
-                  border: `1px solid ${column.count > 0 ? TRUE : MUTED}`,
-                  color: column.count > 0 ? CANVAS : MUTED,
-                  fontSize: 14,
-                  letterSpacing: 2,
-                }}
-              >
-                {column.code}
-              </div>
-            ))}
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div
-              style={{
-                display: "flex",
-                border: `2px solid ${withHash > 0 ? SEAL : MUTED}`,
-                color: withHash > 0 ? SEAL : MUTED,
-                padding: "6px 14px",
-                fontSize: 16,
-                letterSpacing: 3,
-              }}
-            >
-              {hashLabel}
-            </div>
-            <div style={{ display: "flex", fontSize: 18, color: MUTED, letterSpacing: 1 }}>
-              {`/dossiers/${slug}`}
-            </div>
-          </div>
-        </div>
+        {/* Repères de coupe, aux quatre coins du cadre. */}
+        <div style={{ ...cropMark, top: 8, left: 8 }}>+</div>
+        <div style={{ ...cropMark, top: 8, right: 8 }}>+</div>
+        <div style={{ ...cropMark, bottom: 8, left: 8 }}>+</div>
+        <div style={{ ...cropMark, bottom: 8, right: 8 }}>+</div>
       </div>
     ),
     size,

@@ -64,7 +64,7 @@ function dossierInsert(dossier: Dossier): string {
   return [
     "insert into public.dossiers (",
     "  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,",
-    "  premises, is_published, published_at, illustration_url, illustration_credit",
+    "  premises, timeline, is_published, published_at, illustration_url, illustration_credit",
     ") values (",
     `  ${sqlText(dossier.id)},`,
     `  ${sqlText(dossier.slug)},`,
@@ -75,6 +75,7 @@ function dossierInsert(dossier: Dossier): string {
     `  ${sqlText(JSON.stringify(dossier.protagonists))}::jsonb,`,
     `  ${String(dossier.consensus_score)},`,
     `  ${sqlText(JSON.stringify(dossier.premises))}::jsonb,`,
+    `  ${sqlText(JSON.stringify(dossier.timeline ?? []))}::jsonb,`,
     `  ${dossier.is_published ? "true" : "false"},`,
     `  ${dossier.published_at === null ? "null" : `${sqlText(dossier.published_at)}::timestamptz`},`,
     `  ${sqlNullable(dossier.illustration_url ?? null)},`,

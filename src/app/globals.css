@@ -1491,6 +1491,75 @@ a[class*="text-seal"] {
   color: var(--pp-grid-soft);
 }
 
+/* --- Chaîne de custode (frise chronologique de l'instruction) ------------ */
+
+/* L'axe vertical en pointillé : l'encre pierre sur le papier, un fil ambre
+   dans la chambre noire. Les étapes s'y accrochent, jamais ailleurs. */
+.pp-custody {
+  position: relative;
+  border-left: 2px dashed var(--pp-stone);
+  margin-left: 0.75rem;
+  padding-left: 1.5rem;
+}
+
+[data-theme="dark"] .pp-custody {
+  border-left-color: color-mix(in srgb, var(--pp-amber) 50%, transparent);
+}
+
+.pp-custody > li {
+  position: relative;
+}
+
+.pp-custody > li + li {
+  margin-top: 2rem;
+}
+
+/* La pastille de repérage : un anneau posé sur le fil, percé à l'encre. */
+.pp-custody__node {
+  position: absolute;
+  top: 4px;
+  left: -31px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--pp-mark);
+  border-radius: 50%;
+  background: var(--pp-canvas);
+}
+
+/* La carte d'étape : le blanc chaud d'un calque de table lumineuse. */
+.pp-custody__card {
+  border: 1px solid var(--pp-grid-soft);
+  background: var(--pp-lit);
+  padding: 0.75rem 1rem;
+}
+
+.pp-custody__date {
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-sm);
+  letter-spacing: 0.08em;
+  color: var(--pp-ink);
+}
+
+.pp-custody__title {
+  margin-top: 0.25rem;
+  font-family: var(--font-serif);
+  font-size: var(--pp-text-lg);
+  line-height: 1.25;
+  color: var(--pp-ink);
+}
+
+.pp-custody__desc {
+  margin-top: 0.35rem;
+}
+
+.pp-custody__ref {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.08em;
+  color: var(--pp-seal);
+}
+
 /* --- Table de dissection (anatomie du sophisme) ------------------------- */
 
 .pp-dissect__claim {
