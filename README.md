@@ -72,7 +72,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 274 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 276 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -158,6 +158,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   *X et autres c. Autriche* de la CEDH reproduit par Juricaf et rapport parlementaire
   n° 628 de la commission spéciale) a été vérifié de la même manière (`a13d0497…`) :
   sept fiches déposées et relues, toutes capturées en instantanés réseau.
+  Puis consolidé le 16 octobre 2026 (neuf sources : les pièces INED et Conseil
+  constitutionnel, jugées non probantes pour la question du développement psychologique,
+  remplacées par l'étude longitudinale NLLFS du *New England Journal of Medicine* (2018)
+  et le recensement Rosenfeld (*Demography*, 2010) ; ajout de la synthèse des trois
+  universitaires dans *The Conversation* et de la tribune du *Monde* de 2011 sur le
+  fardeau de la preuve ; arrêt CEDH reclassé en archive primaire) : neuf fiches déposées
+  et relues, toutes en instantanés réseau — racine d'intégrité du dossier `3359784f…`.
   Le vingt et unième (la « théorie du genre » à l'école, 7 sources — page Éduscol servant
   de cadre à l'égalité filles-garçons, arrêté du 3 février 2025 fixant le programme EVARS
   (BO n° 6 du 6 février 2025), programme du cycle 4 (BO n° 31 du 30 juillet 2020, PDF de
@@ -411,6 +418,21 @@ français de l'avis, citée avec son crochet). Sa racine d'intégrité `0781bfb2
 égale l'`ETag` et le `X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` et
 `/api/archives` vérifiés sur les pièces du dossier, et la recherche « colonies » renvoie
 un résultat.
+
+Puis, le 16/10/2026 (19:29 UTC), **consolidation ciblée** du dossier sur
+l'homoparentalité, signalée par un lecteur : les deux pièces jugées non probantes pour la
+question posée (la fiche INED — démographie des familles — et la décision du Conseil
+constitutionnel — filiation adoptive) ont été remplacées par des **preuves directes**
+(étude longitudinale NLLFS publiée par le *New England Journal of Medicine* en 2018 ;
+recensement américain exploité par Michael Rosenfeld, *Demography* 2010) et complétées par
+la synthèse de trois universitaires français (*The Conversation*, 2019) et la tribune du
+*Monde* de 2011 sur le fardeau de la preuve ; l'arrêt *X et autres c. Autriche* est
+reclassé en archive primaire. L'application a été ciblée sur ce seul dossier — les 267
+fiches des autres dossiers sont restées intactes — et la recapture limitée à ses neuf
+pièces : neuf instantanés réseau, racine de la passe `ec9bac22f30fbe32…` ; racine
+d'intégrité du dossier `3359784f…` = `ETag` et `X-Proof-Integrity-Root` relevés en ligne ;
+`/api/verify` et `/api/archives` vérifiés ; racine globale recalculée sur les 276 fiches
+de l'état courant : `dfebddf6f570c723…`.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi

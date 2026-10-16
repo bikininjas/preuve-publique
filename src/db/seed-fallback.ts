@@ -3711,36 +3711,36 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
       note: "AAP ; prise de position de 2013 pour le bien-être des enfants de parents gays ou lesbiens.",
     },
     {
-      name: "Institut national d'études démographiques",
-      kind: "ORGANISATION",
-      role: "AUTEUR",
-      reference_url: "https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques",
-      note: "INED ; enquête Erfi 2 sur les configurations familiales, dont les familles homoparentales.",
-    },
-    {
-      name: "Conseil constitutionnel (France)",
-      kind: "ORGANISATION",
-      role: "AUTEUR",
-      reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
-      note: "Décision n° 2013-669 DC du 17 mai 2013 sur le mariage et l'adoption pour les couples de même sexe.",
-    },
-    {
       name: "Cour européenne des droits de l'homme",
       kind: "ORGANISATION",
       role: "AUTEUR",
       reference_url: "https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme",
       note: "CEDH ; arrêt de Grande Chambre X et autres c. Autriche (19 février 2013).",
     },
+    {
+      name: "National Longitudinal Lesbian Family Study",
+      kind: "TEXTE",
+      role: "AUTEUR",
+      reference_url: "https://www.nllfs.org/",
+      note: "Étude longitudinale américaine lancée en 1986 : elle suit les enfants de familles de mères lesbiennes de leur conception à l'âge adulte ; à 25 ans, aucune différence de santé mentale avec l'échantillon national apparié.",
+    },
+    {
+      name: "Michael J. Rosenfeld",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: null,
+      note: "Sociologue à l'université Stanford : son exploitation du recensement américain (2010) a fourni le premier test à grande échelle de la progression scolaire des enfants de couples de même sexe.",
+    },
   ],
   verdict_summary:
-    "Plus de trente ans de littérature scientifique convergent : la méta-revue du What We Know Project (université Cornell) recense 79 études, dont 75 concluent que les enfants de parents gays ou lesbiens « ne s'en sortent pas moins bien » que les autres — et les quatre études minoritaires portaient sur des enfants de familles brisées, un biais documenté.\n\nL'American Psychological Association (résolution de février 2020) constate qu'il existe « un consensus » dans la littérature : la qualité des relations familiales pèse davantage sur le devenir de l'enfant que la structure du foyer.\n\nL'Académie américaine de pédiatrie affirme que le bien-être d'un enfant dépend « bien plus » de ses relations avec ses parents et du soutien social « que du genre ou de l'orientation sexuelle de ses parents ».\n\nEn France, l'INED dénombre 107 000 enfants de moins de 18 ans vivant dans un couple de même sexe (enquête Erfi 2), le rapport parlementaire de 2013 relevait qu'« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales », le Conseil constitutionnel a jugé que « l'identité de sexe des adoptants » n'est pas en soi un obstacle à la filiation adoptive, et la CEDH a jugé incompatible avec la Convention le refus d'adoption coparentale opposé à un couple homosexuel.",
+    "Plus de trente ans de littérature scientifique convergent : la méta-revue du What We Know Project (université Cornell) recense 79 études, dont 75 concluent que les enfants de parents gays ou lesbiens « ne s'en sortent pas moins bien » que les autres — et les quatre études minoritaires portaient sur des enfants de familles brisées, un biais documenté.\n\nL'American Psychological Association (résolution de février 2020) constate qu'il existe « un consensus » dans la littérature : la qualité des relations familiales pèse davantage sur le devenir de l'enfant que la structure du foyer.\n\nL'Académie américaine de pédiatrie affirme que le bien-être d'un enfant dépend « bien plus » de ses relations avec ses parents et du soutien social « que du genre ou de l'orientation sexuelle de ses parents ».\n\nLes études de terrain les plus solides convergent. Le NLLFS — étude longitudinale américaine qui suit, depuis 1986 et dès avant leur naissance, les enfants de familles de mères lesbiennes — ne relève à 25 ans aucune différence de santé mentale avec un échantillon national apparié : ni dans l'adaptation, ni dans les troubles émotionnels et comportementaux, ni sur les échelles diagnostiques. Sur le recensement des États-Unis (environ 3 500 enfants de couples de même sexe), la progression scolaire ne se distingue pas, à niveau socio-économique comparable, de celle des enfants de couples mariés hétérosexuels — « children of same-sex couples appear to have no inherent developmental disadvantage » (Rosenfeld, 2010). En France, le rapport parlementaire de 2013 relevait qu'« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales » ; la synthèse de trois universitaires en psychologie publiée par The Conversation rappelle que la piste de « possibles troubles du comportement » est « ce qui n'a jamais été démontré » ; et la CEDH a jugé en 2013 que le gouvernement autrichien n'avait pas établi de préjudice pour l'enfant dans le refus opposé à un couple homosexuel.",
   consensus_score: 98,
   premises: [
     {
       claim_part: "« L'absence d'un parent de chaque sexe perturbe la construction psychologique »",
       status: "FAUX",
       detail:
-        "Les méta-analyses et revues systématiques ne relèvent aucune justification empirique à cette crainte : l'American Psychological Association note que « la recherche a constamment échoué à mettre au jour une justification empirique à ces préoccupations » (résolution de 2020, citant les revues de 2015-2019) et que « les enfants de parents sexuels minoritaires semblent se développer de manière saine et typique » à tous les âges et domaines. Le rapport parlementaire français de 2013 : « Sur aucun de ces points, il n'est apparu de différence significative entre les enfants étudiés et les groupes témoins. »",
+        "Les méta-analyses et revues systématiques ne relèvent aucune justification empirique à cette crainte : l'American Psychological Association note que « la recherche a constamment échoué à mettre au jour une justification empirique à ces préoccupations » (résolution de 2020, citant les revues de 2015-2019) et que « les enfants de parents sexuels minoritaires semblent se développer de manière saine et typique » à tous les âges et domaines. Le rapport parlementaire français de 2013 : « Sur aucun de ces points, il n'est apparu de différence significative entre les enfants étudiés et les groupes témoins. » L'étude longitudinale NLLFS ne mesure, à 25 ans, aucune différence de santé mentale avec un échantillon national apparié.",
     },
     {
       claim_part: "« Les enfants de couples homosexuels sont fragilisés socialement et scolairement »",
@@ -3817,38 +3817,39 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
       display_order: 2,
     },
     {
-      id: "bdcf7ba5-7ee4-4c6d-a673-43a7c424401f",
-      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      id: "83b1b559-3756-4627-aa0c-043d77353ee1",
+      spectrum: "CONSENSUS_ACADEMIQUE",
       source_name:
-        "De plus en plus d'enfants dans les couples de même sexe (Premiers résultats d'enquêtes n° 2-2026, enquête Erfi 2)",
-      author_or_institution: "INED — Institut national d'études démographiques",
-      publication_date: null,
+        "« National Longitudinal Lesbian Family Study — Mental Health of Adult Offspring » — New England Journal of Medicine, vol. 379, n° 3, p. 297-299 (19 juillet 2018)",
+      author_or_institution:
+        "Nanette Gartrell, Henny Bos et Audrey Koh — étude longitudinale NLLFS (États-Unis), texte servi par le site officiel de l'étude",
+      publication_date: "2018-07-19",
       quote_kind: "CITATION_EXACTE",
       exact_quote:
-        "17 % des hommes et 45 % des femmes vivant en couple cohabitant de même sexe (CMS) ont, au moins, un enfant ou bel-enfant, cohabitant avec le couple ou non (Tab. 1). Cela correspond à 111 000 parents en CMS et à 107 000 enfants.",
+        "A comparison of the NLLFS offspring sample and the matched Achenbach normative sample showed no significant between-group differences with respect to adaptive functioning (family, friends, spouse or partner relationships, and educational or job performance), behavioral or emotional problems, scores on mental health diagnostic scales, or the percentage of participants with a score in the borderline or clinical range (Table 1, and Table S2 in the Supplementary Appendix, available with the full text of this letter at NEJM.org).",
       context_explanation:
-        "Données françaises de l'enquête Erfi 2 (2024), publiées par l'INED en 2026 (DOI 10.48756/ined-1res-2.26). Elles distinguent l'« homoparentalité simple » — l'enfant est né dans ou adopté par le couple et grandit avec ses deux parents de même sexe — de l'« homoparentalité recomposée ». Cette population a plus que triplé depuis 2011, portée par les couples de femmes ; les projets d'enfant y sont « nombreux » et soutenus par l'entourage. La question de la « trajectoire » des enfants ne se pose donc plus comme une hypothèse théorique, mais sur une population réelle et documentée.",
-      original_url: "https://www.ined.fr/sites/default/files/inline-files/-ined-2602-fiche-15.pdf",
-      author_reference_url: "https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques",
+        "L'étude suit depuis 1986 — dès avant leur naissance — les enfants nés dans 84 familles de mères lesbiennes (insémination artificielle), avec un taux de rétention de 92 %. À 25 ans, les 77 participants passés au questionnaire standardisé (Achenbach Adult Self-Report) ne se distinguent pas de l'échantillon national apparié (âge, sexe, origine, diplôme) : adaptation, troubles émotionnels et comportementaux, échelles diagnostiques — « in a large, prospective study involving 25-year-olds with sexual-minority parents, there were no significant differences in measures of mental health ». Les auteurs signalent honnêtement les limites : puissance statistique faible de certaines analyses post hoc et échantillon non aléatoire. Citation en anglais, langue de l'article.",
+      original_url: "https://www.nllfs.org/images/uploads/pdf/2018-nllfs-mental-health-adult-offspring-nejm.pdf",
+      author_reference_url: "https://www.nllfs.org/",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 3,
     },
     {
-      id: "12c3d019-bca6-4d39-9b77-fd1c59a79c30",
-      spectrum: "CENTRE",
+      id: "db265c02-a99d-461a-85b2-5834e89c6a63",
+      spectrum: "CONSENSUS_ACADEMIQUE",
       source_name:
-        "Décision n° 2013-669 DC du 17 mai 2013 — Loi ouvrant le mariage aux couples de personnes de même sexe",
-      author_or_institution: "Conseil constitutionnel (France)",
-      publication_date: "2013-05-17",
+        "« Nontraditional Families and Childhood Progress Through School » — Demography, vol. 47, n° 3, p. 755-775 (août 2010)",
+      author_or_institution: "Michael J. Rosenfeld — université Stanford",
+      publication_date: "2010-08-01",
       quote_kind: "CITATION_EXACTE",
       exact_quote:
-        "en permettant l'adoption par deux personnes de même sexe ou au sein d'un couple de personnes de même sexe, le législateur, compétent pour fixer les règles relatives à l'état et à la capacité des personnes en application de l'article 34 de la Constitution, a estimé que l'identité de sexe des adoptants ne constituait pas, en elle-même, un obstacle à l'établissement d'un lien de filiation adoptive",
+        "The results show that children of same-sex couples are as likely to make normal progress through school as the children of most other family structures.",
       context_explanation:
-        "Saisi par les parlementaires opposés à la loi, le Conseil constitutionnel valide l'ensemble du dispositif : la filiation adoptive n'exige pas que « les liens de parenté [...] imitent ceux de la filiation biologique » et les couples de même sexe « seront soumis, comme ceux qui sont formés d'un homme et d'une femme, à une procédure destinée à constater leur capacité à accueillir un enfant ». Aucun principe constitutionnel — ni « filiation bilinéaire » ni « altérité sexuelle » — ne fait obstacle à l'adoption par deux parents de même sexe.",
-      original_url: "https://www.conseil-constitutionnel.fr/decision/2013/2013669DC.htm",
-      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+        "Premier test à grande échelle sur données représentatives : le recensement américain de 2000 fournit environ 3 500 enfants élevés par des couples de même sexe, contre des centaines de milliers dans les autres configurations familiales. Après contrôle du niveau socio-économique, « the differences between children of same-sex couples and children of heterosexual married couples are small enough to be indistinguishable from zero » — y compris après appariement par scores de propension — et « children of same-sex couples appear to have no inherent developmental disadvantage ». L'auteur souligne en revanche que la structure familiale reste un prédicteur du parcours scolaire en général. Citation en anglais, langue de l'article.",
+      original_url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3000058/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_Stanford",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -3856,7 +3857,7 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
     },
     {
       id: "9e22c6af-6343-49d6-ab23-d28ba5654d0f",
-      spectrum: "CENTRE",
+      spectrum: "ARCHIVE_PRIMAIRE",
       source_name:
         "X et autres c. Autriche — arrêt de Grande Chambre du 19 février 2013 (texte français)",
       author_or_institution:
@@ -3894,6 +3895,47 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 6,
+    },
+
+    {
+      id: "f3476dcb-ea4f-4a15-9ec0-e6e848e842d3",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« PMA et homoparentalité : que sait-on vraiment du développement des enfants de mères lesbiennes ? » — The Conversation France (29 septembre 2019)",
+      author_or_institution:
+        "Benoît Schneider (université de Lorraine), Chantal Zaouche Gaudron (université Toulouse - Jean Jaurès) et Olivier Vecho (université Paris Nanterre) — psychologues, professeurs d'université",
+      publication_date: "2019-09-29",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Alors que les premières études mettaient par exemple fortement l'accent sur la question de possibles troubles du comportement ou sur celle de la « transmission » de l'homosexualité des parents homosexuels à leurs enfants (ce qui n'a jamais été démontré), les recherches plus récentes concernent davantage la qualité des relations au sein de la famille",
+      context_explanation:
+        "Synthèse des décennies de recherche sur le développement des enfants de familles homoparentales, signée par trois spécialistes français du champ : la piste des « troubles du comportement » — jamais démontrée — a laissé place à l'analyse de la qualité des relations familiales, mieux corrélée au développement. Le texte passe en revue les études sur les enfants adoptés ou conçus par AMP au sein de couples de même sexe et les résultats publiés sur plusieurs générations de recherches.",
+      original_url: "https://theconversation.com/pma-et-homoparentalite-que-sait-on-vraiment-du-developpement-des-enfants-de-meres-lesbiennes-124397",
+      author_reference_url: "https://fr.wikipedia.org/wiki/The_Conversation",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "ab9d370d-fab7-4876-81bb-d9f4efab9a3c",
+      spectrum: "CENTRE",
+      source_name:
+        "« Homoparentalité : prenons les faits au sérieux » — Le Monde (17 février 2011), réponse à la tribune de Xavier Lacroix du 10 février",
+      author_or_institution:
+        "Olivier Morin — chercheur en sciences cognitives (Max-Planck-Institut à l'époque), tribune au Monde ; texte déposé en accès ouvert par l'institut",
+      publication_date: "2011-02-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Sans dire qu'il n'existe aucune différence entre les familles homoparentales et les autres, ces travaux placent le fardeau de la preuve sur les épaules des adversaires de l'homoparentalité. Ceux qui croient que grandir dans un couple homosexuel mène à des troubles graves doivent désormais expliquer pourquoi ces conséquences sont si difficiles à détecter.",
+      context_explanation:
+        "Réponse à la tribune « Homoparentalité : les statistiques ne disent pas tout » (Xavier Lacroix, Le Monde, 10 février 2011) : le chercheur rappelle l'état des études — « ces articles ont convaincu les associations américaines de médecine, de psychiatrie, de psychologie et de psychanalyse d'émettre des avis favorables à l'homoparentalité » — et renverse la charge de la preuve. Texte vérifié sur la version déposée en accès ouvert sur pure.mpg.de ; tribune parue au Monde le 17 février 2011 (instantané Wayback en URL de pièce).",
+      original_url: "https://web.archive.org/web/20230326051325/https://www.lemonde.fr/idees/article/2011/02/17/homoparentalite-prenons-les-faits-au-serieux_1480866_3232.html",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
     },
   ],
 };

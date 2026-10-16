@@ -1871,11 +1871,11 @@ L''American Psychological Association (résolution de février 2020) constate qu
 
 L''Académie américaine de pédiatrie affirme que le bien-être d''un enfant dépend « bien plus » de ses relations avec ses parents et du soutien social « que du genre ou de l''orientation sexuelle de ses parents ».
 
-En France, l''INED dénombre 107 000 enfants de moins de 18 ans vivant dans un couple de même sexe (enquête Erfi 2), le rapport parlementaire de 2013 relevait qu''« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales », le Conseil constitutionnel a jugé que « l''identité de sexe des adoptants » n''est pas en soi un obstacle à la filiation adoptive, et la CEDH a jugé incompatible avec la Convention le refus d''adoption coparentale opposé à un couple homosexuel.',
+Les études de terrain les plus solides convergent. Le NLLFS — étude longitudinale américaine qui suit, depuis 1986 et dès avant leur naissance, les enfants de familles de mères lesbiennes — ne relève à 25 ans aucune différence de santé mentale avec un échantillon national apparié : ni dans l''adaptation, ni dans les troubles émotionnels et comportementaux, ni sur les échelles diagnostiques. Sur le recensement des États-Unis (environ 3 500 enfants de couples de même sexe), la progression scolaire ne se distingue pas, à niveau socio-économique comparable, de celle des enfants de couples mariés hétérosexuels — « children of same-sex couples appear to have no inherent developmental disadvantage » (Rosenfeld, 2010). En France, le rapport parlementaire de 2013 relevait qu''« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales » ; la synthèse de trois universitaires en psychologie publiée par The Conversation rappelle que la piste de « possibles troubles du comportement » est « ce qui n''a jamais été démontré » ; et la CEDH a jugé en 2013 que le gouvernement autrichien n''avait pas établi de préjudice pour l''enfant dans le refus opposé à un couple homosexuel.',
   'SOCIETE'::dossier_category,
-  '[{"name":"Association américaine de psychologie","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Association_am%C3%A9ricaine_de_psychologie","note":"APA ; résolution de 2020 sur les parents et leurs enfants (après celle de 2004)."},{"name":"Académie américaine de pédiatrie","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Acad%C3%A9mie_am%C3%A9ricaine_de_p%C3%A9diatrie","note":"AAP ; prise de position de 2013 pour le bien-être des enfants de parents gays ou lesbiens."},{"name":"Institut national d''études démographiques","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques","note":"INED ; enquête Erfi 2 sur les configurations familiales, dont les familles homoparentales."},{"name":"Conseil constitutionnel (France)","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)","note":"Décision n° 2013-669 DC du 17 mai 2013 sur le mariage et l''adoption pour les couples de même sexe."},{"name":"Cour européenne des droits de l''homme","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme","note":"CEDH ; arrêt de Grande Chambre X et autres c. Autriche (19 février 2013)."}]'::jsonb,
+  '[{"name":"Association américaine de psychologie","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Association_am%C3%A9ricaine_de_psychologie","note":"APA ; résolution de 2020 sur les parents et leurs enfants (après celle de 2004)."},{"name":"Académie américaine de pédiatrie","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Acad%C3%A9mie_am%C3%A9ricaine_de_p%C3%A9diatrie","note":"AAP ; prise de position de 2013 pour le bien-être des enfants de parents gays ou lesbiens."},{"name":"Cour européenne des droits de l''homme","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Cour_europ%C3%A9enne_des_droits_de_l%27homme","note":"CEDH ; arrêt de Grande Chambre X et autres c. Autriche (19 février 2013)."},{"name":"National Longitudinal Lesbian Family Study","kind":"TEXTE","role":"AUTEUR","reference_url":"https://www.nllfs.org/","note":"Étude longitudinale américaine lancée en 1986 : elle suit les enfants de familles de mères lesbiennes de leur conception à l''âge adulte ; à 25 ans, aucune différence de santé mentale avec l''échantillon national apparié."},{"name":"Michael J. Rosenfeld","kind":"PERSONNE","role":"AUTEUR","reference_url":null,"note":"Sociologue à l''université Stanford : son exploitation du recensement américain (2010) a fourni le premier test à grande échelle de la progression scolaire des enfants de couples de même sexe."}]'::jsonb,
   98,
-  '[{"claim_part":"« L''absence d''un parent de chaque sexe perturbe la construction psychologique »","status":"FAUX","detail":"Les méta-analyses et revues systématiques ne relèvent aucune justification empirique à cette crainte : l''American Psychological Association note que « la recherche a constamment échoué à mettre au jour une justification empirique à ces préoccupations » (résolution de 2020, citant les revues de 2015-2019) et que « les enfants de parents sexuels minoritaires semblent se développer de manière saine et typique » à tous les âges et domaines. Le rapport parlementaire français de 2013 : « Sur aucun de ces points, il n''est apparu de différence significative entre les enfants étudiés et les groupes témoins. »"},{"claim_part":"« Les enfants de couples homosexuels sont fragilisés socialement et scolairement »","status":"FAUX","detail":"Les études sur données représentatives (recensement américain : 3 500 enfants de couples de même sexe, aucune différence de progression scolaire ; plus de 20 000 enfants des enquêtes nationales) ne mesurent pas de décrochage corrélé à la structure parentale. La fragilité observée, quand elle existe, relève du stigmate social : le rapport de l''Assemblée nationale le résume — « La seule fragilité particulière, lorsqu''il y en a une, relève du regard négatif que la société peut porter sur cette situation particulière. »"}]'::jsonb,
+  '[{"claim_part":"« L''absence d''un parent de chaque sexe perturbe la construction psychologique »","status":"FAUX","detail":"Les méta-analyses et revues systématiques ne relèvent aucune justification empirique à cette crainte : l''American Psychological Association note que « la recherche a constamment échoué à mettre au jour une justification empirique à ces préoccupations » (résolution de 2020, citant les revues de 2015-2019) et que « les enfants de parents sexuels minoritaires semblent se développer de manière saine et typique » à tous les âges et domaines. Le rapport parlementaire français de 2013 : « Sur aucun de ces points, il n''est apparu de différence significative entre les enfants étudiés et les groupes témoins. » L''étude longitudinale NLLFS ne mesure, à 25 ans, aucune différence de santé mentale avec un échantillon national apparié."},{"claim_part":"« Les enfants de couples homosexuels sont fragilisés socialement et scolairement »","status":"FAUX","detail":"Les études sur données représentatives (recensement américain : 3 500 enfants de couples de même sexe, aucune différence de progression scolaire ; plus de 20 000 enfants des enquêtes nationales) ne mesurent pas de décrochage corrélé à la structure parentale. La fragilité observée, quand elle existe, relève du stigmate social : le rapport de l''Assemblée nationale le résume — « La seule fragilité particulière, lorsqu''il y en a une, relève du regard négatif que la société peut porter sur cette situation particulière. »"}]'::jsonb,
   '[]'::jsonb,
   true,
   '2026-10-15T00:00:00.000Z'::timestamptz,
@@ -1934,43 +1934,43 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   2
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
-  'bdcf7ba5-7ee4-4c6d-a673-43a7c424401f',
+  '83b1b559-3756-4627-aa0c-043d77353ee1',
   'd50b5c99-ee02-49cf-b690-950efc6e2b2d',
-  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
-  'De plus en plus d''enfants dans les couples de même sexe (Premiers résultats d''enquêtes n° 2-2026, enquête Erfi 2)',
-  'INED — Institut national d''études démographiques',
-  null,
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« National Longitudinal Lesbian Family Study — Mental Health of Adult Offspring » — New England Journal of Medicine, vol. 379, n° 3, p. 297-299 (19 juillet 2018)',
+  'Nanette Gartrell, Henny Bos et Audrey Koh — étude longitudinale NLLFS (États-Unis), texte servi par le site officiel de l''étude',
+  '2018-07-19',
   'CITATION_EXACTE'::quote_kind,
-  '17 % des hommes et 45 % des femmes vivant en couple cohabitant de même sexe (CMS) ont, au moins, un enfant ou bel-enfant, cohabitant avec le couple ou non (Tab. 1). Cela correspond à 111 000 parents en CMS et à 107 000 enfants.',
-  'Données françaises de l''enquête Erfi 2 (2024), publiées par l''INED en 2026 (DOI 10.48756/ined-1res-2.26). Elles distinguent l''« homoparentalité simple » — l''enfant est né dans ou adopté par le couple et grandit avec ses deux parents de même sexe — de l''« homoparentalité recomposée ». Cette population a plus que triplé depuis 2011, portée par les couples de femmes ; les projets d''enfant y sont « nombreux » et soutenus par l''entourage. La question de la « trajectoire » des enfants ne se pose donc plus comme une hypothèse théorique, mais sur une population réelle et documentée.',
-  'https://www.ined.fr/sites/default/files/inline-files/-ined-2602-fiche-15.pdf',
+  'A comparison of the NLLFS offspring sample and the matched Achenbach normative sample showed no significant between-group differences with respect to adaptive functioning (family, friends, spouse or partner relationships, and educational or job performance), behavioral or emotional problems, scores on mental health diagnostic scales, or the percentage of participants with a score in the borderline or clinical range (Table 1, and Table S2 in the Supplementary Appendix, available with the full text of this letter at NEJM.org).',
+  'L''étude suit depuis 1986 — dès avant leur naissance — les enfants nés dans 84 familles de mères lesbiennes (insémination artificielle), avec un taux de rétention de 92 %. À 25 ans, les 77 participants passés au questionnaire standardisé (Achenbach Adult Self-Report) ne se distinguent pas de l''échantillon national apparié (âge, sexe, origine, diplôme) : adaptation, troubles émotionnels et comportementaux, échelles diagnostiques — « in a large, prospective study involving 25-year-olds with sexual-minority parents, there were no significant differences in measures of mental health ». Les auteurs signalent honnêtement les limites : puissance statistique faible de certaines analyses post hoc et échantillon non aléatoire. Citation en anglais, langue de l''article.',
+  'https://www.nllfs.org/images/uploads/pdf/2018-nllfs-mental-health-adult-offspring-nejm.pdf',
   null,
-  '9bfea56091d8fcb17928e06dffb7b314e8e78cee973c92bfdf1a2eda48878273',
+  'd16f5590f2bfe22927beabce8e8c00a2e42c4c370236218cae473472fb7719af',
   null,
-  'https://fr.wikipedia.org/wiki/Institut_national_d%27%C3%A9tudes_d%C3%A9mographiques',
+  'https://www.nllfs.org/',
   3
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
-  '12c3d019-bca6-4d39-9b77-fd1c59a79c30',
+  'db265c02-a99d-461a-85b2-5834e89c6a63',
   'd50b5c99-ee02-49cf-b690-950efc6e2b2d',
-  'CENTRE'::political_spectrum,
-  'Décision n° 2013-669 DC du 17 mai 2013 — Loi ouvrant le mariage aux couples de personnes de même sexe',
-  'Conseil constitutionnel (France)',
-  '2013-05-17',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Nontraditional Families and Childhood Progress Through School » — Demography, vol. 47, n° 3, p. 755-775 (août 2010)',
+  'Michael J. Rosenfeld — université Stanford',
+  '2010-08-01',
   'CITATION_EXACTE'::quote_kind,
-  'en permettant l''adoption par deux personnes de même sexe ou au sein d''un couple de personnes de même sexe, le législateur, compétent pour fixer les règles relatives à l''état et à la capacité des personnes en application de l''article 34 de la Constitution, a estimé que l''identité de sexe des adoptants ne constituait pas, en elle-même, un obstacle à l''établissement d''un lien de filiation adoptive',
-  'Saisi par les parlementaires opposés à la loi, le Conseil constitutionnel valide l''ensemble du dispositif : la filiation adoptive n''exige pas que « les liens de parenté [...] imitent ceux de la filiation biologique » et les couples de même sexe « seront soumis, comme ceux qui sont formés d''un homme et d''une femme, à une procédure destinée à constater leur capacité à accueillir un enfant ». Aucun principe constitutionnel — ni « filiation bilinéaire » ni « altérité sexuelle » — ne fait obstacle à l''adoption par deux parents de même sexe.',
-  'https://www.conseil-constitutionnel.fr/decision/2013/2013669DC.htm',
+  'The results show that children of same-sex couples are as likely to make normal progress through school as the children of most other family structures.',
+  'Premier test à grande échelle sur données représentatives : le recensement américain de 2000 fournit environ 3 500 enfants élevés par des couples de même sexe, contre des centaines de milliers dans les autres configurations familiales. Après contrôle du niveau socio-économique, « the differences between children of same-sex couples and children of heterosexual married couples are small enough to be indistinguishable from zero » — y compris après appariement par scores de propension — et « children of same-sex couples appear to have no inherent developmental disadvantage ». L''auteur souligne en revanche que la structure familiale reste un prédicteur du parcours scolaire en général. Citation en anglais, langue de l''article.',
+  'https://pmc.ncbi.nlm.nih.gov/articles/PMC3000058/',
   null,
-  '21d85b57c22d8e21b48c0daf2921a71f8f28b7a00f254845afcd5e248f8b2280',
+  '9028d9bbd12283e7cbbc65ea77d8053be9bdb471c12479e7ae3159765f1f52d9',
   null,
-  'https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)',
+  'https://fr.wikipedia.org/wiki/Universit%C3%A9_Stanford',
   4
 );
 insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
   '9e22c6af-6343-49d6-ab23-d28ba5654d0f',
   'd50b5c99-ee02-49cf-b690-950efc6e2b2d',
-  'CENTRE'::political_spectrum,
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
   'X et autres c. Autriche — arrêt de Grande Chambre du 19 février 2013 (texte français)',
   'Cour européenne des droits de l''homme (texte français reproduit par Juricaf, association des cours suprêmes judiciaires francophones ; hudoc bloquant les robots)',
   '2013-02-19',
@@ -2000,6 +2000,40 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   null,
   'https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)',
   6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'f3476dcb-ea4f-4a15-9ec0-e6e848e842d3',
+  'd50b5c99-ee02-49cf-b690-950efc6e2b2d',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« PMA et homoparentalité : que sait-on vraiment du développement des enfants de mères lesbiennes ? » — The Conversation France (29 septembre 2019)',
+  'Benoît Schneider (université de Lorraine), Chantal Zaouche Gaudron (université Toulouse - Jean Jaurès) et Olivier Vecho (université Paris Nanterre) — psychologues, professeurs d''université',
+  '2019-09-29',
+  'CITATION_EXACTE'::quote_kind,
+  'Alors que les premières études mettaient par exemple fortement l''accent sur la question de possibles troubles du comportement ou sur celle de la « transmission » de l''homosexualité des parents homosexuels à leurs enfants (ce qui n''a jamais été démontré), les recherches plus récentes concernent davantage la qualité des relations au sein de la famille',
+  'Synthèse des décennies de recherche sur le développement des enfants de familles homoparentales, signée par trois spécialistes français du champ : la piste des « troubles du comportement » — jamais démontrée — a laissé place à l''analyse de la qualité des relations familiales, mieux corrélée au développement. Le texte passe en revue les études sur les enfants adoptés ou conçus par AMP au sein de couples de même sexe et les résultats publiés sur plusieurs générations de recherches.',
+  'https://theconversation.com/pma-et-homoparentalite-que-sait-on-vraiment-du-developpement-des-enfants-de-meres-lesbiennes-124397',
+  null,
+  'e6821d9d1de56d861e9e01b4520d4931c1c0c73affe9686512be015582bcefe2',
+  null,
+  'https://fr.wikipedia.org/wiki/The_Conversation',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ab9d370d-fab7-4876-81bb-d9f4efab9a3c',
+  'd50b5c99-ee02-49cf-b690-950efc6e2b2d',
+  'CENTRE'::political_spectrum,
+  '« Homoparentalité : prenons les faits au sérieux » — Le Monde (17 février 2011), réponse à la tribune de Xavier Lacroix du 10 février',
+  'Olivier Morin — chercheur en sciences cognitives (Max-Planck-Institut à l''époque), tribune au Monde ; texte déposé en accès ouvert par l''institut',
+  '2011-02-17',
+  'CITATION_EXACTE'::quote_kind,
+  'Sans dire qu''il n''existe aucune différence entre les familles homoparentales et les autres, ces travaux placent le fardeau de la preuve sur les épaules des adversaires de l''homoparentalité. Ceux qui croient que grandir dans un couple homosexuel mène à des troubles graves doivent désormais expliquer pourquoi ces conséquences sont si difficiles à détecter.',
+  'Réponse à la tribune « Homoparentalité : les statistiques ne disent pas tout » (Xavier Lacroix, Le Monde, 10 février 2011) : le chercheur rappelle l''état des études — « ces articles ont convaincu les associations américaines de médecine, de psychiatrie, de psychologie et de psychanalyse d''émettre des avis favorables à l''homoparentalité » — et renverse la charge de la preuve. Texte vérifié sur la version déposée en accès ouvert sur pure.mpg.de ; tribune parue au Monde le 17 février 2011 (instantané Wayback en URL de pièce).',
+  'https://web.archive.org/web/20230326051325/https://www.lemonde.fr/idees/article/2011/02/17/homoparentalite-prenons-les-faits-au-serieux_1480866_3232.html',
+  null,
+  '83c5dca1a94f223a26e1cf1ec078a0dc2e57a9830645db7deb3cb9a3900cfb8d',
+  null,
+  null,
+  8
 );
 
 delete from public.dossiers where slug = 'theorie-du-genre-ecole-education-nationale';
