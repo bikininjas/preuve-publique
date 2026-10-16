@@ -20,8 +20,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   « anachronisme historique » et « généralisation abusive »), `0008_dossier_illustration`
   (`20261015163000` — `illustration_url` et `illustration_credit` sur les dossiers, bucket
   public `illustrations` : lecture publique, dépôt réservé aux administrateurs).
-  Vingt-sept dossiers en base :
-  vingt-six **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  Vingt-huit dossiers en base :
+  vingt-sept **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
@@ -41,10 +41,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   réchauffement climatique attribué à un « cycle solaire » (9, environnement), la voiture
   électrique comparée au thermique en analyse de cycle de vie (7, environnement) et
   l'OTAN accusée d'avoir « violé » un traité de 1990 promettant de ne pas s'élargir à
-  l'Est (7, international) —
+  l'Est (7, international) et la carte mondiale du QI censée prouver une
+  « infériorité cognitive biologique » des populations africaines (12, société) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 208 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 220 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -195,7 +196,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   textes réglementaires ont été lus au Bulletin officiel, et les pages bloquées (403)
   recoupées via leurs instantanés Wayback — l'expression « théorie du genre » ne figure
   dans aucun des textes produits par l'éducation nationale.
-- **Application** : `npm run typecheck`, `npm test` (**36 tests**) et `npm run build`
+- **Application** : `npm run typecheck`, `npm test` (**74 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
@@ -269,7 +270,21 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   une `URL_UNAVAILABLE` — NPR répond 403 aux robots) — racine des captures du dossier
   `78da0277da73a4cf…`, racine d'intégrité `83112c910d50f193…` relevée en ligne égale à
   l'`ETag` et au `X-Proof-Integrity-Root`. Le registre compte **208 fiches** — 172
-  `URL_SNAPSHOT`, 33 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`.
+  `URL_SNAPSHOT`, 33 `URL_UNAVAILABLE`, 3 `METADATA_ONLY`. Puis, le 16/10/2026 (12:00
+  UTC), l'ajout du dossier « carte mondiale du QI » (douze sources : retrait du titre de
+  Richard Lynn par l'université d'Ulster rapporté par la BBC, déclaration de l'EHBEA,
+  notice de rétractation du *Proceedings B*, deux revues systématiques de l'université
+  d'Amsterdam, billet du LSE Impact Blog, rapport Neisser de l'APA, étude fondatrice de
+  l'effet Flynn, explications de Franck Ramus, vérifications de *Libération* et des
+  Surligneurs, fiche du SPLC sur le financement Pioneer Fund) a entraîné une
+  réapplication complète du seed et la recapture des vingt-sept dossiers publiés :
+  **220 fiches** déposées et relues — 183 `URL_SNAPSHOT`, 34 `URL_UNAVAILABLE`, 3
+  `METADATA_ONLY` — racine des captures `4a57703bd9639bb7…` ; fiches dédupliquées, une
+  par pièce. Ses douze sources ont été vérifiées à la source avant leur intégration —
+  rapport de l'APA et articles d'*Intelligence* relus au texte, notice de la Royal
+  Society lue sur l'instantané Wayback (son URL répond 403 aux robots et est consignée
+  `URL_UNAVAILABLE`) — et la racine d'intégrité du dossier `9144f48b72ea1ee6…` est égale
+  à l'`ETag` et au `X-Proof-Integrity-Root` relevés en ligne.
 
 ## Pile technique
 
@@ -694,6 +709,16 @@ aucune image de presse protégée n'est employée. Le seed ayant été réappliq
 **185 fiches** d'archive des vingt-trois dossiers publiés ont été recapturées d'une
 traite — 154 `URL_SNAPSHOT`, 28 `URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des
 captures `d1f72d02854525dc…` ; dédoublonnées, une par pièce, zéro orpheline.
+
+Puis, le 16/10/2026 (12:00 UTC), l'ajout du dossier « carte mondiale du QI » (douze
+sources) a entraîné une réapplication complète du seed et la recapture des vingt-sept
+dossiers publiés : **220 fiches** déposées et relues — 183 `URL_SNAPSHOT`, 34
+`URL_UNAVAILABLE`, 3 `METADATA_ONLY` — racine des captures `4a57703bd9639bb7…` ; fiches
+dédupliquées, une par pièce, zéro orpheline (les fiches antérieures, emportées en
+cascade par la réapplication, ont été redéposées d'un seul passage). Le dossier lui-même
+porte onze instantanés et une `URL_UNAVAILABLE` (la notice de rétractation de la Royal
+Society, 403 aux robots — lue, elle, sur l'instantané Wayback) ; sa racine d'intégrité
+`9144f48b72ea1ee6…` égale l'`ETag` et le `X-Proof-Integrity-Root` relevés en ligne.
 
 Le
 **miroir Storage** n'a pas eu lieu faute d'accès

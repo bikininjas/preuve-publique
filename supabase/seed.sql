@@ -4061,6 +4061,230 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   7
 );
 
+delete from public.dossiers where slug = 'carte-mondiale-qi-pays-afrique-fraude-lynn';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, is_published, published_at, illustration_url, illustration_credit
+) values (
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'carte-mondiale-qi-pays-afrique-fraude-lynn',
+  'Les cartes mondiales du QI prouvent une infériorité cognitive biologique des populations africaines',
+  'FAUX'::verdict_status,
+  'Aucune institution statistique ne mesure de « QI moyen par pays » : la carte virale sort de la base de « QI national » constituée par Richard Lynn et Tatu Vanhanen (2002-2019). Dès la première version, 104 des 185 pays n''avaient aucun score mesuré — seulement des valeurs extrapolées — et les échantillons réellement testés étaient largement biaisés : le score de la Guinée équatoriale venait de 48 enfants testés en Espagne, pas en Guinée équatoriale, et deux audits systématiques de l''université d''Amsterdam ont montré que les échantillons africains les plus performants étaient écartés de la base. L''université d''Ulster a retiré en 2018 à Richard Lynn son titre de professeur émérite ; en 2020, la société savante EHBEA a déclaré le jeu de données « scientifically unsound, systematically biased, and ethically problematic » ; en 2024, une revue de la Royal Society a rétracté un article bâti sur lui. Rien, dans tout cela, ne mesure une « infériorité biologique » : selon le rapport de référence de l''American Psychological Association, les rares données directes n''étayent pas l''hypothèse génétique, et les scores se déplacent avec l''école, la nutrition et la santé — environ 20 points de QI gagnés en une génération aux Pays-Bas (1952-1982). Le tout adossé à un financement documenté : le Pioneer Fund, fonds eugéniste que Lynn a présidé à partir de 2012. La carte est une reconstruction statistique, pas une mesure.',
+  'SOCIETE'::dossier_category,
+  '[{"name":"Richard Lynn","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Richard_Lynn","note":"Psychologue britannique (1930-2023), auteur de la base de « QI nationaux » (2002-2019) et coauteur de « IQ and the Wealth of Nations » ; son titre de professeur émérite lui a été retiré par l''université d''Ulster en 2018."},{"name":"Tatu Vanhanen","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Tatu_Vanhanen","note":"Politologue finlandais, coauteur de « IQ and the Wealth of Nations » (2002) et « IQ and Global Inequality » (2006), les ouvrages dont la carte tire ses données."},{"name":"Pioneer Fund","kind":"ORGANISATION","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Pioneer_Fund","note":"Fonds américain créé en 1937 pour financer la recherche eugéniste ; il a subventionné Richard Lynn, qui en a pris la présidence en 2012."},{"name":"IQ and the Wealth of Nations","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/IQ_and_the_Wealth_of_Nations","note":"Essai de Richard Lynn et Tatu Vanhanen (2002) dont la carte virale reprend les données, prolongé par « IQ and Global Inequality » (2006)."},{"name":"Université d''Ulster","kind":"ORGANISATION","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Ulster","note":"Université nord-irlandaise qui a retiré en 2018 le titre de professeur émérite de Richard Lynn, après une motion de son syndicat étudiant."}]'::jsonb,
+  100,
+  '[{"claim_part":"« Cette carte repose sur des mesures scientifiques mondiales »","status":"FAUX","detail":"La base ne tient pas sur des mesures : sur 185 pays couverts, 104 n''ont que des scores extrapolés d''après les pays voisins — un procédé que le coauteur du jeu de données reconnaît lui-même (« estimés à partir des QI de pays proches et comparables sur le plan ethnique »). Les échantillons mesurés sont hors normes : le QI de l''Angola vient de 19 personnes, celui de l''Érythrée entièrement d''enfants vivant en orphelinat, celui de la Guinée équatoriale de 48 enfants testés en Espagne — pas en Guinée équatoriale — et les échantillons africains dépassant 75 de moyenne étaient écartés (« unsystematic methods... results untrustworthy »). L''université d''Ulster a retiré son titre à Lynn en 2018, l''EHBEA a déclaré le jeu de données infondé en 2020 et une revue de la Royal Society a rétracté en 2024 un article qui l''utilisait : aucune institution scientifique ne tient cette carte pour une mesure."},{"claim_part":"« Un score national bas mesure une limite génétique »","status":"CONFUSION_CONCEPTUELLE","detail":"Un score moyen autour de 70 ne décrit pas un patrimoine héréditaire : il confond la performance à des tests construits dans les pays riches avec les capacités d''une population entière — au risque d''un contresens clinique, 70 étant le seuil de la déficience intellectuelle, et les scores « faibles » mesurés au Mali ou chez les Tsimane s''évanouissant devant des tâches adaptées (EHBEA). Le rapport de référence de l''American Psychological Association établit qu''une forte héritabilité au sein d''un groupe n''implique rien sur l''origine d''un écart entre groupes, et que les rares données directes ne soutiennent pas l''hypothèse génétique. Pour le chercheur du CNRS Franck Ramus, « aucune preuve n''a été apportée que les différences génétiques entre les peuples soient la cause des différences entre nations », quand la scolarisation, la nutrition et les maladies sont « des explications bien mieux étayées »."},{"claim_part":"« Le QI moyen d''une population est fixe et héréditaire »","status":"FAUX","detail":"Les scores ne sont pas fixés : entre 1952 et 1982, les conscrits néerlandais passés aux mêmes épreuves de Raven ont gagné environ 20 points de QI — « a gain of about 20 IQ points over a single generation » — et l''effet Flynn documente des gains de 5 à 25 points par génération selon les pays. Chaque année de scolarité supplémentaire fait progresser l''intelligence mesurée d''environ 3 points (méta-analyse sur 600 000 personnes), et la nutrition, les maladies infectieuses ou les toxines environnementales pèsent sur le développement cognitif. Lire un « QI national » comme une constante biologique revient à prendre une photo des conditions de vie pour un trait de nature."}]'::jsonb,
+  true,
+  '2026-10-16T00:00:00.000Z'::timestamptz,
+  '/illustrations/carte-mondiale-qi-pays-afrique-fraude-lynn.jpg',
+  'Portrait : Gothick, 2008 — CC BY-SA 3.0, Wikimedia Commons'
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'efa9a88d-5b04-415c-9357-c78798d43c89',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  '« Ulster University withdraws status from Prof Richard Lynn » — BBC News NI (14 avril 2018)',
+  'Université d''Ulster — décision rapportée par BBC News NI',
+  '2018-04-14',
+  'CITATION_EXACTE'::quote_kind,
+  'Ulster University has withdrawn the emeritus title from Professor Richard Lynn and notified the individual accordingly',
+  'Le retrait du titre de professeur émérite, première sanction institutionnelle visant Richard Lynn, rapporté par la BBC : la décision a été prise « following due process and considering all relevant information » (selon les formes et au vu de tous les éléments pertinents), après une motion du syndicat étudiant dénonçant des prises de position « racistes et sexistes ». L''université précise que Lynn « does not work for Ulster University nor does he contribute to our research and teaching ». Le titre d''emeritus, normalement accordé à vie aux universitaires éminents, ne lui est plus rattaché.',
+  'https://www.bbc.com/news/uk-northern-ireland-43768132',
+  null,
+  'a5cb40c7439cc23a419a4229b450185e202e2a034eb755226f81857c21b5edde',
+  null,
+  'https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Ulster',
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'da1ad92e-5b00-48b2-8a1c-034bad255183',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Statement on ''National IQ'' Datasets » — European Human Behaviour and Evolution Association (27 juillet 2020)',
+  'EHBEA — European Human Behaviour and Evolution Association',
+  '2020-07-27',
+  'CITATION_EXACTE'::quote_kind,
+  'In short, these datasets are scientifically unsound, systematically biased, and ethically problematic.',
+  'La société savante européenne de biologie et d''écologie évolutives humaines examine les jeux de données de « QI national » et conclut à des biais de sélection (« only the lowest-scoring samples were retained », seuls les échantillons aux scores les plus bas étant retenus — « introducing racial bias into the dataset''s very foundation »), à des échantillons inadéquats, à des tests occidentaux non transposables et à des scores « faibles » qui disparaissent avec des tâches culturellement adaptées (travaux au Mali, chez les Tsimane). Elle « urges all researchers to refrain from using these datasets in future work ». Sa page maintenue souligne que les critiques valent encore pour les versions les plus récentes du jeu de données.',
+  'https://www.ehbea.org/pages/national-iq-datasets',
+  null,
+  '298e0d5b173aefe17ff7bcc03306a17228082b6694af153f703cc55eae34e1e7',
+  null,
+  'https://www.ehbea.org/',
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'dd0e5062-30d9-493c-9571-227d9a761b72',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'ARCHIVE_PRIMAIRE'::political_spectrum,
+  '« Retraction: ''Parasite prevalence and the worldwide distribution of cognitive ability'' (2010), by Eppig, Fincher and Thornhill » — Proceedings of the Royal Society B (6 mars 2024)',
+  'Royal Society — Proceedings B (revue scientifique)',
+  '2024-03-06',
+  'CITATION_EXACTE'::quote_kind,
+  'After carefully considering the dataset, the critiques, the authors'' response and the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average, the editors concluded that the manifest problems in the data warranted retraction in order to uphold these standards.',
+  'La revue de la Royal Society rétracte un article de 2010 qui reliait la prévalence des parasites aux « QI nationaux » et s''appuyait sur les données de Lynn : après examen, les critiques sur le jeu de données — incohérences et biais substantiels — ont été jugées convaincantes, les auteurs eux-mêmes en reconnaissant une partie. La notice évoque « the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average » : les dommages d''un jeu de données qui dépeint des populations entières comme inférieures à la normale. La rétractation est prononcée pour maintenir les standards de la revue.',
+  'https://royalsocietypublishing.org/doi/10.1098/rspb.2024.0463',
+  null,
+  '0d79bfe5b3e5e9c5d533d256b02f926850eabbdb20b91633a9e6a7ee8f1efd33',
+  null,
+  'https://en.wikipedia.org/wiki/Proceedings_of_the_Royal_Society',
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '614decb0-824c-4bf8-b38c-f510111ad266',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« A systematic literature review of the average IQ of sub-Saharan Africans » — Intelligence, vol. 38, n° 1 (2010), p. 1-20',
+  'Jelte M. Wicherts, Conor V. Dolan et Han L.J. van der Maas — université d''Amsterdam',
+  '2009-06-07',
+  'CITATION_EXACTE'::quote_kind,
+  'Results show that average IQ of Africans on these tests is approximately 82 when compared to UK norms.',
+  'Face à la base de Lynn (« the average IQ of the Black population of sub-Saharan Africa lies below 70 »), cette revue systématique de la littérature — critères d''inclusion et d''exclusion explicites — aboutit à environ 82 par rapport aux normes britanniques, chiffre convergent avec les enquêtes internationales de niveau scolaire (« around 82 »). La même étude démonte l''échantillon de Guinée équatoriale : « The forty-eight children, to whom the WISC (not the WISC-R) was administered, were from Spain, not from Equatorial Guinea » — les quarante-huit enfants testés venaient d''Espagne, pas de Guinée équatoriale, et Lynn « made a mistake in using this sample ». Publié en ligne le 7 juin 2009, dans le numéro de janvier-février 2010.',
+  'http://www.iapsych.com/iqmr/fe/LinkedDocuments/wicherts2010b.pdf',
+  null,
+  'b403adbf65a342593fa54e0684f13ac473171c5822adcb2cded78fd6097c9d85',
+  null,
+  'https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Amsterdam',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ff0d49d7-f478-407a-9768-1fcfccd2b4a4',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« The dangers of unsystematic selection methods and the representativeness of 46 samples of African test-takers » — Intelligence, vol. 38, n° 1 (2010), p. 30-37',
+  'Jelte M. Wicherts, Conor V. Dolan et Han L.J. van der Maas — université d''Amsterdam',
+  '2009-12-03',
+  'CITATION_EXACTE'::quote_kind,
+  'This suggests that Lynn and Meisenberg excluded samples of Africans who average IQs above 75 because they deemed these samples unrepresentative on the basis of the samples'' relatively high IQs.',
+  'La réponse méthodologique décisive : en testant les 46 échantillons africains au crible de critères objectifs (échantillon jugé représentatif par les auteurs d''origine, tirage aléatoire, stratification explicite, sujets en bonne santé, niveau socio-économique normal), les chercheurs montrent que la représentativité retenue par Lynn et Meisenberg ne dépend d''aucune de ces caractéristiques — sinon du QI mesuré. Les échantillons forts sont écartés, les faibles conservés. Conclusion des auteurs : « We conclude that Lynn and Meisenberg''s unsystematic methods are questionable and their results untrustworthy » — des méthodes douteuses, des résultats non fiables. Publié en ligne le 3 décembre 2009.',
+  'http://www.iapsych.com/iqmr/fe/LinkedDocuments/wicherts2010c.pdf',
+  null,
+  'ae5afc3c6d9d360e34b71ed9aea439f2b8211740f7a29565bb6d832f416a553e',
+  null,
+  'https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Amsterdam',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '29ac3bda-85c5-4ca2-82e5-0b092555b02a',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« The persistence of eugenics in mainstream journals highlights major gaps in research integrity » — LSE Impact Blog, London School of Economics (24 novembre 2023)',
+  'Rebecca Sear (London School of Hygiene and Tropical Medicine) — LSE Impact Blog',
+  '2023-11-24',
+  'CITATION_EXACTE'::quote_kind,
+  'An inspection of Lynn''s dataset reveals why it comes up with such an implausible IQ for sub-Saharan Africa: it is bad science.',
+  'La chercheuse qui documente depuis des années la fabrique du « 70 » africain : échantillons de commodité (le QI de l''Érythrée « is estimated entirely from children living in orphanages », l''Angola « from just 19 people »), sélection biaisée, aucune méthodologie de sélection publiée. Un score si bas qu''il impliquerait que « large proportions of people in Africa have trouble leading ordinary lives without help » — et ce jeu de données a nourri des usages violents : il est cité dans le manifeste de l''auteur de l''attentat raciste de Buffalo (2022). Elle souligne qu''il continue d''être utilisé malgré vingt ans de critiques documentées.',
+  'https://blogs.lse.ac.uk/impactofsocialsciences/2023/11/24/the-persistence-of-eugenics-in-mainstream-journals-highlights-major-gaps-in-research-integrity/',
+  null,
+  'bcc8498862c3e09d84404f094149415995afca6a440d870eeb3e96a3d9132e8a',
+  null,
+  'https://en.wikipedia.org/wiki/Rebecca_Sear',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'c6ed230c-6c6a-483c-aa97-a0f7c7252ac4',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Intelligence: Knowns and Unknowns » — rapport de la task force de l''American Psychological Association (American Psychologist, vol. 51, n° 2, 1996)',
+  'American Psychological Association — task force présidée par Ulric Neisser',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'There is not much direct evidence on this point, but what little there is fails to support the genetic hypothesis.',
+  'Le rapport de référence commandé par l''APA pour trancher le débat sur l''intelligence : sur l''hypothèse que des écarts entre groupes soient partiellement génétiques, ses auteurs (Neisser, Bouchard, Sternberg et al.) concluent que les rares données directes ne la soutiennent pas, et rappellent qu''une forte héritabilité « within a given group has no necessary implications for the source of a difference between groups » — une héritabilité interne ne dit rien de l''origine d''un écart entre groupes. Le même rapport documente l''effet Flynn : « The average gain is about 3 IQ points per decade », plus d''un écart-type depuis 1940. En français : les données directes sont rares et ce peu qui existe ne soutient pas l''hypothèse génétique.',
+  'https://pdf.stafforini.com/neisser-1996-intelligence-knowns-unknowns.pdf',
+  null,
+  'e20cd8beda7118e912c65dfe7fa9e06554a1810fc359851b2929ac28b6a4163c',
+  null,
+  'https://fr.wikipedia.org/wiki/Association_am%C3%A9ricaine_de_psychologie',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '4f68d6df-d8be-4c65-a458-e5e1efde7fe7',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Massive IQ gains in 14 nations: What IQ tests really measure » — Psychological Bulletin, vol. 101, n° 2 (mars 1987), p. 171-191',
+  'James R. Flynn (université d''Otago) — Psychological Bulletin',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'The second estimate evidences a gain of about 20 IQ points over a single generation, the 30 years between 1952 and 1982.',
+  'L''étude fondatrice de l''« effet Flynn » : sur les mêmes épreuves de Raven, les conscrits néerlandais de 1982 réussissent tellement mieux que ceux de 1952 que l''écart équivaut à environ 20 points de QI en trente ans — un gain « taken as verified » par l''auteur — et quatorze pays montrent des gains de 5 à 25 points par génération. La vitesse de ces déplacements interdit de lire un « QI national » comme une constante : les mêmes populations donnent des scores très différents selon l''époque et l''environnement.',
+  'http://www.iapsych.com/iqmr/fe/LinkedDocuments/flynn1987.pdf',
+  null,
+  '1b6b2dc90d01482affd497595b2be019de0f23845149649d4fef4e21b9bca49e',
+  null,
+  'https://en.wikipedia.org/wiki/James_R._Flynn',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'befa44b1-2f02-4bd3-b3c8-b309b81a5712',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« La carte mondiale des QI – explications complètes » — Ramus Méninges (14 novembre 2019)',
+  'Franck Ramus — directeur de recherche au CNRS (blog Ramus Méninges)',
+  '2019-11-14',
+  'CITATION_EXACTE'::quote_kind,
+  'Cette carte est à prendre avec des pincettes car les scores représentés n''ont pas été obtenus avec des tests comparables sur des échantillons représentatifs de la population dans chaque pays.',
+  'Le développement de ses réponses à CheckNews : péréquations discutables, extrapolations, « Bref, cette carte peut donner une illusion de précision mais en fait elle est très approximative ». Et la synthèse de l''état de la science : « aucune preuve n''a été apportée que les différences génétiques entre les peuples soient la cause des différences entre nations », tandis que scolarisation, nutrition et maladies sont « des explications bien mieux étayées » — chaque année de scolarité compte pour environ 3 points de QI (méta-analyse de 600 000 personnes). « Il y a consensus scientifique pour dire que des facteurs environnementaux expliquent au moins une large part des différences de QI nationaux. »',
+  'https://ramus-meninges.fr/2019/11/14/la-carte-mondiale-des-qi-explications-completes-2/',
+  null,
+  '27400031344de105657c7416f7c8939bac7184a69ffcec7b53f808b87ee036f7',
+  null,
+  'https://fr.wikipedia.org/wiki/Franck_Ramus',
+  9
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'e39a772b-18c2-4e1c-b364-d6e566d9f2cc',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'GAUCHE'::political_spectrum,
+  '« La carte mondiale des QI, relayée par des comptes d''extrême droite, a-t-elle une valeur scientifique ? » — Libération, CheckNews (14 novembre 2019)',
+  'Libération, rubrique CheckNews — enquête de Pauline Moullot, avec Franck Ramus (CNRS)',
+  '2019-11-14',
+  'CITATION_EXACTE'::quote_kind,
+  'Les scores des différents pays n''ont pas tous été obtenus avec les mêmes tests, et ils ont donc fait des péréquations qu''on peut trouver discutables. Par ailleurs, des données n''existent pas pour tous les pays, donc ils ont fait des extrapolations à partir de pays voisins',
+  'La vérification de la carte virale, sa genèse et ses usages : issue d''une page Wikipédia dérivée des ouvrages de Lynn, devenue en novembre 2019 une tendance Twitter après un raid de comptes d''extrême droite ; Lynn y est rappelé « destitué de sa chaire de professeur émérite de l''université d''Ulster ». Le généticien Kevin Mitchell (Trinity College Dublin), cité par le journal : les écarts suivent « les soins maternels et infantiles, la nutrition à l''enfance, l''exposition à des toxines de neurodéveloppement comme le plomb, l''accès et la qualité de l''éducation » — « Les scores de QI permettent de mesurer la capacité intellectuelle d''une personne, pas la limite de leur potentiel intellectuel. »',
+  'https://web.archive.org/web/20191116053434id_/https://www.liberation.fr/checknews/2019/11/14/la-carte-mondiale-des-qi-relayee-par-des-comptes-d-extreme-droite-a-t-elle-une-valeur-scientifique_1754773/',
+  null,
+  '90e84f098fb29dd2d33bbcc2c1705c42bf7b4ecf5fdb63cd03e1bcee75f8ef48',
+  null,
+  'https://fr.wikipedia.org/wiki/Lib%C3%A9ration_(journal)',
+  10
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '20cef4a9-ba09-4997-b679-fb9201aeecfd',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'CENTRE'::political_spectrum,
+  '« Que vaut cette carte censée montrer l''intelligence des habitants de chaque pays ? » — Les Surligneurs (20 septembre 2024)',
+  'Les Surligneurs — vérification de Nicolas Kirilowits',
+  '2024-09-20',
+  'CITATION_EXACTE'::quote_kind,
+  'pour 104 des 185 pays étudiés par son mentor Richard Lynn et son comparse de l''époque, Tatu Vanhanen, la moyenne des QI nationaux ont été « estimés à partir des QI de pays proches et comparables sur le plan ethnique. »',
+  'La vérification de la version 2024 de la carte, remise en circulation sur Threads et relayée jusqu''à un député : d''après le coauteur du jeu de données lui-même, David Becker, la majorité des pays n''ont jamais eu de score mesuré. L''article sollicite plusieurs scientifiques : le QI « est une mesure très dépendante du contexte culturel et n''est donc pas transportable d''un endroit à l''autre de la planète », rappelle Evelyne Heyer (Muséum national d''histoire naturelle), tandis que le choix d''une palette « arc-en-ciel » « vise à manipuler l''information et le public » (Françoise Bahoken, géographe). Rappel de Franck Ramus : « Aucune preuve n''a été apportée que les différences génétiques entre les peuples soient la cause des différences entre nations ».',
+  'https://lessurligneurs.eu/que-vaut-cette-carte-censee-montrer-lintelligence-des-habitants-de-chaque-pays/',
+  null,
+  '279915bbad76253530c5c4f48fce9d4ee467db67f80868b4fe715e698062a7d9',
+  null,
+  'https://fr.wikipedia.org/wiki/Les_Surligneurs',
+  11
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '11a88710-01e2-4417-89f9-b5d030898f22',
+  'd8aeedb1-4a5d-4d98-87ca-00d3f07aab2c',
+  'GAUCHE'::political_spectrum,
+  '« Richard Lynn » — fiche « Extremist Files », Southern Poverty Law Center',
+  'Southern Poverty Law Center (organisation américaine de défense des droits civiques)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Lynn is the current president of the notoriously racist Pioneer Fund. Prior to becoming president in 2012, he received hundreds of thousands of dollars in Pioneer Fund grants, both directly, and through the Ulster Institute for Social Research.',
+  'Le financement, documenté par l''organisation qui suit les mouvements extrémistes américains : Richard Lynn a reçu des centaines de milliers de dollars de subventions du Pioneer Fund — fonds créé en 1937 pour soutenir la recherche eugéniste — directement et via l''Ulster Institute for Social Research, avant d''en prendre la présidence en 2012. La fiche, non mise à jour depuis sa mort en 2023, rappelle qu''il a aussi publié dans des revues suprémacistes : c''est cet écosystème qui a produit la base de données devenue une carte virale.',
+  'https://www.splcenter.org/resources/extremist-files/richard-lynn/',
+  null,
+  '12ce0cca0055db788fc65ae951ba2a500ddcda6d50a98bed4566082bdac1697c',
+  null,
+  'https://fr.wikipedia.org/wiki/Southern_Poverty_Law_Center',
+  12
+);
+
 delete from public.dossiers where slug = 'brouillon-de-controle-rls';
 insert into public.dossiers (
   id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
