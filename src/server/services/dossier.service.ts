@@ -86,6 +86,7 @@ const VERDICTS: VerdictStatus[] = [
   "CONSPIRATIONNISTE",
   "ABSURDE",
   "CONFUSION_CONCEPTUELLE",
+  "CADRE_REGLEMENTAIRE_RESTREINT",
 ];
 
 const SPECTRA: PoliticalSpectrum[] = [

@@ -7597,6 +7597,242 @@ export const RACISME_ANTIBLANC_DOSSIER: Dossier = {
   ],
 };
 
+/** Dossier ajouté le 16 octobre 2026 : les notes de frais des parlementaires,
+ * entre contrôle interne et droit d'accès. */
+export const NOTES_FRAIS_PARLEMENTAIRES_DOSSIER: Dossier = {
+  id: "31df5da4-9ae0-401d-9a83-aad71d7b1ad0",
+  slug: "notes-frais-parlementaires-transparence-cadre-juridique",
+  claim_title:
+    "Les citoyens ont un droit légal absolu de publier le détail nominatif de toutes les notes de frais des parlementaires",
+  verdict: "CADRE_REGLEMENTAIRE_RESTREINT",
+  verdict_summary:
+    "La transparence des frais de mandat est réelle, mais canalisée : depuis la loi n° 2017-1339 du 15 septembre 2017, l'IRFM forfaitaire a cédé la place à une avance de frais de mandat et à des remboursements sur justificatifs, contrôlés par les organes de déontologie des deux assemblées — compte bancaire dédié, transmission annuelle des relevés, contrôles par tirage au sort et contrôle du solde de fin de mandat.\n\nEn revanche, aucun droit ne donne accès au détail nominatif de ces dépenses : les documents des assemblées parlementaires ne sont pas des documents administratifs (avis de la CADA du 21 septembre 2017 ; Conseil d'État, 7 mars 2025) et leur communication relève de l'ordonnance n° 58-1100 du 17 novembre 1958 — donc des chambres elles-mêmes, qui refusent, invoquant des contrôles déjà effectués et la protection de la vie privée.\n\nL'accès citoyen reste donc fermé par le régime spécial : la CADA acte que « l'accès à ces documents restera régi par le régime spécial de communication des actes des assemblées parlementaires », quand le déontologue de l'Assemblée, lui, exige « l'ensemble des relevés bancaires » annuels des députés.",
+  category: "POLITIQUE",
+  protagonists: [
+    {
+      name: "Assemblée nationale",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      note: "Les frais de mandat de ses membres sont contrôlés par un déontologue indépendant ; les documents qu'elle produit restent hors du champ du droit d'accès aux documents administratifs (avis de la CADA du 21 septembre 2017).",
+    },
+    {
+      name: "Sénat",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)",
+      note: "Le contrôle des frais de mandat y est assuré par un comité de déontologie composé de sénateurs ; septième campagne de contrôle des dépenses menée en 2025.",
+    },
+    {
+      name: "Commission d'accès aux documents administratifs",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Commission_d%27acc%C3%A8s_aux_documents_administratifs",
+      note: "Saisie en 2017 par l'association Regards Citoyens, elle s'est déclarée incompétente pour connaître des relevés du compte de frais de mandat d'un député.",
+    },
+    {
+      name: "Conseil d'État",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      note: "A jugé le 7 mars 2025 que les demandes de communication adressées aux assemblées sont exclusivement régies par l'ordonnance du 17 novembre 1958, tout en confirmant le 23 juillet 2025 la communicabilité des notes de frais d'un élu local.",
+    },
+    {
+      name: "Yaël Braun-Pivet",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Ya%C3%ABl_Braun-Pivet",
+      note: "Présidente de l'Assemblée nationale : elle revendique des contrôles internes déjà effectués et invoque la protection de la vie privée face aux demandes de communication des justificatifs.",
+    },
+    {
+      name: "Gérard Larcher",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/G%C3%A9rard_Larcher",
+      note: "Président du Sénat : refuse, comme l'Assemblée nationale, la communication des notes de frais des parlementaires.",
+    },
+    {
+      name: "Lois pour la confiance dans la vie politique",
+      kind: "TEXTE",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Lois_pour_la_confiance_dans_la_vie_politique",
+      note: "La loi n° 2017-1339 du 15 septembre 2017 supprime l'IRFM et organise le nouveau régime de prise en charge des frais de mandat (article 20).",
+    },
+  ],
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part:
+        "« N'importe quel citoyen peut exiger et diffuser publiquement chaque facture nominative de député »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "La transparence des frais de mandat passe par des contrôles institutionnels internes, pas par un droit d'accès du public : la CADA s'est déclarée incompétente (avis du 21 septembre 2017) et le Conseil d'État juge que « les demandes de communication de documents adressées aux assemblées parlementaires sont exclusivement régies par l'ordonnance du 17 novembre 1958 » (décision n° 493051 du 7 mars 2025). Les notes de frais d'un élu local, elles, sont bien communicables (Conseil d'État, 23 juillet 2025) — d'où la confusion, mais les deux régimes ne se confondent pas.",
+    },
+    {
+      claim_part:
+        "« Les notes de frais des parlementaires échappent totalement à tout contrôle externe »",
+      status: "FAUX",
+      detail:
+        "Le régime issu de 2017 a doté les assemblées d'organes de contrôle : le déontologue de l'Assemblée impose un compte bancaire dédié, la transmission annuelle des relevés et des contrôles par échantillon — « moins de 1 % » des avances de la précédente législature a donné lieu à remboursement ; au Sénat, le Comité de déontologie a enregistré en 2024 149 685 justificatifs pour 29,9 millions d'euros de frais déclarés. C'est la publicité des pièces, non leur contrôle, qui est restreinte.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-16T00:00:00.000Z",
+  illustration_url: "/illustrations/notes-frais-parlementaires-transparence-cadre-juridique.jpg",
+  illustration_credit: "Photo : DXR, Wikimedia Commons, domaine public",
+  sources: [
+    {
+      id: "acfab903-fd1f-44f2-8753-ac54dd80f1fd",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "Ordonnance n° 58-1100 du 17 novembre 1958 — article 4 sexies",
+      author_or_institution: "Légifrance (République française)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le bureau de chaque assemblée, après consultation de l'organe chargé de la déontologie parlementaire, définit le régime de prise en charge des frais de mandat et arrête la liste des frais éligibles. Les députés et sénateurs sont défrayés sous la forme d'une prise en charge directe, d'un remboursement sur présentation de justificatifs ou du versement d'une avance par l'assemblée dont ils sont membres, dans la limite des plafonds déterminés par le bureau.",
+      context_explanation:
+        "Texte en vigueur de l'ordonnance relative au fonctionnement des assemblées parlementaires, dans sa rédaction issue de la loi n° 2017-1339 du 15 septembre 2017 (modifiée en dernier lieu par la loi n° 2020-1721 du 29 décembre 2020) : le régime des frais de mandat est défini par le bureau de chaque assemblée, sous le contrôle de son organe de déontologie. Aucun droit d'accès ni publication d'office pour les tiers : c'est la base légale du cadre restreint. Légifrance bloque les accès automatisés ; texte vérifié sur la version consolidée archivée.",
+      original_url: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000705067/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "5946ece4-dc6f-4ed3-a9eb-4ad6bb13a689",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "Avis n° 20173715 — frais de mandat d'un député (IRFM)",
+      author_or_institution: "Commission d'accès aux documents administratifs (CADA)",
+      publication_date: "2017-09-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La commission ne peut donc que se déclarer incompétente pour se prononcer sur la demande.",
+      context_explanation:
+        "Avis rendu le 21 septembre 2017, saisi par l'association Regards Citoyens après le refus d'un député de communiquer les relevés de son compte IRFM et sa déclaration sur l'honneur : la commission rappelle que « la communication des actes et des documents produits ou reçus par les assemblées parlementaires est régie par l'ordonnance n° 58-1100 », pour l'interprétation de laquelle elle n'est pas compétente, et juge que l'exercice d'un mandat parlementaire, s'il est une mission d'intérêt général, n'est pas une mission de service public au sens de l'article L. 300-2 du code des relations entre le public et l'administration.",
+      original_url: "https://cada.data.gouv.fr/20173715/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "52ab243d-e45f-495e-82e2-475983856b52",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "Décision n° 493051 du 7 mars 2025 — documents des assemblées",
+      author_or_institution: "Conseil d'État (France)",
+      publication_date: "2025-03-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Il résulte de l'ensemble de ces dispositions, en premier lieu, que les demandes de communication de documents adressées aux assemblées parlementaires sont exclusivement régies par l'ordonnance du 17 novembre 1958 relative au fonctionnement des assemblées parlementaires.",
+      context_explanation:
+        "Rendue sur pourvoi de l'association CAP pour la liberté de conscience, à propos de documents des Renseignements généraux transmis à une commission d'enquête parlementaire : le Conseil d'État pose la règle générale — les demandes adressées aux assemblées relèvent exclusivement de l'ordonnance de 1958, et les documents qu'elles produisent ou reçoivent sont des documents parlementaires, non des documents administratifs communicables au titre du CRPA. C'est la jurisprudence de référence du débat sur la communication des frais de mandat.",
+      original_url: "https://www.conseil-etat.fr/fr/arianeweb/CE/decision/2025-03-07/493051",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "03bd0f09-fbc0-44d2-b442-8f73c35d7ed9",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name: "Décision n° 495393 du 23 juillet 2025 — notes de frais d'un élu local",
+      author_or_institution: "Conseil d'État (France)",
+      publication_date: "2025-07-23",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Des notes de frais et reçus de déplacements ainsi que des notes de frais de restauration et reçus de frais de représentation d'élus locaux ou d'agents publics constituent des documents administratifs, communicables à toute personne qui en fait la demande dans les conditions et sous les réserves prévues par les dispositions du code des relations entre le public et l'administration citées au point précédent.",
+      context_explanation:
+        "Affaire des notes de frais du président de la région Auvergne-Rhône-Alpes : le Conseil d'État confirme que les justificatifs d'un élu local sont communicables à toute personne qui en fait la demande, sous les seules réserves du CRPA (vie privée, secret des affaires, occultation des mentions non communicables). Le contraste avec les assemblées parlementaires tient au régime spécial de l'ordonnance de 1958, pas à la nature des dépenses — c'est le point de comparaison qui nourrit la confusion chez les demandeurs.",
+      original_url: "https://www.conseil-etat.fr/fr/arianeweb/CE/decision/2025-07-23/495393",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "4913e604-c227-4a75-ad1f-631c34118750",
+      spectrum: "CENTRE",
+      source_name: "Rapport public annuel — la déontologie en 2025",
+      author_or_institution: "Rémi Schenberg, Déontologue de l'Assemblée nationale",
+      publication_date: "2026-05-13",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Tout député doit ouvrir un compte bancaire spécifique affecté à la gestion de son AFM (désormais DFP). Il doit transmettre au Déontologue, avant le 31 janvier, l'ensemble des relevés bancaires de l'année précédente (en application de l'article 3 de l'arrêté du Bureau n° 12/XV du 29 novembre 2017 relatif aux frais de mandat des députés).",
+      context_explanation:
+        "Rapport remis à la Présidente et au Bureau de l'Assemblée nationale le 13 mai 2026, en application de l'article 80-3 du Règlement : le contrôle de l'usage des fonds repose sur trois modalités complémentaires — tirage au sort en cours de mandat, contrôle du solde de fin de mandat et contrôle annuel des relevés bancaires. Le rapport relève que « moins de 1 % du montant » des avances contrôlées au titre de la précédente législature a fait l'objet de demandes de remboursement, et que 882 des 1 059 sollicitations écrites de députés en 2025 portaient sur l'utilisation des frais de mandat.",
+      original_url:
+        "https://www.assemblee-nationale.fr/dyn/dyn/contenu/visualisation/1110434/file/Rapport_Deontologue_2025.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "ba9ab485-5996-49be-b9b8-8efb20aaa661",
+      spectrum: "CENTRE",
+      source_name: "Rapport d'activité 2024-2025 — Comité de déontologie du Sénat",
+      author_or_institution: "Comité de déontologie du Sénat",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La campagne de contrôle a porté sur les dépenses engagées en 2024 par 362 sénateurs, contre 423 l'an dernier, soit une baisse de 14 %, l'année 2023 ayant été marquée par le renouvellement sénatorial.",
+      context_explanation:
+        "Rapport d'activité 2024-2025 du Comité de déontologie (session parlementaire) : septième campagne de contrôle des frais de mandat, menée de février à septembre 2025 — 149 685 justificatifs enregistrés sur l'application Julia (413 par parlementaire en moyenne) et 29,9 millions d'euros de frais déclarés pour 2024, nets des recettes. Le taux moyen de contrôle s'établit à 52,1 % des frais engagés, jusqu'à 86,4 % pour le dossier le plus difficile ; le Comité s'appuie sur une vingtaine d'experts-comptables indépendants.",
+      original_url:
+        "https://www.senat.fr/fileadmin/cru-1783325159/Organisation_interne/Comite_de_deontologie/Rapports_d_activite/RapportActivite2024-2025.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "413937d3-3f88-4576-b66b-754b6e056d2c",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name: "La déontologie parlementaire — thèse de doctorat en droit public",
+      author_or_institution: "Baptiste Javary, Université Paris Nanterre (CRDP)",
+      publication_date: "2019-11-29",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Dans le même temps, les députés sont soumis à un devoir plus contemporain de responsabilité à l'égard des citoyens qu'ils représentent. Ce devoir se traduit par la soumission à de nouvelles exigences d'exemplarité et de transparence dont la méconnaissance peut désormais être sanctionnée.",
+      context_explanation:
+        "Thèse de doctorat en droit public soutenue le 29 novembre 2019 à l'Université Paris Nanterre (centre de recherches en droit public), étude comparative de la déontologie parlementaire : le résumé officiel situe la transparence comme une obligation de conduite des élus — une exigence sanctionnable portée par les organes de déontologie des assemblées, distincte d'un droit d'accès du public aux pièces.",
+      original_url: "https://theses.hal.science/tel-02505723",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "feee8aef-37e7-41f3-a2b6-11aa5fd66176",
+      spectrum: "GAUCHE",
+      source_name: "Contrôle des frais de mandat : l'Assemblée s'arrête au milieu du gué",
+      author_or_institution: "Mathilde Mathieu — Mediapart",
+      publication_date: "2017-11-30",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L'Assemblée nationale instaure enfin un contrôle sur les frais des députés. Mais le dispositif dévoilé mercredi 29 novembre reste loin du compte.",
+      context_explanation:
+        "Au lendemain de l'arrêté du Bureau du 29 novembre 2017 qui fixe les règles du nouveau régime, Mediapart décrit un contrôle encore incomplet : l'Assemblée a récupéré 3,1 millions d'euros d'IRFM non utilisées par les députés sortants — 313 déclarants, contre 47 en 2012 — selon des chiffres de la questure. La critique de la presse de gauche porte sur la portée du dispositif : un contrôle interne, sans publication ni communication des pièces aux citoyens.",
+      original_url:
+        "https://www.mediapart.fr/journal/france/301117/controle-des-frais-de-mandat-l-assemblee-s-arrete-au-milieu-du-gue",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -7628,6 +7864,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   GRAND_REMPLACEMENT_DOSSIER,
   MACRON_SOCIALISTE_DOSSIER,
   RACISME_ANTIBLANC_DOSSIER,
+  NOTES_FRAIS_PARLEMENTAIRES_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 
