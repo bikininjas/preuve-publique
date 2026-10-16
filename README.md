@@ -217,7 +217,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   textes réglementaires ont été lus au Bulletin officiel, et les pages bloquées (403)
   recoupées via leurs instantanés Wayback — l'expression « théorie du genre » ne figure
   dans aucun des textes produits par l'éducation nationale.
-- **Application** : `npm run typecheck`, `npm test` (**82 tests**) et `npm run build`
+- **Application** : `npm run typecheck`, `npm test` (**95 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
@@ -407,8 +407,8 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 82 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
-                       #            résumés en paragraphes
+npm test               # 95 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
+                       #            résumés en paragraphes, tirage aléatoire, SEO
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
 npm run proofs         # imprime chaînes canoniques, empreintes et racine d'intégrité
@@ -636,6 +636,11 @@ disparaîtrait sur le fond sombre.
   `[SYSTÈME : ACTIF] • [DOSSIERS SCELLÉS : N] • [SOURCES CROISÉES : N] • [INTÉGRITÉ :
   SHA-256 WEBCRYPTO]`. Les compteurs viennent des dossiers publiés lus à la requête
   (mêmes valeurs que `registryFigures`), jamais d'un chiffre de décor.
+- **Bouton « Dossier aléatoire »** (hero de l'accueil) : tirage côté client parmi les
+  dossiers publiés — logique pure `pickRandomDossierSlug` (générateur injectable, testée,
+  résultat borné) — puis route immédiate vers `/dossiers/<slug>` ; pendant la redirection,
+  le libellé cède la place à `[... TIRS DE SCELLÉ ...]` et le bouton est neutralisé
+  (double clic impossible). Cible tactile 44 px et encres héritées de `.pp-btn`.
 - **Bandeau de télémétrie** (page du registre) : dossiers, pièces, empreintes (n/n), piliers
   documentés et **moyenne des scores éditoriaux**. La moyenne est calculée, pas inventée, et
   l'intitulé comme l'infobulle disent qu'elle reste un indicateur éditorial. Tous les

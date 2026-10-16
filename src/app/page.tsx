@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import CategoryChips from "@/components/CategoryChips";
+import RandomDossierButton from "@/components/RandomDossierButton";
 import DossierCard from "@/components/DossierCard";
 import Reveal from "@/components/Reveal";
 import SearchForm from "@/components/SearchForm";
@@ -60,6 +61,7 @@ export default async function HomePage() {
               Lire le dernier dossier
             </Link>
           ) : null}
+          <RandomDossierButton slugs={dossiers.map((dossier) => dossier.slug)} />
           <Link className="pp-btn" href="/methode">
             Comment on vérifie
           </Link>
