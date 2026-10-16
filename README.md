@@ -72,7 +72,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 276 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 277 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -163,8 +163,9 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   remplacées par l'étude longitudinale NLLFS du *New England Journal of Medicine* (2018)
   et le recensement Rosenfeld (*Demography*, 2010) ; ajout de la synthèse des trois
   universitaires dans *The Conversation* et de la tribune du *Monde* de 2011 sur le
-  fardeau de la preuve ; arrêt CEDH reclassé en archive primaire) : neuf fiches déposées
-  et relues, toutes en instantanés réseau — racine d'intégrité du dossier `3359784f…`.
+  fardeau de la preuve ; arrêt CEDH reclassé en archive primaire, puis une dixième pièce
+  de droite libérale — *The Economist*, 13 juin 2012) : dix fiches déposées et relues,
+  toutes en instantanés réseau — racine d'intégrité du dossier `7467ad7e…`.
   Le vingt et unième (la « théorie du genre » à l'école, 7 sources — page Éduscol servant
   de cadre à l'égalité filles-garçons, arrêté du 3 février 2025 fixant le programme EVARS
   (BO n° 6 du 6 février 2025), programme du cycle 4 (BO n° 31 du 30 juillet 2020, PDF de
@@ -427,12 +428,15 @@ constitutionnel — filiation adoptive) ont été remplacées par des **preuves 
 recensement américain exploité par Michael Rosenfeld, *Demography* 2010) et complétées par
 la synthèse de trois universitaires français (*The Conversation*, 2019) et la tribune du
 *Monde* de 2011 sur le fardeau de la preuve ; l'arrêt *X et autres c. Autriche* est
-reclassé en archive primaire. L'application a été ciblée sur ce seul dossier — les 267
-fiches des autres dossiers sont restées intactes — et la recapture limitée à ses neuf
-pièces : neuf instantanés réseau, racine de la passe `ec9bac22f30fbe32…` ; racine
-d'intégrité du dossier `3359784f…` = `ETag` et `X-Proof-Integrity-Root` relevés en ligne ;
-`/api/verify` et `/api/archives` vérifiés ; racine globale recalculée sur les 276 fiches
-de l'état courant : `dfebddf6f570c723…`.
+reclassé en archive primaire. Puis le pilier de droite, resté vide, a été comblé par le
+billet de *The Economist* du 13 juin 2012, qui juge « badly flawed » l'étude opposée et
+rappelle que les données existantes « tend to undermine » la thèse du préjudice — dix
+sources au total. L'application a été ciblée sur ce seul dossier — les 267 fiches des
+autres dossiers sont restées intactes — et la recapture limitée à ses pièces : neuf
+instantanés réseau (passe `ec9bac22f30fbe32…`), puis la dixième recapturée seule (passe
+`9e6b862c962b7dca…`). Racine d'intégrité du dossier `7467ad7e…` = `ETag` et
+`X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` et `/api/archives` vérifiés ;
+racine globale recalculée sur les 277 fiches de l'état courant : `d6f09ed56bcb1b8e…`.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi

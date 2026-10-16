@@ -3731,9 +3731,17 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
       reference_url: null,
       note: "Sociologue à l'université Stanford : son exploitation du recensement américain (2010) a fourni le premier test à grande échelle de la progression scolaire des enfants de couples de même sexe.",
     },
+
+    {
+      name: "The Economist",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/The_Economist",
+      note: "Hebdomadaire libéral britannique : son billet du 13 juin 2012 juge « badly flawed » l'étude Regnerus, utilisée par les opposants à l'homoparentalité.",
+    },
   ],
   verdict_summary:
-    "Plus de trente ans de littérature scientifique convergent : la méta-revue du What We Know Project (université Cornell) recense 79 études, dont 75 concluent que les enfants de parents gays ou lesbiens « ne s'en sortent pas moins bien » que les autres — et les quatre études minoritaires portaient sur des enfants de familles brisées, un biais documenté.\n\nL'American Psychological Association (résolution de février 2020) constate qu'il existe « un consensus » dans la littérature : la qualité des relations familiales pèse davantage sur le devenir de l'enfant que la structure du foyer.\n\nL'Académie américaine de pédiatrie affirme que le bien-être d'un enfant dépend « bien plus » de ses relations avec ses parents et du soutien social « que du genre ou de l'orientation sexuelle de ses parents ».\n\nLes études de terrain les plus solides convergent. Le NLLFS — étude longitudinale américaine qui suit, depuis 1986 et dès avant leur naissance, les enfants de familles de mères lesbiennes — ne relève à 25 ans aucune différence de santé mentale avec un échantillon national apparié : ni dans l'adaptation, ni dans les troubles émotionnels et comportementaux, ni sur les échelles diagnostiques. Sur le recensement des États-Unis (environ 3 500 enfants de couples de même sexe), la progression scolaire ne se distingue pas, à niveau socio-économique comparable, de celle des enfants de couples mariés hétérosexuels — « children of same-sex couples appear to have no inherent developmental disadvantage » (Rosenfeld, 2010). En France, le rapport parlementaire de 2013 relevait qu'« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales » ; la synthèse de trois universitaires en psychologie publiée par The Conversation rappelle que la piste de « possibles troubles du comportement » est « ce qui n'a jamais été démontré » ; et la CEDH a jugé en 2013 que le gouvernement autrichien n'avait pas établi de préjudice pour l'enfant dans le refus opposé à un couple homosexuel.",
+    "Plus de trente ans de littérature scientifique convergent : la méta-revue du What We Know Project (université Cornell) recense 79 études, dont 75 concluent que les enfants de parents gays ou lesbiens « ne s'en sortent pas moins bien » que les autres — et les quatre études minoritaires portaient sur des enfants de familles brisées, un biais documenté.\n\nL'American Psychological Association (résolution de février 2020) constate qu'il existe « un consensus » dans la littérature : la qualité des relations familiales pèse davantage sur le devenir de l'enfant que la structure du foyer.\n\nL'Académie américaine de pédiatrie affirme que le bien-être d'un enfant dépend « bien plus » de ses relations avec ses parents et du soutien social « que du genre ou de l'orientation sexuelle de ses parents ».\n\nLes études de terrain les plus solides convergent. Le NLLFS — étude longitudinale américaine qui suit, depuis 1986 et dès avant leur naissance, les enfants de familles de mères lesbiennes — ne relève à 25 ans aucune différence de santé mentale avec un échantillon national apparié : ni dans l'adaptation, ni dans les troubles émotionnels et comportementaux, ni sur les échelles diagnostiques. Sur le recensement des États-Unis (environ 3 500 enfants de couples de même sexe), la progression scolaire ne se distingue pas, à niveau socio-économique comparable, de celle des enfants de couples mariés hétérosexuels — « children of same-sex couples appear to have no inherent developmental disadvantage » (Rosenfeld, 2010). En France, le rapport parlementaire de 2013 relevait qu'« aucune étude ne jette de suspicion sérieuse sur les familles homoparentales » ; la synthèse de trois universitaires en psychologie publiée par The Conversation rappelle que la piste de « possibles troubles du comportement » est « ce qui n'a jamais été démontré » ; et la CEDH a jugé en 2013 que le gouvernement autrichien n'avait pas établi de préjudice pour l'enfant dans le refus opposé à un couple homosexuel. Même la presse libérale le constate : The Economist, en 2012, juge « badly flawed » l'étude qui prétendait établir des différences — sa méthodologie « stacked the deck against gay parents ».",
   consensus_score: 98,
   premises: [
     {
@@ -3936,6 +3944,27 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 8,
+    },
+
+    {
+      id: "fed220ee-74a8-4969-b35e-17fef893babd",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« Not thinking about the children » — The Economist, blog Democracy in America (13 juin 2012) : « A new study on the children of gay parents is badly flawed »",
+      author_or_institution:
+        "The Economist — hebdomadaire libéral britannique (billet signé E.G., Austin) ; texte servi par l'instantané Wayback",
+      publication_date: "2012-06-13",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The study has been greeted with fierce criticism, and for good reason. Mr Regnerus's methodology stacked the deck against gay parents.",
+      context_explanation:
+        "Le journal libéral britannique démonte l'étude de 2012 (New Family Structures Study de Mark Regnerus) que ses adversaires brandissaient contre l'homoparentalité : sa méthode « stacked the deck against gay parents » — toute personne déclarant qu'un parent avait eu une relation homosexuelle était classée « famille homosexuelle », foyers brisés et rencontres ponctuelles compris. Il rappelle aussi que les rares données existantes « tend to undermine » la thèse du préjudice, et cite William Saletan : « Or does it reflect poorly on the era of fake heterosexual marriages? » La critique vient ici d'un journal libéral, pas d'une organisation militante. Citation en anglais, langue de l'article.",
+      original_url: "https://web.archive.org/web/20190915015459/https://www.economist.com/democracy-in-america/2012/06/13/not-thinking-about-the-children",
+      author_reference_url: "https://fr.wikipedia.org/wiki/The_Economist",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
     },
   ],
 };
