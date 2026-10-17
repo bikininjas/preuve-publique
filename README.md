@@ -43,7 +43,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   Trente-trois dossiers en base :
   trente-deux **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
-  l'insécurité attribuée à l'immigration (6, société), le pourvoi en cassation et
+  l'insécurité attribuée à l'immigration (9, société, biais méthodologique), le pourvoi
+  en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
   l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
   société), l'allocation pour demandeur d'asile (7, société), les aides sociales des
@@ -465,6 +466,34 @@ Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édit
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi
 n° 2004-575), hébergeur Google Ireland Limited, contact `contact@preuve-publique.fr` —
 liée depuis le pied de page de chaque page et inscrite au plan de site.
+
+Le 17/10/2026 (07:25 UTC), le dossier **« L'immigration est la cause principale de la
+hausse des crimes et délits en France »** est passé de six à neuf sources et de deux à
+trois prémisses. La pièce annuelle du SSMSI a été mise à jour du bilan 2024 au **bilan
+2025** (dixième édition, publiée le 9 juillet 2026) : 84 % et 85 % des mis en cause pour
+violences physiques sont de nationalité française, 88 % pour l'usage de stupéfiants, 91 %
+pour les vols de véhicule, 88 % pour les destructions et dégradations — et les étrangers
+représentent **9 %** de la population résidant en France, non 8 % comme le disait
+l'édition précédente. Trois pièces nouvelles : le point à mi-année du SSMSI (IR68,
+30 septembre 2026 — homicides et tentatives **en baisse de 3 %** sur douze mois glissants,
+violences physiques +7 %, violences sexuelles +15 % dont 56 % d'effet d'enregistrement
+lié à l'affaire Lyhanna, atteintes aux biens majoritairement en recul ou stables), le
+dossier du **Défenseur des droits** sur les contrôles d'identité (15 février 2024 — les
+« jeunes hommes perçus comme noir ou arabe » ont vingt fois plus de probabilités d'être
+contrôlés que l'ensemble de la population) et la **Lettre du CEPII n° 436** relayée par
+l'**Institut Convergences Migrations (CNRS)** (20 avril 2023 — les études internationales
+ne trouvent pas d'effet de l'immigration sur les taux d'infraction). Nouvelle prémisse
+« biais méthodologique » : les mis en cause mesurent l'activité d'enquête, pas la
+délinquance réelle. Chaque citation a été vérifiée par sous-chaîne sur le document
+téléchargé ; le chiffre « 5,8 % » du brief de commande, confusion avec les 5,8 millions
+d'étrangers, a été écarté au profit du 9 % publié par le SSMSI. Application ciblée sur ce
+seul dossier (le seed partagé portait des ajouts non commités d'une session voisine,
+volontairement non appliqués), recapture du dossier : **neuf fiches** (huit
+`URL_SNAPSHOT`, une `URL_UNAVAILABLE` — IR68 répond 403 aux robots), passe
+`7e75f62c80595462…` ; racine d'intégrité `fa2997cb56fe8a12…` = `ETag` et
+`X-Proof-Integrity-Root` relevés en ligne ; `/api/archives/dbfc8aaf440e7b70…` sert la
+fiche octet pour octet, rehachage vérifié. Racine globale recalculée sur les **290
+fiches** de l'état courant : `a2a30a2cc987e7d4…`.
 
 ## Pile technique
 

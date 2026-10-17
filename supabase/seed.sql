@@ -819,13 +819,15 @@ insert into public.dossiers (
   'immigration-insecurite-criminalite-france',
   'L''immigration est la cause principale de la hausse des crimes et délits en France',
   'FAUX'::verdict_status,
-  'Aucune donnée ne soutient un rôle causal de l''immigration : en 2024, la très large majorité des personnes mises en cause sont de nationalité française (84 à 85 % pour les violences physiques, 88 % pour l''usage de stupéfiants — SSMSI).
+  'Aucune donnée ne soutient un rôle causal de l''immigration : en 2025 comme en 2024, la très large majorité des personnes mises en cause sont de nationalité française — 84 % et 85 % pour les violences physiques (intrafamiliales et hors cadre familial), 88 % pour l''usage de stupéfiants, 91 % pour les vols de véhicule (SSMSI, bilan 2025, publié le 9 juillet 2026). La délinquance enregistrée ne suit pas non plus la courbe migratoire : au 30 juin 2026, sur douze mois glissants, les homicides et tentatives reculent de 3 % et la plupart des atteintes aux biens sont stables ou en baisse (vols avec arme −10 %, vols de véhicule −9 %), quand les violences physiques (+7 %) et sexuelles (+15 %, avec une part d''effet d''enregistrement) progressent.
 
-La surreprésentation observée dans certaines statistiques s''explique par des mécanismes quasi mécaniques (délits spécifiques au séjour) et des facteurs sociologiques (âge, sexe, précarité) : à situation comparable, la nationalité n''est pas un facteur explicatif, et les sortants de prison étrangers récidivent moins que les Français.',
+La surreprésentation observée dans certaines statistiques — 15 à 16 % des mis en cause pour violences physiques, pour 9 % de la population résidant en France — ne dit pas une causalité ethnique : elle varie fortement selon l''infraction (9 % pour les vols de véhicule, 22 % pour le trafic de stupéfiants, 33 % pour les vols violents sans arme), elle inclut des délits que seuls des étrangers peuvent commettre (séjour irrégulier, emploi d''étranger sans titre), et elle est travaillée par la structure d''âge et l''exposition policière.
+
+Les travaux académiques convergent : « les études réalisées dans différents pays concluent sans ambiguïté que les immigrés ne sont pas à l''origine d''une augmentation des taux d''infraction » (Philippe et Valette, Lettre du CEPII n° 436, via l''Institut Convergences Migrations). Le Défenseur des droits documente le biais d''exposition : les « jeunes hommes perçus comme noir ou arabe » ont vingt fois plus de probabilités d''être contrôlés que l''ensemble de la population — un mécanisme qui pèse sur les statistiques de mis en cause, sans rien démontrer d''une délinquance de nationalité.',
   'SOCIETE'::dossier_category,
-  '[{"name":"Immigration en France","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Immigration_en_France","note":"Le débat porte sur le lien allégué entre immigration et délinquance enregistrée."},{"name":"Service statistique ministériel de la sécurité intérieure","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure","note":"Source des statistiques officielles de la délinquance enregistrée (données des mis en cause)."},{"name":"Laurent Mucchielli","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Laurent_Mucchielli","note":"Sociologue (CNRS), ancien directeur du CESDIP (2004-2009)."},{"name":"Ministère de la Justice (France)","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_la_Justice_(France)","note":"Publications statistiques sur la détention et la récidive (SDSE, administration pénitentiaire)."}]'::jsonb,
+  '[{"name":"Immigration en France","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Immigration_en_France","note":"Le débat porte sur le lien allégué entre immigration et délinquance enregistrée."},{"name":"Service statistique ministériel de la sécurité intérieure","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure","note":"Source des statistiques officielles de la délinquance enregistrée (données des mis en cause)."},{"name":"Laurent Mucchielli","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Laurent_Mucchielli","note":"Sociologue (CNRS), ancien directeur du CESDIP (2004-2009)."},{"name":"Défenseur des droits","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits","note":"Autorité administrative indépendante ; documentation des contrôles d''identité et du biais d''exposition policière."},{"name":"Ministère de la Justice (France)","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_la_Justice_(France)","note":"Publications statistiques sur la détention et la récidive (SDSE, administration pénitentiaire)."}]'::jsonb,
   95,
-  '[{"claim_part":"« Les étrangers commettent la majorité des crimes et délits »","status":"FAUX","detail":"En 2024, les auteurs de violences physiques sont de nationalité française dans 84 % (intrafamiliales) et 85 % (hors cadre familial) des cas résolus ; 88 % des mis en cause pour usage de stupéfiants sont français (SSMSI, « Insécurité et délinquance en 2024 », fiches violences physiques et stupéfiants). Les mis en cause étrangers représentent 15 à 16 % des violences physiques, pour environ 8 % de la population."},{"claim_part":"« La nationalité explique la délinquance »","status":"CONFUSION_CONCEPTUELLE","detail":"La délinquance de rue est d''abord le fait d''hommes jeunes et précaires, surreprésentés dans les statistiques des mis en cause : « l''examen rigoureux des statistiques policières ne permet pas de mesurer la délinquance des étrangers » (Mucchielli, CNRS-CESDIP). Le ministère de la Justice mesure même une récidive plus faible des sortants étrangers (- 3,9 points) et un effet du faible niveau d''étude (+ 3,3 points) : ce sont le décrochage scolaire et la précarité qui pèsent, pas la nationalité."}]'::jsonb,
+  '[{"claim_part":"« Les étrangers commettent la majorité des crimes et délits »","status":"FAUX","detail":"En 2025, les auteurs de violences physiques sont de nationalité française dans 84 % (intrafamiliales) et 85 % (hors cadre familial) des cas résolus ; 88 % des mis en cause pour usage de stupéfiants sont français, 91 % pour les vols de véhicule, 88 % pour les destructions et dégradations délictuelles (SSMSI, bilan 2025, juillet 2026). Les mis en cause étrangers représentent 15 à 16 % des violences physiques, pour 9 % de la population résidant en France."},{"claim_part":"« La nationalité explique la délinquance »","status":"CONFUSION_CONCEPTUELLE","detail":"La délinquance de rue est d''abord le fait d''hommes jeunes et précaires, surreprésentés dans les statistiques des mis en cause : pour les destructions et dégradations délictuelles de 2025, les 18-29 ans représentent 35 % des mis en cause quand ils sont 14 % de la population résidant en France (SSMSI). « L''examen rigoureux des statistiques policières ne permet pas de mesurer la délinquance des étrangers » (Mucchielli, CNRS-CESDIP). Le ministère de la Justice mesure même une récidive plus faible des sortants étrangers (- 3,9 points) et un effet du faible niveau d''étude (+ 3,3 points) : ce sont le décrochage scolaire et la précarité qui pèsent, pas la nationalité."},{"claim_part":"« La surreprésentation dans les statistiques de mis en cause prouve une délinquance plus élevée »","status":"BIAIS_METHODOLOGIQUE","detail":"Les « mis en cause » mesurent l''activité d''enquête, pas la délinquance réelle : seuls les faits élucidés y entrent, et l''exposition aux contrôles varie massivement selon le profil. L''enquête relations police-population du Défenseur des droits (2017, plus de 5 000 personnes) l''établit : 80 % des jeunes hommes « perçus comme noir ou arabe » déclarent avoir été contrôlés dans les cinq dernières années, contre 16 % des autres enquêtés — et le Défenseur des droits en conclut « vingt fois plus de probabilités d''être contrôlés, par rapport à l''ensemble de la population ». À quoi s''ajoutent des délits propres au statut de séjour (entrée et séjour irréguliers, aide au séjour, emploi d''étranger sans titre), qui n''existent pas pour les nationaux. La part des étrangers parmi les mis en cause a augmenté depuis 2016 pour 13 des 18 indicateurs du bilan SSMSI — une évolution à rapporter aux flux migratoires et aux pratiques de contrôle, pas une preuve de surdélinquance."}]'::jsonb,
   '[]'::jsonb,
   true,
   '2026-10-15T00:00:00.000Z'::timestamptz,
@@ -836,15 +838,15 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   '05c12af9-831a-47e4-9391-946eb5c9ba05',
   '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
   'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
-  'Insécurité et délinquance en 2024 : bilan statistique (fiches violences physiques et stupéfiants)',
+  'Insécurité et délinquance en 2025 : bilan statistique (édition 2026, fiches violences physiques et stupéfiants)',
   'SSMSI — Service statistique ministériel de la sécurité intérieure (ministère de l''Intérieur)',
-  null,
+  '2026-07-09',
   'CITATION_EXACTE'::quote_kind,
-  'Les auteurs sont pour la plupart de nationalité française (respectivement 84 % et 85 %). La part des mis en cause de nationalités étrangères est de l''ordre de 15 à 16 % alors que les nationalités étrangères représentent 8 % de la population française.',
-  'Bilan statistique annuel du SSMSI (9e édition, année 2024) : sur les violences physiques, 84 % des mis en cause (intrafamiliales) et 85 % (hors cadre familial) sont de nationalité française ; 88 % des mis en cause pour usage de stupéfiants le sont également. Les étrangers représentent environ 8 % de la population résidant en France.',
-  'https://www.interieur.gouv.fr/fr/content/download/138329/1093108/file/SSMSI-BA2024.pdf',
+  'Les auteurs sont pour la plupart de nationalité française (respectivement 84 % et 85 %). La part des mis en cause de nationalités étrangères est de l''ordre de 15 à 16 % alors que les nationalités étrangères représentent 9 % de la population française.',
+  'Bilan statistique annuel du SSMSI (10e édition, année 2025, publiée le 9 juillet 2026) : sur les violences physiques, 84 % des mis en cause (intrafamiliales) et 85 % (hors cadre familial) sont de nationalité française ; 88 % des mis en cause pour usage de stupéfiants le sont également, 91 % pour les vols de véhicule et 88 % pour les destructions et dégradations délictuelles. Les étrangers représentent 9 % de la population résidant en France (estimations Insee 2025) — la part de 8 % citée par l''édition précédente a été actualisée.',
+  'https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf',
   null,
-  '595f4d4531593f8df398cd86421cb9bc86eb75674fac7483fd9f54e3ea493fcd',
+  'edb8baa9d72a087e9cae135f4d0bc1bbd5dc084ed5192d7c77322366707166c6',
   null,
   'https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure',
   0
@@ -933,6 +935,125 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   null,
   'https://fr.wikipedia.org/wiki/La_Vie_des_id%C3%A9es',
   5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '44c30f8e-b706-498c-b8c4-47f169eb20ca',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  'IR68 — La délinquance enregistrée par la police et la gendarmerie nationales : un point à mi-année 2026',
+  'SSMSI — Service statistique ministériel de la sécurité intérieure (Dounia Tir)',
+  '2026-09-30',
+  'CITATION_EXACTE'::quote_kind,
+  'Au 30 juin 2026, en France, les homicides, tout comme les tentatives d''homicide, sont en baisse de 3 % au cours des douze derniers mois.',
+  'Analyse sur douze mois glissants publiée le 30 septembre 2026 (Interstats Infos rapides n° 68), qui intègre les requalifications au-delà du mois observé : les violences physiques progressent de 7 % (intrafamiliales et hors cadre familial : +7 % chacune), les violences sexuelles de 15 % — hausse à laquelle la consolidation des procédures engagée après l''affaire Lyhanna contribue pour 56 % —, et les mis en cause pour usage comme pour trafic de stupéfiants de 10 % ; à l''inverse, la majorité des atteintes aux biens reculent ou sont stables (vols avec arme −10 %, vols de véhicule −9 %, vols dans et sur véhicules −7 %, destructions et dégradations −2 %).',
+  'https://statistiques.interieur.gouv.fr/ssmsi/publications/la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales-un-point-mi',
+  null,
+  'eef5d0c04b170a98984d45eab4c76286a074adc52927c3ceb7d5fb4714c6bc70',
+  null,
+  'https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '7a8cff75-3cce-4ca1-ac08-d839b1fbf42c',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'CENTRE'::political_spectrum,
+  'Contrôles d''identité : que dit le droit et comment mettre fin aux contrôles discriminatoires ?',
+  'Défenseur des droits',
+  '2024-02-15',
+  'CITATION_EXACTE'::quote_kind,
+  'Les « jeunes hommes perçus comme noir ou arabe » ont donc vingt fois plus de probabilités d''être contrôlés, par rapport à l''ensemble de la population.',
+  'Dossier thématique du Défenseur des droits (15 février 2024, sept recommandations) : un contrôle discriminatoire, défini par des critères liés à des caractéristiques physiques associées à une origine réelle ou supposée, « constitue une faute lourde engageant la responsabilité de l''État ». Le biais d''exposition est documenté par l''enquête relations police-population de janvier 2017 (plus de 5 000 personnes) : 80 % des jeunes hommes « perçus comme noir ou arabe » déclarent avoir été contrôlés dans les cinq dernières années, contre 16 % des autres enquêtés ; la Cour des comptes évalue à 47 millions le nombre de contrôles en 2021.',
+  'https://www.defenseurdesdroits.fr/controles-didentite-que-dit-le-droit-et-comment-mettre-fin-aux-controles-discriminatoires-565',
+  null,
+  'bff5cb82b294742779a535c4afc0c75390cc6dfc5fa6787a67c13552fd8654f9',
+  null,
+  'https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '9b98f743-912b-437d-ac57-ff20d2e7c189',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  'La Lettre du CEPII n° 436 — Immigration et délinquance : réalités et perceptions (reprise par l''Institut Convergences Migrations)',
+  'Arnaud Philippe (université de Bristol) et Jérôme Valette (CEPII, ICM) — Institut Convergences Migrations (CNRS)',
+  '2023-04-20',
+  'CITATION_EXACTE'::quote_kind,
+  'Pourtant, les études réalisées dans différents pays concluent sans ambiguïté que les immigrés ne sont pas à l''origine d''une augmentation des taux d''infraction dans les pays d''accueil. Et si les étrangers en situation irrégulière ont une probabilité plus forte de commettre des vols, un meilleur accès au marché du travail peut résorber cet écart.',
+  'Note de recherche relayée par l''Institut Convergences Migrations (CNRS) — Jérôme Valette en dirige le département DYNAMICS : les travaux internationaux ne trouvent pas d''effet de l''immigration sur les taux d''infraction des pays d''accueil, et la surreprésentation dans les statistiques comme le traitement médiatique expliquent l''écart entre perceptions et réalité — l''expérience allemande montre qu''un traitement neutre de l''origine des auteurs présumés réduit les inquiétudes.',
+  'https://www.icmigrations.cnrs.fr/2023/04/20/publi-arnaud-philippe-et-jerome-valette-la-lettre-du-cepii-n-436/',
+  null,
+  '225d3bea833fcad5b6bd8f3a84139ae4f17663173757876c64da1c5350a5d66d',
+  null,
+  null,
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '71a9ece0-f9e7-493b-9073-61ab14d848fb',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Insécurité et délinquance en 2025 : bilan statistique — édition 2026 » — SSMSI, ministère de l''Intérieur',
+  'SSMSI — Service statistique ministériel de la sécurité intérieure (sous la direction de Mickaël Portela)',
+  '2026-07-09',
+  'CITATION_EXACTE'::quote_kind,
+  'Les auteurs sont pour la plupart de nationalité française (respectivement 84 % et 85 %). La part des mis en cause de nationalités étrangères est de l''ordre de 15 à 16 % alors que les nationalités étrangères représentent 9 % de la population française. Parmi les étrangers, il s''agit majoritairement de personnes originaires d''un pays d''Afrique (9 % à 10 % des mis en cause, contre 4 % d''étrangers en France originaires d''Afrique).',
+  'Bilan statistique 2025 (fiche « Violences physiques », p. 101) : 84 à 85 % des mis en cause sont français ; les étrangers, 9 % de la population (8 % dans l''édition précédente), représentent 15 à 16 % des mis en cause. Une surreprésentation réelle, mais qui n''établit aucune causalité : le SSMSI prévient lui-même que ces caractéristiques « rendent les analyses sommaires pour la compréhension des phénomènes de délinquance », et les indicateurs de délinquance dépendent aussi des plaintes et des politiques de contrôle.',
+  'https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf',
+  null,
+  'dc8ba988c32ca8703f228ef5709ac3e76bcdec7931d8ce1b1067d2a5d4580c28',
+  null,
+  'https://fr.wikipedia.org/wiki/Service_statistique_minist%C3%A9riel_de_la_s%C3%A9curit%C3%A9_int%C3%A9rieure',
+  9
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '54cb1a56-a4cf-4506-bca2-5b648de3ecc3',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'CENTRE'::political_spectrum,
+  '« Immigration et délinquance : attention aux interprétations trompeuses des chiffres du ministère de l''Intérieur » — AFP Factuel (3 mai 2024)',
+  'AFP France — Factuel (Agence France-Presse)',
+  '2024-05-03',
+  'CITATION_EXACTE'::quote_kind,
+  'Sans compter que la mesure de la délinquance est notoirement complexe. Autant de biais, rappellent-ils, qui entretiennent les stéréotypes présentant l''immigration comme synonyme d''insécurité. En outre, des études menées dans d''autres pays n''ont pas relevé de lien causal entre arrivée d''étrangers et hausse générale et massive de la délinquance.',
+  'Fact-check de l''AFP confrontant les chiffres du SSMSI aux affirmations de Bardella et Maréchal : six chercheurs interrogés démontent les amalgames (« étrangers » / « immigrés », « mis en cause » / « condamnés ») et les biais — âge, sexe, contrôles au faciès, non-plainte. L''AFP écrit qu''aucune étude menée à l''étranger n''a relevé de lien causal entre arrivée d''étrangers et hausse générale de la délinquance.',
+  'https://web.archive.org/web/20241009170820/https://factuel.afp.com/doc.afp.com.34QB9EL',
+  null,
+  '6f7d8a7e22c336a4a7caae5fd56671f067176029ac88667ac2cb8dab8cb34ec7',
+  null,
+  'https://fr.wikipedia.org/wiki/Agence_France-Presse',
+  10
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd798669e-9aa3-48d0-ae91-bc5134cd0e6b',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Immigration et criminalité : quels résultats empiriques et quels mécanismes théoriques à l''œuvre ? » — DIALOGUE n° 71, mars 2024 (DIAL, CNRS/IRD/Paris-Dauphine)',
+  'Fabio Mariani (IRES/LIDAM, UCLouvain) et Marion Mercier (DIAL, LEDa, CNRS, IRD, Université Paris-Dauphine-PSL)',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'La littérature empirique ne pointe donc pas vers l''idée d''un effet de l''immigration sur l''augmentation du crime. Les données individuelles indiquent que les migrants ne commettent pas plus de crime que les natifs, et les résultats agrégés sur l''impact causal de l''immigration sont mixtes, avec un effet nul dans la majorité des travaux, et non-nul pour certaines catégories de crimes et/ou de migrants.',
+  'Revue de littérature francophone (lettre d''un laboratoire d''économie, non évaluée par les pairs, signée par deux économistes académiques) : les travaux individuels ne montrent pas plus d''infractions chez les migrants que chez les natifs ; les résultats agrégés sont mixtes, avec un effet nul dans la majorité des travaux — l''effet n''est non-nul que pour certaines catégories de crimes ou de migrants, ce qui interdit toute imputation générale.',
+  'https://web.archive.org/web/20240716035745/https://dial.ird.fr/wp-content/uploads/2024/03/DIALogue71_FR.pdf',
+  null,
+  'fd77788f2db670dfdaba555e949bd3619627a5d7d82bd1103cfd37204b00e248',
+  null,
+  null,
+  11
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '15724a67-cad5-4298-bc23-fd1221363f20',
+  '0a8c7aad-73bd-4373-a8ed-66eb1c4b25d1',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Immigration and Crime: Assessing a Contentious Issue » — Annual Review of Criminology, vol. 1, p. 63-84 (2018)',
+  'Graham C. Ousey (College of William & Mary) et Charis E. Kubrin (University of California, Irvine)',
+  '2018-01-13',
+  'CITATION_EXACTE'::quote_kind,
+  'Findings indicate that, overall, the immigration-crime association is negative—but very weak. At the same time, there is significant variation in findings across studies.',
+  'Méta-analyse internationale de 51 études (1994-2014) portant sur des unités géographiques : l''association moyenne immigration-criminalité est négative mais très faible (de l''ordre de -0,031), donc pratiquement nulle. Les études sont majoritairement américaines : c''est un repère comparatif, pas une preuve directe sur la France. Citation en anglais, langue de l''article.',
+  'https://doi.org/10.1146/annurev-criminol-032317-092026',
+  null,
+  '8ce5c50a87717d141a2bf413c3cea1f219213e6d60fc6e94b798a316f8b62101',
+  null,
+  null,
+  12
 );
 
 delete from public.dossiers where slug = 'expulsion-etrangers-delinquants-juges-et-droit';
@@ -1060,6 +1181,74 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   null,
   'https://fr.wikipedia.org/wiki/Vincent_R%C3%A9veill%C3%A8re',
   5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '0e1b8f44-c24c-4dc2-a3b2-e80883a674a8',
+  '054e7ed1-684a-4161-8092-55af18bf6613',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Les chiffres clés de l''immigration — 2024 », fiche 031 « Les éloignements et départs » — Ministère de l''Intérieur',
+  'Ministère de l''Intérieur — DGEF, Département des statistiques, des études et de la documentation',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'L''absence de documents de voyage constitue un obstacle important pour l''exécution de l''éloignement des étrangers en situation irrégulière. En effet, lorsqu''un étranger en instance d''éloignement ne présente aucun passeport ou aucun autre document l''autorisant à regagner le pays dont il possède la nationalité, la préfecture en charge de l''exécution de la mesure d''éloignement ou d''expulsion doit solliciter un laissez-passer auprès des autorités du pays dont il est supposé être le ressortissant.',
+  'Données officielles du ministère : 145 107 mesures d''éloignement prononcées en 2024 (-7,3 %) pour 21 601 éloignements mis en œuvre (+26,7 %). Le document désigne comme premier obstacle l''absence de documents de voyage — les laissez-passer consulaires, dont le taux de délivrance dans les délais atteint 56,3 % (+8,7 points) — et non une décision de justice.',
+  'https://www.immigration.interieur.gouv.fr/sites/dgef/files/medias/documents/2026-03/Chiffres_Cles_IMMIG_2024_WEB.pdf',
+  null,
+  '9a5c278b752d8aadd7ea5b9ad3862421300f6cb1aa1b7bcdd76227e3ba2f6c0a',
+  null,
+  'https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_l%27Int%C3%A9rieur_(France)',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'dd6cbee9-5a5c-4d85-be4b-ca3d447a4416',
+  '054e7ed1-684a-4161-8092-55af18bf6613',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  'Projet de loi de finances pour 2026 — Note de présentation — Mission « Immigration, asile et intégration » (5 novembre 2025)',
+  'Sénat, commission des finances — rapporteur spécial Marie-Carole Ciuntu (groupe Les Républicains)',
+  '2025-11-05',
+  'CITATION_EXACTE'::quote_kind,
+  'Le faible taux d''exécution des OQTF contraste avec celui des expulsions, prononcées pour des raisons de menaces graves à l''ordre public. En 2025, 42 % des expulsions ont été exécutées (sur 539 arrêtés d''expulsions prononcés au 30 juin 2025, 228 ont été pour l''heure exécutés).',
+  'Note sénatoriale de droite : quand la mesure est un arrêté d''expulsion pour menace grave à l''ordre public, 42 % sont exécutés au premier semestre 2025 (228 sur 539) et les expulsions forcées augmentent de 47 % entre 2024 et 2025 sous l''effet de la loi du 26 janvier 2024. Le droit ne bloque pas l''éloignement, il l''accélère ; la sous-exécution des OQTF (10,6 % au S1 2025) tient à des causes opérationnelles et consulaires.',
+  'https://www.senat.fr/fileadmin/Commissions/Finances/2025-2026/PLF_2026/NP/Immigration_PLF_26_NP.pdf',
+  null,
+  '7811201c5691e98135fd4da030c61a01146f1e08fb69a7234f28cf9653e10949',
+  null,
+  'https://fr.wikipedia.org/wiki/S%C3%A9nat_(France)',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '9a587bd8-0161-44fc-94d9-e1ef11e59ac5',
+  '054e7ed1-684a-4161-8092-55af18bf6613',
+  'CENTRE'::political_spectrum,
+  'Séance thématique de contrôle : « Les résultats de la politique d''éloignement des personnes sous obligation de quitter le territoire français (OQTF) » — Assemblée nationale, juin 2025',
+  'Assemblée nationale, commission des lois — Anne Bergantz, Éric Pauget, Sophie Ricourt Vaginay',
+  '2025-06-10',
+  'CITATION_EXACTE'::quote_kind,
+  'En France, environ une OQTF sur dix est exécutée, soit de l''ordre de 15 000 sur les 130 000 prononcées en 2024.',
+  'Rapport parlementaire de contrôle : le taux d''exécution est d''environ un sur dix, et la note énumère les obstacles réels — « contentieux multiples, manque de moyens et de places en rétention, difficultés d''identification, fuites, obtention de laisser-passer consulaires » — en soulignant que « la politique de l''éloignement est de longue date déficiente, malgré l''assiduité du législateur et les efforts de l''administration ». Le contentieux ne pèse que minoritairement : 18 % des OQTF ont été annulées en première instance en 2023.',
+  'https://web.archive.org/web/20250716220919/https://www.assemblee-nationale.fr/dyn/17/documents/cion_lois/l17n813203444_document.pdf',
+  null,
+  '8d0f42a22a7e927469df965ca487d03b3d8e992e4599df5c619936e4e745cbcd',
+  null,
+  'https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '20d6dcbc-d476-4d52-bea2-968898ddb190',
+  '054e7ed1-684a-4161-8092-55af18bf6613',
+  'GAUCHE'::political_spectrum,
+  '« Le taux d''exécution des OQTF est-il de 7 % ou de 20 % comme l''affirme Gérald Darmanin ? » — CheckNews, Libération (4 octobre 2024)',
+  'Elsa de La Roche Saint-André (CheckNews / Libération)',
+  '2024-10-04',
+  'CITATION_EXACTE'::quote_kind,
+  'En schématisant, la masse des OQTF prononcées est globalement gonflée et celle des OQTF exécutées plutôt sous-estimée. D''où un taux tiré vers le bas.',
+  'Vérification de gauche : le « 7 % » est un artefact de calcul — OQTF comptées plusieurs fois, mesures non exécutables incluses, seuls les éloignements forcés retenus — tandis que les sorties réelles sont plus élevées (137 730 OQTF prononcées en 2023 pour 22 704 sorties de territoire, soit 16,4 %). Aucun veto judiciaire : une sous-exécution d''origine administrative et consulaire.',
+  'https://web.archive.org/web/20241006010350/https://www.liberation.fr/checknews/le-taux-dexecution-des-oqtf-est-il-de-7-ou-de-20-comme-laffirme-gerald-darmanin-20241004_PMBTTRISTNDN3P3ANDECQKSEDE/',
+  null,
+  '252442ba98cb960ffe216a8fd916ff7cd1822f725044422f078a436e06f65063',
+  null,
+  'https://fr.wikipedia.org/wiki/Lib%C3%A9ration_(journal)',
+  9
 );
 
 delete from public.dossiers where slug = 'allocation-demandeur-asile-carte-bancaire-montant';
@@ -1473,6 +1662,74 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   null,
   null,
   5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '2cd73366-adc9-4c70-bc0b-0fbf4c83a379',
+  'eb0118fd-17bb-49d6-b8f4-faa6eb3333fe',
+  'CENTRE'::political_spectrum,
+  '« Violente agression d''une grand-mère et de sa petite-fille à Bordeaux : l''auteur condamné et écroué » — Sud Ouest (27 janvier 2024)',
+  'Jean-Michel Desplos (Sud Ouest)',
+  '2024-01-27',
+  'CITATION_EXACTE'::quote_kind,
+  'L''auteur de l''agression d''une grand-mère et de sa petite-fille dont la vidéo avait été partagée sur les réseaux sociaux a été condamné, ce vendredi 26 janvier, à deux ans de prison dont un an de sursis probatoire',
+  'Compte rendu judiciaire régional : condamnation le 26 janvier 2024 par le tribunal correctionnel de Bordeaux (violation de domicile et violences) à deux ans de prison dont un an avec sursis probatoire assorti d''une obligation de soins, mandat de dépôt et écrou au centre pénitentiaire de Gradignan. Une peine de droit commun ; aucune mesure d''éloignement n''apparaît dans la procédure. Citation sans point final, absent de la source (chapô).',
+  'https://www.sudouest.fr/justice/violente-agression-d-une-grand-mere-et-de-sa-petite-fille-a-bordeaux-l-auteur-condamne-et-ecroue-18315354.php',
+  null,
+  '46baa2a670b4c6d479f8c3dc43d1d71c0156a218f24c46ac92cd3a553dc8ab0f',
+  null,
+  'https://fr.wikipedia.org/wiki/Sud_Ouest',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '2565382f-22f5-4543-87d8-2f1ff747a9c3',
+  'eb0118fd-17bb-49d6-b8f4-faa6eb3333fe',
+  'CENTRE'::political_spectrum,
+  '« Bordeaux : l''agresseur de la grand-mère et de sa petite fille condamné à deux ans de prison dont un an ferme » — Le Parisien (27 janvier 2024)',
+  'Le Parisien (rédaction)',
+  '2024-01-27',
+  'CITATION_EXACTE'::quote_kind,
+  'L''auteur de l''agression a été condamné ce vendredi par le tribunal de Bordeaux à une peine de deux ans de prison dont un an de sursis probatoire. L''homme de 30 ans, sous tutelle, avait déjà été condamné de multiples fois pour des délits routiers et d''autres délits liés aux stupéfiants.',
+  'Presse nationale : comparution immédiate, prévenu sous tutelle aux quinze condamnations antérieures, condamnation à deux ans dont un an ferme. Le même article documente le cheminement médico-judiciaire — une première expertise concluant à l''abolition du discernement, une contre-expertise retenant une simple altération — qui a permis le procès. Aucune dimension migratoire dans la procédure.',
+  'https://www.leparisien.fr/faits-divers/bordeaux-lagresseur-de-la-grand-mere-et-de-sa-petite-fille-condamne-a-deux-ans-de-prison-dont-un-an-ferme-27-01-2024-O6JJ4AEJLNEXVP7KWCZ6IWM4YA.php',
+  null,
+  '7f9e245e2f330f2455587b266c79488512c85c9cb4528104ee0199d86d19d7b9',
+  null,
+  'https://fr.wikipedia.org/wiki/Le_Parisien',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'dc444c98-2173-4758-8326-0684e01d85c4',
+  'eb0118fd-17bb-49d6-b8f4-faa6eb3333fe',
+  'GAUCHE'::political_spectrum,
+  '« Entre garde à vue et soins psychiatriques pour l''agresseur d''une septuagénaire et de sa petite-fille à Bordeaux » — Rue89Bordeaux (20 juin 2023)',
+  'Simon Barthélémy (Rue89Bordeaux)',
+  '2023-06-20',
+  'CITATION_EXACTE'::quote_kind,
+  'Précisons cependant que l''agresseur est né en France, de parents français.',
+  'Média local de gauche : le lendemain des faits, il établit que l''agresseur est né à Bordeaux, le 12 juillet 1993, « de parents français » — ce qui réfute le mot « clandestin ». L''article relève que l''affaire a été « abondamment relayée, notamment par des élus et sympathisants d''extrême droite pour associer délinquance et immigration ».',
+  'https://rue89bordeaux.com/2023/06/lagresseur-dune-septuagenaire-et-de-sa-petite-fille-en-garde-a-vue-a-bordeaux/',
+  null,
+  '700e8a1988be448cd3d4015edfeafd4f13c71510663c0771144a0aaeca887638',
+  null,
+  'https://fr.wikipedia.org/wiki/Rue89_Bordeaux',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '34bcf998-836a-41eb-acef-7405cf2effa8',
+  'eb0118fd-17bb-49d6-b8f4-faa6eb3333fe',
+  'CENTRE'::political_spectrum,
+  '« Violente agression à Bordeaux : ce que l''on sait du profil du principal suspect » — Europe 1 (20 juin 2023)',
+  'Stéphane Place (Europe 1)',
+  '2023-06-20',
+  'CITATION_EXACTE'::quote_kind,
+  'Mardi soir, le suspect, de nationalité française et qui a nié les faits devant les enquêteurs, a été pris en charge par l''hôpital psychiatrique Charles Perrens de Bordeaux.',
+  'Média national, dès le 20 juin 2023 : le suspect est de nationalité française, né à Bordeaux, trentenaire placé sous tutelle, avec quinze condamnations, et hospitalisé en psychiatrie. Un « clandestin sous OQTF » est donc factuellement exclu dès les premières vérifications de presse.',
+  'https://www.europe1.fr/faits-divers/violente-agression-a-bordeaux-ce-que-lon-sait-du-principal-suspect-4189921',
+  null,
+  '6e7f943a9bb544fbc73ab23c52078ad75783a30eec1f0561518bae4b5f2e17fa',
+  null,
+  'https://fr.wikipedia.org/wiki/Europe_1',
+  9
 );
 
 delete from public.dossiers where slug = 'incendie-eglise-saint-omer-attentat-islamiste';
