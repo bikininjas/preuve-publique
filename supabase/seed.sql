@@ -643,7 +643,9 @@ insert into public.dossiers (
 
 dans les 25 pays de l''OCDE pour lesquels des données existent, les impôts et cotisations des immigrés ont en moyenne dépassé les dépenses publiques qui leur sont consacrées en 2006-2018 (OCDE, rapport 2021).
 
-La structure par âge — population surreprésentée dans les classes actives — compense une contribution plus faible à âge donné.',
+La structure par âge — population surreprésentée dans les classes actives — compense une contribution plus faible à âge donné.
+
+Les chiffres de « 35 à 40 milliards » — parfois « 54 milliards » — qui circulent reposent sur une extrapolation invalide : des moyennes pluriannuelles appliquées au PIB d''une seule année, un périmètre incluant des Français nés à l''étranger et des dépenses non imputables ; les économistes auteurs des études citées (OCDE, CEPII) qualifient eux-mêmes cette lecture d''« interprétation fallacieuse » (AFP Factuel, avril 2024).',
   'ECONOMIE'::dossier_category,
   '[{"name":"Immigration en France","kind":"TEXTE","role":"SUJET","reference_url":"https://fr.wikipedia.org/wiki/Immigration_en_France","note":"Le débat budgétaire porte sur la contribution nette des immigrés aux finances publiques françaises."},{"name":"Organisation de coopération et de développement économiques","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Organisation_de_coop%C3%A9ration_et_de_d%C3%A9veloppement_%C3%A9conomiques","note":null},{"name":"Centre d''études prospectives et d''informations internationales","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Centre_d%27%C3%A9tudes_prospectives_et_d%27informations_internationales","note":"Auteurs de l''évaluation comptable de la contribution des immigrés aux finances publiques (1979-2011)."},{"name":"Insee","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques","note":"Source des statistiques d''activité et d''emploi de la population immigrée."},{"name":"Terra Nova","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Terra_Nova_(think_tank)","note":"Think tank progressiste ; note sur la place des étrangers non européens dans les métiers en tension."}]'::jsonb,
   95,
@@ -721,6 +723,57 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   null,
   'https://fr.wikipedia.org/wiki/Terra_Nova_(think_tank)',
   3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '81a2c1d5-97f2-448d-8f06-48d743172dbc',
+  'bf081aa5-d711-4510-bb25-b426ae7ffa46',
+  'CENTRE'::political_spectrum,
+  '« Coût » de l''immigration : attentions aux chiffres trompeurs de « 35 à 40 milliards » d''euros annuels — AFP Factuel (5 avril 2024)',
+  'AFP Factuel (Guillaume Gérard, AFP France)',
+  '2024-04-05',
+  'CITATION_EXACTE'::quote_kind,
+  'Or, ce n''est pas ce que disent ces travaux et les économistes qui les ont publiés dénoncent auprès de l''AFP l''« interprétation fallacieuse » qui en est faite.',
+  'Dépêche de vérification du chiffre « 40 milliards » avancé par Jordan Bardella et relayé par l''Observatoire de l''immigration et de la démographie : celui-ci applique des moyennes pluriannuelles (OCDE 2006-2018, CEPII 1979-2011) au PIB d''une seule année, inclut les « personnes nées à l''étranger » — dont 1,7 million de Français — et des biens publics purs non imputables (dette, défense). Jean-Christophe Dumont (OCDE) : « Je ne sais pas d''où sortent ces 40 milliards […] Cela vient d''une interprétation fallacieuse de nos travaux » ; Xavier Chojnicki (CEPII) : « Ce chiffre n''est pas issu de mes travaux » (estimation 2011 : -0,49 % du PIB, soit 8,8 milliards d''euros).',
+  'https://web.archive.org/web/20240405132448/https://factuel.afp.com/doc.afp.com.34NN2GT',
+  null,
+  'b156a3a574abdc9ff1d5f88f99a9df0a710f74bcd9762e16316c30c963be0cb9',
+  null,
+  'https://fr.wikipedia.org/wiki/Agence_France-Presse',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd7e0a9c9-a5d0-4346-9e7f-7ffe9d6a27b7',
+  'bf081aa5-d711-4510-bb25-b426ae7ffa46',
+  'GAUCHE'::political_spectrum,
+  'Le coût de l''immigration en France : une « fake news » à l''épreuve de la vérité — Fondation Jean-Jaurès (18 septembre 2024)',
+  'Fondation Jean-Jaurès (think tank progressiste)',
+  '2024-09-18',
+  'CITATION_EXACTE'::quote_kind,
+  'En effet, l''étude menée par l''OCDE démontre que la contribution budgétaire nette totale des immigrés oscille entre -1% et + 1% du PIB. Le constat est sans appel : à peu de chose près, l''impact de l''immigration est neutre.',
+  'Note qui décortique la méthode des « 40 milliards » puis des « 54 milliards » (Contribuables associés) : pourcentages moyens appliqués à un PIB annuel, périmètre élargi aux nés à l''étranger, dépenses collectives imputées, bénéfices de l''éducation non calculés. Elle rappelle que l''OCDE borne la contribution nette entre -1 % et +1 % du PIB, que les immigrés perçoivent en moyenne moins d''argent public que les Français (0,94 € pour 1 € perçu) et que le CEPII conclut à un impact proche de zéro : « les immigrés ne sont ni un fardeau ni une aubaine pour les finances publiques ».',
+  'https://www.jean-jaures.org/publication/le-cout-de-limmigration-en-france-une-fake-news-a-lepreuve-de-la-verite/',
+  null,
+  '7b733ba2bb8248eb5f9a52f5b965f23b0a77b25810faa598a4303f79db2191f9',
+  null,
+  'https://fr.wikipedia.org/wiki/Fondation_Jean-Jaur%C3%A8s',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '08865761-a821-449f-adb3-4af7292aa20a',
+  'bf081aa5-d711-4510-bb25-b426ae7ffa46',
+  'CENTRE'::political_spectrum,
+  'VRAI OU FAUX. L''immigration coûte-t-elle 54 milliards d''euros à la France chaque année, comme l''affirme la députée RN Gisèle Lelouis ? — franceinfo (28 août 2023)',
+  'franceinfo / Radio France (Armêl Balogog)',
+  '2023-08-28',
+  'CITATION_EXACTE'::quote_kind,
+  'Celle-ci conclut aussi que le solde est négatif en moyenne : selon les années, soit l''immigration ne coûte rien, soit elle coûte 10 milliards d''euros maximum. Loin des 54 milliards d''euros cités par Jean-Paul Gourévitch.',
+  'Vérification de l''affirmation « 53,9 milliards par an » de la députée RN Gisèle Lelouis, tirée d''une étude de Jean-Paul Gourévitch pour Contribuables associés : auteur ni économiste ni statisticien, dépenses estimées faute d''accès aux chiffres officiels, bénéfices non calculés, dépenses non imputables (sécurité, lutte contre l''immigration illégale) incluses. Le rappel des travaux universitaires borne le solde à 10 milliards d''euros maximum, quand l''OCDE trouve au contraire un solde positif d''au moins 10 milliards par an sur 2006-2018.',
+  'https://www.franceinfo.fr/replay-radio/le-vrai-du-faux/le-vrai-ou-faux-l-immigration-coute-t-elle-54-milliards-d-euros-a-la-france-chaque-annee-comme-l-affirme-la-deputee-rn-gisele-lelouis_6021698.html',
+  null,
+  '6007ed16f45184ba188a9d77f1e20b92b702416f9b59898f034b7a75acba4a39',
+  null,
+  'https://fr.wikipedia.org/wiki/France_Info',
+  6
 );
 
 delete from public.dossiers where slug = 'immigration-insecurite-criminalite-france';

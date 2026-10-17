@@ -72,7 +72,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 277 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 280 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -436,7 +436,16 @@ autres dossiers sont restées intactes — et la recapture limitée à ses pièc
 instantanés réseau (passe `ec9bac22f30fbe32…`), puis la dixième recapturée seule (passe
 `9e6b862c962b7dca…`). Racine d'intégrité du dossier `7467ad7e…` = `ETag` et
 `X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` et `/api/archives` vérifiés ;
-racine globale recalculée sur les 277 fiches de l'état courant : `d6f09ed56bcb1b8e…`.
+racine globale recalculée sur les 277 fiches de cet état : `d6f09ed56bcb1b8e…`.
+
+Le 17 octobre 2026, le dossier **« L'immigration coûte des dizaines de milliards d'euros
+par an à la France »** (quatre sources) a été étoffé à **sept sources** : vérification AFP
+Factuel des « 35 à 40 milliards » d'euros (5 avril 2024), décorticage méthodologique de la
+Fondation Jean-Jaurès (18 septembre 2024) et fact-check de franceinfo des « 54 milliards »
+(28 août 2023). Sept pièces recapturées (sept instantanés réseau, passe
+`df991138dd161b17…`) ; racine d'intégrité du dossier `7e3371ea…` = `ETag` et
+`X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` et `/api/archives` vérifiés ;
+racine globale recalculée sur les 280 fiches de l'état courant : `ef57d2f9db870008…`.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi
