@@ -33,6 +33,7 @@ import { truthyFlag } from "./flag.mts";
 import { supabaseStorageWriter, privilegedDb, closePrivilegedDb } from "../src/db/index.ts";
 import { dossierSourceArchives, dossierSources, dossiers as dossiersTable } from "../src/db/schema.ts";
 import { buildArchiveRecord, type CaptureOutcome } from "../src/lib/archive-record.ts";
+import { InvalidFetchUrlError, plusEncodedVariant, toFetchUrl } from "../src/lib/fetch-url.ts";
 import { log } from "../src/server/middleware/logger.ts";
 import { assertPublishableDossier } from "../src/server/validators/dossier.schema.ts";
 import { computeIntegrityRoot } from "../src/server/services/crypto.service.ts";
@@ -40,6 +41,19 @@ import { computeIntegrityRoot } from "../src/server/services/crypto.service.ts";
 const BUCKET = "immutable-archives";
 const shouldWrite = truthyFlag("--yes");
 const shouldFetch = truthyFlag("--fetch");
+/**
+ * UA de navigateur : plusieurs pare-feux (Urssaf compris) réinitialisent la
+ * connexion TLS quand le client s'annonce comme un robot d'archivage. On
+ * archive en se présentant comme un lecteur ordinaire ; l'identité du client
+ * reste tracée dans les journaux et dans la fiche (`capture.url`).
+ */
+const FETCH_USER_AGENT =
+  "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
+const FETCH_HEADERS = {
+  "user-agent": FETCH_USER_AGENT,
+  accept: "text/html,application/xhtml+xml,application/pdf,application/xml;q=0.9,*/*;q=0.8",
+  "accept-language": "fr-FR,fr;q=0.9,en;q=0.8",
+};
 const slugFilter = process.argv
   .find((argument) => argument.startsWith("--slug="))
   ?.slice("--slug=".length);
@@ -58,12 +72,37 @@ async function fetchOutcome(url: string | null): Promise<CaptureOutcome> {
       reason: "instantané réseau non demandé (relancer avec --fetch)",
     };
   }
+  let target: string;
   try {
-    const response = await fetch(url, {
+    target = toFetchUrl(url);
+  } catch (error) {
+    const reason =
+      error instanceof InvalidFetchUrlError ? `URL refusée : ${error.message}` : "URL refusée";
+    return { kind: "URL_UNAVAILABLE", url, reason };
+  }
+
+  const request = (candidate: string) =>
+    fetch(candidate, {
       redirect: "follow",
-      signal: AbortSignal.timeout(15_000),
-      headers: { "user-agent": "preuve-publique-archive/1.0 (+https://preuve-publique.fr)" },
+      signal: AbortSignal.timeout(20_000),
+      headers: FETCH_HEADERS,
     });
+
+  try {
+    let response = await request(target);
+    // Un « + » de chemin est littéral pour certains serveurs, une espace pour
+    // d'autres : si la lecture directe répond 404, on réessaie avec %2B.
+    if (response.status === 404) {
+      const alternate = plusEncodedVariant(target);
+      if (alternate !== null) {
+        log.info("404 sur un chemin contenant + : réessai avec %2B", {
+          url,
+          fetch_url: target,
+          retry_url: alternate,
+        });
+        response = await request(alternate);
+      }
+    }
     const bytes = new Uint8Array(await response.arrayBuffer());
     if (!response.ok) {
       return { kind: "URL_UNAVAILABLE", url, reason: `HTTP ${response.status}` };

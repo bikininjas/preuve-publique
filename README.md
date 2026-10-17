@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 16/10/2026
 
-- **Base** : quatorze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : quinze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -39,7 +39,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0014_contraire_droit_international_verdict` (`20261016171500`, appliquée le 16/10 —
   `verdict_status` accueille « contraire au droit international », le verdict du dossier
   sur les colonies israéliennes ; le statut de brique « violation formelle » est validé
-  côté application, sans migration).
+  côté application, sans migration),
+  `0015_triangulation_guard_trigger` (`20261017074423`, appliquée le 17/10 — un trigger
+  PostgreSQL vérifie les quatre règles du Triangulation Guard sur chaque ligne publiée de
+  `public.dossiers` ; la publication se fait désormais en deux temps : brouillon, pièces,
+  puis statut publié).
   Trente-trois dossiers en base :
   trente-deux **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
@@ -475,8 +479,24 @@ de droit commun par Sud Ouest et Le Parisien, nationalité française établie p
 Rue89Bordeaux et Europe 1). Captures de 10, 13 et 10 instantanés réseau ; racines
 d'intégrité `78c1865e…`, `e91cd966…` et `06cf8929…` = `ETag` et
 `X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` vérifié sur chaque pièce
-ajoutée ; racine globale recalculée sur les 302 fiches de l'état courant :
+ajoutée ; racine globale recalculée sur les 302 fiches de cet état :
 `f14fc1d6b491cad1…`.
+
+Le 17 octobre 2026, le pipeline de seed et d'archivage a été consolidé pour ne plus jamais
+vider les fiches d'archive en cascade : `scripts/apply-seed.mts` applique désormais un
+**UPSERT par slug** (`--slug=<slug>` pour un dossier seul) — dossier mis à jour, pièces
+rapprochées par identifiant, URL ou empreinte, statut de publication écrit en dernier — au
+lieu d'un `DELETE` qui emportait les fiches ; une pièce dont le contenu est inchangé
+conserve sa capture, une pièce modifiée la détache sans la supprimer. La migration `0015`
+pose le Triangulation Guard dans la base (trigger `BEFORE INSERT OR UPDATE` sur
+`public.dossiers`) et la capture archivistique lit désormais les URL à « + » littéral —
+dossier de presse Urssaf capturé en PDF de 453 904 octets, avec agent de navigateur et
+repli `%2B` en cas de 404. Fiches ramenées à une par pièce (302 après dédoublonnage des
+passes de capture, 0 doublon, 0 pièce sans pointeur) ; racine globale recalculée :
+`2c346a509e811236…`. Vérifié : `npm run typecheck`, `npm test` (102/102), migration rejouée
+deux fois sur Postgres jetable avec huit scénarios de refus/acceptation, test négatif du
+trigger en production (publication sans preuve primaire refusée) et deux applications
+`--slug` consécutives sans perte de fiche.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi
