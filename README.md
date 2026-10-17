@@ -492,8 +492,25 @@ pose le Triangulation Guard dans la base (trigger `BEFORE INSERT OR UPDATE` sur
 `public.dossiers`) et la capture archivistique lit désormais les URL à « + » littéral —
 dossier de presse Urssaf capturé en PDF de 453 904 octets, avec agent de navigateur et
 repli `%2B` en cas de 404. Fiches ramenées à une par pièce (302 après dédoublonnage des
-passes de capture, 0 doublon, 0 pièce sans pointeur) ; racine globale recalculée :
-`2c346a509e811236…`. Vérifié : `npm run typecheck`, `npm test` (102/102), migration rejouée
+passes de capture, 0 doublon, 0 pièce sans pointeur) ; racine globale recalculée sur les 302 fiches de cet état :
+`2c346a509e811236…`.
+
+Le même jour, les pièces encore en `METADATA_ONLY` / `URL_UNAVAILABLE` des dossiers
+Histoire et Politique ont été nettoyées **sans toucher aux citations** (donc aux
+`archive_sha256`) : les trois pièces muettes du dossier Hitler portent désormais leurs
+transcriptions du United States Holocaust Memorial Museum, la pièce de Germà Bel renvoie à
+l'instantané Wayback de Wiley, l'interview de Liberty Magazine au **scan original** de
+l'issue du 9 juillet 1932 sur Internet Archive ; la loi du 3 octobre 1940 (Pétain) et la
+préface de Stanford University Press passent par leurs instantanés Wayback ; la question
+écrite de l'Assemblée nationale du dossier Macron est servie en `http://` (le TLS `https`
+du serveur expire, le contenu est identique). Les URLs Légifrance et courdecassation des
+autres dossiers politiques étaient déjà derrière des permaliens (justicelibre, qpc360,
+Wayback). Vérifié : **vingt-cinq pièces recapturées** une par une (`--source=`), toutes en
+`URL_SNAPSHOT` ; plus aucun `METADATA_ONLY` / `URL_UNAVAILABLE` en Histoire et Politique ;
+les cinq `archive_sha256` suivis sont inchangés ; `ETag` = racine d'intégrité pour Hitler
+(`54cd070d…`), Pétain (`288fa722…`) et Macron (`7e933b74…`) ; `npm run proofs` sans écart ;
+302 fiches pour 302 sources, aucune pièce sans pointeur ; racine globale recalculée :
+`741d41780eae0873…`. Vérifié : `npm run typecheck`, `npm test` (102/102), migration rejouée
 deux fois sur Postgres jetable avec huit scénarios de refus/acceptation, test négatif du
 trigger en production (publication sans preuve primaire refusée) et deux applications
 `--slug` consécutives sans perte de fiche.

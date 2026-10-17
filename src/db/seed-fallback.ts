@@ -287,7 +287,7 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "L'article paraît sous le titre « When I Take Charge of Germany — Hitler Shows His Hand » (Liberty, vol. 9 n° 28, 9 juillet 1932). Hitler y revendique explicitement une redéfinition du mot « socialisme » contre la gauche marxiste, en garantissant la propriété privée ; la citation française traduit l'anglais publié.",
       author_reference_url: "https://fr.wikipedia.org/wiki/George_Sylvester_Viereck",
-      original_url: "https://alphahistory.com/nazigermany/hitler-nazi-form-of-socialism-1932/",
+      original_url: "https://archive.org/details/LibertyV09N2819320709",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -362,7 +362,8 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "Étude évaluée par les pairs qui documente le sens du transfert de propriété sous le IIIe Reich : de l'État vers les grands groupes privés, et non l'inverse.",
       author_reference_url: null,
-      original_url: "https://doi.org/10.1111/j.1468-0289.2009.00473.x",
+      original_url:
+        "https://web.archive.org/web/20250425234738/https://onlinelibrary.wiley.com/doi/10.1111/j.1468-0289.2009.00473.x",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -380,7 +381,7 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "Littérature académique de référence, convergente sur la place du nazisme dans l'espace politique, indépendamment des positions politiques de ses auteurs.",
       author_reference_url: "https://fr.wikipedia.org/wiki/Johann_Chapoutot",
-      original_url: null,
+      original_url: "https://encyclopedia.ushmm.org/content/en/article/victims-of-the-nazi-era-nazi-racial-ideology",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -398,7 +399,7 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "Lecture issue de la droite libérale et conservatrice : elle rappelle que le parti nazi siégeait à l'extrême droite du Reichstag et a gouverné avec l'appui des élites conservatrices.",
       author_reference_url: "https://fr.wikipedia.org/wiki/Raymond_Aron",
-      original_url: null,
+      original_url: "https://encyclopedia.ushmm.org/content/en/article/adolf-hitler",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -416,7 +417,7 @@ export const REFERENCE_DOSSIER: Dossier = {
       context_explanation:
         "Sources produites par la gauche allemande elle-même : elles décrivent la répression subie par les organisations que le régime est censé représenter s'il était « de gauche ».",
       author_reference_url: null,
-      original_url: null,
+      original_url: "https://encyclopedia.ushmm.org/content/en/article/the-reichstag-fire",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
@@ -993,7 +994,8 @@ export const VICHY_DOSSIER: Dossier = {
         "Est regardé comme juif, pour l'application de la présente loi, toute personne issue de trois grands-parents de race juive ou de deux grands-parents de la même race, si son conjoint lui-même est juif.",
       context_explanation:
         "Le texte définit qui est « juif » et ferme aux Juifs la fonction publique, l'armée, l'enseignement, la presse, etc. L'exemplaire de travail annoté de la main de Pétain a été révélé par Serge Klarsfeld en 2010 et remis au Mémorial de la Shoah.",
-      original_url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000869361",
+      original_url:
+        "https://web.archive.org/web/20210227022110/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000869361/",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -1121,7 +1123,8 @@ export const VICHY_DOSSIER: Dossier = {
         "Without prompting from the German occupation authorities (who wanted at first only to expel German Jews into the unoccupied parts of France), Vichy France launched its own anti-Jewish program.",
       context_explanation:
         "Préface de la deuxième édition (août 2019) de l'ouvrage de référence sur la France de Vichy et les Juifs. Traduction : « Sans y avoir été poussée par les autorités d'occupation allemandes (qui ne voulaient d'abord qu'expulser les Juifs allemands vers la zone non occupée), la France de Vichy lança son propre programme antijuif. » Les auteurs y confirment, archives françaises et allemandes à l'appui, leurs conclusions de 1981.",
-      original_url: "https://www.sup.org/books/history/vichy-france-and-jews/excerpt/preface",
+      original_url:
+        "https://web.archive.org/web/20251206175247/https://www.sup.org/books/history/vichy-france-and-jews/excerpt/preface",
       author_reference_url: "https://fr.wikipedia.org/wiki/Robert_Paxton",
       archive_storage_path: null,
       archive_sha256: null,
@@ -1141,7 +1144,8 @@ export const VICHY_DOSSIER: Dossier = {
         "Les ressortissants étrangers de race juive pourront, à dater de la promulgation de la présente loi, être internés dans des camps spéciaux par décision du préfet du département de leur résidence.",
       context_explanation:
         "Votée le lendemain de la promulgation du premier statut des Juifs, cette loi autorise l'internement administratif des Juifs étrangers par simple décision préfectorale — dans les camps du sud de la France (Gurs, Rivesaltes, les Milles…). Loin de « protéger », le régime organisait lui-même l'enfermement.",
-      original_url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000571814",
+      original_url:
+        "https://web.archive.org/web/20211026063359/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000571814",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -7726,7 +7730,7 @@ export const MACRON_SOCIALISTE_DOSSIER: Dossier = {
         "Le produit de l'impôt de solidarité sur la fortune (ISF) comptabilisé en 2017 s'est élèvé à 5 067 M€ (4 226 M€ au titre des déclarations déposées spontanément et 841 M€ issus du contrôle fiscal et de l'action du service de traitement des déclarations rectificatives).",
       context_explanation:
         "La réponse du ministère établit les ordres de grandeur officiels du remplacement de l'ISF par l'IFI : « le différentiel de rendement, calculé sur les seules recettes déclarées spontanément, s'élève donc à 2 935 M€, ce qui représente 1 % des recettes fiscales nettes ». Une politique qui divise par quatre le rendement de son impôt sur la fortune — 5 067 M€ en 2017 contre 1 291 M€ en 2018 — n'est pas une politique de prélèvement sur le capital : c'est l'inverse exact.",
-      original_url: "https://questions.assemblee-nationale.fr/q15/15-15255QE.htm",
+      original_url: "http://questions.assemblee-nationale.fr/q15/15-15255QE.htm",
       author_reference_url:
         "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
       archive_storage_path: null,

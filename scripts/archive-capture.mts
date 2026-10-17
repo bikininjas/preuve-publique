@@ -58,6 +58,14 @@ const slugFilter = process.argv
   .find((argument) => argument.startsWith("--slug="))
   ?.slice("--slug=".length);
 
+/** Filtre fin : `--source=<uuid>[,<uuid>…]` pour ne recapturer que ces pièces. */
+const sourceFilter = process.argv
+  .find((argument) => argument.startsWith("--source="))
+  ?.slice("--source=".length)
+  .split(",")
+  .map((value) => value.trim())
+  .filter((value) => value.length > 0);
+
 function sha256Hex(input: string | Uint8Array): string {
   return createHash("sha256").update(input).digest("hex");
 }
@@ -184,6 +192,9 @@ async function run() {
     });
 
     for (const source of dossier.sources) {
+      if (sourceFilter !== undefined && !sourceFilter.includes(source.id)) {
+        continue;
+      }
       const capturedAt = new Date().toISOString();
       const outcome = await fetchOutcome(source.original_url);
       const { path, content } = buildArchiveRecord({

@@ -83,6 +83,29 @@ function sameContent(row: ExistingSource, source: DossierSource): boolean {
   );
 }
 
+/**
+ * Les quatre champs de la chaîne canonique (`canonicalProofText`). L'URL n'en
+ * fait pas partie : une pièce dont seule l'adresse change garde son empreinte
+ * de citation — condition explicite pour ne pas réécrire `archive_sha256`.
+ */
+function canonicalKeyOfExisting(row: ExistingSource): string {
+  return JSON.stringify([
+    row.sourceName,
+    row.authorOrInstitution,
+    row.publicationDate,
+    row.exactQuote,
+  ]);
+}
+
+function canonicalKeyOfSeed(source: DossierSource): string {
+  return JSON.stringify([
+    source.source_name,
+    source.author_or_institution,
+    source.publication_date,
+    source.exact_quote,
+  ]);
+}
+
 let insertedSources = 0;
 let updatedSources = 0;
 let removedSources = 0;
@@ -181,10 +204,13 @@ for (const candidate of targets) {
         .set({
           ...content,
           // L'empreinte de citation est dérivée : celle en base peut avoir été
-          // calculée avec la capture binaire. On la garde telle quelle tant que
-          // le contenu n'a pas bougé (la remplacer par la version « citation
-          // seule » ferait diverger la vérification publique).
-          archiveSha256: unchanged ? match.archiveSha256 : source.archive_sha256,
+          // calculée avec la capture binaire. On la garde telle que le texte
+          // canonique (source, auteur, date, citation) est inchangé — une URL
+          // modifiée ne doit jamais réécrire `archive_sha256`.
+          archiveSha256:
+            canonicalKeyOfExisting(match) === canonicalKeyOfSeed(source)
+              ? match.archiveSha256
+              : source.archive_sha256,
           // Contenu inchangé : la capture reste attachée. Contenu modifié :
           // on détache (sans supprimer la fiche) pour exiger une recapture.
           archiveStoragePath: unchanged
