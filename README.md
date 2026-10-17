@@ -75,8 +75,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   au droit international) et la demande d'un « droit légal absolu de publier le détail
   nominatif des notes de frais des parlementaires » (8, politique, cadre réglementaire
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
-  faux), le massacre du 17 octobre 1961, de la censure préfectorale à la vérité historique
-  (6, histoire) —
+  faux), le massacre du 17 octobre 1961 et le chiffre de 300 morts (6, histoire, trompeur) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
 - **Intégrité** : les 313 sources portent leur empreinte de citation ; la RPC de recherche
@@ -621,6 +620,19 @@ accès restreint et aucun extrait vérifiable n'a pu être consulté ; le point
 en 2022. Recapture du dossier (six fiches, doublons supprimés, une fiche par pièce) ;
 racine d'intégrité `38fa9b92edb199b3…` = `ETag` et `X-Proof-Integrity-Root` en ligne.
 Le contenu passe sans redéploiement.
+
+Le 17/10/2026 (09:39 UTC), après un retour de lecteur (« je ne comprends pas ce qui est
+vrai ou faux sur cette page »), le dossier du 17 octobre 1961 a été **refondu autour
+d'une affirmation vérifiable** : « Le 17 octobre 1961, 300 Algériens ont été tués à
+Paris lors de la répression de la manifestation du FLN », verdict `TROMPEUR` (le
+massacre est réel, le chiffre ne l'est pas). Le résumé répond dès la première phrase —
+« Non : le massacre est réel, mais rien n'établit que 300 Algériens aient été tués ce
+jour-là » — puis déroule la hiérarchie des bilans (sept morts officiels, au moins
+soixante-dix dans les registres du parquet, « des dizaines » selon Mandelkern, « très
+inférieur aux quelques centaines de victimes dont il a parfois été question ») et les
+deux prémisses : « Des Algériens ont été tués » (`VRAI`) et « Le chiffre de 300 morts
+est établi par les archives » (`FAUX`). Les six pièces sont inchangées ; racine
+d'intégrité `38fa9b92edb199b3…`, égale à l'`ETag` en ligne.
 
 ## Pile technique
 

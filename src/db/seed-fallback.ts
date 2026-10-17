@@ -5467,17 +5467,18 @@ export const RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER: Dossier = {
 };
 
 /**
- * Histoire : « Le massacre du 17 octobre 1961 à Paris : de la censure préfectorale
- * à la vérité historique ». La répression, longtemps occultée, est documentée par
- * les archives (rapport Mandelkern, notes de l'Élysée révélées en 2022) et
- * reconnue en 2012 ; le chiffre exact, lui, reste discuté.
+ * Histoire : « Le 17 octobre 1961, 300 Algériens ont été tués à Paris lors de la
+ * répression de la manifestation du FLN ». Le massacre est réel et reconnu ; le
+ * chiffre de 300, lui, n'est établi par aucune archive (bilan officiel de sept
+ * morts, dizaines selon le rapport Mandelkern, au moins soixante-dix dans les
+ * registres du parquet des Archives de Paris).
  */
 export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
   id: "119150b2-e689-4f9d-b4aa-effb37ff7bdc",
   slug: "massacre-17-octobre-1961-paris-bilan-victimes",
   claim_title:
-    "Le massacre du 17 octobre 1961 à Paris : de la censure préfectorale à la vérité historique",
-  verdict: "VRAI",
+    "Le 17 octobre 1961, 300 Algériens ont été tués à Paris lors de la répression de la manifestation du FLN",
+  verdict: "TROMPEUR",
   category: "HISTOIRE",
   protagonists: [
     {
@@ -5503,22 +5504,22 @@ export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
     },
   ],
   verdict_summary:
-    "Le 17 octobre 1961, des dizaines de milliers d'Algériens manifestent à Paris contre le couvre-feu imposé par le préfet Maurice Papon. La répression est d'une extrême violence et, dans l'immédiat, l'État la couvre : le bilan officiel annoncé au Sénat est de sept morts, les archives restent fermées, et le préfet n'est pas sanctionné. Le rapport Mandelkern, chargé en 1998 d'inventorier les archives de la préfecture de police, conclut pourtant que « cette manifestation a donné lieu à une répression très dure », avec 14 094 interpellations en trois jours et une cinquantaine de cadavres de Français musulmans d'Algérie repêchés dans la Seine, la Marne ou les canaux.\n\nLa vérité historique s'est reconstituée par étapes. Les registres du parquet des Archives de Paris ont livré « au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon » (L'Humanité, 1997) ; les notes du conseiller du général de Gaulle pour les affaires algériennes, révélées en 2022, montrent que « le président de la République a su très vite que des dizaines d'Algériens avaient été tués », sans aucune sanction contre le préfet ni les ministres (France Inter, 7 juin 2022) ; le 17 octobre 2012, François Hollande reconnaît que « des Algériens qui manifestaient pour le droit à l'indépendance ont été tués lors d'une sanglante répression » et que « la République reconnaît avec lucidité ces faits ».\n\nLe chiffre exact, en revanche, n'est pas établi : Mandelkern conclut qu'en ajoutant les cas incertains au bilan officiel « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question », et les historiens Jim House et Neil MacMaster parlent d'un « nombre considérable (et toujours disputé) de morts » (H-Net, 2007). Le « 300 morts » est une estimation militante, pas un décompte établi. La censure, l'occultation puis la reconnaissance : le récit d'un crime d'État longtemps nié est vrai ; seul le chiffre reste débattu.",
+    "Non : le massacre est réel, mais rien n'établit que 300 Algériens aient été tués ce jour-là. Le bilan officiel de 1961 était de sept morts et 136 blessés hospitalisés ; les registres du parquet des Archives de Paris ont livré « au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon » (L'Humanité, 1997) ; et le rapport Mandelkern conclut qu'en ajoutant les cas incertains au bilan officiel « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question ».\n\nLe massacre, lui, est établi : la manifestation du 17 octobre 1961 contre le couvre-feu imposé par le préfet Papon a été réprimée avec une extrême violence — 14 094 interpellations en trois jours, une cinquantaine de cadavres de Français musulmans d'Algérie retrouvés dans la Seine, la Marne ou les canaux, et une reconnaissance officielle en 2012 : « des Algériens qui manifestaient pour le droit à l'indépendance ont été tués lors d'une sanglante répression ».\n\nLe « 300 morts », avancé comme un décompte certain, est une estimation militante : les historiens Jim House et Neil MacMaster parlent d'un nombre considérable et toujours disputé de morts (H-Net, 2007), et les archives ne permettent pas de trancher — le rapport Mandelkern le dit explicitement. La formulation est donc trompeuse : elle dit vrai sur le crime, faux sur le chiffre qu'elle présente comme établi.",
   consensus_score: 95,
   premises: [
     {
       claim_part:
-        "« Le chiffre de 300 morts exacts est scientifiquement incontestable »",
-      status: "BIAIS_METHODOLOGIQUE",
+        "« Des Algériens ont été tués lors de la répression du 17 octobre 1961 à Paris »",
+      status: "VRAI",
       detail:
-        "Les archives ne permettent pas d'établir un décompte exact : le rapport Mandelkern (1998) relève que, pour les morts, « le plus significatif serait [le chiffre] s'il pouvait être donné avec assurance. Tel n'est pas le cas », et conclut qu'en ajoutant au bilan officiel de sept morts la totalité des vingt-cinq cas incertains de son annexe III, « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question ». La consultation des registres du parquet des Archives de Paris a livré « au moins soixante-dix victimes » (L'Humanité, 23 octobre 1997) ; les historiens parlent d'un nombre « considérable (et toujours disputé) de morts » (H-Net, 2007). Présenter « 300 morts exacts » comme scientifiquement établi convertit une estimation militante en décompte certain : c'est un biais méthodologique.",
+        "Le massacre est documenté et reconnu : 14 094 interpellations en trois jours, une cinquantaine de cadavres de Français musulmans d'Algérie retrouvés dans la Seine, la Marne ou les canaux en septembre-octobre 1961, et un bilan officiel de sept morts déjà admis par le ministre de l'intérieur au Sénat le 31 octobre 1961 (rapport Mandelkern). La consultation des registres du parquet des Archives de Paris a livré « au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon » (L'Humanité, 23 octobre 1997) ; les notes du conseiller du général de Gaulle, révélées en 2022, montrent que le chef de l'État « a su très vite que des dizaines d'Algériens avaient été tués » (France Inter, 7 juin 2022) ; le 17 octobre 2012, la République reconnaît « une sanglante répression ».",
     },
     {
       claim_part:
-        "« La police a agi sans consigne hiérarchique lourde »",
+        "« Le chiffre de 300 morts est établi par les archives »",
       status: "FAUX",
       detail:
-        "La répression ne relève pas de « bavures » : le rapport Mandelkern parle d'une « répression très dure » démontrée par « les chiffres et les relations de certains responsables de terrain », et L'Humanité documente « la répression policière ordonnée par le préfet de police Maurice Papon ». L'ampleur du dispositif — 14 094 interpellations en trois jours — et les corps retrouvés dans l'eau (une cinquantaine de cadavres de Français musulmans d'Algérie repêchés dans la Seine, la Marne ou les canaux en septembre-octobre 1961, selon le rapport) contredisent la thèse de l'accident isolé. La chaîne hiérarchique est engagée jusqu'au sommet de la préfecture.",
+        "Aucune archive ne permet d'établir 300 morts. Le rapport Mandelkern (1998) relève que « celui des morts serait le plus significatif s'il pouvait être donné avec assurance. Tel n'est pas le cas » ; en ajoutant au bilan officiel de sept morts la totalité des vingt-cinq cas incertains de son annexe III, il conclut qu'« on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question ». Les registres du parquet livrent au moins soixante-dix victimes (L'Humanité, 1997) ; les historiens Jim House et Neil MacMaster parlent d'un nombre considérable et toujours disputé de morts (H-Net, 2007). Le « 300 » est une estimation militante, pas un décompte établi.",
     },
   ],
   is_published: true,
