@@ -563,7 +563,7 @@ export const AME_DOSSIER: Dossier = {
       context_explanation:
         "Le budget de l'AME est inscrit dans la mission Santé de l'État (programme 183), pas dans les comptes de la Sécurité sociale : la rumeur confond les deux. Le rapport de la commission des finances détaille cette ligne de crédits avant son examen par le Parlement.",
       original_url:
-        "https://www.assemblee-nationale.fr/dyn/17/rapports/cion_fin/l17b0468-tiii-a40_rapport-fond.pdf",
+        "https://web.archive.org/web/20251002074638id_/https://www.assemblee-nationale.fr/dyn/17/rapports/cion_fin/l17b0468-tiii-a40_rapport-fond.pdf",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -764,7 +764,7 @@ export const RSA_DOSSIER: Dossier = {
         "Etre français ou titulaire, depuis au moins cinq ans, d'un titre de séjour autorisant à travailler.",
       context_explanation:
         "Texte de loi en vigueur : pour le RSA, la condition de nationalité exige des étrangers non européens un titre de séjour autorisant à travailler depuis au moins cinq ans — avec des exceptions limitées (réfugiés, bénéficiaires de la protection subsidiaire, apatrides, titulaires de la carte de résident ou d'un titre équivalent).",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031087751",
+      original_url: "https://justicelibre.org/loi/CASF/L262-4",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -1275,32 +1275,13 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
       context_explanation:
         "Chapitre spécial de l'édition 2021 : contribution budgétaire nette des immigrés calculée pays par pays et année par année depuis le milieu des années 2000. Passage de synthèse relevé sur la page officielle de la publication.",
       original_url:
-        "https://www.oecd.org/fr/publications/perspectives-des-migrations-internationales-2021_da2bbd99-fr.html",
+        "https://web.archive.org/web/20261011091320id_/https://www.oecd.org/fr/publications/perspectives-des-migrations-internationales-2021_da2bbd99-fr.html",
       author_reference_url:
         "https://fr.wikipedia.org/wiki/Organisation_de_coop%C3%A9ration_et_de_d%C3%A9veloppement_%C3%A9conomiques",
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 2,
-    },
-    {
-      id: "be25739e-eea9-43e3-92ea-92e06745b4da",
-      spectrum: "GAUCHE",
-      source_name: "Immigration et emploi en France : décodage d'une radiographie manipulée",
-      author_or_institution: "Paul-André Romain (Terra Nova)",
-      publication_date: "2026-10-15",
-      quote_kind: "CITATION_EXACTE",
-      exact_quote:
-        "Si l'on tient compte de ces poids démographiques, les étrangers non européens apparaissent généralement surreprésentés dans de nombreux métiers en tension, tant en Île-de-France qu'en province (restauration, hôtellerie, bâtiment, agroalimentaire, etc.).",
-      context_explanation:
-        "Note du think tank progressiste Terra Nova répondant à une étude de l'Observatoire de l'immigration et de la démographie : rapportés aux poids démographiques, les étrangers non européens apparaissent surreprésentés dans de nombreux métiers en tension, en Île-de-France comme en province.",
-      original_url:
-        "https://tnova.fr/societe/immigration-integration-non-discrimination/immigration-et-emploi-en-france-decodage-dune-radiographie-manipulee/",
-      author_reference_url: "https://fr.wikipedia.org/wiki/Terra_Nova_(think_tank)",
-      archive_storage_path: null,
-      archive_sha256: null,
-      archive_binary_sha256: null,
-      display_order: 3,
     },
 
     {
@@ -1321,7 +1302,7 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
-      display_order: 4,
+      display_order: 3,
     },
     {
       id: "d7e0a9c9-a5d0-4346-9e7f-7ffe9d6a27b7",
@@ -1341,7 +1322,7 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
-      display_order: 5,
+      display_order: 3,
     },
     {
       id: "08865761-a821-449f-adb3-4af7292aa20a",
@@ -1361,7 +1342,7 @@ export const IMMIGRATION_BUDGET_DOSSIER: Dossier = {
       archive_storage_path: null,
       archive_sha256: null,
       archive_binary_sha256: null,
-      display_order: 6,
+      display_order: 3,
     },
   ],
 };
@@ -1804,7 +1785,7 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
         "Pendant les délais du recours en cassation et, s'il y a eu recours, jusqu'au prononcé de l'arrêt de la Cour de cassation, il est sursis à l'exécution de l'arrêt de la cour d'appel, sauf en ce qui concerne les condamnations civiles, et à moins que la cour d'appel ne confirme le mandat décerné par le tribunal en application de l'article 464-1 ou de l'article 465, premier alinéa, ou ne décerne elle-même mandat sous les mêmes conditions et selon les mêmes règles.",
       context_explanation:
         "Texte en vigueur (rédaction issue de la loi n° 2019-222 du 23 mars 2019) : le pourvoi suspend par principe l'exécution de l'arrêt de la cour d'appel, sauf exceptions limitées (condamnations civiles, mandats maintenus ou décernés). Ce sursis n'est pas absolu : les dispositions légales d'exécution provisoire, comme celles de l'article 471 du même code, y dérogent.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038313666",
+      original_url: "https://justicelibre.org/loi/CPP/569",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -1822,7 +1803,7 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
         "Les sanctions pénales prononcées en application des articles 131-4-1 à 131-11 et 132-25 à 132-70 du code pénal peuvent être déclarées exécutoires par provision.",
       context_explanation:
         "Cet alinéa permet au juge de déclarer la sanction exécutoire par provision, sans attendre une condamnation définitive : c'est la base légale de l'exécution immédiate malgré appel ou pourvoi. La peine complémentaire d'inéligibilité relève de ces sanctions ; le Conseil constitutionnel a déclaré l'alinéa conforme le 5 décembre 2025, en imposant une motivation spéciale sur la proportionnalité.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041402532",
+      original_url: "https://justicelibre.org/loi/CPP/471",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -1840,7 +1821,7 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
         "Le prononcé de la peine complémentaire d'inéligibilité mentionnée au 2° de l'article 131-26 et à l'article 131-26-1 est obligatoire à l'encontre de toute personne coupable d'un délit mentionné au II du présent article ou d'un crime.",
       context_explanation:
         "Introduit par la loi n° 2017-1339 du 15 septembre 2017 pour la confiance dans la vie politique : pour les atteintes à la probité — dont le détournement de fonds publics — l'inéligibilité n'est plus une simple faculté mais la règle, la juridiction ne pouvant l'écarter que par une décision spécialement motivée (III du même article).",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526934",
+      original_url: "https://justicelibre.org/loi/CP/131-26-2",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -1858,7 +1839,7 @@ export const POURVOI_CASSATION_DOSSIER: Dossier = {
         "La Cour de cassation statue sur les pourvois en cassation formés contre les arrêts et jugements rendus en dernier ressort par les juridictions de l'ordre judiciaire. La Cour de cassation ne connaît pas du fond des affaires, sauf disposition législative contraire.",
       context_explanation:
         "Définition légale de la mission de la Cour de cassation : statuer sur les pourvois formés contre les décisions rendues en dernier ressort, en contrôlant la conformité au droit — sans réexaminer le fond. La jurisprudence en tire que les moyens de fait, qui inviteraient la Cour à revenir sur l'appréciation souveraine des juges du fond, sont écartés.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006572199",
+      original_url: "https://justicelibre.org/loi/COJ/L411-2",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -2088,7 +2069,7 @@ export const ASSISTANTS_RN_DOSSIER: Dossier = {
         "Pendant les délais du recours en cassation et, s'il y a eu recours, jusqu'au prononcé de l'arrêt de la Cour de cassation, il est sursis à l'exécution de l'arrêt de la cour d'appel, sauf en ce qui concerne les condamnations civiles, et à moins que la cour d'appel ne confirme le mandat décerné par le tribunal en application de l'article 464-1 ou de l'article 465, premier alinéa, ou ne décerne elle-même mandat sous les mêmes conditions et selon les mêmes règles.",
       context_explanation:
         "Règle effectivement appliquée dans l'affaire : la cour d'appel de Paris n'ayant ordonné aucune exécution provisoire, l'exécution de son arrêt est suspendue pendant le pourvoi (communiqué de la Cour de cassation du 8 juillet 2026). Deux nuances souvent oubliées : ce sursis ne couvre pas les condamnations civiles — l'indemnisation du Parlement européen reste due — et il ne suspend que l'exécution, jamais la culpabilité, qui demeure établie tant que la Cour de cassation n'a pas statué.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038313666",
+      original_url: "https://justicelibre.org/loi/CPP/569",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -2106,7 +2087,7 @@ export const ASSISTANTS_RN_DOSSIER: Dossier = {
         "Les sanctions pénales prononcées en application des articles 131-4-1 à 131-11 et 132-25 à 132-70 du code pénal peuvent être déclarées exécutoires par provision.",
       context_explanation:
         "La dérogation qui dément le récit d'un pourvoi « suspendant » par nature : le juge peut déclarer la sanction exécutoire par provision, appel et pourvoi compris — l'inéligibilité en relève. Le tribunal correctionnel de Paris a usé de cette faculté le 31 mars 2025, et l'inéligibilité de cinq ans s'est appliquée immédiatement. Le Conseil constitutionnel a déclaré cet alinéa conforme le 5 décembre 2025, sous réserve d'une motivation spéciale sur la proportionnalité.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041402532",
+      original_url: "https://justicelibre.org/loi/CPP/471",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -2124,7 +2105,7 @@ export const ASSISTANTS_RN_DOSSIER: Dossier = {
         "Le prononcé de la peine complémentaire d'inéligibilité mentionnée au 2° de l'article 131-26 et à l'article 131-26-1 est obligatoire à l'encontre de toute personne coupable d'un délit mentionné au II du présent article ou d'un crime.",
       context_explanation:
         "Créé par la loi n° 2017-1339 du 15 septembre 2017 pour la confiance dans la vie politique : pour les atteintes à la probité — dont le détournement de fonds publics, visé au 5° du II — l'inéligibilité est en principe obligatoire, la juridiction ne pouvant l'écarter que par une décision spécialement motivée (III du même article). C'est le fondement des peines d'inéligibilité prononcées dans l'affaire.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526934",
+      original_url: "https://justicelibre.org/loi/CP/131-26-2",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -2365,7 +2346,7 @@ export const EXPULSION_JUGES_DOSSIER: Dossier = {
         "L'autorité administrative peut décider d'expulser un étranger lorsque sa présence en France constitue une menace grave pour l'ordre public, sous réserve des conditions propres aux étrangers mentionnés aux articles L. 631-2 et L. 631-3.",
       context_explanation:
         "Article L. 631-1 du CESEDA en vigueur : l'expulsion pour menace grave à l'ordre public est une faculté expresse de l'administration. L'article L. 631-3 énumère les protections résiduelles (résidence depuis l'âge de treize ans, vingt ans, dix ans avec mariage ou enfant français, état de santé) et les écarte notamment en cas de condamnation définitive pour des crimes ou délits punis de cinq ans ou plus d'emprisonnement, ou de trois ans en réitération.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042775403",
+      original_url: "https://justicelibre.org/loi/CESEDA/L631-1",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -2894,7 +2875,7 @@ export const ADA_DOSSIER: Dossier = {
       context_explanation:
         "Texte en vigueur du chapitre III du titre V. L'article D. 553-8 décompose l'allocation en « un montant forfaitaire, dont le niveau varie en fonction du nombre de personnes composant le foyer, et, le cas échéant, un montant additionnel destiné à couvrir les frais d'hébergement » ; l'article D. 553-10 renvoie au barème de l'annexe 8 ; l'article D. 553-24 énumère les cas de fin de versement. Citation vérifiée sur le texte reproduit dans deux jugements du tribunal administratif de Nice (9 et 30 juillet 2025), Légifrance bloquant les robots d'indexation.",
       original_url:
-        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042802110/",
+        "https://justicelibre.org/loi/CESEDA/L553-1",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -3098,7 +3079,7 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
         "Etre français ou titulaire, depuis au moins cinq ans, d'un titre de séjour autorisant à travailler.",
       context_explanation:
         "Condition d'ouverture du RSA pour les étrangers non communautaires (2° de l'article L. 262-4), assortie d'exceptions limitées (réfugiés, protection subsidiaire, apatrides, carte de résident). Un étranger en situation irrégulière — ou régularisé depuis moins de cinq ans — ne peut donc pas bénéficier du RSA, contrairement à ce que suppose la rumeur.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031087751",
+      original_url: "https://justicelibre.org/loi/CASF/L262-4",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -3116,7 +3097,7 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
         "Bénéficient également de plein droit des prestations familiales dans les conditions fixées par le présent livre les étrangers non ressortissants d'un Etat membre de la Communauté européenne, d'un autre Etat partie à l'accord sur l'Espace économique européen ou de la Confédération suisse, titulaires d'un titre exigé d'eux en vertu soit de dispositions législatives ou réglementaires, soit de traités ou accords internationaux pour résider régulièrement en France.",
       context_explanation:
         "Texte en vigueur : l'ouverture des prestations familiales (allocations familiales, etc.) est subordonnée à un titre de séjour régulier. Les alinéas suivants ajoutent des conditions pour les enfants à charge (naissance en France, entrée dans le cadre du regroupement familial, qualité de membre de famille de réfugié, etc.) et renvoient à un décret fixant « la liste des titres et justifications attestant de la régularité de l'entrée et du séjour ».",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042920150",
+      original_url: "https://justicelibre.org/loi/CSS/L512-2",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -3136,7 +3117,7 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
       context_explanation:
         "Instruction officielle de la CNAF à son réseau (28/11/2024) : le retrait ou le refus de titre de séjour entraîne la fin du droit aux prestations, et « en cas de décision préfectorale de retrait, de refus de délivrance ou de renouvellement d'un titre de séjour..., le portail Agdref doit en tenir compte via une mise à jour rapide ». Le document annonce la généralisation des échanges automatisés : « le développement des échanges entre le système d'information des Caf et AGDREF est en instruction pour prendre en compte les informations relatives aux titres de séjour dès la première demande et de façon sécurisée et automatisée ».",
       original_url:
-        "https://www.caf.fr/sites/default/files/medias/cnaf/Nous_connaitre/qui%20sommes%20nous/Textes%20de%20r%C3%A9f%C3%A9rence/Circulaires/2024/IT%202024-232.pdf",
+        "https://web.archive.org/web/20251007041201id_/https://www.caf.fr/sites/default/files/medias/cnaf/Nous_connaitre/qui%20sommes%20nous/Textes%20de%20r%C3%A9f%C3%A9rence/Circulaires/2024/IT%202024-232.pdf",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -3211,7 +3192,7 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
         "Ces restrictions, d'abord fondées sur la nationalité renvoient désormais à la régularité du séjour des personnes étrangères, condition généralisée par la loi de 1993, soumettant partiellement les objectifs des politiques de protection sociale à celles de contrôle des flux migratoires.",
       context_explanation:
         "Article de référence (résumé officiel consulté sur la base Prisme) : la chercheuse montre que la condition de régularité du séjour, généralisée en 1993, « exclut quasiment toutes les prestations de sécurité sociale » pour les personnes irrégulières, l'AME de 1999 constituant l'exception sanitaire — « l'impossible accès au droit commun pour les personnes étrangères résidentes en situation irrégulière ».",
-      original_url: "https://shs.cairn.info/revue-francaise-des-affaires-sociales-2018-4-page-17?lang=fr",
+      original_url: "https://web.archive.org/web/20250118014754id_/https://shs.cairn.info/revue-francaise-des-affaires-sociales-2018-4-page-17?lang=fr",
       author_reference_url: "https://www.documentation-sociale.org/base-prisme/85384/",
       archive_storage_path: null,
       archive_sha256: null,
@@ -3351,7 +3332,7 @@ export const AGRESSION_BORDEAUX_DOSSIER: Dossier = {
         "L'autorité administrative peut obliger un étranger à quitter le territoire français lorsqu'il se trouve dans les cas suivants :",
       context_explanation:
         "Texte en vigueur : l'OQTF ne peut être prononcée qu'à l'encontre d'« un étranger » (séjour irrégulier, expiration de visa, rejet d'une demande d'asile, menace à l'ordre public, etc.). Un citoyen français — a fortiori né à Bordeaux — ne peut faire l'objet d'une telle mesure, quel que soit son casier judiciaire. Citation vérifiée sur le texte reproduit par des miroirs institutionnels (Justicelibre, Pappers Justice), Légifrance bloquant les robots.",
-      original_url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042775578",
+      original_url: "https://justicelibre.org/loi/CESEDA/L611-1",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -3560,7 +3541,7 @@ export const SAINT_OMER_DOSSIER: Dossier = {
       context_explanation:
         "Déclarations officielles du parquet : le suspect « a avoué être entré par effraction dans l'église le 2 septembre, pour voler l'argent des troncs », puis « a mis le feu à la bâtisse » (procureur de Saint-Omer, Mehdi Benbouzid). Sorti de détention le 27 août 2024 après une peine de trois ans et six mois pour vols et dégradations, il était sans domicile fixe et sans profession, hébergé en foyer.",
       original_url:
-        "https://www.cnews.fr/faits-divers/2024-09-04/incendie-de-leglise-de-limmaculee-conception-de-saint-omer-le-suspect",
+        "https://web.archive.org/web/20241125015346id_/https://www.cnews.fr/faits-divers/2024-09-04/incendie-de-leglise-de-limmaculee-conception-de-saint-omer-le-suspect",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -3819,7 +3800,7 @@ export const RSA_SMIC_DOSSIER: Dossier = {
       context_explanation:
         "Barème officiel de la branche Famille : « 1 personne : 651.69 €, forfait logement 78.20 € ; Couple ou isolé 1 enfant : 977.54 €, forfait logement 156.41 € ; Couple 2 enfants : 1 368.56 €… ». Le tableau fixe à la fois le montant forfaitaire du RSA et le forfait logement déduit en cas d'aide au logement : pour un couple sans enfant, le RSA ne peut donc pas dépasser 977,54 €, et tombe à 821,13 € avec APL.",
       original_url:
-        "https://www.caf.fr/professionnels/offres-et-services/accompagnement-des-allocataires/bareme-revenu-de-solidarite-active",
+        "https://web.archive.org/web/20260310143410id_/https://www.caf.fr/professionnels/offres-et-services/accompagnement-des-allocataires/bareme-revenu-de-solidarite-active",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -4225,7 +4206,7 @@ export const HOMOPARENTALITE_DOSSIER: Dossier = {
       context_explanation:
         "Revue publiée en 2015 : « We identified 79 scholarly studies... Of those studies, 75 concluded that children of gay or lesbian parents fare no worse than other children. » Les quatre études minoritaires échantillonnaient des enfants issus de ruptures familiales (« a cohort known to face added risks ») et sont « criticized by many scholars as unreliable assessments of the well-being of LGB-headed households ». La page documente aussi les études sur données représentatives (Rosenfeld : 3 500 enfants, aucune différence scolaire ; enquête nationale sur plus de 20 000 enfants). En français : « cette recherche forme un consensus savant écrasant [...] que le fait d'avoir un parent gay ou lesbien ne nuit pas aux enfants ».",
       original_url:
-        "https://whatweknow.inequality.cornell.edu/topics/lgbt-equality/what-does-the-scholarly-research-say-about-the-wellbeing-of-children-with-gay-or-lesbian-parents/",
+        "https://web.archive.org/web/20260925231320id_/https://whatweknow.inequality.cornell.edu/topics/lgbt-equality/what-does-the-scholarly-research-say-about-the-wellbeing-of-children-with-gay-or-lesbian-parents/",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -4664,7 +4645,7 @@ export const THEORIE_DU_GENRE_ECOLE_DOSSIER: Dossier = {
       context_explanation:
         "Le décryptage documente le processus réel d'élaboration du programme — « voté à l'unanimité le 29 janvier au Conseil supérieur de l'éducation (CSE) et accepté par le cabinet de la ministre de l'Education Elisabeth Borne » — après de longs mois de débats publics et une polémique à laquelle le texte final a répondu. La gauche y exprime aussi ses propres critiques, signe d'un débat nourri, à mille lieues d'un dogme imposé sans contradiction.",
       original_url:
-        "https://www.liberation.fr/societe/education/education-sexuelle-a-lecole-la-notion-de-transphobie-disparait-du-programme-officiel-20250206_AY2YRFKXYJCBHAYYXWXCDK5FRA/",
+        "https://web.archive.org/web/20250729190819/https://www.liberation.fr/societe/education/education-sexuelle-a-lecole-la-notion-de-transphobie-disparait-du-programme-officiel-20250206_AY2YRFKXYJCBHAYYXWXCDK5FRA/",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -6417,7 +6398,7 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
       context_explanation:
         "Même dans un hebdomadaire classé à droite, le constat est sans ambiguïté : « leur ADN est rigoureusement identique à 99,9 %, ce qui fait de Homo sapiens l'espèce de mammifère la plus homogène génétiquement à l'échelle du monde entier ». L'article cite le généticien Paul Verdu (Laboratoire d'éco-anthropologie, Muséum national d'histoire naturelle) : entre un Papou et un Breton, ~0,1 % des 6 milliards de lettres diffèrent, et « seules environ 5 % sont liées à leur origine géographique différente, tout le reste s'explique par des différences entre individus de la même origine géographique ».",
       original_url:
-        "https://www.lepoint.fr/eureka/pourquoi-parler-de-races-humaines-est-un-non-sens-biologique-26-03-2025-2585739_4706.php",
+        "https://web.archive.org/web/20261006162012id_/https://www.lepoint.fr/eureka/pourquoi-parler-de-races-humaines-est-un-non-sens-biologique-26-03-2025-2585739_4706.php",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -6638,7 +6619,7 @@ export const CLIMAT_CYCLE_SOLAIRE_DOSSIER: Dossier = {
         "In summary, the warming of the troposphere and cooling of the stratosphere across all latitudes is a unique fingerprint of greenhouse gas forcing. If tropospheric warming were solely due to solar activity, warming rather than cooling of the upper stratosphere would be expected.",
       context_explanation:
         "L'étude de référence sur l'empreinte verticale : les mesures satellitaires de 1986 à 2022 montrent que la moyenne et la haute stratosphère se sont refroidies de 1,8 à 2,2 °C, alors que les variations naturelles ne peuvent produire que 0,15 °C au maximum — « douze à quinze fois moins », résume l'université UCLA, pour qui c'est « la preuve la plus claire d'une empreinte humaine sur le système climatique » selon le climatologue Benjamin Santer. L'étude établit aussi que ce refroidissement ne peut s'expliquer par la variabilité interne seule : il n'apparaît jamais dans les simulations longue durée. C'est la réfutation directe de la thèse solaire.",
-      original_url: "https://www.pnas.org/doi/10.1073/pnas.2300758120",
+      original_url: "https://web.archive.org/web/20250905111329id_/https://www.pnas.org/doi/10.1073/pnas.2300758120",
       author_reference_url:
         "https://fr.wikipedia.org/wiki/Acad%C3%A9mie_nationale_des_sciences_(%C3%89tats-Unis)",
       archive_storage_path: null,
@@ -6681,7 +6662,7 @@ export const CLIMAT_CYCLE_SOLAIRE_DOSSIER: Dossier = {
       context_explanation:
         "Le premier réassureur mondial — acteur du marché, non militant — constate la nouvelle norme : plus de 100 milliards de dollars de sinistres assurés par an, cinq années consécutives au-dessus du seuil. En 2023, année la plus chaude jamais mesurée, les catastrophes naturelles ont causé 280 milliards de dollars de pertes économiques (38 % assurées), avec un record de 142 événements générateurs de sinistres, porté par des périls climatiques (orages convectifs sévères notamment). Le signal actuariel converge avec la physique : la tendance des sinistres suit la trajectoire thermique, pas les cycles solaires.",
       original_url:
-        "https://www.swissre.com/institute/research/sigma-research/sigma-2024-01/in-short.html",
+        "https://web.archive.org/web/20260920192312id_/https://www.swissre.com/institute/research/sigma-research/sigma-2024-01/in-short.html",
       author_reference_url: "https://fr.wikipedia.org/wiki/Swiss_Re",
       archive_storage_path: null,
       archive_sha256: null,
@@ -7511,7 +7492,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
         "After carefully considering the dataset, the critiques, the authors' response and the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average, the editors concluded that the manifest problems in the data warranted retraction in order to uphold these standards.",
       context_explanation:
         "La revue de la Royal Society rétracte un article de 2010 qui reliait la prévalence des parasites aux « QI nationaux » et s'appuyait sur les données de Lynn : après examen, les critiques sur le jeu de données — incohérences et biais substantiels — ont été jugées convaincantes, les auteurs eux-mêmes en reconnaissant une partie. La notice évoque « the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average » : les dommages d'un jeu de données qui dépeint des populations entières comme inférieures à la normale. La rétractation est prononcée pour maintenir les standards de la revue. En français : « Après avoir examiné attentivement le jeu de données, les critiques, la réponse des auteurs et les préjudices potentiels créés par l'utilisation d'un jeu de données qui semble présenter les populations de certaines régions géographiques comme d'intelligence moyenne inférieure à la normale, les rédacteurs ont conclu que les problèmes manifestes des données justifiaient un retrait, afin de préserver ces normes. ».",
-      original_url: "https://royalsocietypublishing.org/doi/10.1098/rspb.2024.0463",
+      original_url: "https://web.archive.org/web/20251012133446id_/https://royalsocietypublishing.org/doi/10.1098/rspb.2024.0463",
       author_reference_url: "https://en.wikipedia.org/wiki/Proceedings_of_the_Royal_Society",
       archive_storage_path: null,
       archive_sha256: null,
@@ -8391,7 +8372,7 @@ export const RACISME_ANTIBLANC_DOSSIER: Dossier = {
       context_explanation:
         "Le droit français ne connaît pas de distinction selon la couleur de la victime : l'article 225-1 proscrit « toute distinction » fondée sur l'un des nombreux critères qu'il énumère, dont « l'appartenance ou la non-appartenance, vraie ou supposée, à une ethnie, une nation, une prétendue race ou une religion déterminée ». Les injures et violences visant des personnes blanches sont donc réprimées comme toute autre infraction raciste — c'est le droit commun de l'universalité de la répression (vérification faite sur la reproduction intégrale du texte publiée dans le dossier de la DGAFP ci-après). Aucune « pénalité de couleur » n'existe dans la loi.",
       original_url:
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831",
+        "https://justicelibre.org/loi/CP/225-1",
       author_reference_url: "https://fr.wikipedia.org/wiki/Code_p%C3%A9nal_(France)",
       archive_storage_path: null,
       archive_sha256: null,
@@ -8513,7 +8494,7 @@ export const RACISME_ANTIBLANC_DOSSIER: Dossier = {
       context_explanation:
         "L'enquête Trajectoires et origines (Ined/Insee) documente les inégalités de logement : les immigrés et leurs descendants « habitent les zones géographiques les plus tendues », subissent la sélection des quartiers disqualifiés, la suroccupation et des conditions dégradées. La littérature officielle sur les inégalités liées à l'origine décrit un désavantage des minorités visibles ; la population majoritaire n'y figure jamais côté perdant, faute de matière statistique.",
       original_url:
-        "https://www.ined.fr/fr/publications/editions/document-travail/ou-se-logent-les-inegalites-de-logement-liees-a-origine",
+        "https://web.archive.org/web/20250407102227id_/https://www.ined.fr/fr/publications/editions/document-travail/ou-se-logent-les-inegalites-de-logement-liees-a-origine",
       author_reference_url: "https://www.ined.fr/",
       archive_storage_path: null,
       archive_sha256: null,
@@ -8990,7 +8971,7 @@ export const NOTES_FRAIS_PARLEMENTAIRES_DOSSIER: Dossier = {
         "Le bureau de chaque assemblée, après consultation de l'organe chargé de la déontologie parlementaire, définit le régime de prise en charge des frais de mandat et arrête la liste des frais éligibles. Les députés et sénateurs sont défrayés sous la forme d'une prise en charge directe, d'un remboursement sur présentation de justificatifs ou du versement d'une avance par l'assemblée dont ils sont membres, dans la limite des plafonds déterminés par le bureau.",
       context_explanation:
         "Texte en vigueur de l'ordonnance relative au fonctionnement des assemblées parlementaires, dans sa rédaction issue de la loi n° 2017-1339 du 15 septembre 2017 (modifiée en dernier lieu par la loi n° 2020-1721 du 29 décembre 2020) : le régime des frais de mandat est défini par le bureau de chaque assemblée, sous le contrôle de son organe de déontologie. Aucun droit d'accès ni publication d'office pour les tiers : c'est la base légale du cadre restreint. Légifrance bloque les accès automatisés ; texte vérifié sur la version consolidée archivée.",
-      original_url: "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000705067/",
+      original_url: "https://web.archive.org/web/20250221162032id_/https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000705067/",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
@@ -9063,7 +9044,7 @@ export const NOTES_FRAIS_PARLEMENTAIRES_DOSSIER: Dossier = {
       context_explanation:
         "Rapport remis à la Présidente et au Bureau de l'Assemblée nationale le 13 mai 2026, en application de l'article 80-3 du Règlement : le contrôle de l'usage des fonds repose sur trois modalités complémentaires — tirage au sort en cours de mandat, contrôle du solde de fin de mandat et contrôle annuel des relevés bancaires. Le rapport relève que « moins de 1 % du montant » des avances contrôlées au titre de la précédente législature a fait l'objet de demandes de remboursement, et que 882 des 1 059 sollicitations écrites de députés en 2025 portaient sur l'utilisation des frais de mandat.",
       original_url:
-        "https://www.assemblee-nationale.fr/dyn/dyn/contenu/visualisation/1110434/file/Rapport_Deontologue_2025.pdf",
+        "https://web.archive.org/web/20260514074313id_/https://www.assemblee-nationale.fr/dyn/dyn/contenu/visualisation/1110434/file/Rapport_Deontologue_2025.pdf",
       author_reference_url: null,
       archive_storage_path: null,
       archive_sha256: null,
