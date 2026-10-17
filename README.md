@@ -510,7 +510,22 @@ Wayback). Vérifié : **vingt-cinq pièces recapturées** une par une (`--source
 les cinq `archive_sha256` suivis sont inchangés ; `ETag` = racine d'intégrité pour Hitler
 (`54cd070d…`), Pétain (`288fa722…`) et Macron (`7e933b74…`) ; `npm run proofs` sans écart ;
 302 fiches pour 302 sources, aucune pièce sans pointeur ; racine globale recalculée :
-`741d41780eae0873…`. Vérifié : `npm run typecheck`, `npm test` (102/102), migration rejouée
+`741d41780eae0873…`.
+
+Le 17 octobre 2026, les briques d'affirmation des dossiers de première génération ont été
+harmonisées avec les statuts fins des dossiers du 16/10, **sans modifier une seule
+citation** : races biologiques (biais essentialiste, biais de sélection), fraude sociale
+contre fraude fiscale (confusion conceptuelle, biais de sélection), laxisme judiciaire
+(biais de sélection), insécurité et immigration (biais essentialiste), AME (confusion
+conceptuelle). Les deux dossiers voisins sur les sans-papiers sont désormais distincts :
+« Les étrangers sans-papiers touchent le RSA dès leur arrivée en France » traite
+l'inaccessibilité légale du RSA ; « Les étrangers sans-papiers touchent le RSA, la CAF et
+les APL, y compris pour leurs enfants » traite le bouquet CAF/APL et l'absence d'exception
+liée à l'enfance (les prestations sont versées à l'allocataire), avec renvoi croisé dans
+les deux résumés. Onze citations anglaises (trois du dossier races, huit du dossier QI)
+portent maintenant leur traduction française en contexte. Mise à jour par script ciblé :
+aucune pièce supprimée, `dossier_source_archives` intact (mêmes nombres de fiches et de
+pointeurs avant et après), `archive_sha256` et `ETag` inchangés ; `npm test` 102/102. Vérifié : `npm run typecheck`, `npm test` (102/102), migration rejouée
 deux fois sur Postgres jetable avec huit scénarios de refus/acceptation, test négatif du
 trigger en production (publication sans preuve primaire refusée) et deux applications
 `--slug` consécutives sans perte de fiche.

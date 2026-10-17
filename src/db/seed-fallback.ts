@@ -529,7 +529,7 @@ export const AME_DOSSIER: Dossier = {
   premises: [
     {
       claim_part: "« L'AME ruine la Sécurité sociale »",
-      status: "FAUX",
+      status: "CONFUSION_CONCEPTUELLE",
       detail:
         "En 2024, le coût total réel s'élève à 1 386,8 millions d'euros, soit environ 0,5 % des dépenses de santé ; la dépense moyenne par bénéficiaire (2 396,4 € en 2023) est inférieure à celle de l'ensemble de la population. Le dispositif est porté par le budget de l'État (mission Santé), pas par les cotisations sociales.",
     },
@@ -726,7 +726,7 @@ export const RSA_DOSSIER: Dossier = {
     },
   ],
   verdict_summary:
-    "Aucune personne sans titre de séjour ne peut percevoir le RSA : la loi exige un titre de séjour autorisant à travailler depuis au moins cinq ans (article L. 262-4 du code de l'action sociale et des familles), un délai supprimé seulement pour les réfugiés, les apatrides et les titulaires d'une carte de résident.\n\nLes allocations familiales et les aides au logement supposent elles aussi la régularité du séjour.\n\nAu 30 juin 2022, 15,6 % des foyers allocataires du RSA avaient un responsable de dossier né hors UE/EEE — tous en situation régulière.",
+    "Aucune personne sans titre de séjour ne peut percevoir le RSA : la loi exige un titre de séjour autorisant à travailler depuis au moins cinq ans (article L. 262-4 du code de l'action sociale et des familles), un délai supprimé seulement pour les réfugiés, les apatrides et les titulaires d'une carte de résident.\n\nLe volet CAF, APL et aides liées à l'enfance est traité dans le dossier « Les étrangers sans-papiers touchent le RSA, la CAF et les APL, y compris pour leurs enfants ».\n\nAu 30 juin 2022, 15,6 % des foyers allocataires du RSA avaient un responsable de dossier né hors UE/EEE — tous en situation régulière.",
   consensus_score: 100,
   premises: [
     {
@@ -1422,7 +1422,7 @@ export const CRIME_IMMIGRATION_DOSSIER: Dossier = {
     },
     {
       claim_part: "« La nationalité explique la délinquance »",
-      status: "CONFUSION_CONCEPTUELLE",
+      status: "BIAIS_ESSENTIALISTE",
       detail:
         "La délinquance de rue est d'abord le fait d'hommes jeunes et précaires, surreprésentés dans les statistiques des mis en cause : pour les destructions et dégradations délictuelles de 2025, les 18-29 ans représentent 35 % des mis en cause quand ils sont 14 % de la population résidant en France (SSMSI). « L'examen rigoureux des statistiques policières ne permet pas de mesurer la délinquance des étrangers » (Mucchielli, CNRS-CESDIP). Le ministère de la Justice mesure même une récidive plus faible des sortants étrangers (- 3,9 points) et un effet du faible niveau d'étude (+ 3,3 points) : ce sont le décrochage scolaire et la précarité qui pèsent, pas la nationalité.",
     },
@@ -2627,7 +2627,7 @@ export const LAXISME_PEINES_PRISON_DOSSIER: Dossier = {
     {
       claim_part:
         "« Les magistrats refusent d'incarcérer et vident les prisons »",
-      status: "FAUX",
+      status: "BIAIS_DE_SELECTION",
       detail:
         "Jamais autant de personnes n'ont été détenues en France : 90 020 au 1er septembre 2026 pour 63 348 places opérationnelles — une densité carcérale de 142,1 % (176,1 % dans les maisons d'arrêt selon Libération), en hausse de 6,8 % sur un an, avec 8 347 matelas au sol faute de lits. Les prisons ne se vident pas : elles débordent.",
     },
@@ -3025,7 +3025,7 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
   id: "98f17905-d0f3-40e4-b240-140d4462f89a",
   slug: "sans-papiers-rsa-caf-apl-aides-sociales",
   claim_title:
-    "Les étrangers sans-papiers touchent le RSA, la CAF et les aides au logement (APL)",
+    "Les étrangers sans-papiers touchent le RSA, la CAF et les APL, y compris pour leurs enfants",
   verdict: "FAUX",
   category: "SOCIETE",
   protagonists: [
@@ -3066,7 +3066,7 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
     },
   ],
   verdict_summary:
-    "Les personnes en situation irrégulière sont exclues des prestations sociales de droit commun : « les étrangers dont le séjour est irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun » et ne bénéficient que de l'AME, de l'hébergement d'urgence et de l'aide au retour (Sénat).\n\nLe RSA exige un titre de séjour autorisant à travailler depuis cinq ans (CASF, art. L. 262-4 — critère validé par le Conseil constitutionnel en 2011) ; les prestations familiales sont réservées aux étrangers titulaires d'un titre exigé pour résider régulièrement en France (CSS, art. L. 512-2) et l'APL suppose « un titre de séjour en cours de validité » (service-public.fr) ; la CNAF rappelle que « le droit aux prestations servies par les CAF est conditionné à la régularité du séjour », contrôlée via le portail AGDREF.",
+    "Les personnes en situation irrégulière sont exclues des prestations sociales de droit commun : « les étrangers dont le séjour est irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun » et ne bénéficient que de l'AME, de l'hébergement d'urgence et de l'aide au retour (Sénat).\n\nLes prestations familiales sont réservées aux étrangers titulaires d'un titre de séjour régulier (CSS, art. L. 512-2) et l'APL suppose « un titre de séjour en cours de validité » (service-public.fr) ; la CNAF rappelle que « le droit aux prestations servies par les CAF est conditionné à la régularité du séjour », contrôlée via le portail AGDREF.\n\nL'enfance ne crée pas d'exception : les prestations sont versées à l'allocataire, dont le titre conditionne le droit ; l'AME — qui couvre aussi les mineurs —, l'hébergement d'urgence et l'aide au retour restent les seules portes ouvertes sans titre. Le détail légal du RSA est traité dans le dossier « Les étrangers sans-papiers touchent le RSA dès leur arrivée en France ».",
   consensus_score: 100,
   premises: [
     {
@@ -3076,10 +3076,10 @@ export const SANS_PAPIERS_AIDES_DOSSIER: Dossier = {
         "Le droit aux prestations de la branche Famille est conditionné à la régularité du séjour (instruction CNAF IT-2024-232) ; l'article L. 512-2 du code de la sécurité sociale réserve les prestations familiales aux étrangers « titulaires d'un titre exigé d'eux... pour résider régulièrement en France » ; l'APL suppose un titre de séjour en cours de validité. Au titre de l'article L. 111-1 du code de la sécurité sociale, les étrangers en séjour irrégulier ne peuvent prétendre à aucune aide ou prestation sociale de droit commun : hors AME, hébergement d'urgence et aide au retour, il n'y a ni RSA, ni allocations familiales, ni APL.",
     },
     {
-      claim_part: "« Le RSA est accessible dès l'arrivée en France »",
+      claim_part: "« Les enfants suffisent à ouvrir la CAF et les APL aux sans-papiers »",
       status: "FAUX",
       detail:
-        "L'article L. 262-4 du code de l'action sociale et des familles impose d'« être français ou titulaire, depuis au moins cinq ans, d'un titre de séjour autorisant à travailler » — avec des exceptions limitées (réfugiés, bénéficiaires de la protection subsidiaire, apatrides, titulaires de la carte de résident). Le Conseil constitutionnel a jugé ce critère conforme (décision n° 2011-137 QPC du 17 juin 2011) ; un étranger régularisé depuis moins de cinq ans n'y a pas droit.",
+        "Les prestations familiales sont versées à l'allocataire, pas aux enfants : le droit dépend du titre de séjour de l'adulte qui en a la charge (CSS, art. L. 512-2), et l'APL suppose un titre en cours de validité. L'enfance n'ouvre donc pas, à elle seule, un droit à ces prestations ; les seules portes sans titre restent l'AME — qui couvre aussi les mineurs —, l'hébergement d'urgence et l'aide au retour (Sénat).",
     },
   ],
   is_published: true,
@@ -5685,13 +5685,13 @@ export const FRAUDE_SOCIALE_FISCALE_DOSSIER: Dossier = {
     {
       claim_part:
         "« Les allocataires sociaux causent l'essentiel du déficit public »",
-      status: "FAUX",
+      status: "CONFUSION_CONCEPTUELLE",
       detail:
-        "La fraude sociale totale — prestations et cotisations confondues — est évaluée à 14 Md€ en 2025 par le HCFiPS (contre 13 Md€ en 2024), quand la fraude fiscale est estimée entre 80 et 120 Md€ par an ; la fraude des assurés (RSA, allocations, indemnités) ne représente que 36 % de l'ensemble, soit environ 5 Md€. Sur les 14 Md€ évalués, 2 Md€ ont été détectés et 680 M€ recouvrés en 2024. Les montants ne sont donc absolument pas de même échelle, et l'essentiel des sommes évaluées n'est pas imputable aux allocataires.",
+        "La fraude sociale totale — prestations et cotisations confondues — est évaluée à 14 Md€ en 2025 par le HCFiPS (contre 13 Md€ en 2024), quand la fraude fiscale est estimée entre 80 et 120 Md€ par an ; la fraude des assurés (RSA, allocations, indemnités) ne représente que 36 % de l'ensemble, soit environ 5 Md€. Sur les 14 Md€ évalués, 2 Md€ ont été détectés et 680 M€ recouvrés en 2024. Les montants ne sont donc absolument pas de même échelle, et l'essentiel des sommes évaluées n'est pas imputable aux allocataires. La brique confond trois ordres de grandeur distincts : la fraude sociale, la fraude fiscale et le déficit public.",
     },
     {
       claim_part: "« La fraude sociale est surtout le fait des ménages »",
-      status: "CONFUSION_CONCEPTUELLE",
+      status: "BIAIS_DE_SELECTION",
       detail:
         "La fraude sociale ne se confond pas avec la fraude aux prestations : « l'essentiel de la fraude demeure concentré sur le recouvrement des cotisations (plus de 52 % de la fraude évaluée) », c'est-à-dire des employeurs et des travailleurs indépendants — la fraude des assurés arrive en seconde position (36 %) et celle des professionnels s'élève à 12 % (HCFiPS). Les redressements de l'Urssaf au titre du travail dissimulé atteignent 1,6 Md€ en 2024 (+ 34 %), dont 69 % de cotisations non déclarées : le principal gisement de fraude sociale est bien patronal, et non ménager.",
     },
@@ -5902,16 +5902,16 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
     {
       claim_part:
         "« Les groupes humains constituent des sous-espèces biologiques discontinues »",
-      status: "FAUX",
+      status: "BIAIS_ESSENTIALISTE",
       detail:
         "La variation génétique humaine est graduelle et clinale : les travaux fondateurs (Lewontin 1972, puis Barbujani et al., PNAS 1997) montrent que 85 % de la diversité génétique se trouve à l'intérieur des populations et que la partition en groupes raciaux ne recouvre aucune discontinuité du génome — « l'existence de ces grands groupes n'est pas soutenue par la présente analyse de l'ADN ». Sur les quelque 6 millions de lettres d'ADN qui différencient deux individus, seules environ 5 % s'expliquent par une origine géographique différente ; le reste distingue les individus d'une même origine. Il n'existe donc pas de sous-espèces discrètes chez Homo sapiens.",
     },
     {
       claim_part:
         "« Les traits morphologiques extérieurs définissent des lignées génétiques distinctes »",
-      status: "CONFUSION_CONCEPTUELLE",
+      status: "BIAIS_DE_SELECTION",
       detail:
-        "Les traits visibles (pigmentation de la peau, forme des cheveux) dépendent d'une poignée de gènes d'adaptation au climat et n'indexent pas le reste du génome : deux individus d'apparence très différente peuvent être génétiquement plus proches que deux individus de même apparence, et la diversité génétique est plus grande entre certaines populations africaines qu'entre un Européen et un Asiatique (marqueur de l'origine africaine de l'espèce). L'apparence extérieure ne définit aucune lignée génétique distincte — c'est la confusion conceptuelle dénoncée par les généticiens des populations.",
+        "Les traits visibles (pigmentation de la peau, forme des cheveux) dépendent d'une poignée de gènes d'adaptation au climat et n'indexent pas le reste du génome : deux individus d'apparence très différente peuvent être génétiquement plus proches que deux individus de même apparence, et la diversité génétique est plus grande entre certaines populations africaines qu'entre un Européen et un Asiatique (marqueur de l'origine africaine de l'espèce). L'apparence extérieure ne définit aucune lignée génétique distincte — c'est le biais de sélection dénoncé par les généticiens des populations : quelques gènes d'apparence sont lus comme s'ils indexaient tout le génome.",
     },
   ],
   is_published: true,
@@ -5930,7 +5930,7 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
       exact_quote:
         "All human beings belong to a single species and are descended from a common stock. They are born equal in dignity and rights and all form an integral part of humanity.",
       context_explanation:
-        "L'article premier de la déclaration adoptée à Paris le 27 novembre 1978 répond mot pour mot à la thèse des races biologiques : l'humanité forme une seule espèce issue d'une souche commune. Le préambule réaffirme « l'unité essentielle de la race humaine » et la déclaration condamne toute doctrine de supériorité fondée sur la différenciation raciale. Le texte intégral est publié par l'UNESCO (les déclarations d'experts de 1950 et 1964 en constituent les étapes préparatoires, celle de 1978 reste le texte de référence).",
+        "L'article premier de la déclaration adoptée à Paris le 27 novembre 1978 répond mot pour mot à la thèse des races biologiques : l'humanité forme une seule espèce issue d'une souche commune. Le préambule réaffirme « l'unité essentielle de la race humaine » et la déclaration condamne toute doctrine de supériorité fondée sur la différenciation raciale. Le texte intégral est publié par l'UNESCO (les déclarations d'experts de 1950 et 1964 en constituent les étapes préparatoires, celle de 1978 reste le texte de référence). En français : « Tous les êtres humains appartiennent à une seule espèce et descendent d'une souche commune. Ils naissent égaux en dignité et en droits et forment tous une partie intégrante de l'humanité. ».",
       original_url:
         "https://www.unesco.org/en/legal-affairs/declaration-race-and-racial-prejudice",
       author_reference_url:
@@ -5952,7 +5952,7 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
       exact_quote:
         "Did you know that at the base-pair level your genome is 99.9 percent the same as all of the humans around you - but in that 0.1 percent difference are many of the things that make you unique?",
       context_explanation:
-        "L'institut qui a porté le Projet Génome Humain résume la donnée fondatrice : au niveau des paires de bases, le génome de tout être humain est identique à 99,9 % à celui de tous les autres ; le reliquat de 0,1 % porte aussi bien les traits physiques que les risques de maladies, ce qui prive l'idée de « races » de tout support génomique. La fiche complète : « les génomes humains diffèrent les uns des autres de toutes sortes de façons », sans regroupements discrets.",
+        "L'institut qui a porté le Projet Génome Humain résume la donnée fondatrice : au niveau des paires de bases, le génome de tout être humain est identique à 99,9 % à celui de tous les autres ; le reliquat de 0,1 % porte aussi bien les traits physiques que les risques de maladies, ce qui prive l'idée de « races » de tout support génomique. La fiche complète : « les génomes humains diffèrent les uns des autres de toutes sortes de façons », sans regroupements discrets. En français : « Saviez-vous qu'au niveau des paires de bases votre génome est identique à 99,9 % à celui de tous les humains qui vous entourent — mais que dans cette différence de 0,1 % se trouvent beaucoup des choses qui vous rendent unique ? ».",
       original_url:
         "https://www.genome.gov/dna-day/15-ways/human-genomic-variation",
       author_reference_url:
@@ -5974,7 +5974,7 @@ export const RACES_BIOLOGIQUES_DOSSIER: Dossier = {
       exact_quote:
         "In 1972, Richard Lewontin analyzed allele frequencies at 15 protein loci and concluded that 85% of the overall human genetic diversity is represented by individual diversity within populations. Differences among seven racial groups accounted for less than 7% of the total.",
       context_explanation:
-        "L'étude de référence sur la répartition de la diversité humaine : ses propres mesures sur 109 locus d'ADN confirment Lewontin, avec 84,4 % de la variance à l'intérieur des populations, 4,7 % entre populations d'un même continent et 10,8 % entre continents (Lewontin : 85,4 / 8,3 / 6,3). La conclusion : « l'existence de ces grands groupes — raciaux ou continentaux — n'est pas soutenue par la présente analyse de l'ADN ». Les auteurs y répondent aux objections de ceux pour qui l'espèce serait « profondément subdivisée en races ».",
+        "L'étude de référence sur la répartition de la diversité humaine : ses propres mesures sur 109 locus d'ADN confirment Lewontin, avec 84,4 % de la variance à l'intérieur des populations, 4,7 % entre populations d'un même continent et 10,8 % entre continents (Lewontin : 85,4 / 8,3 / 6,3). La conclusion : « l'existence de ces grands groupes — raciaux ou continentaux — n'est pas soutenue par la présente analyse de l'ADN ». Les auteurs y répondent aux objections de ceux pour qui l'espèce serait « profondément subdivisée en races ». En français : « En 1972, Richard Lewontin a analysé les fréquences alléliques de 15 locus protéiques et conclu que 85 % de la diversité génétique humaine totale est représentée par la diversité individuelle au sein des populations. Les différences entre sept groupes raciaux comptaient pour moins de 7 % du total. ».",
       original_url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC20754/",
       author_reference_url:
         "https://fr.wikipedia.org/wiki/Centre_national_de_la_recherche_scientifique",
@@ -7092,7 +7092,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "Ulster University has withdrawn the emeritus title from Professor Richard Lynn and notified the individual accordingly",
       context_explanation:
-        "Le retrait du titre de professeur émérite, première sanction institutionnelle visant Richard Lynn, rapporté par la BBC : la décision a été prise « following due process and considering all relevant information » (selon les formes et au vu de tous les éléments pertinents), après une motion du syndicat étudiant dénonçant des prises de position « racistes et sexistes ». L'université précise que Lynn « does not work for Ulster University nor does he contribute to our research and teaching ». Le titre d'emeritus, normalement accordé à vie aux universitaires éminents, ne lui est plus rattaché.",
+        "Le retrait du titre de professeur émérite, première sanction institutionnelle visant Richard Lynn, rapporté par la BBC : la décision a été prise « following due process and considering all relevant information » (selon les formes et au vu de tous les éléments pertinents), après une motion du syndicat étudiant dénonçant des prises de position « racistes et sexistes ». L'université précise que Lynn « does not work for Ulster University nor does he contribute to our research and teaching ». Le titre d'emeritus, normalement accordé à vie aux universitaires éminents, ne lui est plus rattaché. En français : « L'université d'Ulster a retiré à Richard Lynn son titre de professeur émérite et en a informé l'intéressé. ».",
       original_url: "https://www.bbc.com/news/uk-northern-ireland-43768132",
       author_reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Ulster",
       archive_storage_path: null,
@@ -7112,7 +7112,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "In short, these datasets are scientifically unsound, systematically biased, and ethically problematic.",
       context_explanation:
-        "La société savante européenne de biologie et d'écologie évolutives humaines examine les jeux de données de « QI national » et conclut à des biais de sélection (« only the lowest-scoring samples were retained », seuls les échantillons aux scores les plus bas étant retenus — « introducing racial bias into the dataset's very foundation »), à des échantillons inadéquats, à des tests occidentaux non transposables et à des scores « faibles » qui disparaissent avec des tâches culturellement adaptées (travaux au Mali, chez les Tsimane). Elle « urges all researchers to refrain from using these datasets in future work ». Sa page maintenue souligne que les critiques valent encore pour les versions les plus récentes du jeu de données.",
+        "La société savante européenne de biologie et d'écologie évolutives humaines examine les jeux de données de « QI national » et conclut à des biais de sélection (« only the lowest-scoring samples were retained », seuls les échantillons aux scores les plus bas étant retenus — « introducing racial bias into the dataset's very foundation »), à des échantillons inadéquats, à des tests occidentaux non transposables et à des scores « faibles » qui disparaissent avec des tâches culturellement adaptées (travaux au Mali, chez les Tsimane). Elle « urges all researchers to refrain from using these datasets in future work ». Sa page maintenue souligne que les critiques valent encore pour les versions les plus récentes du jeu de données. En français : « En bref, ces jeux de données sont scientifiquement infondés, systématiquement biaisés et éthiquement problématiques. ».",
       original_url: "https://www.ehbea.org/pages/national-iq-datasets",
       author_reference_url: "https://www.ehbea.org/",
       archive_storage_path: null,
@@ -7132,7 +7132,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "After carefully considering the dataset, the critiques, the authors' response and the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average, the editors concluded that the manifest problems in the data warranted retraction in order to uphold these standards.",
       context_explanation:
-        "La revue de la Royal Society rétracte un article de 2010 qui reliait la prévalence des parasites aux « QI nationaux » et s'appuyait sur les données de Lynn : après examen, les critiques sur le jeu de données — incohérences et biais substantiels — ont été jugées convaincantes, les auteurs eux-mêmes en reconnaissant une partie. La notice évoque « the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average » : les dommages d'un jeu de données qui dépeint des populations entières comme inférieures à la normale. La rétractation est prononcée pour maintenir les standards de la revue.",
+        "La revue de la Royal Society rétracte un article de 2010 qui reliait la prévalence des parasites aux « QI nationaux » et s'appuyait sur les données de Lynn : après examen, les critiques sur le jeu de données — incohérences et biais substantiels — ont été jugées convaincantes, les auteurs eux-mêmes en reconnaissant une partie. La notice évoque « the potential harms created by using a dataset that appears to portray human populations in some geographical regions as of below normal intelligence on average » : les dommages d'un jeu de données qui dépeint des populations entières comme inférieures à la normale. La rétractation est prononcée pour maintenir les standards de la revue. En français : « Après avoir examiné attentivement le jeu de données, les critiques, la réponse des auteurs et les préjudices potentiels créés par l'utilisation d'un jeu de données qui semble présenter les populations de certaines régions géographiques comme d'intelligence moyenne inférieure à la normale, les rédacteurs ont conclu que les problèmes manifestes des données justifiaient un retrait, afin de préserver ces normes. ».",
       original_url: "https://royalsocietypublishing.org/doi/10.1098/rspb.2024.0463",
       author_reference_url: "https://en.wikipedia.org/wiki/Proceedings_of_the_Royal_Society",
       archive_storage_path: null,
@@ -7152,7 +7152,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "Results show that average IQ of Africans on these tests is approximately 82 when compared to UK norms.",
       context_explanation:
-        "Face à la base de Lynn (« the average IQ of the Black population of sub-Saharan Africa lies below 70 »), cette revue systématique de la littérature — critères d'inclusion et d'exclusion explicites — aboutit à environ 82 par rapport aux normes britanniques, chiffre convergent avec les enquêtes internationales de niveau scolaire (« around 82 »). La même étude démonte l'échantillon de Guinée équatoriale : « The forty-eight children, to whom the WISC (not the WISC-R) was administered, were from Spain, not from Equatorial Guinea » — les quarante-huit enfants testés venaient d'Espagne, pas de Guinée équatoriale, et Lynn « made a mistake in using this sample ». Publié en ligne le 7 juin 2009, dans le numéro de janvier-février 2010.",
+        "Face à la base de Lynn (« the average IQ of the Black population of sub-Saharan Africa lies below 70 »), cette revue systématique de la littérature — critères d'inclusion et d'exclusion explicites — aboutit à environ 82 par rapport aux normes britanniques, chiffre convergent avec les enquêtes internationales de niveau scolaire (« around 82 »). La même étude démonte l'échantillon de Guinée équatoriale : « The forty-eight children, to whom the WISC (not the WISC-R) was administered, were from Spain, not from Equatorial Guinea » — les quarante-huit enfants testés venaient d'Espagne, pas de Guinée équatoriale, et Lynn « made a mistake in using this sample ». Publié en ligne le 7 juin 2009, dans le numéro de janvier-février 2010. En français : « Les résultats montrent que le QI moyen des Africains à ces tests est d'environ 82 par rapport aux normes britanniques. ».",
       original_url:
         "http://www.iapsych.com/iqmr/fe/LinkedDocuments/wicherts2010b.pdf",
       author_reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Amsterdam",
@@ -7173,7 +7173,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "This suggests that Lynn and Meisenberg excluded samples of Africans who average IQs above 75 because they deemed these samples unrepresentative on the basis of the samples' relatively high IQs.",
       context_explanation:
-        "La réponse méthodologique décisive : en testant les 46 échantillons africains au crible de critères objectifs (échantillon jugé représentatif par les auteurs d'origine, tirage aléatoire, stratification explicite, sujets en bonne santé, niveau socio-économique normal), les chercheurs montrent que la représentativité retenue par Lynn et Meisenberg ne dépend d'aucune de ces caractéristiques — sinon du QI mesuré. Les échantillons forts sont écartés, les faibles conservés. Conclusion des auteurs : « We conclude that Lynn and Meisenberg's unsystematic methods are questionable and their results untrustworthy » — des méthodes douteuses, des résultats non fiables. Publié en ligne le 3 décembre 2009.",
+        "La réponse méthodologique décisive : en testant les 46 échantillons africains au crible de critères objectifs (échantillon jugé représentatif par les auteurs d'origine, tirage aléatoire, stratification explicite, sujets en bonne santé, niveau socio-économique normal), les chercheurs montrent que la représentativité retenue par Lynn et Meisenberg ne dépend d'aucune de ces caractéristiques — sinon du QI mesuré. Les échantillons forts sont écartés, les faibles conservés. Conclusion des auteurs : « We conclude that Lynn and Meisenberg's unsystematic methods are questionable and their results untrustworthy » — des méthodes douteuses, des résultats non fiables. Publié en ligne le 3 décembre 2009. En français : « Cela suggère que Lynn et Meisenberg ont exclu les échantillons d'Africains dont le QI moyen dépassait 75, parce qu'ils les jugeaient non représentatifs en raison de leurs QI relativement élevés. ».",
       original_url:
         "http://www.iapsych.com/iqmr/fe/LinkedDocuments/wicherts2010c.pdf",
       author_reference_url: "https://fr.wikipedia.org/wiki/Universit%C3%A9_d%27Amsterdam",
@@ -7194,7 +7194,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "An inspection of Lynn's dataset reveals why it comes up with such an implausible IQ for sub-Saharan Africa: it is bad science.",
       context_explanation:
-        "La chercheuse qui documente depuis des années la fabrique du « 70 » africain : échantillons de commodité (le QI de l'Érythrée « is estimated entirely from children living in orphanages », l'Angola « from just 19 people »), sélection biaisée, aucune méthodologie de sélection publiée. Un score si bas qu'il impliquerait que « large proportions of people in Africa have trouble leading ordinary lives without help » — et ce jeu de données a nourri des usages violents : il est cité dans le manifeste de l'auteur de l'attentat raciste de Buffalo (2022). Elle souligne qu'il continue d'être utilisé malgré vingt ans de critiques documentées.",
+        "La chercheuse qui documente depuis des années la fabrique du « 70 » africain : échantillons de commodité (le QI de l'Érythrée « is estimated entirely from children living in orphanages », l'Angola « from just 19 people »), sélection biaisée, aucune méthodologie de sélection publiée. Un score si bas qu'il impliquerait que « large proportions of people in Africa have trouble leading ordinary lives without help » — et ce jeu de données a nourri des usages violents : il est cité dans le manifeste de l'auteur de l'attentat raciste de Buffalo (2022). Elle souligne qu'il continue d'être utilisé malgré vingt ans de critiques documentées. En français : « L'examen du jeu de données de Lynn révèle pourquoi il aboutit à un QI aussi invraisemblable pour l'Afrique subsaharienne : c'est de la mauvaise science. ».",
       original_url:
         "https://blogs.lse.ac.uk/impactofsocialsciences/2023/11/24/the-persistence-of-eugenics-in-mainstream-journals-highlights-major-gaps-in-research-integrity/",
       author_reference_url: "https://en.wikipedia.org/wiki/Rebecca_Sear",
@@ -7237,7 +7237,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "The second estimate evidences a gain of about 20 IQ points over a single generation, the 30 years between 1952 and 1982.",
       context_explanation:
-        "L'étude fondatrice de l'« effet Flynn » : sur les mêmes épreuves de Raven, les conscrits néerlandais de 1982 réussissent tellement mieux que ceux de 1952 que l'écart équivaut à environ 20 points de QI en trente ans — un gain « taken as verified » par l'auteur — et quatorze pays montrent des gains de 5 à 25 points par génération. La vitesse de ces déplacements interdit de lire un « QI national » comme une constante : les mêmes populations donnent des scores très différents selon l'époque et l'environnement.",
+        "L'étude fondatrice de l'« effet Flynn » : sur les mêmes épreuves de Raven, les conscrits néerlandais de 1982 réussissent tellement mieux que ceux de 1952 que l'écart équivaut à environ 20 points de QI en trente ans — un gain « taken as verified » par l'auteur — et quatorze pays montrent des gains de 5 à 25 points par génération. La vitesse de ces déplacements interdit de lire un « QI national » comme une constante : les mêmes populations donnent des scores très différents selon l'époque et l'environnement. En français : « La seconde estimation met en évidence un gain d'environ 20 points de QI sur une seule génération, les 30 années entre 1952 et 1982. ».",
       original_url: "http://www.iapsych.com/iqmr/fe/LinkedDocuments/flynn1987.pdf",
       author_reference_url: "https://en.wikipedia.org/wiki/James_R._Flynn",
       archive_storage_path: null,
@@ -7320,7 +7320,7 @@ export const CARTE_MONDIALE_QI_DOSSIER: Dossier = {
       exact_quote:
         "Lynn is the current president of the notoriously racist Pioneer Fund. Prior to becoming president in 2012, he received hundreds of thousands of dollars in Pioneer Fund grants, both directly, and through the Ulster Institute for Social Research.",
       context_explanation:
-        "Le financement, documenté par l'organisation qui suit les mouvements extrémistes américains : Richard Lynn a reçu des centaines de milliers de dollars de subventions du Pioneer Fund — fonds créé en 1937 pour soutenir la recherche eugéniste — directement et via l'Ulster Institute for Social Research, avant d'en prendre la présidence en 2012. La fiche, non mise à jour depuis sa mort en 2023, rappelle qu'il a aussi publié dans des revues suprémacistes : c'est cet écosystème qui a produit la base de données devenue une carte virale.",
+        "Le financement, documenté par l'organisation qui suit les mouvements extrémistes américains : Richard Lynn a reçu des centaines de milliers de dollars de subventions du Pioneer Fund — fonds créé en 1937 pour soutenir la recherche eugéniste — directement et via l'Ulster Institute for Social Research, avant d'en prendre la présidence en 2012. La fiche, non mise à jour depuis sa mort en 2023, rappelle qu'il a aussi publié dans des revues suprémacistes : c'est cet écosystème qui a produit la base de données devenue une carte virale. En français : « Lynn est l'actuel président du Pioneer Fund, notoirement raciste. Avant d'en devenir président en 2012, il a reçu des centaines de milliers de dollars de subventions du Pioneer Fund, directement et par l'intermédiaire de l'Ulster Institute for Social Research. ».",
       original_url:
         "https://www.splcenter.org/resources/extremist-files/richard-lynn/",
       author_reference_url:
