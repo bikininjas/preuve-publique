@@ -5272,6 +5272,201 @@ export const ISLAM_HOMOPHOBIE_TRANS_DOSSIER: Dossier = {
 };
 
 /**
+ * International : « Il existe un racisme anti-blanc prédominant et systémique en
+ * Afrique du Sud post-Apartheid ». Mythe du « génocide blanc » : les données
+ * foncières et de revenus officielles documentent l'inverse, et la criminalité
+ * rurale n'est pas racialement ciblée (ISS, SAPS).
+ */
+export const RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER: Dossier = {
+  id: "bbfd1745-ddfe-423c-ad08-ce72a8bd9367",
+  slug: "racisme-antiblanc-systemique-afrique-du-sud-mythe",
+  claim_title:
+    "Il existe un racisme anti-blanc prédominant et systémique en Afrique du Sud post-Apartheid",
+  verdict: "FAUX",
+  category: "INTERNATIONAL",
+  protagonists: [
+    {
+      name: "Afrique du Sud",
+      kind: "LIEU",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Afrique_du_Sud",
+      note: "Le débat porte sur la persistance des inégalités raciales trente ans après la fin de l'apartheid.",
+    },
+    {
+      name: "AfriForum",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/AfriForum",
+      note: "Groupe de pression afrikaner qui porte la thèse d'un « génocide blanc » dans les arènes internationales.",
+    },
+    {
+      name: "Statistique Afrique du Sud",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Statistique_Afrique_du_Sud",
+      note: "Office national de statistique : propriété foncière et revenus par groupe de population.",
+    },
+    {
+      name: "Institut d'études de sécurité",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: null,
+      note: "Centre de recherche sud-africain (Pretoria) spécialisé sur la criminalité et la violence.",
+    },
+  ],
+  verdict_summary:
+    "La thèse d'un racisme anti-blanc « prédominant et systémique » suppose que les institutions sud-africaines produisent l'inégalité au détriment des Blancs. Les données officielles disent l'inverse : dans l'audit foncier de 2017, les Blancs détiennent 26,7 millions d'hectares, soit 72 % des terres agricoles détenues par des personnes physiques, contre 4 % pour les Africains ; en 2019, le revenu réel moyen des Blancs (R24 646 par mois sur 2011-2015) était « plus de trois fois » celui des Africains noirs (Stats SA) ; et la Commission sud-africaine des droits de l'homme constatait déjà que « 87 % des terres » restaient « entre les mains de 13 % de la population ». Trente ans après l'apartheid, le capital et le revenu restent concentrés dans la minorité blanche — l'inverse d'un racisme d'État anti-blanc.\n\nLa criminalité ne choisit pas sa couleur. Au dernier trimestre 2024, la police sud-africaine a enregistré 12 meurtres dans des fermes — y compris des petites exploitations noires — sur près de 7 000 meurtres dans le pays ; les tueurs interrogés en prison par le professeur Rudolph Zinn disent avoir visé toutes les races pour de l'argent. L'Institut d'études de sécurité, qui documente ces crimes depuis 1994, est catégorique : « il n'y a pas de génocide blanc en Afrique du Sud », et « le meurtre et le vol à main armée touchent tous ceux qui vivent en Afrique du Sud » — soutenir le contraire relève d'un « agenda idéologique ».\n\nCe que les faits documentent, c'est une autre violence : les attaques xénophobes de groupes vigilants (Operation Dudula, March and March) contre les étrangers africains et asiatiques, avec « peu ou pas de réponse » apparente des autorités (Human Rights Watch, mai 2026) — des violences qui visent d'autres Africains, pas les Blancs. Le « génocide blanc » est un récit construit par des organisations identitaires et exporté dans le débat politique américain ; il ne résiste ni aux statistiques foncières, ni aux données criminelles, ni aux travaux des chercheurs sud-africains.",
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part:
+        "« L'État sud-africain orchestre une politique de persécution raciale anti-blanche »",
+      status: "FAUX",
+      detail:
+        "La Constitution de 1996 interdit la discrimination raciale, et les politiques correctrices (restitution foncière, B-BBEE) visent les groupes désavantagés par l'apartheid : aucune loi ni aucun programme ne cible les Blancs en tant que tels. Loin d'une persécution d'État, les indicateurs restent à l'avantage de la minorité blanche — 72 % des terres agricoles détenues par des personnes physiques (Land Audit 2017), un revenu moyen plus de trois fois supérieur à celui des Africains noirs (Stats SA 2019), « 87 % des terres entre les mains de 13 % de la population » selon la Commission sud-africaine des droits de l'homme. Les organisations qui portent la thèse du « génocide blanc » s'appuient sur des chiffres de criminalité rurale sortis de leur contexte, pas sur un dispositif institutionnel.",
+    },
+    {
+      claim_part:
+        "« Les crimes ruraux (« farm attacks ») ciblent unilatéralement les fermiers blancs pour des motifs raciaux »",
+      status: "BIAIS_DE_SELECTION",
+      detail:
+        "Les attaques de fermes sont une réalité meurtrière, mais elles relèvent d'une criminalité de prédation, pas d'une entreprise raciale : au dernier trimestre 2024, 12 meurtres en ferme — petites exploitations noires incluses — sur près de 7 000 meurtres dans le pays (The Guardian, d'après la police sud-africaine) ; les condamnés interrogés par Rudolph Zinn (université de Limpopo) disent avoir visé des victimes de toutes les races pour de l'argent et des objets de valeur. L'Institut d'études de sécurité conclut qu'« il n'y a pas de génocide blanc en Afrique du Sud » et que le meurtre et le vol à main armée « touchent tous ceux qui vivent en Afrique du Sud ». Retenir uniquement les victimes blanches pour en déduire un mobile racial, c'est un biais de sélection : les victimes noires des mêmes attaques disparaissent de l'échantillon.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-17T00:00:00.000Z",
+  illustration_url: "/illustrations/racisme-antiblanc-systemique-afrique-du-sud-mythe.jpg",
+  illustration_credit: "Photo : Matt-80, CC BY 2.0, Wikimedia Commons",
+  sources: [
+    {
+      id: "8f3f26c1-ed6d-4775-b7b3-d7eadfb6c32d",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Land Audit Report — Phase II : propriété foncière privée par race, genre et nationalité (novembre 2017)",
+      author_or_institution:
+        "Department of Rural Development and Land Reform (République d'Afrique du Sud), à partir du Deeds Office et des données de Statistics South Africa",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The Land Audit reveals that Whites own 26 663 144 ha or 72% of the total 37 031 283 ha farms and agricultural holdings by individual landowners; followed by Coloured at 5 371 383 ha or 15%, Indians at 2 031 790 ha or 5%, Africans at 1 314 873 ha or 4%, other at 1 271 562 ha or 3%, and co-owners at 425 537 ha or 1%.",
+      context_explanation:
+        "Audit foncier officiel publié par le ministère du Développement rural et de la Réforme agraire (version 2, novembre 2017 ; mis en ligne sur gov.za en février 2018). Périmètre à ne pas extrapoler : il ne couvre que les terres agricoles et exploitations détenues par des personnes physiques (37,0 millions d'hectares), soit environ un tiers des terres enregistrées — le reste appartient à des sociétés, trusts et organismes. En français : les Blancs détiennent 72 % de ces terres agricoles individuelles, contre 4 % pour les Africains.",
+      original_url:
+        "https://www.gov.za/sites/default/files/gcis_document/201802/landauditreport13feb2018.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "63e0ab76-c8b0-4904-acd8-e847b5c84eb1",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Inequality Trends in South Africa : A Multidimensional Diagnostic of Inequality (rapport 03-10-19)",
+      author_or_institution:
+        "Statistics South Africa (avec SALDRU/Université du Cap et l'Agence française de développement)",
+      publication_date: "2019-11-14",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Amongst whites, it was R24 646 per month, or more than three times as high as it was amongst black Africans.",
+      context_explanation:
+        "Rapport officiel sur les inégalités publié le 14 novembre 2019. Le passage mesure les revenus réels moyens des salariés entre 2011 et 2015 (données PALMS) : 6 899 rands par mois pour les Africains noirs, 9 339 pour les Coloured, 14 235 pour les Indiens/Asiatiques et 24 646 pour les Blancs. Les auteurs y décrivent « l'inégalité fortement racialisée du marché du travail sud-africain ».",
+      original_url:
+        "https://www.statssa.gov.za/publications/Report-03-10-19/Report-03-10-192017.pdf",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Statistique_Afrique_du_Sud",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "46ce85d0-98e6-4123-9fcd-24d9f8e857ff",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Violent crime and the myth of South Africa's 'white genocide' (ISS Today)",
+      author_or_institution:
+        "Gareth Newham, Institute for Security Studies (ISS Pretoria) — chef du programme Justice and Violence Prevention",
+      publication_date: "2025-05-26",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The fact is that there is no 'white genocide' in South Africa, so it was shocking to hear the claim made at a formal diplomatic meeting in the White House.",
+      context_explanation:
+        "Analyse publiée le 26 mai 2025, après la rencontre entre Cyril Ramaphosa et Donald Trump (21 mai). L'auteur ajoute : « Murder and armed robbery affect everyone living in South Africa – to say otherwise suggests a worrying ideological agenda. » En français : « Il n'y a pas de génocide blanc en Afrique du Sud » ; le meurtre et le vol à main armée touchent tous ceux qui y vivent.",
+      original_url:
+        "https://issafrica.org/iss-today/violent-crime-and-the-myth-of-south-africa-s-white-genocide",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "252e18cf-57f5-4641-8869-414211f43a6b",
+      spectrum: "GAUCHE",
+      source_name:
+        "Trump's 'white genocide' claims ignore the reality of life and crime in South Africa (The Guardian)",
+      author_or_institution: "The Guardian (édition américaine)",
+      publication_date: "2025-05-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "In the last quarter of 2024, South African police recorded 12 murders on farms, including Black-owned smallholder plots, out of almost 7,000 murders across the country.",
+      context_explanation:
+        "Article publié le 21 mai 2025, au moment de la visite de Cyril Ramaphosa à Washington. Il rapporte aussi les entretiens du professeur Rudolph Zinn (université de Limpopo) avec des condamnés : ceux-ci déclarent avoir visé des victimes de toutes les races pour de l'argent et des objets de valeur. En français : 12 meurtres en ferme au dernier trimestre 2024, y compris dans des petites exploitations noires, sur près de 7 000 meurtres dans le pays.",
+      original_url:
+        "https://www.theguardian.com/us-news/2025/may/21/trump-south-african-president-meeting",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "24c058b8-0716-424e-bc10-dd5cfb5309bf",
+      spectrum: "GAUCHE",
+      source_name:
+        "South Africa : New Waves of Xenophobic Attacks (Human Rights Watch)",
+      author_or_institution: "Human Rights Watch",
+      publication_date: "2026-05-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Vigilantes in South Africa have carried out violent xenophobic attacks targeting African and Asian foreign nationals in recent weeks, with little or insufficient apparent response from the police and other authorities, Human Rights Watch said today.",
+      context_explanation:
+        "Communiqué du 20 mai 2026 sur les attaques xénophobes d'avril-mai 2026 (mouvement « March and March », Operation Dudula) à Pretoria, Johannesburg et Durban. HRW rappelle les vagues de 2008, 2015, 2019 et 2021-2022, et que ces violences visent les étrangers africains et asiatiques — pas la population blanche.",
+      original_url:
+        "https://www.hrw.org/news/2026/05/20/south-africa-new-waves-of-xenophobic-attacks",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "d3115a9a-e9c8-47b6-a57e-a38184708628",
+      spectrum: "CENTRE",
+      source_name:
+        "Inquiry into Human Rights in Farming Communities — rapport de la Commission sud-africaine des droits de l'homme (auditions 2002-2003)",
+      author_or_institution:
+        "South African Human Rights Commission (SAHRC)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The property imbalances that exist have resulted in 87% of land remaining in the hands of 13% of the population and 13% of the land being in the hands of 78% of the population.",
+      context_explanation:
+        "Rapport de l'enquête nationale de la SAHRC sur les droits humains dans les communautés agricoles (auditions publiques de 2002-2003). La Commission y constate la persistance des déséquilibres fonciers hérités de l'apartheid : « White farmers own the land whilst poor Black people obtain tenure on the land as farm workers. » En français : 87 % des terres restent entre les mains de 13 % de la population.",
+      original_url:
+        "https://www.gov.za/sites/default/files/gcis_document/201409/farmingcomplete0.pdf",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/South_African_Human_Rights_Commission",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+  ],
+};
+
+/**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
  * (`is_published = true`) et non par le code de l'interface.
@@ -8806,6 +9001,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   RACISME_ANTIBLANC_DOSSIER,
   COLONIES_ISRAELIENNES_DOSSIER,
   NOTES_FRAIS_PARLEMENTAIRES_DOSSIER,
+  RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

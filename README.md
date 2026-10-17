@@ -44,8 +44,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   PostgreSQL vérifie les quatre règles du Triangulation Guard sur chaque ligne publiée de
   `public.dossiers` ; la publication se fait désormais en deux temps : brouillon, pièces,
   puis statut publié).
-  Trente-trois dossiers en base :
-  trente-deux **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  Trente-quatre dossiers en base :
+  trente-trois **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (9, société, biais méthodologique), le pourvoi
   en cassation et
@@ -74,10 +74,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   la revendication de la licéité des colonies israéliennes (12, international, contraire
   au droit international) et la demande d'un « droit légal absolu de publier le détail
   nominatif des notes de frais des parlementaires » (8, politique, cadre réglementaire
-  restreint) —
+  restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
+  faux) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 302 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 307 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -236,7 +237,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   textes réglementaires ont été lus au Bulletin officiel, et les pages bloquées (403)
   recoupées via leurs instantanés Wayback — l'expression « théorie du genre » ne figure
   dans aucun des textes produits par l'éducation nationale.
-- **Application** : `npm run typecheck`, `npm test` (**95 tests**) et `npm run build`
+- **Application** : `npm run typecheck`, `npm test` (**102 tests**) et `npm run build`
   passent. Le serveur standalone du conteneur a été exercé sur les routes réelles :
   - `/api/health` → 200, `status: healthy`, latence base mesurée (99 ms en local) ;
   - `/api/dossiers/<slug>` → 200, `Cache-Control: public, max-age=60, s-maxage=3600,
@@ -563,6 +564,28 @@ volontairement non appliqués), recapture du dossier : **neuf fiches** (huit
 fiche octet pour octet, rehachage vérifié. Racine globale recalculée sur les **290
 fiches** de l'état courant : `a2a30a2cc987e7d4…`.
 
+Le 17/10/2026 (08:27 UTC), le dossier **« Il existe un racisme anti-blanc prédominant
+et systémique en Afrique du Sud post-Apartheid »** (six sources, catégorie
+international, verdict `FAUX`) : audit foncier du ministère sud-africain (novembre
+2017 — 72 % des terres agricoles détenues par des personnes physiques sont aux mains
+des Blancs, 4 % pour les Africains, sur un périmètre d'environ un tiers des terres
+enregistrées), rapport de Statistics South Africa sur les inégalités (14/11/2019 —
+revenus blancs « plus de trois fois » supérieurs), ISS Today de Gareth Newham
+(26/05/2025 — « il n'y a pas de génocide blanc en Afrique du Sud »), The Guardian
+(21/05/2025 — douze meurtres en ferme au dernier trimestre 2024, petites
+exploitations noires incluses, sur près de 7 000 meurtres), Human Rights Watch
+(20/05/2026 — attaques xénophobes contre les étrangers africains et asiatiques) et
+le rapport de la SAHRC sur les communautés agricoles (auditions 2002-2003 — 87 % des
+terres entre les mains de 13 % de la population). Chaque citation vérifiée par
+sous-chaîne ; nouvelle prémisse `BIAIS_DE_SELECTION` ; versé en brouillon puis publié,
+capture du dossier : six fiches (trois `URL_SNAPSHOT`, trois `URL_UNAVAILABLE` —
+gov.za et statssa.gov.za répondent 403 aux robots), passe `d34e1cc6d1ca84b1…` ;
+racine d'intégrité `dd45c490c80600cf…` = `ETag` et `X-Proof-Integrity-Root` relevés
+en ligne ; illustration *Soweto township* (Matt-80, CC BY 2.0, Wikimedia Commons).
+Au passage, `scripts/apply-seed.mts` a été corrigé : les pièces neuves reçoivent leur
+empreinte de citation à l'insertion — sans elle, le trigger `0015` refusait toute
+publication d'un dossier neuf.
+
 ## Pile technique
 
 | Brique | Choix |
@@ -584,7 +607,7 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 95 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
+npm test               # 102 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
                        #            résumés en paragraphes, tirage aléatoire, SEO
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)

@@ -24,6 +24,7 @@ import { closePrivilegedDb, privilegedDb } from "../src/db/index.ts";
 import { dossierSources, dossiers } from "../src/db/schema.ts";
 import { SEED_DOSSIERS } from "../src/db/seed-fallback.ts";
 import type { DossierSource } from "../src/lib/types.ts";
+import { computeCanonicalProofHash } from "../src/server/services/crypto.service.ts";
 import { log } from "../src/server/middleware/logger.ts";
 import { assertPublishableDossier } from "../src/server/validators/dossier.schema.ts";
 
@@ -73,6 +74,21 @@ function contentOfSeed(source: DossierSource) {
     authorReferenceUrl: source.author_reference_url,
     displayOrder: source.display_order,
   };
+}
+
+/**
+ * Empreinte de citation dérivée des quatre champs canoniques — identique à celle
+ * que recalcule le lecteur depuis la page. Le trigger de triangulation (0015)
+ * refuse de publier une pièce sans cette empreinte : une pièce neuve doit donc
+ * la recevoir à l'insertion, et une pièce modifiée à la mise à jour.
+ */
+function citationProofHash(source: DossierSource): string {
+  return computeCanonicalProofHash({
+    source_name: source.source_name,
+    author_or_institution: source.author_or_institution,
+    publication_date: source.publication_date,
+    exact_quote: source.exact_quote,
+  });
 }
 
 function sameContent(row: ExistingSource, source: DossierSource): boolean {
@@ -191,6 +207,7 @@ for (const candidate of targets) {
           id: source.id,
           dossierId,
           ...content,
+          archiveSha256: citationProofHash(source),
           archiveStoragePath: source.archive_storage_path,
           archiveBinarySha256: source.archive_binary_sha256,
         });
@@ -210,7 +227,7 @@ for (const candidate of targets) {
           archiveSha256:
             canonicalKeyOfExisting(match) === canonicalKeyOfSeed(source)
               ? match.archiveSha256
-              : source.archive_sha256,
+              : citationProofHash(source),
           // Contenu inchangé : la capture reste attachée. Contenu modifié :
           // on détache (sans supprimer la fiche) pour exiger une recapture.
           archiveStoragePath: unchanged

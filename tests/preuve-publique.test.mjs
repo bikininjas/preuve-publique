@@ -60,7 +60,7 @@ test("les piliers documentés se calculent sur les sources", () => {
 test("le brouillon de contrôle n'est jamais publié", () => {
   const published = publishedSeedDossiers().map((dossier) => dossier.slug);
   assert.ok(!published.includes(DRAFT_CONTROL_DOSSIER.slug));
-  assert.equal(published.length, 32);
+  assert.equal(published.length, 33);
   assert.ok(published.includes("aide-medicale-detat-securite-sociale-soins-de-confort"));
   assert.ok(published.includes("sans-papiers-et-rsa-des-leur-arrivee"));
   assert.ok(published.includes("petain-vichy-ont-ils-protege-les-juifs-francais"));
@@ -104,10 +104,21 @@ test("la recherche locale trouve le dossier par son titre et par une citation", 
     "hitler-et-les-nazis-etaient-de-gauche",
     "petain-vichy-ont-ils-protege-les-juifs-francais",
   ]);
-  for (const query of ["secteur privé 1934", "propriété privée"]) {
-    const results = searchSeedDossiers(query);
-    assert.equal(results.length, 1, `attendu un résultat pour « ${query} »`);
-  }
+  assert.deepEqual(
+    searchSeedDossiers("secteur privé 1934").map((dossier) => dossier.slug),
+    ["hitler-et-les-nazis-etaient-de-gauche"],
+  );
+  // « propriété privée » : le dossier de référence (débat sur la propriété) et le
+  // dossier sud-africain (audit foncier, « propriété foncière privée »).
+  assert.deepEqual(
+    searchSeedDossiers("propriété privée")
+      .map((dossier) => dossier.slug)
+      .sort(),
+    [
+      "hitler-et-les-nazis-etaient-de-gauche",
+      "racisme-antiblanc-systemique-afrique-du-sud-mythe",
+    ],
+  );
   // « socialiste » est partagé par le dossier de référence et le dossier
   // Macron (titre et pièces) : la requête ne renvoie plus un résultat unique.
   const socialiste = searchSeedDossiers("socialiste")
@@ -122,7 +133,15 @@ test("la recherche locale trouve le dossier par son titre et par une citation", 
 
 test("la recherche ignore casse et accents", () => {
   assert.equal(searchSeedDossiers("ETAiENT de GAUCHE").length, 1);
-  assert.equal(searchSeedDossiers("propriete privee").length, 1);
+  assert.deepEqual(
+    searchSeedDossiers("propriete privee")
+      .map((dossier) => dossier.slug)
+      .sort(),
+    [
+      "hitler-et-les-nazis-etaient-de-gauche",
+      "racisme-antiblanc-systemique-afrique-du-sud-mythe",
+    ],
+  );
 });
 
 test("chaque dossier publié porte une illustration libre avec son crédit", () => {
