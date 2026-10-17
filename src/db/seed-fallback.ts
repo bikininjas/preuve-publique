@@ -9132,6 +9132,246 @@ export const NOTES_FRAIS_PARLEMENTAIRES_DOSSIER: Dossier = {
   ],
 };
 
+export const CARTE_PRESSE_DOSSIER: Dossier = {
+  id: "95d200df-ffc9-41c5-a697-35fa219f48bd",
+  slug: "carte-presse-obligatoire-journaliste-manifestation-droit",
+  claim_title:
+    "La possession de la carte de presse est obligatoire pour exercer le métier de journaliste et couvrir des manifestations",
+  verdict: "DROIT_FONDAMENTAL_LIBRE",
+  verdict_summary:
+    "Le journalisme n’est pas une profession réglementée par un ordre : l’article L. 7111-3 du Code du travail définit le journaliste professionnel par l’exercice réel, régulier et rétribué du métier, dont il tire le principal de ses ressources — jamais par la détention d’un titre. La carte délivrée par la CCIJP est un titre d’identité professionnelle et un outil d’accès et de protection sociale, pas une autorisation préalable d’exercer : la commission elle-même écrit qu’« on peut être journaliste sans carte de presse », le ministère de la Culture le rappelle et l’AFP l’a vérifié.\n\nSur la voie publique, aucune autorité ne peut subordonner la couverture d’une manifestation à la possession de la carte ou à une accréditation discrétionnaire. Le Conseil d’État a annulé les mots « accrédités auprès des autorités » du schéma national du maintien de l’ordre : réserver le canal d’échange aux seuls journalistes ainsi accrédités, sans en préciser les conditions, permettait un « choix discrétionnaire » et portait « une atteinte disproportionnée à la liberté de la presse et à la liberté de communication » (CE, 10 juin 2021, n° 444849, point 18). Il a précisé que les journalistes « peuvent continuer d’exercer librement leur mission lors de la dispersion d’un attroupement sans être tenus de quitter les lieux » (point 20).\n\nLa liberté d’informer est protégée par l’article 11 de la Déclaration des droits de l’homme et du citoyen de 1789, intégré au bloc de constitutionnalité. Le Défenseur des droits avait déjà écarté l’idée que la sécurité des forces de l’ordre puisse fonder un « contrôle, par les forces de l’ordre, des journalistes qui pourraient ou non couvrir ces évènements » (avis n° 20-08, 30 novembre 2020) : la carte est un facilité d’accès, jamais une condition du droit de rendre compte.",
+  category: "POLITIQUE",
+  protagonists: [
+    {
+      name: "Conseil d’État",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      note: "Juridiction suprême de l’ordre administratif : sa décision n° 444849 du 10 juin 2021 censure l’accréditation discrétionnaire des journalistes prévue par le schéma national du maintien de l’ordre.",
+    },
+    {
+      name: "Commission de la carte d’identité des journalistes professionnels",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Commission_de_la_carte_d%27identit%C3%A9_des_journalistes_professionnels",
+      note: "Commission paritaire qui délivre la carte de presse : elle rappelle elle-même que la carte n’est pas obligatoire pour exercer le métier.",
+    },
+    {
+      name: "Défenseur des droits",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      note: "Autorité constitutionnelle indépendante : son avis n° 20-08 du 30 novembre 2020 juge que la sécurité ne peut justifier un contrôle des journalistes couvrant les manifestations.",
+    },
+    {
+      name: "Syndicat national des journalistes",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Syndicat_national_des_journalistes",
+      note: "Organisation requérante devant le Conseil d’État contre le schéma national du maintien de l’ordre de septembre 2020.",
+    },
+    {
+      name: "Carte de presse",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Carte_de_presse",
+      note: "Titre d’identité professionnelle délivré par la CCIJP depuis la loi du 29 mars 1935 : il atteste la qualité de journaliste, il ne l’autorise pas.",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part: "« Sans carte de la CCIJP, il est illégal de se revendiquer journaliste »",
+      status: "FAUX",
+      detail:
+        "L’article L. 7111-3 du Code du travail — codification du statut créé par la loi du 29 mars 1935 dite loi Brachard — définit le journaliste professionnel par son activité « principale, régulière et rétribuée » et par le fait qu’il en tire « le principal de ses ressources ». Aucun texte ne subordonne l’exercice du métier à la détention de la carte : la CCIJP écrit qu’« on peut être journaliste sans carte de presse » et le ministère de la Culture précise que la carte « n’est pas obligatoire pour exercer le métier de journaliste ». La carte est déclarative et constitutive d’avantages (accès, présomption de salariat), pas du droit d’informer.",
+    },
+    {
+      claim_part: "« La police peut interdire de couvrir une manifestation aux reporters sans carte de presse »",
+      status: "VIOLATION_FORMELLE",
+      detail:
+        "Le Conseil d’État a annulé les mots « accrédités auprès des autorités » du schéma national du maintien de l’ordre : une accréditation dont les conditions ne sont pas précisées ouvre un « choix discrétionnaire » des journalistes et porte « une atteinte disproportionnée à la liberté de la presse et à la liberté de communication » (CE, 10 juin 2021, n° 444849, point 18). Il a jugé que les journalistes « peuvent continuer d’exercer librement leur mission lors de la dispersion d’un attroupement sans être tenus de quitter les lieux », dès lors qu’ils ne sont pas confondus avec les manifestants (point 20), et le Défenseur des droits avait écarté tout « contrôle, par les forces de l’ordre, des journalistes qui pourraient ou non couvrir ces évènements » (avis n° 20-08). Conditionner la couverture à une carte ou à une autorisation revenait donc à appliquer une règle que le juge a formellement censurée.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-17T00:00:00.000Z",
+  illustration_url:
+    "/illustrations/carte-presse-obligatoire-journaliste-manifestation-droit.jpg",
+  illustration_credit:
+    "Photo : manifestation pour la liberté de la presse à Hanovre, 23 novembre 2019 — C.Suthorn, Wikimedia Commons (CC BY-SA 4.0)",
+  sources: [
+    {
+      id: "a74e6868-045b-42fb-b9e4-2b32f4fa0c2d",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Code du travail — article L. 7111-3 : définition du journaliste professionnel » — texte consolidé en vigueur",
+      author_or_institution: "République française — Code du travail (miroir JusticeLibre de la base LEGI)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Est journaliste professionnel toute personne qui a pour activité principale, régulière et rétribuée, l’exercice de sa profession dans une ou plusieurs entreprises de presse, publications quotidiennes et périodiques ou agences de presse et qui en tire le principal de ses ressources.",
+      context_explanation:
+        "L’article L. 7111-3 est la codification, au Code du travail, du statut défini par la loi du 29 mars 1935 dite loi Brachard. Il définit le journaliste par l’activité — principale, régulière, rétribuée — et par la ressource principale qu’il en tire : aucune carte, aucun diplôme, aucune inscription à un ordre n’est requis. La même loi de 1935 crée la carte de la CCIJP comme titre d’identité professionnelle, non comme autorisation préalable d’exercer. Citation vérifiée sur le texte consolidé reproduit par le miroir JusticeLibre de la base LEGI (version en vigueur au 17 octobre 2026).",
+      original_url: "https://justicelibre.org/loi/CT/L7111-3",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "9076526b-9441-4542-b8fa-ffb2ae9645c2",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "« Déclaration des droits de l’homme et du citoyen de 1789 — article 11 » — texte constitutionnel",
+      author_or_institution: "Assemblée nationale constituante (1789) — texte intégré au bloc de constitutionnalité",
+      publication_date: "1789-08-26",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La libre communication des pensées et des opinions est un des droits les plus précieux de l’homme : tout citoyen peut donc parler, écrire, imprimer librement, sauf à répondre de l’abus de cette liberté dans les cas déterminés par la loi.",
+      context_explanation:
+        "L’article 11 figure dans le bloc de constitutionnalité : le préambule de la Constitution de 1958 renvoie à la Déclaration de 1789, et le Conseil constitutionnel la reproduit parmi les textes de référence qu’il applique. C’est le fondement constitutionnel de la liberté de la presse et de la liberté de communication, que le Conseil d’État met en balance avec l’ordre public dans l’arrêt n° 444849. Citation vérifiée sur la reproduction officielle du Conseil constitutionnel.",
+      original_url:
+        "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/declaration-des-droits-de-l-homme-et-du-citoyen-de-1789",
+      author_reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9claration_des_droits_de_l%27homme_et_du_citoyen_de_1789",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "6923b834-9c34-4403-a13d-168945472895",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "« Conseil d’État, 10 juin 2021, n° 444849 — Syndicat national des journalistes et autres » (point 18)",
+      author_or_institution: "Conseil d’État (France)",
+      publication_date: "2021-06-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Toutefois, les énonciations contestées, en tant qu’elles réservent l’accès aux informations susceptibles d’être délivrées par la voie du canal dédié aux seuls journalistes « accrédités auprès des autorités », sans préciser la portée, les conditions et les modalités d’une telle « accréditation » susceptible, faute de précision, de permettre un choix discrétionnaire des journalistes accrédités parmi tous ceux titulaires de la carte de presse en faisant la demande, portent une atteinte disproportionnée à la liberté de la presse et à la liberté de communication.",
+      context_explanation:
+        "Point 18 de la décision, saisie par le Syndicat national des journalistes et d’autres requérants contre le schéma national du maintien de l’ordre publié en septembre 2020. Le Conseil d’État admet que le canal d’échange puisse être réservé aux titulaires de la carte de presse, mais annule l’exigence d’une « accréditation » par les autorités dont les conditions restaient indéterminées : elle ouvrait un choix discrétionnaire et portait une atteinte disproportionnée aux libertés de la presse et de communication. Au point 20, il précise que les journalistes « peuvent continuer d’exercer librement leur mission lors de la dispersion d’un attroupement sans être tenus de quitter les lieux » dès lors qu’ils ne sont pas confondus avec les manifestants. Citation vérifiée sur le texte intégral publié par le Conseil d’État (ArianeWeb).",
+      original_url: "https://www.conseil-etat.fr/fr/arianeweb/CE/decision/2021-06-10/444849",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "c60f3280-3ef0-44ea-9c57-9ad71a5c9394",
+      spectrum: "CENTRE",
+      source_name: "« Peut-on exercer sans carte de presse ? Oui, mais… » — Commission de la carte d’identité des journalistes professionnels",
+      author_or_institution: "Commission de la carte d’identité des journalistes professionnels (CCIJP)",
+      publication_date: "2023-05-15",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Or les textes du Code du travail qui définissent la qualité de journaliste ne précisent pas s’il est nécessaire d’en être titulaire pour exercer son métier. Donc oui, on peut être journaliste sans carte de presse.",
+      context_explanation:
+        "La commission paritaire qui délivre la carte de presse répond elle-même à la question : les textes qui définissent la qualité de journaliste ne prévoient pas la détention de la carte, et l’on « peut être journaliste sans carte de presse ». Elle précise que la carte reste utile — accès à certains lieux, protection sociale, présomption de salariat — mais qu’elle n’est pas un titre obligatoire. Page mise à jour le 15 mai 2023, vérifiée sur le site de la CCIJP.",
+      original_url: "https://ccijp.fr/peut-on-exercer-sans-carte-de-presse-oui-mais/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Commission_de_la_carte_d%27identit%C3%A9_des_journalistes_professionnels",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "af497d52-157b-408c-9e43-a780e7a57018",
+      spectrum: "CENTRE",
+      source_name: "« Le journaliste de presse écrite » — fiche du ministère de la Culture",
+      author_or_institution: "Ministère de la Culture (France)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "La détention d’une carte de presse n’est pas obligatoire pour exercer le métier de journaliste.",
+      context_explanation:
+        "La fiche officielle du ministère précise immédiatement l’usage de la carte : elle « vise à faciliter l’accès à son titulaire à divers lieux de façon gratuite afin d’y recueillir des informations (musées, événements, manifestations, conférences de presse, etc.) ». C’est donc un outil d’accès, et non une autorisation préalable d’exercer — la distinction exacte que le dossier documente. Citation vérifiée sur la page du ministère de la Culture.",
+      original_url: "https://www.culture.gouv.fr/thematiques/presse-ecrite/le-journaliste-de-presse-ecrite",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Minist%C3%A8re_de_la_Culture_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "d058106a-3b34-42b9-b5c4-54490cb7a224",
+      spectrum: "CENTRE",
+      source_name: "« Avis n° 20-08 du 30 novembre 2020 relatif au projet de schéma national du maintien de l’ordre » — Défenseur des droits",
+      author_or_institution: "Défenseur des droits (France)",
+      publication_date: "2020-11-30",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "la volonté de créer une communication plus fluide entre les forces de l’ordre et les journalistes lors des manifestations ou d’assurer leur sécurité ne peut aboutir à un contrôle, par les forces de l’ordre, des journalistes qui pourraient ou non couvrir ces évènements, ni à accorder un statut privilégié à certains d’entre eux en vertu d’un critère, quel qu’il soit, érigé comme tel par le ministère de l’intérieur et ne correspondant à aucune règle de la profession de journaliste.",
+      context_explanation:
+        "Avis rendu sur le projet de schéma national du maintien de l’ordre, avant sa publication. Le Défenseur des droits y écarte expressément l’idée que la fluidité de la communication ou la sécurité des journalistes puisse justifier un tri, par les forces de l’ordre, de ceux qui couvrent ou non les manifestations, ou un statut privilégié fondé sur un critère fixé par le ministère de l’Intérieur. La décision du Conseil d’État du 10 juin 2021 s’inscrit dans la même logique. Citation vérifiée sur le PDF officiel de l’avis.",
+      original_url: "https://juridique.defenseurdesdroits.fr/doc_num.php?explnum_id=20299",
+      author_reference_url: "https://fr.wikipedia.org/wiki/D%C3%A9fenseur_des_droits",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "1df945f1-1a90-4bac-a8dc-246dfb97b535",
+      spectrum: "CENTRE",
+      source_name: "« Non, la carte de presse n’est pas obligatoire pour être journaliste en France » — AFP Factuel",
+      author_or_institution: "Agence France-Presse — AFP Factuel",
+      publication_date: "2019-04-23",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Celle-ci est-elle pour autant obligatoire pour être en droit d’exercer la profession de journaliste ? « Absolument pas », répond Bénédicte Wautelet, présidente de la Commission de la carte d’identité des journalistes professionnels (CCIJP).",
+      context_explanation:
+        "Article de vérification publié le 23 avril 2019 après l’interpellation du reporter Gaspard Glanz lors de l’acte 23 des « gilets jaunes ». La présidente de la CCIJP y répond « Absolument pas » à la question de savoir si la carte est obligatoire pour exercer, et confirme plus loin qu’« on peut être journaliste et ne pas avoir de carte de presse ». L’article distingue la carte, titre d’identité professionnelle, de l’autorisation d’exercer. Vérifié sur l’instantané Wayback de la page (le site renvoie un défi aux robots).",
+      original_url:
+        "https://web.archive.org/web/20190424101312/https://factuel.afp.com/non-la-carte-de-presse-nest-pas-obligatoire-pour-etre-journaliste-en-france",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Agence_France-Presse",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "eb982918-60d5-483b-9ca2-6ce2519b3890",
+      spectrum: "GAUCHE",
+      source_name: "« Encerclements dans les manifs : le Conseil d’État met une gifle à Darmanin » — Libération",
+      author_or_institution: "Libération",
+      publication_date: "2021-06-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le Conseil d’Etat a en outre annulé l’obligation pour les journalistes d’être accrédités par les autorités pour accéder au canal d’échange dédié qui peut être mis en place par les forces de l’ordre lors des manifestations.",
+      context_explanation:
+        "Compte rendu de la décision du 10 juin 2021 : le journal relève l’annulation de l’accréditation obligatoire et rapporte la position du SNJ — « Le ministère de l’Intérieur s’entête à vouloir confondre les journalistes avec des participants alors que nous sommes de simples observateurs. Nous demandons simplement de pouvoir faire notre travail sereinement. » Vérifié sur l’instantané Wayback du 11 juin 2021 (le site renvoie un paywall aux robots).",
+      original_url:
+        "https://web.archive.org/web/20210611052551/https://www.liberation.fr/societe/police-justice/encerclements-dans-les-manifs-le-conseil-detat-met-une-gifle-a-darmanin-20210610_V5U7B42HVJCLNIJWX5KCVDIFVU/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Lib%C3%A9ration_(journal)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "bef902e9-58ae-4f4e-9895-3c72c8863ff3",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name: "« Commentaire de l’arrêt du Conseil d’État du 10 juin 2021 n° 444849 » — Revue générale du droit",
+      author_or_institution: "Revue générale du droit (doctrine)",
+      publication_date: "2021-08-06",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le Conseil d’État estime que l’imprécision dans les conditions d’accréditation, ouvrant un « choix discrétionnaire » des journalistes accrédités « porte une atteinte disproportionnée à la liberté de la presse et à la liberté de communication ».",
+      context_explanation:
+        "Commentaire savant de la décision, publié sur le blog de la Revue générale du droit le 6 août 2021. Il résume le point 18 : l’imprécision des conditions d’accréditation, qui ouvre un « choix discrétionnaire », « porte une atteinte disproportionnée à la liberté de la presse et à la liberté de communication ». Source de doctrine — non un texte officiel — utile pour établir la lecture consolidée de l’arrêt par les juristes. Vérifiée sur la page de la revue.",
+      original_url:
+        "https://www.revuegeneraledudroit.eu/blog/2021/08/06/commentaire-de-larret-du-conseil-detat-du-10-juin-2021-n-444849-syndicat-national-des-journalistes-et-autres/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -9165,6 +9405,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   RACISME_ANTIBLANC_DOSSIER,
   COLONIES_ISRAELIENNES_DOSSIER,
   NOTES_FRAIS_PARLEMENTAIRES_DOSSIER,
+  CARTE_PRESSE_DOSSIER,
   RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER,
   MASSACRE_17_OCTOBRE_DOSSIER,
   DRAFT_CONTROL_DOSSIER,

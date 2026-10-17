@@ -11,7 +11,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
 
 ## État vérifié le 16/10/2026
 
-- **Base** : quinze migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
+- **Base** : seize migrations appliquées au projet Supabase `pntkhwdosrvsdybzsicp` —
   `0001_init_preuve_publique` (`20261014133149`), `0002_hybrid_search_rpc`
   (`20261014135315`), `0003_proof_integrity` (`20261014135316`),
   `0004_categories_and_admin` (`20261014145312`), `0005_archive_records`
@@ -43,9 +43,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0015_triangulation_guard_trigger` (`20261017074423`, appliquée le 17/10 — un trigger
   PostgreSQL vérifie les quatre règles du Triangulation Guard sur chaque ligne publiée de
   `public.dossiers` ; la publication se fait désormais en deux temps : brouillon, pièces,
-  puis statut publié).
-  Trente-cinq dossiers en base :
-  trente-quatre **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
+  puis statut publié),
+  `0016_droit_fondamental_libre_verdict` (`20261017140600`, appliquée le 17/10 —
+  `verdict_status` accueille « droit fondamental libre », le verdict du dossier sur la
+  carte de presse ; les statuts de brique sont inchangés).
+  Trente-six dossiers en base :
+  trente-cinq **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (6, économie),
   l'insécurité attribuée à l'immigration (13, société, biais méthodologique), le pourvoi
   en cassation et
@@ -75,10 +78,12 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   au droit international) et la demande d'un « droit légal absolu de publier le détail
   nominatif des notes de frais des parlementaires » (9, politique, cadre réglementaire
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
-  faux), le massacre du 17 octobre 1961 et le chiffre de 300 morts (6, histoire, trompeur) —
-  et un **brouillon de contrôle RLS** ; RLS actif sur
+  faux), le massacre du 17 octobre 1961 et le chiffre de 300 morts (6, histoire, trompeur),
+  et la carte de presse présentée comme obligatoire pour exercer le métier de journaliste
+  et couvrir les manifestations (9, politique, droit fondamental libre) — et un
+  **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 313 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 322 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -530,6 +535,21 @@ pointeurs avant et après), `archive_sha256` et `ETag` inchangés ; `npm test` 1
 deux fois sur Postgres jetable avec huit scénarios de refus/acceptation, test négatif du
 trigger en production (publication sans preuve primaire refusée) et deux applications
 `--slug` consécutives sans perte de fiche.
+
+Toujours le 17 octobre 2026, un dossier **« La possession de la carte de presse est
+obligatoire pour exercer le métier de journaliste et couvrir des manifestations »** a été
+publié (9 sources, politique, verdict `DROIT_FONDAMENTAL_LIBRE`, consensus 100 %). Il
+s'appuie sur l'article L. 7111-3 du Code du travail (codification de la loi du 29 mars
+1935), sur l'article 11 de la Déclaration de 1789, sur la décision du Conseil d'État
+n° 444849 du 10 juin 2021 (accréditation discrétionnaire annulée, point 18 ; liberté de
+mouvement des journalistes pendant la dispersion, point 20), sur la CCIJP, le ministère de
+la Culture, le Défenseur des droits (avis n° 20-08), l'AFP et Libération, avec un
+commentaire de la Revue générale du droit pour la doctrine. Chaque citation a été vérifiée
+par sous-chaîne sur le texte téléchargé ; les neuf pièces sont en `URL_SNAPSHOT`. Le verdict
+`DROIT_FONDAMENTAL_LIBRE` a nécessité la migration `0016` (enum `verdict_status`),
+déployée avant l'application du seed — l'ordre sûr pour un verdict inédit. Vérifié :
+`typecheck`, `npm test` (102/102), `ETag` = `X-Proof-Integrity-Root` = `3f16443b…`, racine
+globale `38fa9b92…` sur 322 fiches, 322 sources et 0 pièce sans pointeur.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi

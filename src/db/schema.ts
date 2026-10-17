@@ -33,6 +33,7 @@ export const verdictStatus = pgEnum("verdict_status", [
   "CONFUSION_CONCEPTUELLE",
   "CADRE_REGLEMENTAIRE_RESTREINT",
   "CONTRAIRE_AU_DROIT_INTERNATIONAL",
+  "DROIT_FONDAMENTAL_LIBRE",
 ]);
 
 export const politicalSpectrum = pgEnum("political_spectrum", [

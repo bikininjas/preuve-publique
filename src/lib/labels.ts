@@ -150,6 +150,7 @@ export const VERDICT_LABELS: Record<VerdictStatus, string> = {
   CONFUSION_CONCEPTUELLE: "Confusion conceptuelle",
   CADRE_REGLEMENTAIRE_RESTREINT: "Cadre réglementaire restreint",
   CONTRAIRE_AU_DROIT_INTERNATIONAL: "Contraire au droit international",
+  DROIT_FONDAMENTAL_LIBRE: "Droit fondamental libre",
 };
 
 export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
@@ -165,6 +166,7 @@ export const VERDICT_STAMPS: Record<VerdictStatus, string> = {
   CONFUSION_CONCEPTUELLE: "CONFUSION CONCEPTUELLE",
   CADRE_REGLEMENTAIRE_RESTREINT: "CADRE RÉGLEMENTAIRE RESTREINT",
   CONTRAIRE_AU_DROIT_INTERNATIONAL: "CONTRAIRE AU DROIT INTERNATIONAL",
+  DROIT_FONDAMENTAL_LIBRE: "DROIT FONDAMENTAL LIBRE",
 };
 
 export const PREMISE_STATUS_LABELS: Record<PremiseStatus, string> = {
@@ -249,6 +251,7 @@ export const VERDICT_TONES: Record<VerdictStatus, "true" | "warn" | "false"> = {
   CONFUSION_CONCEPTUELLE: "warn",
   CADRE_REGLEMENTAIRE_RESTREINT: "warn",
   CONTRAIRE_AU_DROIT_INTERNATIONAL: "false",
+  DROIT_FONDAMENTAL_LIBRE: "true",
 };
 
 /** Cote technique du dossier : les 8 premiers caractères de son identifiant. */
