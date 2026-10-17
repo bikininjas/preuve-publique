@@ -80,10 +80,10 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
   faux), le massacre du 17 octobre 1961 et le chiffre de 300 morts (6, histoire, trompeur),
   et la carte de presse présentée comme obligatoire pour exercer le métier de journaliste
-  et couvrir les manifestations (9, politique, droit fondamental libre) — et un
+  et couvrir les manifestations (11, politique, droit fondamental libre) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 322 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 324 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -538,18 +538,19 @@ trigger en production (publication sans preuve primaire refusée) et deux applic
 
 Toujours le 17 octobre 2026, un dossier **« La possession de la carte de presse est
 obligatoire pour exercer le métier de journaliste et couvrir des manifestations »** a été
-publié (9 sources, politique, verdict `DROIT_FONDAMENTAL_LIBRE`, consensus 100 %). Il
+publié (11 sources, politique, verdict `DROIT_FONDAMENTAL_LIBRE`, consensus 100 %). Il
 s'appuie sur l'article L. 7111-3 du Code du travail (codification de la loi du 29 mars
 1935), sur l'article 11 de la Déclaration de 1789, sur la décision du Conseil d'État
 n° 444849 du 10 juin 2021 (accréditation discrétionnaire annulée, point 18 ; liberté de
 mouvement des journalistes pendant la dispersion, point 20), sur la CCIJP, le ministère de
-la Culture, le Défenseur des droits (avis n° 20-08), l'AFP et Libération, avec un
-commentaire de la Revue générale du droit pour la doctrine. Chaque citation a été vérifiée
-par sous-chaîne sur le texte téléchargé ; les neuf pièces sont en `URL_SNAPSHOT`. Le verdict
+la Culture, le Défenseur des droits (avis n° 20-08), l'AFP, Libération et Le Figaro, avec
+l'analyse officielle du Conseil d'État et un commentaire de la Revue générale du droit
+pour la doctrine. Chaque citation a été vérifiée par sous-chaîne sur le texte téléchargé ;
+les onze pièces sont en `URL_SNAPSHOT`. Le verdict
 `DROIT_FONDAMENTAL_LIBRE` a nécessité la migration `0016` (enum `verdict_status`),
 déployée avant l'application du seed — l'ordre sûr pour un verdict inédit. Vérifié :
-`typecheck`, `npm test` (105/105), `ETag` = `X-Proof-Integrity-Root` = `3f16443b…`, racine
-globale `38fa9b92…` sur 322 fiches, 322 sources et 0 pièce sans pointeur.
+`typecheck`, `npm test` (105/105), `ETag` = `X-Proof-Integrity-Root` = `59589489…` ;
+11 sources du dossier, 324 fiches pour 324 sources et 0 pièce sans pointeur.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi

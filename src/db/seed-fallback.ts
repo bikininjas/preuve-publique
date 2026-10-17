@@ -9139,7 +9139,7 @@ export const CARTE_PRESSE_DOSSIER: Dossier = {
     "La possession de la carte de presse est obligatoire pour exercer le métier de journaliste et couvrir des manifestations",
   verdict: "DROIT_FONDAMENTAL_LIBRE",
   verdict_summary:
-    "Le journalisme n’est pas une profession réglementée par un ordre : l’article L. 7111-3 du Code du travail définit le journaliste professionnel par l’exercice réel, régulier et rétribué du métier, dont il tire le principal de ses ressources — jamais par la détention d’un titre. La carte délivrée par la CCIJP est un titre d’identité professionnelle et un outil d’accès et de protection sociale, pas une autorisation préalable d’exercer : la commission elle-même écrit qu’« on peut être journaliste sans carte de presse », le ministère de la Culture le rappelle et l’AFP l’a vérifié.\n\nSur la voie publique, aucune autorité ne peut subordonner la couverture d’une manifestation à la possession de la carte ou à une accréditation discrétionnaire. Le Conseil d’État a annulé les mots « accrédités auprès des autorités » du schéma national du maintien de l’ordre : réserver le canal d’échange aux seuls journalistes ainsi accrédités, sans en préciser les conditions, permettait un « choix discrétionnaire » et portait « une atteinte disproportionnée à la liberté de la presse et à la liberté de communication » (CE, 10 juin 2021, n° 444849, point 18). Il a précisé que les journalistes « peuvent continuer d’exercer librement leur mission lors de la dispersion d’un attroupement sans être tenus de quitter les lieux » (point 20).\n\nLa liberté d’informer est protégée par l’article 11 de la Déclaration des droits de l’homme et du citoyen de 1789, intégré au bloc de constitutionnalité. Le Défenseur des droits avait déjà écarté l’idée que la sécurité des forces de l’ordre puisse fonder un « contrôle, par les forces de l’ordre, des journalistes qui pourraient ou non couvrir ces évènements » (avis n° 20-08, 30 novembre 2020) : la carte est un facilité d’accès, jamais une condition du droit de rendre compte.",
+    "Le journalisme n’est pas une profession réglementée par un ordre : l’article L. 7111-3 du Code du travail définit le journaliste professionnel par l’exercice réel, régulier et rétribué du métier, dont il tire le principal de ses ressources — jamais par la détention d’un titre. La carte délivrée par la CCIJP est un titre d’identité professionnelle et un outil d’accès et de protection sociale, pas une autorisation préalable d’exercer : la commission elle-même écrit qu’« on peut être journaliste sans carte de presse », le ministère de la Culture le rappelle et l’AFP l’a vérifié.\n\nSur la voie publique, aucune autorité ne peut subordonner la couverture d’une manifestation à la possession de la carte ou à une accréditation discrétionnaire. Le Conseil d’État a annulé les mots « accrédités auprès des autorités » du schéma national du maintien de l’ordre : réserver le canal d’échange aux seuls journalistes ainsi accrédités, sans en préciser les conditions, permettait un « choix discrétionnaire » et portait « une atteinte disproportionnée à la liberté de la presse et à la liberté de communication » (CE, 10 juin 2021, n° 444849, point 18). Il a précisé que les journalistes « peuvent continuer d’exercer librement leur mission lors de la dispersion d’un attroupement sans être tenus de quitter les lieux » (point 20). Son analyse officielle rappelle que « l’exercice de la profession de journaliste n’est pas subordonné à la détention d’une telle carte ».\n\nLa liberté d’informer est protégée par l’article 11 de la Déclaration des droits de l’homme et du citoyen de 1789, intégré au bloc de constitutionnalité. Le Défenseur des droits avait déjà écarté l’idée que la sécurité des forces de l’ordre puisse fonder un « contrôle, par les forces de l’ordre, des journalistes qui pourraient ou non couvrir ces évènements » (avis n° 20-08, 30 novembre 2020) : la carte est un facilité d’accès, jamais une condition du droit de rendre compte.",
   category: "POLITIQUE",
   protagonists: [
     {
@@ -9368,6 +9368,43 @@ export const CARTE_PRESSE_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 9,
+    },
+    {
+      id: "d33b780a-6747-40b5-9831-dc4129efe34d",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name: "« Maintien de l’ordre : le Conseil d’État juge illégale la technique des nasses lors des manifestations » — Le Figaro (10 juin 2021)",
+      author_or_institution: "Le Figaro (dépêche AFP)",
+      publication_date: "2021-06-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Plus haute juridiction de l’ordre administratif, le Conseil d’État a aussi annulé les accréditations demandées aux journalistes « pour accéder aux informations en temps réel », ainsi que les conditions de port d’équipements de protection.",
+      context_explanation:
+        "Le quotidien de droite rend compte de la décision du 10 juin 2021 et relève, parmi les dispositions annulées, l’accréditation exigée des journalistes pour accéder au canal d’information en temps réel. La pièce documente la lecture de l’arrêt par un média non favorable par principe aux revendications syndicales : la censure de l’accréditation n’est pas présentée comme une position partisane, mais comme l’application du droit. Vérifié sur la page du Figaro.",
+      original_url:
+        "https://www.lefigaro.fr/flash-actu/le-conseil-d-etat-juge-illegale-la-technique-des-nasses-lors-des-manifestations-20210610",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Le_Figaro",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
+    {
+      id: "c49fe17a-a286-4748-8e95-ed8482c92932",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name: "« Décision n° 444849 — analyse officielle » — Conseil d’État, ArianeWeb",
+      author_or_institution: "Conseil d’État (France)",
+      publication_date: "2021-06-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "S’il est vrai que l’exercice de la profession de journaliste n’est pas subordonné à la détention d’une telle carte et qu’une proportion importante de journalistes exerce la profession sans en être titulaire, le ministre de l’intérieur pouvait légalement, compte tenu des contraintes opérationnelles auxquelles sont soumises les forces de l’ordre à l’occasion des manifestations sur la voie publique et en l’absence d’autre justificatif prévu par la loi permettant d’attester objectivement de l’exercice de la profession, prévoir de réserver l’accès au canal dédié prévu au point 2.2.2 aux journalistes titulaires de la carte d’identité professionnelle.",
+      context_explanation:
+        "Analyse officielle de la décision publiée par le Conseil d’État. Elle énonce expressément que « l’exercice de la profession de journaliste n’est pas subordonné à la détention » de la carte, tout en validant la possibilité de réserver aux titulaires le canal d’échange dédié — une simple facilité d’accès, pas une condition pour couvrir une manifestation. C’est la confirmation, par le juge lui-même, de la distinction que porte le dossier. Vérifiée sur la page ArianeWeb du Conseil d’État.",
+      original_url: "https://www.conseil-etat.fr/fr/arianeweb/CE/analyse/2021-06-10/444849",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_d%27%C3%89tat_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 11,
     },
   ],
 };
