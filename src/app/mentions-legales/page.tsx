@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+import ResetConsentButton from "@/components/ResetConsentButton";
+
 export const metadata: Metadata = {
   title: "Mentions légales",
   description:
@@ -139,14 +141,25 @@ export default function MentionsLegalesPage() {
       <LegalSection index="05" title="Cookies et stockage local">
         <p>
           La navigation publique fonctionne <span className="text-ink">sans aucun cookie</span>{" "}
-          : aucun consentement n&apos;étant requis, aucune bannière n&apos;est affichée. Seules
-          les sessions de l&apos;espace de rédaction (réservé à l&apos;éditeur) utilisent des
-          cookies techniques.
+          tant que vous n&apos;avez pas accepté la mesure d&apos;audience : dans ce cas,
+          aucun script Google n&apos;est chargé et aucune bannière ne s&apos;affiche. Si
+          vous acceptez, Google Analytics 4 (identifiant public{" "}
+          <span className="font-mono text-[13px]">G-PZD15S5KZ2</span>) dépose des cookies de
+          mesure — pages vues, type d&apos;appareil, provenance de la visite — pour savoir
+          quels dossiers sont lus et améliorer le site. Ces données ne sont ni revendues ni
+          utilisées à des fins publicitaires, et l&apos;adresse IP n&apos;est pas conservée
+          par l&apos;éditeur. Le choix est mémorisé dans le stockage local de votre
+          navigateur.
+        </p>
+        <p>
+          Seules les sessions de l&apos;espace de rédaction (réservé à l&apos;éditeur)
+          utilisent des cookies techniques, indépendants de ce choix.
         </p>
         <p>
           Le choix de thème (clair ou sombre) est conservé dans le stockage local de votre
           navigateur ; il n&apos;est jamais transmis au serveur.
         </p>
+        <ResetConsentButton />
       </LegalSection>
 
       <LegalSection index="06" title="Propriété intellectuelle">

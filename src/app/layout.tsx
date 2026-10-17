@@ -3,6 +3,7 @@ import { JetBrains_Mono, Newsreader, Space_Grotesk } from "next/font/google";
 
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import AnalyticsConsent from "@/components/AnalyticsConsent";
 
 import "./globals.css";
 
@@ -98,6 +99,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <AnalyticsConsent />
       </body>
     </html>
   );

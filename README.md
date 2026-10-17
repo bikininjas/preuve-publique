@@ -1176,6 +1176,11 @@ Les variables d'exécution `SUPABASE_URL` et `SUPABASE_PUBLISHABLE_KEY` sont inj
 depuis les secrets existants (`NEXT_PUBLIC_SUPABASE_URL`,
 `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) ; le conteneur ne reçoit aucune clé privilégiée.
 
+Mesure d'audience : Google Analytics 4 est chargé **uniquement après consentement**
+(bandeau « Accepter / Refuser », choix mémorisé dans le stockage local, retrait possible
+depuis les mentions légales). L'identifiant de mesure `G-PZD15S5KZ2` est une donnée
+publique ; il peut être surchargé au build par `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+
 ## Limites assumées
 
 - Captures : les 262 pièces publiées ont leur fiche déposée en base (une par pièce :
