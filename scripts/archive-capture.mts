@@ -24,6 +24,10 @@
  *   node scripts/archive-capture.mts                 # contrôle (aucune écriture)
  *   node scripts/archive-capture.mts --fetch         # tente aussi un instantané des URL
  *   node scripts/archive-capture.mts --yes           # dépose les fiches et met la base à jour
+ *   node scripts/archive-capture.mts --fetch --yes --slug=<slug>
+ *   node scripts/archive-capture.mts --fetch --yes --source=<uuid>[,<uuid>…]
+ *                                                    # capture ciblée : seules ces pièces
+ *                                                    # sont réécrites, pas tout le dossier
  */
 import { createHash } from "node:crypto";
 
@@ -70,6 +74,66 @@ function sha256Hex(input: string | Uint8Array): string {
   return createHash("sha256").update(input).digest("hex");
 }
 
+const BROWSER_UA =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+const ACCEPT_HEADER = "text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8";
+
+/* Certains pare-feux (Cloudflare, WAF) bloquent l'empreinte TLS de Node alors
+   qu'ils servent la page à curl : la réponse capturée reste la réponse publique
+   de la page, sans contourner aucune authentification. */
+async function curlFallback(url: string): Promise<CaptureOutcome> {
+  const { execFile } = await import("node:child_process");
+  const { promisify } = await import("node:util");
+  const { readFile, unlink } = await import("node:fs/promises");
+  const { join } = await import("node:path");
+  const { tmpdir } = await import("node:os");
+  const run = promisify(execFile);
+  const target = join(tmpdir(), `pp-curl-${Date.now()}-${Math.random().toString(16).slice(2)}.bin`);
+  try {
+    const { stdout } = await run(
+      "curl",
+      [
+        "-sL",
+        "--compressed",
+        "--max-time",
+        "25",
+        "-A",
+        BROWSER_UA,
+        "-H",
+        `accept: ${ACCEPT_HEADER}`,
+        "-o",
+        target,
+        "-w",
+        "%{http_code}\t%{content_type}",
+        url,
+      ],
+      { encoding: "utf8" },
+    );
+    const [codeRaw, contentTypeRaw] = stdout.trim().split("\t");
+    const status = Number(codeRaw);
+    const bytes = await readFile(target);
+    if (!status || status >= 400) {
+      return { kind: "URL_UNAVAILABLE", url, reason: `HTTP ${codeRaw || "?"} (curl)` };
+    }
+    return {
+      kind: "URL_SNAPSHOT",
+      url,
+      status,
+      contentType: contentTypeRaw || null,
+      bytes: bytes.byteLength,
+      sha256: sha256Hex(bytes),
+    };
+  } catch (error) {
+    return {
+      kind: "URL_UNAVAILABLE",
+      url,
+      reason: `curl: ${error instanceof Error ? error.message : "échec"}`,
+    };
+  } finally {
+    await unlink(target).catch(() => undefined);
+  }
+}
+
 async function fetchOutcome(url: string | null): Promise<CaptureOutcome> {
   if (url === null) {
     return { kind: "METADATA_ONLY", reason: "aucune URL d'origine documentée" };
@@ -113,7 +177,10 @@ async function fetchOutcome(url: string | null): Promise<CaptureOutcome> {
     }
     const bytes = new Uint8Array(await response.arrayBuffer());
     if (!response.ok) {
-      return { kind: "URL_UNAVAILABLE", url, reason: `HTTP ${response.status}` };
+      const fallback = await curlFallback(url);
+      return fallback.kind === "URL_SNAPSHOT"
+        ? fallback
+        : { kind: "URL_UNAVAILABLE", url, reason: `HTTP ${response.status}` };
     }
     return {
       kind: "URL_SNAPSHOT",
@@ -124,6 +191,10 @@ async function fetchOutcome(url: string | null): Promise<CaptureOutcome> {
       sha256: sha256Hex(bytes),
     };
   } catch (error) {
+    const fallback = await curlFallback(url);
+    if (fallback.kind === "URL_SNAPSHOT") {
+      return fallback;
+    }
     return {
       kind: "URL_UNAVAILABLE",
       url,
