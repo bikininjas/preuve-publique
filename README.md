@@ -548,7 +548,7 @@ commentaire de la Revue générale du droit pour la doctrine. Chaque citation a 
 par sous-chaîne sur le texte téléchargé ; les neuf pièces sont en `URL_SNAPSHOT`. Le verdict
 `DROIT_FONDAMENTAL_LIBRE` a nécessité la migration `0016` (enum `verdict_status`),
 déployée avant l'application du seed — l'ordre sûr pour un verdict inédit. Vérifié :
-`typecheck`, `npm test` (102/102), `ETag` = `X-Proof-Integrity-Root` = `3f16443b…`, racine
+`typecheck`, `npm test` (105/105), `ETag` = `X-Proof-Integrity-Root` = `3f16443b…`, racine
 globale `38fa9b92…` sur 322 fiches, 322 sources et 0 pièce sans pointeur.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
