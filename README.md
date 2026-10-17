@@ -73,7 +73,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 287 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 302 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -460,7 +460,23 @@ avec le Réseau Action Climat pour la gauche). Cinq passes de capture (10, 9, 9,
 8 instantanés réseau) ; racines d'intégrité `54cd070d…`, `c648375b…`, `8414f5ae…`,
 `271c0ce6…` et `77eb0450…` = `ETag` et `X-Proof-Integrity-Root` relevés en ligne ;
 `/api/verify` vérifié sur chaque pièce ajoutée ; racine globale recalculée sur les
-287 fiches de l'état courant : `22c0b808e9ad9c18…`.
+287 fiches de cet état : `22c0b808e9ad9c18…`.
+
+Le 17 octobre 2026, le chantier « dossiers trop courts » a étoffé trois dossiers :
+« Les juges empêchent l'expulsion des étrangers délinquants » (six → dix sources :
+données du ministère de l'Intérieur sur les 145 107 mesures prononcées en 2024, note
+sénatoriale du PLF 2026 sur les 42 % d'expulsions exécutées, séance thématique de
+l'Assemblée nationale sur les OQTF, vérification de CheckNews) ; « L'immigration est la
+cause de la hausse des crimes et délits » (six → treize sources en base, le seed en
+portait déjà neuf : bilan SSMSI 2025, fact-check AFP des interprétations trompeuses,
+revue de littérature DIAL 2024, méta-analyse Ousey & Kubrin 2018) ; « L'agression de
+Bordeaux a été commise par un clandestin sous OQTF » (six → dix sources : condamnation
+de droit commun par Sud Ouest et Le Parisien, nationalité française établie par
+Rue89Bordeaux et Europe 1). Captures de 10, 13 et 10 instantanés réseau ; racines
+d'intégrité `78c1865e…`, `e91cd966…` et `06cf8929…` = `ETag` et
+`X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` vérifié sur chaque pièce
+ajoutée ; racine globale recalculée sur les 302 fiches de l'état courant :
+`f14fc1d6b491cad1…`.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi
