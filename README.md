@@ -45,35 +45,35 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `public.dossiers` ; la publication se fait désormais en deux temps : brouillon, pièces,
   puis statut publié).
   Trente-cinq dossiers en base :
-  trente-quatre **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
-  sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
-  l'insécurité attribuée à l'immigration (9, société, biais méthodologique), le pourvoi
+  trente-quatre **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
+  sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (6, économie),
+  l'insécurité attribuée à l'immigration (13, société, biais méthodologique), le pourvoi
   en cassation et
   l'inéligibilité des élus (10, politique), l'affaire des assistants RN (11, politique),
-  l'expulsion des étrangers délinquants (6, politique), le « laxisme » des juges (8,
+  l'expulsion des étrangers délinquants (10, politique), le « laxisme » des juges (8,
   société), l'allocation pour demandeur d'asile (7, société), les aides sociales des
   sans-papiers (7, société), le minimum vieillesse (ASPA) versé aux étrangers (13,
-  société), l'agression de Bordeaux attribuée à un « clandestin sous OQTF » (6, faits
+  société), l'agression de Bordeaux attribuée à un « clandestin sous OQTF » (10, faits
   divers), l'incendie de l'église de Saint-Omer attribué à un « attentat islamiste »
   (8, faits divers), le revenu disponible d'un couple au RSA comparé à un couple au
   SMIC (8, économie), la comparaison entre fraude sociale et fraude fiscale (7,
   économie), les discriminations à l'embauche liées à l'origine (7, société) et la thèse
   de races biologiques humaines (8, société), l'homoparentalité et le développement des
-  enfants (7, société), la « théorie du genre » à l'école (10, société) et les deux
+  enfants (10, société), la « théorie du genre » à l'école (10, société) et les deux
   dossiers Religion — l'union du prophète de l'islam avec Aïcha qualifiée de
   « pédophilie » (9, Religion, anachronisme historique) et « l'islam, seule religion
   scripturairement homophobe et transphobe » (12, Religion, généralisation abusive), le
-  réchauffement climatique attribué à un « cycle solaire » (9, environnement), la voiture
-  électrique comparée au thermique en analyse de cycle de vie (7, environnement) et
+  réchauffement climatique attribué à un « cycle solaire » (10, environnement), la voiture
+  électrique comparée au thermique en analyse de cycle de vie (8, environnement) et
   l'OTAN accusée d'avoir « violé » un traité de 1990 promettant de ne pas s'élargir à
-  l'Est (7, international), la carte mondiale du QI censée prouver une
+  l'Est (9, international), la carte mondiale du QI censée prouver une
   « infériorité cognitive biologique » des populations africaines (12, société) et la
   théorie du « Grand Remplacement » présentée comme la preuve d'un plan ourdi par des
   élites (12, société, conspirationniste), la thèse d'une politique « socialiste »
   d'Emmanuel Macron et de ses gouvernements depuis 2017 (12, politique, absurde), la thèse d'un racisme « anti-blanc systémique » (10, société, confusion conceptuelle),
   la revendication de la licéité des colonies israéliennes (12, international, contraire
   au droit international) et la demande d'un « droit légal absolu de publier le détail
-  nominatif des notes de frais des parlementaires » (8, politique, cadre réglementaire
+  nominatif des notes de frais des parlementaires » (9, politique, cadre réglementaire
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
   faux), le massacre du 17 octobre 1961 et le chiffre de 300 morts (6, histoire, trompeur) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
@@ -1183,11 +1183,13 @@ publique ; il peut être surchargé au build par `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 
 ## Limites assumées
 
-- Captures : les 262 pièces publiées ont leur fiche déposée en base (une par pièce :
-  222 `URL_SNAPSHOT`, 37 `URL_UNAVAILABLE` — Légifrance, OCDE, préface de Stanford,
-  PNAS, NOAA, NPR ou Le Vent Se Lève répondant 403 ou 429 aux clients non navigateurs — et
-  3 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket `immutable-archives`
-  n'a pas eu lieu, faute d'accès privilégié.
+- Captures : les 313 pièces publiées ont leur fiche déposée en base (une par pièce :
+  306 `URL_SNAPSHOT`, 7 `URL_UNAVAILABLE` — Le Monde, Libération, Duke University Press,
+  Science, Annual Reviews, le SSMSI et Statistics South Africa répondant 403/429 aux
+  clients non navigateurs et n'ayant aucun instantané exploitable ; les URL bloquées sont
+  remplacées par des permaliens Wayback, Wikisource ou Justicelibre quand il en existe,
+  et 0 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket
+  `immutable-archives` n'a pas eu lieu, faute d'accès privilégié.
 - Recherche : la branche vectorielle de la RPC ne ramène rien tant qu'aucun embedding
   n'est calculé — aucune similarité n'est simulée.
 - Le guard est appliqué par le pipeline de publication, pas par un déclencheur en base.
