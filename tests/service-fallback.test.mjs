@@ -42,7 +42,7 @@ test("le repli local sert des empreintes dérivées, identiques à celles de la 
   assert.equal(dossier.ok, true);
   assert.equal(dossier.origin, "seed");
   assert.ok(dossier.value !== null);
-  assert.equal(dossier.value.sources.length, 8);
+  assert.equal(dossier.value.sources.length, 10);
   for (const source of dossier.value.sources) {
     assert.match(source.archive_sha256, /^[0-9a-f]{64}$/);
     assert.equal(source.archive_sha256, computeCanonicalProofHash(source, null));

@@ -47,12 +47,14 @@ test("les piliers documentés se calculent sur les sources", () => {
     [...covered].sort(),
     [
       "ARCHIVE_PRIMAIRE",
+      "CENTRE",
       "CONSENSUS_ACADEMIQUE",
+      "DONNEES_BRUTES_OFFICIELLES",
       "DROITE_LIBERALE_CONSERVATRICE",
       "GAUCHE",
     ].sort(),
   );
-  assert.equal(covered.length, 4);
+  assert.equal(covered.length, 6);
 });
 
 test("le brouillon de contrôle n'est jamais publié", () => {

@@ -422,6 +422,50 @@ export const REFERENCE_DOSSIER: Dossier = {
       archive_binary_sha256: null,
       display_order: 8,
     },
+    {
+      id: "891d3e67-eafb-4c20-a5ae-15fc76cec8fc",
+      spectrum: "CENTRE",
+      source_name:
+        "« The Nazi Party » — Holocaust Encyclopedia, United States Holocaust Memorial Museum",
+      author_or_institution:
+        "United States Holocaust Memorial Museum (USHMM)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "The Nazi Party was the radical far-right movement and political party led by Adolf Hitler. Its formal name was the National Socialist German Workers' Party (Nationalsozialistische deutsche Arbeiterpartei or NSDAP). Nazi ideology was racist, nationalist, and anti-democratic. It was violently antisemitic and anti-Marxist.",
+      context_explanation:
+        "Musée mémorial fédéral américain (Washington) : sa notice de référence qualifie le NSDAP d'« extrême droite radicale », idéologiquement raciste, nationaliste, antidémocratique, violemment antisémite et antimarxiste. Le mot « socialiste » du sigle ne fait pas de ce parti une formation de gauche : l'idéologie nazie s'est construite contre le marxisme. Citation en anglais, langue de la notice.",
+      original_url:
+        "https://encyclopedia.ushmm.org/content/en/article/the-nazi-party-1",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/United_States_Holocaust_Memorial_Museum",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+    {
+      id: "8e7dfbb9-e0c3-4232-b55b-00f402dafdab",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Benutzung und Auskunft aus der digitalisierten NSDAP-Mitgliederkartei » — registre des membres du NSDAP, Bundesarchiv",
+      author_or_institution:
+        "Bundesarchiv (Archives fédérales d'Allemagne)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Die NSDAP-Mitgliederkartei liegt mittlerweile in vollständig digitalisierter Form vor. Aufgrund der enormen Masse von über 12,7 Millionen Digitalisaten ist allerdings keine einfache Volltextrecherche in der Datenbank möglich.",
+      context_explanation:
+        "Registre administratif : les Archives fédérales conservent la carte des membres du NSDAP — plus de 12,7 millions de fiches numérisées. Ce fichier de masse documente l'encadrement d'un parti d'État, l'adhésion y étant un instrument de carrière sous le régime, et non une organisation ouvrière de gauche. Les délais de protection (Schutzfristen) courent jusqu'en 2027. Citation en allemand, langue du document.",
+      original_url:
+        "https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/benutzung-und-auskunft-aus-der-digitalisierten-nsdap-mitgliederkartei/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Archives_f%C3%A9d%C3%A9rales_(Allemagne)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
   ],
 };
 
@@ -5962,6 +6006,28 @@ export const CLIMAT_CYCLE_SOLAIRE_DOSSIER: Dossier = {
       archive_binary_sha256: null,
       display_order: 8,
     },
+    {
+      id: "a86996f9-6b6b-4bcc-bfa0-7ac130b82dca",
+      spectrum: "CENTRE",
+      source_name:
+        "« Ce que le Soleil nous cache encore » — CNRS Le journal (avril 2014)",
+      author_or_institution:
+        "CNRS (Centre national de la recherche scientifique)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Elle s'élève à 1 362 watts par m² et varie de 0,1 % au cours du cycle solaire qui dure onze ans. C'est trop peu pour expliquer de grands bouleversements climatiques",
+      context_explanation:
+        "Article de vulgarisation du CNRS sur la mission Picard : l'énergie solaire reçue varie de 0,1 % sur le cycle de onze ans, « trop peu pour expliquer de grands bouleversements climatiques » ; le responsable scientifique de la mission conclut : « Il est clair que la hausse récente des températures est due au rejet de gaz à effet de serre, pas au Soleil. » Les instruments du satellite montrent que les paramètres solaires ne sont pas liés à l'intensité de l'activité solaire.",
+      original_url:
+        "https://lejournal.cnrs.fr/articles/ce-que-le-soleil-nous-cache-encore",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Centre_national_de_la_recherche_scientifique",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
   ],
 };
 
@@ -6184,6 +6250,28 @@ export const VOITURE_ELECTRIQUE_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 7,
+    },
+    {
+      id: "5799a9f6-2205-4b43-bf52-7483629c101e",
+      spectrum: "GAUCHE",
+      source_name:
+        "« Répondre aux idées reçues sur le climat » — Réseau Action Climat",
+      author_or_institution:
+        "Réseau Action Climat (fédération d'associations environnementales)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En France, de la construction à la fin d'utilisation, les émissions de gaz à effet de serre de la voiture électrique sont 2 à 5 fois plus faibles que celles de la voiture thermique",
+      context_explanation:
+        "Fédération d'associations climatiques (France Nature Environnement, WWF, Fondation Nicolas Hulot, CLER…) : sur le cycle de vie complet et pour un usage en France, les émissions de la voiture électrique sont 2 à 5 fois plus faibles que celles de la thermique ; la production de la batterie émet bien du CO2 — « ce n'est donc pas un véhicule propre » — mais le bilan global reste meilleur, et la réduction de la taille des batteries l'améliore encore.",
+      original_url:
+        "https://reseauactionclimat.org/repondre-aux-idees-recues-sur-les-solutions/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/R%C3%A9seau_Action_Climat",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
     },
   ],
 };
@@ -6454,6 +6542,50 @@ export const OTAN_RUSSIE_1990_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 7,
+    },
+    {
+      id: "efe84967-4bd2-4f6d-9b3f-a4f9600755e1",
+      spectrum: "CENTRE",
+      source_name:
+        "« L'OTAN a-t-elle promis à Moscou de ne jamais s'ouvrir à l'Ukraine ? Ou le contraire ? » — RTBF (12 janvier 2022)",
+      author_or_institution:
+        "RTBF Actus (service public belge)",
+      publication_date: "2022-01-12",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Selon les témoignages recueillis auprès des dirigeants de l'époque impliqués dans les négociations entre l'Allemagne de l'Ouest, la France, la Grande-Bretagne, les États-Unis et l'URSS au sujet de la réunification de l'Allemagne, personne n'a jamais promis quoi que ce soit par écrit.",
+      context_explanation:
+        "Décryptage du service public belge : aucune promesse écrite de non-élargissement n'a été faite en 1990 — le traité signé en septembre 1990 « est le seul document écrit et il ne reprend aucune promesse ». Les mémorandums compilés par le National Security Archive restituent des discussions orales (« not one inch eastward »), pas un engagement contractuel.",
+      original_url:
+        "https://www.rtbf.be/article/l-otan-a-t-elle-promis-a-moscou-de-ne-jamais-s-ouvrir-a-l-ukraine-ou-le-contraire-10913127",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Radio-t%C3%A9l%C3%A9vision_belge_de_la_Communaut%C3%A9_fran%C3%A7aise",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "8c1789f5-5ca9-4caa-a4e3-daa3ccbc0718",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« NATO member countries » — registre officiel des membres et des dates d'adhésion",
+      author_or_institution:
+        "Organisation du traité de l'Atlantique nord (OTAN)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "At present, NATO has 32 member countries. These countries, called NATO Allies, are sovereign states that come together through NATO to discuss political and security issues and make collective decisions by consensus.",
+      context_explanation:
+        "Registre officiel de l'Alliance : 32 membres, créée par 12 pays le 4 avril 1949, avec les dates d'adhésion de chaque État (vagues de 1999, 2004, 2009, 2017, 2020, 2023, 2024). Aucune clause de non-élargissement n'y figure : le registre atteste au contraire que l'élargissement postérieur à 1990 s'est poursuivi, sans traité de 1990 l'interdisant. Citation en anglais, langue du registre.",
+      original_url:
+        "https://www.nato.int/cps/en/natohq/nato_countries.htm",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Organisation_du_trait%C3%A9_de_l%27Atlantique_nord",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
     },
   ],
 };
@@ -8270,6 +8402,28 @@ export const NOTES_FRAIS_PARLEMENTAIRES_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 7,
+    },
+    {
+      id: "71b500f9-1134-461d-aac5-be405fc1175f",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Frais de mandat : les députés restituent plus de 10 millions d'euros aux contribuables — Contribuables Associés (1er juin 2023)",
+      author_or_institution:
+        "Jean-Baptiste Leon (Contribuables Associés)",
+      publication_date: "2023-06-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "En 2018, après avoir dénoncé plusieurs abus, Contribuables Associés est parvenu à faire supprimer l'Indemnité représentative de frais de mandat (IRFM), dont l'usage n'était pas contrôlé. Elle a été remplacée par une avance sur frais de mandat (AFM), mieux cadrée, et dont l'usage doit être justifié (factures).",
+      context_explanation:
+        "Association de contribuables de droite libérale, à l'origine de la suppression de l'IRFM : elle décrit le régime actuel — AFM justifiée sur factures, tolérance de 600 € par mois sans justificatif, contrôles du déontologue, restitution de 10 M€ en 2022 et manquements limités à 1,84 % des dépenses contrôlées. La transparence est réelle mais canalisée : les justificatifs restent contrôlés par les organes de déontologie, sans publication nominative.",
+      original_url:
+        "https://contribuablesassocies.org/2023/06/01/frais-de-mandat-les-deputes-restituent-plus-de-10-millions-d-euros-aux-contribuables/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Contribuables_associ%C3%A9s",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
     },
   ],
 };

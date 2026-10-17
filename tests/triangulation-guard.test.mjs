@@ -59,7 +59,10 @@ test("un dossier publié sans validation académique est refusé", () => {
 test("un dossier publié sans pluralisme politique est refusé", () => {
   const codes = issuesOf((dossier) => {
     dossier.sources = dossier.sources.filter(
-      (source) => source.spectrum !== "DROITE_LIBERALE_CONSERVATRICE" && source.spectrum !== "GAUCHE",
+      (source) =>
+        source.spectrum !== "DROITE_LIBERALE_CONSERVATRICE" &&
+        source.spectrum !== "GAUCHE" &&
+        source.spectrum !== "CENTRE",
     );
     dossier.sources.push({
       ...dossier.sources[0],

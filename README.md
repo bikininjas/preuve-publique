@@ -72,7 +72,7 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   restreint) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 280 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 287 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -445,7 +445,21 @@ Fondation Jean-Jaurès (18 septembre 2024) et fact-check de franceinfo des « 54
 (28 août 2023). Sept pièces recapturées (sept instantanés réseau, passe
 `df991138dd161b17…`) ; racine d'intégrité du dossier `7e3371ea…` = `ETag` et
 `X-Proof-Integrity-Root` relevés en ligne ; `/api/verify` et `/api/archives` vérifiés ;
-racine globale recalculée sur les 280 fiches de l'état courant : `ef57d2f9db870008…`.
+racine globale recalculée sur les 280 fiches de cet état : `ef57d2f9db870008…`.
+
+Le même jour, le chantier « piliers éteints » a porté cinq dossiers à **six piliers sur
+six** : « Hitler et les nazis étaient de gauche » (huit → dix sources, avec le United
+States Holocaust Memorial Museum pour le centre et le registre des 12,7 millions de
+fiches du Bundesarchiv pour les données), « L'OTAN a violé un traité de 1990 » (sept →
+neuf, avec la RTBF pour le centre et le registre officiel des membres de l'OTAN pour les
+données), « Notes de frais des parlementaires » (huit → neuf, avec Contribuables
+Associés pour la droite), « Le réchauffement n'est qu'un cycle solaire » (neuf → dix,
+avec le CNRS pour le centre) et « La voiture électrique pollue autant » (sept → huit,
+avec le Réseau Action Climat pour la gauche). Cinq passes de capture (10, 9, 9, 10 et
+8 instantanés réseau) ; racines d'intégrité `54cd070d…`, `c648375b…`, `8414f5ae…`,
+`271c0ce6…` et `77eb0450…` = `ETag` et `X-Proof-Integrity-Root` relevés en ligne ;
+`/api/verify` vérifié sur chaque pièce ajoutée ; racine globale recalculée sur les
+287 fiches de l'état courant : `22c0b808e9ad9c18…`.
 
 Toujours le 16/10/2026, la page **Mentions légales** a été ajoutée — édition non
 professionnelle (renvoi à l'hébergeur et contact direct, article 6-III de la loi
