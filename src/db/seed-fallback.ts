@@ -5467,16 +5467,17 @@ export const RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER: Dossier = {
 };
 
 /**
- * Histoire : « Le massacre de 300 Algériens jetés dans la Seine le 17 octobre
- * 1961 relève du mythe ». La répression est un fait reconnu (rapport Mandelkern,
- * déclaration présidentielle de 2012) ; le chiffre exact, lui, reste discuté.
+ * Histoire : « Le massacre du 17 octobre 1961 à Paris : de la censure préfectorale
+ * à la vérité historique ». La répression, longtemps occultée, est documentée par
+ * les archives (rapport Mandelkern, notes de l'Élysée révélées en 2022) et
+ * reconnue en 2012 ; le chiffre exact, lui, reste discuté.
  */
 export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
   id: "119150b2-e689-4f9d-b4aa-effb37ff7bdc",
   slug: "massacre-17-octobre-1961-paris-bilan-victimes",
   claim_title:
-    "Le massacre de 300 Algériens jetés dans la Seine le 17 octobre 1961 à Paris relève du mythe",
-  verdict: "FAUX",
+    "Le massacre du 17 octobre 1961 à Paris : de la censure préfectorale à la vérité historique",
+  verdict: "VRAI",
   category: "HISTOIRE",
   protagonists: [
     {
@@ -5502,7 +5503,7 @@ export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
     },
   ],
   verdict_summary:
-    "Le 17 octobre 1961, des dizaines de milliers d'Algériens manifestent à Paris contre le couvre-feu imposé par le préfet Maurice Papon. La répression est un fait établi et reconnu : « le 17 octobre 1961, des Algériens qui manifestaient pour le droit à l'indépendance ont été tués lors d'une sanglante répression. La République reconnaît avec lucidité ces faits » (François Hollande, 17 octobre 2012). Le rapport Mandelkern, chargé en 1998 d'inventorier les archives de la préfecture de police, conclut que « cette manifestation a donné lieu à une répression très dure », avec 14 094 interpellations en trois jours et des cadavres retrouvés dans l'eau.\n\nLe bilan humain, lui, n'est pas établi — et c'est là que se joue le « mythe ». Le bilan officiel de 1961 était de sept morts et 136 blessés hospitalisés ; la consultation des registres du parquet des Archives de Paris a révélé « au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon » (L'Humanité, 1997) ; Mandelkern estime qu'en ajoutant les cas incertains au bilan officiel « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question ». Les historiens Jim House et Neil MacMaster parlent d'un « nombre considérable (et toujours disputé) de morts » (H-Net, 2007). Le chiffre de 300, présenté comme un décompte certain, est une estimation militante que les archives ne permettent pas d'établir.\n\nLa thèse du mythe est donc fausse, et doublement : les faits sont documentés (archives, témoignages, reconnaissance d'État), et la version des « bavures isolées » est contredite par les documents — la répression fut « très dure » et conduite depuis la préfecture. Ce qui reste ouvert, c'est le chiffre exact, discuté par les historiens ; pas la réalité du massacre.",
+    "Le 17 octobre 1961, des dizaines de milliers d'Algériens manifestent à Paris contre le couvre-feu imposé par le préfet Maurice Papon. La répression est d'une extrême violence et, dans l'immédiat, l'État la couvre : le bilan officiel annoncé au Sénat est de sept morts, les archives restent fermées, et le préfet n'est pas sanctionné. Le rapport Mandelkern, chargé en 1998 d'inventorier les archives de la préfecture de police, conclut pourtant que « cette manifestation a donné lieu à une répression très dure », avec 14 094 interpellations en trois jours et une cinquantaine de cadavres de Français musulmans d'Algérie repêchés dans la Seine, la Marne ou les canaux.\n\nLa vérité historique s'est reconstituée par étapes. Les registres du parquet des Archives de Paris ont livré « au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon » (L'Humanité, 1997) ; les notes du conseiller du général de Gaulle pour les affaires algériennes, révélées en 2022, montrent que « le président de la République a su très vite que des dizaines d'Algériens avaient été tués », sans aucune sanction contre le préfet ni les ministres (France Inter, 7 juin 2022) ; le 17 octobre 2012, François Hollande reconnaît que « des Algériens qui manifestaient pour le droit à l'indépendance ont été tués lors d'une sanglante répression » et que « la République reconnaît avec lucidité ces faits ».\n\nLe chiffre exact, en revanche, n'est pas établi : Mandelkern conclut qu'en ajoutant les cas incertains au bilan officiel « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question », et les historiens Jim House et Neil MacMaster parlent d'un « nombre considérable (et toujours disputé) de morts » (H-Net, 2007). Le « 300 morts » est une estimation militante, pas un décompte établi. La censure, l'occultation puis la reconnaissance : le récit d'un crime d'État longtemps nié est vrai ; seul le chiffre reste débattu.",
   consensus_score: 95,
   premises: [
     {
@@ -5514,7 +5515,7 @@ export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
     },
     {
       claim_part:
-        "« La police n'a commis que des bavures isolées, sans consigne hiérarchique »",
+        "« La police a agi sans consigne hiérarchique lourde »",
       status: "FAUX",
       detail:
         "La répression ne relève pas de « bavures » : le rapport Mandelkern parle d'une « répression très dure » démontrée par « les chiffres et les relations de certains responsables de terrain », et L'Humanité documente « la répression policière ordonnée par le préfet de police Maurice Papon ». L'ampleur du dispositif — 14 094 interpellations en trois jours — et les corps retrouvés dans l'eau (une cinquantaine de cadavres de Français musulmans d'Algérie repêchés dans la Seine, la Marne ou les canaux en septembre-octobre 1961, selon le rapport) contredisent la thèse de l'accident isolé. La chaîne hiérarchique est engagée jusqu'au sommet de la préfecture.",
@@ -5623,6 +5624,26 @@ export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
       archive_sha256: null,
       archive_binary_sha256: null,
       display_order: 4,
+    },
+    {
+      id: "9ee70bc7-a62c-48a7-917a-9fd01fb13b69",
+      spectrum: "CENTRE",
+      source_name:
+        "Massacre du 17 octobre 1961 : que révèlent les archives publiées par Mediapart ? (France Inter)",
+      author_or_institution: "Juliette Geay — France Inter",
+      publication_date: "2022-06-07",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Deux notes du conseiller du général de Gaulle pour les affaires algériennes révèlent que le président de la République a su très vite que des dizaines d'Algériens avaient été tués lors de la manifestation. Aucune sanction n'a pourtant été prise contre le préfet Papon et les ministres impliqués.",
+      context_explanation:
+        "Article du 7 juin 2022 revenant sur les deux notes du conseiller du général de Gaulle pour les affaires algériennes, publiées par Mediapart : le chef de l'État est informé très tôt du nombre de victimes, mais aucune sanction n'est prise contre le préfet de police ni contre les ministres. Le même article rappelle que la manifestation visait un couvre-feu discriminatoire et que des Algériens furent arrêtés, frappés et tués.",
+      original_url:
+        "https://www.radiofrance.fr/franceinter/massacre-du-17-octobre-1961-que-revelent-les-archives-publiees-par-mediapart-2938306",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
     },
   ],
 };

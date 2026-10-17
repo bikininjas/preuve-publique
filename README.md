@@ -75,11 +75,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   au droit international) et la demande d'un « droit légal absolu de publier le détail
   nominatif des notes de frais des parlementaires » (8, politique, cadre réglementaire
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
-  faux), le massacre du 17 octobre 1961 présenté comme un « mythe » (5, histoire,
-  faux) —
+  faux), le massacre du 17 octobre 1961, de la censure préfectorale à la vérité historique
+  (6, histoire) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 312 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 313 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -605,6 +605,22 @@ s'en tient aux données publiées. Chaque citation vérifiée par sous-chaîne ;
 dossier : cinq fiches, toutes `URL_SNAPSHOT` (passe `818ba3a8a4d26ac1…`) ; racine
 d'intégrité `06d97d4a90743d9c…` = `ETag` et `X-Proof-Integrity-Root` relevés en ligne ;
 illustration : plaque mémorielle (FSouici, CC BY-SA 4.0, Wikimedia Commons).
+
+Le même jour (09:27 UTC), le dossier du 17 octobre 1961 a été **reformulé** sur un
+brief de commande : le titre devient « Le massacre du 17 octobre 1961 à Paris : de la
+censure préfectorale à la vérité historique » et le verdict passe de `FAUX` (la thèse
+du « mythe ») à `VRAI` (le récit censure → occultation → reconnaissance), les deux
+prémisses restant `BIAIS_METHODOLOGIQUE` (le « chiffre de 300 ») et `FAUX` (les
+« bavures » sans consigne). Une sixième pièce a été ajoutée : *France Inter* du 7 juin
+2022 sur les notes du conseiller du général de Gaulle révélées par Mediapart — « le
+président de la République a su très vite que des dizaines d'Algériens avaient été
+tués », « aucune sanction » contre le préfet ni les ministres. La pièce Peyrefitte
+demandée par le brief (*C'était de Gaulle*) n'a pas été retenue : l'ouvrage est sous
+accès restreint et aucun extrait vérifiable n'a pu être consulté ; le point
+« consternation au sommet de l'État » est documenté par les notes de l'Élysée révélées
+en 2022. Recapture du dossier (six fiches, doublons supprimés, une fiche par pièce) ;
+racine d'intégrité `38fa9b92edb199b3…` = `ETag` et `X-Proof-Integrity-Root` en ligne.
+Le contenu passe sans redéploiement.
 
 ## Pile technique
 
