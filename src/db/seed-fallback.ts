@@ -5467,6 +5467,167 @@ export const RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER: Dossier = {
 };
 
 /**
+ * Histoire : « Le massacre de 300 Algériens jetés dans la Seine le 17 octobre
+ * 1961 relève du mythe ». La répression est un fait reconnu (rapport Mandelkern,
+ * déclaration présidentielle de 2012) ; le chiffre exact, lui, reste discuté.
+ */
+export const MASSACRE_17_OCTOBRE_DOSSIER: Dossier = {
+  id: "119150b2-e689-4f9d-b4aa-effb37ff7bdc",
+  slug: "massacre-17-octobre-1961-paris-bilan-victimes",
+  claim_title:
+    "Le massacre de 300 Algériens jetés dans la Seine le 17 octobre 1961 à Paris relève du mythe",
+  verdict: "FAUX",
+  category: "HISTOIRE",
+  protagonists: [
+    {
+      name: "Massacre du 17 octobre 1961",
+      kind: "TEXTE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Massacre_du_17_octobre_1961",
+      note: "La répression policière de la manifestation du FLN, à Paris, et le débat sur son bilan.",
+    },
+    {
+      name: "Maurice Papon",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Maurice_Papon",
+      note: "Préfet de police de Paris en octobre 1961, responsable du dispositif de répression.",
+    },
+    {
+      name: "Préfecture de police (Paris)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Pr%C3%A9fecture_de_police_(Paris)",
+      note: "Service dont les archives ont été inventoriées par la mission Mandelkern en 1998.",
+    },
+  ],
+  verdict_summary:
+    "Le 17 octobre 1961, des dizaines de milliers d'Algériens manifestent à Paris contre le couvre-feu imposé par le préfet Maurice Papon. La répression est un fait établi et reconnu : « le 17 octobre 1961, des Algériens qui manifestaient pour le droit à l'indépendance ont été tués lors d'une sanglante répression. La République reconnaît avec lucidité ces faits » (François Hollande, 17 octobre 2012). Le rapport Mandelkern, chargé en 1998 d'inventorier les archives de la préfecture de police, conclut que « cette manifestation a donné lieu à une répression très dure », avec 14 094 interpellations en trois jours et des cadavres retrouvés dans l'eau.\n\nLe bilan humain, lui, n'est pas établi — et c'est là que se joue le « mythe ». Le bilan officiel de 1961 était de sept morts et 136 blessés hospitalisés ; la consultation des registres du parquet des Archives de Paris a révélé « au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon » (L'Humanité, 1997) ; Mandelkern estime qu'en ajoutant les cas incertains au bilan officiel « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question ». Les historiens Jim House et Neil MacMaster parlent d'un « nombre considérable (et toujours disputé) de morts » (H-Net, 2007). Le chiffre de 300, présenté comme un décompte certain, est une estimation militante que les archives ne permettent pas d'établir.\n\nLa thèse du mythe est donc fausse, et doublement : les faits sont documentés (archives, témoignages, reconnaissance d'État), et la version des « bavures isolées » est contredite par les documents — la répression fut « très dure » et conduite depuis la préfecture. Ce qui reste ouvert, c'est le chiffre exact, discuté par les historiens ; pas la réalité du massacre.",
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part:
+        "« Le chiffre de 300 morts exacts est scientifiquement incontestable »",
+      status: "BIAIS_METHODOLOGIQUE",
+      detail:
+        "Les archives ne permettent pas d'établir un décompte exact : le rapport Mandelkern (1998) relève que, pour les morts, « le plus significatif serait [le chiffre] s'il pouvait être donné avec assurance. Tel n'est pas le cas », et conclut qu'en ajoutant au bilan officiel de sept morts la totalité des vingt-cinq cas incertains de son annexe III, « on reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes dont il a parfois été question ». La consultation des registres du parquet des Archives de Paris a livré « au moins soixante-dix victimes » (L'Humanité, 23 octobre 1997) ; les historiens parlent d'un nombre « considérable (et toujours disputé) de morts » (H-Net, 2007). Présenter « 300 morts exacts » comme scientifiquement établi convertit une estimation militante en décompte certain : c'est un biais méthodologique.",
+    },
+    {
+      claim_part:
+        "« La police n'a commis que des bavures isolées, sans consigne hiérarchique »",
+      status: "FAUX",
+      detail:
+        "La répression ne relève pas de « bavures » : le rapport Mandelkern parle d'une « répression très dure » démontrée par « les chiffres et les relations de certains responsables de terrain », et L'Humanité documente « la répression policière ordonnée par le préfet de police Maurice Papon ». L'ampleur du dispositif — 14 094 interpellations en trois jours — et les corps retrouvés dans l'eau (une cinquantaine de cadavres de Français musulmans d'Algérie repêchés dans la Seine, la Marne ou les canaux en septembre-octobre 1961, selon le rapport) contredisent la thèse de l'accident isolé. La chaîne hiérarchique est engagée jusqu'au sommet de la préfecture.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-17T00:00:00.000Z",
+  illustration_url: "/illustrations/massacre-17-octobre-1961-paris-bilan-victimes.jpg",
+  illustration_credit: "Photo : FSouici, CC BY-SA 4.0, Wikimedia Commons",
+  sources: [
+    {
+      id: "befce0af-d232-4184-b683-c206a6a9c015",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Rapport sur les archives de la Préfecture de police relatives à la manifestation organisée par le FLN le 17 octobre 1961 (rapport Mandelkern)",
+      author_or_institution:
+        "Dieudonné Mandelkern, André Wiehn et Mireille Jean — mission chargée par le ministre de l'Intérieur (La Documentation française)",
+      publication_date: "1998-01-08",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "il est clair que cette manifestation a donné lieu à une répression très dure : les chiffres et les relations de certains responsables de terrain le démontrent amplement. Parmi ces chiffres, celui des morts serait le plus significatif s'il pouvait être donné avec assurance. Tel n'est pas le cas.",
+      context_explanation:
+        "Rapport remis le 8 janvier 1998 au ministre de l'Intérieur, inventaire critique des archives de la préfecture de police et de l'Institut médico-légal. Il relève aussi la « très forte augmentation du nombre de cadavres de FMA découverts dans la Seine, dans la Marne ou dans les canaux (une cinquantaine pour la période septembre-octobre) » et 14 094 interpellations pour les 17-20 octobre 1961 (chiffre communiqué par le préfet puis par le ministre de l'Intérieur au Sénat). Sur le bilan : en ajoutant au bilan officiel de sept morts les vingt-cinq cas incertains de l'annexe III, « on reste au niveau des dizaines, ce qui est considérable, mais très inférieur aux quelques centaines de victimes dont il a parfois été question ».",
+      original_url:
+        "https://exode1962.fr/exode1962/en-savoir-plus/metropole/17-octobre/rapport-mandelkern.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 0,
+    },
+    {
+      id: "37701553-0718-4f9f-8602-ce75563d3db5",
+      spectrum: "CENTRE",
+      source_name:
+        "Déclaration de M. François Hollande, Président de la République, en hommage aux Algériens tués lors de la manifestation du 17 octobre 1961",
+      author_or_institution: "Présidence de la République française",
+      publication_date: "2012-10-17",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le 17 octobre 1961, des Algériens qui manifestaient pour le droit à l'indépendance ont été tués lors d'une sanglante répression. La République reconnaît avec lucidité ces faits.",
+      context_explanation:
+        "Déclaration publiée le 17 octobre 2012 sur le site de l'Élysée, première reconnaissance officielle par un président de la République du massacre : elle ajoute « Cinquante et un ans après cette tragédie, je rends hommage à la mémoire des victimes. »",
+      original_url:
+        "https://www.elysee.fr/francois-hollande/2012/10/17/declaration-de-m-francois-hollande-president-de-la-republique-en-hommage-aux-algeriens-tues-lors-de-la-manifestation-pour-le-droit-a-lindependance-du-17-octobre-1961-a-paris-le-17-octobre-2012",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "5d17857b-f2ac-4e3f-92e0-9175fdd72516",
+      spectrum: "GAUCHE",
+      source_name:
+        "17 octobre 1961 : la longue liste de morts des archives de Paris (L'Humanité)",
+      author_or_institution: "L'Humanité",
+      publication_date: "1997-10-23",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Ils révèlent les noms d'au moins soixante-dix victimes de la répression policière ordonnée par le préfet de police Maurice Papon contre la manifestation des Algériens.",
+      context_explanation:
+        "Article du 23 octobre 1997 consacré à la consultation, par l'historien David Assouline, des registres du parquet conservés aux Archives de Paris : « on dénombrait déjà soixante-dix morts », victimes de la répression du 17 octobre 1961. Le chiffre porte sur une première consultation non exhaustive.",
+      original_url:
+        "https://www.humanite.fr/-/-/17-octobre-1961-la-longue-liste-de-morts-des-archives-de-paris",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "af7f02a6-4c51-4a42-8446-5f06516de579",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Compte rendu de Jim House et Neil MacMaster, « Paris 1961: Algerians, State Terror, and Memory » (H-Soz-u-Kult, juillet 2007)",
+      author_or_institution: "Holger Nehring — H-Net / H-Soz-u-Kult",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "the demonstration of tens of thousands of Algerians in the streets of downtown Paris on 17 October 1961 that was countered with an extreme level of violence by the police forces and resulted in a considerable (and still disputed) number of deaths",
+      context_explanation:
+        "Compte rendu académique (H-Soz-u-Kult, juillet 2007) de l'ouvrage de référence de Jim House et Neil MacMaster, Paris 1961 (Oxford University Press, 2006). En français : une manifestation de dizaines de milliers d'Algériens réprimée par « un niveau extrême de violence » des forces de police, avec un nombre « considérable (et toujours disputé) » de morts.",
+      original_url: "https://www.h-net.org/reviews/showrev.php?id=21569",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "c9f845e1-5f76-491d-ae33-724f0193d476",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Compte rendu de « Paris 1961 » dans H-France Review (vol. 8, 2008, n° 30)",
+      author_or_institution: "H-France Review (Society for French Historical Studies)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Jim House and Neil MacMaster are the first British historians to produce a major work on the contested events surrounding the brutal suppression of an Algerian demonstration in Paris on the night of 17 October 1961.",
+      context_explanation:
+        "Compte rendu universitaire (H-France Review, 2008) de l'ouvrage de House et MacMaster, qui rappelle que les événements du 17 octobre 1961 restent « contestés » dans leur interprétation et leur bilan. En français : la « brutale répression » d'une manifestation algérienne à Paris, dans la nuit du 17 octobre 1961.",
+      original_url: "https://h-france.net/vol8reviews/vol8no30howard.pdf",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+  ],
+};
+
+/**
  * Brouillon de contrôle : jamais publié, jamais rendu par le site. Il sert à
  * prouver que la lecture publique est bien filtrée par les politiques RLS
  * (`is_published = true`) et non par le code de l'interface.
@@ -9002,6 +9163,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   COLONIES_ISRAELIENNES_DOSSIER,
   NOTES_FRAIS_PARLEMENTAIRES_DOSSIER,
   RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER,
+  MASSACRE_17_OCTOBRE_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
 ];
 

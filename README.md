@@ -44,8 +44,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   PostgreSQL vérifie les quatre règles du Triangulation Guard sur chaque ligne publiée de
   `public.dossiers` ; la publication se fait désormais en deux temps : brouillon, pièces,
   puis statut publié).
-  Trente-quatre dossiers en base :
-  trente-trois **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
+  Trente-cinq dossiers en base :
+  trente-quatre **publiés** — le dossier de référence (8 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (4, économie),
   l'insécurité attribuée à l'immigration (9, société, biais méthodologique), le pourvoi
   en cassation et
@@ -75,10 +75,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   au droit international) et la demande d'un « droit légal absolu de publier le détail
   nominatif des notes de frais des parlementaires » (8, politique, cadre réglementaire
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
+  faux), le massacre du 17 octobre 1961 présenté comme un « mythe » (5, histoire,
   faux) —
   et un **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 307 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 312 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -585,6 +586,25 @@ en ligne ; illustration *Soweto township* (Matt-80, CC BY 2.0, Wikimedia Commons
 Au passage, `scripts/apply-seed.mts` a été corrigé : les pièces neuves reçoivent leur
 empreinte de citation à l'insertion — sans elle, le trigger `0015` refusait toute
 publication d'un dossier neuf.
+
+Le 17/10/2026 (09:18 UTC), le dossier **« Le massacre de 300 Algériens jetés dans la
+Seine le 17 octobre 1961 à Paris relève du mythe »** (cinq sources, catégorie histoire,
+verdict `FAUX`) : rapport Mandelkern remis le 8 janvier 1998 (« répression très dure »,
+bilan officiel de sept morts, 14 094 interpellations, cadavres retrouvés dans l'eau), la
+déclaration de François Hollande du 17 octobre 2012 (« la République reconnaît avec
+lucidité ces faits »), l'article de *L'Humanité* du 23 octobre 1997 sur les registres du
+parquet des Archives de Paris (« au moins soixante-dix victimes »), et deux comptes
+rendus universitaires de *Paris 1961* de House et MacMaster (H-Net/H-Soz-u-Kult 2007,
+H-France Review 2008) qui documentent « un niveau extrême de violence » et un nombre
+« considérable (et toujours disputé) » de morts. Nouvelle prémisse
+`BIAIS_METHODOLOGIQUE` sur le « chiffre de 300 » : le rapport Mandelkern conclut qu'on
+« reste au niveau des dizaines », « très inférieur aux quelques centaines de victimes
+dont il a parfois été question » — le brief de commande annonçait 150-200 morts
+« documentés » ; ce chiffre n'a pas été retenu faute de source accessible, et le dossier
+s'en tient aux données publiées. Chaque citation vérifiée par sous-chaîne ; capture du
+dossier : cinq fiches, toutes `URL_SNAPSHOT` (passe `818ba3a8a4d26ac1…`) ; racine
+d'intégrité `06d97d4a90743d9c…` = `ETag` et `X-Proof-Integrity-Root` relevés en ligne ;
+illustration : plaque mémorielle (FSouici, CC BY-SA 4.0, Wikimedia Commons).
 
 ## Pile technique
 
