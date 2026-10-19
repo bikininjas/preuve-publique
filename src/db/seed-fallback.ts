@@ -9409,6 +9409,581 @@ export const CARTE_PRESSE_DOSSIER: Dossier = {
   ],
 };
 
+export const AMALGAME_GAUCHE_COMMUNISME_DOSSIER: Dossier = {
+  id: "9475a38b-a3f8-4a9e-b121-312fd28721bb",
+  slug: "amalgame-gauche-communisme-totalitaire-100-millions-morts",
+  claim_title:
+    "Voter à gauche revient à soutenir une idéologie communiste totalitaire responsable de 100 millions de morts",
+  verdict: "GENERALISATION_ABUSIVE",
+  verdict_summary:
+    "Assimiler les électeurs et les programmes de la gauche contemporaine aux crimes des régimes à parti unique du XXe siècle est un sophisme de l'épouvantail : on prête à un adversaire une thèse qu'il ne défend pas, puis on le réfute sur cette thèse. En science politique, la gauche républicaine et sociale-démocrate — distincte du parti communiste, avec lequel elle rompt l'alliance gouvernementale dès mai 1947 — porte une économie mixte régulée, l'État-providence et le pluralisme démocratique. Cette rupture n'est pas une nuance d'appareil : elle est institutionnelle, et l'Assemblée nationale la date.\n\nLe chiffre slogan de « 100 millions de morts » ne forme pas un bloc scientifique. Il apparaît dans le seul chapitre introductif du Livre noir du communisme (1997), rédigé par Stéphane Courtois, et deux des principaux coauteurs de l'ouvrage, Nicolas Werth et Jean-Louis Margolin, s'en désolidarisent publiquement dès la parution : ce chiffrage, écrivent-ils dans Le Monde, est « abusif, non clarifié (85 millions ? 95 ? 100 ?), non justifié », et contredit « formellement » les résultats de leurs propres chapitres. Le Monde relate dès le 9 novembre 1997 la « discorde » née dans le collectif ; Le Monde diplomatique publie en décembre la critique de fond contre un « esprit de système qui annule le temps et l'espace ».\n\nLe droit et le programme de la Résistance disent la même chose que l'histoire. Le programme du Conseil national de la Résistance (15 mars 1944), adopté par « les organisations de Résistance, les centrales syndicales et les partis ou tendances politiques groupés au sein du C. N. R. », promet « un plan complet de sécurité sociale » en même temps que « la démocratie la plus large » : un État-providence, pas un parti unique. Et quand la gauche gouverne, ses nationalisations de 1982 restent dans le cadre de la Déclaration de 1789 — le Conseil constitutionnel y rappelle que « le caractère fondamental du droit de propriété » a « pleine valeur constitutionnelle » et qu'une privation exige une « juste et préalable indemnité ».\n\nLe désaveu vient aussi du bord politique qu'on attendrait le moins. Dans sa résolution 1481 (2006), portée par un rapporteur du Parti populaire européen, l'Assemblée parlementaire du Conseil de l'Europe condamne les crimes des régimes communistes totalitaires tout en reconnaissant que « certains partis communistes européens ont contribué à la réalisation de la démocratie ». Un texte de droite conservatrice européenne inscrit donc noir sur blanc la distinction que le slogan efface — et la typologie libérale de Raymond Aron, qui sépare le régime constitutionnel pluraliste du régime de parti monopolistique, la formule avant lui.",
+  category: "POLITIQUE",
+  protagonists: [
+    {
+      name: "Nicolas Werth",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Nicolas_Werth",
+      note: "Historien, directeur de recherche au CNRS, auteur de la partie soviétique du Livre noir du communisme ; signataire, avec Jean-Louis Margolin, de la tribune du 14 novembre 1997 qui conteste le chiffrage de l'introduction (pièce n° 3).",
+    },
+    {
+      name: "Jean-Louis Margolin",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Jean-Louis_Margolin",
+      note: "Historien, auteur de la partie asiatique du Livre noir du communisme et co-signataire de la même mise au point publiée dans Le Monde (pièce n° 3).",
+    },
+    {
+      name: "Section française de l'Internationale ouvrière (SFIO)",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Section_fran%C3%A7aise_de_l%27Internationale_ouvri%C3%A8re",
+      note: "Parti du gouvernement de Paul Ramadier, distinct du Parti communiste français ; c'est cette séparation, datée par la page de l'Assemblée nationale en mai 1947 (pièce n° 6), que le slogan doit effacer pour fonctionner.",
+    },
+    {
+      name: "Conseil national de la Résistance",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Conseil_national_de_la_R%C3%A9sistance",
+      note: "Auteur du programme du 15 mars 1944 (« Les Jours Heureux »), pièce primaire du dossier : sécurité sociale et suffrage universel dans le même texte (pièce n° 1).",
+    },
+    {
+      name: "Assemblée parlementaire du Conseil de l'Europe",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_parlementaire_du_Conseil_de_l%27Europe",
+      note: "Auteure de la résolution 1481 (2006), qui condamne les régimes communistes totalitaires et reconnaît, à l'article 4, la contribution de certains partis communistes européens à la démocratie (pièce n° 7).",
+    },
+    {
+      name: "Raymond Aron",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Raymond_Aron",
+      note: "Auteur de Démocratie et totalitarisme (Gallimard, 1965), dont la typologie distingue le régime constitutionnel pluraliste du régime de parti monopolistique (pièce n° 8).",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part:
+        "« Les programmes fiscaux et sociaux de la gauche française visent à instaurer un régime communiste totalitaire »",
+      status: "FAUX",
+      detail:
+        "Un plan de sécurité sociale n'est pas un projet d'abolition de l'ordre constitutionnel : le programme du 15 mars 1944 promet « un plan complet de sécurité sociale » et, dans le même texte, « l'établissement de la démocratie la plus large par le rétablissement du suffrage universel », la « pleine liberté de pensée, de conscience et d'expression » et la « reconstitution, dans ses libertés traditionnelles, d'un syndicalisme indépendant ». Les transferts qu'il annonce — « le retour à la nation de tous les grands moyens de production monopolisés » — sont présentés comme une organisation de l'économie, encadrée, pas comme la fin du pluralisme. Quarante ans plus tard, la loi de nationalisation de 1982 confirme la règle : le Conseil constitutionnel y rappelle que les principes de la Déclaration de 1789 gardent « pleine valeur constitutionnelle » et qu'une privation de propriété suppose la « nécessité publique » et une « juste et préalable indemnité ». La prémisse confond donc la régulation d'une économie de marché — l'État-providence keynésien — et l'abolition totalitaire de la propriété : deux objets que le droit français lui-même sépare.",
+    },
+    {
+      claim_part:
+        "« Le bilan de 100 millions de morts forme un bloc idéologique scientifiquement consensuel imputable à toute la gauche »",
+      status: "BIAIS_METHODOLOGIQUE",
+      detail:
+        "Le chiffre de 100 millions n'est pas un résultat partagé par la communauté historienne : il est avancé dans le seul chapitre introductif du Livre noir du communisme, et les coauteurs du volume le contestent publiquement dans Le Monde du 14 novembre 1997 — « un chiffrage des victimes du communisme abusif, non clarifié (85 millions ? 95 ? 100 ?), non justifié, et contredisant formellement les résultats des coauteurs sur l'URSS, l'Asie et l'Europe de l'Est ». Nicolas Werth et Jean-Louis Margolin estiment que leurs propres chapitres donnent une « fourchette » de 65 à 93 millions, dont la moyenne de 79 millions n'a « qu'une valeur purement indicative ». Le Monde relatait dès le 9 novembre la « discorde » née entre les auteurs, et Le Monde diplomatique décrit en décembre un « esprit de système qui annule le temps et l'espace », où « l'idéologie communiste doit être toujours et partout la responsable unique d'une terreur monotone ». Un chiffre slogan, non clarifié et désavoué par ses propres coauteurs, n'est pas un consensus scientifique — et il ne dit rien des électeurs d'aujourd'hui.",
+    },
+    {
+      claim_part:
+        "« Voter à gauche aujourd'hui, c'est soutenir les régimes à parti unique du XXe siècle »",
+      status: "CONFUSION_CONCEPTUELLE",
+      detail:
+        "La science politique sépare précisément ce que le slogan confond : deux formes politiques possibles, « le régime constitutionnel pluraliste et le régime de parti monopolistique », selon la typologie de Raymond Aron rappelée par le compte rendu de la Revue française de sociologie. La gauche de gouvernement relève de la première : en mai 1947, l'Assemblée nationale enregistre la fin du tripartisme, les ministres communistes quittant le gouvernement de Paul Ramadier. Et le texte même qui condamne les régimes communistes totalitaires — la résolution 1481 (2006) du Conseil de l'Europe, portée par un rapporteur du Parti populaire européen — précise que « certains partis communistes européens ont contribué à la réalisation de la démocratie ». Projeter le concept de régime à parti unique sur des électeurs et des programmes qui opèrent sous des règles constitutionnelles, un suffrage universel et un pluralisme partisan, c'est confondre deux objets distincts : la critique politique d'un programme n'est pas l'imputation d'un crime de masse.",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-19T00:00:00.000Z",
+  illustration_url:
+    "/illustrations/amalgame-gauche-communisme-totalitaire-100-millions-morts.jpg",
+  illustration_credit:
+    "Couverture : « Les Jours Heureux », programme d'action de la Résistance par le C. N. R. (Libération zone sud, 1944) — domaine public, Wikimedia Commons",
+  sources: [
+    {
+      id: "a545000b-5eea-4289-b8c6-9c72f7d70825",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "« Les Jours Heureux », programme d'action de la Résistance — Conseil national de la Résistance (Libération zone sud, 1944), texte intégral sur Wikisource",
+      author_or_institution:
+        "Conseil national de la Résistance — organisations de Résistance, centrales syndicales et partis ou tendances politiques groupés au sein du C. N. R.",
+      publication_date: "1944-03-15",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Un plan complet de sécurité sociale, visant à assurer à tous les citoyens des moyens d’existence dans tous les cas où ils sont incapables de se le procurer par le travail, avec gestion appartenant aux représentants des intéressés et de l’État",
+      context_explanation:
+        "Le programme adopté le 15 mars 1944 dans la clandestinité réunit ce que le slogan oppose : le même document promet « un plan complet de sécurité sociale », « l’établissement de la démocratie la plus large en rendant la parole au peuple français par le rétablissement du suffrage universel », « la pleine liberté de pensée, de conscience et d’expression » et « la reconstitution, dans ses libertés traditionnelles, d’un syndicalisme indépendant ». Il annonce aussi « le retour à la nation de tous les grands moyens de production monopolisés », mais dans un cadre explicite d’« organisation rationnelle de l’économie » arrêtée « après consultation des représentants de tous les éléments de cette production ». Le texte signé par les organisations de Résistance, les centrales syndicales et les partis groupés au sein du CNR ne prévoit ni parti unique, ni suppression du pluralisme : il fonde un État-providence. C’est la pièce qui manque le plus au slogan — la gauche française, à son acte de naissance programmatique, se définit par la sécurité sociale et le suffrage universel.",
+      original_url:
+        "https://fr.wikisource.org/wiki/Les_Jours_Heureux,_programme_d%E2%80%99action_de_la_R%C3%A9sistance",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Programme_du_Conseil_national_de_la_R%C3%A9sistance",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "d0a04b31-9fbe-4e56-97f4-b06754e4a8a3",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Décision n° 81-132 DC du 16 janvier 1982 (loi de nationalisation) — Conseil constitutionnel",
+      author_or_institution: "Conseil constitutionnel",
+      publication_date: "1982-01-16",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "les principes mêmes énoncés par la Déclaration des droits de l'homme ont pleine valeur constitutionnelle tant en ce qui concerne le caractère fondamental du droit de propriété dont la conservation constitue l'un des buts de la société politique et qui est mis au même rang que la liberté, la sûreté et la résistance à l'oppression",
+      context_explanation:
+        "À l'occasion de la loi de nationalisation votée par la majorité de gauche, le Conseil constitutionnel rappelle que la Déclaration de 1789, à laquelle le préambule de 1958 déclare le peuple français « solennellement » attaché, garde pleine valeur constitutionnelle : « La propriété étant un droit inviolable et sacré, nul ne peut en être privé si ce n'est lorsque la nécessité publique, légalement constatée, l'exige évidemment et sous la condition d'une juste et préalable indemnité. » La décision valide le principe des nationalisations au regard de la nécessité publique, mais censure les dispositions relatives aux banques mutualistes et coopératives (article 13-1) et encadre les transferts éventuels du secteur public au secteur privé. Un transfert de propriété reste donc un acte constitutionnellement conditionné, soumis à un juge — aux antipodes de l'abolition d'un ordre juridique. La pièce répond directement à la prémisse : nationaliser sous la Ve République, c'est agir dans le droit, pas le renverser.",
+      original_url: "https://www.conseil-constitutionnel.fr/decision/1982/81132DC.htm",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Conseil_constitutionnel_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "94dd6f4b-216a-4bcc-8240-6ec92bc254a6",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Communisme : retour à l'histoire » — Jean-Louis Margolin et Nicolas Werth, Le Monde (14 novembre 1997), texte intégral reproduit",
+      author_or_institution:
+        "Jean-Louis Margolin et Nicolas Werth — historiens, coauteurs du Livre noir du communisme",
+      publication_date: "1997-11-14",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "un chiffrage des victimes du communisme abusif, non clarifié (85 millions ? 95 ? 100 ?), non justifié, et contredisant formellement les résultats des coauteurs sur l'URSS, l'Asie et l'Europe de l'Est",
+      context_explanation:
+        "Deux des principaux contributeurs du Livre noir du communisme — Nicolas Werth, auteur de la partie soviétique, et Jean-Louis Margolin, auteur de la partie asiatique — exposent publiquement les points sur lesquels ils se désolidarisent du chapitre introductif de Stéphane Courtois : « la centralité du crime de masse dans les pratiques répressives des communismes au pouvoir », « l'assimilation entre doctrine communiste et mise en application de celle-ci », et le chiffrage contesté. Ils rappellent que leurs propres travaux donnent une « fourchette » globale de 65 à 93 millions, dont la moyenne de 79 millions n'a « qu'une valeur purement indicative ». C'est la source qui ruine la prémisse du « bloc scientifiquement consensuel » : le chiffre de 100 millions n'est pas seulement discuté par des adversaires politiques, il est désavoué par les coauteurs de l'ouvrage qui l'a rendu célèbre. Limite assumée : la page du Monde consacrée à cette tribune est réservée à ses abonnés (elle répond 402 aux robots) et aucun instantané public n'en donne le texte ; la citation est lue dans la reproduction intégrale de cette tribune publiée en ligne, et le titre comme la date de publication sont ceux de l'édition du 14 novembre 1997.",
+      original_url:
+        "https://sites.google.com/site/resourcedepotstalinhitler/communisme-retour-a-l-histoire",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Nicolas_Werth",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "905def2c-501c-4057-b7a6-2df212473fd2",
+      spectrum: "CENTRE",
+      source_name:
+        "« Nouvelle controverse sur le caractère criminel du communisme » — Le Monde (9 novembre 1997), page d'archive conservée par l'Internet Archive",
+      author_or_institution: "Le Monde",
+      publication_date: "1997-11-09",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Elle a entraîné, aussi, une discorde entre les auteurs du livre, dont plusieurs reprochent à M. Courtois de donner à leur travail collectif, dans son texte d'ouverture et dans sa conclusion, une portée idéologique imprévue et qui ne leur convient pas.",
+      context_explanation:
+        "Cinq jours avant leur tribune, le quotidien raconte la naissance de la polémique : l'introduction de Stéphane Courtois, qui invite à retenir le crime contre l'humanité contre les pouvoirs communistes, « provoque les débats qu'elle était destinée à soulever » et une « discorde » entre les auteurs du volume. Le Monde rappelle aussi le contexte politique de cette analogie avec le procès de Nuremberg, réclamée par ailleurs par Jean-Marie Le Pen. La pièce établit la chronologie : le désaccord des coauteurs est public, documenté et contemporain de la parution — il n'a pas été reconstruit après coup. Elle est conservée en ligne dans un instantané de la page d'archive du Monde, dont seuls les premiers paragraphes sont accessibles sans abonnement.",
+      original_url:
+        "https://web.archive.org/web/20230410023451/https://www.lemonde.fr/archives/article/1997/11/09/nouvelle-controverse-sur-le-caractere-criminel-du-communisme_3807114_1819218.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Le_Monde",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "e5592591-0913-4053-b2b3-08cc1c26a4a3",
+      spectrum: "GAUCHE",
+      source_name:
+        "« Communisme, les falsifications d'un « livre noir » » — Gilles Perrault, Le Monde diplomatique (décembre 1997, pages 22-23)",
+      author_or_institution: "Gilles Perrault — Le Monde diplomatique",
+      publication_date: "1997-12-01",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Que dire enfin d’un esprit de système qui annule le temps et l’espace ? Pour le maître d’œuvre, l’idéologie communiste doit être toujours et partout la responsable unique d’une terreur monotone.",
+      context_explanation:
+        "La critique de gauche, publiée au moment même de la polémique : Gilles Perrault conteste la réduction de l'histoire des communismes à une essence criminelle unique et l'usage publicitaire du chiffre. Il décrit l'ouvrage comme un « assemblage hétéroclite » dont « l'introduction et la conclusion de Stéphane Courtois, maître d'œuvre, s'emploient avec vigueur à donner sens », et reproche à ce dernier de faire de l'idéologie « la responsable unique » d'une terreur monotone, au prix d'un « esprit de système qui annule le temps et l'espace ». Prise de position partisane, elle documente au moins un fait : dès 1997, la thèse d'une causalité idéologique unique est contestée publiquement, dans la presse comme chez les coauteurs de l'ouvrage. Le dossier ne reprend pas à son compte les thèses de l'auteur, mais l'existence et la violence du désaccord.",
+      original_url: "https://www.monde-diplomatique.fr/1997/12/PERRAULT/5097",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Gilles_Perrault",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "868be3b2-ad61-48cd-8e1a-d3faff84a637",
+      spectrum: "CENTRE",
+      source_name:
+        "« 1946-1958 — Un régime instable » — Assemblée nationale, histoire et patrimoine de la Quatrième République",
+      author_or_institution: "Assemblée nationale",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Arguant du refus des députés communistes de voter la confiance, Paul Ramadier décrète leur renvoi, le 5 mai 1947, signifiant la fin du tripartisme.",
+      context_explanation:
+        "La page officielle de l'Assemblée nationale date la rupture : la SFIO, le MRP et le PCF y sont trois organisations politiques distinctes, et la participation des ministres communistes s'achève au printemps 1947. La gauche de gouvernement et le parti communiste ne sont donc pas la même chose — un point que le slogan doit effacer pour fonctionner. La même page rappelle la recomposition qui suit, la « troisième force » regroupant la SFIO, l'UDSR, les radicaux et le MRP, soutenant le gouvernement « contre les communistes et le parti gaulliste ». C'est la séparation institutionnelle, vérifiable dans une source officielle, entre la gauche républicaine de gouvernement et le parti communiste.",
+      original_url:
+        "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/quatrieme-republique/un-regime-instable-1947-1951",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "68c6aef6-e019-46f7-aff9-a8b1d8ec8c1b",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "Résolution 1481 (2006) « Nécessité d'une condamnation internationale des crimes des régimes communistes totalitaires » — Assemblée parlementaire du Conseil de l'Europe, rapporteur Göran Lindblad ; texte conservé par l'Internet Archive",
+      author_or_institution:
+        "Assemblée parlementaire du Conseil de l'Europe — rapport de la commission des questions politiques, rapporteur M. Lindblad",
+      publication_date: "2006-01-25",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "L’Assemblée reconnaît que, malgré les crimes des régimes communistes totalitaires, certains partis communistes européens ont contribué à la réalisation de la démocratie.",
+      context_explanation:
+        "Le texte condamne « les violations massives des droits de l’homme » des régimes communistes totalitaires — il rappelle que ces crimes ont été justifiés « au nom de la théorie de la lutte des classes et du principe de la dictature du prolétariat » — mais son article 4 énonce l'inverse du slogan : certains partis communistes européens « ont contribué à la réalisation de la démocratie ». La résolution distingue donc explicitement les régimes à parti unique et les partis de la démocratie parlementaire, et elle est portée par un rapporteur du Parti populaire européen : la distinction est écrite par la droite conservatrice européenne elle-même, à propos du sujet le plus défavorable à la gauche. Limite connue : pace.coe.int répond 403 aux robots ; le texte est lu et cité dans l'instantané conservé par l'Internet Archive.",
+      original_url:
+        "https://web.archive.org/web/20210922153907/https://pace.coe.int/fr/files/17403/html",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_parlementaire_du_Conseil_de_l%27Europe",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "9a2433b0-9eae-4249-bf60-6a4b8a86468f",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "Compte rendu de « Démocratie et totalitarisme » (Raymond Aron, Gallimard, 1965) — Joseph Sumpf, Revue française de sociologie, vol. 7, n° 4 (1966), p. 548-549, sur Persée",
+      author_or_institution:
+        "Joseph Sumpf — Revue française de sociologie, compte rendu bibliographique",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Deux formes politiques sont possibles aujourd'hui : le régime constitutionnel pluraliste et le régime de parti monopolistique.",
+      context_explanation:
+        "Le compte rendu universitaire résume la thèse de Démocratie et totalitarisme : Raymond Aron y traite « de deux régimes typiques de la civilisation moderne », le régime constitutionnel pluraliste et le régime de parti monopolistique. Cette typologie de la droite libérale sépare précisément ce que le slogan amalgame — une gauche républicaine qui gouverne sous des règles constitutionnelles et des élections, et les régimes qui suppriment le pluralisme. Le compte rendu est employé ici comme la source consultable de cette distinction, dont la formulation est aussi celle de l'ouvrage. Limite assumée : la notice de l'éditeur (Gallimard) présente le même texte, mais son site refuse les requêtes automatisées ; le dossier ne s'appuie donc que sur la page qu'il a pu lire.",
+      original_url: "https://www.persee.fr/doc/rfsoc_0035-2969_1966_num_7_4_2817",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Raymond_Aron",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+  ],
+};
+
+export const MITTERRAND_VICHY_ANACHRONISME_DOSSIER: Dossier = {
+  id: "6565f4d4-e66e-4d8e-8635-1772a9a87586",
+  slug: "mitterrand-elus-gauche-collaboration-regime-vichy-anachronisme",
+  claim_title:
+    "François Mitterrand et les élus de gauche ont collaboré avec le régime de Vichy",
+  verdict: "ANACHRONISME_HISTORIQUE",
+  verdict_summary:
+    "Deux contresens sont ici empilés. Le premier est un anachronisme : en 1942, François Mitterrand n'a aucun mandat — la base officielle de l'Assemblée nationale date son premier mandat du 10 novembre 1946, comme député de la Nièvre, et la fondation qui porte la mémoire gaullienne place elle aussi son entrée en politique en 1946. Il est alors un « jeune homme de droite » entré à Vichy par la filière des prisonniers de guerre, où il travaille 350 jours avant d'entrer dans la clandestinité pour 580 jours ; les historiens le rangent parmi les « vichysto-résistants », et l'Institut François Mitterrand écrit qu'il fut « certainement pas collaborateur ». Le dossier ne cache pas ce qui le gêne : il a bien reçu la Francisque, décoration qu'il reconnaissait lui-même comme « une tâche indélébile » — une fausse note, pas une collaboration.\n\nLe second contresens est une inversion. À Vichy, l'opposition parlementaire au maréchal Pétain est massivement à gauche : sur les quatre-vingts parlementaires qui refusent les pleins pouvoirs le 10 juillet 1940, trente-six sont de la SFIO — la plus forte composante, 45 % du total —, vingt-sept sont radicaux, six viennent de la Gauche indépendante et trois de l'Union populaire française — de soixante-six à soixante-douze des quatre-vingts selon que l'on classe ou non les Gauche indépendante avec les modérés. Léon Blum, l'un des trente-six, est arrêté dès l'automne 1940 et passe la guerre en prison. Le programme du régime, lui, est décrit par le ministère des Armées comme « un programme réactionnaire fondé sur l'autoritarisme, le culte de la personnalité et l'antisémitisme d'État » — une « Révolution nationale » dont la devise, « Travail, famille, patrie », vient, rappelle l'Institut François Mitterrand, des Croix-de-Feu du colonel La Rocque.\n\nReste la part vraie, qu'aucune pièce ne dissimule : dans la débâcle de juin 1940, une majorité des parlementaires de la SFIO a voté les pleins pouvoirs — quatre-vingt-dix d'entre eux, contre trente-six refus. Mais ce vote arraché dans l'effondrement militaire n'a pas fait de la gauche le « socle » du régime : au contraire, la SFIO en a tiré les conséquences en excluant, à la Libération, tous ceux qui avaient voté oui. Confondre une défaite parlementaire avec une adhésion, et un fonctionnaire maréchaliste devenu chef de réseau avec un collaborateur, c'est écrire l'histoire à l'envers de ses pièces.",
+  category: "HISTOIRE",
+  protagonists: [
+    {
+      name: "François Mitterrand",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Mitterrand",
+      note: "Sujet de l'affirmation : entré à Vichy en janvier 1942 par le milieu des prisonniers de guerre, il reçoit la Francisque au printemps 1943 avant de diriger un grand mouvement de résistance, puis devient, en août 1944, commissaire général du gouvernement provisoire (pièce n° 6) ; son premier mandat électif date du 10 novembre 1946 (pièce n° 2).",
+    },
+    {
+      name: "Léon Blum",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/L%C3%A9on_Blum",
+      note: "L'un des quatre-vingts parlementaires qui refusent les pleins pouvoirs le 10 juillet 1940 ; arrêté à l'automne 1940, il reste emprisonné jusqu'à la Libération (pièce n° 5). C'est la figure que le slogan doit effacer : la gauche au pouvoir sous Vichy, c'est d'abord une gauche en prison.",
+    },
+    {
+      name: "Jean-Pierre Azéma",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Jean-Pierre_Az%C3%A9ma",
+      note: "Historien de Vichy ; le texte publié par l'Assemblée nationale pour la commémoration du vote des Quatre-vingts, qui donne la composition politique des quatre-vingts opposants, est de lui (pièce n° 4).",
+    },
+    {
+      name: "Jean Sagnes",
+      kind: "PERSONNE",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Jean_Sagnes",
+      note: "Auteur de l'étude de référence sur le scrutin du 10 juillet 1940 (Revue d'histoire moderne et contemporaine, 1991), reprise en coédition par l'Assemblée nationale et le Sénat (pièce n° 3).",
+    },
+    {
+      name: "Institut François Mitterrand",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Institut_Fran%C3%A7ois-Mitterrand",
+      note: "Fondation reconnue d'utilité publique chargée de la mémoire de François Mitterrand : sa chronologie est celle qui documente le plus crûment la période 1939-1945, francisque comprise (pièce n° 6).",
+    },
+    {
+      name: "Assemblée nationale",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      note: "Sa base de données des députés depuis 1789 porte les mandats de François Mitterrand (pièce n° 2) et sa page de commémoration du vote des Quatre-vingts en donne la composition (pièce n° 4).",
+    },
+  ],
+  consensus_score: 100,
+  premises: [
+    {
+      claim_part:
+        "« François Mitterrand était un élu de gauche collaborateur sous Vichy »",
+      status: "ANACHRONISME_CONCEPTUEL",
+      detail:
+        "En 1942, François Mitterrand n'est pas un élu : la base officielle des députés de l'Assemblée nationale ne porte qu'un premier mandat, du 10 novembre 1946 au 4 juillet 1951, dans la Nièvre — et la Fondation Charles de Gaulle, tout sauf complaisante à son égard, fait elle aussi commencer sa carrière politique en 1946. Le qualifier d'« élu de gauche » en 1942, c'est projeter une catégorie d'après-guerre sur un homme sans mandat, entré à Vichy comme contractuel de l'administration et présenté par l'Institut François Mitterrand comme un « jeune homme de droite » venu du milieu des prisonniers de guerre. Quant à la « collaboration », elle est démentie par la suite documentée : la même source le classe parmi les vichysto-résistants, « c'est-à-dire anti-allemand (antinazi), certainement pas collaborateur et nullement antisémite », et rappelle qu'après son départ fracassant du Commissariat en janvier 1943, il dirige un mouvement de résistance, gagne Londres puis Alger à la fin de 1943, rencontre de Gaulle, et se voit confier en août 1944 le commissariat général aux prisonniers du gouvernement provisoire. Un « collaborateur » nommé par de Gaulle en 1944 serait une première historique.",
+    },
+    {
+      claim_part:
+        "« La gauche parlementaire a constitué le socle du régime de Vichy »",
+      status: "FAUX",
+      detail:
+        "Le scrutin du 10 juillet 1940 dit l'inverse : sur les quatre-vingts parlementaires qui refusent les pleins pouvoirs à Pétain, trente-six sont de la SFIO (45 %), vingt-sept sont radicaux-socialistes, six viennent de la Gauche indépendante et trois sont d'anciens communistes ayant rompu après le pacte germano-soviétique — de soixante-six des quatre-vingts (82,5 %), si l'on suit le regroupement d'Azéma qui range la Gauche indépendante parmi les modérés, à soixante-douze (90 %) si l'on s'en tient aux étiquettes des groupes de la liste nominative. Le reste — deux démocrates populaires, deux radicaux indépendants, un républicain indépendant et trois non-inscrits, dont l'ancien socialiste Paul Ramadier — ne fait pas du régime l'émanation de la gauche. Le scrutin s'est tenu dans une Assemblée de 846 membres (544 députés et 302 sénateurs), dont les soixante députés et le sénateur communistes avaient été déchus de leur mandat en janvier 1940 : 649 parlementaires prirent part au vote, 569 approuvèrent, 80 refusèrent. Léon Blum, l'un des trente-six, est arrêté dès l'automne 1940 et passe la guerre en prison ; deux des Quatre-vingts sont assassinés et dix déportés. Le régime lui-même est décrit par le ministère des Armées comme un « programme réactionnaire fondé sur l'autoritarisme, le culte de la personnalité et l'antisémitisme d'État », et sa devise « Travail, famille, patrie » est, rappelle l'Institut François Mitterrand, empruntée aux Croix-de-Feu et à « une partie de la droite de l'entre-deux-guerres ». Enfin, la gauche s'est elle-même purgée de ses accommodements : à la Libération, les quatre-vingt-dix parlementaires socialistes qui avaient voté les pleins pouvoirs sont exclus du parti. Il reste que le vote de juin 1940 a été majoritaire dans le groupe socialiste — le dossier le dit —, mais un vote arraché sous la défaite n'est pas un socle idéologique, et ceux qui l'ont assumé l'ont payé de leur place.",
+    },
+    {
+      claim_part:
+        "« La Francisque reçue par François Mitterrand prouve qu'il a collaboré »",
+      status: "VRAI_DETOURNE",
+      detail:
+        "Le fait est établi et le dossier ne l'esquive pas : au printemps 1943, après avoir quitté le Commissariat et être entré dans la clandestinité, François Mitterrand « reçoit quelques semaines plus tard la Francisque », décoration de l'État français que sa propre fondation décrit comme restée, toute sa carrière durant, « une tâche indélébile de son passage et de son adhésion à Vichy ». Mais du fait à la conclusion, il y a un saut : la décoration est une pièce à charge sur le maréchalisme de jeunesse de Mitterrand, elle n'établit pas une collaboration — terme qui désigne l'aide apportée à l'occupant, dont la même source dit qu'il n'en fut pas. D'autant que l'intéressé était alors entré dans la clandestinité depuis des semaines, que sa demande de décoration est antérieure à son départ pour Londres, et qu'il en tirera une couverture. Retenir la Francisque en effaçant les 580 jours de clandestinité qui la suivent, c'est détourner une pièce : le fait est vrai, l'usage qu'on en fait est faux.",
+    },
+  ],
+  timeline: [
+    {
+      date: "1940-07-10",
+      title: "À Vichy, les pleins pouvoirs — et quatre-vingts refus",
+      description:
+        "Les deux chambres réunies en Assemblée nationale votent la délégation du pouvoir constituant au maréchal Pétain : cinq cent soixante-neuf voix pour, vingt abstentions, quatre-vingts contre, sur 649 votants dans une Assemblée de 846 membres dont les soixante députés et le sénateur communistes avaient été déchus en janvier 1940. L'opposition est majoritairement à gauche : trente-six parlementaires de la SFIO, vingt-sept radicaux-socialistes, six Gauche indépendante et trois Union populaire française.",
+      evidence_ref: "Pièce #03",
+    },
+    {
+      date: "automne 1940",
+      title: "Léon Blum arrêté et emprisonné",
+      description:
+        "L'un des trente-six opposants socialistes est arrêté à l'automne 1940 et reste en prison pendant le reste de la guerre — la gauche au pouvoir sous Vichy, c'est d'abord une gauche incarcérée.",
+      evidence_ref: "Pièce #05",
+    },
+    {
+      date: "janvier 1942",
+      title: "François Mitterrand prend la direction de Vichy",
+      description:
+        "Évadé d'un camp de prisonniers, sans aucun mandat, il rejoint le centre de la vie politico-administrative française : « Jeune homme de droite », il adhère à la « Révolution nationale », travaille à la Légion puis au Commissariat au reclassement des prisonniers, tout en fabriquant des faux papiers pour les évadés.",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "printemps 1943",
+      title: "La Francisque, reçue après l'entrée en clandestinité",
+      description:
+        "Après le limogeage de Maurice Pinot et son départ du Commissariat, il entre dans la clandestinité et reçoit « quelques semaines plus tard » la Francisque, décoration que sa fondation mémorielle qualifie de « tâche indélébile ».",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "décembre 1943",
+      title: "Londres, puis Alger : la rencontre avec de Gaulle",
+      description:
+        "Il gagne secrètement Londres, puis Alger, où il rencontre le général de Gaulle. L'entrevue est sèche : il reçoit instruction de fusionner son mouvement avec celui des gaullistes, ce qui donnera le Mouvement national des prisonniers de guerre et déportés, et l'engage à la fois comme chef de réseau et comme « capitaine Morland ».",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "1944-08",
+      title: "Commissaire général du gouvernement provisoire",
+      description:
+        "Désigné par de Gaulle commissaire général correspondant du ministère des Prisonniers, il assure l'intérim du gouvernement français en attendant l'installation du gouvernement provisoire à Paris : à 27 ans, celui qui aurait « collaboré » se retrouve ministre de la France libérée.",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "1946-11-10",
+      title: "Premier mandat électif de François Mitterrand",
+      description:
+        "La base de données des députés de l'Assemblée nationale enregistre son premier mandat : député de la Nièvre du 10 novembre 1946 au 4 juillet 1951. Aucun mandat n'existe avant cette date — c'est la preuve la plus sèche qu'en 1942 il n'était pas un « élu de gauche ».",
+      evidence_ref: "Pièce #02",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-19T00:00:00.000Z",
+  illustration_url:
+    "/illustrations/mitterrand-elus-gauche-collaboration-regime-vichy-anachronisme.jpg",
+  illustration_credit:
+    "Portrait : Léon Blum, député de Paris — photographie d'Henri Manuel (années 1920), domaine public, Wikimedia Commons",
+  sources: [
+    {
+      id: "5dfff69b-9c45-4189-8323-c833ee55e5f5",
+      spectrum: "ARCHIVE_PRIMAIRE",
+      source_name:
+        "Notice d'archives : « François Mitterrand et le Mouvement national des prisonniers de guerre et déportés (MNPGD) : Une curieuse affaire » par Paul Rivière — Service historique de la Défense",
+      author_or_institution:
+        "Service historique de la Défense — inventaire du fonds de l'Amicale des anciens de l'Organisation Résistance Armée (cote 1 K 369 / 20 53)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "François Mitterrand et le Mouvement national des prisonniers de guerre et déportés (MNPGD) : Une curieuse affaire par Paul Rivière, 2 pages dactylographiées (s.d.), coupure de presse (2005).",
+      context_explanation:
+        "La notice d'inventaire du Service historique de la Défense (le service d'archives du ministère des Armées, à Vincennes) décrit une pièce conservée dans le fonds de l'Amicale des anciens de l'ORA : un texte de Paul Rivière sur François Mitterrand et le MNPGD, accompagné d'une coupure de presse de 2005. Limite assumée : une notice d'archives dit ce que l'archive contient, pas ce qu'elle établit — elle atteste ici que le rôle de Mitterrand dans le Mouvement national des prisonniers de guerre et déportés est un objet d'archives publiques, entré dans les fonds du ministère des Armées, et non un épisode de propagande. Le dossier l'emploie comme la pièce qui rattache la trajectoire de Résistance à un fonds d'archives identifié et citable, et non comme une preuve autonome.",
+      original_url: "https://www.servicehistorique.sga.defense.gouv.fr/ark/1486172",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Service_historique_de_la_D%C3%A9fense",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "4d42c477-8688-46c5-b5af-cde3cb016c3c",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "Base de données des députés français depuis 1789 — notice « François Mitterrand » — Assemblée nationale",
+      author_or_institution:
+        "Assemblée nationale — base de données historique des députés (Sycomore)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote: "Du 10 novembre 1946 au 4 juillet 1951",
+      context_explanation:
+        "Extrait de la fiche de François Mitterrand dans la base officielle des députés tenue par l'Assemblée nationale : c'est la période de son premier mandat, comme député de la Nièvre, sous la Ire législature de la Quatrième République. La base ne porte aucun mandat antérieur — ni sous la Troisième République finissante, ni sous l'État français. C'est la donnée la plus sèche qui ruine la prémisse de l'« élu de gauche » sous Vichy : en 1942, l'homme n'a jamais été élu à quoi que ce soit, et sa carrière parlementaire commence quatre ans plus tard, après la Libération. La fiche complète donne aussi ses mandats ultérieurs (président de la République de 1981 à 1995), ce qui la rend vérifiable en trois clics.",
+      original_url: "https://www2.assemblee-nationale.fr/sycomore/fiche/5312",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "baafeb47-84b8-4866-bb99-64a472aa2ba8",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Le refus républicain : les quatre-vingts parlementaires qui dirent « non » à Vichy le 10 juillet 1940 » — Jean Sagnes, Revue d'histoire moderne et contemporaine, n° 38-4 (1991), p. 555-589, sur Persée",
+      author_or_institution:
+        "Jean Sagnes — Revue d'histoire moderne et contemporaine (Persée)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Cinq cent soixante-neuf députés et sénateurs approuvent ce texte, vingt s'abstiennent et seulement quatre-vingts s'y opposent",
+      context_explanation:
+        "L'étude de référence sur le scrutin : Jean Sagnes y rappelle l'article unique du projet de loi constitutionnelle de Pierre Laval (« L'Assemblée nationale donne tous pouvoirs au gouvernement de la République, sous l'autorité et la signature du maréchal Pétain ») et les chiffres du vote — 569 approbations, 20 abstentions, 80 refus —, sans débat. Cette étude est l'ouvrage que l'Assemblée nationale et le Sénat ont repris en coédition avec Talaia pour la commémoration des Quatre-vingts, ce que rappelle la page parlementaire citée en pièce n° 4. Elle sert ici à établir l'ordre de grandeur : ce n'est pas une « poignée », c'est un groupe identifié, dont la composition politique est documentée pièce n° 4.",
+      original_url:
+        "https://www.persee.fr/doc/rhmc_0048-8003_1991_num_38_4_1607",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Jean_Sagnes",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "43843bee-2aee-4cc3-9bb7-c77b60f530e5",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Hommage aux parlementaires ayant refusé, le 10 juillet 1940, la délégation du pouvoir constituant » — texte de Jean-Pierre Azéma publié par l'Assemblée nationale (commémoration du vote des Quatre-vingts)",
+      author_or_institution:
+        "Jean-Pierre Azéma, extrait de Mémoires de France (dir. Emmanuel de Waresquiel) — publié par l'Assemblée nationale",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Vingt-cinq de ces vingt-sept parlementaires font partie des quatre-vingts (3 ex-communistes, 36 SFIO, 27 radicaux, 10 modérés et démocrates chrétiens, 4 non-inscrits) qui refusent de voter les pleins pouvoirs à Pétain et donc d'adhérer au nouveau régime.",
+      context_explanation:
+        "La composition politique des quatre-vingts opposants, donnée par l'historien Jean-Pierre Azéma dans le texte que l'Assemblée nationale publie pour leur commémoration : 3 anciens communistes ayant rompu après le pacte germano-soviétique, 36 parlementaires de la SFIO, 27 radicaux, 10 modérés et démocrates chrétiens, 4 non-inscrits — soit soixante-six des quatre-vingts rattachables aux familles de gauche. La page rappelle dans le même mouvement qu'ils furent « vingt-trois sénateurs et cinquante-sept députés », et souligne leur diversité : socialistes, radicaux élus à gauche et d'autres à droite, un démocrate-chrétien comme Auguste Champetier de Ribes, un industriel catholique comme le marquis de Moustiers. C'est cette répartition, et non un slogan, qui permet de dire qui a refusé Vichy le 10 juillet 1940.",
+      original_url:
+        "https://www.assemblee-nationale.fr/13/evenements/Ceremonie_quatre-vingts/index_2010.asp",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Jean-Pierre_Az%C3%A9ma",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "edd25c1c-5775-430b-bea7-4ea8101f0d05",
+      spectrum: "GAUCHE",
+      source_name:
+        "Fondation Jean-Jaurès — publication du 10 juillet 2020 sur le vote des pleins pouvoirs et ses suites pour la SFIO",
+      author_or_institution: "Fondation Jean-Jaurès",
+      publication_date: "2020-07-10",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Mais sur quatre-vingts opposants, les parlementaires de la SFIO sont trente-six, soit 45% du total.",
+      context_explanation:
+        "La lecture de gauche du scrutin, quatre-vingts ans après, par la fondation qui documente l'histoire du mouvement socialiste (page intitulée « 10 juillet 1940 : les socialistes et la fin de la République »). Elle donne le même chiffre que la page parlementaire — trente-six opposants sur quatre-vingts — et son auteur prend soin de ne pas se payer de mots : il refuse de « dédouaner la majorité des parlementaires socialistes qui ont voté pour ». La même publication ajoute deux faits décisifs : « Léon Blum, quant à lui, est rapidement arrêté à l'automne 1940 et reste en prison durant le reste de la guerre », et « à la Libération, les quatre-vingt-dix parlementaires socialistes qui ont voté pour les pleins pouvoirs sont exclus du parti ». La gauche n'a donc pas seulement voté majoritairement oui dans la débâcle : elle a ensuite exclu ses propres signataires. C'est la pièce qui interdit de présenter la SFIO comme le « socle » du régime.",
+      original_url:
+        "https://www.jean-jaures.org/publication/10-juillet-1940-les-socialistes-et-la-fin-de-la-republique/",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Fondation_Jean-Jaur%C3%A8s",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "02eb1890-b07c-488a-964d-bdcb912dcb6b",
+      spectrum: "CENTRE",
+      source_name:
+        "« 1939-1945 : Pendant la seconde guerre mondiale » — chronologie biographique publiée par l'Institut François Mitterrand",
+      author_or_institution:
+        "Institut François Mitterrand — fondation reconnue d'utilité publique",
+      publication_date: "2011-03-08",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Il est ce que les historiens appellent aujourd’hui un vichysto-résistant, c’est-à-dire anti-allemand (antinazi), certainement pas collaborateur et nullement antisémite.",
+      context_explanation:
+        "La chronologie la plus détaillée de la période, publiée par la fondation qui porte la mémoire de François Mitterrand — donc une source favorable, ce qui rend ses concessions plus lourdes. Elle pose d'abord des ordres de grandeur : au front et en camp de prisonniers « pendant près de 850 jours », puis « contractuel de l’administration française, à Vichy, pendant 350 jours », puis « résistant, dans la clandestinité, pendant 580 jours ». Elle l'appelle « Jeune homme de droite » et admet son adhésion à « l’idéologie pétainiste de la “Révolution nationale” », en rappelant au passage que la devise « Travail, famille, patrie » « a été empruntée par le Maréchal aux Croix de feu du colonel La Rocque » et « a repris nombre des thématiques d’une partie de la droite de l’entre-deux-guerres ». Elle mentionne la Francisque sans l'enjoliver — « Décoration qui lui servira certes de couverture mais qui restera, tout au long de sa carrière, comme une tâche indélébile de son passage et de son adhésion à Vichy » —, puis la suite : Londres en décembre 1943, Alger, la rencontre avec de Gaulle, la fusion des mouvements de prisonniers et, en août 1944, le commissariat général du gouvernement provisoire. C'est la pièce qui distingue précisément ce que le slogan confond : une administration maréchaliste de jeunesse et une collaboration.",
+      original_url: "https://www.mitterrand.org/1939-1945-pendant-la-seconde.html",
+      author_reference_url: "https://fr.wikipedia.org/wiki/Institut_Fran%C3%A7ois-Mitterrand",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "3acddcb9-16ea-4cf6-9d16-725cfca4ff86",
+      spectrum: "CENTRE",
+      source_name:
+        "« Le régime de Vichy et la Collaboration » — Ministère des Armées et des Anciens combattants, « Les chemins de la mémoire »",
+      author_or_institution:
+        "Ministère des Armées et des Anciens combattants — Les chemins de la mémoire",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Vichy lance dans le même temps la Révolution nationale, un programme réactionnaire fondé sur l’autoritarisme, le culte de la personnalité et l’antisémitisme d’État.",
+      context_explanation:
+        "La qualification officielle du régime, par la ressource historique du ministère des Armées : Vichy « s’engage sur la voie de la collaboration » lors de l'entrevue de Montoire du 24 octobre 1940 — « une aide économique et militaire, et un soutien important dans la répression de la Résistance et l'extermination des Juifs » — et lance « un programme réactionnaire fondé sur l’autoritarisme, le culte de la personnalité et l’antisémitisme d’État ». Ce n'est pas une étiquette d'adversaire : c'est le ministère lui-même qui décrit la nature idéologique du régime que le slogan prétend inspiré par la gauche. Une « Révolution nationale » qui se réclame de l'ordre, de la famille et de la patrie contre la République parlementaire n'est pas un programme de gauche, quelles qu'aient été les abstentions et les votes de peur de juin 1940.",
+      original_url:
+        "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/ressources-historiques/seconde-guerre-mondiale/loccupation-collaboration/regime",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Minist%C3%A8re_des_Arm%C3%A9es_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "92d4580e-017e-425c-89b9-3f19e3d0fc10",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« François Mitterrand » — notice biographique de la Fondation Charles de Gaulle",
+      author_or_institution: "Fondation Charles de Gaulle",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Entrant dans la carrière politique en 1946 en devenant député de la Nièvre, il fut en tant que dirigeant de l’UDSR onze fois ministre de la IVe République, étant notamment ministre de l’Intérieur du gouvernement Mendès France en 1954, et garde des Sceaux de Guy Mollet en 1956-57.",
+      context_explanation:
+        "La pièce du bord opposé, et elle est instructive : la fondation qui cultive la mémoire gaullienne n'a aucune indulgence pour François Mitterrand, dont elle rappelle « un antigaullisme systématique dont il ne s'est jamais départi », la publication du Coup d'État permanent en 1964 et la candidature de 1965. Cette notice hostile, écrite depuis la droite gaulliste, fait pourtant commencer « la carrière politique » de Mitterrand en 1946, comme député de la Nièvre : personne, même chez ses adversaires les plus résolus, ne le présente comme un élu sous Vichy. Quand l'accusation a besoin d'un camp qui ne la porte pas pour être démentie, c'est le signe qu'elle ne tient pas aux sources mais à l'usage qu'on en fait.",
+      original_url:
+        "https://www.charles-de-gaulle.org/lhomme/biographies/francois-mitterrand/",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Fondation_Charles-de-Gaulle",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "b48764f6-5789-489e-96f1-a1d9f82c0a44",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« Les Quatre-vingts qui dirent « non » au projet de loi du 10 juillet 1940 » — Digithèque de matériaux juridiques et politiques, Jean-Pierre Maury, université de Perpignan",
+      author_or_institution:
+        "Jean-Pierre Maury — Digithèque de matériaux juridiques et politiques (université de Perpignan)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le Parlement comptait à l'époque 846 membres, 60 députés et un sénateur (communistes) ayant été déchus de leur mandat en janvier 1940.",
+      context_explanation:
+        "La ventilation du scrutin établie et publiée par la Digithèque de matériaux juridiques et politiques de l'université de Perpignan : 846 inscrits (544 députés et 302 sénateurs), 649 votants, 569 voix pour, 80 contre, 20 abstentions volontaires, 27 absents retenus en Afrique du Nord après l'affaire du Massilia, 149 autres absents. La page reproduit la liste nominative des quatre-vingts opposants avec, pour chacun, son département et son groupe parlementaire : 36 socialistes SFIO, 27 radicaux-socialistes, 6 Gauche indépendante, 3 Union populaire française, 2 démocrates populaires, 2 radicaux indépendants, 1 républicain indépendant et 3 non-inscrits. C'est cette liste qui permet de fixer la composition des quatre-vingts par l'étiquette de leurs groupes — soixante-douze rattachables à la gauche (36 + 27 + 6 + 3), les huit autres relevant du centre droit, de la droite ou du statut de non-inscrit, dont Paul Ramadier. Le dossier signale les deux classements possibles : le regroupement retenu par Jean-Pierre Azéma place la Gauche indépendante parmi les modérés et ne compte alors que soixante-six opposants de gauche. Aucune des deux lectures ne fait de la gauche le socle du régime. Précision de provenance : la page donne 60 députés et 1 sénateur communistes déchus en janvier 1940 — et non les 73 députés parfois cités ; c'est ce chiffre, celui de la source lue, que le dossier retient.",
+      original_url: "https://mjp.univ-perp.fr/france/80.htm",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -9446,6 +10021,8 @@ export const SEED_DOSSIERS: Dossier[] = [
   RACISME_ANTIBLANC_AFRIQUE_SUD_DOSSIER,
   MASSACRE_17_OCTOBRE_DOSSIER,
   DRAFT_CONTROL_DOSSIER,
+  AMALGAME_GAUCHE_COMMUNISME_DOSSIER,
+  MITTERRAND_VICHY_ANACHRONISME_DOSSIER,
 ];
 
 export function publishedSeedDossiers(): Dossier[] {

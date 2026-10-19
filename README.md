@@ -47,8 +47,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0016_droit_fondamental_libre_verdict` (`20261017140600`, appliquée le 17/10 —
   `verdict_status` accueille « droit fondamental libre », le verdict du dossier sur la
   carte de presse ; les statuts de brique sont inchangés).
-  Trente-six dossiers en base :
-  trente-cinq **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
+  Trente-huit dossiers en base :
+  trente-sept **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (6, économie),
   l'insécurité attribuée à l'immigration (13, société, biais méthodologique), le pourvoi
   en cassation et
@@ -79,11 +79,15 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   nominatif des notes de frais des parlementaires » (9, politique, cadre réglementaire
   restreint), le mythe du « racisme anti-blanc » en Afrique du Sud (6, international,
   faux), le massacre du 17 octobre 1961 et le chiffre de 300 morts (6, histoire, trompeur),
-  et la carte de presse présentée comme obligatoire pour exercer le métier de journaliste
-  et couvrir les manifestations (11, politique, droit fondamental libre) — et un
+  la carte de presse présentée comme obligatoire pour exercer le métier de journaliste
+  et couvrir les manifestations (11, politique, droit fondamental libre),
+  « voter à gauche revient à soutenir une idéologie communiste totalitaire responsable de
+  100 millions de morts » (8, politique, généralisation abusive), et « François Mitterrand
+  et les élus de gauche ont collaboré avec le régime de Vichy » (9, histoire, anachronisme
+  historique) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 324 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 341 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -1162,6 +1166,55 @@ Le
 privilégié — le bucket `immutable-archives` existe (public en lecture, RLS actif sans
 politique d'écriture) mais reste sans objet.
 
+Le 19/10/2026, le dossier **« voter à gauche revient à soutenir une idéologie communiste
+totalitaire responsable de 100 millions de morts »** (8 sources, verdict
+`GENERALISATION_ABUSIVE`, catégorie politique, **six piliers** documentés : programme du
+CNR de 1944, décision n° 81-132 DC du Conseil constitutionnel, tribune de Margolin et
+Werth dans *Le Monde*, article du *Monde* du 9 novembre 1997, *Le Monde diplomatique* de
+décembre 1997, page de l'Assemblée nationale sur la fin du tripartisme, résolution 1481
+(2006) du Conseil de l'Europe et compte rendu de *Démocratie et totalitarisme* sur
+Persée) a été ajouté **par application ciblée** (`npm run seed:apply -- --slug=…`,
+désormais un upsert par slug) : 8 pièces insérées, aucune retirée, les **324 fiches**
+d'archive des autres dossiers laissées intactes. Ses huit fiches ont été déposées,
+relues et rehachées — huit `URL_SNAPSHOT`, racine des captures
+`c37cc69f4e08b7228ff215040c8747f6b6bca8cd65643ddae5cf0f82f15f8c9e` ; le registre compte
+désormais **332 sources et 332 fiches**. Racine d'intégrité du dossier, recalculée par
+`npm run proofs` : `eec8998a40202e25a5c084476bfc8c8a13e4d1db737b495add7aff6cf86ad7be` —
+aucune valeur d'énumération nouvelle n'est employée. Le fichier d'illustration, en
+revanche, ne vit que dans l'image : écrit en base, le dossier est arrivé en ligne avec
+une image cassée (`/illustrations/<slug>.jpg` → 404) tant que l'image n'était pas
+reconstruite. Après `gcloud builds submit --config cloudbuild.yaml --project
+preuve-publique`, livré sous la révision `preuve-publique-git-00037-zqz` : l'image répond
+200 (`image/jpeg`, 305 884 octets), la page du dossier, la page de catégorie et
+l'accueil l'affichent, `ETag` = `X-Proof-Integrity-Root` = la racine recalculée, une
+fiche rehachée octet pour octet, et la recherche en ligne ramène le dossier.
+
+Puis, le 19/10/2026, le dossier **« François Mitterrand et les élus de gauche ont collaboré
+avec le régime de Vichy »** (9 sources, verdict `ANACHRONISME_HISTORIQUE`, catégorie
+histoire, **six piliers**, trois prémisses et une frise de sept étapes) : notice d'archives
+du Service historique de la Défense, base des députés de l'Assemblée nationale, étude de
+Jean Sagnes sur Persée, texte de Jean-Pierre Azéma publié par l'Assemblée nationale,
+Digithèque de matériaux juridiques et politiques de l'université de Perpignan, Fondation
+Jean-Jaurès, Institut François Mitterrand, ministère des Armées et Fondation Charles de
+Gaulle. Appliqué **par upsert ciblé** : 1 pièce ajoutée, 8 mises à jour à contenu inchangé
+— leurs captures sont restées attachées —, les **332 fiches** des autres dossiers
+intactes. Neuf fiches déposées et relues, une par pièce : huit `URL_SNAPSHOT` et une
+`URL_UNAVAILABLE` (la Digithèque de l'université de Perpignan présente un certificat TLS
+que le client d'archivage n'accepte pas, alors que la page se lit au navigateur — c'est
+là que la ventilation du scrutin et la liste nominative des Quatre-vingts ont été
+relevées : 846 inscrits, 649 votants, 569 pour, 80 contre, 20 abstentions, et 36 SFIO,
+27 radicaux-socialistes, 6 Gauche indépendante, 3 Union populaire française sur les
+quatre-vingts refus — soixante-douze rattachables à la gauche, soixante-six si l'on suit
+le regroupement d'Azéma, ce que le dossier dit). Racine des captures de la pièce neuve
+`2eac5c58167f8cd2…`. Racine d'intégrité `e1e8d3325bb568da6dab…`, égale à l'`ETag` et au
+`X-Proof-Integrity-Root` relevés en ligne sous la révision `preuve-publique-git-00038-p49`,
+puis sous `preuve-publique-git-00039-pc9` — les mêmes racines — après la correction d'un
+pourcentage erroné dans la deuxième prémisse (66 des 80, soit 82,5 %, et non 63 %),
+correction faite en base et dans le seed ;
+avec l'image servie 200, une fiche rehachée octet pour octet et `/api/verify` confirmant
+la pièce de la Digithèque. Le registre compte désormais **341 sources et 341 fiches**
+(trente-sept dossiers publiés).
+
 ## Déploiement : le moins cher possible
 
 | Levier | Réglage | Effet sur la facture |
@@ -1204,10 +1257,12 @@ publique ; il peut être surchargé au build par `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 
 ## Limites assumées
 
-- Captures : les 313 pièces publiées ont leur fiche déposée en base (une par pièce :
-  306 `URL_SNAPSHOT`, 7 `URL_UNAVAILABLE` — Le Monde, Libération, Duke University Press,
+- Captures : les 341 pièces publiées ont leur fiche déposée en base (une par pièce :
+  333 `URL_SNAPSHOT`, 8 `URL_UNAVAILABLE` — Le Monde, Libération, Duke University Press,
   Science, Annual Reviews, le SSMSI et Statistics South Africa répondant 403/429 aux
-  clients non navigateurs et n'ayant aucun instantané exploitable ; les URL bloquées sont
+  clients non navigateurs et n'ayant aucun instantané exploitable, plus la Digithèque de
+  matériaux juridiques et politiques de l'université de Perpignan, dont le certificat TLS
+  n'est pas accepté par le client d'archivage alors que la page se lit au navigateur ; les URL bloquées sont
   remplacées par des permaliens Wayback, Wikisource ou Justicelibre quand il en existe,
   et 0 `METADATA_ONLY`), relues et rehachées. Le miroir Storage du bucket
   `immutable-archives` n'a pas eu lieu, faute d'accès privilégié.

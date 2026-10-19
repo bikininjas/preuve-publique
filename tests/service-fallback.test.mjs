@@ -36,7 +36,7 @@ test("le repli local sert des empreintes dérivées, identiques à celles de la 
   const list = await listPublishedDossiers();
   assert.equal(list.ok, true);
   assert.equal(list.origin, "seed");
-  assert.equal(list.value.length, 35);
+  assert.equal(list.value.length, 37);
 
   const dossier = await getPublishedDossier("hitler-et-les-nazis-etaient-de-gauche");
   assert.equal(dossier.ok, true);

@@ -60,8 +60,14 @@ test("les piliers documentés se calculent sur les sources", () => {
 test("le brouillon de contrôle n'est jamais publié", () => {
   const published = publishedSeedDossiers().map((dossier) => dossier.slug);
   assert.ok(!published.includes(DRAFT_CONTROL_DOSSIER.slug));
-  assert.equal(published.length, 35);
+  assert.equal(published.length, 37);
   assert.ok(published.includes("aide-medicale-detat-securite-sociale-soins-de-confort"));
+  assert.ok(
+    published.includes("amalgame-gauche-communisme-totalitaire-100-millions-morts"),
+  );
+  assert.ok(
+    published.includes("mitterrand-elus-gauche-collaboration-regime-vichy-anachronisme"),
+  );
   assert.ok(published.includes("sans-papiers-et-rsa-des-leur-arrivee"));
   assert.ok(published.includes("petain-vichy-ont-ils-protege-les-juifs-francais"));
   assert.ok(published.includes("cout-immigration-budget-france"));
