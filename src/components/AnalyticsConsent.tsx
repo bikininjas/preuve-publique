@@ -1,52 +1,55 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
 import { useEffect, useState } from "react";
 
 import {
   ANALYTICS_CONSENT_KEY,
-  GA_MEASUREMENT_ID,
   parseConsent,
   type AnalyticsConsent,
 } from "@/lib/analytics";
 
+type GtagWindow = Window & { dataLayer?: unknown[] };
+
 /**
- * Mesure d'audience GA4 conditionnée au consentement : tant que la personne
- * n'a pas accepté, aucun script Google n'est chargé et aucun cookie n'est
- * déposé (exigence CNIL). Le choix est mémorisé dans le stockage local.
+ * Met à jour le Consent Mode de la balise Google déjà chargée dans le <head>.
+ * On ne recharge pas gtag.js : une seule balise par page, et le consentement
+ * par défaut reste « denied » tant que la personne n'a pas accepté.
+ */
+function pushConsent(value: AnalyticsConsent) {
+  const target = window as GtagWindow;
+  target.dataLayer = target.dataLayer || [];
+  target.dataLayer.push(["consent", "update", { analytics_storage: value }]);
+}
+
+/**
+ * Mesure d'audience GA4 conditionnée au consentement. La balise Google est
+ * présente dans le <head> (détectable par Google), mais en Consent Mode
+ * « denied » : aucun cookie d'analyse n'est déposé avant l'accord. Accepter
+ * met le consentement à jour ; refuser le laisse refusé. Le choix est mémorisé
+ * dans le stockage local.
  */
 export default function AnalyticsConsent() {
   const [consent, setConsent] = useState<AnalyticsConsent | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    setConsent(parseConsent(window.localStorage.getItem(ANALYTICS_CONSENT_KEY)));
+    const stored = parseConsent(window.localStorage.getItem(ANALYTICS_CONSENT_KEY));
+    setConsent(stored);
     setHydrated(true);
+    if (stored !== null) {
+      pushConsent(stored);
+    }
   }, []);
 
   const choose = (value: AnalyticsConsent) => {
+    pushConsent(value);
     window.localStorage.setItem(ANALYTICS_CONSENT_KEY, value);
     setConsent(value);
   };
 
   return (
     <>
-      {consent === "granted" ? (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ga4-init" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_MEASUREMENT_ID}');`}
-          </Script>
-        </>
-      ) : null}
-
       {hydrated && consent === null ? (
         <aside
           aria-label="Mesure d'audience"

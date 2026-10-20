@@ -140,10 +140,11 @@ export default function MentionsLegalesPage() {
 
       <LegalSection index="05" title="Cookies et stockage local">
         <p>
-          La navigation publique fonctionne <span className="text-ink">sans aucun cookie</span>{" "}
-          tant que vous n&apos;avez pas accepté la mesure d&apos;audience : dans ce cas,
-          aucun script Google n&apos;est chargé et aucune bannière ne s&apos;affiche. Si
-          vous acceptez, Google Analytics 4 (identifiant public{" "}
+          La navigation publique ne dépose <span className="text-ink">aucun cookie de mesure</span>{" "}
+          tant que vous n&apos;avez pas accepté. La balise Google est présente dans la page
+          avec le consentement de mesure refusé par défaut (Consent Mode) : aucun cookie
+          d&apos;analyse n&apos;est déposé avant votre accord. Si vous acceptez, Google
+          Analytics 4 (identifiant public{" "}
           <span className="font-mono text-[13px]">G-51KCVCRGC4</span>) dépose des cookies de
           mesure — pages vues, type d&apos;appareil, provenance de la visite — pour savoir
           quels dossiers sont lus et améliorer le site. Ces données ne sont ni revendues ni

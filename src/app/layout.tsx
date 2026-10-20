@@ -4,6 +4,7 @@ import { JetBrains_Mono, Newsreader, Space_Grotesk } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import AnalyticsConsent from "@/components/AnalyticsConsent";
+import { ANALYTICS_CONSENT_KEY, GA_MEASUREMENT_ID } from "@/lib/analytics";
 
 import "./globals.css";
 
@@ -68,6 +69,33 @@ try {
 }
 `;
 
+/**
+ * Balise Google unique du site, portée par le layout racine : une seule par
+ * page, dans le <head>, comme le demande Google. Le consentement de mesure est
+ * refusé par défaut (Consent Mode) ; un choix déjà accordé est relu dans le
+ * stockage local avant le `config`, et `AnalyticsConsent` met le consentement à
+ * jour quand la personne accepte. Le tag est ainsi détectable sans déposer de
+ * cookie d'analyse avant l'accord.
+ */
+const GA_TAG_SCRIPT = `
+var ppAnalyticsConsent = 'denied';
+try {
+  if (localStorage.getItem('${ANALYTICS_CONSENT_KEY}') === 'granted') {
+    ppAnalyticsConsent = 'granted';
+  }
+} catch (error) {}
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: ppAnalyticsConsent
+});
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -79,6 +107,13 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        {/* Balise Google du site : une seule par page, dans le <head>. Le
+            consentement est refusé par défaut ; voir GA_TAG_SCRIPT. */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <script dangerouslySetInnerHTML={{ __html: GA_TAG_SCRIPT }} />
         {/* Découverte du flux : posée ici plutôt qu'en métadonnées de page,
             pour survivre aux fusions de `alternates` des pages enfants. */}
         <link
