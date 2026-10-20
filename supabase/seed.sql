@@ -6775,3 +6775,198 @@ insert into public.dossier_sources (id, dossier_id, spectrum, source_name, autho
   null,
   9
 );
+
+delete from public.dossiers where slug = 'france-pays-plus-taxe-monde-enfer-fiscal-nuance-ocde';
+insert into public.dossiers (
+  id, slug, claim_title, verdict, verdict_summary, category, protagonists, consensus_score,
+  premises, timeline, is_published, published_at, illustration_url, illustration_credit
+) values (
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'france-pays-plus-taxe-monde-enfer-fiscal-nuance-ocde',
+  'La France est le pays le plus lourdement taxé au monde, étouffé par une sur-fiscalité unique',
+  'GENERALISATION_ABUSIVE'::verdict_status,
+  'Brandie par une partie des libéraux et des libertariens, la formule de l''« enfer fiscal » français repose sur un fait réel — un niveau de prélèvements obligatoires parmi les plus élevés des économies avancées — et sur une généralisation que les données démentent : la France n''est pas le pays le plus taxé au monde, et elle n''est pas seule à ce niveau.
+
+Les chiffres officiels la situent dans le peloton de tête, pas à un sommet isolé. L''OCDE relève qu''en 2024 les taux de prélèvements obligatoires rapportés au PIB allaient de 18,3 % (Mexique) à 45,2 % (Danemark) : la première place n''est pas française. Les comptes nationaux de l''Insee mesurent le taux français à 43,6 % du PIB en 2025, après 42,8 % en 2024, et Eurostat fait alterner le titre de « champion européen des prélèvements obligatoires » entre la France, le Danemark et la Belgique depuis quinze ans. Les économies nordiques et continentales qui partagent ce niveau ont fait le même choix d''un financement collectif des risques sociaux — santé, retraites, éducation —, là où les économies anglo-saxonnes en laissent une part aux assurances et aux dépenses privées.
+
+La seconde partie de l''affirmation — un impôt sans contrepartie — est un contresens comptable. Les prélèvements financent des transferts monétaires et des transferts en nature : le Conseil des prélèvements obligatoires rappelle que « la contrepartie des prélèvements fiscaux et sociaux n''est pas seulement constituée de transferts monétaires, mais aussi de transferts sociaux en nature comme la santé et l''éducation, et de dépenses collectives », et les comptes de la Nation 2024 montrent que la hausse du pouvoir d''achat des ménages (+2,6 %) est « principalement portée par les prestations sociales, notamment les pensions de retraite ». Le débat sur l''efficacité de chaque prélèvement — et sur le rendement des cotisations retraite, que l''Institut Molinari conteste — reste entier ; il ne porte pas sur l''existence d''un record mondial unique, que les données démentent.',
+  'ECONOMIE'::dossier_category,
+  '[{"name":"Organisation de coopération et de développement économiques","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Organisation_de_coop%C3%A9ration_et_de_d%C3%A9veloppement_%C3%A9conomiques","note":"L''OCDE produit Revenue Statistics, la comparaison annuelle des recettes fiscales de ses 38 pays membres : c''est elle qui établit le classement cité dans le dossier — Danemark premier à 45,2 % du PIB en 2024, moyenne de l''OCDE à 34,1 %."},{"name":"Institut national de la statistique et des études économiques","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques","note":"Le service statistique national : ses comptes nationaux mesurent le taux de prélèvements obligatoires (43,6 % du PIB en 2025) et retracent ce que ces prélèvements financent, prestations sociales en tête."},{"name":"Conseil d''analyse économique","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Conseil_d%27analyse_%C3%A9conomique","note":"Instance d''expertise économique placée auprès du Premier ministre : son Focus n° 137 analyse ensemble cotisations sociales, prélèvements obligatoires et transferts sociaux dans la formation du revenu disponible."},{"name":"Institut économique Molinari","kind":"ORGANISATION","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Institut_%C3%A9conomique_Molinari","note":"Think tank libéral : c''est lui qui porte la formulation la plus forte de la thèse — 54,2 % de prélèvements sur le coût employeur d''un salarié moyen en 2022 — et qui conteste l''idée d''un « salaire différé » des cotisations retraite."},{"name":"Jean Gadrey","kind":"PERSONNE","role":"AUTEUR","reference_url":"https://fr.wikipedia.org/wiki/Jean_Gadrey","note":"Économiste, auteur en 2014 d''une défense de gauche des prélèvements obligatoires comme choix de société : il conteste la lecture du « fardeau » et souligne l''absence de corrélation entre taux de prélèvements et croissance."}]'::jsonb,
+  100,
+  '[{"claim_part":"« La France est isolée au sommet absolu de la fiscalité mondiale »","status":"FAUX","detail":"L''OCDE établit qu''en 2024 les taux de prélèvements obligatoires rapportés au PIB s''échelonnaient de 18,3 % (Mexique) à 45,2 % (Danemark) : le taux le plus élevé est danois, la France n''occupe donc pas la première place de cette édition. Les comptes nationaux de l''Insee la mesurent à 43,6 % du PIB en 2025, après 42,8 % en 2024 — un niveau élevé, comparable à celui des pays nordiques et continentaux. Eurostat, cité par Le Pèlerin, fait d''ailleurs alterner le titre de « champion européen des prélèvements obligatoires » entre la France, le Danemark et la Belgique depuis quinze ans. « Le pays le plus taxé au monde » est faux au sens strict : ni premier au monde, ni isolé — et la comparaison de l''OCDE ne couvre pas le monde, mais ses 38 pays membres."},{"claim_part":"« L''impôt français ne finance qu''un gaspillage stérile sans contrepartie pour le contribuable »","status":"CONFUSION_CONCEPTUELLE","detail":"Les prélèvements obligatoires ne sont pas une dépense perdue : ils financent des transferts monétaires (pensions, allocations) et des transferts en nature (santé, éducation). Le Conseil des prélèvements obligatoires rappelle que « la contrepartie des prélèvements fiscaux et sociaux n''est pas seulement constituée de transferts monétaires, mais aussi de transferts sociaux en nature comme la santé et l''éducation, et de dépenses collectives ». Les comptes de la Nation 2024 confirment le circuit : la hausse de 2,6 % du pouvoir d''achat des ménages est « principalement portée par les prestations sociales, notamment les pensions de retraite ». Le CAE analyse d''ailleurs conjointement cotisations, prélèvements et transferts, parce qu''ils déterminent ensemble le coût du travail et le revenu disponible. Cette contrepartie ne dit rien, en revanche, de l''efficacité de chaque prélèvement : l''Institut Molinari conteste, chiffres à l''appui, le rendement des cotisations retraite. Le désaccord porte sur l''efficacité, pas sur l''absence de contrepartie."}]'::jsonb,
+  '[]'::jsonb,
+  true,
+  '2026-10-20T00:00:00.000Z'::timestamptz,
+  '/illustrations/france-pays-plus-taxe-monde-enfer-fiscal-nuance-ocde.jpg',
+  'Ministère de l''Économie et des Finances, bâtiment Sully (Bercy, Paris) — Fred Romero, CC BY 2.0, Wikimedia Commons'
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'e77dfff5-b40f-42d5-a2d0-2cf1908e3567',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Revenue Statistics 2025 » — OCDE, chapitre « Tax levels in 2024 » (données provisoires pour 2024)',
+  'OCDE — Organisation de coopération et de développement économiques',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'Across OECD countries, tax-to-GDP ratios ranged from 18.3% in Mexico to 45.2% in Denmark in 2024. Between 2023 and 2024, the OECD average tax-to-GDP ratio increased from 33.7% to 34.1%.',
+  'La publication annuelle de référence sur les recettes fiscales compare les 38 pays membres de l''OCDE. En 2024, le taux le plus élevé est celui du Danemark (45,2 % du PIB), le plus faible celui du Mexique (18,3 %), pour une moyenne OCDE de 34,1 %. La France figure dans le haut de ce classement, mais aucune place de premier mondial ne lui est attribuable : le maximum de l''édition est danois. Page lue sur un instantané Wayback du 9 décembre 2025, l''original répondant aux robots par un défi anti-robot.',
+  'https://web.archive.org/web/20251209105442/https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en.html',
+  null,
+  '92fc44a24b1062e05bd2a19ec5a788b30605f53e6f89b53b14eba553315876dc',
+  null,
+  'https://fr.wikipedia.org/wiki/Organisation_de_coop%C3%A9ration_et_de_d%C3%A9veloppement_%C3%A9conomiques',
+  1
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'd0ee50b7-9469-49b8-972c-b111aa7a060c',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« En 2025, le déficit public s''élève à 5,1 % du PIB, la dette publique à 115,6 % du PIB » — Insee, Informations rapides n° 78 (27 mars 2026)',
+  'Insee — Institut national de la statistique et des études économiques',
+  '2026-03-27',
+  'CITATION_EXACTE'::quote_kind,
+  'Le taux de prélèvements obligatoires augmente et s''établit à 43,6 % du PIB, après 42,8 % en 2024.',
+  'Le chiffre officiel des comptes nationaux pour 2025 : 43,6 % du PIB, après 42,8 % en 2024. Ce taux agrège impôts et cotisations sociales ; il mesure un niveau de prélèvement, pas ce que ces prélèvements financent, et encore moins un rang mondial. C''est la donnée française de référence du dossier, à comparer avec la moyenne OCDE de 34,1 %.',
+  'https://www.insee.fr/fr/statistiques/8956575',
+  null,
+  'cfa4dadaf12f5c1fb34c6188a059d329d32274856ad577afc8fd36ed04c004cf',
+  null,
+  'https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques',
+  2
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '9dde8f17-a5b8-4387-a905-2644dc2de7c5',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'DONNEES_BRUTES_OFFICIELLES'::political_spectrum,
+  '« Les comptes de la Nation en 2024 » — Insee Première n° 2053 (28 mai 2025)',
+  'Insee — Institut national de la statistique et des études économiques',
+  '2025-05-28',
+  'CITATION_EXACTE'::quote_kind,
+  'Le pouvoir d''achat du revenu disponible brut des ménages augmente de 2,6 %, principalement porté par les prestations sociales, notamment les pensions de retraite, et dans une moindre mesure par les revenus d''activité.',
+  'La comptabilité nationale décrit le circuit : en 2024, les prestations sociales — retraites en tête — sont le premier moteur de la hausse du pouvoir d''achat des ménages (+2,6 %). C''est la contrepartie chiffrée des prélèvements, et non un « gaspillage stérile » : l''argent prélevé revient aux ménages sous forme de revenus de remplacement et de services.',
+  'https://www.insee.fr/fr/statistiques/8574058',
+  null,
+  '527a6357cad5be3164052d7b61f95600e536a4cc7df041d7e217382da59b861e',
+  null,
+  'https://fr.wikipedia.org/wiki/Institut_national_de_la_statistique_et_des_%C3%A9tudes_%C3%A9conomiques',
+  3
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'ae3b3f7e-74ab-44ba-a847-260dd2a9c5d9',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'CONSENSUS_ACADEMIQUE'::political_spectrum,
+  '« Le rôle des taux marginaux implicites de prélèvement dans la formation des salaires et de l''emploi » — Focus du Conseil d''analyse économique n° 137 (juin 2026)',
+  'Christian Aleman-Pericon, Pranav Mimani, Raül Santaeulàlia-Llopis et Étienne Wasmer — Conseil d''analyse économique',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'S''appuyant sur des travaux de recherche en cours, il mobilise la notion de taux marginaux implicites de prélèvement pour analyser la manière dont les cotisations sociales, les prélèvements obligatoires et les transferts sociaux interagissent et influencent les salaires, le coût du travail et l''emploi.',
+  'Le CAE, instance d''expertise économique auprès du Premier ministre, analyse ensemble cotisations, prélèvements et transferts : le revenu disponible d''un salarié dépend du prélèvement brut et des prestations qu''il finance. Le Focus mesure aussi des taux marginaux effectifs élevés en France — un débat sur l''efficacité du système socio-fiscal, pas sur l''absence de contrepartie. Les auteurs publient sous leur responsabilité, le CAE ne les engageant pas au-delà de la commande.',
+  'https://cae-eco.fr/static/pdf/Focus_137_Wasmer_TMIP_260623.pdf',
+  null,
+  '6b6f3116733e0318eef314960e218f63c44a1a88211a220708821a89c5a1fe16',
+  null,
+  'https://fr.wikipedia.org/wiki/Conseil_d%27analyse_%C3%A9conomique',
+  4
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '922b0d0b-9cb4-4147-b9ac-81d48d312442',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'CENTRE'::political_spectrum,
+  '« Les prélèvements obligatoires au regard des enjeux redistributifs » — rapport particulier n° 3, Conseil des prélèvements obligatoires (février 2022)',
+  'Mathias André, administrateur de l''Insee — Conseil des prélèvements obligatoires',
+  null,
+  'CITATION_EXACTE'::quote_kind,
+  'la contrepartie des prélèvements fiscaux et sociaux n''est pas seulement constituée de transferts monétaires, mais aussi de transferts sociaux en nature comme la santé et l''éducation, et de dépenses collectives.',
+  'Document de travail publié par le Conseil des prélèvements obligatoires, rattaché à la Cour des comptes, et établi sous la seule responsabilité de son auteur. Il pose la méthode : pour mesurer la redistribution, il faut regarder ensemble ce qui est prélevé et ce qui est versé, y compris la santé et l''éducation. Il chiffre aussi la redistribution élargie — elle bénéficie à deux ménages sur trois. Une lecture qui ne voit dans l''impôt qu''une charge sans contrepartie ignore la moitié du circuit.',
+  'https://www.ccomptes.fr/sites/default/files/2022-02/20220209-rapport-particulier-redistribution.pdf',
+  null,
+  'fabca01b2ba8cf2ee6da3ac981be09d12652d8b6024b7d5588b5b7648b9db923',
+  null,
+  'https://fr.wikipedia.org/wiki/Cour_des_comptes_(France)',
+  5
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  'cd81a8ee-6f4c-48c2-8884-7d8a9e5c90c6',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'CENTRE'::political_spectrum,
+  '« La France est un enfer fiscal » — Le Pèlerin (21 mars 2024)',
+  'Pierre Wolf-Mandroux — Le Pèlerin',
+  '2024-03-21',
+  'CITATION_EXACTE'::quote_kind,
+  'Le titre de champion européen des prélèvements obligatoires (impôts et cotisations sociales), selon Eurostat, revient depuis quinze ans tantôt à la France, tantôt au Danemark, tantôt à la Belgique.',
+  'L''hebdomadaire généraliste démonte la formule au moment où elle circule : selon Eurostat, le titre de champion européen alterne entre trois pays depuis quinze ans. L''article précise que la France a été première en 2022 (48 % du PIB), le Danemark en 2021 (48,8 %), et rappelle qu''en 2021, sur 127 pays examinés par l''OCDE, le Danemark devançait la France (47,4 % contre 45,2 %). « Enfer fiscal » est un jugement, pas une position dans un classement.',
+  'https://www.lepelerin.com/france/economie/la-france-est-un-enfer-fiscal-9271',
+  null,
+  '4c14672d5af267276269c404d9bac442f71278e12ac4a66477be254f0a96ccc9',
+  null,
+  'https://fr.wikipedia.org/wiki/Le_P%C3%A8lerin_(magazine)',
+  6
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '806bc5d6-a060-418d-8e91-b146d755ea1e',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'GAUCHE'::political_spectrum,
+  '« Prélèvements obligatoires : quel choix de société ? » — Alternatives économiques (1er novembre 2014)',
+  'Jean Gadrey — Alternatives économiques',
+  '2014-11-01',
+  'CITATION_EXACTE'::quote_kind,
+  'Il n''y a aucune corrélation entre le taux de croissance des économies développées et leur taux de prélèvements obligatoires.',
+  'L''économiste Jean Gadrey défend la lecture inverse du « fardeau » : les prélèvements financent majoritairement des dépenses qui injectent du pouvoir d''achat — retraites, allocations familiales et de chômage, revenu de solidarité active, salaires des fonctionnaires — et la comparaison internationale ne montre pas de lien entre niveau de prélèvements et croissance. Un point de vue de gauche, daté de 2014 : il porte sur le principe du financement collectif, pas sur le niveau précis de 2025.',
+  'https://www.alternatives-economiques.fr/prelevements-obligatoires-quel-choix-de-societe_01-11-2014',
+  null,
+  'b16af9fcb8a7e5a0268b7c2b914442bb1870f863d51fe953cb170f164dd44b30',
+  null,
+  'https://fr.wikipedia.org/wiki/Alternatives_%C3%A9conomiques',
+  7
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '9da59398-cfa4-4fd3-b983-596083b8f83b',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« Le salarié moyen est taxé à plus de 50 % en France et la probabilité que cela baisse est faible » — Institut économique Molinari (1er décembre 2023), texte publié dans La Revue parlementaire',
+  'Nicolas Marques — Institut économique Molinari',
+  '2023-12-01',
+  'CITATION_EXACTE'::quote_kind,
+  'La contribution fiscale et sociale sur un salarié moyen ressortait à 54,2 % en France en 2022.',
+  'Le think tank libéral chiffre le fardeau : 54,2 % du coût employeur d''un salarié moyen en 2022, dont 25 774 euros de cotisations sociales, soit « 102 % du revenu disponible » du même salarié, contre 52 % en moyenne dans l''UE. L''article conteste aussi l''idée d''un « salaire différé » : le rendement des cotisations retraite serait proche de 2 %. C''est la version la plus forte de la thèse — et elle porte sur le niveau et l''efficacité du prélèvement, pas sur un record mondial.',
+  'https://www.institutmolinari.org/2023/12/01/le-salarie-moyen-est-taxe-a-plus-de-50-en-france-et-la-probabilite-que-cela-baisse-est-faible/',
+  null,
+  'f8da2917f54b4d460012e9c1ff6caa88286673842e6c35005e5eb8c429c0b4c6',
+  null,
+  'https://fr.wikipedia.org/wiki/Institut_%C3%A9conomique_Molinari',
+  8
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '00be42e5-d8de-4155-9ac2-32d55595d338',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« France : nouveau coup de chaud sur la dette » — Contrepoints (2 juillet 2026)',
+  'Nathalie MP Meyer — Contrepoints',
+  '2026-07-02',
+  'CITATION_EXACTE'::quote_kind,
+  'vu le niveau olympique des prélèvements obligatoires français (taux le plus élevé de la zone euro en 2025)',
+  'Le média libéral reprend l''affirmation au moment du rapport de la Cour des comptes sur 2025 : « taux le plus élevé de la zone euro en 2025 ». La précision compte — zone euro, et non monde ; une année, et non une permanence. C''est le noyau vrai de la thèse : la France est au sommet européen, pas au sommet mondial, et elle n''y est pas seule.',
+  'https://contrepoints.org/france-nouveau-coup-de-chaud-sur-la-dette',
+  null,
+  '62d33a8e311c83da6cdc00848ad98b688541756c6ad3164e8aea85a3bb353d77',
+  null,
+  'https://fr.wikipedia.org/wiki/Contrepoints',
+  9
+);
+insert into public.dossier_sources (id, dossier_id, spectrum, source_name, author_or_institution, publication_date, quote_kind, exact_quote, context_explanation, original_url, archive_storage_path, archive_sha256, archive_binary_sha256, author_reference_url, display_order) values (
+  '8d77155c-388d-4de8-a398-1f68095d91d8',
+  '293756b0-1e08-4831-828f-c68f51bd1282',
+  'DROITE_LIBERALE_CONSERVATRICE'::political_spectrum,
+  '« La France, enfer fiscal ? » — Le Journal du Dimanche (15 avril 2009), texte de Guillaume Vuillemey',
+  'Guillaume Vuillemey — Institut économique Molinari, Le Journal du Dimanche',
+  '2009-04-15',
+  'CITATION_EXACTE'::quote_kind,
+  'La France pourrait alors devenir un vrai enfer fiscal.',
+  'L''expression « enfer fiscal » appliquée à la France vient de ce texte d''opinion de l''Institut économique Molinari, publié en 2009 : il s''appuie sur un classement du magazine Forbes Asia portant sur cinquante pays — « le moins accueillant fiscalement est... la France ! » — et conclut que, si les paradis fiscaux étaient attaqués, la France pourrait « devenir un vrai enfer fiscal ». C''est une étiquette militante, pas une mesure : le dossier la traite comme telle.',
+  'https://www.lejdd.fr/Economie/La-France-enfer-fiscal-74240-3074927',
+  null,
+  '64f7c63e9904c57fca1df4348e46fe524bfbe4ed73bfbd8ad4629941ddc468d2',
+  null,
+  'https://fr.wikipedia.org/wiki/Institut_%C3%A9conomique_Molinari',
+  10
+);

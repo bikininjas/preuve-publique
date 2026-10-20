@@ -47,8 +47,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0016_droit_fondamental_libre_verdict` (`20261017140600`, appliquée le 17/10 —
   `verdict_status` accueille « droit fondamental libre », le verdict du dossier sur la
   carte de presse ; les statuts de brique sont inchangés).
-  Trente-huit dossiers en base :
-  trente-sept **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
+  Trente-neuf dossiers en base :
+  trente-huit **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (6, économie),
   l'insécurité attribuée à l'immigration (13, société, biais méthodologique), le pourvoi
   en cassation et
@@ -82,12 +82,13 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   la carte de presse présentée comme obligatoire pour exercer le métier de journaliste
   et couvrir les manifestations (11, politique, droit fondamental libre),
   « voter à gauche revient à soutenir une idéologie communiste totalitaire responsable de
-  100 millions de morts » (8, politique, généralisation abusive), et « François Mitterrand
+  100 millions de morts » (8, politique, généralisation abusive), « François Mitterrand
   et les élus de gauche ont collaboré avec le régime de Vichy » (9, histoire, anachronisme
-  historique) — et un
+  historique) et la France présentée comme « le pays le plus lourdement taxé au monde »
+  (10, économie, généralisation abusive) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 341 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 351 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -659,6 +660,23 @@ deux prémisses : « Des Algériens ont été tués » (`VRAI`) et « Le chiffre
 est établi par les archives » (`FAUX`). Les six pièces sont inchangées ; racine
 d'intégrité `38fa9b92edb199b3…`, égale à l'`ETag` en ligne.
 
+Le 20/10/2026 (05:17 UTC), le dossier « La France est le pays le plus lourdement taxé au
+monde, étouffé par une sur-fiscalité unique » (dix sources, économie, généralisation
+abusive) a été ajouté : OCDE (*Revenue Statistics 2025*, page servie par un instantané
+Wayback), Insee (taux de prélèvements obligatoires 2025 et comptes de la Nation 2024),
+Conseil d'analyse économique (Focus n° 137), Conseil des prélèvements obligatoires,
+Le Pèlerin, Alternatives économiques, Institut économique Molinari et Contrepoints.
+Le brief annonçait « entre 45 % et 47 % du PIB » ; les comptes nationaux donnent 43,6 %
+en 2025 (42,8 % en 2024) et l'OCDE place le Danemark en tête en 2024 (45,2 %) — le
+dossier suit les données, pas le brief. Dix fiches d'archive déposées et relues, toutes
+en instantanés réseau (racine des captures `51083cd9a04f2335…`). Racine d'intégrité
+`e9312895fd4c8e23…`, égale à l'`ETag` et au `X-Proof-Integrity-Root` relevés en ligne.
+L'illustration (ministère de l'Économie et des Finances, bâtiment Sully — Fred Romero,
+CC BY 2.0) est versionnée dans `public/` et servie en ligne : redéploiement
+`preuve-publique-git-00040-hxl` le 20/10 à 05:57 UTC, image téléchargée et rehachée
+(`116dd51803078bcc…`, identique au fichier du dépôt), page, catégorie et recherche
+vérifiées au navigateur.
+
 ## Pile technique
 
 | Brique | Choix |
@@ -680,7 +698,7 @@ npm run dev            # développement local (repli sur les dossiers de référ
 npm run build          # build de production
 npm start              # serveur Next (après build)
 npm run typecheck      # tsc --noEmit
-npm test               # 102 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
+npm test               # 105 tests : données, garde de triangulation, crypto, quotas, archivage, chronologie,
                        #            résumés en paragraphes, tirage aléatoire, SEO
 npm run seed:sql       # régénère supabase/seed.sql depuis src/db/seed-fallback.ts
 npm run seed:apply     # applique les dossiers de référence (DB_PG_URL requis)
