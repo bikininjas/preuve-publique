@@ -219,6 +219,7 @@ footer {
 /* --- Tampons et sceaux ---------------------------------------------------- */
 
 .pp-stamp {
+  --pp-tilt: -1deg;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -228,7 +229,7 @@ footer {
   font-size: 0.8rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  transform: rotate(-2deg);
+  transform: rotate(var(--pp-tilt));
 }
 
 .pp-seal {
@@ -824,26 +825,17 @@ footer {
 
 /* L'impact du tampon : il arrive au-dessus du papier (110 % de son format,
    encore invisible), puis retombe à sa taille — l'encre apparaît pendant la
-   chute, en 200 ms, sortie rapide. */
+   chute, en 200 ms, sortie rapide. L'inclinaison est un jeton : chaque tampon
+   garde la sienne (`--pp-tilt`), la chute ne l'écrase pas. */
 @keyframes pp-stamp {
-  from { opacity: 0; transform: scale(1.1) rotate(-2deg); }
-  to { opacity: 1; transform: scale(1) rotate(-2deg); }
-}
-
-@keyframes pp-sweep {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from { opacity: 0; transform: scale(1.1) rotate(var(--pp-tilt, -1deg)); }
+  to { opacity: 1; transform: scale(1) rotate(var(--pp-tilt, -1deg)); }
 }
 
 .pp-reveal { opacity: 0; }
 .pp-reveal.pp-in { animation: pp-rise 620ms var(--pp-ease) both; }
 
 .pp-stamp-in { animation: pp-stamp 200ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-
-.pp-gauge-fill {
-  transform-origin: left center;
-  animation: pp-sweep 900ms var(--pp-ease) both;
-}
 
 .pp-tick {
   transition: background var(--pp-slow) var(--pp-ease), height var(--pp-slow) var(--pp-ease);
@@ -853,8 +845,7 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .pp-reveal { opacity: 1; }
   .pp-reveal.pp-in,
-  .pp-stamp-in,
-  .pp-gauge-fill { animation: none; }
+  .pp-stamp-in { animation: none; }
   .pp-card:hover { transform: none; }
   * { scroll-behavior: auto !important; }
 }
@@ -970,6 +961,37 @@ a[class*="text-seal"] {
   --pp-stone: #a8a29e;
   /* Manque d'encre : de petites éclipses clairsemées percent le tampon. */
   --pp-ink-wear: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='64'%3E%3Cg fill='%23fff'%3E%3Cellipse cx='13' cy='9' rx='4.6' ry='2.1'/%3E%3Cellipse cx='41' cy='26' rx='2.4' ry='3.6'/%3E%3Cellipse cx='68' cy='13' rx='3.4' ry='1.4'/%3E%3Cellipse cx='96' cy='33' rx='5.1' ry='2.3'/%3E%3Cellipse cx='121' cy='11' rx='1.9' ry='2.9'/%3E%3Cellipse cx='149' cy='41' rx='3.8' ry='1.7'/%3E%3Cellipse cx='174' cy='19' rx='2.7' ry='3.2'/%3E%3Cellipse cx='30' cy='47' rx='3.1' ry='1.6'/%3E%3Cellipse cx='84' cy='53' rx='2.2' ry='2.5'/%3E%3Cellipse cx='133' cy='57' rx='4.3' ry='1.9'/%3E%3Cellipse cx='163' cy='51' rx='1.7' ry='2.6'/%3E%3Cellipse cx='7' cy='34' rx='2.9' ry='1.5'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* La plaque d'un dossier : un négatif d'archive posé sur la table lumineuse.
+     Surface #121212, trame #0d0d0d, filet #2a2a2a, laiton #6b5c45 au survol.
+     Ces valeurs sont des jetons, pas des classes en dur : le thème sombre les
+     relève d'un cran pour que la plaque se détache encore du fond. */
+  --pp-plate: #121212;
+  --pp-plate-deep: #0d0d0d;
+  --pp-plate-line: #2a2a2a;
+  --pp-plate-lit: #6b5c45;
+  --pp-plate-lit-bg: #1a1713;
+  --pp-plate-ink: #ece9e2;
+  --pp-plate-muted: #a8a29e;
+  --pp-plate-lume: rgba(107, 92, 69, 0.22);
+  --pp-plate-halo: rgba(107, 92, 69, 0.55);
+  --pp-plate-glow: rgba(107, 92, 69, 0.3);
+  --pp-plate-seg: #b99a6b;
+
+  /* Encres du tampon : sombres sur le papier d'archive, elles s'éclaircissent
+     sur la plaque (voir `.pp-folder__plate`). Un verdict faux reste carmin,
+     un verdict avéré reste vert institutionnel — seul le contraste change. */
+  --pp-stamp-false-ink: var(--pp-false-bd);
+  --pp-stamp-false-line: var(--pp-false-bd);
+  --pp-stamp-false-bg: var(--pp-false-bg);
+  --pp-stamp-true-ink: var(--pp-true-bd);
+  --pp-stamp-true-line: var(--pp-true-bd);
+  --pp-stamp-true-bg: var(--pp-true-bg);
+  --pp-stamp-warn-ink: var(--pp-warn-bd);
+  --pp-stamp-warn-line: var(--pp-warn-bd);
+  --pp-stamp-warn-bg: var(--pp-warn-bg);
+  /* Le papier que laisse voir le manque d'encre : celui de la surface portée. */
+  --pp-stamp-paper: var(--pp-canvas);
 }
 
 [data-theme="dark"] {
@@ -978,7 +1000,16 @@ a[class*="text-seal"] {
   --pp-lit-glow: rgba(251, 191, 36, 0.09);
   --pp-mark: #8a8f99;
   --pp-stone: #6f7680;
+  /* Sur la chambre noire (#0b0c0e), un #121212 disparaîtrait : la plaque
+     monte d'un demi-ton et garde son filet lisible. */
+  --pp-plate: #16181b;
+  --pp-plate-deep: #101114;
+  --pp-plate-line: #2f333a;
+  --pp-plate-lit: #8a7657;
+  --pp-plate-lit-bg: #1d1b17;
+  --pp-plate-seg: #c9a97a;
 }
+
 
 /* --- Repères de coupe (croix d'imprimerie) -------------------------------- */
 
@@ -1066,19 +1097,20 @@ a[class*="text-seal"] {
 
 .pp-stamp {
   position: relative;
-  padding: 0.5rem 0.95rem;
+  /* Padding serré : le tampon se pose sur la pièce, il ne flotte pas dessus. */
+  padding: 0.3rem 0.6rem;
   border-width: 3px;
-  transform: rotate(-2deg);
+  transform: rotate(var(--pp-tilt));
   /* L'ombre interne : la pression du tampon — le pourtour du cadre est
      saturé, le cœur de l'empreinte respire. */
   box-shadow: inset 0 0 7px color-mix(in srgb, currentColor 22%, transparent);
 }
 
-/* Le second cadre, à 5 px du premier. */
+/* Le second cadre, à 4 px du premier : la double ligne d'un tampon encreur. */
 .pp-stamp::before {
   content: "";
   position: absolute;
-  inset: 5px;
+  inset: 4px;
   border: 1px solid currentColor;
   pointer-events: none;
 }
@@ -1089,12 +1121,40 @@ a[class*="text-seal"] {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: var(--pp-canvas);
+  background: var(--pp-stamp-paper);
   -webkit-mask-image: var(--pp-ink-wear);
   mask-image: var(--pp-ink-wear);
   -webkit-mask-size: 190px 64px;
   mask-size: 190px 64px;
   opacity: 0.85;
+}
+
+/* Deux inclinaisons seulement, choisies par le libellé du verdict : un tampon
+   posé à la main n'est jamais d'aplomb, mais il ne tremble pas d'un rendu à
+   l'autre. */
+.pp-stamp[data-tilt="a"] { --pp-tilt: -1deg; }
+.pp-stamp[data-tilt="b"] { --pp-tilt: 1.5deg; }
+
+/* Code couleur sémantique : le carmin pour ce qui est faux, le vert
+   institutionnel pour ce qui est avéré, l'ambre pour ce qui trompe. Les
+   valeurs viennent de jetons pour que la plaque sombre puisse les éclaircir
+   sans changer le sens. */
+.pp-stamp[data-tone="false"] {
+  color: var(--pp-stamp-false-ink);
+  border-color: var(--pp-stamp-false-line);
+  background-color: var(--pp-stamp-false-bg);
+}
+
+.pp-stamp[data-tone="true"] {
+  color: var(--pp-stamp-true-ink);
+  border-color: var(--pp-stamp-true-line);
+  background-color: var(--pp-stamp-true-bg);
+}
+
+.pp-stamp[data-tone="warn"] {
+  color: var(--pp-stamp-warn-ink);
+  border-color: var(--pp-stamp-warn-line);
+  background-color: var(--pp-stamp-warn-bg);
 }
 
 .pp-stamp--flat {
@@ -1194,6 +1254,152 @@ a[class*="text-seal"] {
   }
 }
 
+/* --- Plaque de dossier : négatif d'archive sur table lumineuse ----------- */
+
+/* La fiche est une plaque sombre posée sur le papier : #121212 en surface,
+   trame #0d0d0d dans la matière, filet #2a2a2a au repos. Au survol, le filet
+   passe au laiton #6b5c45 et une lueur interne monte du bas — c'est un
+   rétroéclairage, pas une ombre portée.
+
+   La plaque réécrit les jetons de la fiche plutôt que d'ajouter des classes
+   conditionnelles au composant : l'encre, les légendes, les filets et les
+   tampons basculent en clair parce qu'ils lisent ces variables. */
+.pp-folder__plate {
+  --pp-ink: var(--pp-plate-ink);
+  --pp-muted: var(--pp-plate-muted);
+  --pp-surface: var(--pp-plate);
+  --pp-surface-2: var(--pp-plate-deep);
+  --pp-grid: var(--pp-plate-lit);
+  --pp-grid-soft: var(--pp-plate-line);
+  /* L'enveloppe des diodes et des repères, invisible si elle reste carbone. */
+  --pp-mark: #8a857c;
+  /* La table lumineuse éclaire la plaque en laiton, jamais en blanc : la
+     règle de survol de `.pp-lighttable` lit ces trois jetons. */
+  --pp-lit: var(--pp-plate-lit-bg);
+  --pp-lit-halo: var(--pp-plate-halo);
+  --pp-lit-glow: var(--pp-plate-glow);
+  /* L'encre d'un tampon faux s'éclaircit sur le noir et reste carmin ; le vrai
+     garde le vert institutionnel. Les valeurs reprennent red-400/900/950 et
+     emerald-400/900/950, appliquées en jetons et non en classes en dur. */
+  --pp-stamp-false-ink: #f87171;
+  --pp-stamp-false-line: rgba(127, 29, 29, 0.8);
+  --pp-stamp-false-bg: rgba(69, 10, 10, 0.2);
+  --pp-stamp-true-ink: #34d399;
+  --pp-stamp-true-line: rgba(6, 78, 59, 0.8);
+  --pp-stamp-true-bg: rgba(2, 44, 34, 0.2);
+  --pp-stamp-warn-ink: #fbbf24;
+  --pp-stamp-warn-line: rgba(120, 53, 15, 0.8);
+  --pp-stamp-warn-bg: rgba(69, 26, 3, 0.2);
+  --pp-stamp-paper: var(--pp-plate);
+
+  position: relative;
+  color: var(--pp-ink);
+  border-color: var(--pp-plate-line);
+  background-color: var(--pp-plate);
+  /* La matière : une trame diagonale fine et un reflet de surface, tous deux
+     translucides pour laisser voir la couleur de fond au survol. */
+  background-image:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 42%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  transition:
+    border-color 240ms var(--pp-ease),
+    background-color 240ms var(--pp-ease),
+    box-shadow 240ms var(--pp-ease);
+}
+
+/* Le rétroéclairage : un halo de laiton qui monte du bas de la plaque. Il vit
+   dans un pseudo-élément parce que `.pp-lighttable` remplace la `box-shadow`
+   de la fiche au survol — une lueur interne posée en ombre y serait perdue. */
+.pp-folder__plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background-image:
+    radial-gradient(130% 80% at 50% 108%, var(--pp-plate-lume), transparent 62%),
+    radial-gradient(90% 55% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%);
+  transition: opacity 240ms var(--pp-ease);
+}
+
+.pp-folder:hover .pp-folder__plate,
+.pp-folder:focus-within .pp-folder__plate {
+  border-color: var(--pp-plate-lit);
+  background-color: var(--pp-lit);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--pp-plate-lit) 45%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.pp-folder:hover .pp-folder__plate::before,
+.pp-folder:focus-within .pp-folder__plate::before {
+  opacity: 1;
+}
+
+/* Le registre des scellés : les chiffres réels du dossier, en chasse fixe et
+   en chiffres tabulaires — ils s'alignent d'une fiche à l'autre. */
+.pp-plate__seals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4.25rem, 1fr));
+  gap: 0.45rem 0.75rem;
+  border-top: 1px solid var(--pp-grid-soft);
+  padding-top: 0.55rem;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-seal-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.pp-seal-cell__key {
+  color: var(--pp-muted);
+  font-size: var(--pp-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pp-seal-cell__value {
+  color: var(--pp-ink);
+  font-size: var(--pp-text-sm);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* L'indicateur segmenté remplace la barre continue : des blocs de taille
+   fixe, séparés d'un filet, comme les pistes d'un audit. Un bloc allumé vaut
+   5 points de l'indice affiché ; le nombre exact reste écrit à côté. */
+.pp-track {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  height: 10px;
+  min-width: 84px;
+}
+
+.pp-track__cell {
+  flex: 1 1 0;
+  min-width: 2px;
+  background-color: rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: background-color 240ms var(--pp-ease), box-shadow 240ms var(--pp-ease);
+}
+
+.pp-track__cell[data-on="true"] {
+  background-color: var(--pp-plate-seg);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 0 6px -3px var(--pp-plate-seg);
+}
+
+.pp-folder:hover .pp-track__cell[data-on="true"] {
+  background-color: color-mix(in srgb, var(--pp-plate-seg) 82%, #fff);
+}
+
 /* --- Mini-spectromètre des fiches --------------------------------------- */
 
 /* Les diodes gardent une enveloppe visible dans les deux thèmes : le gris de
@@ -1229,12 +1435,21 @@ a[class*="text-seal"] {
 .pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"] { --pp-pole: #34558b; }
 .pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"] { --pp-pole: #55524a; }
 
-[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="ARCHIVE_PRIMAIRE"] { --pp-pole: #c9a26a; }
-[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="CONSENSUS_ACADEMIQUE"] { --pp-pole: #5eb39c; }
-[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="GAUCHE"] { --pp-pole: #e08ca4; }
-[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="CENTRE"] { --pp-pole: #b3a1dd; }
-[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"] { --pp-pole: #8fb3e6; }
-[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"] { --pp-pole: #b9bdc6; }
+/* La plaque sombre et la chambre noire demandent les mêmes teintes de pôle,
+   plus claires que sur le papier : une pastille doit rester un signal, pas un
+   trou noir. */
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="ARCHIVE_PRIMAIRE"],
+.pp-folder__plate .pp-pillars .pp-led--on[data-spectrum="ARCHIVE_PRIMAIRE"] { --pp-pole: #c9a26a; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="CONSENSUS_ACADEMIQUE"],
+.pp-folder__plate .pp-pillars .pp-led--on[data-spectrum="CONSENSUS_ACADEMIQUE"] { --pp-pole: #5eb39c; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="GAUCHE"],
+.pp-folder__plate .pp-pillars .pp-led--on[data-spectrum="GAUCHE"] { --pp-pole: #e08ca4; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="CENTRE"],
+.pp-folder__plate .pp-pillars .pp-led--on[data-spectrum="CENTRE"] { --pp-pole: #b3a1dd; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"],
+.pp-folder__plate .pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"] { --pp-pole: #8fb3e6; }
+[data-theme="dark"] .pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"],
+.pp-folder__plate .pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"] { --pp-pole: #b9bdc6; }
 
 /* --- Chambre d'isolement (mode preuve à l'aveugle) ----------------------- */
 

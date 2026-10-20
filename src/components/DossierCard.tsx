@@ -1,7 +1,8 @@
 import Link from "next/link";
 
+import ConvergenceSegments from "@/components/ConvergenceSegments";
 import PillarStrip from "@/components/PillarStrip";
-import VerdictStamp from "@/components/VerdictStamp";
+import VerdictStamp, { stampTilt } from "@/components/VerdictStamp";
 import {
   CATEGORY_LABELS,
   CATEGORY_SLUGS,
@@ -13,13 +14,15 @@ import { documentedSpectra } from "@/lib/types";
 
 /**
  * Fiche de dossier : la brique de lecture du registre (accueil, liste,
- * catégories). C'est une chemise d'instruction — un onglet porte la cote réelle
- * du dossier et l'état de ses empreintes, le corps porte le verdict, le
- * mini-spectromètre des piliers et la jauge.
+ * catégories). C'est une chemise d'instruction — un onglet de papier porte la
+ * cote réelle du dossier et l'état de ses empreintes, la plaque sombre porte le
+ * verdict, le mini-spectromètre des piliers et le registre des scellés.
  *
- * Toute la fiche est cliquable, et le lien mène au dossier — pas seulement son
- * titre. La cote de l'onglet est dérivée de l'identifiant du dossier : elle
- * n'est jamais écrite à la main.
+ * La plaque est une surface de table lumineuse (voir `.pp-folder__plate`) : le
+ * survol allume son filet au laiton et fait monter une lueur interne. Toute la
+ * fiche est cliquable, et le lien mène au dossier — pas seulement son titre. La
+ * cote de l'onglet est dérivée de l'identifiant du dossier : elle n'est jamais
+ * écrite à la main.
  */
 export default function DossierCard({ dossier }: { dossier: Dossier }) {
   const spectra = documentedSpectra(dossier.sources);
@@ -27,6 +30,7 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
   const piecesWithHash = dossier.sources.filter(
     (source) => source.archive_sha256 !== null,
   ).length;
+  const score = Math.min(100, Math.max(0, dossier.consensus_score));
 
   return (
     <article className="pp-folder">
@@ -49,7 +53,7 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
         </span>
       </div>
 
-      <div className="pp-card">
+      <div className="pp-card pp-folder__plate">
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
@@ -58,7 +62,7 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
           >
             {CATEGORY_LABELS[dossier.category]}
           </Link>
-          <VerdictStamp verdict={dossier.verdict} />
+          <VerdictStamp verdict={dossier.verdict} tilt={stampTilt(dossier.id)} />
           <span className="pp-meta ml-auto text-muted">{formatLongDate(dossier.published_at)}</span>
         </div>
 
@@ -78,31 +82,38 @@ export default function DossierCard({ dossier }: { dossier: Dossier }) {
 
         <p className="pp-clamp-3 pp-tight text-muted">{dossier.verdict_summary}</p>
 
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-gridsoft pt-2">
-          <span className="pp-meta text-muted">
-            {String(pieces).padStart(2, "0")} pièces · {spectra.length}/6 piliers
-          </span>
-          <span className="pp-meta text-muted">{piecesWithHash} empreintes</span>
-        </div>
+        {/* Registre des scellés : chaque chiffre est une lecture réelle de la
+            fiche. Les pièces et les empreintes se comptent ; l'indice de
+            convergence, lui, est éditorial — le titre de la cellule le dit. */}
+        <dl className="pp-plate__seals">
+          <div className="pp-seal-cell">
+            <dt className="pp-seal-cell__key">Pièces</dt>
+            <dd className="pp-seal-cell__value">{String(pieces).padStart(2, "0")}</dd>
+          </div>
+          <div className="pp-seal-cell">
+            <dt className="pp-seal-cell__key">Piliers</dt>
+            <dd className="pp-seal-cell__value">{spectra.length}/6</dd>
+          </div>
+          <div className="pp-seal-cell">
+            <dt className="pp-seal-cell__key">Empreintes</dt>
+            <dd className="pp-seal-cell__value">
+              {piecesWithHash}/{pieces}
+            </dd>
+          </div>
+          <div
+            className="pp-seal-cell"
+            title="Indice de convergence affiché — score éditorial, la couverture documentaire se compte"
+          >
+            <dt className="pp-seal-cell__key">Convergence</dt>
+            <dd className="pp-seal-cell__value">{score}%</dd>
+          </div>
+        </dl>
 
-        {/* Mini-spectromètre : les six pôles en pastilles colorées, et le
-            score de convergence à côté. Le score est éditorial, la couverture
-            se compte — la fiche dit les deux. */}
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        {/* Les six pôles en pastilles, puis la piste d'audit segmentée : un
+            bloc allumé vaut cinq points, le chiffre exact est au-dessus. */}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <PillarStrip spectra={spectra} />
-          <span className="pp-meta text-ink">Convergence {dossier.consensus_score}%</span>
-        </div>
-
-        {/* Jauge millimétrée : une graduation tous les 10 points. */}
-        <div
-          className="relative h-2 border border-gridsoft"
-          role="img"
-          aria-label={`Score de consensus affiché : ${dossier.consensus_score} sur 100`}
-        >
-          <span
-            className="pp-gauge-fill absolute inset-y-0 left-0 bg-ink"
-            style={{ width: `${Math.min(100, Math.max(0, dossier.consensus_score))}%` }}
-          />
+          <ConvergenceSegments score={score} className="min-w-[84px] flex-1" />
         </div>
       </div>
     </article>
