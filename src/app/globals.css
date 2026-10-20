@@ -1386,6 +1386,77 @@ a[class*="text-seal"] {
   white-space: nowrap;
 }
 
+/* --- Fiche de dossier : vignette latérale 3:4 ---------------------------- */
+
+/* La fiche se lit en deux colonnes : le corps analytique à gauche, l'encadré
+   d'archive à droite. La vignette garde un cadrage vertical fixe — le bandeau
+   horizontal coupait les documents et les visages. */
+.pp-folder__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  align-items: start;
+  gap: 0.75rem 0.85rem;
+}
+
+.pp-folder__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.pp-folder__visual {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* Négatif vertical : ratio 3:4, sujet centré, filet technique, virage sépia
+   discret. La texture de papier vient du grain global. */
+.pp-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--pp-neg-line);
+  background-color: var(--pp-neg-bg);
+  padding: 3px;
+  filter: grayscale(0.35) sepia(0.12) contrast(1.03);
+}
+
+/* Micro-cartel : le crédit réel du document, une ligne, ellipsis. 10 px et
+   encre claire — 9 px sur neutral-500 tombait sous le plancher de lisibilité
+   du site et sous le contraste AA. */
+.pp-cartel-mini {
+  margin-top: 0.3rem;
+  overflow: hidden;
+  color: var(--pp-plate-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .pp-folder__layout {
+    grid-template-columns: minmax(0, 1fr) 132px;
+  }
+}
+
+/* Sur téléphone, la colonne de texte fait ~190 px : « CONVERGENCE » en 12 px
+   espacé déborderait de sa cellule. La clé descend d'un cran, la valeur reste
+   en 13 px. */
+@media (max-width: 480px) {
+  .pp-seal-cell__key {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+}
+
 /* L'indicateur segmenté remplace la barre continue : des blocs de taille
    fixe, séparés d'un filet, comme les pistes d'un audit. Un bloc allumé vaut
    5 points de l'indice affiché ; le nombre exact reste écrit à côté. */
