@@ -41,11 +41,14 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
 
   const covered = documentedSpectra(dossier.sources);
   const total = dossier.sources.length;
+  /* Les six foyers sont au centre des six colonnes du schéma (1000 / 6) :
+     chaque faisceau part vraiment au-dessus de son pilier, pas d'un paquet
+     resserré au milieu du cadre. */
   const columns = SPECTRUM_ORDER.map((spectrum, index) => ({
     spectrum,
     count: counts.get(spectrum) ?? 0,
     sources: (firstOf.get(spectrum) ?? []).slice(0, 3),
-    x: 500 + ((index - 2.5) * 740) / 6,
+    x: ((index + 0.5) * 1000) / SPECTRUM_ORDER.length,
   }));
   const activeColumn = columns.find((column) => column.spectrum === active) ?? null;
 
@@ -68,9 +71,52 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
           viewBox="0 0 1000 120"
           role="img"
           aria-label={`Convergence de ${covered.length} piliers documentés vers le verdict`}
-          className="h-24 w-full"
+          className="block h-auto w-full"
+          shapeRendering="geometricPrecision"
         >
-          <line x1="500" y1="0" x2="500" y2="104" stroke="var(--pp-grid-soft)" strokeWidth="1" />
+          <defs>
+            {columns.map((column) => (
+              <g key={`grad-${column.spectrum}`}>
+                {/* Le faisceau au repos : l'opacité monte vers le verdict. */}
+                <linearGradient
+                  id={`pp-beam-base-${column.spectrum}`}
+                  gradientUnits="userSpaceOnUse"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="104"
+                >
+                  <stop offset="0" stopColor="var(--pp-stone)" stopOpacity="0.05" />
+                  <stop offset="0.6" stopColor="var(--pp-stone)" stopOpacity="0.4" />
+                  <stop offset="1" stopColor="var(--pp-stone)" stopOpacity="0.85" />
+                </linearGradient>
+                {/* Le faisceau allumé : le laiton de la table lumineuse. */}
+                <linearGradient
+                  id={`pp-beam-live-${column.spectrum}`}
+                  gradientUnits="userSpaceOnUse"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="104"
+                >
+                  <stop offset="0" stopColor="var(--pp-seal)" stopOpacity="0" />
+                  <stop offset="0.45" stopColor="var(--pp-seal)" stopOpacity="0.35" />
+                  <stop offset="1" stopColor="var(--pp-seal)" stopOpacity="1" />
+                </linearGradient>
+              </g>
+            ))}
+          </defs>
+
+          <line
+            x1="500"
+            y1="0"
+            x2="500"
+            y2="104"
+            stroke="var(--pp-grid-soft)"
+            strokeWidth="1"
+            vectorEffect="non-scaling-stroke"
+          />
+
           {columns.map((column) => {
             const isActive = active === column.spectrum;
             const dimmed = active !== null && !isActive;
@@ -82,25 +128,41 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
                   d={`M ${column.x} 0 L ${column.x} 16`}
                   stroke="var(--pp-grid-soft)"
                   strokeWidth="1"
-                  strokeDasharray="3 4"
+                  strokeDasharray="2 4"
+                  strokeLinecap="round"
                   fill="none"
-                  opacity={dimmed ? 0.25 : 1}
+                  opacity={dimmed ? 0.2 : 0.7}
+                  vectorEffect="non-scaling-stroke"
                 />
               );
             }
             return (
-              <path
-                key={column.spectrum}
-                className={isActive ? "pp-beam pp-beam--live" : "pp-beam"}
-                d={`M ${column.x} 0 L 500 104`}
-                stroke={isActive ? "var(--pp-seal)" : "var(--pp-stone)"}
-                strokeWidth={isActive ? 3 : 1}
-                strokeDasharray="2 4"
-                fill="none"
-                opacity={dimmed ? 0.22 : 1}
-              />
+              <g key={column.spectrum}>
+                <path
+                  className="pp-beam"
+                  d={`M ${column.x} 0 L 500 104`}
+                  stroke={`url(#pp-beam-base-${column.spectrum})`}
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  fill="none"
+                  opacity={isActive ? 0.15 : dimmed ? 0.22 : 1}
+                  vectorEffect="non-scaling-stroke"
+                />
+                <path
+                  className="pp-beam"
+                  d={`M ${column.x} 0 L 500 104`}
+                  stroke={`url(#pp-beam-live-${column.spectrum})`}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  fill="none"
+                  opacity={isActive ? 1 : 0}
+                  vectorEffect="non-scaling-stroke"
+                  aria-hidden="true"
+                />
+              </g>
             );
           })}
+
           <rect x="484" y="104" width="32" height="12" fill="var(--pp-ink)" />
           <text
             x="500"
@@ -115,7 +177,9 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
         </svg>
       </div>
 
-      <div className="grid grid-cols-2 border-t border-grid lg:grid-cols-6">
+      {/* 2 colonnes sur téléphone, 3 sur écran moyen, 6 seulement quand la
+          largeur permet à chaque libellé de tenir sans se chevaucher. */}
+      <div className="pp-spec-grid grid grid-cols-2 border-t border-grid sm:grid-cols-3 2xl:grid-cols-6">
         {columns.map((column) => {
           const isActive = active === column.spectrum;
           return (
@@ -127,9 +191,7 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
               onFocus={() => setActive(column.spectrum)}
               onBlur={() => setActive(null)}
               aria-current={isActive ? "true" : undefined}
-              className={`group flex flex-col justify-between gap-3 border-b border-r border-gridsoft px-3 py-4 no-underline transition hover:bg-surface2 lg:border-b-0 ${
-                isActive ? "bg-surface2" : ""
-              }`}
+              className="pp-spec-cell group flex flex-col justify-between gap-3 px-3 py-4 no-underline"
               title={SPECTRUM_SHORT_LABELS[column.spectrum]}
             >
               <span className="flex items-center gap-2">
@@ -141,7 +203,7 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
                   {SPECTRUM_CODES[column.spectrum]}
                 </span>
               </span>
-              <span className="font-mono text-[13px] leading-tight tracking-[0.08em] text-ink">
+              <span className="pp-spec-label font-mono text-[13px] leading-tight tracking-[0.08em] text-ink">
                 <Caviard label="[PILIER MASQUÉ]">{SPECTRUM_COLUMN_LABELS[column.spectrum]}</Caviard>
               </span>
               <span className="flex items-baseline gap-2">
@@ -158,15 +220,15 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
       </div>
 
       {/* Ce que le faisceau allumé traverse : les pièces du pilier. */}
-      <div className="border-t border-grid px-4 py-4" aria-live="polite">
+      <div className="pp-spec-panel" aria-live="polite">
         {activeColumn === null ? (
-          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
+          <p className="pp-spec-kicker">
             Survolez un pilier (ou atteignez-le au clavier) : son faisceau s&apos;allume et ses
             pièces s&apos;affichent — le bouton ouvre la pièce dans la liste.
           </p>
         ) : (
           <div className="space-y-2">
-            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+            <p className="pp-spec-kicker">
               Faisceau {SPECTRUM_CODES[activeColumn.spectrum]} ·{" "}
               {SPECTRUM_COLUMN_LABELS[activeColumn.spectrum]} ·{" "}
               {activeColumn.count === 0
@@ -201,7 +263,7 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
               </ul>
             )}
             {activeColumn.count > activeColumn.sources.length ? (
-              <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-muted">
+              <p className="pp-spec-kicker">
                 et {activeColumn.count - activeColumn.sources.length} autre
                 {activeColumn.count - activeColumn.sources.length > 1 ? "s" : ""} pièce
                 {activeColumn.count - activeColumn.sources.length > 1 ? "s" : ""} dans la liste
@@ -211,12 +273,10 @@ export default function ConvergenceSpectrometer({ dossier }: { dossier: Dossier 
         )}
       </div>
 
-      <div className="border-t border-grid px-4 py-4">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
-            Jauge de consensus (score éditorial)
-          </p>
-          <p className="font-mono text-sm text-ink">{dossier.consensus_score}%</p>
+      <div className="pp-spec-panel">
+        <div className="pp-spec-head">
+          <p className="pp-spec-kicker">Jauge de consensus (score éditorial)</p>
+          <p className="pp-spec-score">{dossier.consensus_score}%</p>
         </div>
         <div className="mt-3 flex items-end gap-[2px]" aria-hidden="true">
           {Array.from({ length: 40 }, (_, index) => {

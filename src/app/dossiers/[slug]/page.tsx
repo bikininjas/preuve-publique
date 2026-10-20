@@ -240,49 +240,35 @@ export default async function DossierPage({ params }: PageProps) {
           <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
         </div>
 
-        {/* Illustration du dossier : bandeau sous le titre, crédit en légende. */}
-        {dossier.illustration_url !== undefined &&
-        dossier.illustration_url !== null &&
-        dossier.illustration_url !== "" ? (
-          <figure className="space-y-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="mx-auto max-h-[420px] w-auto max-w-full border border-grid bg-surface"
-              src={dossier.illustration_url}
-              alt={`Illustration — ${dossier.claim_title}`}
-            />
-            {dossier.illustration_credit !== undefined &&
-            dossier.illustration_credit !== null &&
-            dossier.illustration_credit !== "" ? (
-              <figcaption className="pp-meta text-muted">{dossier.illustration_credit}</figcaption>
-            ) : null}
-          </figure>
-        ) : null}
-
         {/* Le protocole à l'aveugle se voit depuis le haut du dossier. */}
         <BlindProtocolBanner />
 
-        <div className="flex flex-wrap items-center gap-2">
-          <Link
-            className="pp-chip"
-            data-category={dossier.category}
-            href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
-          >
-            {CATEGORY_LABELS[dossier.category]}
-          </Link>
-          <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
-            Registre →
-          </Link>
-        </div>
+        {/* Outils du dossier : un bandeau distinct entre le cartouche et le
+            corps analytique. L'illustration vit dans la marge du cartouche
+            (DossierHero) : aucune image ne sépare la synthèse des boutons. */}
+        <section aria-label="Outils du dossier" className="pp-dossier-actions">
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              className="pp-chip"
+              data-category={dossier.category}
+              href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
+            >
+              {CATEGORY_LABELS[dossier.category]}
+            </Link>
+            <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
+              Registre →
+            </Link>
+          </div>
 
-        {/* Les deux partages du dossier, côte à côte : l'argumentaire social en
-            un clic et la réfutation complète, format débat. `relative` : les
-            panneaux « voir le texte » s'ancrent aux bords de ce rang sur écran
-            large (voir .pp-drop--page), pas au bouton qui les ouvre. */}
-        <div className="relative flex flex-wrap items-start gap-x-4 gap-y-3">
-          <ShareDebateButton dossier={dossier} />
-          <CopyRefutation dossier={dossier} />
-        </div>
+          {/* Les deux partages du dossier, côte à côte : l'argumentaire social en
+              un clic et la réfutation complète, format débat. `relative` : les
+              panneaux « voir le texte » s'ancrent aux bords de ce rang sur écran
+              large (voir .pp-drop--page), pas au bouton qui les ouvre. */}
+          <div className="relative flex flex-wrap items-start gap-x-4 gap-y-3">
+            <ShareDebateButton dossier={dossier} />
+            <CopyRefutation dossier={dossier} />
+          </div>
+        </section>
 
         <DossierDensity synthesis={synthesis} piecesTotal={dossier.sources.length}>
           <div className="grid gap-6 xl:grid-cols-[210px_minmax(0,1fr)]">

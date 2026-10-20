@@ -26,6 +26,10 @@ export default function DossierHero({
   const spectra = new Set(dossier.sources.map((source) => source.spectrum));
   const toneText =
     tone === "true" ? "text-true" : tone === "warn" ? "text-warn" : "text-false";
+  /* La planche d'illustration vit dans la marge du cartouche, sous le tampon :
+     elle ne coupe ni le texte de synthèse ni le rang des outils de partage. */
+  const illustration = (dossier.illustration_url ?? "").trim();
+  const credit = (dossier.illustration_credit ?? "").trim();
 
   return (
     <section className="border border-grid bg-surface">
@@ -70,13 +74,30 @@ export default function DossierHero({
           </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-6 bg-surface2 px-5 py-8 sm:px-8">
+        <div className="flex flex-col justify-start gap-7 bg-surface2 px-5 py-8 sm:px-8">
           <div>
             <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-muted">
               Verdict
             </p>
             <div className={`pp-stamp mt-3 ${toneText}`}>{VERDICT_STAMPS[dossier.verdict]}</div>
           </div>
+
+          {/* Planche contact : l'image est un encart de la marge, avec son
+              cartel. Elle ne descend pas dans le corps analytique. */}
+          {illustration !== "" ? (
+            <figure className="pp-negative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="pp-negative__image"
+                src={illustration}
+                alt=""
+                loading="eager"
+                decoding="async"
+              />
+              {credit !== "" ? <figcaption className="pp-cartel">{credit}</figcaption> : null}
+            </figure>
+          ) : null}
+
           <div>
             <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-muted">
               Consensus documentaire
