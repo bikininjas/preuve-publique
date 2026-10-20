@@ -1390,7 +1390,13 @@ a[class*="text-seal"] {
 
 /* La fiche se lit en deux colonnes : le corps analytique à gauche, l'encadré
    d'archive à droite. La vignette garde un cadrage vertical fixe — le bandeau
-   horizontal coupait les documents et les visages. */
+   horizontal coupait les documents et les visages. La largeur de la vignette
+   suit celle de la carte (container query), pas celle de la fenêtre : une
+   carte de 360 px n'a pas la place d'un encadré de 132 px. */
+.pp-folder__plate {
+  container-type: inline-size;
+}
+
 .pp-folder__layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 110px;
@@ -1441,7 +1447,7 @@ a[class*="text-seal"] {
   white-space: nowrap;
 }
 
-@media (min-width: 640px) {
+@container (min-width: 420px) {
   .pp-folder__layout {
     grid-template-columns: minmax(0, 1fr) 132px;
   }
