@@ -144,7 +144,7 @@ export default function MentionsLegalesPage() {
           tant que vous n&apos;avez pas accepté la mesure d&apos;audience : dans ce cas,
           aucun script Google n&apos;est chargé et aucune bannière ne s&apos;affiche. Si
           vous acceptez, Google Analytics 4 (identifiant public{" "}
-          <span className="font-mono text-[13px]">G-PZD15S5KZ2</span>) dépose des cookies de
+          <span className="font-mono text-[13px]">G-51KCVCRGC4</span>) dépose des cookies de
           mesure — pages vues, type d&apos;appareil, provenance de la visite — pour savoir
           quels dossiers sont lus et améliorer le site. Ces données ne sont ni revendues ni
           utilisées à des fins publicitaires, et l&apos;adresse IP n&apos;est pas conservée

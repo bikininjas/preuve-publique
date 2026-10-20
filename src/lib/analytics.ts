@@ -1,6 +1,6 @@
 /** Propriété GA4 de preuve-publique.fr — identifiant public, sans secret. */
 export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-PZD15S5KZ2";
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-51KCVCRGC4";
 
 /** Clé de stockage local du choix de mesure d'audience. */
 export const ANALYTICS_CONSENT_KEY = "pp-analytics-consent";
