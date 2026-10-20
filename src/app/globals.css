@@ -1534,19 +1534,66 @@ a[class*="text-seal"] {
   text-wrap: pretty;
 }
 
+/* --- Micro-libellés du scellé -------------------------------------------- */
+
+/* `.pp-doc p` et `.pp-doc li` imposent 16 px à tout le corps du dossier (règle
+   de lisibilité). Les libellés du scellé — verdict, consensus, piliers — sont
+   des cotes, pas de la prose : une spécificité explicite les remet à 10/11/12 px,
+   sinon un utilitaire `text-[10px]` perd dans la cascade. */
+.pp-doc .pp-sealed__label {
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+}
+
+.pp-doc .pp-sealed__note {
+  font-size: 10px;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+}
+
+.pp-doc .pp-sealed__score {
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.pp-doc .pp-sealed__pillar {
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+}
+
 /* --- Zone d'outils du dossier ------------------------------------------- */
 
-/* Les boutons de partage forment un bandeau à part, entre le cartouche et le
-   corps analytique : aucune image, aucun texte de conclusion ne s'y glisse. */
+/* Les deux copies vivent dans le flux de la synthèse, à la fin de sa lecture :
+   un filet les sépare du texte, sans bandeau qui repousse le corps analytique.
+   Les boutons sont empilés en colonne, chacun avec son statut. */
 .pp-dossier-actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1rem;
-  border-top: 1px solid var(--pp-grid);
-  border-bottom: 1px solid var(--pp-grid-soft);
-  padding: 0.7rem 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  border-top: 1px solid var(--pp-grid-soft);
+  padding-top: 0.6rem;
+}
+
+/* Les deux boutons partagent la largeur de la colonne de lecture : chasse
+   légèrement resserrée pour que « Copier l'argumentaire (réseaux sociaux) »
+   tienne sur une ligne dans une colonne de 8/12 à 1440 px. */
+.pp-dossier-actions .pp-btn {
+  max-width: 100%;
+  padding: 0 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Le statut du presse-papiers reste lisible sans peser : deux à trois lignes
+   au plus sous chaque bouton, à la taille des métadonnées. */
+.pp-dossier-actions [role="status"] {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
 }
 
 /* --- Spectromètre de triangulation -------------------------------------- */
@@ -1665,6 +1712,26 @@ a[class*="text-seal"] {
 .pp-pillars .pp-led--on[data-spectrum="CENTRE"] { --pp-pole: #6f5a9e; }
 .pp-pillars .pp-led--on[data-spectrum="DROITE_LIBERALE_CONSERVATRICE"] { --pp-pole: #34558b; }
 .pp-pillars .pp-led--on[data-spectrum="DONNEES_BRUTES_OFFICIELLES"] { --pp-pole: #55524a; }
+
+/* Variante liste du scellé : les six piliers s'empilent, avec une puce de 8 px
+   allumée seulement pour ceux que le dossier documente. Les teintes restent
+   celles de `.pp-pillars` (et de leur variante sur plaque) — la liste ne
+   réinvente aucune couleur. */
+.pp-pillars--list {
+  display: grid;
+  justify-items: start;
+  gap: 0.3rem;
+}
+
+.pp-pillars--list .pp-led {
+  width: 8px;
+  height: 8px;
+  flex: none;
+}
+
+.pp-pillars--list .pp-led--on[data-spectrum] {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--pp-pole) 22%, transparent);
+}
 
 /* La plaque sombre et la chambre noire demandent les mêmes teintes de pôle,
    plus claires que sur le papier : une pastille doit rester un signal, pas un

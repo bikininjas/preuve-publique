@@ -28,7 +28,6 @@ import { computeIntegrityRoot } from "@/server/services/crypto.service";
 import { singleLineSummary, verdictParagraphs } from "@/lib/summary";
 import {
   CATEGORY_LABELS,
-  CATEGORY_SLUGS,
   PREMISE_STATUS_LABELS,
   SPECTRUM_COLUMN_LABELS,
   SPECTRUM_LABELS,
@@ -235,40 +234,33 @@ export default async function DossierPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(dossierJsonLd(dossier)) }}
       />
-      <article className="pp-doc space-y-6">
+      <article className="pp-doc h-auto space-y-5">
         <div id="verdict" className="pp-marks scroll-mt-16">
-          <DossierHero dossier={dossier} integrityRoot={integrityRoot} />
+          <DossierHero
+            dossier={dossier}
+            integrityRoot={integrityRoot}
+            actions={
+              <>
+                {/* Les deux partages du dossier, dans le flux de la synthèse :
+                    l'argumentaire social en un clic et la réfutation complète,
+                    format débat. `relative` : les panneaux « voir le texte »
+                    s'ancrent aux bords de ce rang sur écran large (voir
+                    .pp-drop--page), pas au bouton qui les ouvre. */}
+                <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="min-w-0">
+                    <ShareDebateButton dossier={dossier} />
+                  </div>
+                  <div className="min-w-0">
+                    <CopyRefutation dossier={dossier} />
+                  </div>
+                </div>
+              </>
+            }
+          />
         </div>
 
         {/* Le protocole à l'aveugle se voit depuis le haut du dossier. */}
         <BlindProtocolBanner />
-
-        {/* Outils du dossier : un bandeau distinct entre le cartouche et le
-            corps analytique. L'illustration vit dans la marge du cartouche
-            (DossierHero) : aucune image ne sépare la synthèse des boutons. */}
-        <section aria-label="Outils du dossier" className="pp-dossier-actions">
-          <div className="flex flex-wrap items-center gap-2">
-            <Link
-              className="pp-chip"
-              data-category={dossier.category}
-              href={`/categories/${CATEGORY_SLUGS[dossier.category]}`}
-            >
-              {CATEGORY_LABELS[dossier.category]}
-            </Link>
-            <Link className="pp-tap pp-meta text-seal hover:underline" href="/dossiers">
-              Registre →
-            </Link>
-          </div>
-
-          {/* Les deux partages du dossier, côte à côte : l'argumentaire social en
-              un clic et la réfutation complète, format débat. `relative` : les
-              panneaux « voir le texte » s'ancrent aux bords de ce rang sur écran
-              large (voir .pp-drop--page), pas au bouton qui les ouvre. */}
-          <div className="relative flex flex-wrap items-start gap-x-4 gap-y-3">
-            <ShareDebateButton dossier={dossier} />
-            <CopyRefutation dossier={dossier} />
-          </div>
-        </section>
 
         <DossierDensity synthesis={synthesis} piecesTotal={dossier.sources.length}>
           <div className="grid gap-6 xl:grid-cols-[210px_minmax(0,1fr)]">
