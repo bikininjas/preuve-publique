@@ -47,8 +47,8 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   `0016_droit_fondamental_libre_verdict` (`20261017140600`, appliquée le 17/10 —
   `verdict_status` accueille « droit fondamental libre », le verdict du dossier sur la
   carte de presse ; les statuts de brique sont inchangés).
-  Trente-neuf dossiers en base :
-  trente-huit **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
+  Quarante dossiers dans le seed :
+  trente-neuf **publiés** — le dossier de référence (7 sources, 4 piliers), l'AME (7), les
   sans-papiers et le RSA (7), Pétain et Vichy (9), le coût de l'immigration (6, économie),
   l'insécurité attribuée à l'immigration (13, société, biais méthodologique), le pourvoi
   en cassation et
@@ -85,10 +85,11 @@ sont floutés, seuls la citation, la date et l'état de l'archive restent lisibl
   100 millions de morts » (8, politique, généralisation abusive), « François Mitterrand
   et les élus de gauche ont collaboré avec le régime de Vichy » (9, histoire, anachronisme
   historique) et la France présentée comme « le pays le plus lourdement taxé au monde »
-  (10, économie, généralisation abusive) — et un
+  (10, économie, généralisation abusive), le RN présenté comme « la seule véritable force
+  d'opposition » qui ne voterait « jamais » avec la majorité (10, politique, faux) — et un
   **brouillon de contrôle RLS** ; RLS actif sur
   `dossiers`, `dossier_sources` et `admin_users`.
-- **Intégrité** : les 351 sources portent leur empreinte de citation ; la RPC de recherche
+- **Intégrité** : les 361 sources portent leur empreinte de citation ; la RPC de recherche
   hybride est exécutable en rôle `anon` (vérifié par `has_function_privilege` **et** par un
   appel REST réel) ; l'audit public `/api/verify/<empreinte>` confirme `verified: true`
   pour la source *Liberty Magazine*
@@ -1232,6 +1233,28 @@ correction faite en base et dans le seed ;
 avec l'image servie 200, une fiche rehachée octet pour octet et `/api/verify` confirmant
 la pièce de la Digithèque. Le registre compte désormais **341 sources et 341 fiches**
 (trente-sept dossiers publiés).
+
+Le 21/10/2026, le dossier **« Le Rassemblement national est la seule véritable force
+d'opposition et ne vote jamais avec la majorité présidentielle »** (10 sources, verdict
+`FAUX`, catégorie politique, quatre prémisses et une frise de quatre étapes) a été ajouté
+au seed typé **sans application en base** : aucun `seed:apply`, aucune capture d'archive,
+aucun déploiement — les pièces n'ont donc ni `archive_storage_path` ni
+`archive_binary_sha256`, et la racine d'intégrité du dossier reste à relever. Les pièces
+sont cinq scrutins de la XVIe législature publiés par l'Assemblée nationale (n° 81 loi
+pouvoir d'achat, n° 623 LOPMI, n° 1243 nucléaire, n° 1361 anti-squat, n° 3213 immigration,
+n° 1240 motion de censure LIOT), l'étude Terra Nova du 21 mars 2023, l'article du *Journal
+du Dimanche* du 19 juin 2023 et deux ouvrages académiques déposés sur HAL (Estelle
+Delaine, Luc Rouban). Les décomptes du dossier — 33 votes pour sur les 74 votes d'ensemble
+de projets de loi, 17 motions de censure votées sur 34 — sont recomptés sur le jeu de
+données ouvert des scrutins (4 105 scrutins, 11/07/2022 – 07/06/2024, téléchargé le
+21/10/2026) ; les taux de 37 % (RN) et 62 % (LR) sont ceux publiés par DatAN. Le brief
+d'origine citait pour ces lois les scrutins n° 111, 438, 1198 et 1342, qui portent sur
+d'autres textes : les numéros publiés sont ceux que les pages de l'Assemblée nationale
+donnent pour les lois en question. Illustration livrée dans `public/illustrations/`
+(1 600 × 1 200, 368 Ko, CC BY-SA 3.0). Vérifié : `npm run typecheck`, 115/115 tests
+(dont le Triangulation Guard et le contrôle d'illustration) et `npm run build`. Le
+registre du seed compte désormais **quarante dossiers, trente-neuf publiés et 361
+sources**.
 
 ## Déploiement : le moins cher possible
 

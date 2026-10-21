@@ -10258,6 +10258,336 @@ export const FISCALITE_FRANCE_MONDE_DOSSIER: Dossier = {
   ],
 };
 
+/**
+ * Dossier « RN, seule opposition » : le mythe est double. Le groupe RN n'est ni
+ * l'opposition la plus éloignée de la majorité — LR la devance très largement —
+ * ni l'appoint docile des gouvernements : il a voté la moitié des motions de
+ * censure de la législature. Les décomptes 33/74 et 17/34 sont recomptés sur le
+ * jeu de données ouvert des scrutins de la XVIe législature (4 105 fichiers,
+ * 11 juillet 2022 – 7 juin 2024, téléchargé le 21 octobre 2026) ; les taux de
+ * 37 % et 62 % sont ceux publiés par DatAN, selon sa propre méthode.
+ */
+export const RN_OPPOSITION_VOTES_DOSSIER: Dossier = {
+  id: "268ce693-86c3-47f5-946a-6779649daf14",
+  slug: "rn-majorite-macron-votes-assemblee-opposition-statistiques",
+  claim_title:
+    "Le Rassemblement national est la seule véritable force d'opposition et ne vote jamais avec la majorité présidentielle",
+  verdict: "FAUX",
+  verdict_summary:
+    "L'affirmation circule dans les deux camps à la fois : le Rassemblement national se présente comme la seule opposition réelle à Emmanuel Macron, et ses adversaires l'accusent d'être l'appoint du pouvoir. Les deux récits butent sur le même compteur. Sur les 4 105 scrutins publics de la XVIe législature (11 juillet 2022 – 7 juin 2024), le groupe RN a voté sur la même ligne que la majorité présidentielle dans 37 % des cas, et il a voté pour 33 des 74 scrutins portant sur l'ensemble d'un projet de loi du gouvernement — 28 contre, 13 sans participation, soit 44,6 % de ces scrutins et 54,1 % des votes exprimés, chaque lecture d'un même texte comptant séparément. La loi pouvoir d'achat (21 juillet 2022, 341 voix pour), la LOPMI (22 novembre 2022, 419 pour), l'accélération du nucléaire (21 mars 2023, 402 pour), la loi anti-squat (4 avril 2023, 385 pour) et la loi immigration (19 décembre 2023, 349 pour) figurent parmi ces textes : dans les cinq cas, le groupe RN a voté pour, aux côtés de Renaissance et de LR, La France insoumise votant contre.\n\nLa seconde moitié de la phrase ne résiste pas davantage. L'opposition la plus alignée sur Renaissance n'est pas le RN mais Les Républicains : 62 % de votes concordants selon DatAN, et 56 % de votes identiques entre LR et RN en juin 2023 selon le Journal du Dimanche. Le RN se situe entre LIOT (41 %) et le PS (35 %) ; les groupes les plus éloignés de la majorité sont les écologistes (34 %), les insoumis (29 %) et les communistes (24 %). Le RN n'est donc ni la seule opposition ni la plus distante : il occupe le milieu du tableau, et c'est la gauche qui porte le rejet le plus systématique des textes de l'exécutif.\n\nLe troisième récit — un RN qui aurait garanti la survie des gouvernements en refusant les motions de censure — ne tient pas non plus tel qu'il est formulé. Sur les 34 motions de censure mises aux voix, dont 28 déposées en application de l'article 49, alinéa 3, le groupe RN a voté pour 17 et n'a pris part à aucune des 17 autres ; il n'a jamais voté contre. Il a notamment voté la motion transpartisane du groupe LIOT du 20 mars 2023, rejetée par 278 voix contre les 287 requises — à neuf voix près. Terra Nova relève que Marine Le Pen annonçait le 14 mars 2023 que son groupe voterait « l'intégralité » des motions déposées après un 49.3. Le mythe est donc double : ni « jamais avec la majorité », ni « béquille du gouvernement ».\n\nNote de méthode : les taux de 37 % et 62 % sont ceux publiés par DatAN, selon sa propre méthode ; les 33 votes sur 74 et les 17 motions sur 34 sont un recomptage direct du jeu de données ouvert des scrutins de l'Assemblée nationale, avec une règle explicite — position majoritaire du groupe sur les scrutins intitulés « l'ensemble du / de la … projet de loi ». Les deux mesures ne se comparent pas entre elles, et aucun des deux récits ne résiste à l'une comme à l'autre.",
+  category: "POLITIQUE",
+  protagonists: [
+    {
+      name: "Rassemblement national",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Rassemblement_national",
+      note: "Groupe parlementaire créé le 28 juin 2022 avec 89 députés, ramené à 88 en cours de législature : c'est son comportement de vote que le dossier mesure, dossier par dossier, sur les scrutins publics.",
+    },
+    {
+      name: "Renaissance (parti)",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Renaissance_(parti)",
+      note: "Groupe pivot de la majorité présidentielle (170 membres en 2023-2024), pris comme référence des concordances de vote : c'est par rapport à lui que se mesure l'alignement des oppositions.",
+    },
+    {
+      name: "Les Républicains",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Les_R%C3%A9publicains",
+      note: "Groupe d'opposition le plus aligné sur la majorité (62 % de votes concordants) : il occupe la place que le récit prête au RN.",
+    },
+    {
+      name: "La France insoumise",
+      kind: "ORGANISATION",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/La_France_insoumise",
+      note: "L'un des groupes les plus éloignés de la majorité (29 % de concordance), et le seul à voter contre les cinq textes cités en pièces : il fournit le point de comparaison du « rejet systématique ».",
+    },
+    {
+      name: "Marine Le Pen",
+      kind: "PERSONNE",
+      role: "SUJET",
+      reference_url: "https://fr.wikipedia.org/wiki/Marine_Le_Pen",
+      note: "Présidente du groupe RN : c'est elle qui annonce, le 14 mars 2023, que le groupe votera l'intégralité des motions de censure déposées après un 49.3 — engagement que les scrutins permettent de vérifier.",
+    },
+    {
+      name: "Assemblée nationale (France)",
+      kind: "ORGANISATION",
+      role: "AUTEUR",
+      reference_url: "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      note: "Institution qui publie les scrutins : ses données ouvertes, et non un agrégateur, fournissent les décomptes et les textes cités en pièces.",
+    },
+  ],
+  consensus_score: 95,
+  premises: [
+    {
+      claim_part: "« Le Rassemblement national ne vote aucun texte de la majorité macroniste »",
+      status: "FAUX",
+      detail:
+        "Sur les 74 votes d'ensemble de projets de loi de la législature, 33 ont été votés par le groupe RN — dont la loi pouvoir d'achat (n°81, 341 voix pour, RN 78 pour), la LOPMI (n°623, 419 pour, RN 88 pour), l'accélération du nucléaire (n°1243, 402 pour, RN 81 pour), la loi anti-squat (n°1361, 385 pour, RN 84 pour) et la loi immigration (n°3213, 349 pour, RN 88 pour). Sur ce dernier texte, la majorité elle-même était divisée : 131 députés Renaissance ont voté pour, 20 contre et 17 se sont abstenus. Le RN a donc voté pour un texte que vingt députés de la majorité refusaient. « Aucun texte » est faux au sens propre, et l'écart se compte en dizaines de textes.",
+    },
+    {
+      claim_part: "« Le RN est la seule et véritable force d'opposition à Emmanuel Macron »",
+      status: "BIAIS_DE_SELECTION",
+      detail:
+        "Le groupe d'opposition le plus proche de Renaissance est Les Républicains : 62 % de votes concordants selon DatAN, et 56 % de votes identiques entre LR et RN en juin 2023 selon le Journal du Dimanche. Le RN est à 37 %, entre LIOT (41 %) et le PS (35 %) ; les plus éloignés sont les écologistes (34 %), LFI (29 %) et le GDR (24 %). La sélection consiste à se comparer à la gauche plutôt qu'à LR : sur l'axe de l'opposition, le RN n'est ni le plus proche ni le plus lointain du pouvoir, et « la seule » opposition est démentie par le rang de chacun sur le même tableau.",
+    },
+    {
+      claim_part:
+        "« Le RN a refusé la quasi-totalité des motions de censure, garantissant la survie des gouvernements »",
+      status: "FAUX",
+      detail:
+        "Sur les 34 motions de censure de la législature, le groupe RN a voté pour 17 et n'a pris part à aucune des 17 autres ; il n'a jamais voté contre. Aucune n'a été adoptée, mais aucune n'a échoué sur un vote contre du RN. La motion LIOT du 20 mars 2023 a recueilli 278 voix, à neuf de la majorité absolue de 287, et le RN l'a votée. Terra Nova relève que le groupe a voté deux motions Nupes les 24 et 31 octobre 2022, une troisième le 4 novembre 2022, et cite l'engagement de Marine Le Pen du 14 mars 2023 de voter « l'intégralité » des motions après un 49.3. « La quasi-totalité » décrit l'inverse du comportement observé.",
+    },
+    {
+      claim_part:
+        "« Le RN vote systématiquement avec la majorité contre toutes les mesures de redistribution »",
+      status: "FAUX",
+      detail:
+        "Le relevé des votes n'est pas uniforme. Sur la loi de finances rectificative de juillet 2022, le RN a voté l'amendement de la Nupes créant une taxe exceptionnelle de 25 % sur les superprofits des sociétés pétrolières et gazières, des armateurs et des concessionnaires d'autoroutes, et voté contre l'amendement de la même Nupes portant le SMIC à 1 500 euros — les deux votes sont documentés dans la même étude Terra Nova. « Systématiquement » ne décrit donc ni ses votes économiques, ni son rapport aux textes de la majorité : le groupe choisit, texte par texte, ce qui contredit à la fois le récit de la rupture et celui de l'allégeance.",
+    },
+  ],
+  timeline: [
+    {
+      date: "2022-07-21",
+      title: "Loi pouvoir d'achat : le RN vote le premier grand texte du quinquennat",
+      description:
+        "Adoption par 341 voix contre 116, avec 78 voix RN pour aux côtés de 136 Renaissance et 54 LR.",
+      evidence_ref: "Pièce #01",
+    },
+    {
+      date: "2022-11-22",
+      title: "LOPMI : convergence RN-LR sur la programmation du ministère de l'Intérieur",
+      description: "419 voix pour, dont 88 RN et 62 LR ; 71 voix LFI contre.",
+      evidence_ref: "Pièce #03",
+    },
+    {
+      date: "2023-03-20",
+      title: "Motion de censure LIOT : 278 voix, neuf de moins que la majorité absolue",
+      description:
+        "Le RN vote la motion transpartisane sur les retraites, qui échoue à neuf voix près.",
+      evidence_ref: "Pièce #06",
+    },
+    {
+      date: "2023-12-19",
+      title: "Loi immigration : 349 voix pour, dont les 88 du RN",
+      description:
+        "La majorité elle-même se divise (131 pour, 20 contre, 17 abstentions) ; le texte passe avec l'appoint RN et LR.",
+      evidence_ref: "Pièce #05",
+    },
+  ],
+  is_published: true,
+  published_at: "2026-10-21T00:00:00.000Z",
+  illustration_url:
+    "/illustrations/rn-majorite-macron-votes-assemblee-opposition-statistiques.jpg",
+  illustration_credit:
+    "Bancs des ministres dans l'hémicycle du Palais Bourbon — photographie de Sunala (6 mars 2013), CC BY-SA 3.0, Wikimedia Commons",
+  sources: [
+    {
+      id: "408c0f2b-b1b1-468c-a03d-a309e9032595",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Analyse du scrutin n°81 » — projet de loi portant mesures d'urgence pour la protection du pouvoir d'achat, première lecture (21 juillet 2022)",
+      author_or_institution: "Assemblée nationale (France) — XVIe législature",
+      publication_date: "2022-07-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Scrutin public n°81 sur l'ensemble du projet de loi portant mesures d'urgence pour la protection du pouvoir d'achat (première lecture). Synthèse du vote Nombre de votants : 478 Nombre de suffrages exprimés : 457 Majorité absolue des suffrages exprimés : 229 Pour l'adoption : 341 Contre : 116 Abstention : 21 L'Assemblée nationale a adopté",
+      context_explanation:
+        "Le premier grand texte du quinquennat sur le pouvoir d'achat, adopté par 341 voix contre 116. Le décompte par groupe, publié sur la même page, crédite le groupe RN de 78 voix pour, Renaissance de 136, LR de 54, et La France insoumise de 74 voix contre. Le scrutin n°111, souvent cité dans les analyses de ce débat, porte en réalité sur un amendement au projet de loi de finances rectificative de juillet 2022 : c'est l'ensemble de la loi pouvoir d'achat qui est voté ici.",
+      original_url: "https://www.assemblee-nationale.fr/dyn/16/scrutins/81",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 1,
+    },
+    {
+      id: "2cd3db0e-513b-4c98-991c-b0bd4faebff9",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Analyse du scrutin n°1361 » — proposition de loi visant à protéger les logements contre l'occupation illicite, deuxième lecture (4 avril 2023)",
+      author_or_institution: "Assemblée nationale (France) — XVIe législature",
+      publication_date: "2023-04-04",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Scrutin public n°1361 sur l'ensemble de la proposition de loi visant à protéger les logements contre l'occupation illicite (deuxième lecture). Synthèse du vote Nombre de votants : 540 Nombre de suffrages exprimés : 532 Majorité absolue des suffrages exprimés : 267 Pour l'adoption : 385 Contre : 147 Abstention : 8 L'Assemblée nationale a adopté",
+      context_explanation:
+        "La loi dite « anti-squat », portée par Guillaume Kasbarian, adoptée en deuxième lecture par 385 voix contre 147. Le décompte par groupe donne 84 voix RN pour, 159 Renaissance pour, 58 LR pour et 74 voix LFI contre. C'est une proposition de loi et non un projet de loi : elle ne compte donc pas dans les 74 votes d'ensemble de textes gouvernementaux du résumé, mais elle appartient au même bloc de votes. Le numéro 1342 parfois cité pour ce texte correspond à un autre scrutin.",
+      original_url: "https://www.assemblee-nationale.fr/dyn/16/scrutins/1361",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 2,
+    },
+    {
+      id: "0914d071-7bc9-472b-87e3-a1d6aa6d4266",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Analyse du scrutin n°623 » — projet de loi d'orientation et de programmation du ministère de l'intérieur, première lecture (22 novembre 2022)",
+      author_or_institution: "Assemblée nationale (France) — XVIe législature",
+      publication_date: "2022-11-22",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Scrutin public n°623 sur l'ensemble du projet de loi d'orientation et de programmation du ministère de l'intérieur (première lecture). Synthèse du vote Nombre de votants : 570 Nombre de suffrages exprimés : 535 Majorité absolue des suffrages exprimés : 268 Pour l'adoption : 419 Contre : 116 Abstention : 35 L'Assemblée nationale a adopté",
+      context_explanation:
+        "La LOPMI, qui programme 15 milliards d'euros pour le ministère de l'Intérieur : 419 voix pour, 116 contre, avec 88 voix RN pour aux côtés de 169 Renaissance et 62 LR, et 71 voix LFI contre. Terra Nova retient ce texte parmi les deux convergences RN-LR les plus nettes de la législature, avec les énergies renouvelables.",
+      original_url: "https://www.assemblee-nationale.fr/dyn/16/scrutins/623",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 3,
+    },
+    {
+      id: "aff58b14-7eb7-4d03-934b-2909c4893328",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Analyse du scrutin n°1243 » — projet de loi relatif à l'accélération des procédures liées à la construction de nouvelles installations nucléaires, première lecture (21 mars 2023)",
+      author_or_institution: "Assemblée nationale (France) — XVIe législature",
+      publication_date: "2023-03-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Scrutin public n°1243 sur l'ensemble du projet de loi relatif à l'accélération des procédures liées à la construction de nouvelles installations nucléaires à proximité de sites nucléaires existants et au fonctionnement des installations existantes (première lecture). Synthèse du vote Nombre de votants : 540 Nombre de suffrages exprimés : 532 Majorité absolue des suffrages exprimés : 267 Pour l'adoption : 402 Contre : 130 Abstention : 8 L'Assemblée nationale a adopté",
+      context_explanation:
+        "402 voix pour, 130 contre, dont 81 voix RN pour et 70 voix LFI contre. Le même texte est adopté une seconde fois le 16 mai 2023 (scrutin n°1533 : 399 pour, 100 contre, 84 voix RN pour). Le numéro 1198, parfois cité pour ce texte, correspond à un autre scrutin de la même semaine.",
+      original_url: "https://www.assemblee-nationale.fr/dyn/16/scrutins/1243",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 4,
+    },
+    {
+      id: "e38d945b-6483-4021-88a1-429cf277d207",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Analyse du scrutin n°3213 » — projet de loi pour contrôler l'immigration, améliorer l'intégration, texte de la commission mixte paritaire (19 décembre 2023)",
+      author_or_institution: "Assemblée nationale (France) — XVIe législature",
+      publication_date: "2023-12-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Scrutin public n°3213 sur l'ensemble du projet de loi pour contrôler l'immigration, améliorer l'intégration (texte de la commission mixte paritaire). Synthèse du vote Nombre de votants : 573 Nombre de suffrages exprimés : 535 Majorité absolue des suffrages exprimés : 268 Pour l'adoption : 349 Contre : 186 Abstention : 38 L'Assemblée nationale a adopté",
+      context_explanation:
+        "Le vote le plus commenté de la législature : 349 voix pour, 186 contre, avec les 88 voix du groupe RN, 62 voix LR pour — et, dans la majorité elle-même, 131 voix Renaissance pour, 20 contre et 17 abstentions. Le texte n'atteint la majorité absolue que par l'appoint des voix RN et LR : c'est l'exemple le plus net d'un vote où le RN fait la décision.",
+      original_url: "https://www.assemblee-nationale.fr/dyn/16/scrutins/3213",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 5,
+    },
+    {
+      id: "f9e65938-a41d-4bc2-9552-3a21b7448af9",
+      spectrum: "DONNEES_BRUTES_OFFICIELLES",
+      source_name:
+        "« Analyse du scrutin n°1240 » — motion de censure déposée en application de l'article 49, alinéa 3, par M. Bertrand Pancher et 90 membres (20 mars 2023)",
+      author_or_institution: "Assemblée nationale (France) — XVIe législature",
+      publication_date: "2023-03-20",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Scrutin public n°1240 sur la motion de censure déposée en application de l'article 49, alinéa 3, de la Constitution par M. Bertrand Pancher et 90 membres de l'Assemblée. Synthèse du vote Pour l'adoption : 278 L'Assemblée nationale n'a pas adopté",
+      context_explanation:
+        "La motion transpartisane du groupe LIOT sur la réforme des retraites : 278 voix pour, alors que la majorité absolue des membres de l'Assemblée est de 287. Il a manqué neuf voix. Le groupe RN a voté pour, avec 88 voix — c'est ce vote que certaines analyses présentent comme le seul alignement du RN avec les oppositions, alors que le recomptage de la législature en compte 17 sur 34.",
+      original_url: "https://www.assemblee-nationale.fr/dyn/16/scrutins/1240",
+      author_reference_url:
+        "https://fr.wikipedia.org/wiki/Assembl%C3%A9e_nationale_(France)",
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 6,
+    },
+    {
+      id: "d0ea2582-198a-40de-92b4-2b969aedd443",
+      spectrum: "GAUCHE",
+      source_name:
+        "« Le RN à l'Assemblée : une mue en trompe-l'œil » — étude, La Grande Conversation (21 mars 2023)",
+      author_or_institution: "Thierry Pech et Annalivia Lacoste — Terra Nova",
+      publication_date: "2023-03-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Début mars 2023, le groupe RN avait ainsi voté en accord avec le groupe de la majorité présidentielle (Renaissance) dans 27 % des cas et avec LR dans 50% des cas",
+      context_explanation:
+        "Étude de think tank (Terra Nova, orienté centre gauche), non évaluée par les pairs : elle vaut pour la période antérieure à juin 2023 et pour les épisodes de vote qu'elle documente précisément. Elle relève que le RN a voté l'amendement Nupes créant une taxe de 25 % sur les superprofits, voté contre l'amendement Nupes portant le SMIC à 1 500 euros, et voté deux motions de censure Nupes les 24 et 31 octobre 2022 puis une troisième le 4 novembre 2022. Son taux de 27 % est antérieur au relevé DatAN de 37 % cité dans le résumé ; les deux ne mesurent pas la même chose et ne se substituent pas l'un à l'autre. Un appel de note suit « 50% des cas » dans la page d'origine.",
+      original_url:
+        "https://www.lagrandeconversation.com/politique/le-rn-a-lassemblee-une-mue-en-trompe-loeil/",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 7,
+    },
+    {
+      id: "1377e66c-0bda-4096-9288-93fdf9868cc7",
+      spectrum: "DROITE_LIBERALE_CONSERVATRICE",
+      source_name:
+        "« Le vrai bilan du RN à l'Assemblée nationale » — Le Journal du Dimanche (19 juin 2023)",
+      author_or_institution: "Nina Jackowski — Le Journal du Dimanche",
+      publication_date: "2023-06-19",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le groupe Les Républicains (LR) est celui dont le RN est le plus proche. Tous deux ont voté la même chose dans 56 % des cas, selon le site Datan. Le RN est le plus éloigné des écologistes (34 %), et vote autant avec les Insoumis qu'avec Renaissance (35 %).",
+      context_explanation:
+        "Article d'un hebdomadaire classé à droite, qui s'appuie sur les données DatAN : en juin 2023, le RN vote autant avec Renaissance qu'avec LFI (35 % chacun) et son plus proche allié de vote est LR (56 %). L'article relève aussi une cohésion interne de 0,98 et 123 amendements RN adoptés sur 6 143 déposés. Publié trois mois après l'étude Terra Nova, il en confirme l'ordre de grandeur avec une méthode et un moment différents.",
+      original_url:
+        "https://www.lejdd.fr/politique/le-vrai-bilan-du-rn-lassemblee-nationale-136871",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 8,
+    },
+    {
+      id: "aafdfc99-d113-48a7-9ad4-2ac2a551d035",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« À l'extrême droite de l'hémicycle » — argumentaire de l'ouvrage, dépôt HAL (parution 21 novembre 2023)",
+      author_or_institution:
+        "Estelle Delaine — maîtresse de conférences en sociologie, université Rennes II",
+      publication_date: "2023-11-21",
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Ce militantisme en col blanc combine normalisation et subversion des règles du jeu parlementaire : c'est moins le moment d'une transformation du parti par l'Europe que celui de la formation de ses cadres aux activités de délibérations.",
+      context_explanation:
+        "Ouvrage universitaire sur les élus RN au Parlement européen : la citation est l'argumentaire de l'ouvrage déposé sur HAL, pas une mesure de votes à l'Assemblée nationale. Ce qu'il établit — l'intégration parlementaire du RN passe par la participation aux procédures et aux alliances techniques — éclaire le comportement mesuré dans ce dossier, sans le prouver : les décomptes viennent des scrutins, pas de l'ouvrage. Il ne couvre pas la XVIe législature.",
+      original_url: "https://hal.science/hal-05153235v1",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 9,
+    },
+    {
+      id: "11cd6d4b-18fb-4554-9a13-bedd5672c3c9",
+      spectrum: "CONSENSUS_ACADEMIQUE",
+      source_name:
+        "« La vraie victoire du RN » — Presses de Sciences Po (2022), argumentaire de l'ouvrage déposé sur HAL",
+      author_or_institution:
+        "Luc Rouban — directeur de recherche au CNRS, Centre de recherches politiques de Sciences Po (CEVIPOF)",
+      publication_date: null,
+      quote_kind: "CITATION_EXACTE",
+      exact_quote:
+        "Le vrai gagnant des élections de 2022 est le Rassemblement national. […] Son parti a pu constituer un groupe de 89 députés à l'Assemblée nationale.",
+      context_explanation:
+        "Ouvrage académique (Presses de Sciences Po) sur la victoire électorale du RN en 2022. Il établit la taille du groupe (89 députés) et décrit le déplacement du « centre de gravité des droites » qu'il représente. Il ne porte pas sur les votes : il sert ici à situer l'objet du dossier — un groupe d'opposition de 89 puis 88 membres —, jamais à prouver un décompte. La citation est l'argumentaire de l'ouvrage ; les points de suspension signalent une coupe, pas une reformulation.",
+      original_url: "https://sciencespo.hal.science/hal-03941238v1",
+      author_reference_url: null,
+      archive_storage_path: null,
+      archive_sha256: null,
+      archive_binary_sha256: null,
+      display_order: 10,
+    },
+  ],
+};
+
 export const SEED_DOSSIERS: Dossier[] = [
   REFERENCE_DOSSIER,
   AME_DOSSIER,
@@ -10298,6 +10628,7 @@ export const SEED_DOSSIERS: Dossier[] = [
   AMALGAME_GAUCHE_COMMUNISME_DOSSIER,
   MITTERRAND_VICHY_ANACHRONISME_DOSSIER,
   FISCALITE_FRANCE_MONDE_DOSSIER,
+  RN_OPPOSITION_VOTES_DOSSIER,
 ];
 
 export function publishedSeedDossiers(): Dossier[] {
