@@ -100,7 +100,7 @@ export default function ShareDebateButton({ dossier }: { dossier: Dossier }) {
       <p
         id="partage-debat-etat"
         role="status"
-        className={`pp-meta ${state === "refused" ? "text-falsebd" : "text-muted"}`}
+        className={`pp-meta ${state === "refused" ? "text-false" : "text-muted"}`}
       >
         {state === "copied"
           ? "Texte copié — verdict, sources et lien, prêt à coller sur X, Facebook ou un forum."

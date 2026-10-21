@@ -253,7 +253,7 @@ export default function MethodPage() {
             </p>
           </li>
           <li className="py-4 text-sm leading-relaxed text-muted">
-            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-falsebd">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-false">
               Jamais affiché
             </span>
             <p className="mt-2">

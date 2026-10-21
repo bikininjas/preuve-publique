@@ -8,8 +8,8 @@ import type { Premise } from "@/lib/types";
 
 const TONE_TEXT: Record<"true" | "warn" | "false", string> = {
   true: "text-true border-truebd bg-truebg",
-  warn: "text-warn border-warnbd bg-warnbg",
-  false: "text-false border-falsebd bg-falsebg",
+  warn: "text-warnink border-warnbd bg-warnbg",
+  false: "text-falseink border-falsebd bg-falsebg",
 };
 
 /**

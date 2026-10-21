@@ -22,7 +22,6 @@ export default function SiteHeader() {
               quel : ses tracés ivoire sur plaque sombre tiennent sur le papier
               comme dans la chambre noire. Le nom reste en texte à côté — un
               sceau n'est pas un mot. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/favicon.svg" alt="" width={40} height={40} className="h-10 w-10 shrink-0" />
           <span className="hidden font-serif text-[19px] leading-none tracking-tight text-ink sm:block">
             Preuve publique

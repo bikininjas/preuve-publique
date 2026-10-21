@@ -43,7 +43,7 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
   const client = await supabaseSession();
   if (admin === null || client === null) {
     return (
-      <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
+      <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">
         Session expirée.{" "}
         <Link className="underline" href="/admin">
           Se reconnecter
@@ -70,7 +70,7 @@ export default async function AdminDossierPage({ params, searchParams }: PagePro
   return (
     <div className="space-y-6">
       {probleme !== undefined ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">{probleme}</p>
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">{probleme}</p>
       ) : null}
       {ok !== undefined ? (
         <p className="border-2 border-truebd bg-truebg px-4 py-3 text-truebd">{ok}</p>

@@ -20,6 +20,11 @@
   --pp-warn: #d97706;
   --pp-warn-bg: #fef3c7;
   --pp-warn-bd: #92400e;
+  /* Encres des panneaux teintés (erreur, avertissement). Le jeton `-bd` est un
+     filet : en chambre noire il est sombre, et le poser sur le texte du panneau
+     tombe à 1,75:1. Ces encres-ci suivent le thème, comme `--pp-stamp-*-ink`. */
+  --pp-false-ink: #991b1b;
+  --pp-warn-ink: #92400e;
   --pp-true: #047857;
   --pp-true-bg: #d1fae5;
   --pp-true-bd: #065f46;
@@ -47,6 +52,10 @@
   --pp-warn: #fbbf24;
   --pp-warn-bg: #2a2113;
   --pp-warn-bd: #78350f;
+  /* Mêmes rôles qu'en thème clair : l'encre du panneau s'éclaircit, le filet
+     reste sombre. C'est l'encre qui porte le contraste, pas le filet. */
+  --pp-false-ink: #f87171;
+  --pp-warn-ink: #fbbf24;
   --pp-true: #34d399;
   --pp-true-bg: #0d2a22;
   --pp-true-bd: #065f46;
@@ -74,6 +83,8 @@
   --color-warn: var(--pp-warn);
   --color-warnbg: var(--pp-warn-bg);
   --color-warnbd: var(--pp-warn-bd);
+  --color-warnink: var(--pp-warn-ink);
+  --color-falseink: var(--pp-false-ink);
   --color-true: var(--pp-true);
   --color-truebg: var(--pp-true-bg);
   --color-truebd: var(--pp-true-bd);

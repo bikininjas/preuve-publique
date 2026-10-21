@@ -65,7 +65,7 @@ export default async function CategoryPage({ params }: PageProps) {
       <CategoryChips counts={counts.ok ? counts.value : undefined} active={category} />
 
       {!listed.ok ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">
           {listed.message} Aucune donnée locale ne remplace une lecture échouée.
         </p>
       ) : dossiers.length === 0 ? (

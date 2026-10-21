@@ -35,7 +35,7 @@ export default async function SearchPage({
       {results.ok ? <OriginNotice origin={results.origin} /> : null}
 
       {!results.ok ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 font-mono text-[13px] uppercase tracking-[0.1em] text-falsebd">
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 font-mono text-[13px] uppercase tracking-[0.1em] text-falseink">
           Recherche impossible : {results.message}
         </p>
       ) : results.value.length === 0 ? (

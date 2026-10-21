@@ -287,7 +287,7 @@ export default function EvidenceCard({
                 </p>
               ) : null}
               {audit === "mismatch" ? (
-                <p className="border-2 border-falsebd bg-falsebg px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-falsebd">
+                <p className="border-2 border-falsebd bg-falsebg px-3 py-2 font-mono text-[12px] uppercase tracking-[0.12em] text-falseink">
                   Divergence : la citation affichée ne redonne pas l&apos;empreinte
                   publiée. Signalez ce dossier.
                 </p>

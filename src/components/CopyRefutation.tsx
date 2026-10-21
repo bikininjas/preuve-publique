@@ -140,7 +140,7 @@ export default function CopyRefutation({ dossier }: { dossier: Dossier }) {
       <p
         id="copie-refutation-etat"
         role="status"
-        className={`pp-meta ${state === "failed" ? "text-falsebd" : "text-muted"}`}
+        className={`pp-meta ${state === "failed" ? "text-false" : "text-muted"}`}
       >
         {state === "copied"
           ? `Texte copié — ${picked.length} pièce${picked.length > 1 ? "s" : ""} et le lien du dossier`

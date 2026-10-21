@@ -84,7 +84,7 @@ export default async function DossierPage({ params }: PageProps) {
     return (
       <div className="space-y-4">
         <h1 className="pp-h1 font-serif text-ink">Lecture impossible</h1>
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">
           {result.message}
         </p>
         <p className="pp-meta text-muted">

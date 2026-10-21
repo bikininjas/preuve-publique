@@ -43,7 +43,7 @@ function GoogleMark() {
 function Banner({ ok, probleme }: { ok?: string; probleme?: string }) {
   if (probleme !== undefined) {
     return (
-      <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">{probleme}</p>
+      <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">{probleme}</p>
     );
   }
   if (ok !== undefined) {

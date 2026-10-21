@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import CategoryChips from "@/components/CategoryChips";
+import OriginNotice from "@/components/OriginNotice";
 import RandomDossierButton from "@/components/RandomDossierButton";
 import DossierCard from "@/components/DossierCard";
 import Reveal from "@/components/Reveal";
@@ -45,6 +46,12 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
       />
+      {/* Le mode de lecture se dit avant tout le reste : sans Supabase, la page
+          sert les dossiers de référence locaux, et le lecteur doit le savoir
+          avant de lire le moindre chiffre du registre. Rien à afficher quand la
+          lecture vient de la base. */}
+      {listed.ok ? <OriginNotice origin={listed.origin} /> : null}
+
       <section className="crop-marks space-y-6">
         {/* Deux colonnes à partir de 1024 px : le titre et l'accroche d'abord
             dans le flux, l'emblème ensuite, calé sur la hauteur du bloc de
@@ -82,7 +89,6 @@ export default async function HomePage() {
               `display`, il ne peut donc pas écraser l'utilitaire `hidden`. */}
           <div className="hidden lg:col-span-5 lg:flex lg:items-center lg:justify-center">
             <figure className="pp-emblem">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo-hero.svg"
                 alt="Sceau d'archive de Preuve publique : une balance dont les deux plateaux sont tenus par des faisceaux de triangulation, sous un œil central."
@@ -137,7 +143,7 @@ export default async function HomePage() {
       </section>
 
       {!listed.ok ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">
           {listed.message} Aucune donnée locale ne remplace une lecture échouée.
         </p>
       ) : null}

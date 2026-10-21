@@ -140,7 +140,7 @@ export default function ArchiveHashBadge({
           state === "verified"
             ? "text-truebd"
             : state === "divergent"
-              ? "text-falsebd"
+              ? "text-false"
               : "text-muted"
         }`}
       >

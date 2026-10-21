@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import CategoryChips from "@/components/CategoryChips";
 import DossierCard from "@/components/DossierCard";
+import OriginNotice from "@/components/OriginNotice";
 import TelemetryBand from "@/components/TelemetryBand";
 import { formatAverageConsensus, registryFigures } from "@/lib/figures";
 import { categoryCounts, listPublishedDossiers } from "@/server/services/dossier.service";
@@ -35,6 +36,10 @@ export default async function DossiersPage() {
         </p>
       </header>
 
+      {/* Mêmes chiffres, même réserve : quand la liste vient des dossiers de
+          référence locaux, la page le dit avant le bandeau de télémesure. */}
+      {listed.ok ? <OriginNotice origin={listed.origin} /> : null}
+
       <TelemetryBand
         items={[
           { label: "Dossiers publiés", value: String(figures.dossiers) },
@@ -63,7 +68,7 @@ export default async function DossiersPage() {
       <CategoryChips counts={counts.ok ? counts.value : undefined} />
 
       {!listed.ok ? (
-        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falsebd">
+        <p className="border-2 border-falsebd bg-falsebg px-4 py-3 text-falseink">
           {listed.message} Aucune donnée locale ne remplace une lecture échouée.
         </p>
       ) : dossiers.length === 0 ? (
