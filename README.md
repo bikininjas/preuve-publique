@@ -1237,10 +1237,9 @@ la pièce de la Digithèque. Le registre compte désormais **341 sources et 341 
 Le 21/10/2026, le dossier **« Le Rassemblement national est la seule véritable force
 d'opposition et ne vote jamais avec la majorité présidentielle »** (10 sources, verdict
 `FAUX`, catégorie politique, quatre prémisses et une frise de quatre étapes) a été ajouté
-au seed typé **sans application en base** : aucun `seed:apply`, aucune capture d'archive,
-aucun déploiement — les pièces n'ont donc ni `archive_storage_path` ni
-`archive_binary_sha256`, et la racine d'intégrité du dossier reste à relever. Les pièces
-sont cinq scrutins de la XVIe législature publiés par l'Assemblée nationale (n° 81 loi
+au seed typé, **appliqué en base par upsert ciblé** (`npm run seed:apply --
+--slug=…`) : 10 pièces ajoutées, aucune retirée, les 351 pièces des autres dossiers
+intactes. Les pièces sont cinq scrutins de la XVIe législature publiés par l'Assemblée nationale (n° 81 loi
 pouvoir d'achat, n° 623 LOPMI, n° 1243 nucléaire, n° 1361 anti-squat, n° 3213 immigration,
 n° 1240 motion de censure LIOT), l'étude Terra Nova du 21 mars 2023, l'article du *Journal
 du Dimanche* du 19 juin 2023 et deux ouvrages académiques déposés sur HAL (Estelle
@@ -1251,10 +1250,22 @@ données ouvert des scrutins (4 105 scrutins, 11/07/2022 – 07/06/2024, téléc
 d'origine citait pour ces lois les scrutins n° 111, 438, 1198 et 1342, qui portent sur
 d'autres textes : les numéros publiés sont ceux que les pages de l'Assemblée nationale
 donnent pour les lois en question. Illustration livrée dans `public/illustrations/`
-(1 600 × 1 200, 368 Ko, CC BY-SA 3.0). Vérifié : `npm run typecheck`, 115/115 tests
-(dont le Triangulation Guard et le contrôle d'illustration) et `npm run build`. Le
-registre du seed compte désormais **quarante dossiers, trente-neuf publiés et 361
-sources**.
+(1 600 × 1 200, 368 Ko, CC BY-SA 3.0). Dix fiches déposées et relues (toutes
+`URL_SNAPSHOT`, rehachées à l'identique), racine des captures
+`be2de9243d2b9a3204502122e6f034e6c5c10d579d1e6fe4bc8e788e27aacb7c` ; le miroir Storage
+n'a pas été écrit (aucune clé de service dans l'environnement local), les fiches vivent
+en base et sont servies par `/api/archives/<sha>`. Racine d'intégrité du dossier,
+recalculée par `npm run proofs` : `c7390b86592fecd5eb2b9257d3e4db111c2141bc382603dad6b6a00a23d65910`
+— égale à l'`ETag` et au `X-Proof-Integrity-Root` servis en ligne. Vérifié :
+`npm run typecheck`, 115/115 tests (dont le Triangulation Guard et le contrôle
+d'illustration) et `npm run build`. Déployé par `gcloud builds submit --config
+cloudbuild.yaml --project preuve-publique` (build `2a3730e7…`, SUCCESS), livré sous la
+révision `preuve-publique-git-00044-htx` à 100 % du trafic : la page du dossier et
+l'illustration répondent 200 (image 376 852 octets, `sha256` égal au fichier local), les
+dix fiches d'archive se rehachent octet pour octet depuis l'API publique, et le dossier
+apparaît dans `/dossiers` (39), dans la catégorie politique et dans la recherche. Le
+registre compte désormais **quarante dossiers, trente-neuf publiés, 361 sources et 361
+fiches d'archive**.
 
 ## Déploiement : le moins cher possible
 
