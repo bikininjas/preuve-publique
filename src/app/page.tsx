@@ -45,29 +45,58 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
       />
-      <section className="crop-marks space-y-5">
-        <p className="pp-meta text-muted">Registre des vérifications · triangulation documentaire</p>
-        <h1 className="pp-h1 max-w-[20ch] font-serif text-ink">
-          La preuve ne doit pas dépendre de celui qui la porte.
-        </h1>
-        <p className="pp-lead max-w-[56ch] text-muted">
-          Chaque dossier croise archives d&apos;époque, travaux évalués par les pairs et
-          sources de tout le bord politique. Le lecteur juge le recoupement, pas
-          l&apos;autorité.
-        </p>
-        <div className="flex flex-wrap items-center gap-2">
-          {latest !== undefined ? (
-            <Link className="pp-btn pp-btn--ink" href={`/dossiers/${latest.slug}`}>
-              Lire le dernier dossier
-            </Link>
-          ) : null}
-          <RandomDossierButton slugs={dossiers.map((dossier) => dossier.slug)} />
-          <Link className="pp-btn" href="/methode">
-            Comment on vérifie
-          </Link>
+      <section className="crop-marks space-y-6">
+        {/* Deux colonnes à partir de 1024 px : le titre et l'accroche d'abord
+            dans le flux, l'emblème ensuite, calé sur la hauteur du bloc de
+            texte. Sous ce seuil l'emblème s'efface — il ne pousse ni le titre
+            ni les boutons hors du premier écran ; la marque reste visible dans
+            l'en-tête. */}
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="space-y-5 lg:col-span-7">
+            <p className="pp-meta text-muted">Registre des vérifications · triangulation documentaire</p>
+            <h1 className="pp-h1 max-w-[20ch] font-serif text-ink">
+              La preuve ne doit pas dépendre de celui qui la&nbsp;porte.
+            </h1>
+            <p className="pp-lead max-w-[56ch] text-muted">
+              Chaque dossier croise archives d&apos;époque, travaux évalués par les pairs et
+              sources de tout le bord politique. Le lecteur juge le recoupement, pas
+              l&apos;autorité.
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              {latest !== undefined ? (
+                <Link className="pp-btn pp-btn--ink" href={`/dossiers/${latest.slug}`}>
+                  Lire le dernier dossier
+                </Link>
+              ) : null}
+              <RandomDossierButton slugs={dossiers.map((dossier) => dossier.slug)} />
+              <Link className="pp-btn" href="/methode">
+                Comment on vérifie
+              </Link>
+            </div>
+          </div>
+
+          {/* Le sceau d'archive, posé sur sa planche comme un négatif sur la
+              table lumineuse (voir `.pp-emblem`). Le fichier reste la seule
+              source du dessin : aucune copie dans le JSX. La colonne se masque
+              sous 1024 px via un conteneur neutre — `.pp-emblem` ne pose pas
+              `display`, il ne peut donc pas écraser l'utilitaire `hidden`. */}
+          <div className="hidden lg:col-span-5 lg:flex lg:items-center lg:justify-center">
+            <figure className="pp-emblem">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-hero.svg"
+                alt="Sceau d'archive de Preuve publique : une balance dont les deux plateaux sont tenus par des faisceaux de triangulation, sous un œil central."
+                width={500}
+                height={552}
+                className="pp-emblem__image"
+              />
+            </figure>
+          </div>
         </div>
-        {/* Registre technique du hero : une ligne de mono sous l'en-tête —
-            des valeurs comptées sur les dossiers publiés, jamais estimées. */}
+
+        {/* Registre technique du hero : une bande de mono sous les deux
+            colonnes, sur toute la mesure — des valeurs comptées sur les
+            dossiers publiés, jamais estimées. */}
         <p className="pp-register">
           <span>[SYSTÈME : ACTIF]</span>
           <span className="pp-register__sep" aria-hidden="true">
@@ -87,6 +116,7 @@ export default async function HomePage() {
           </span>
           <span>[INTÉGRITÉ : SHA-256 WEBCRYPTO]</span>
         </p>
+
         <StatBand
           stats={[
             { label: "Dossiers publiés", value: dossiers.length },

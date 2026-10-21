@@ -18,12 +18,12 @@ export default function SiteHeader() {
           className="pp-tap shrink-0 gap-2 pr-2"
           aria-label="Preuve publique — accueil"
         >
-          <span
-            aria-hidden="true"
-            className="grid h-9 w-9 place-items-center border border-grid bg-ink font-mono text-[13px] font-bold tracking-tight text-canvas"
-          >
-            PP
-          </span>
+          {/* La marque est le sceau compact (`public/favicon.svg`), servi tel
+              quel : ses tracés ivoire sur plaque sombre tiennent sur le papier
+              comme dans la chambre noire. Le nom reste en texte à côté — un
+              sceau n'est pas un mot. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/favicon.svg" alt="" width={40} height={40} className="h-10 w-10 shrink-0" />
           <span className="hidden font-serif text-[19px] leading-none tracking-tight text-ink sm:block">
             Preuve publique
           </span>

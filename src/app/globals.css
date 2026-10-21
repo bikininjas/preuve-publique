@@ -984,6 +984,13 @@ a[class*="text-seal"] {
   --pp-plate-glow: rgba(107, 92, 69, 0.3);
   --pp-plate-seg: #b99a6b;
 
+  /* La planche de l'emblème du hero : un négatif posé sur la table lumineuse.
+     Sa surface ne suit pas le thème vers le clair — le sceau est dessiné en
+     ivoire sur fond transparent — mais elle s'éclaircit d'un demi-ton dans la
+     chambre noire, où #121212 ne se détacherait plus du fond #0b0c0e. */
+  --pp-emblem-bg: #121212;
+  --pp-emblem-line: #2a2a2a;
+
   /* La planche d'illustration : un négatif posé sur la marge du cartouche.
      Cadre #333 sur fond #0a0a0a, cartel en chasse fixe — les valeurs servent
      aussi dans la chambre noire, où le cadre reste un objet physique. */
@@ -1024,6 +1031,11 @@ a[class*="text-seal"] {
   --pp-plate-lit-bg: #1d1b17;
   --pp-plate-seg: #c9a97a;
   --pp-neg-shadow: rgba(0, 0, 0, 0.6);
+  /* La planche de l'emblème monte d'un demi-ton : sur #0b0c0e, une plaque
+     #121212 ne se lirait que par son filet. L'ombre dure, elle, ne sert à rien
+     dans le noir — l'élévation y passe par la surface, pas par l'ombre. */
+  --pp-emblem-bg: #1e2127;
+  --pp-emblem-line: #3c424c;
 }
 
 
@@ -1517,6 +1529,46 @@ a[class*="text-seal"] {
   background-color: var(--pp-neg-bg);
   /* Un négatif légèrement contrasté, jamais un filtre qui invente. */
   filter: contrast(1.03) saturate(0.92);
+}
+
+/* --- Emblème du hero : le sceau posé comme un négatif -------------------- */
+
+/* `public/logo-hero.svg` est dessiné en ivoire (#F4F1EA) sur fond transparent,
+   et porte déjà ses propres repères de coupe, ses réticules et son cartouche :
+   c'est une planche complète. Le cadre reprend donc la recette de
+   `.pp-negative` (marge intérieure, filet clair intérieur, ombre dure) avec les
+   jetons de plaque, qui restent sombres dans les deux thèmes — sur le papier
+   le sceau disparaîtrait autrement.
+   `max-width: 21.5rem` n'est pas arbitraire : à cette largeur la planche fait la
+   hauteur du bloc de titre (≈ 374 px), donc les deux colonnes se ferment sur la
+   même ligne, et la bande `.pp-register` qui suit court sur toute la mesure.
+   Le `viewBox` du SVG est taillé à 552 de haut (et non 560) : le vide sous le
+   cartouche est retiré sans serrer la marge basse contre le filet.
+   Plus large, la planche dépasse le texte et prend la vedette ; calée au bord
+   droit, elle laisse un vide de 188 px au milieu du hero.
+   Aucun `display` ici : la feuille est hors couche, donc une règle posée dans
+   `.pp-emblem` l'emporterait sur l'utilitaire `hidden` du JSX (même
+   spécificité, ordre après les utilitaires). Le masquage sous 1024 px et le
+   centrage viennent des classes `lg:flex lg:items-center lg:justify-center`. */
+.pp-emblem {
+  width: 100%;
+  max-width: 21.5rem;
+  margin: 0 auto;
+  padding: 0.875rem;
+  border: 1px solid var(--pp-emblem-line);
+  background-color: var(--pp-emblem-bg);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    6px 6px 0 var(--pp-neg-shadow);
+}
+
+/* Filet intérieur du négatif : il encadre le dessin sans l'étouffer ; les
+   repères de coupe du SVG restent à l'intérieur de la planche. */
+.pp-emblem__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pp-emblem-line);
 }
 
 /* Le cartel du musée : collé sous l'image, séparé par un filet, en chasse

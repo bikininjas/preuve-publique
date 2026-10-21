@@ -1,5 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
-  <rect width="64" height="64" rx="12" fill="#0c111a"/>
-  <path d="M20 46V18h12a9 9 0 0 1 0 18h-6v10z" fill="#e6edf5"/>
-  <circle cx="44" cy="42" r="4" fill="#d99a2b"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%">
+  <!-- Fond sombre forensique -->
+  <rect width="64" height="64" rx="14" fill="#0D0D0D" />
+  <rect width="62" height="62" x="1" y="1" rx="13" fill="none" stroke="#262626" stroke-width="1.5" />
+
+  <!-- Emblème condensé (Ivoire #F4F1EA) -->
+  <g stroke="#F4F1EA" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Mât central et base -->
+    <line x1="32" y1="10" x2="32" y2="52" stroke-width="2.5" />
+    <line x1="20" y1="52" x2="44" y2="52" stroke-width="3" />
+    <circle cx="32" cy="8" r="2.5" fill="#F4F1EA" />
+
+    <!-- Fléau courbé -->
+    <path d="M 10 20 C 20 17, 44 17, 54 20" stroke-width="2.5" />
+
+    <!-- Plateau gauche & cordage -->
+    <line x1="10" y1="20" x2="4" y2="38" stroke-width="1.25" />
+    <line x1="10" y1="20" x2="18" y2="38" stroke-width="1.25" />
+    <path d="M 3 38 C 3 45, 19 45, 19 38 Z" fill="#F4F1EA" fill-opacity="0.2" stroke-width="1.5" />
+
+    <!-- Plateau droit & cordage -->
+    <line x1="54" y1="20" x2="46" y2="38" stroke-width="1.25" />
+    <line x1="54" y1="20" x2="60" y2="38" stroke-width="1.25" />
+    <path d="M 45 38 C 45 45, 61 45, 61 38 Z" fill="#F4F1EA" fill-opacity="0.2" stroke-width="1.5" />
+
+    <!-- Œil central de la preuve -->
+    <path d="M 24 29 C 27 24, 37 24, 40 29 C 37 34, 27 34, 24 29 Z" fill="#0D0D0D" stroke-width="1.8" />
+    <circle cx="32" cy="29" r="2.5" fill="#F4F1EA" stroke="none" />
+  </g>
 </svg>

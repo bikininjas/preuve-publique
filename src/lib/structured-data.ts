@@ -15,6 +15,9 @@ export function organizationJsonLd(baseUrl: string = SITE_URL) {
     name: "Preuve publique",
     url: `${baseUrl}/`,
     description: SITE_DESCRIPTION,
+    /* Le sceau réellement servi à la racine du site : un fichier qui existe,
+       pas une adresse décorative. */
+    logo: `${baseUrl}/favicon.svg`,
     sameAs: ["https://x.com/vigiecitoyenn3"],
   };
 }

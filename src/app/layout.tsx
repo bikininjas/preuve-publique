@@ -53,6 +53,13 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
+  /* L'icône du site est le sceau compact (`public/favicon.svg`), servi tel
+     quel. Aucune icône `apple-touch` n'est déclarée : iOS ignore les SVG et
+     afficherait une vignette vide plutôt que le sceau. */
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: ["/favicon.svg"],
+  },
 };
 
 /**
